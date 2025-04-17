@@ -17,7 +17,7 @@ The starting problem is given a line and labeled points on that line we define a
 
 <center>
 <figure>
-<img src="/files/blog-posts/points-and-boxes-1.PNG" alt="Example covering where the red line represents a cover of points 1 and 3 giving the binary string 101.">
+<img src="/files/blog-posts/points-and-boxes/points-and-boxes-1.PNG" alt="Example covering where the red line represents a cover of points 1 and 3 giving the binary string 101.">
 <figcaption>Figure 1: Example covering where the red line represents a cover of
 points 1 and 3 giving the binary string <span class="math inline">101</span>.</figcaption>
 </figure>
@@ -38,7 +38,7 @@ In two dimensions we now place points on a plane and instead of covering with a 
 
 <center>
 <figure>
-<img src="/files/blog-posts/points-and-boxes-2.PNG" alt="Example covering where the red box represents the binary string 1011.">
+<img src="/files/blog-posts/points-and-boxes/points-and-boxes-2.PNG" alt="Example covering where the red box represents the binary string 1011.">
 <figcaption>Figure 2: Example covering where the red box represents the binary string 1011. </figcaption>
 </figure>
 </center>
@@ -49,7 +49,7 @@ The answer is four. We can solve this by placing the points in a square, then mo
 
 <center>
 <figure>
-<img src="/files/blog-posts/points-and-boxes-3.PNG" alt="On the left is the starting square and on the right is after shifting the points.">
+<img src="/files/blog-posts/points-and-boxes/points-and-boxes-3.PNG" alt="On the left is the starting square and on the right is after shifting the points.">
 <figcaption>Figure 3: On the left is the starting square and on the right is after
 shifting the points.</figcaption>
 </figure>
@@ -74,7 +74,7 @@ From there we can easily make every covering combination. Below are several ways
 
 <center>
 <figure>
-<img src="/files/blog-posts/points-and-boxes-4.PNG" alt="The projection of the points for Theorem 4.">
+<img src="/files/blog-posts/points-and-boxes/points-and-boxes-4.PNG" alt="The projection of the points for Theorem 4.">
 <figcaption>Figure 4: The projection of the points for Theorem 4.</figcaption>
 </figure>
 </center>
@@ -87,7 +87,7 @@ Given this minimal rectangle we can partition the plane into $$8$$ octants by ex
 
 <center>
 <figure>
-<img src="/files/blog-posts/points-and-boxes-5.PNG" alt="Octant labels for some minimal rectangle.">
+<img src="/files/blog-posts/points-and-boxes/points-and-boxes-5.PNG" alt="Octant labels for some minimal rectangle.">
 <figcaption>Figure 5: Octant labels for some minimal rectangle.</figcaption>
 </figure>
 </center>
