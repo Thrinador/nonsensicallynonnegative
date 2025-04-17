@@ -22,7 +22,7 @@ repository               : "Thrinador/nonsensicallynonnegative"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "images/bio-pic.jpg"
   name             : "Ben Clark"
   pronouns         : # example: "she/her"  
   bio              : "Questionable software engineer and pretend mathematician"
