@@ -2,7 +2,7 @@
 title: "Calculus 1 lab"
 collection: teaching
 type: "Running Lab"
-permalink: /teaching/2022-fall-teaching-1
+permalink: /teaching/2022-fall-calc-1
 venue: "Washington State University, Department of Mathematics and Statistics"
 date: 2022-08-01
 location: "Pullman, WA"

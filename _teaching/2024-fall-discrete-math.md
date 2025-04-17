@@ -2,7 +2,7 @@
 title: "Discrete Mathematics"
 collection: teaching
 type: "Instructor"
-permalink: /teaching/2024-fall-teaching-1
+permalink: /teaching/2024-fall-discrete-math
 venue: "Washington State University, Department of Mathematics and Statistics"
 date: 2024-08-01
 location: "Pullman, WA"

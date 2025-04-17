@@ -23,9 +23,9 @@ repository               : "Thrinador/nonsensicallynonnegative"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Ben Clark"
   pronouns         : # example: "she/her"  
-  bio              : "Personal website for nonsensical thoughts and ideas"
+  bio              : "Questionable software engineer and pretend mathematician"
   location         : "Pullman, WA"
   employer         : "Washington State University"
   uri              : "https://nonsensicallynonnegative.com"
@@ -33,7 +33,7 @@ author:
 
   # Academic websites
   arxiv            : "https://arxiv.org/a/clark_b_1.html"
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : # URL
   impactstory      : # URL
   orcid            : "https://orcid.org/0000-0003-3492-8686"
   semantic         : # URL

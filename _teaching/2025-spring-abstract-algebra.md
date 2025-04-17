@@ -2,7 +2,7 @@
 title: "Abstract Algebra"
 collection: teaching
 type: "Instructor"
-permalink: /teaching/2025-spring-teaching-1
+permalink: /teaching/2025-spring-abstract-algebra
 venue: "Washington State University, Department of Mathematics and Statistics"
 date: 2025-01-01
 location: "Pullman, WA"
