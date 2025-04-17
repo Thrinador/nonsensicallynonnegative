@@ -10,4 +10,4 @@ location: "Pullman, WA"
 
 For this course, I taught one section of Abstract algebra. This entailed writing and presenting lecture notes, giving/grading homeworks and exams, and being the instructor of record for my class.
 
-[Abstract Algebra Lecture Notes]({{ '/files/lecture_notes/abstract_algebra.pdf' | relative_url }})
+[Abstract Algebra Lecture Notes]({{ '/files/lecture-notes/abstract-algebra.pdf' | relative_url }})
