@@ -10,4 +10,4 @@ location: "Pullman, WA"
 
 For this course, I taught one section of Discrete Mathematics. This entailed writing and presenting lecture notes, giving/grading homeworks and exams, and being the instructor of record for my class.
 
-[Discrete Math Lecture Notes]({{ '/files/discrete_math_lecture_notes.pdf' | relative_url }})
+[Discrete Math Lecture Notes](/files/discrete_math_lecture_notes.pdf)
