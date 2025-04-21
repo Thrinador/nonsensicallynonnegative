@@ -1,0 +1,13 @@
+---
+title: "Would gamers collaborate given the opportunity"
+collection: publications
+category: manuscripts
+permalink: /publication/2018-03-01-would-gamers-collaborate-given-the-opportunity
+excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
+date: 2018-03-01
+venue: 'FDG 18: Proceedings of the 13th International Conference on the Foundations of Digital Games'
+paperurl: 'https://dl.acm.org/doi/10.1145/3235765.3236497'
+---
+Abstract: Understanding player preference and behavioral tendency in the presence of collaborative opportunities is fundamental to building cooperative video games.1 Such knowledge allows the integration and fine-tuning of features to further engage players. This paper presents an ongoing study that approaches the subject by posing a simple question: when opportunities are provided, would players choose to cooperate? The work analyzes existing well-established cooperative game design patterns and identifies effective attributes of game mechanics that are characterized by the patterns. Small multiplayer games that focused on each of the attributes are built where in each case the players have the options of collaborating or completing the tasks individually. In this way, the effects of each attribute can be analyzed independently to provide insights into players' behavior under specific variations of conditions. While the testing is ongoing, our results will provide directions for future integration of collaborative features in games. Additionally, our approach of identifying implementable attributes based on the principles of cooperative game design patterns serves as a template for systematic approach to building cooperative video games.
+
+Keywords: Human-centered computing; Interactive games
