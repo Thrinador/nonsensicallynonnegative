@@ -199,6 +199,9 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
+  projects:
+    output: true
+    permalink: /:collection/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -229,7 +232,6 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
   # _publications
   - scope:
       path: ""
@@ -238,13 +240,20 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
   # _talks
   - scope:
       path: ""
       type: talks
     values:
       layout: talk
+      author_profile: true
+      share: true
+  # _projects
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
       author_profile: true
       share: true
 
