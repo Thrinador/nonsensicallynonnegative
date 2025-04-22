@@ -78,6 +78,10 @@
       <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
     {% elsif post.bibtexurl %}
       <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.repourl %}
+      <p><a href="{{ post.repourl }}">Link to repository</a></p>
+    {% elsif post.teachingurl %}
+      <p><a href="{{ post.teachingurl }}">Download Lecture Notes</a></p>
     {% endif %}
 
   </article>
