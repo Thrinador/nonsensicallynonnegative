@@ -7,8 +7,8 @@ tags:
   - coloring
 ---
 
-Heawood conjecture is a lesser known extension to the 4-color theorem.
-
 [Download a pdf version](/files/blog-posts/heawood-conjecture.pdf)
+
+Heawood conjecture is a lesser known extension to the 4-color theorem.
 
 Markdown version in the works...
