@@ -9,6 +9,13 @@ location: "Pullman, WA"
 teachingurl: '/files/lecture-notes/abstract-algebra.pdf'
 ---
 
-For this course, I taught one section of Abstract algebra. This entailed writing and presenting lecture notes, giving/grading homeworks and exams, and being the instructor of record for my class.
+Abstract algebra with an emphasis on applications to teaching. 
+
+This class covered the following topics:
+* Groups including the major types of groups
+* Morphisms of groups
+* Operations on groups including product and quotient groups.
+* Counting with groups with Lagrange’s Theorem and Burnside's lemma
+* Rings, fields, and vector spaces.
 
 [Abstract Algebra Lecture Notes]({{ '/files/lecture-notes/abstract-algebra.pdf' | relative_url }})
