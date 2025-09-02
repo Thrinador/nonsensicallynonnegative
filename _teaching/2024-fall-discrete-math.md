@@ -9,6 +9,12 @@ location: "Pullman, WA"
 teachingurl: '/files/lecture-notes/discrete-math.pdf'
 ---
 
-For this course, I taught one section of Discrete Mathematics. This entailed writing and presenting lecture notes, giving/grading homeworks and exams, and being the instructor of record for my class.
+Discrete Mathematics, this class covered the following topics:
+* Logical statements including conditional statements and qualifiers.
+* Introduction to proof techniques through number theory.
+* Sequences and mathematical induction.
+* Set theory 
+* Counting and probability
+* Graph theory
 
 [Discrete Math Lecture Notes]({{ '/files/lecture-notes/discrete-math.pdf' | relative_url }})

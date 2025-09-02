@@ -9,7 +9,7 @@ location: "Pullman, WA"
 teachingurl: '/files/lecture-notes/abstract-algebra.pdf'
 ---
 
-Abstract algebra with an emphasis on applications to teaching. 
+Abstract algebra with an emphasis on applications to teaching.
 
 This class covered the following topics:
 * Groups including the major types of groups
