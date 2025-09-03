@@ -9,7 +9,6 @@ location: "Pullman, WA"
 ---
 
 Advanced linear algebra with an emphasis on practical matrix factorizations and special types of matrix classes. 
-
 This class will cover the following topics:
 * Theory and applications of vector spaces 
 * Eigenvalues, eigenspaces, similarity transformations of matrices, and diagonalization of matrices.
