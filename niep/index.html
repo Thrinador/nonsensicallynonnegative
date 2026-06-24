@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace Polytope Viewer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="sidebar-header">
+                <h2>Trace Polytope Gallery</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search vertices (e.g. a0 a1)...">
+                </div>
+                <div class="filters-container">
+                    <select id="filterType">
+                        <option value="All">All Types</option>
+                        <option value="SNIEP">SNIEP</option>
+                        <option value="RNIEP">RNIEP</option>
+                    </select>
+                    <select id="filterSize">
+                        <option value="All">All Sizes</option>
+                        <option value="4">Size 4</option>
+                        <option value="5">Size 5</option>
+                        <option value="6">Size 6</option>
+                    </select>
+                    <select id="filterDim">
+                        <option value="All">All Dims</option>
+                        <option value="Polygon">2D Polygon</option>
+                        <option value="Polyhedron">3D Polyhedron</option>
+                    </select>
+                </div>
+            </div>
+            <div class="plot-list" id="plotList">
+                <!-- Plot items will be injected here via JS -->
+            </div>
+        </aside>
+        
+        <!-- Main Stage -->
+        <main class="stage">
+            <div id="welcomeMessage" class="glass welcome-msg">
+                <h3>Select a plot from the sidebar</h3>
+                <p>Use the search bar to filter by trace polytope vertices.</p>
+            </div>
+            <iframe id="plotFrame" class="plot-frame hidden" src="" frameborder="0"></iframe>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
