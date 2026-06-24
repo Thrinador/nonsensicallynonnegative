@@ -621,6 +621,630 @@
         "label": "b1 b2 c_10 c_21 d_20 e_12"
     },
     {
+        "id": "sniep_5_trace_polytope_a0_a1_a2",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a1",
+            "a2"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a1_a2.html",
+        "label": "a0 a1 a2"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a1_b2",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a1",
+            "b2"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a1_b2.html",
+        "label": "a0 a1 b2"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a1_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a1",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a1_e_12.html",
+        "label": "a0 a1 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a2_b1",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a2",
+            "b1"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a2_b1.html",
+        "label": "a0 a2 b1"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a2_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a2",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a2_c_21.html",
+        "label": "a0 a2 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b1_b2",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b1",
+            "b2"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b1_b2.html",
+        "label": "a0 b1 b2"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b1_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b1",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b1_c_21.html",
+        "label": "a0 b1 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b1_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b1",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b1_d_20.html",
+        "label": "a0 b1 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b1_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b1",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b1_e_12.html",
+        "label": "a0 b1 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b2_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b2",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b2_c_10.html",
+        "label": "a0 b2 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b2_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b2",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b2_c_21.html",
+        "label": "a0 b2 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_b2_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "b2",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_b2_e_12.html",
+        "label": "a0 b2 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_c_10_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "c_10",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_c_10_c_21.html",
+        "label": "a0 c_10 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_c_10_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "c_10",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_c_10_d_20.html",
+        "label": "a0 c_10 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_c_21_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "c_21",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_c_21_e_12.html",
+        "label": "a0 c_21 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_d_20_e_12.html",
+        "label": "a0 d_20 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_a2_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "a2",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_a2_c_10.html",
+        "label": "a1 a2 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_a2_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "a2",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_a2_d_20.html",
+        "label": "a1 a2 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b1_b2",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b1",
+            "b2"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b1_b2.html",
+        "label": "a1 b1 b2"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b1_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b1",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b1_c_21.html",
+        "label": "a1 b1 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b1_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b1",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b1_d_20.html",
+        "label": "a1 b1 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b2_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b2",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b2_c_10.html",
+        "label": "a1 b2 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b2_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b2",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b2_d_20.html",
+        "label": "a1 b2 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_b2_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "b2",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_b2_e_12.html",
+        "label": "a1 b2 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_c_10_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "c_10",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_c_10_c_21.html",
+        "label": "a1 c_10 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_c_10_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "c_10",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_c_10_d_20.html",
+        "label": "a1 c_10 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_c_10_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "c_10",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_c_10_e_12.html",
+        "label": "a1 c_10 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_c_21_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "c_21",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_c_21_e_12.html",
+        "label": "a1 c_21 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_d_20_e_12.html",
+        "label": "a1 d_20 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b1_b2",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b1",
+            "b2"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b1_b2.html",
+        "label": "a2 b1 b2"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b1_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b1",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b1_c_10.html",
+        "label": "a2 b1 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b1_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b1",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b1_c_21.html",
+        "label": "a2 b1 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b1_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b1",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b1_d_20.html",
+        "label": "a2 b1 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b2_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b2",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b2_c_10.html",
+        "label": "a2 b2 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_b2_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "b2",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_b2_e_12.html",
+        "label": "a2 b2 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_c_10_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "c_10",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_c_10_c_21.html",
+        "label": "a2 c_10 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_c_10_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "c_10",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_c_10_d_20.html",
+        "label": "a2 c_10 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_c_21_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "c_21",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_c_21_d_20.html",
+        "label": "a2 c_21 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_c_21_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "c_21",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_c_21_e_12.html",
+        "label": "a2 c_21 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a2_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a2",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a2_d_20_e_12.html",
+        "label": "a2 d_20 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_b2_c_10",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "b2",
+            "c_10"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_b2_c_10.html",
+        "label": "b1 b2 c_10"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_b2_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "b2",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_b2_d_20.html",
+        "label": "b1 b2 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_c_10_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "c_10",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_c_10_e_12.html",
+        "label": "b1 c_10 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_d_20_e_12.html",
+        "label": "b1 d_20 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b2_c_10_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b2",
+            "c_10",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b2_c_10_c_21.html",
+        "label": "b2 c_10 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b2_c_21_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b2",
+            "c_21",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b2_c_21_d_20.html",
+        "label": "b2 c_21 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_c_10_c_21_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "c_10",
+            "c_21",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_c_10_c_21_e_12.html",
+        "label": "c_10 c_21 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_c_21_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "c_21",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_c_21_d_20_e_12.html",
+        "label": "c_21 d_20 e_12"
+    },
+    {
         "id": "sniep_5_trace_polytope_a0_a1_b1_c_10",
         "mode": "SNIEP",
         "type": "Polygon",
@@ -635,50 +1259,115 @@
         "label": "a0 a1 b1 c_10"
     },
     {
-        "id": "sniep_5_trace_polytope_3d_a0_a1_b1_b2_c_10",
+        "id": "sniep_5_trace_polytope_a0_a1_c_21_d_20",
         "mode": "SNIEP",
-        "type": "Polyhedron",
+        "type": "Polygon",
         "size": 5,
         "vertices": [
             "a0",
             "a1",
-            "b1",
-            "b2",
-            "c_10"
-        ],
-        "file": "plots/sniep_5_trace_polytope_3d_a0_a1_b1_b2_c_10.html",
-        "label": "a0 a1 b1 b2 c_10"
-    },
-    {
-        "id": "sniep_5_trace_polytope_3d_a0_a1_a2_b1_c_10_e_12",
-        "mode": "SNIEP",
-        "type": "Polyhedron",
-        "size": 5,
-        "vertices": [
-            "a0",
-            "a1",
-            "a2",
-            "b1",
-            "c_10",
-            "e_12"
-        ],
-        "file": "plots/sniep_5_trace_polytope_3d_a0_a1_a2_b1_c_10_e_12.html",
-        "label": "a0 a1 a2 b1 c_10 e_12"
-    },
-    {
-        "id": "sniep_5_trace_polytope_3d_a0_a1_a2_b2_c_21_d_20",
-        "mode": "SNIEP",
-        "type": "Polyhedron",
-        "size": 5,
-        "vertices": [
-            "a0",
-            "a1",
-            "a2",
-            "b2",
             "c_21",
             "d_20"
         ],
-        "file": "plots/sniep_5_trace_polytope_3d_a0_a1_a2_b2_c_21_d_20.html",
-        "label": "a0 a1 a2 b2 c_21 d_20"
+        "file": "plots/sniep_5_trace_polytope_a0_a1_c_21_d_20.html",
+        "label": "a0 a1 c_21 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a2_b2_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a2",
+            "b2",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a2_b2_d_20.html",
+        "label": "a0 a2 b2 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a0_a2_c_10_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a0",
+            "a2",
+            "c_10",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a0_a2_c_10_e_12.html",
+        "label": "a0 a2 c_10 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_a2_b1_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "a2",
+            "b1",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_a2_b1_e_12.html",
+        "label": "a1 a2 b1 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_a1_a2_b2_c_21",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "a1",
+            "a2",
+            "b2",
+            "c_21"
+        ],
+        "file": "plots/sniep_5_trace_polytope_a1_a2_b2_c_21.html",
+        "label": "a1 a2 b2 c_21"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_b2_c_21_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "b2",
+            "c_21",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_b2_c_21_e_12.html",
+        "label": "b1 b2 c_21 e_12"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b1_c_10_c_21_d_20",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b1",
+            "c_10",
+            "c_21",
+            "d_20"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b1_c_10_c_21_d_20.html",
+        "label": "b1 c_10 c_21 d_20"
+    },
+    {
+        "id": "sniep_5_trace_polytope_b2_c_10_d_20_e_12",
+        "mode": "SNIEP",
+        "type": "Polygon",
+        "size": 5,
+        "vertices": [
+            "b2",
+            "c_10",
+            "d_20",
+            "e_12"
+        ],
+        "file": "plots/sniep_5_trace_polytope_b2_c_10_d_20_e_12.html",
+        "label": "b2 c_10 d_20 e_12"
     }
 ]
