@@ -80,7 +80,14 @@ const state = {
     showUnitCircle: true,
     showTrail: true,
     cachedBoundary: null,
-    cachedFareyRoots: []
+    cachedFareyRoots: [],
+    isPanningMode: false,
+    isShiftDown: false,
+    stickToBoundary: false,
+    lastMouseWorld: null,
+    lastMouseScreen: null,
+    isMouseOverCanvas: false,
+    snappedPreviewPoint: null
 };
 
 // --- Mathematical Engine ---
@@ -369,6 +376,34 @@ function minDistanceToPolygon(px, py, polygon) {
         if (d < minDist) minDist = d;
     }
     return minDist;
+}
+
+/**
+ * Find the closest point on the polygon boundary to (px, py).
+ * Projects (px, py) orthogonally onto each piecewise line segment.
+ */
+function getClosestPointOnBoundary(px, py, polygon) {
+    if (!polygon || polygon.length === 0) return { x: px, y: py, dist: 0 };
+    let minDist = Infinity;
+    let closestPt = { x: polygon[0].x, y: polygon[0].y, dist: Infinity };
+
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const xi = polygon[i].x, yi = polygon[i].y;
+        const xj = polygon[j].x, yj = polygon[j].y;
+        const dx = xj - xi;
+        const dy = yj - yi;
+        const l2 = dx * dx + dy * dy;
+        let t = l2 === 0 ? 0 : ((px - xi) * dx + (py - yi) * dy) / l2;
+        t = Math.max(0, Math.min(1, t));
+        const projX = xi + t * dx;
+        const projY = yi + t * dy;
+        const d = Math.hypot(px - projX, py - projY);
+        if (d < minDist) {
+            minDist = d;
+            closestPt = { x: projX, y: projY, dist: d };
+        }
+    }
+    return closestPt;
 }
 
 /**
@@ -787,9 +822,63 @@ class KarpelevichViewer {
 
     drawBasePoint(ctx) {
         const pt = this.toScreen(state.z.x, state.z.y);
+        const colors = getThemeCanvasColors();
 
         ctx.save();
-        // Target crosshair
+
+        // 1. If dragging with boundary-stick active and mouse is offset, draw projection guide line
+        if (state.isDraggingPoint && (state.isShiftDown || state.stickToBoundary) && state.lastMouseScreen) {
+            const mScr = state.lastMouseScreen;
+            const distScr = Math.hypot(mScr.x - pt.x, mScr.y - pt.y);
+            if (distScr > 6) {
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.65)';
+                ctx.lineWidth = 1.4;
+                ctx.setLineDash([3, 3]);
+                ctx.beginPath();
+                ctx.moveTo(mScr.x, mScr.y);
+                ctx.lineTo(pt.x, pt.y);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Small cursor anchor
+                ctx.beginPath();
+                ctx.arc(mScr.x, mScr.y, 3.5, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.8)';
+                ctx.fill();
+            }
+        }
+
+        // 2. Hover snap preview when holding Shift without dragging
+        if (!state.isDraggingPoint && state.isShiftDown && state.isMouseOverCanvas && state.snappedPreviewPoint && state.lastMouseScreen) {
+            const snapScr = this.toScreen(state.snappedPreviewPoint.x, state.snappedPreviewPoint.y);
+            const mScr = state.lastMouseScreen;
+
+            // Guide line from cursor to prospective boundary snap point
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.65)';
+            ctx.lineWidth = 1.4;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(mScr.x, mScr.y);
+            ctx.lineTo(snapScr.x, snapScr.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Snap preview ring on boundary
+            ctx.beginPath();
+            ctx.arc(snapScr.x, snapScr.y, 8, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.fill();
+            ctx.stroke();
+
+            // Preview tooltip badge
+            ctx.font = '600 10px Inter, sans-serif';
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillText('Snap to ∂K_n', snapScr.x + 12, snapScr.y - 4);
+        }
+
+        // 3. Target crosshair for base point
         ctx.strokeStyle = 'rgba(59, 130, 246, 0.6)';
         ctx.lineWidth = 1;
         ctx.setLineDash([2, 2]);
@@ -802,13 +891,24 @@ class KarpelevichViewer {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Main handle dot
-        const colors = getThemeCanvasColors();
+        // 4. Boundary locked halo
+        const isBoundary = state.cachedBoundary && minDistanceToPolygon(state.z.x, state.z.y, state.cachedBoundary) < 0.012;
+        if (isBoundary || state.stickToBoundary) {
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, 11.5, 0, 2 * Math.PI);
+            ctx.strokeStyle = colors.hasGlow ? '#38bdf8' : '#2563eb';
+            ctx.lineWidth = 2;
+            ctx.fillStyle = colors.hasGlow ? 'rgba(56, 189, 248, 0.2)' : 'rgba(37, 99, 235, 0.15)';
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        // 5. Main handle dot
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 6.5, 0, 2 * Math.PI);
-        ctx.fillStyle = colors.basePoint;
+        ctx.fillStyle = (isBoundary || state.stickToBoundary) ? '#38bdf8' : colors.basePoint;
         if (colors.hasGlow) {
-            ctx.shadowColor = colors.basePoint;
+            ctx.shadowColor = (isBoundary || state.stickToBoundary) ? '#38bdf8' : colors.basePoint;
             ctx.shadowBlur = 10;
         } else {
             ctx.shadowBlur = 0;
@@ -841,23 +941,49 @@ class KarpelevichViewer {
             }
 
             const pos = getPos(e);
+            const world = this.toWorld(pos.x, pos.y);
             const zScreen = this.toScreen(state.z.x, state.z.y);
             const distToZ = Math.hypot(pos.x - zScreen.x, pos.y - zScreen.y);
 
-            if (distToZ <= 22) {
+            // Shift+Click: Snap point to the closest boundary line and stick to it!
+            if (e.shiftKey) {
+                if (!state.cachedBoundary) {
+                    const data = computeKarpelevichBoundary(state.n);
+                    state.cachedBoundary = data.boundary;
+                    state.cachedFareyRoots = data.fareyRoots;
+                }
+                const closest = getClosestPointOnBoundary(world.x, world.y, state.cachedBoundary);
+                updatePoint(closest.x, closest.y, true);
                 state.isDraggingPoint = true;
+                state.stickToBoundary = true;
                 canvas.style.cursor = 'grabbing';
                 e.preventDefault();
-            } else if (e.button === 1 || e.shiftKey || state.isPanningMode) {
+                return;
+            }
+
+            // Panning: Middle-click, Alt+click, or Panning tool mode
+            if (e.button === 1 || e.altKey || state.isPanningMode) {
                 state.isPanning = true;
                 state.panStart = { x: pos.x - state.pan.x, y: pos.y - state.pan.y };
                 canvas.style.cursor = 'move';
                 e.preventDefault();
-            } else if (e.button === 0 || e.touches) {
-                // Click anywhere on canvas to place z
-                const world = this.toWorld(pos.x, pos.y);
+                return;
+            }
+
+            // Direct point drag handle
+            if (distToZ <= 22) {
+                state.isDraggingPoint = true;
+                state.stickToBoundary = false;
+                canvas.style.cursor = 'grabbing';
+                e.preventDefault();
+                return;
+            }
+
+            // Click anywhere on canvas to place z freely
+            if (e.button === 0 || e.touches) {
                 updatePoint(world.x, world.y, true);
                 state.isDraggingPoint = true;
+                state.stickToBoundary = false;
                 canvas.style.cursor = 'grabbing';
             }
         };
@@ -865,9 +991,21 @@ class KarpelevichViewer {
         canvas.addEventListener('mousedown', handlePointerDown);
         canvas.addEventListener('touchstart', handlePointerDown, { passive: false });
 
+        canvas.addEventListener('mouseenter', () => {
+            state.isMouseOverCanvas = true;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            state.isMouseOverCanvas = false;
+            state.snappedPreviewPoint = null;
+            this.render();
+        });
+
         const handlePointerMove = (e) => {
             const pos = getPos(e);
             const world = this.toWorld(pos.x, pos.y);
+            state.lastMouseWorld = world;
+            state.lastMouseScreen = pos;
 
             // Update mouse coordinates readout
             const readEl = document.getElementById('mouseCoords');
@@ -875,12 +1013,25 @@ class KarpelevichViewer {
                 readEl.textContent = `Re: ${world.x.toFixed(3)}, Im: ${world.y.toFixed(3)}`;
             }
 
+            // 1. Dragging z point
             if (state.isDraggingPoint) {
-                updatePoint(world.x, world.y, true);
+                // If Shift is held or stickToBoundary mode is active, stick strictly to boundary!
+                if (e.shiftKey || state.stickToBoundary) {
+                    if (!state.cachedBoundary) {
+                        const data = computeKarpelevichBoundary(state.n);
+                        state.cachedBoundary = data.boundary;
+                        state.cachedFareyRoots = data.fareyRoots;
+                    }
+                    const closest = getClosestPointOnBoundary(world.x, world.y, state.cachedBoundary);
+                    updatePoint(closest.x, closest.y, true);
+                } else {
+                    updatePoint(world.x, world.y, true);
+                }
                 if (e.touches) e.preventDefault();
                 return;
             }
 
+            // 2. Panning canvas
             if (state.isPanning) {
                 state.pan.x = pos.x - state.panStart.x;
                 state.pan.y = pos.y - state.panStart.y;
@@ -889,7 +1040,16 @@ class KarpelevichViewer {
                 return;
             }
 
-            // Check hover over Farey roots
+            // 3. Hover preview when holding Shift (not dragging)
+            if (e.shiftKey && state.cachedBoundary) {
+                state.snappedPreviewPoint = getClosestPointOnBoundary(world.x, world.y, state.cachedBoundary);
+                this.render();
+            } else if (state.snappedPreviewPoint) {
+                state.snappedPreviewPoint = null;
+                this.render();
+            }
+
+            // 4. Check hover over Farey roots
             let found = null;
             if (state.cachedFareyRoots) {
                 for (const rt of state.cachedFareyRoots) {
@@ -924,16 +1084,47 @@ class KarpelevichViewer {
         const handlePointerUp = () => {
             if (state.isDraggingPoint || state.isPanning) {
                 state.isDraggingPoint = false;
-                state.isPanning = false;
-                canvas.style.cursor = 'crosshair';
+                state.stickToBoundary = false;
+                canvas.style.cursor = state.isPanningMode ? 'grab' : 'crosshair';
                 // Final sync of inputs and table
                 syncPointInputs(true);
                 renderPowersTable();
+                this.render();
             }
         };
 
         window.addEventListener('mouseup', handlePointerUp);
         window.addEventListener('touchend', handlePointerUp);
+
+        // Key listeners for Shift snap behavior & spacebar panning
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Shift') {
+                state.isShiftDown = true;
+                if (state.isDraggingPoint && !state.stickToBoundary) {
+                    state.stickToBoundary = true;
+                    if (state.lastMouseWorld && state.cachedBoundary) {
+                        const closest = getClosestPointOnBoundary(state.lastMouseWorld.x, state.lastMouseWorld.y, state.cachedBoundary);
+                        updatePoint(closest.x, closest.y, true);
+                    }
+                } else if (state.isMouseOverCanvas && state.lastMouseWorld && state.cachedBoundary && !state.isDraggingPoint) {
+                    state.snappedPreviewPoint = getClosestPointOnBoundary(state.lastMouseWorld.x, state.lastMouseWorld.y, state.cachedBoundary);
+                    this.render();
+                }
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'Shift') {
+                state.isShiftDown = false;
+                state.stickToBoundary = false;
+                state.snappedPreviewPoint = null;
+                if (state.isDraggingPoint && state.lastMouseWorld) {
+                    updatePoint(state.lastMouseWorld.x, state.lastMouseWorld.y, true);
+                } else {
+                    this.render();
+                }
+            }
+        });
 
         // Zoom with mouse wheel
         canvas.addEventListener('wheel', (e) => {
@@ -1218,6 +1409,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Toolbar buttons
+    const panBtn = document.getElementById('panToggleBtn');
+    if (panBtn) {
+        panBtn.addEventListener('click', () => {
+            state.isPanningMode = !state.isPanningMode;
+            panBtn.classList.toggle('active', state.isPanningMode);
+            const canvas = document.getElementById('karpelevichCanvas');
+            if (canvas) {
+                canvas.style.cursor = state.isPanningMode ? 'grab' : 'crosshair';
+            }
+        });
+    }
+
     document.getElementById('zoomInBtn').addEventListener('click', () => {
         state.scale = Math.min(1200, state.scale * 1.25);
         viewer.render();
@@ -1229,6 +1432,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('resetViewBtn').addEventListener('click', () => {
         state.scale = 220;
         state.pan = { x: 0, y: 0 };
+        state.isPanningMode = false;
+        if (panBtn) panBtn.classList.remove('active');
+        const canvas = document.getElementById('karpelevichCanvas');
+        if (canvas) canvas.style.cursor = 'crosshair';
         viewer.render();
     });
 

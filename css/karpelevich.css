@@ -417,6 +417,28 @@
 }
 
 /* Stage Bottom HUD */
+.hud-hint {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.hud-kbd {
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 0.12rem 0.42rem;
+    font-size: 0.72rem;
+    font-family: inherit;
+    font-weight: 700;
+    color: var(--accent);
+}
+
 .stage-hud {
     position: absolute;
     bottom: 1rem;
