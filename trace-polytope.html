@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace Polytope Gallery | NIEP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+<body style="display: flex; flex-direction: column; height: 100vh; overflow: hidden;">
+    <!-- REAL Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">Trace Polytope Gallery</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="sidebar-header">
+                <h2>Trace Polytope Gallery</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search vertices (e.g. a0 a1)...">
+                </div>
+                <div class="filters-container">
+                    <select id="filterType">
+                        <option value="All">All Types</option>
+                        <option value="SNIEP">SNIEP</option>
+                        <option value="RNIEP">RNIEP</option>
+                    </select>
+                    <select id="filterSize">
+                        <option value="All">All Sizes</option>
+                        <option value="4">Size 4</option>
+                        <option value="5">Size 5</option>
+                        <option value="6">Size 6</option>
+                    </select>
+                    <select id="filterDim">
+                        <option value="All">All Dims</option>
+                        <option value="Polygon">2D Polygon</option>
+                        <option value="Polyhedron">3D Polyhedron</option>
+                    </select>
+                </div>
+            </div>
+            <div class="plot-list" id="plotList">
+                <!-- Plot items will be injected here via JS -->
+            </div>
+        </aside>
+        
+        <!-- Main Stage -->
+        <main class="stage">
+            <div id="welcomeMessage" class="glass welcome-msg">
+                <h3>Select a plot from the sidebar</h3>
+                <p>Use the search bar to filter by trace polytope vertices.</p>
+            </div>
+            <iframe id="plotFrame" class="plot-frame hidden" src="" frameborder="0"></iframe>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

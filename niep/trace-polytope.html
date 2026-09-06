@@ -2,93 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trace Polytope Gallery | NIEP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="refresh" content="0; url=../trace-polytope.html">
+    <link rel="canonical" href="../trace-polytope.html">
+    <title>Redirecting to Trace Polytope Gallery...</title>
+    <meta name="robots" content="noindex">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        .redirect-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .redirect-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 520px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+        .redirect-card h1 {
+            font-size: 1.5rem;
+            margin: 0 0 1rem;
+            color: var(--text-primary);
+        }
+        .redirect-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+        .redirect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .redirect-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
-<body style="display: flex; flex-direction: column; height: 100vh; overflow: hidden;">
-    <!-- REAL Top Navigation Bar -->
-    <header class="top-nav">
-        <a href="index.html" class="nav-brand">
-            <span class="nav-logo-badge">NIEP</span>
-            <div class="nav-brand-text">
-                <span class="nav-title">Trace Polytope Gallery</span>
-                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
-            </div>
-        </a>
-        <nav class="nav-center" aria-label="Main Navigation">
-            <a href="index.html" class="nav-button">
-                <span class="nav-btn-icon">🏠</span>
-                <span>NIEP Hub</span>
+<body class="hub-page">
+    <div class="redirect-stage">
+        <div class="redirect-card">
+            <h1>Page Relocated</h1>
+            <p>This content has moved to <strong>Trace Polytope Gallery</strong>. If you are not redirected automatically, please click below.</p>
+            <a href="../trace-polytope.html" class="redirect-btn">
+                <span>Continue to Trace Polytope Gallery &rarr;</span>
             </a>
-            <a href="karpelevich.html" class="nav-button">
-                <span class="nav-btn-icon">🎯</span>
-                <span>Karpelevič Region Viewer</span>
-            </a>
-            <a href="trace-polytope.html" class="nav-button active" aria-current="page">
-                <span class="nav-btn-icon">📊</span>
-                <span>Trace Polytope Gallery</span>
-            </a>
-            <a href="../" class="nav-button">
-                <span class="nav-btn-icon">🌐</span>
-                <span>Main Site ↗</span>
-            </a>
-        </nav>
-        <div class="nav-right">
-            <div class="theme-switch-group" role="group" aria-label="Color Theme">
-                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
-                    <span>☀️</span> Light
-                </button>
-                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
-                    <span>🌙</span> Dark
-                </button>
-            </div>
         </div>
-    </header>
-
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar glass">
-            <div class="sidebar-header">
-                <h2>Trace Polytope Gallery</h2>
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search vertices (e.g. a0 a1)...">
-                </div>
-                <div class="filters-container">
-                    <select id="filterType">
-                        <option value="All">All Types</option>
-                        <option value="SNIEP">SNIEP</option>
-                        <option value="RNIEP">RNIEP</option>
-                    </select>
-                    <select id="filterSize">
-                        <option value="All">All Sizes</option>
-                        <option value="4">Size 4</option>
-                        <option value="5">Size 5</option>
-                        <option value="6">Size 6</option>
-                    </select>
-                    <select id="filterDim">
-                        <option value="All">All Dims</option>
-                        <option value="Polygon">2D Polygon</option>
-                        <option value="Polyhedron">3D Polyhedron</option>
-                    </select>
-                </div>
-            </div>
-            <div class="plot-list" id="plotList">
-                <!-- Plot items will be injected here via JS -->
-            </div>
-        </aside>
-        
-        <!-- Main Stage -->
-        <main class="stage">
-            <div id="welcomeMessage" class="glass welcome-msg">
-                <h3>Select a plot from the sidebar</h3>
-                <p>Use the search bar to filter by trace polytope vertices.</p>
-            </div>
-            <iframe id="plotFrame" class="plot-frame hidden" src="" frameborder="0"></iframe>
-        </main>
     </div>
-
-    <script src="app.js"></script>
+    <script>
+        window.location.replace("../trace-polytope.html");
+    </script>
 </body>
 </html>

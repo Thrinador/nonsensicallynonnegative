@@ -2,221 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIEP Research Tools & Visualizations | Nonnegative Inverse Eigenvalue Problem</title>
-    <meta name="description" content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="refresh" content="0; url=../index.html">
+    <link rel="canonical" href="../index.html">
+    <title>Redirecting to NIEP Research Hub...</title>
+    <meta name="robots" content="noindex">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        .redirect-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .redirect-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 520px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+        .redirect-card h1 {
+            font-size: 1.5rem;
+            margin: 0 0 1rem;
+            color: var(--text-primary);
+        }
+        .redirect-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+        .redirect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .redirect-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 <body class="hub-page">
-    <!-- REAL Top Navigation Bar -->
-    <header class="top-nav">
-        <a href="index.html" class="nav-brand">
-            <span class="nav-logo-badge">NIEP</span>
-            <div class="nav-brand-text">
-                <span class="nav-title">NIEP Research Hub</span>
-                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
-            </div>
-        </a>
-        <nav class="nav-center" aria-label="Main Navigation">
-            <a href="index.html" class="nav-button active" aria-current="page">
-                <span class="nav-btn-icon">🏠</span>
-                <span>NIEP Hub</span>
+    <div class="redirect-stage">
+        <div class="redirect-card">
+            <h1>Page Relocated</h1>
+            <p>This content has moved to <strong>NIEP Research Hub</strong>. If you are not redirected automatically, please click below.</p>
+            <a href="../index.html" class="redirect-btn">
+                <span>Continue to NIEP Research Hub &rarr;</span>
             </a>
-            <a href="karpelevich.html" class="nav-button">
-                <span class="nav-btn-icon">🎯</span>
-                <span>Karpelevič Region Viewer</span>
-            </a>
-            <a href="trace-polytope.html" class="nav-button">
-                <span class="nav-btn-icon">📊</span>
-                <span>Trace Polytope Gallery</span>
-            </a>
-            <a href="../" class="nav-button">
-                <span class="nav-btn-icon">🌐</span>
-                <span>Main Site ↗</span>
-            </a>
-        </nav>
-        <div class="nav-right">
-            <div class="theme-switch-group" role="group" aria-label="Color Theme">
-                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
-                    <span>☀️</span> Light
-                </button>
-                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
-                    <span>🌙</span> Dark
-                </button>
-            </div>
         </div>
-    </header>
-
-    <!-- Hub Main Content Container -->
-    <main class="hub-container">
-        <!-- Hero Section -->
-        <section class="hub-hero">
-            <div class="hero-badge">Research &amp; Visual Computing</div>
-            <h1 class="hero-title">The Nonnegative Inverse Eigenvalue Problem</h1>
-            <p class="hero-subtitle">
-                An open-source, interactive collection of computational tools and geometric visualizations designed to explore, understand, and advance research on matrix spectra and nonnegativity.
-            </p>
-            <div class="hero-cta-group">
-                <a href="karpelevich.html" class="hero-btn primary">
-                    <span>🎯 Launch Karpelevič Viewer</span>
-                </a>
-                <a href="trace-polytope.html" class="hero-btn secondary">
-                    <span>📊 Explore Trace Polytopes</span>
-                </a>
-                <a href="#about-niep" class="hero-btn tertiary">
-                    <span>📖 Learn the Theory ↓</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Tool Cards Section -->
-        <section class="hub-tools-section">
-            <h2 class="section-title">Interactive Visualizations &amp; Solvers</h2>
-            <p class="section-subtitle">Select a tool to begin interactive spectral analysis</p>
-
-            <div class="tools-grid">
-                <!-- Card 1: Karpelevič Region Viewer -->
-                <div class="tool-card">
-                    <div class="tool-card-banner karpelevich-banner">
-                        <span class="banner-icon">🎯</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">Stochastic Spectra</span>
-                            <span class="mini-tag">Farey Arcs</span>
-                            <span class="mini-tag">Orbit Dynamics</span>
-                        </div>
-                    </div>
-                    <div class="tool-card-body">
-                        <h3 class="tool-card-title">Karpelevič Region Viewer</h3>
-                        <p class="tool-card-desc">
-                            Visualize the exact region 𝒦<sub>n</sub> of all complex numbers that can arise as eigenvalues of an <code>n × n</code> stochastic matrix. Features live Farey sequence root calculation, Ito boundary polynomial solver, point containment testing, and dynamic power orbit visualization (z¹, z², …, zᵏ).
-                        </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">✓ Arbitrary order n selection (n = 2 to 16)</div>
-                            <div class="feature-item">✓ Real-time containment test: z ∈ 𝒦<sub>n</sub></div>
-                            <div class="feature-item">✓ Power-up animation with trajectory trail</div>
-                            <div class="feature-item">✓ High-DPI interactive canvas with pan &amp; zoom</div>
-                        </div>
-                        <div class="tool-card-footer">
-                            <a href="karpelevich.html" class="tool-launch-btn primary">
-                                <span>Open Karpelevič Viewer</span>
-                                <span class="arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Trace Polytope Gallery -->
-                <div class="tool-card">
-                    <div class="tool-card-banner polytope-banner">
-                        <span class="banner-icon">📊</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">SNIEP &amp; RNIEP</span>
-                            <span class="mini-tag">3D WebGL</span>
-                            <span class="mini-tag">Convex Geometry</span>
-                        </div>
-                    </div>
-                    <div class="tool-card-body">
-                        <h3 class="tool-card-title">Trace Polytope Gallery</h3>
-                        <p class="tool-card-desc">
-                            Explore interactive 2D polygons and 3D polyhedra capturing necessary and sufficient trace polytope conditions for the Symmetric (SNIEP) and Real (RNIEP) inverse eigenvalue problems for dimensions n = 4, 5, and 6. Filter by matrix class, dimension, and vertex signature.
-                        </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">✓ Filter by SNIEP, RNIEP, and matrix dimension</div>
-                            <div class="feature-item">✓ Interactive Plotly 3D rotatable geometry</div>
-                            <div class="feature-item">✓ Complete vertex listings &amp; facet coordinates</div>
-                            <div class="feature-item">✓ Searchable polytope index</div>
-                        </div>
-                        <div class="tool-card-footer">
-                            <a href="trace-polytope.html" class="tool-launch-btn secondary">
-                                <span>Open Trace Polytope Gallery</span>
-                                <span class="arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mathematical Background Section -->
-        <section class="hub-theory-section" id="about-niep">
-            <h2 class="section-title">About the NIEP</h2>
-            <p class="section-subtitle">Mathematical foundations and research context</p>
-
-            <div class="theory-cards-container">
-                <div class="theory-info-card">
-                    <div class="info-card-header">
-                        <span class="info-number">01</span>
-                        <h3>The Core Problem</h3>
-                    </div>
-                    <p>
-                        The <strong>Nonnegative Inverse Eigenvalue Problem (NIEP)</strong> asks: <em>Given a multiset of n complex numbers σ = {λ₁, λ₂, …, λₙ}, does there exist an n × n entrywise nonnegative matrix A ≥ 0 whose spectrum is σ?</em>
-                    </p>
-                    <p>
-                        If the matrix is restricted to be symmetric, the question is termed the <strong>Symmetric NIEP (SNIEP)</strong>; if restricted to have real entries, it is the <strong>Real NIEP (RNIEP)</strong>.
-                    </p>
-                </div>
-
-                <div class="theory-info-card">
-                    <div class="info-card-header">
-                        <span class="info-number">02</span>
-                        <h3>Perron-Frobenius &amp; Trace Conditions</h3>
-                    </div>
-                    <p>
-                        Every nonnegative matrix satisfies the fundamental <strong>Perron-Frobenius Theorem</strong>: the spectral radius ρ(A) is itself an eigenvalue with an associated nonnegative eigenvector.
-                    </p>
-                    <p>
-                        Furthermore, because all diagonal entries of powers Aᵏ are nonnegative, the matrix traces satisfy <code>tr(Aᵏ) = ∑ λᵢᵏ ≥ 0</code> for all positive integers k, generating infinite families of polynomial inequalities.
-                    </p>
-                </div>
-
-                <div class="theory-info-card">
-                    <div class="info-card-header">
-                        <span class="info-number">03</span>
-                        <h3>Karpelevič's Milestone (1951)</h3>
-                    </div>
-                    <p>
-                        In 1951, F. I. Karpelevič characterized the set 𝒦<sub>n</sub> of all possible eigenvalues of n × n stochastic matrices.
-                    </p>
-                    <p>
-                        The boundary ∂𝒦<sub>n</sub> consists of curvilinear arcs connecting roots of unity corresponding to <em>Farey fractions</em>, described by algebraic equations developed by Ito (1997) and Johnson &amp; Paparella.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="hub-footer">
-            <div class="footer-content">
-                <p>Nonnegative Inverse Eigenvalue Problem (NIEP) Tools &amp; Visualizations</p>
-                <div class="footer-links">
-                    <a href="karpelevich.html">Karpelevič Viewer</a>
-                    <span>•</span>
-                    <a href="trace-polytope.html">Trace Polytopes</a>
-                    <span>•</span>
-                    <a href="../">Author Homepage</a>
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <!-- Shared Theme Init Script -->
+    </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('niep_theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.querySelectorAll('.theme-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.theme === savedTheme);
-                btn.addEventListener('click', () => {
-                    const newTheme = btn.dataset.theme;
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('niep_theme', newTheme);
-                    document.querySelectorAll('.theme-btn').forEach(b => {
-                        b.classList.toggle('active', b.dataset.theme === newTheme);
-                    });
-                });
-            });
-        });
+        window.location.replace("../index.html");
     </script>
 </body>
 </html>

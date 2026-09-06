@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Benjamin J. Clark</title>
+    <meta name="description"
+        content="Mathematician and software engineer at Google with a Ph.D. in Mathematics from Washington State University researching nonnegative matrix theory.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/personal.css">
+    <script src="../js/theme.js"></script>
+</head>
+
+<body class="personal-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="../index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">Nonsensically Nonnegative</span>
+                <span class="nav-subtitle">NIEP Research &amp; Visual Computing</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="../index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="../karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="../trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="index.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="personal-container">
+        <!-- Sub Navigation -->
+        <nav class="personal-subnav" aria-label="Personal Navigation">
+            <a href="index.html" class="subnav-link active" aria-current="page"><span
+                    class="subnav-icon">&#x1F464;</span><span>About</span></a>
+            <a href="publications.html" class="subnav-link"><span
+                    class="subnav-icon">&#x1F4DA;</span><span>Publications</span></a>
+            <a href="teaching.html" class="subnav-link"><span
+                    class="subnav-icon">&#x1F393;</span><span>Teaching</span></a>
+            <a href="talks.html" class="subnav-link"><span class="subnav-icon">&#x1F3A4;</span><span>Talks</span></a>
+            <a href="cv.html" class="subnav-link"><span class="subnav-icon">&#x1F4C4;</span><span>CV</span></a>
+        </nav>
+
+        <!-- Profile Hero Card -->
+        <section class="profile-card">
+            <div class="profile-avatar-box">
+                <img src="../images/bio-pic.jpg" alt="Benjamin J. Clark" class="profile-avatar" width="512"
+                    height="689">
+            </div>
+            <div class="profile-details">
+                <div class="profile-tag-row">
+                    <span class="profile-tag">Ph.D. in Mathematics</span>
+                    <span class="profile-tag">Google</span>
+                    <span class="profile-tag">Matrix Analysis</span>
+                </div>
+                <h1 class="profile-name">Benjamin J. Clark</h1>
+                <p class="profile-affiliation">Google &middot; Ph.D. in Mathematics, Washington State University</p>
+                <p class="profile-bio-text">
+                    Questionable software engineer and pretend mathematician
+                </p>
+                <div class="profile-social-links">
+                    <a href="https://arxiv.org/a/clark_b_1.html" target="_blank" rel="noopener" class="social-btn">
+                        <span>&#x1F4C4;</span> arXiv
+                    </a>
+                    <a href="https://github.com/Thrinador" target="_blank" rel="noopener" class="social-btn">
+                        <span>&#x1F4BB;</span> GitHub
+                    </a>
+                    <div class="email-pill-group">
+                        <a href="mailto:find.ben.clark@gmail.com" class="email-main-link" title="Send email to find.ben.clark@gmail.com">
+                            <span>&#x2709;&#xFE0F;</span>
+                            <span class="email-text">find.ben.clark@gmail.com</span>
+                        </a>
+                        <button type="button" class="email-copy-btn" id="copy-email-btn" title="Copy email address" aria-label="Copy email address to clipboard" onclick="copyEmail()">
+                            <span class="copy-icon" aria-hidden="true">&#x1F4CB;</span>
+                            <span class="copied-tooltip" role="status" aria-live="polite">Copied!</span>
+                        </button>
+                    </div>
+                    <a href="cv.html" class="social-btn">
+                        <span>&#x1F4C4;</span> Curriculum Vitae
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Narrative -->
+        <section class="content-section">
+            <h2 class="content-section-title"><span>&#x1F4A1;</span> About Me</h2>
+            <div class="narrative-card">
+                <p>
+                    Hello! I'm Benjamin Clark, a mathematician and software engineer with a deep
+                    passion for solving complex problems at the intersection of theory and application.
+                </p>
+                <p>
+                    I hold a Ph.D. in Mathematics from Washington State University (WSU), where my
+                    research focused on nonnegative matrix theory, polynomials of matrices, and semi-algebraic
+                    conditions for matrix spectra. Before graduate school, I earned dual Bachelor of Science degrees in
+                    Mathematics and Computer Science from the University of Washington Bothell.
+                </p>
+                <p>
+                    My professional experience spans both industry and academia. I am currently back at
+                    Google working in the labs department on the Beam team. During my time in graduate
+                    school, I served as a course instructor and teaching assistant at WSU teaching undergraduate
+                    mathematics, and worked as an AI Data Analyst evaluating graduate-level mathematics
+                    reasoning and complex problem formulations.
+                </p>
+                <p>
+                    I truly enjoy leveraging modern software development to explore, visualize, and conquer mathematical
+                    questions. My research often involves building custom computational tools&mdash;such as using
+                    Python, differential evolution, and GPU acceleration to numerically map matrices on the boundary of
+                    the nonnegative inverse eigenvalue problem (NIEP).
+                </p>
+                <p>
+                    Whether I'm engineering distributed infrastructure, optimizing numerical kernels, presenting
+                    research at national conferences, or guiding students through mathematics, I am driven by a passion
+                    to understand, model, and build intricate systems.
+                </p>
+            </div>
+        </section>
+        <!-- Personal Footer -->
+        <footer class="personal-footer">
+            <p>&copy; 2026 Benjamin J. Clark &middot; Department of Mathematics &amp; Statistics, Washington State
+                University</p>
+            <div class="personal-footer-links">
+                <a href="https://arxiv.org/a/clark_b_1.html" target="_blank" rel="noopener">arXiv</a>
+                <span>&bull;</span>
+                <a href="https://github.com/Thrinador" target="_blank" rel="noopener">GitHub</a>
+                <span>&bull;</span>
+                <a href="../index.html">NIEP Research Hub &#x2197;</a>
+            </div>
+        </footer>
+    </main>
+    <script>
+        function copyEmail() {
+            const email = 'find.ben.clark@gmail.com';
+            const btn = document.getElementById('copy-email-btn');
+            const icon = btn.querySelector('.copy-icon');
+
+            function showSuccess() {
+                btn.classList.add('copied');
+                if (icon) icon.textContent = '✓';
+                setTimeout(function () {
+                    btn.classList.remove('copied');
+                    if (icon) icon.textContent = '📋';
+                }, 2000);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(showSuccess).catch(function () {
+                    fallbackCopy(email, showSuccess);
+                });
+            } else {
+                fallbackCopy(email, showSuccess);
+            }
+        }
+
+        function fallbackCopy(text, cb) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            try {
+                document.execCommand('copy');
+                cb();
+            } catch (err) {}
+            document.body.removeChild(el);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem</title>
+    <meta name="description"
+        content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevi&#x010D; regions, and trace polytopes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hub Main Content Container -->
+    <main class="hub-container">
+        <!-- Site Development Disclaimer Banner -->
+        <div class="dev-disclaimer-banner" role="status">
+            <span class="dev-disclaimer-badge">&#x1F6A7; Under Development</span>
+            <p class="dev-disclaimer-text">
+                <strong>Site Notice:</strong> This research hub and its interactive spectral visualization tools are
+                actively under development. Features, 3D dataset galleries, and solvers are being continuously expanded
+                and refined.
+            </p>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hub-hero">
+            <div class="hero-badge">Research &amp; Visual Computing</div>
+            <h1 class="hero-title">The Nonnegative Inverse Eigenvalue Problem</h1>
+            <p class="hero-subtitle">
+                An open-source, interactive collection of computational tools and geometric visualizations designed to
+                explore, understand, and advance research on matrix spectra and nonnegativity.
+            </p>
+        </section>
+
+        <!-- Tool Cards Section -->
+        <section class="hub-tools-section">
+            <h2 class="section-title">Interactive Visualizations &amp; Solvers</h2>
+            <p class="section-subtitle">Select a tool to begin interactive spectral analysis</p>
+
+            <div class="tools-grid">
+                <!-- Card 1: Karpelevic Region Viewer -->
+                <div class="tool-card">
+                    <div class="tool-card-banner karpelevich-banner">
+                        <span class="banner-icon">&#x1F3AF;</span>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Stochastic Spectra</span>
+                            <span class="mini-tag">Farey Arcs</span>
+                            <span class="mini-tag">Orbit Dynamics</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3 class="tool-card-title">Karpelevi&#x010D; Region Viewer</h3>
+                        <p class="tool-card-desc">
+                            Visualize the exact region $\mathcal{K}_n$ of all complex numbers that can arise as
+                            eigenvalues of an $n \times n$ stochastic matrix. Features live Farey sequence
+                            root calculation, Ito boundary polynomial solver, point containment testing, and dynamic
+                            power orbit visualization ($z^1, z^2, \dots, z^k$).
+                        </p>
+                        <div class="tool-card-features">
+                            <div class="feature-item">&check; Arbitrary order $n$ selection ($n = 2$ to $16$)</div>
+                            <div class="feature-item">&check; Real-time containment test: $z \in \mathcal{K}_n$
+                            </div>
+                            <div class="feature-item">&check; Power-up animation with trajectory trail</div>
+                            <div class="feature-item">&check; High-DPI interactive canvas with pan &amp; zoom</div>
+                        </div>
+                        <div class="tool-card-footer">
+                            <a href="karpelevich.html" class="tool-launch-btn primary">
+                                <span>Open Karpelevi&#x010D; Viewer</span>
+                                <span class="arrow">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Trace Polytope Gallery -->
+                <div class="tool-card">
+                    <div class="tool-card-banner polytope-banner">
+                        <span class="banner-icon">&#x1F4CA;</span>
+                        <div class="banner-tags">
+                            <span class="mini-tag">SNIEP &amp; RNIEP</span>
+                            <span class="mini-tag">3D WebGL</span>
+                            <span class="mini-tag">Convex Geometry</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3 class="tool-card-title">Trace Polytope Gallery</h3>
+                        <p class="tool-card-desc">
+                            Explore interactive 2D polygons and 3D polyhedra capturing necessary and sufficient trace
+                            polytope conditions for the Symmetric (SNIEP) and Real (RNIEP) inverse eigenvalue problems
+                            for dimensions n = 4, 5, and 6. Filter by matrix class, dimension, and vertex signature.
+                        </p>
+                        <div class="tool-card-features">
+                            <div class="feature-item">&check; Filter by SNIEP, RNIEP, and matrix dimension</div>
+                            <div class="feature-item">&check; Interactive Plotly 3D rotatable geometry</div>
+                            <div class="feature-item">&check; Complete vertex listings &amp; facet coordinates</div>
+                            <div class="feature-item">&check; Searchable polytope index</div>
+                        </div>
+                        <div class="tool-card-footer">
+                            <a href="trace-polytope.html" class="tool-launch-btn secondary">
+                                <span>Open Trace Polytope Gallery</span>
+                                <span class="arrow">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Academic Profile & Research -->
+                <div class="tool-card">
+                    <div class="tool-card-banner profile-banner">
+                        <span class="banner-icon">&#x1F393;</span>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Mathematics</span>
+                            <span class="mini-tag">Publications</span>
+                            <span class="mini-tag">Teaching</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3 class="tool-card-title">Academic Profile &amp; Research</h3>
+                        <p class="tool-card-desc">
+                            Curated academic website of Benjamin J. Clark, Ph.D. in Mathematics (WSU) and Software
+                            Engineer at Google. Browse research papers on matrix-preserving polynomials, conference
+                            presentations, student lecture notes, and curriculum vitae.
+                        </p>
+                        <div class="tool-card-features">
+                            <div class="feature-item">&check; 3 Journal Articles &amp; 3 arXiv Preprints</div>
+                            <div class="feature-item">&check; WSU Course teaching &amp; downloadable lecture notes</div>
+                            <div class="feature-item">&check; 8 Conference and seminar presentation slides</div>
+                            <div class="feature-item">&check; Academic &amp; software engineering CV</div>
+                        </div>
+                        <div class="tool-card-footer">
+                            <a href="personal/index.html" class="tool-launch-btn primary">
+                                <span>Explore Personal Site</span>
+                                <span class="arrow">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mathematical Background Section -->
+        <section class="hub-theory-section" id="about-niep">
+            <div class="theory-section-header">
+                <div class="hero-badge">Theory &amp; Research Foundations</div>
+                <h2 class="section-title">About the Nonnegative Inverse Eigenvalue Problem</h2>
+                <p class="section-subtitle">
+                    A comprehensive overview of spectral nonnegativity, major theoretical breakthroughs, and foundational literature.
+                </p>
+            </div>
+
+            <!-- Subsection 1: Problem Formulation & Conditions -->
+            <div class="theory-subsection">
+                <div class="theory-subheading-group">
+                    <h3 class="theory-subheading"><span>📐</span> Core Formulation &amp; Subproblems</h3>
+                    <p class="theory-sub-desc">The mathematical framework governing entrywise nonnegative realizations and their subclasses.</p>
+                </div>
+
+                <div class="theory-cards-container">
+                    <div class="theory-info-card">
+                        <div class="info-card-header">
+                            <span class="info-number">01</span>
+                            <h3>The NIEP Formulation</h3>
+                        </div>
+                        <p>
+                            Given a multiset of $n$ complex numbers $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$, does there exist an entrywise nonnegative matrix $A \ge 0$ of order $n$ whose spectrum equals $\sigma$?
+                        </p>
+                        <div class="theory-formula">
+                            $$A = (a_{ij}) \in \mathbb{R}^{n \times n}, \quad a_{ij} \ge 0, \quad \det(\lambda I - A) = \prod_{i=1}^n (\lambda - \lambda_i)$$
+                        </div>
+                        <p>
+                            Despite over a century of study since the roots of Perron-Frobenius theory, a general constructive characterization for arbitrary dimension $n \ge 5$ remains one of the premier unsolved problems in combinatorial matrix theory.
+                        </p>
+                    </div>
+
+                    <div class="theory-info-card">
+                        <div class="info-card-header">
+                            <span class="info-number">02</span>
+                            <h3>Subproblems &amp; Variants</h3>
+                        </div>
+                        <p>
+                            Several foundational variants isolate specific algebraic and topological structures:
+                        </p>
+                        <ul class="course-topics-list" style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+                            <li><strong>SNIEP (Symmetric):</strong> Requires $A = A^T$, restricting all eigenvalues to $\mathbb{R}$.</li>
+                            <li><strong>RNIEP (Real):</strong> Requires $A \ge 0$ with real spectrum (not necessarily symmetric).</li>
+                            <li><strong>Stochastic NIEP:</strong> Requires row sums equal to $1$, constraining spectral radius $\rho(A) = 1$.</li>
+                            <li><strong>Nonzero Spectrum Problem:</strong> Realization by an $N \times N$ matrix with $N \ge n$, padding with $N - n$ zero eigenvalues.</li>
+                        </ul>
+                    </div>
+
+                    <div class="theory-info-card">
+                        <div class="info-card-header">
+                            <span class="info-number">03</span>
+                            <h3>Necessary Conditions</h3>
+                        </div>
+                        <p>
+                            Any realizable spectrum $\sigma$ must satisfy universal invariants:
+                        </p>
+                        <div class="theory-formula">
+                            $$\begin{aligned}
+                            \mathbf{1.\; Reality:} & \quad \sigma = \bar{\sigma} \quad (\text{closed under complex conjugation}) \\[2pt]
+                            \mathbf{2.\; Perron\; Root:} & \quad \rho = \max_{1 \le i \le n} |\lambda_i| \in \sigma \\[2pt]
+                            \mathbf{3.\; Power\; Sum\; Traces:} & \quad s_k = \sum_{i=1}^n \lambda_i^k = \operatorname{tr}(A^k) \ge 0 \quad (\forall k \ge 1) \\[2pt]
+                            \mathbf{4.\; Loewy\text{-}London:} & \quad s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)
+                            \end{aligned}$$
+                        </div>
+                        <p>
+                            While necessary, these trace conditions alone are not sufficient for dimensions $n \ge 5$.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection 2: Major Theoretical Results & Milestones -->
+            <div class="theory-subsection">
+                <div class="theory-subheading-group">
+                    <h3 class="theory-subheading"><span>🏆</span> Landmark Results &amp; Milestones</h3>
+                    <p class="theory-sub-desc">Chronological developments establishing the boundaries, characterizations, and solvability of the NIEP.</p>
+                </div>
+
+                <div class="theory-cards-container">
+                    <!-- Result 1 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge foundation">Foundation</span>
+                            <span class="bib-year">1907 &middot; 1912</span>
+                        </div>
+                        <h4 class="bib-title">Perron-Frobenius Spectral Theory</h4>
+                        <p class="bib-authors">O. Perron &middot; G. Frobenius</p>
+                        <p>
+                            Established that any nonnegative matrix $A \ge 0$ has a real, maximal eigenvalue $\rho(A) \ge |\lambda|$ with an associated nonnegative eigenvector. For irreducible matrices, $\rho(A)$ is algebraically simple, strictly positive, and any peripheral eigenvalues on the circle $|z| = \rho(A)$ are distributed with exact cyclic root-of-unity symmetry.
+                        </p>
+                    </div>
+
+                    <!-- Result 2 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Sufficient Condition</span>
+                            <span class="bib-year">1949</span>
+                        </div>
+                        <h4 class="bib-title">Sule&#x012D;manova's Theorem</h4>
+                        <p class="bib-authors">H. Sule&#x012D;manova</p>
+                        <p>
+                            Proved the earliest major sufficiency result for real spectra: if $\sigma$ contains a single positive eigenvalue $\lambda_0 > 0$ and all other $\lambda_i \le 0$, then $\sigma$ is realizable by a nonnegative matrix if and only if the trace condition $\sum_i \lambda_i \ge 0$ holds. This became the foundation for companion matrix constructions and perturbed realizations.
+                        </p>
+                    </div>
+
+                    <!-- Result 3 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge geometry">Exact Geometry</span>
+                            <span class="bib-year">1951</span>
+                        </div>
+                        <h4 class="bib-title">Karpelevi&#x010D;'s Boundary Characterization</h4>
+                        <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
+                        <p>
+                            Completely determined the compact region $\mathcal{K}_n \subset \mathbb{C}$ of all possible eigenvalues of $n \times n$ stochastic matrices. The boundary consists of curvilinear arcs connecting roots of unity corresponding to Farey fractions $p/q \le 1$ with $q \le n$. In 1997, T. Ito reformulated these boundary curves as explicit minimal algebraic polynomial equations.
+                        </p>
+                    </div>
+
+                    <!-- Result 4 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Polynomial Cone</span>
+                            <span class="bib-year">1978 &middot; 1979</span>
+                        </div>
+                        <h4 class="bib-title">Loewy-London Inequalities &amp; Order 3 Resolution</h4>
+                        <p class="bib-authors">R. Loewy &middot; D. London</p>
+                        <p>
+                            Introduced higher trace inequalities $s_k^m \le n^{m-1} s_{km}$, ruling out infinite candidate spectra that satisfy ordinary trace positivity. They posed the fundamental problem of characterizing the cone $\mathcal{P}_n$ of polynomials preserving nonnegative matrices, completely solving the NIEP for $n = 3$ and trace-zero $n = 4$.
+                        </p>
+                    </div>
+
+                    <!-- Result 5 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">General Solution</span>
+                            <span class="bib-year">1981</span>
+                        </div>
+                        <h4 class="bib-title">Complete Solution for Dimension 3</h4>
+                        <p class="bib-authors">C. R. Johnson</p>
+                        <p>
+                            Provided a constructive proof completely solving the general NIEP for $n = 3$ with arbitrary trace. Proved that for $n = 3$, a spectrum is realizable if and only if it satisfies reality, the Perron-Frobenius condition, nonnegativity of trace, and the second-order Loewy-London trace inequality.
+                        </p>
+                    </div>
+
+                    <!-- Result 6 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge foundation">Symbolic Dynamics</span>
+                            <span class="bib-year">1991</span>
+                        </div>
+                        <h4 class="bib-title">Boyle-Handelman Spectral Realization Theorem</h4>
+                        <p class="bib-authors">M. Boyle &middot; D. Handelman</p>
+                        <p>
+                            Resolved the nonzero spectrum problem via shift equivalence in topological Markov chains. Proved that a candidate nonzero spectrum is the nonzero spectrum of some nonnegative matrix of possibly larger size $N \ge n$ if and only if it satisfies the Perron condition and $\operatorname{tr}(A^k) \ge 0$ with strict positivity for some power.
+                        </p>
+                    </div>
+
+                    <!-- Result 7 -->
+                    <div class="theory-info-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Dimension 4</span>
+                            <span class="bib-year">1998 &middot; 1999</span>
+                        </div>
+                        <h4 class="bib-title">Full Resolution of Dimension 4</h4>
+                        <p class="bib-authors">H. Meehan &middot; T. J. Laffey</p>
+                        <p>
+                            Conclusively resolved the general NIEP for $n = 4$ including positive trace cases. Demonstrated that for order 4, the known Loewy-London inequalities, trace nonnegativity, and Perron conditions constitute necessary and sufficient conditions, constructing companion matrix factorizations for all boundary cases.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection 3: Curated Bibliography & Important Papers -->
+            <div class="theory-subsection">
+                <div class="theory-subheading-group">
+                    <h3 class="theory-subheading"><span>📚</span> Key Literature &amp; Citations</h3>
+                    <p class="theory-sub-desc">Foundational and modern research papers shaping the spectral theory of nonnegative matrices.</p>
+                </div>
+
+                <div class="bib-grid">
+                    <!-- Paper 1 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge foundation">Classical</span>
+                            <span class="bib-year">1907</span>
+                        </div>
+                        <h4 class="bib-title">Zur Theorie der Matrices</h4>
+                        <p class="bib-authors">Oskar Perron</p>
+                        <p class="bib-venue">Mathematische Annalen, Vol. 64, pp. 248&ndash;263</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1007/BF01449896" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> DOI: 10.1007/BF01449896
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 2 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge foundation">Classical</span>
+                            <span class="bib-year">1912</span>
+                        </div>
+                        <h4 class="bib-title">&Uuml;ber Matrizen aus nicht negativen Elementen</h4>
+                        <p class="bib-authors">Georg Frobenius</p>
+                        <p class="bib-venue">Sitzungsberichte der K&ouml;niglich Preussischen Akademie der Wissenschaften, pp. 456&ndash;477</p>
+                        <div class="bib-actions">
+                            <a href="https://archive.org/details/sitzungsberichte1912preu" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> Historical Archive &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 3 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Sufficiency</span>
+                            <span class="bib-year">1949</span>
+                        </div>
+                        <h4 class="bib-title">Stochastic matrices with real characteristic values</h4>
+                        <p class="bib-authors">H. Sule&#x012D;manova</p>
+                        <p class="bib-venue">Doklady Akademii Nauk SSSR, Vol. 66, pp. 343&ndash;345</p>
+                        <div class="bib-actions">
+                            <a href="https://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=dan&paperid=43872&option_lang=eng" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> Math-Net.Ru Record &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 4 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge geometry">Spectral Boundary</span>
+                            <span class="bib-year">1951</span>
+                        </div>
+                        <h4 class="bib-title">On the characteristic roots of matrices with non-negative elements</h4>
+                        <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
+                        <p class="bib-venue">Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya, Vol. 15, No. 4, pp. 361&ndash;383</p>
+                        <div class="bib-actions">
+                            <a href="https://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=im&paperid=3051&option_lang=eng" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> Math-Net.Ru Record &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 5 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Trace Inequalities</span>
+                            <span class="bib-year">1978</span>
+                        </div>
+                        <h4 class="bib-title">A note on the nonnegative inverse eigenvalue problem</h4>
+                        <p class="bib-authors">Raphael Loewy &middot; David London</p>
+                        <p class="bib-venue">Linear and Multilinear Algebra, Vol. 6, No. 1, pp. 83&ndash;90</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1080/03081087808817224" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> DOI: 10.1080/03081087808817224
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 6 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Order 3 Solution</span>
+                            <span class="bib-year">1981</span>
+                        </div>
+                        <h4 class="bib-title">Row stochastic matrices similar to doubly stochastic matrices</h4>
+                        <p class="bib-authors">Charles R. Johnson</p>
+                        <p class="bib-venue">Linear and Multilinear Algebra, Vol. 10, No. 2, pp. 113&ndash;130</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1080/03081088108817400" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> DOI: 10.1080/03081088108817400
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 7 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge foundation">Shift Equivalence</span>
+                            <span class="bib-year">1991</span>
+                        </div>
+                        <h4 class="bib-title">The spectra of nonnegative matrices via symbolic dynamics</h4>
+                        <p class="bib-authors">Mike Boyle &middot; David Handelman</p>
+                        <p class="bib-venue">Annals of Mathematics, Vol. 133, No. 2, pp. 249&ndash;316</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.2307/2944339" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> JSTOR / DOI &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 8 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge geometry">Algebraic Boundary</span>
+                            <span class="bib-year">1997</span>
+                        </div>
+                        <h4 class="bib-title">A new characterization of the Karpelevi&#x010D; region for stochastic matrices</h4>
+                        <p class="bib-authors">Takehiro Ito</p>
+                        <p class="bib-venue">Linear Algebra and its Applications, Vol. 255, pp. 321&ndash;346</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1016/S0024-3795(96)00028-5" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> ScienceDirect &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 9 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Order 4 Solution</span>
+                            <span class="bib-year">1999</span>
+                        </div>
+                        <h4 class="bib-title">A result on the symmetric nonnegative inverse eigenvalue problem</h4>
+                        <p class="bib-authors">Thomas J. Laffey &middot; Helena Meehan</p>
+                        <p class="bib-venue">Linear Algebra and its Applications, Vol. 302&ndash;303, pp. 295&ndash;313</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1016/S0024-3795(99)00194-8" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> ScienceDirect &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 10 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge milestone">Realization Theory</span>
+                            <span class="bib-year">2007</span>
+                        </div>
+                        <h4 class="bib-title">Nonnegative realization of spectra having negative real parts</h4>
+                        <p class="bib-authors">Thomas J. Laffey &middot; Helena &Scaron;migoc</p>
+                        <p class="bib-venue">Linear Algebra and its Applications, Vol. 420, No. 2&ndash;3, pp. 672&ndash;689</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1016/j.laa.2006.08.016" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> ScienceDirect &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paper 11 -->
+                    <div class="bib-card">
+                        <div class="bib-header">
+                            <span class="theory-badge geometry">Spectroids</span>
+                            <span class="bib-year">2016</span>
+                        </div>
+                        <h4 class="bib-title">Perron spectroids and the boundary of the Karpelevi&#x010D; region</h4>
+                        <p class="bib-authors">Charles R. Johnson &middot; Pietro Paparella</p>
+                        <p class="bib-venue">Linear Algebra and its Applications, Vol. 507, pp. 215&ndash;229</p>
+                        <div class="bib-actions">
+                            <a href="https://doi.org/10.1016/j.laa.2016.05.029" target="_blank" rel="noopener" class="bib-link">
+                                <span>&#x1F517;</span> ScienceDirect &#x2197;
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="hub-footer">
+            <div class="footer-content">
+                <p>&copy; 2026 Benjamin J. Clark &middot; Nonnegative Inverse Eigenvalue Problem (NIEP) Tools &amp;
+                    Research</p>
+                <div class="footer-links">
+                    <a href="karpelevich.html">Karpelevi&#x010D; Viewer</a>
+                    <span>&bull;</span>
+                    <a href="trace-polytope.html">Trace Polytopes</a>
+                    <span>&bull;</span>
+                    <a href="personal/index.html">Personal Profile</a>
+                    <span>&bull;</span>
+                    <a href="personal/publications.html">Publications</a>
+                    <span>&bull;</span>
+                    <a href="personal/teaching.html">Teaching</a>
+                    <span>&bull;</span>
+                    <a href="personal/cv.html">CV</a>
+                    <span>&bull;</span>
+                    <a href="https://github.com/Thrinador" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
