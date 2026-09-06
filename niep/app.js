@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    // Theme initialization and synchronization
+    const savedTheme = localStorage.getItem('niep_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === savedTheme);
+        btn.addEventListener('click', () => {
+            const newTheme = btn.dataset.theme;
+            document.documentElement.setAttribute('data-theme', newTheme);
+            if (document.body) {
+                document.body.setAttribute('data-theme', newTheme);
+            }
+            localStorage.setItem('niep_theme', newTheme);
+            document.querySelectorAll('.theme-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === newTheme);
+            });
+        });
+    });
+
     const plotListEl = document.getElementById('plotList');
     const searchInput = document.getElementById('searchInput');
     const plotFrame = document.getElementById('plotFrame');
@@ -29,12 +47,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const fDim = filterDim.value;   // "All", "Polygon", "Polyhedron"
         
         const filtered = plotsData.filter(plot => {
-            // Apply dropdown filters
             if (fType !== "All" && plot.mode.toUpperCase() !== fType) return false;
             if (fSize !== "All" && plot.size.toString() !== fSize) return false;
             if (fDim !== "All" && !plot.type.includes(fDim)) return false;
             
-            // Apply text search
             if (keywords.length > 0) {
                 const plotText = plot.label.toLowerCase() + " " + plot.mode.toLowerCase() + " " + plot.type.toLowerCase();
                 return keywords.every(kw => plotText.includes(kw));
@@ -45,13 +61,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderList(filtered);
     }
 
-    // Attach events
     searchInput.addEventListener('input', applyFilters);
     filterType.addEventListener('change', applyFilters);
     filterSize.addEventListener('change', applyFilters);
     filterDim.addEventListener('change', applyFilters);
 
-    // Render the list of plots
     function renderList(plots) {
         plotListEl.innerHTML = '';
         if (plots.length === 0) {
@@ -68,18 +82,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span class="badge ${plot.mode.toLowerCase()}">${plot.mode}</span>
                     <span class="plot-type">${plot.type}</span>
                 </div>
-                <div class="plot-vertices">${plot.label}</div>
+                <div class="plot-vertices">
+                    ${plot.label}
+                </div>
             `;
             
             item.addEventListener('click', () => {
-                // Remove active class from all
                 document.querySelectorAll('.plot-item').forEach(el => el.classList.remove('active'));
                 item.classList.add('active');
                 
-                // Show iframe
-                plotFrame.src = plot.file;
+                welcomeMessage.classList.add('hidden');
                 plotFrame.classList.remove('hidden');
-                welcomeMessage.style.display = 'none';
+                plotFrame.src = plot.filename;
             });
             
             plotListEl.appendChild(item);

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karpelevič Region Viewer | NIEP</title>
+    <meta name="description" content="Interactive Karpelevič Region viewer for visualizing eigenvalues of stochastic matrices, Farey sequence roots of unity, and power dynamics.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="karpelevich.css">
+</head>
+<body class="karpelevich-app">
+    <!-- REAL Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="karpelevich.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">Karpelevič Region Viewer</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">🏠</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">🎯</span>
+                <span>Karpelevič Region Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">📊</span>
+                <span>Trace Polytope Gallery</span>
+            </a>
+            <a href="../" class="nav-button">
+                <span class="nav-btn-icon">🌐</span>
+                <span>Main Site ↗</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>☀️</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>🌙</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <div class="karpelevich-container">
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar glass" id="controlSidebar">
+            <!-- 1. Dimension / Order n Control -->
+            <div class="control-card">
+                <div class="card-title">
+                    <span>Matrix Order (n)</span>
+                    <span class="badge-tag">Stochastic n × n</span>
+                </div>
+                <div class="n-selector-row">
+                    <div class="n-number-display" id="nDisplay">4</div>
+                    <div class="slider-group">
+                        <input type="range" id="nSlider" min="2" max="16" value="4" step="1">
+                        <div class="slider-ticks">
+                            <span>2</span>
+                            <span>4</span>
+                            <span>6</span>
+                            <span>8</span>
+                            <span>12</span>
+                            <span>16</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="n-presets">
+                    <button class="chip-btn" data-n="2">n=2</button>
+                    <button class="chip-btn" data-n="3">n=3</button>
+                    <button class="chip-btn active" data-n="4">n=4</button>
+                    <button class="chip-btn" data-n="5">n=5</button>
+                    <button class="chip-btn" data-n="6">n=6</button>
+                    <button class="chip-btn" data-n="7">n=7</button>
+                    <button class="chip-btn" data-n="8">n=8</button>
+                    <button class="chip-btn" data-n="10">n=10</button>
+                    <button class="chip-btn" data-n="12">n=12</button>
+                </div>
+            </div>
+
+            <!-- 2. Complex Number z Input -->
+            <div class="control-card">
+                <div class="card-title">
+                    <span>Complex Number (z)</span>
+                    <span class="badge-tag">Click / Drag on Plane</span>
+                </div>
+                <!-- Cartesian coordinates -->
+                <div class="input-grid">
+                    <div class="input-field">
+                        <label for="inputRe">Real Part Re(z)</label>
+                        <input type="number" id="inputRe" step="0.01" value="0.2">
+                    </div>
+                    <div class="input-field">
+                        <label for="inputIm">Imaginary Part Im(z)</label>
+                        <input type="number" id="inputIm" step="0.01" value="0.6">
+                    </div>
+                </div>
+                <!-- Polar coordinates -->
+                <div class="input-grid">
+                    <div class="input-field">
+                        <label for="inputMod">Modulus |z|</label>
+                        <input type="number" id="inputMod" step="0.01" min="0" value="0.6325">
+                    </div>
+                    <div class="input-field">
+                        <label for="inputArg">Argument Arg(z) / π</label>
+                        <input type="number" id="inputArg" step="0.01" value="0.40">
+                    </div>
+                </div>
+
+                <!-- Point Containment Status -->
+                <div id="pointStatusBox" class="point-status status-inside">
+                    <span class="status-dot"></span>
+                    <span>Inside K_n</span>
+                    <span>|z| = 0.632</span>
+                </div>
+
+                <!-- Quick Preset Points -->
+                <div class="preset-points-row">
+                    <button class="chip-btn" data-preset="origin">Origin (0)</button>
+                    <button class="chip-btn" data-preset="farey">Farey Root</button>
+                    <button class="chip-btn" data-preset="boundary">Boundary Pt</button>
+                    <button class="chip-btn" data-preset="spiral">Spiral (0.88)</button>
+                    <button class="chip-btn" data-preset="cycle">Period 5</button>
+                    <button class="chip-btn" data-preset="outside">Outside</button>
+                </div>
+            </div>
+
+            <!-- 3. Power Up Dynamic Feature -->
+            <div class="control-card">
+                <div class="card-title">
+                    <span>Power Up Dynamics</span>
+                    <span class="badge-tag">λ ∈ K_n ⟹ λᵏ ∈ K_n</span>
+                </div>
+                <div class="power-controls">
+                    <div class="power-display-row">
+                        <span>Current Power:</span>
+                        <span class="power-val">z<sup id="powerDisplay">1</sup></span>
+                    </div>
+                    <div class="slider-group">
+                        <input type="range" id="powerSlider" min="1" max="25" value="1" step="1">
+                        <div class="slider-ticks">
+                            <span>k=1</span>
+                            <span>k=5</span>
+                            <span>k=10</span>
+                            <span>k=15</span>
+                            <span>k=20</span>
+                            <span>k=25</span>
+                        </div>
+                    </div>
+                    <div class="btn-row">
+                        <button class="action-btn" id="stepPrevBtn" title="Previous Power">‹ Prev</button>
+                        <button class="action-btn primary" id="playBtn" title="Play / Pause Animation">▶ Play</button>
+                        <button class="action-btn" id="stepNextBtn" title="Next Power">Next ›</button>
+                        <button class="action-btn" id="resetPowerBtn" title="Reset to z^1">↺ Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Powers History Table -->
+            <div class="control-card">
+                <div class="card-title">
+                    <span>Power Orbit Trajectory</span>
+                    <span class="badge-tag">Powers Table</span>
+                </div>
+                <div class="powers-table-container">
+                    <table class="powers-table">
+                        <thead>
+                            <tr>
+                                <th>Power</th>
+                                <th>Value (Re + Im i)</th>
+                                <th>|zᵏ|</th>
+                                <th>Arg</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="powersTableBody">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 5. Mathematical Theory Drawer -->
+            <div class="control-card theory-card">
+                <div class="theory-header">
+                    <span class="card-title" style="margin-bottom:0">Mathematical Theory</span>
+                    <span class="theory-toggle-icon">▼</span>
+                </div>
+                <div class="theory-content">
+                    <p>
+                        <strong>The Karpelevič Region (𝒦<sub>n</sub>)</strong> is the set of all eigenvalues of <code>n × n</code> stochastic matrices (or nonnegative matrices with Perron eigenvalue 1).
+                    </p>
+                    <p>
+                        <strong>Boundary Structure:</strong>
+                        The boundary intersects the unit circle <code>{|z|=1}</code> at roots of unity <code>e<sup>2πi·p/q</sup></code> where <code>p/q</code> are <em>Farey fractions</em> of order <code>n</code> (with <code>0 ≤ p ≤ q ≤ n</code> and <code>gcd(p,q)=1</code>).
+                    </p>
+                    <p>
+                        <strong>Ito Polynomial Arcs:</strong>
+                        Consecutive Farey neighbors <code>p/q &lt; r/s</code> (with <code>q &lt; s</code>) are connected by curvilinear boundary arcs satisfying Ito's polynomial equation:
+                    </p>
+                    <p>
+                        <code>tˢ·(tᑫ - (1-α))ᵏ = αᵏ·tᑫᵏ</code>, for <code>α ∈ [0, 1]</code>, where <code>k = ⌊n/q⌋</code>.
+                    </p>
+                    <p>
+                        <strong>The Power Property:</strong>
+                        If <code>A</code> is an <code>n × n</code> stochastic matrix with eigenvalue <code>λ</code>, then <code>Aᵏ</code> is also an <code>n × n</code> stochastic matrix with eigenvalue <code>λᵏ</code>. Consequently, whenever <code>λ ∈ 𝒦<sub>n</sub></code>, all powers <code>λᵏ ∈ 𝒦<sub>n</sub></code> for all integers <code>k ≥ 1</code>.
+                    </p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Draggable Resizer Splitter -->
+        <div class="sidebar-resizer" id="sidebarResizer" title="Drag horizontally to resize the sidebar">
+            <div class="resizer-handle"></div>
+        </div>
+
+        <!-- Main Visualizer Stage -->
+        <main class="viewer-stage">
+            <canvas id="karpelevichCanvas"></canvas>
+
+            <!-- Floating Top-Right Toolbar -->
+            <div class="floating-toolbar">
+                <button class="tool-icon-btn" id="zoomInBtn" title="Zoom In">＋</button>
+                <button class="tool-icon-btn" id="zoomOutBtn" title="Zoom Out">－</button>
+                <button class="tool-icon-btn" id="resetViewBtn" title="Reset Center & Zoom">⊙</button>
+            </div>
+
+            <!-- Stage Bottom HUD -->
+            <div class="stage-hud">
+                <div class="hud-pill">
+                    <span id="mouseCoords">Re: 0.000, Im: 0.000</span>
+                    <span>•</span>
+                    <span>n = <strong id="hudN">4</strong></span>
+                </div>
+
+                <div class="hud-pill hud-legend">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: var(--canvas-region-stroke);"></span>
+                        <span>𝒦<sub>n</sub> Boundary</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: transparent; border: 1.5px dashed var(--canvas-unit-circle);"></span>
+                        <span>|z| = 1</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: var(--canvas-trail);"></span>
+                        <span>Power Orbit (zᵏ)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: var(--canvas-farey-root); border: 1px solid var(--canvas-farey-stroke); border-radius: 50%;"></span>
+                        <span>Farey Roots</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltip element -->
+            <div class="canvas-tooltip" id="canvasTooltip"></div>
+        </main>
+    </div>
+
+    <!-- Application Script -->
+    <script src="karpelevich.js"></script>
+</body>
+</html>
