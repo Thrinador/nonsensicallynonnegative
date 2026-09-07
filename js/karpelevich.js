@@ -965,7 +965,7 @@ class KarpelevichViewer {
             if (e.button === 1 || e.altKey || state.isPanningMode) {
                 state.isPanning = true;
                 state.panStart = { x: pos.x - state.pan.x, y: pos.y - state.pan.y };
-                canvas.style.cursor = 'move';
+                canvas.style.cursor = 'grabbing';
                 e.preventDefault();
                 return;
             }
@@ -1006,6 +1006,12 @@ class KarpelevichViewer {
             const world = this.toWorld(pos.x, pos.y);
             state.lastMouseWorld = world;
             state.lastMouseScreen = pos;
+
+            // Safety check: if mouse buttons are released outside canvas, release drag/pan immediately
+            if ((state.isDraggingPoint || state.isPanning) && e.buttons === 0 && !e.touches) {
+                handlePointerUp();
+                return;
+            }
 
             // Update mouse coordinates readout
             const readEl = document.getElementById('mouseCoords');
@@ -1084,6 +1090,7 @@ class KarpelevichViewer {
         const handlePointerUp = () => {
             if (state.isDraggingPoint || state.isPanning) {
                 state.isDraggingPoint = false;
+                state.isPanning = false;
                 state.stickToBoundary = false;
                 canvas.style.cursor = state.isPanningMode ? 'grab' : 'crosshair';
                 // Final sync of inputs and table
@@ -1095,6 +1102,8 @@ class KarpelevichViewer {
 
         window.addEventListener('mouseup', handlePointerUp);
         window.addEventListener('touchend', handlePointerUp);
+        window.addEventListener('touchcancel', handlePointerUp);
+        window.addEventListener('blur', handlePointerUp);
 
         // Key listeners for Shift snap behavior & spacebar panning
         window.addEventListener('keydown', (e) => {

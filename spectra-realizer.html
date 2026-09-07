@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectra Realizer | Nonnegative &amp; Stochastic Inverse Eigenvalue Problem</title>
+    <meta name="description" content="Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Stochastic Symmetric matrices with configurable numerical tolerance.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/realizer.css">
+    <script src="js/theme.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">Spectra Realizer</span>
+                <span class="nav-subtitle">Numerical Inverse Eigenvalue Solver</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="realizer-workspace">
+        <!-- Sidebar Controls -->
+        <aside class="realizer-sidebar" aria-label="Solver Controls">
+            <!-- 1. Target Matrix Class Card -->
+            <div class="realizer-card">
+                <div class="card-header-row">
+                    <span class="card-title"><span>&#x2699;&#xFE0F;</span> Target Matrix Class</span>
+                </div>
+                <div class="class-selector-grid">
+                    <label class="class-option-label">
+                        <input type="radio" name="targetClass" value="nonnegative" checked>
+                        <span class="class-name">Nonnegative</span>
+                        <span class="class-formula">A &ge; 0</span>
+                    </label>
+                    <label class="class-option-label">
+                        <input type="radio" name="targetClass" value="stochastic">
+                        <span class="class-name">Stochastic</span>
+                        <span class="class-formula">A &ge; 0, &sum; A_ij = 1</span>
+                    </label>
+                    <label class="class-option-label">
+                        <input type="radio" name="targetClass" value="symmetric">
+                        <span class="class-name">Symmetric (SNIEP)</span>
+                        <span class="class-formula">A = Aᵀ &ge; 0</span>
+                    </label>
+                    <label class="class-option-label">
+                        <input type="radio" name="targetClass" value="stochastic-symmetric">
+                        <span class="class-name">Stochastic Sym</span>
+                        <span class="class-formula">Doubly Stochastic</span>
+                    </label>
+                </div>
+                <div class="card-helper">
+                    Select the structured matrix cone or manifold to realize your prescribed spectrum.
+                </div>
+            </div>
+
+            <!-- 2. Target Spectrum Input Card -->
+            <div class="realizer-card">
+                <div class="card-header-row">
+                    <span class="card-title"><span>&#x1F522;</span> Target Spectrum &sigma;</span>
+                    <button type="button" class="btn-secondary-action" id="resetBtn" title="Reset to preset">
+                        <span>&#x21BA;</span> Reset
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="presetSelect">Curated Presets Library</label>
+                    <select id="presetSelect" class="styled-select">
+                        <!-- Injected by JS -->
+                    </select>
+                    <div class="card-helper" id="presetDesc"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="spectrumInput">Eigenvalues (separated by commas or spaces)</label>
+                    <textarea id="spectrumInput" class="styled-textarea" placeholder="e.g. 3, -1, -1, -1 or 1, -0.5+0.866i, -0.5-0.866i" spellcheck="false"></textarea>
+                    <div class="card-helper">
+                        Supports real and complex numbers (e.g., <code>1, -0.5+0.866i, -0.5-0.866i</code>). Symmetric targets require real eigenvalues.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Numerical Settings Card -->
+            <div class="realizer-card">
+                <div class="card-header-row">
+                    <span class="card-title"><span>&#x1F3AF;</span> Numerical Parameters</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="tolSelect">Tolerance (&epsilon;)</label>
+                    <select id="tolSelect" class="styled-select">
+                        <option value="1e-2">10⁻² (Coarse)</option>
+                        <option value="1e-3">10⁻³ (Standard)</option>
+                        <option value="1e-4" selected>10⁻⁴ (Default)</option>
+                        <option value="1e-6">10⁻⁶ (High)</option>
+                        <option value="1e-8">10⁻⁸ (Strict)</option>
+                    </select>
+                </div>
+
+                <div class="form-group search-presets-group">
+                    <div class="label-row">
+                        <label class="form-label">Search Effort Profiles</label>
+                    </div>
+                    <div class="profile-chips" role="group" aria-label="Search profiles">
+                        <button type="button" class="chip-btn active" data-retries="10" data-depth="2500" id="chipStandard" title="10 restarts, 2,500 iters each">
+                            Standard <span class="chip-sub">10 &times; 2.5k</span>
+                        </button>
+                        <button type="button" class="chip-btn" data-retries="25" data-depth="5000" id="chipDeep" title="25 restarts, 5,000 iters each">
+                            Deep <span class="chip-sub">25 &times; 5k</span>
+                        </button>
+                        <button type="button" class="chip-btn" data-retries="50" data-depth="10000" id="chipExhaustive" title="50 restarts, 10,000 iters each">
+                            Exhaustive <span class="chip-sub">50 &times; 10k</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-row">
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label class="form-label" for="retriesInput">Retries (Restarts)</label>
+                            <span class="param-badge">Min 5</span>
+                        </div>
+                        <input type="number" id="retriesInput" class="styled-input-num" min="5" max="200" step="1" value="10" title="Minimum 5 restarts">
+                    </div>
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label class="form-label" for="depthInput">Depth (Iters/Retry)</label>
+                            <span class="param-badge">Min 1k</span>
+                        </div>
+                        <input type="number" id="depthInput" class="styled-input-num" min="1000" max="50000" step="500" value="2500" title="Minimum 1,000 iterations per restart">
+                    </div>
+                </div>
+                <div class="card-helper">
+                    Alternating projection restarts with independent random &amp; canonical initializations. Minimum 5 retries and 1,000 depth per attempt.
+                </div>
+            </div>
+
+            <!-- 4. Action Buttons & Live Progress -->
+            <div class="action-card-group">
+                <div class="action-buttons-row">
+                    <button type="button" class="btn-primary-action" id="solveBtn">
+                        <span class="btn-icon" id="solveBtnIcon">&#x25B6;</span>
+                        <span id="solveBtnText">Realize Spectrum</span>
+                    </button>
+                    <button type="button" class="btn-stop-action hidden" id="stopBtn" title="Halt search early and keep best found candidate matrix">
+                        <span>&#x25A0;</span>
+                        <span>Stop</span>
+                    </button>
+                </div>
+
+                <!-- Live Solver Progress Box -->
+                <div class="solver-progress-box hidden" id="solverProgressBox" aria-live="polite">
+                    <div class="progress-info-row">
+                        <span class="progress-label" id="progressStatusText">Starting attempt 1 of 10...</span>
+                        <span class="progress-pct" id="progressPctText">10%</span>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="progressBarFill" style="width: 10%;"></div>
+                    </div>
+                    <div class="progress-sub-row">
+                        <span class="progress-best" id="progressBestText">Best error: computing...</span>
+                        <span class="progress-iter" id="progressIterText">Total iters: 0</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Realizer Stage -->
+        <section class="realizer-main" aria-label="Realizer Results">
+            <!-- Status Banner -->
+            <div class="status-banner" id="statusBanner">
+                <span class="status-icon" id="statusIcon">&#x23F3;</span>
+                <div class="status-content">
+                    <div class="status-title-row">
+                        <h2 class="status-title" id="statusTitle">Analyzing Spectrum...</h2>
+                        <span class="badge" id="statusBadge">Computing</span>
+                    </div>
+                    <p class="status-desc" id="statusDesc">
+                        Evaluating theoretical invariants and initializing alternating projections solver.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dual Stage: Matrix Display + Complex Plane Visualizer -->
+            <div class="dual-stage-grid">
+                <!-- Left: Matrix Display Card -->
+                <div class="matrix-card">
+                    <div class="card-header-row">
+                        <span class="card-title"><span>&#x25A6;</span> Realization Matrix A</span>
+                        <div class="matrix-toolbar">
+                            <div class="precision-group" role="group" aria-label="Decimal Precision">
+                                <button type="button" class="prec-btn active" data-prec="4">4 Dec</button>
+                                <button type="button" class="prec-btn" data-prec="6">6 Dec</button>
+                            </div>
+                            <div class="copy-toolbar">
+                                <button type="button" class="copy-btn" id="copyLatexBtn" title="Copy LaTeX pmatrix">LaTeX</button>
+                                <button type="button" class="copy-btn" id="copyNumpyBtn" title="Copy Python NumPy array">NumPy</button>
+                                <button type="button" class="copy-btn" id="copyMatlabBtn" title="Copy MATLAB matrix">MATLAB</button>
+                                <button type="button" class="copy-btn" id="copyJsonBtn" title="Copy JSON array">JSON</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="matrix-viewport" id="matrixContainer">
+                        <!-- Injected by JS -->
+                    </div>
+                    <div class="card-helper" id="matrixMeta" style="margin-top: 0.75rem; text-align: center;"></div>
+                </div>
+
+                <!-- Right: Complex Plane Visualizer Card -->
+                <div class="visualizer-card">
+                    <div class="card-header-row">
+                        <span class="card-title"><span>&#x25CE;</span> Spectral Comparison Canvas</span>
+                        <div class="canvas-legend">
+                            <div class="legend-item">
+                                <span class="legend-swatch target"></span>
+                                <span>Target &sigma;</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-swatch candidate"></span>
+                                <span>Realized spec(A)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-swatch unit-circle"></span>
+                                <span>Unit Circle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="canvas-wrapper">
+                        <canvas id="spectralCanvas"></canvas>
+                        <div class="canvas-toolbar">
+                            <button type="button" class="canvas-tool-btn" id="zoomInBtn" title="Zoom In">+</button>
+                            <button type="button" class="canvas-tool-btn" id="zoomOutBtn" title="Zoom Out">&minus;</button>
+                            <button type="button" class="canvas-tool-btn" id="zoomResetBtn" title="Reset View">&#x21BA;</button>
+                        </div>
+                    </div>
+                    <div class="card-helper" style="margin-top: 0.75rem;">
+                        Interactive complex plane: Drag to pan, scroll to zoom. Blue rings indicate target eigenvalues &sigma;, filled dots represent realized eigenvalues of A, and dashed red lines indicate residual discrepancies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnostics & Verification Section -->
+            <div class="diagnostics-grid">
+                <!-- Left: Theoretical Invariant Checks -->
+                <div class="diag-card">
+                    <div class="card-header-row">
+                        <span class="card-title"><span>&#x1F9D0;</span> Theoretical Invariant Analysis</span>
+                    </div>
+                    <p class="card-helper">
+                        Universal necessary conditions governing entrywise nonnegative and stochastic spectral realizations.
+                    </p>
+                    <div class="diag-list" id="diagList">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Spectral Verification & Matrix Properties -->
+                <div class="diag-card">
+                    <div class="card-header-row">
+                        <span class="card-title"><span>&#x1F50E;</span> Numerical Verification &amp; Invariants</span>
+                    </div>
+                    
+                    <h3 style="font-size: 0.82rem; color: var(--text-secondary); text-transform: uppercase; margin: 0.75rem 0 0.25rem;">
+                        Target vs. Candidate Eigenvalues
+                    </h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Target &lambda;_i</th>
+                                <th>Actual &mu;_i</th>
+                                <th>Residual |&lambda; - &mu;|</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eigenTableBody">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+
+                    <h3 style="font-size: 0.82rem; color: var(--text-secondary); text-transform: uppercase; margin: 1.25rem 0 0.25rem;">
+                        Structured Cone Properties
+                    </h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Measured Value</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrixPropsBody">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="hub-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">NIEP Research Hub</span>
+                <p class="footer-tagline">
+                    Advancing computational linear algebra and spectral geometry through open-source tools.
+                </p>
+            </div>
+            <div class="footer-links-group">
+                <span class="footer-col-title">Navigation</span>
+                <a href="index.html">NIEP Hub</a>
+                <a href="karpelevich.html">Karpelevi&#x010D; Viewer</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal Profile</a>
+            </div>
+            <div class="footer-links-group">
+                <span class="footer-col-title">Theory &amp; Research</span>
+                <a href="index.html#about-niep">About the NIEP</a>
+                <a href="personal/publications.html">Research Publications</a>
+                <a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Benjamin J. Clark, Ph.D. &middot; Released under the MIT License.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/realizer.js"></script>
+</body>
+</html>

@@ -56,6 +56,10 @@
                 <span class="nav-btn-icon">&#x1F4CA;</span>
                 <span>Trace Polytopes</span>
             </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
             <a href="personal/index.html" class="nav-button">
                 <span class="nav-btn-icon">&#x1F464;</span>
                 <span>Personal</span>
@@ -161,6 +165,38 @@
                         <div class="tool-card-footer">
                             <a href="trace-polytope.html" class="tool-launch-btn secondary">
                                 <span>Open Trace Polytope Gallery</span>
+                                <span class="arrow">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Spectra Realizer & Solver -->
+                <div class="tool-card">
+                    <div class="tool-card-banner realizer-banner">
+                        <span class="banner-icon">&#x1F9EE;</span>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Numerical NIEP</span>
+                            <span class="mini-tag">SNIEP &amp; Stochastic</span>
+                            <span class="mini-tag">Orsi Projections</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3 class="tool-card-title">Numerical Spectra Realizer</h3>
+                        <p class="tool-card-desc">
+                            Given a target spectrum, determine whether it can be realized by a Nonnegative, Stochastic,
+                            Symmetric, or Stochastic Symmetric matrix. Configure numerical tolerances, run Orsi alternating
+                            projection solvers with real Schur factorizations, and inspect the realizing or best-approximation matrix.
+                        </p>
+                        <div class="tool-card-features">
+                            <div class="feature-item">&check; 4 target classes: Nonnegative, Stochastic, Symmetric, Doubly Stochastic</div>
+                            <div class="feature-item">&check; Configurable tolerance (&epsilon; = 10&minus;2 to 10&minus;8) &amp; best candidate fallback</div>
+                            <div class="feature-item">&check; Exact Suleimanova, Soules, &amp; circulant direct realizations</div>
+                            <div class="feature-item">&check; Interactive heatmap, matrix export (LaTeX, NumPy, MATLAB), &amp; plot</div>
+                        </div>
+                        <div class="tool-card-footer">
+                            <a href="spectra-realizer.html" class="tool-launch-btn primary">
+                                <span>Open Spectra Realizer</span>
                                 <span class="arrow">&rarr;</span>
                             </a>
                         </div>
@@ -572,6 +608,7 @@
                     <a href="karpelevich.html">Karpelevi&#x010D; Viewer</a>
                     <span>&bull;</span>
                     <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
                     <span>&bull;</span>
                     <a href="personal/index.html">Personal Profile</a>
                     <span>&bull;</span>
