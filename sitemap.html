@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Directory &amp; Sitemap | NIEP Research Hub</title>
+    <meta name="description"
+        content="Complete site directory and sitemap for the NIEP Research Hub: interactive tools, theory wiki articles, computational datasets, and academic publications.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+    <style>
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+        .sitemap-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .sitemap-card-header {
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.85rem;
+        }
+        .sitemap-card-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .sitemap-card-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .sitemap-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+        }
+        .sitemap-item-link {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            text-decoration: none;
+            padding: 0.5rem 0.6rem;
+            border-radius: 8px;
+            transition: background 0.15s ease;
+        }
+        .sitemap-item-link:hover {
+            background: var(--bg-surface-secondary);
+        }
+        .sitemap-item-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .sitemap-item-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+        .sitemap-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <span>Site Directory &amp; Sitemap</span>
+        </nav>
+
+        <header class="deepdive-hero" style="margin-bottom: 1.5rem;">
+            <div class="hero-badge">Navigation &amp; Index</div>
+            <h1 class="hero-title">Site Directory &amp; Sitemap</h1>
+            <p class="hero-subtitle">
+                A complete catalog of interactive visualization tools, theory wiki articles, mathematical surveys, and academic profile pages.
+            </p>
+        </header>
+
+        <!-- Actions Bar -->
+        <div class="sitemap-actions-bar">
+            <div>
+                <strong style="color: var(--text-primary); font-size: 0.95rem;">Search Engine XML Sitemap</strong>
+                <p style="margin: 0; color: var(--text-muted); font-size: 0.82rem;">Standard protocol sitemap for web spiders and search indexers.</p>
+            </div>
+            <a href="sitemap.html" target="_blank" rel="noopener" class="deep-dive-btn" style="display: inline-flex;">
+                <span>View Raw XML (sitemap.xml) &rarr;</span>
+            </a>
+        </div>
+
+        <!-- Sitemap Categorized Grid -->
+        <div class="sitemap-grid">
+            <!-- Card 1: Interactive Tools -->
+            <div class="sitemap-card">
+                <div class="sitemap-card-header">
+                    <span class="sitemap-card-badge">Computational Tools</span>
+                    <h2 class="sitemap-card-title">Interactive Solvers &amp; Visualizers</h2>
+                </div>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">NIEP Research Hub Home</span>
+                            <span class="sitemap-item-desc">Master dashboard, tool showcases, open problems, and literature catalog.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="karpelevich.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Karpelevi&#x010D; Region Interactive Viewer</span>
+                            <span class="sitemap-item-desc">Live HTML5 Canvas renderer of stochastic eigenvalue regions $n=2$ to $n=8$ with Farey arcs.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="trace-polytope.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Trace Polytope 3D Visualizer</span>
+                            <span class="sitemap-item-desc">3D WebGL dataset browser for order-5 symmetric and real trace polytopes.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="spectra-realizer.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Numerical Spectra Realizer</span>
+                            <span class="sitemap-item-desc">Alternating projection solver with exact Suleimanova and Soules synthesis.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Theory Wiki -->
+            <div class="sitemap-card">
+                <div class="sitemap-card-header">
+                    <span class="sitemap-card-badge">Theory Wiki</span>
+                    <h2 class="sitemap-card-title">Mathematical Theory Articles</h2>
+                </div>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="problem-background.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Theoretical Overview</span>
+                            <span class="sitemap-item-desc">Comprehensive foundational survey covering Perron-Frobenius theory and semi-algebraic geometry.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="niep.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">The NIEP (Core Formulation)</span>
+                            <span class="sitemap-item-desc">Dimensional solvability progress, trace moment obstructions, and open frontiers.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sniep.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Symmetric NIEP (SNIEP)</span>
+                            <span class="sitemap-item-desc">Orthogonal eigenspaces, Soules bases, Fiedler theorems, and trace polyhedra.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="rniep.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Real NIEP (RNIEP)</span>
+                            <span class="sitemap-item-desc">Non-orthogonal frames, general real spectra, and the Laffey-Loewy separation gap.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="karpelevich-region.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Karpelevi&#x010D; Region &amp; Theorem</span>
+                            <span class="sitemap-item-desc">Kolmogorov's problem, stochastic boundaries, Farey sequence, and Ito's algebraic polynomials.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="suleimanova.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Sule&#x012d;manova Spectra</span>
+                            <span class="sitemap-item-desc">Single positive eigenvalue spectra, trace sufficiency, and Fiedler's symmetric realization.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boyle-handelman.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Boyle-Handelman Theorem</span>
+                            <span class="sitemap-item-desc">Symbolic dynamics, shifts of finite type, and realization with auxiliary zero eigenvalues.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="perron-similarities.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Perron Similarities &amp; Ideal Spectracones</span>
+                            <span class="sitemap-item-desc">Johnson-Paparella theory, spectracones, and Gershnik-Lewis-Paparella's theorem on group character tables.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Card 3: Academic Profile -->
+            <div class="sitemap-card">
+                <div class="sitemap-card-header">
+                    <span class="sitemap-card-badge">Academic &amp; Research</span>
+                    <h2 class="sitemap-card-title">Profile &amp; Publications</h2>
+                </div>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="personal/index.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">About Benjamin J. Clark</span>
+                            <span class="sitemap-item-desc">Biography, research background in nonnegative matrix theory, and professional software engineering.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="personal/cv.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Curriculum Vitae</span>
+                            <span class="sitemap-item-desc">Full academic and professional CV with downloadable PDF and embedded viewer.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="personal/publications.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Publications &amp; Preprints</span>
+                            <span class="sitemap-item-desc">Peer-reviewed articles, arXiv preprints, DOI links, and abstract summaries.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="personal/talks.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Invited Talks &amp; Presentations</span>
+                            <span class="sitemap-item-desc">Conference lectures, seminar presentations, and slides in spectral graph theory and matrix analysis.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="personal/teaching.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Teaching &amp; Course Archives</span>
+                            <span class="sitemap-item-desc">University courses taught, syllabi, lecture notes, and educational materials.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="publications/index.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Publications Section Index</span>
+                            <span class="sitemap-item-desc">Direct archive redirect for publication listings.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="talks/index.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Talks Section Index</span>
+                            <span class="sitemap-item-desc">Direct archive redirect for presentations.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="teaching/index.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Teaching Section Index</span>
+                            <span class="sitemap-item-desc">Direct archive redirect for instructional materials.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
