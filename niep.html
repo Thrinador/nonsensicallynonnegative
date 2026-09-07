@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nonnegative Inverse Eigenvalue Problem (NIEP) | Theory Wiki | NIEP Research Hub</title>
+    <meta name="description"
+        content="Comprehensive mathematical theory wiki article on the Nonnegative Inverse Eigenvalue Problem (NIEP): problem formulation, dimensional solvability progress, trace inequalities, and semi-algebraic geometry.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>NIEP</span>
+        </nav>
+
+                <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab active" aria-current="page">NIEP</a>
+            <a href="sniep.html" class="wiki-tab">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        </nav>
+
+        <!-- Main Wiki Layout: Content + Infobox -->
+        <div class="wiki-layout">
+            <!-- Left Column: Article Body -->
+            <article class="wiki-main-content">
+                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                    <div class="hero-badge">Theory Wiki &middot; Core Problem</div>
+                    <h1 class="hero-title" style="font-size: 2.2rem;">The Nonnegative Inverse Eigenvalue Problem</h1>
+                    <p class="hero-subtitle">
+                        The overarching challenge in matrix theory: finding necessary and sufficient conditions for a multiset of complex numbers to be the spectrum of an entrywise nonnegative matrix.
+                    </p>
+                </header>
+
+                <aside class="wiki-infobox" aria-label="Quick Facts">
+                    <div class="wiki-infobox-header">
+                        <span class="wiki-infobox-badge">Open Problem</span>
+                        <h3 class="wiki-infobox-title">NIEP</h3>
+                        <p class="wiki-infobox-subtitle">Nonnegative Inverse Eigenvalue Problem</p>
+                    </div>
+
+                    <table class="wiki-infobox-table">
+                        <tbody>
+                            <tr>
+                                <th>Formulation</th>
+                                <td>Given $\sigma = \{\lambda_1, \dots, \lambda_n\} \subset \mathbb{C}$, find $A \in \mathcal{M}_n(\mathbb{R}_{\ge 0})$ with $\sigma(A) = \sigma$</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td><strong>Open</strong> for $n \ge 5$ (Fully solved for $n \le 4$)</td>
+                            </tr>
+                            <tr>
+                                <th>$n = 1, 2$</th>
+                                <td>Solved (Trivial nonnegativity &amp; trace)</td>
+                            </tr>
+                            <tr>
+                                <th>$n = 3$</th>
+                                <td>Solved by Loewy &amp; London (1978)</td>
+                            </tr>
+                            <tr>
+                                <th>$n = 4$</th>
+                                <td>Solved by Meehan (1998) / Torre-Mayo et al. (2007)</td>
+                            </tr>
+                            <tr>
+                                <th>$n = 5$ Frontier</th>
+                                <td>Trace non-sufficiency; Laffey-Meehan (1999)</td>
+                            </tr>
+                            <tr>
+                                <th>Necessary Invariants</th>
+                                <td>$s_k = \operatorname{Tr}(A^k) \ge 0$, Loewy-London, JLL, Holtz inequalities</td>
+                            </tr>
+                            <tr>
+                                <th>Geometry</th>
+                                <td>Semi-algebraic cone $\mathcal{E}_n \subset \mathbb{C}^n$</td>
+                            </tr>
+                            <tr>
+                                <th>Subproblems</th>
+                                <td>SNIEP ($A=A^T$), RNIEP (real spectrum), Stochastic ($\rho=1$)</td>
+                            </tr>
+                            <tr>
+                                <th>Asymptotic Variant</th>
+                                <td>Boyle-Handelman Theorem (1991, augmented size $N$)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="wiki-infobox-links">
+                        <a href="problem-background.html" class="wiki-infobox-link">
+                            <strong>Comprehensive Research Survey &rarr;</strong>
+                        </a>
+                        <a href="sniep.html" class="wiki-infobox-link">
+                            Symmetric NIEP (SNIEP) &rarr;
+                        </a>
+                        <a href="rniep.html" class="wiki-infobox-link">
+                            Real NIEP (RNIEP) &rarr;
+                        </a>
+                        <a href="spectra-realizer.html" class="wiki-infobox-link">
+                            Spectra Realizer Tool &rarr;
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Section 1: Formal Definition -->
+                <section class="deepdive-section" id="definition">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">1. Formal Definition &amp; Mathematical Setup</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The <strong>Nonnegative Inverse Eigenvalue Problem (NIEP)</strong> is one of the classic, enduring open challenges in combinatorial matrix theory, algebra, and spectral geometry. Posed implicitly in the early twentieth century following the foundational theorems of Oskar Perron and Georg Frobenius, the problem asks:
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The Nonnegative Inverse Eigenvalue Problem (NIEP)</h3>
+                        </div>
+                        <p>
+                            Given a multiset $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$ of $n$ complex numbers, determine whether there exists an $n \times n$ entrywise nonnegative matrix $A = (a_{ij}) \in \mathcal{M}_n(\mathbb{R})$, with $a_{ij} \ge 0$ for all $i, j$, such that the spectrum of $A$ is precisely $\sigma$:
+                        </p>
+                        $$\sigma(A) = \{\lambda \in \mathbb{C} : \det(\lambda I - A) = 0\} = \sigma$$
+                        <p>
+                            If such a matrix $A$ exists, we say that $\sigma$ is <strong>realizable</strong>, and $A$ is a <strong>realizing matrix</strong> for $\sigma$.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The multiset $\sigma$ must be closed under complex conjugation ($\sigma = \bar{\sigma}$), because the characteristic polynomial $p(\lambda) = \det(\lambda I - A)$ of a real matrix has real coefficients.
+                    </p>
+                </section>
+
+                <!-- Section 2: Dimensional Solvability Progress -->
+                <section class="deepdive-section" id="progress">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">2. Solvability Progress by Matrix Dimension</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The mathematical difficulty of characterizing realizable spectra escalates dramatically with matrix dimension $n$. The boundary between completely solved and open currently lies at dimension $n = 5$:
+                    </p>
+
+                    <div class="data-table-wrapper" style="margin: 1.5rem 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Dimension</th>
+                                    <th>Status</th>
+                                    <th>Resolved By</th>
+                                    <th>Characterization &amp; Conditions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>$n = 1$</strong></td>
+                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td>Classical</td>
+                                    <td>$\sigma = \{\lambda_1\}$ is realizable $\iff \lambda_1 \ge 0$.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$n = 2$</strong></td>
+                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td>Classical</td>
+                                    <td>$\lambda_1 \ge 0$, $\lambda_1 \ge |\lambda_2|$, and $\lambda_1 + \lambda_2 \ge 0$ with $\lambda_2 \in \mathbb{R}$ or $\lambda_2 = \bar{\lambda}_1$.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$n = 3$</strong></td>
+                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td>Loewy &amp; London (1978)</td>
+                                    <td>$\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, and the first two traces are nonnegative: $s_1 \ge 0$, $s_2 \ge 0$.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$n = 4$</strong></td>
+                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td>Meehan (1998), Torre-Mayo et al. (2007)</td>
+                                    <td>Completely classified into cases depending on whether eigenvalues are all real or contain complex pairs; $\operatorname{RNIEP}(4) = \operatorname{SNIEP}(4)$.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$n = 5$</strong></td>
+                                    <td><span style="color: #ef4444; font-weight: 700;">Open</span></td>
+                                    <td>Laffey, Meehan, Loewy (1996&ndash;1999)</td>
+                                    <td>Trace conditions fail to be sufficient! Symmetric and general problems diverge: $\operatorname{SNIEP}(5) \subsetneq \operatorname{RNIEP}(5)$.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$n \ge 6$</strong></td>
+                                    <td><span style="color: #ef4444; font-weight: 700;">Open</span></td>
+                                    <td>Active Research</td>
+                                    <td>General semi-algebraic complexity; Tarski-Seidenberg quantifier elimination is computationally intractable.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 3: Necessary Conditions & Trace Inequalities -->
+                <section class="deepdive-section" id="necessary-conditions">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">3. Necessary Invariants &amp; Trace Inequalities</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Every realizable multiset $\sigma$ must satisfy a hierarchy of necessary algebraic and spectral constraints:
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Perron-Frobenius Dominance</h4>
+                            <p class="feature-desc">The spectral radius $\rho = \max_{1 \le i \le n} |\lambda_i|$ must itself belong to the spectrum $\sigma$. Furthermore, the multiplicity of any peripheral eigenvalue $\lambda$ with $|\lambda| = \rho$ cannot exceed the multiplicity of $\rho$.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Power Trace Nonnegativity</h4>
+                            <p class="feature-desc">Since $A \ge 0$, every matrix power $A^k \ge 0$ for all integers $k \ge 1$. Consequently, the spectral moments (power sums) must all be nonnegative:
+                            $$s_k = \operatorname{Tr}(A^k) = \sum_{i=1}^n \lambda_i^k \ge 0 \quad \forall k \ge 1$$</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Loewy-London Inequalities (1978)</h4>
+                            <p class="feature-desc">Raphael Loewy and David London proved that for all integers $k, m \ge 1$:
+                            $$n^{m-1} s_{km} \ge s_k^m$$
+                            In particular, for $k=1, m=2$: $s_1^2 \le n s_2$.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Johnson-Loewy-London (JLL) Inequalities</h4>
+                            <p class="feature-desc">In 1996, Johnson, Laffey, and Loewy established the strengthened bound:
+                            $$n^{m-1} s_{km} \ge s_k^m + \frac{n^{m-1} - 1}{n - 1} (\rho^k - \lambda_j^k)^m$$</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: The Failure of Trace Sufficiency at n = 5 -->
+                <section class="deepdive-section" id="trace-failure">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">4. The Insufficiency of Trace Conditions ($n \ge 5$)</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        For low dimensions $n \le 3$, trace nonnegativity ($s_1 \ge 0, s_2 \ge 0$) together with the Loewy-London condition is completely necessary and sufficient. It was once hoped that a finite family of trace and moment inequalities might suffice for all $n$.
+                    </p>
+
+                    <div class="math-callout conjecture">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The Laffey-Meehan Counterexample (1999)</h3>
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0;">
+                            Thomas J. Laffey and Eleanor Meehan discovered that for $n = 5$, there exist spectra that satisfy <strong>all</strong> trace inequalities, Loewy-London conditions, and Johnson-Loewy-London inequalities, yet <strong>cannot</strong> be realized by any $5 \times 5$ nonnegative matrix! A celebrated family is:
+                        </p>
+                        <div class="theory-formula" style="margin: 0.8rem 0;">
+                            $$\sigma = \{3+t, 3-t, -2, -2, -2\} \quad \text{for } t \in (0, 1)$$
+                        </div>
+                        <p class="deepdive-text" style="margin: 0;">
+                            This foundational counterexample proved that the boundary of the realizable domain $\mathcal{E}_n$ is not cut out purely by trace polynomials, but involves subtle semi-algebraic geometric constraints on the eigenvector configurations.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 5: Subproblems & Geometry -->
+                <section class="deepdive-section" id="subproblems">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">5. Core Subproblems &amp; Structural Branches</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        To dissect the complexity of the NIEP, the research community has partitioned the field into fundamental subproblems:
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="feature-desc">Restricts $A = A^T \ge 0$. Requires orthogonal eigenspaces and leads to convex trace polyhedra and Soules bases.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Real NIEP (RNIEP)</h4>
+                            <p class="feature-desc">Considers real spectra $\sigma \subset \mathbb{R}$ realized by general nonnegative matrices. Unlocks non-orthogonal frames that strictly enlarge the realizable set beyond SNIEP for $n \ge 5$.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Karpelevi&#x010D; Region $\mathcal{K}_n$</h4>
+                            <p class="feature-desc">Determines all individual complex eigenvalues of stochastic matrices with $\rho(A) = 1$, solved completely by Karpelevi&#x010D; (1951) via Farey boundary arcs.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Sule&#x012d;manova Spectra</h4>
+                            <p class="feature-desc">The celebrated class with a single positive eigenvalue $\lambda_0 > 0 \ge \lambda_1 \ge \dots \ge \lambda_{n-1}$, where trace nonnegativity is completely sufficient for both general and symmetric realizations.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6: Asymptotic Variant & Perron Similarities -->
+                <section class="deepdive-section" id="modern-frontiers">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Asymptotic Solvability &amp; Perron Similarities</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Two modern frameworks have revolutionized our perspective on the problem:
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">The Boyle-Handelman Theorem (1991)</h4>
+                            <p class="feature-desc">
+                                In symbolic dynamics, Boyle and Handelman proved that if one allows the matrix dimension $N \ge n$ to increase by adjoining auxiliary zero eigenvalues, the NIEP becomes <strong>completely solvable</strong> under strict Perron dominance and positive power traces!
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Perron Similarities</h4>
+                            <p class="feature-desc">
+                                Invertible similarity matrices $S$ whose first column forms a positive Perron eigenvector. Perron similarities generalize orthogonal Soules bases and provide the explicit non-orthogonal coordinate frames that realize spectra across RNIEP and NIEP.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 7: See Also -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Theory Pages</h2>
+                    </div>
+
+                    <div class="wiki-see-also-grid">
+                        <a href="problem-background.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Theoretical Overview</h4>
+                            <p class="wiki-see-also-desc">High-level foundational survey covering Perron-Frobenius theory, historical milestones, and semi-algebraic cones.</p>
+                        </a>
+                        <a href="sniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="wiki-see-also-desc">Orthogonal eigenspaces, Fiedler matrices, Soules bases, and trace polytope geometry.</p>
+                        </a>
+                        <a href="rniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <p class="wiki-see-also-desc">The study of real spectra, non-orthogonal frames, and the Laffey-Loewy separation $\{4, 2, 2, -4, -4\}$.</p>
+                        </a>
+                        <a href="karpelevich-region.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <p class="wiki-see-also-desc">Kolmogorov's problem, stochastic eigenvalue boundaries, Farey vertices, and Ito's algebraic polynomials.</p>
+                        </a>
+                        <a href="suleimanova.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Sule&#x012d;manova Spectra</h4>
+                            <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and Fiedler's symmetric realization theorem.</p>
+                        </a>
+                        <a href="boyle-handelman.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Boyle-Handelman Theorem</h4>
+                            <p class="wiki-see-also-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.</p>
+                        </a>
+                        <a href="perron-similarities.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Perron Similarities</h4>
+                            <p class="wiki-see-also-desc">Non-orthogonal similarity transformations preserving nonnegative matrix cones and Perron eigenvectors.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+                        <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

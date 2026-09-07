@@ -1029,3 +1029,910 @@ body.app-page {
     color: #ffffff;
     border-color: var(--accent);
 }
+
+
+/* ==========================================================================
+   Stacked Core Formulation & Equation Polish
+   ========================================================================== */
+
+.theory-cards-container.stacked {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.theory-cards-container.stacked .theory-info-card {
+    padding: 1.75rem 2rem;
+}
+
+/* Subproblems 2x2 Grid inside Card 02 */
+.subproblems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.subproblem-item {
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.subproblem-item:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.subproblem-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(37, 99, 235, 0.1);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.subproblem-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.subproblem-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Conditions Grid inside Card 03 */
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.condition-card {
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.condition-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.condition-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.condition-num {
+    font-family: monospace;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: rgba(37, 99, 235, 0.12);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+}
+
+.condition-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.condition-formula {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.65rem 0.85rem;
+    margin: 0.25rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.condition-formula mjx-container[jax="CHTML"][display="true"] {
+    margin: 0.15rem 0 !important;
+}
+
+.condition-note {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Deep-Dive Callout Banner */
+.deep-dive-callout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    border-radius: 14px;
+    padding: 1.35rem 1.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.deep-dive-callout-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.deep-dive-callout-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.deep-dive-callout-text p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.deep-dive-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: var(--accent);
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.deep-dive-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.deep-dive-btn .arrow {
+    transition: transform 0.2s ease;
+}
+
+.deep-dive-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Comprehensive Problem Background & Deep-Dive Page Styles
+   ========================================================================== */
+
+.deepdive-container {
+    max-width: 1360px;
+    width: 92%;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 5rem;
+}
+
+.deepdive-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.deepdive-breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.deepdive-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.deepdive-hero {
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.deepdive-hero .hero-badge {
+    margin-bottom: 0.85rem;
+}
+
+.deepdive-hero .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.deepdive-hero .hero-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 860px;
+}
+
+/* Quick Navigation / Table of Contents */
+.deepdive-toc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-card);
+}
+
+.deepdive-toc-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.deepdive-toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.deepdive-toc-links a {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.deepdive-toc-links a:hover {
+    color: var(--accent);
+}
+
+/* Article Sections */
+.deepdive-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 5rem;
+}
+
+.deepdive-section-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+    display: flow-root;
+}
+
+.deepdive-section-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 0.4rem;
+}
+
+.deepdive-section-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.deepdive-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+}
+
+.deepdive-text strong {
+    color: var(--text-primary);
+}
+
+/* Mathematical Callout Boxes */
+.math-callout {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-card);
+    display: flow-root;
+}
+
+.math-callout.definition {
+    border-left-color: #3b82f6;
+    background: linear-gradient(to right, rgba(59, 130, 246, 0.04), var(--bg-surface));
+}
+
+.math-callout.theorem {
+    border-left-color: #10b981;
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.04), var(--bg-surface));
+}
+
+.math-callout.conjecture {
+    border-left-color: #f59e0b;
+    background: linear-gradient(to right, rgba(245, 158, 11, 0.04), var(--bg-surface));
+}
+
+.math-callout.milestone {
+    border-left-color: #8b5cf6;
+    background: linear-gradient(to right, rgba(139, 92, 246, 0.04), var(--bg-surface));
+}
+
+.math-callout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.math-callout-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.math-callout-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+}
+
+.math-callout.definition .math-callout-tag {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.math-callout.theorem .math-callout-tag {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.math-callout.conjecture .math-callout-tag {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.math-callout.milestone .math-callout-tag {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+}
+
+/* Dimension Solvability Grid */
+.dim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.dim-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.4rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.dim-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dim-number {
+    font-size: 1.35rem;
+    font-weight: 800;
+    font-family: monospace;
+    color: var(--accent);
+}
+
+.dim-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+}
+
+.dim-status.solved {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.dim-status.open {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.dim-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.dim-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Tool Integration Callouts on Problem Background Page */
+.deepdive-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0;
+}
+
+.deepdive-tool-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.4rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.deepdive-tool-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+
+.deepdive-tool-icon {
+    font-size: 1.8rem;
+}
+
+.deepdive-tool-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.35rem;
+}
+
+.deepdive-tool-desc {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   Major Open Problems Section Styles
+   ========================================================================== */
+
+.open-problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.open-problem-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.open-problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+}
+
+.open-problem-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(236, 72, 153, 0.4);
+}
+
+.open-problem-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.open-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(236, 72, 153, 0.15);
+    color: #ec4899;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.open-badge.conjecture {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.open-badge.frontier {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.open-badge.geometry {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.open-problem-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.open-problem-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.open-challenge-box {
+    background: var(--bg-surface-secondary);
+    border-left: 3px solid #ec4899;
+    border-radius: 0 8px 8px 0;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: auto;
+}
+
+.open-challenge-box strong {
+    color: var(--text-primary);
+}
+
+
+/* ==========================================================================
+   Theory Wiki Navigation & Infobox Styles
+   ========================================================================== */
+
+.wiki-subnav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-card);
+}
+
+.wiki-subnav-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding: 0 0.5rem 0 0.2rem;
+    border-right: 1px solid var(--border-subtle);
+}
+
+.wiki-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-secondary);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.18s ease;
+}
+
+.wiki-tab:hover {
+    color: var(--text-primary);
+    background: var(--bg-surface-secondary);
+    border-color: var(--border-subtle);
+}
+
+.wiki-tab.active {
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--accent);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Wiki Article Layout with Quick Facts Infobox */
+.wiki-layout {
+    display: block;
+    margin-bottom: 3rem;
+}
+
+.wiki-layout::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.wiki-main-content {
+    min-width: 0;
+}
+
+.wiki-infobox {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 961px) {
+    .wiki-infobox {
+        float: right;
+        width: 350px;
+        margin: 0.5rem 0 3rem 3.5rem;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@media (max-width: 960px) {
+    .wiki-infobox {
+        float: none;
+        width: 100%;
+        margin: 0 0 2.5rem 0;
+        padding: 1.4rem;
+    }
+}
+
+.wiki-infobox-header {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.wiki-infobox-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.wiki-infobox-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.wiki-infobox-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0.25rem 0 0;
+}
+
+.wiki-infobox-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.wiki-infobox-table tr {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.wiki-infobox-table tr:last-child {
+    border-bottom: none;
+}
+
+.wiki-infobox-table th {
+    text-align: left;
+    padding: 0.65rem 0.5rem 0.65rem 0;
+    color: var(--text-muted);
+    font-weight: 600;
+    vertical-align: top;
+    width: 42%;
+}
+
+.wiki-infobox-table td {
+    padding: 0.65rem 0 0.65rem 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    vertical-align: top;
+}
+
+.wiki-infobox-links {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.wiki-infobox-link {
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.15s ease;
+}
+
+.wiki-infobox-link:hover {
+    text-decoration: underline;
+}
+
+/* Wiki See Also Cards */
+.wiki-see-also-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.wiki-see-also-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.wiki-see-also-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.wiki-see-also-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+}
+
+.wiki-see-also-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Feature Cards for Wiki Pages */
+.feature-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.feature-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.3rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.feature-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.4rem 0;
+}
+
+.feature-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}

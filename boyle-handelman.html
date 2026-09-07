@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boyle-Handelman Theorem | Theory Wiki | NIEP Research Hub</title>
+    <meta name="description"
+        content="Mathematical theory wiki article on the Boyle-Handelman Theorem (1991), symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>Boyle-Handelman Theorem</span>
+        </nav>
+
+                <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab">NIEP</a>
+            <a href="sniep.html" class="wiki-tab">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab active" aria-current="page">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        </nav>
+
+        <!-- Main Wiki Layout: Content + Infobox -->
+        <div class="wiki-layout">
+            <!-- Left Column: Article Body -->
+            <article class="wiki-main-content">
+                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                    <div class="hero-badge">Theory Wiki &middot; Asymptotic Solvability</div>
+                    <h1 class="hero-title" style="font-size: 2.2rem;">The Boyle-Handelman Theorem</h1>
+                    <p class="hero-subtitle">
+                        Resolving the spectral conjecture in symbolic dynamics: complete characterization of nonzero spectra realizable by primitive nonnegative matrices with auxiliary zero eigenvalues.
+                    </p>
+                </header>
+
+                <aside class="wiki-infobox" aria-label="Quick Facts">
+                    <div class="wiki-infobox-header">
+                        <span class="wiki-infobox-badge">Milestone Theorem</span>
+                        <h3 class="wiki-infobox-title">Boyle-Handelman</h3>
+                        <p class="wiki-infobox-subtitle">Symbolic Dynamics &amp; Spectral Realization</p>
+                    </div>
+
+                    <table class="wiki-infobox-table">
+                        <tbody>
+                            <tr>
+                                <th>Authors</th>
+                                <td>Mike Boyle &amp; David Handelman</td>
+                            </tr>
+                            <tr>
+                                <th>Published</th>
+                                <td><em>Annals of Mathematics</em> (1991)</td>
+                            </tr>
+                            <tr>
+                                <th>Origin</th>
+                                <td>Shifts of Finite Type (Williams' Spectral Conjecture)</td>
+                            </tr>
+                            <tr>
+                                <th>Core Problem</th>
+                                <td>Which nonzero $\sigma$ arise as spectra of primitive $A \ge 0$ of <em>some</em> size $N$?</td>
+                            </tr>
+                            <tr>
+                                <th>Perron Condition</th>
+                                <td>$\lambda_1 > |\lambda_j|$ for all $j \ge 2$ (Strict Perron dominance)</td>
+                            </tr>
+                            <tr>
+                                <th>Trace Condition</th>
+                                <td>$\sum_{i=1}^k \lambda_i^m > 0$ for all integers $m \ge 1$</td>
+                            </tr>
+                            <tr>
+                                <th>Sufficiency</th>
+                                <td><strong>Necessary &amp; Sufficient</strong> if auxiliary zeros are allowed</td>
+                            </tr>
+                            <tr>
+                                <th>Matrix Class</th>
+                                <td>Primitive nonnegative matrix ($A^p > 0$)</td>
+                            </tr>
+                            <tr>
+                                <th>Dimension $N$</th>
+                                <td>Augmented size $N \ge k$ (finite but potentially large)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="wiki-infobox-links">
+                        <a href="niep.html" class="wiki-infobox-link">
+                            <strong>The Core NIEP &rarr;</strong>
+                        </a>
+                        <a href="problem-background.html" class="wiki-infobox-link">
+                            Theoretical Overview &rarr;
+                        </a>
+                        <a href="perron-similarities.html" class="wiki-infobox-link">
+                            Perron Similarities &rarr;
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Section 1: Symbolic Dynamics Origin -->
+                <section class="deepdive-section" id="origin">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">1. The Origin in Symbolic Dynamics</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        While the standard Nonnegative Inverse Eigenvalue Problem fixes the matrix dimension to the exact number of eigenvalues ($N = n$), a profoundly important related question arose from dynamical systems and ergodic theory in the 1970s and 1980s.
+                    </p>
+
+                    <p class="deepdive-text">
+                        In the study of <strong>subshifts of finite type (SFTs)</strong>&mdash;which model topological Markov chains, data transmission coding, and hyperbolic dynamical systems&mdash;a shift space is defined by an adjacency matrix $A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$. The topological entropy of the dynamical system is given by:
+                    </p>
+
+                    <div class="theory-formula">
+                        $$h(X_A) = \log \lambda_1(A)$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        where $\lambda_1(A)$ is the dominant Perron-Frobenius eigenvalue. In 1973, <strong>R. F. Williams</strong> initiated the classification of shifts of finite type up to topological conjugacy and shift equivalence. A major open question emerged: <em>Which algebraic numbers, and which multisets of nonzero complex numbers, can occur as the nonzero spectrum of the transition matrix of a mixing shift of finite type?</em>
+                    </p>
+
+                    <p class="deepdive-text">
+                        This question became known as the <strong>Spectral Conjecture</strong> of symbolic dynamics.
+                    </p>
+                </section>
+
+                <!-- Section 2: Statement of the Theorem -->
+                <section class="deepdive-section" id="statement">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">2. Statement of the Boyle-Handelman Theorem</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        In 1991, <strong>Mike Boyle</strong> and <strong>David Handelman</strong> published a landmark 50-page paper in the <em>Annals of Mathematics</em> ("The spectra of nonnegative matrices via symbolic dynamics"), definitively resolving the Spectral Conjecture:
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The Boyle-Handelman Theorem (1991)</h3>
+                        </div>
+                        <p>
+                            Let $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_k\}$ be a multiset of nonzero complex numbers closed under complex conjugation ($\sigma = \bar{\sigma}$).
+                        </p>
+                        <p>
+                            There exists a <strong>primitive nonnegative matrix</strong> $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ of some finite size $N \ge k$ whose nonzero spectrum is precisely $\sigma$ (with $N - k$ auxiliary zero eigenvalues):
+                        </p>
+                        $$\sigma(A) = \sigma \cup \underbrace{\{0, 0, \dots, 0\}}_{N - k \text{ zeros}}$$
+                        <p>
+                            <strong>if and only if</strong> the following two conditions hold:
+                        </p>
+                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                            <li><strong>Strict Perron Dominance:</strong> There is a unique maximal eigenvalue $\lambda_1 \in \mathbb{R}_{> 0}$ such that:
+                                $$\lambda_1 > |\lambda_j| \quad \forall j = 2, 3, \dots, k$$
+                            </li>
+                            <li><strong>Eventual Trace Positivity:</strong> For every integer $m \ge 1$:
+                                $$s_m = \sum_{i=1}^k \lambda_i^m > 0$$
+                            </li>
+                        </ol>
+                    </div>
+
+                    <p class="deepdive-text">
+                        A companion theorem in the same paper establishes that if the polynomial $\prod_{i=1}^k (\lambda - \lambda_i)$ has integer coefficients, the realizing matrix $A$ can be chosen with <strong>nonnegative integer entries</strong> ($A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$), completely settling the symbolic dynamics conjecture.
+                    </p>
+                </section>
+
+                <!-- Section 3: Fixed Dimension vs. Asymptotic Augmentation -->
+                <section class="deepdive-section" id="comparison">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">3. Fixed Dimension vs. Asymptotic Augmentation</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The contrast between the classical NIEP and the Boyle-Handelman setting offers profound mathematical insight:
+                    </p>
+
+                    <div class="data-table-wrapper" style="margin: 1.5rem 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Fixed-Dimension NIEP</th>
+                                    <th>Boyle-Handelman Setting</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Matrix Size</strong></td>
+                                    <td>Strictly fixed to $N = n = |\sigma|$</td>
+                                    <td>Augmented dimension $N \ge |\sigma|$ (allows auxiliary zeros)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Solvability Status</strong></td>
+                                    <td><strong>Open</strong> for all $n \ge 5$</td>
+                                    <td><strong>Completely Solved</strong> for all finite multisets!</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Boundary Nature</strong></td>
+                                    <td>Subtle semi-algebraic constraints on eigenvector angles</td>
+                                    <td>Purely algebraic trace positivity ($s_m > 0$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Trace Sufficiency</strong></td>
+                                    <td>Fails at $n=5$ (Laffey-Meehan counterexample)</td>
+                                    <td>Holds universally (with auxiliary zeros absorbed)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Why does adding zero eigenvalues eliminate the obstructions that plague the classical NIEP?
+                    </p>
+
+                    <p class="deepdive-text">
+                        In matrix theory, adding zero eigenvalues corresponds to enlarging the state space. In the graph of the matrix, auxiliary states act as "intermediate delay nodes" that separate conflicting feedback cycles. By introducing sufficiently many delay nodes, one can decouple conflicting eigenvector configurations without disturbing the nonzero eigenvalues!
+                    </p>
+                </section>
+
+                <!-- Section 4: Estimating Matrix Dimension N -->
+                <section class="deepdive-section" id="dimension-bounds">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">4. Bounds on the Augmented Dimension $N$</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Although Boyle and Handelman proved that a finite dimension $N$ always exists, their original proof relied on non-constructive compactness arguments and positive polynomial theory (Handelman's theorem on positive polynomials in ordered rings).
+                    </p>
+
+                    <div class="math-callout highlight">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The Dimension Estimation Challenge</h3>
+                        </div>
+                        <p>
+                            Given $\sigma$, what is the minimal dimension $N(\sigma)$ required to realize $\sigma$?
+                        </p>
+                        <p>
+                            In general, if the spectral gap $\lambda_1 - \max_{j \ge 2} |\lambda_j|$ is very small, or if some power trace $s_m$ is positive but extremely close to zero, the required dimension $N$ can grow exponentially large.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        In 2000, <strong>K. H. Kim, N. Ormes, and F. W. Roush</strong> developed explicit, constructive bounds on $N$ using state-splitting algorithms and polynomial division techniques.
+                    </p>
+                </section>
+
+                <!-- Section 5: Significance for Matrix Theory -->
+                <section class="deepdive-section" id="significance">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">5. Theoretical Significance for the NIEP</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The Boyle-Handelman Theorem establishes that:
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Eventual Realizability</h4>
+                            <p class="feature-desc">Every candidate spectrum with a strictly dominant Perron root and positive power sums is <em>eventually realizable</em> if we relax the rigid fixed-dimension constraint.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">The True Frontier of the NIEP</h4>
+                            <p class="feature-desc">The genuine obstruction in the classical NIEP is not the realization of the spectrum itself, but the <strong>dimensional economy</strong>: cramming the realization into exactly $n$ dimensions without auxiliary slack.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6: See Also -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. See Also &amp; Related Theory Pages</h2>
+                    </div>
+
+                    <div class="wiki-see-also-grid">
+                        <a href="niep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">The Core NIEP</h4>
+                            <p class="wiki-see-also-desc">The fixed-dimension problem, dimensional solvability progress, and semi-algebraic geometry.</p>
+                        </a>
+                        <a href="perron-similarities.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Perron Similarities</h4>
+                            <p class="wiki-see-also-desc">Non-orthogonal similarity transformations that preserve nonnegative matrix cones and realize non-symmetric spectra.</p>
+                        </a>
+                        <a href="sniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="wiki-see-also-desc">Orthogonal eigenspaces, Soules bases, Fiedler theorems, and trace polytopes.</p>
+                        </a>
+                        <a href="karpelevich-region.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <p class="wiki-see-also-desc">Stochastic matrix eigenvalues, Farey boundary arcs, and Ito's algebraic polynomials.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+                        <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetric NIEP (SNIEP) | Theory Wiki | NIEP Research Hub</title>
+    <meta name="description"
+        content="Comprehensive mathematical wiki article on the Symmetric Nonnegative Inverse Eigenvalue Problem (SNIEP), orthogonal geometry, Fiedler theorems, Soules bases, and trace polytopes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>Symmetric NIEP (SNIEP)</span>
+        </nav>
+
+                                        <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab">NIEP</a>
+            <a href="sniep.html" class="wiki-tab active" aria-current="page">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        </nav>
+
+        <!-- Main Wiki Layout: Content + Infobox -->
+        <div class="wiki-layout">
+            <!-- Left Column: Article Body -->
+            <article class="wiki-main-content">
+                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                    <div class="hero-badge">Theory Wiki &middot; Subproblem Analysis</div>
+                    <h1 class="hero-title" style="font-size: 2.2rem;">Symmetric Nonnegative Inverse Eigenvalue Problem</h1>
+                    <p class="hero-subtitle">
+                        The study of real spectra realizable by symmetric entrywise nonnegative matrices ($A = A^T \ge 0$), orthogonal eigenspaces, and convex trace polyhedra.
+                    </p>
+                </header>
+
+                <aside class="wiki-infobox" aria-label="Quick Facts">
+                <div class="wiki-infobox-header">
+                    <span class="wiki-infobox-badge">Subproblem</span>
+                    <h3 class="wiki-infobox-title">SNIEP</h3>
+                    <p class="wiki-infobox-subtitle">Symmetric Nonnegative Inverse Eigenvalue Problem</p>
+                </div>
+
+                <table class="wiki-infobox-table">
+                    <tbody>
+                        <tr>
+                            <th>Matrix Constraint</th>
+                            <td>$A = A^T \ge 0$ (symmetric)</td>
+                        </tr>
+                        <tr>
+                            <th>Spectrum Domain</th>
+                            <td>$\sigma \subset \mathbb{R}$ (all real)</td>
+                        </tr>
+                        <tr>
+                            <th>Eigenvectors</th>
+                            <td>Orthonormal basis ($Q Q^T = I$)</td>
+                        </tr>
+                        <tr>
+                            <th>Relation to RNIEP</th>
+                            <td>$= \operatorname{RNIEP}$ ($n \le 4$)<br>$\subsetneq \operatorname{RNIEP}$ ($n \ge 5$)</td>
+                        </tr>
+                        <tr>
+                            <th>Solvability $n \le 4$</th>
+                            <td>Completely Solved</td>
+                        </tr>
+                        <tr>
+                            <th>Solvability $n \ge 5$</th>
+                            <td>Open Frontier</td>
+                        </tr>
+                        <tr>
+                            <th>Key Invariants</th>
+                            <td>$s_k \ge 0$, $\|A^k\|_F^2 = s_{2k}$, Fiedler bounds</td>
+                        </tr>
+                        <tr>
+                            <th>Key Theorems</th>
+                            <td>Fiedler (1974), Soules (1983), Johnson-Laffey-Loewy (1996)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="wiki-infobox-links">
+                    <a href="rniep.html" class="wiki-infobox-link"><span>&rarr;</span> Compare with RNIEP</a>
+                    <a href="trace-polytope.html" class="wiki-infobox-link"><span>&rarr;</span> View SNIEP Trace Polytopes</a>
+                    <a href="spectra-realizer.html" class="wiki-infobox-link"><span>&rarr;</span> Test Spectrum in Solver</a>
+                </div>
+            </aside>
+
+                <!-- Section 1: Problem Definition -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">1. Definition &amp; Orthogonal Geometry</h2>
+                        <p class="deepdive-section-desc">Enforcing matrix symmetry imposes severe geometric constraints on eigenvector frames.</p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The <strong>Symmetric Nonnegative Inverse Eigenvalue Problem (SNIEP)</strong> asks: given a multiset of $n$ real numbers $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\} \subset \mathbb{R}$, does there exist an entrywise nonnegative, symmetric matrix $A \in \mathbb{R}^{n \times n}$ whose spectrum is $\sigma$?
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Definition: The SNIEP</h3>
+                            <span class="math-callout-tag">Formal Statement</span>
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0.5rem;">
+                            Find a matrix $A = (a_{ij}) \in \mathbb{R}^{n \times n}$ such that:
+                        </p>
+                        <div class="theory-formula">
+                            $$\begin{aligned}
+                            A &= A^T \quad (\text{symmetry}) \\
+                            a_{ij} &\ge 0 \quad (\text{entrywise nonnegativity}) \\
+                            \sigma(A) &= \{\lambda_1, \lambda_2, \dots, \lambda_n\}
+                            \end{aligned}$$
+                        </div>
+                    </div>
+
+                    <p class="deepdive-text">
+                        By the <strong>Spectral Theorem</strong> for real symmetric matrices, any realization $A$ is orthogonally diagonalizable:
+                    </p>
+                    <div class="theory-formula">
+                        $$A = Q \Lambda Q^T, \quad Q Q^T = I_n, \quad \Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$$
+                    </div>
+                    <p class="deepdive-text">
+                        This means the entrywise nonnegativity condition $a_{ij} \ge 0$ translates into a system of quadratic inequalities on the rows of an orthogonal matrix $Q = (q_{ik})$:
+                    </p>
+                    <div class="theory-formula">
+                        $$a_{ij} = \sum_{k=1}^n \lambda_k q_{ik} q_{jk} \ge 0 \quad (\forall 1 \le i, j \le n)$$
+                    </div>
+                    <p class="deepdive-text">
+                        Because the rows of $Q$ must form an orthonormal basis of $\mathbb{R}^n$ ($\sum_k q_{ik}^2 = 1$ and $\sum_k q_{ik} q_{jk} = 0$ for $i \ne j$), the eigenvectors cannot tilt freely. This rigid orthogonality makes the SNIEP strictly harder to satisfy than general real realizations when dimension $n \ge 5$.
+                    </p>
+                </section>
+
+                <!-- Section 2: Necessary Conditions -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">2. Necessary Invariants for SNIEP</h2>
+                        <p class="deepdive-section-desc">Moments, trace Frobenius norms, and spectral partitioning.</p>
+                    </div>
+
+                    <div class="conditions-grid" style="margin-top: 0.5rem;">
+                        <div class="condition-card">
+                            <div class="condition-header">
+                                <span class="condition-num">1</span>
+                                <h4 class="condition-title">Real Spectrum</h4>
+                            </div>
+                            <div class="condition-formula">$$\sigma \subset \mathbb{R}$$</div>
+                            <p class="condition-note">All eigenvalues of a real symmetric matrix are guaranteed to be real.</p>
+                        </div>
+                        <div class="condition-card">
+                            <div class="condition-header">
+                                <span class="condition-num">2</span>
+                                <h4 class="condition-title">Perron Root</h4>
+                            </div>
+                            <div class="condition-formula">$$\lambda_1 = \max_{i} |\lambda_i| \in \sigma$$</div>
+                            <p class="condition-note">The maximal eigenvalue in absolute value is positive and belongs to $\sigma$.</p>
+                        </div>
+                        <div class="condition-card">
+                            <div class="condition-header">
+                                <span class="condition-num">3</span>
+                                <h4 class="condition-title">Frobenius Trace Norm</h4>
+                            </div>
+                            <div class="condition-formula">$$s_{2k} = \|A^k\|_F^2 \ge 0$$</div>
+                            <p class="condition-note">Even power sum traces equal the squared Frobenius norm of the symmetric power $A^k$.</p>
+                        </div>
+                        <div class="condition-card">
+                            <div class="condition-header">
+                                <span class="condition-num">4</span>
+                                <h4 class="condition-title">Fiedler Partitioning</h4>
+                            </div>
+                            <div class="condition-formula">$$\lambda_1 + \lambda_n \ge 0$$</div>
+                            <p class="condition-note">For irreducible $A$, the sum of extreme eigenvalues satisfies positivity bounds.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Sufficient Conditions & Constructions -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">3. Sufficient Conditions &amp; Realization Constructions</h2>
+                        <p class="deepdive-section-desc">Techniques to constructively synthesize symmetric nonnegative realizations.</p>
+                    </div>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Fiedler's Sule&#x012D;manova Theorem (1974)</h3>
+                            <span class="math-callout-tag">Exact Sufficiency</span>
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0.5rem;">
+                            A spectrum $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$ is called a <strong>Sule&#x012D;manova spectrum</strong> if exactly one eigenvalue is positive and all others are non-positive:
+                        </p>
+                        <div class="theory-formula">
+                            $$\lambda_1 > 0 \ge \lambda_2 \ge \lambda_3 \ge \dots \ge \lambda_n$$
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0;">
+                            Miroslav Fiedler proved that if $\sigma$ is a Sule&#x012D;manova spectrum, then $\sigma \in \operatorname{SNIEP}(n)$ if and only if the trace is nonnegative: $\sum_{i=1}^n \lambda_i \ge 0$. Furthermore, Fiedler provided an explicit recursive orthogonal similarity construction to build $A = A^T \ge 0$.
+                        </p>
+                    </div>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Soules Matrices &amp; Step Bases (Soules, 1983)</h3>
+                            <span class="math-callout-tag">Orthogonal Basis</span>
+                        </div>
+                        <p class="deepdive-text">
+                            George W. Soules introduced a powerful class of orthogonal matrices $R \in O(n)$ constructed from binary tree decompositions. If $R$ is a <strong>Soules matrix</strong> (its first column is strictly positive $r_1 > 0$, and subsequent columns possess specific step sign patterns), then for any spectrum $\sigma = (\lambda_1, \dots, \lambda_n)$ with $\lambda_1 \ge \dots \ge \lambda_n$ satisfying monotonic step bounds:
+                        </p>
+                        <div class="theory-formula">
+                            $$A = R \operatorname{diag}(\lambda_1, \dots, \lambda_n) R^T \ge 0$$
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0;">
+                            Soules bases remain the premier practical method for generating continuous families of symmetric nonnegative matrices.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 4: The Symmetry Gap -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">4. The Symmetry Gap: $\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n)$</h2>
+                        <p class="deepdive-section-desc">Why orthogonal eigenvectors fail where general non-symmetric realizations succeed.</p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        For $n \le 4$, the Symmetric and Real NIEP are identical: any real spectrum realizable non-symmetrically is also realizable symmetrically. However, in 1996, <strong>Charles Johnson, Thomas Laffey, and Raphael Loewy</strong> proved that for all $n \ge 5$, the SNIEP is strictly smaller than the RNIEP.
+                    </p>
+
+                    <div class="math-callout milestone">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The Johnson-Laffey-Loewy Spectrum</h3>
+                            <span class="math-callout-tag">Separation Landmark (1996)</span>
+                        </div>
+                        <p class="deepdive-text">
+                            Consider the multiset of order 5:
+                        </p>
+                        <div class="theory-formula">
+                            $$\sigma = \{4, 2, 2, -4, -4\}$$
+                        </div>
+                        <p class="deepdive-text">
+                            Notice that $\sum \lambda_i = 4 + 2 + 2 - 4 - 4 = 0$ and all power sum traces are positive. It can be realized by an asymmetric nonnegative matrix $A \ge 0$ (hence $\sigma \in \operatorname{RNIEP}(5)$). However, Johnson, Laffey, and Loewy proved that no symmetric $5 \times 5$ nonnegative matrix can have spectrum $\sigma$:
+                        </p>
+                        <div class="theory-formula">
+                            $$\{4, 2, 2, -4, -4\} \in \operatorname{RNIEP}(5) \setminus \operatorname{SNIEP}(5)$$
+                        </div>
+                        <p class="deepdive-text" style="margin-bottom: 0;">
+                            <strong>Mechanism:</strong> If $A = A^T \ge 0$ realized $\sigma$, the trace of $A$ is zero, forcing all diagonal entries to be zero: $a_{ii} = 0$. Since $A$ is symmetric, this forces specific zero sub-block patterns that constrain the 2-dimensional eigenspace corresponding to $-4$, leading to an algebraic contradiction.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 5: Trace Polytopes -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">5. Convex Geometry &amp; Trace Polytopes</h2>
+                        <p class="deepdive-section-desc">Visualizing the feasible spectral region as convex polyhedral slices.</p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        When candidate spectra are parameterized by power sum coordinates $(s_1, s_2, \dots, s_k)$, the set of realizable symmetric spectra forms a convex polyhedron called the <strong>SNIEP Trace Polytope</strong>.
+                    </p>
+
+                    <p class="deepdive-text">
+                        Because $\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n)$ for $n \ge 5$, the SNIEP trace polytope sits strictly inside the RNIEP trace polytope, giving researchers an interactive geometric window into the exact boundary where symmetry fails.
+                    </p>
+
+                    <div class="deepdive-callout" style="margin-top: 1rem;">
+                        <div class="deepdive-callout-text">
+                            <h4>Interactive 3D Trace Polytope Gallery</h4>
+                            <p>Explore interactive 3D WebGL projections comparing SNIEP vs. RNIEP trace polytopes for dimensions $n = 4, 5, 6$.</p>
+                        </div>
+                        <a href="trace-polytope.html" class="deep-dive-btn">
+                            <span>Open Polytope Gallery</span>
+                            <span class="arrow">&rarr;</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Section 6: See Also / Wiki Links -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. See Also &amp; Related Articles</h2>
+                    </div>
+
+                                                            <div class="wiki-see-also-grid">
+                        <a href="rniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <p class="wiki-see-also-desc">Explore how relaxing symmetry unlocks non-orthogonal eigenvector frames that expand the realizable domain.</p>
+                        </a>
+                        <a href="suleimanova.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Suleimanova Spectra</h4>
+                            <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and Fiedler's symmetric realization theorem.</p>
+                        </a>
+                        <a href="karpelevich-region.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <p class="wiki-see-also-desc">Kolmogorov's problem, stochastic eigenvalue boundaries, Farey vertices, and algebraic arcs.</p>
+                        </a>
+                        <a href="problem-background.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">NIEP Overview</h4>
+                            <p class="wiki-see-also-desc">The master theoretical survey covering complex spectra, Perron-Frobenius theory, and semi-algebraic sets.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Right Column: Wikipedia-Style Infobox -->
+            
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+                                                <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

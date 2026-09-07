@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perron Similarities &amp; Ideal Spectracones | Theory Wiki | NIEP Research Hub</title>
+    <meta name="description"
+        content="Comprehensive mathematical theory wiki article on Perron similarities, Johnson-Paparella theory, spectracones, spectratopes, and Gershnik-Lewis-Paparella's theorem that character tables are ideal Perron similarities.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>Perron Similarities</span>
+        </nav>
+
+        <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab">NIEP</a>
+            <a href="sniep.html" class="wiki-tab">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab active" aria-current="page">Perron Similarities</a>
+        </nav>
+
+        <!-- Main Wiki Layout: Content + Infobox -->
+        <div class="wiki-layout">
+            <!-- Left Column: Article Body -->
+            <article class="wiki-main-content">
+                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                    <div class="hero-badge">Theory Wiki &middot; Modern Advances</div>
+                    <h1 class="hero-title" style="font-size: 2.2rem;">Perron Similarities &amp; Ideal Spectracones</h1>
+                    <p class="hero-subtitle">
+                        Invertible similarity transformations that diagonalize nonnegative matrices, the geometry of spectracones and spectratopes, and the representation-theoretic discovery that character tables are ideal Perron similarities.
+                    </p>
+                </header>
+
+                <aside class="wiki-infobox" aria-label="Quick Facts">
+                    <div class="wiki-infobox-header">
+                        <span class="wiki-infobox-badge">Transformation Theory</span>
+                        <h3 class="wiki-infobox-title">Perron Similarities</h3>
+                        <p class="wiki-infobox-subtitle">Spectracones &amp; Group Character Tables</p>
+                    </div>
+
+                    <table class="wiki-infobox-table">
+                        <tbody>
+                            <tr>
+                                <th>Definition</th>
+                                <td>Invertible $S$ that diagonalizes an irreducible nonnegative matrix ($S \Lambda S^{-1} \ge 0$)</td>
+                            </tr>
+                            <tr>
+                                <th>Foundational Theory</th>
+                                <td>C. R. Johnson &amp; P. Paparella (<em>Trans. Amer. Math. Soc.</em>)</td>
+                            </tr>
+                            <tr>
+                                <th>Key Geometric Object</th>
+                                <td><strong>Spectracone</strong> $\mathcal{C}(S) = \{\lambda : S \operatorname{diag}(\lambda) S^{-1} \ge 0\}$</td>
+                            </tr>
+                            <tr>
+                                <th>Spectratope</th>
+                                <td>Normalized polytope $\mathcal{T}(S) = \mathcal{C}(S) \cap \{\lambda : \lambda_1 = 1\}$</td>
+                            </tr>
+                            <tr>
+                                <th>Ideal Similarity</th>
+                                <td>Perron similarity whose spectratope equals the conical hull of its rows</td>
+                            </tr>
+                            <tr>
+                                <th>Landmark Theorem</th>
+                                <td><strong>Character tables of finite groups are ideal Perron similarities</strong> (Gershnik, Lewis, &amp; Paparella 2026)</td>
+                            </tr>
+                            <tr>
+                                <th>Volume Formula</th>
+                                <td>Exact group-theoretic simplex volume for real character tables</td>
+                            </tr>
+                            <tr>
+                                <th>Subclasses</th>
+                                <td>Soules matrices (orthogonal case, $S \in \mathrm{O}(n)$)</td>
+                            </tr>
+                            <tr>
+                                <th>Symmetry Gap</th>
+                                <td>Explains why non-orthogonal frames realize spectra where SNIEP fails</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="wiki-infobox-links">
+                        <a href="niep.html" class="wiki-infobox-link">
+                            <strong>The Core NIEP &rarr;</strong>
+                        </a>
+                        <a href="rniep.html" class="wiki-infobox-link">
+                            Real NIEP (RNIEP) &rarr;
+                        </a>
+                        <a href="sniep.html" class="wiki-infobox-link">
+                            Symmetric NIEP (SNIEP) &rarr;
+                        </a>
+                        <a href="boyle-handelman.html" class="wiki-infobox-link">
+                            Boyle-Handelman Theorem &rarr;
+                        </a>
+                        <a href="spectra-realizer.html" class="wiki-infobox-link">
+                            Spectra Realizer Tool &rarr;
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Section 1: Definition & Johnson-Paparella Foundations -->
+                <section class="deepdive-section" id="definition">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">1. Definition &amp; The Johnson-Paparella Theory</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        A central strategy for constructing nonnegative matrices with prescribed spectra is to fix an invertible transformation matrix $S$ and investigate which diagonal matrices $\Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ satisfy:
+                    </p>
+
+                    <div class="theory-formula">
+                        $$A = S \Lambda S^{-1} \ge 0$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        In their foundational paper <em>"Perron similarities and the nonnegative inverse eigenvalue problem"</em> (published in the <em>Transactions of the American Mathematical Society</em>), <strong>Charles R. Johnson</strong> and <strong>Pietro Paparella</strong> formalized and systematically developed the concept of a <strong>Perron similarity</strong>:
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Definition: Perron Similarity (Johnson &amp; Paparella)</h3>
+                        </div>
+                        <p>
+                            An invertible matrix $S \in \mathrm{GL}(n, \mathbb{C})$ is called a <strong>Perron similarity</strong> if it diagonalizes an irreducible, entrywise nonnegative matrix.
+                        </p>
+                        <p>
+                            Equivalently, after permutation and scaling, one column of $S$ (conventionally the first column, $S \mathbf{e}_1$) and the corresponding row of its inverse ($\mathbf{e}_1^T S^{-1}$) are both strictly positive (or both strictly negative), acting as the right and left Perron eigenvectors of the realized matrix $A$.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Associated with any Perron similarity $S$ are two natural convex geometric objects:
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">The Spectracone $\mathcal{C}(S)$</h4>
+                            <p class="feature-desc">
+                                The set of all eigenvalue vectors $\lambda = (\lambda_1, \dots, \lambda_n)^T$ whose similarity reconstruction is entrywise nonnegative:
+                                $$\mathcal{C}(S) = \{\lambda \in \mathbb{C}^n : S \operatorname{diag}(\lambda) S^{-1} \ge 0\}$$
+                                $\mathcal{C}(S)$ is a polyhedral cone in the vector space of diagonal matrices.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">The Spectratope $\mathcal{T}(S)$</h4>
+                            <p class="feature-desc">
+                                The compact, normalized slice of the spectracone with Perron root normalized to unity:
+                                $$\mathcal{T}(S) = \mathcal{C}(S) \cap \{\lambda \in \mathbb{C}^n : \lambda_1 = 1\}$$
+                                $\mathcal{T}(S)$ is a convex polytope containing all normalized spectra realizable by $S$.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Generalizing Soules Matrices -->
+                <section class="deepdive-section" id="soules-generalization">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">2. Generalizing Soules Bases to Non-Orthogonal Frames</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        In 1983, George W. Soules discovered that certain orthogonal matrices $R \in \mathrm{O}(n)$ with positive first column diagonalize all Suleĭmanova spectra into symmetric nonnegative matrices. Elsner, Nabben, and Neumann (1998) classified all such <strong>Soules matrices</strong>.
+                    </p>
+
+                    <p class="deepdive-text">
+                        However, Soules matrices are fundamentally constrained by <strong>orthogonality</strong> ($R^{-1} = R^T$). Because orthogonal transformations enforce rigid $90^\circ$ angles between all eigenvectors, their spectratopes cannot realize spectra that require skewed, non-orthogonal eigenspaces.
+                    </p>
+
+                    <p class="deepdive-text">
+                        Perron similarities liberate the theory from orthogonality. By allowing $S \in \mathrm{GL}(n, \mathbb{R})$ to be an arbitrary nonsingular frame, the angles between eigenvectors can vary freely. This immediately explains the <strong>symmetry gap</strong> between RNIEP and SNIEP:
+                    </p>
+
+                    <div class="math-callout highlight">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Resolving the Laffey-Loewy $\{4, 2, 2, -4, -4\}$ Separation</h3>
+                        </div>
+                        <p>
+                            The celebrated spectrum $\sigma = \{4, 2, 2, -4, -4\}$ cannot be realized by any symmetric matrix (SNIEP fails) because orthogonal eigenvectors force off-diagonal negativity.
+                        </p>
+                        <p>
+                            Under a non-orthogonal Perron similarity $S$, the eigenspaces for $-4, -4$ can be tilted relative to the positive octant, completely eliminating off-diagonal negativity and yielding a valid $A \ge 0$.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 3: Ideal Perron Similarities -->
+                <section class="deepdive-section" id="ideal-similarities">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">3. Ideal Perron Similarities</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Given a Perron similarity $S$, how large can its spectracone $\mathcal{C}(S)$ be?
+                    </p>
+
+                    <p class="deepdive-text">
+                        Let $\operatorname{cone}(S)$ denote the conical hull of the rows of $S$. In general, $\mathcal{C}(S) \subseteq \operatorname{cone}(S)$, but the inclusion is often strict due to coupling constraints across different matrix entries.
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Definition: Ideal Perron Similarity</h3>
+                        </div>
+                        <p>
+                            A Perron similarity $S$ is called <strong>ideal</strong> if its spectratope $\mathcal{T}(S)$ coincides with the conical hull of its rows:
+                        </p>
+                        $$\mathcal{C}(S) = \operatorname{cone}(S)$$
+                        <p>
+                            Equivalently, every point in the polyhedral row cone corresponds to an entrywise nonnegative matrix $A = S \Lambda S^{-1} \ge 0$.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Ideal Perron similarities represent the "gold standard" in the theory of spectral realization: they achieve the maximal possible spectral capacity, and their realizable domains are governed by minimal, non-redundant linear facet inequalities.
+                    </p>
+                </section>
+
+                <!-- Section 4: Gershnik, Lewis, & Paparella: Character Tables -->
+                <section class="deepdive-section" id="character-tables">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">4. The Breakthrough: Character Tables are Ideal Perron Similarities</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        In a landmark paper published in the <em>Journal of Algebra</em> (2026), <strong>David Z. Gershnik, Alexander J. Lewis, and Pietro Paparella</strong> established a profound and unexpected bridge between finite group representation theory and the NIEP:
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Gershnik-Lewis-Paparella Theorem (2026)</h3>
+                        </div>
+                        <p>
+                            Let $G$ be a finite group, and let $X \in \mathbb{C}^{k \times k}$ be the <strong>character table</strong> of $G$, whose rows correspond to the irreducible complex characters $\chi_1, \dots, \chi_k$ and columns correspond to the conjugacy classes $C_1, \dots, C_k$ of $G$.
+                        </p>
+                        <p>
+                            Then $X$ is an <strong>ideal Perron similarity</strong>!
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        This remarkable result shows that the character tables that have been computed and tabulated by group theorists for over a century are precisely ideal matrix frames for spectral nonnegativity!
+                    </p>
+
+                    <div class="feature-card-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Group-Theoretic Spectracones</h4>
+                            <p class="feature-desc">
+                                The spectracone $\mathcal{C}(X)$ is cut out by a finite system of explicit group-theoretic inequalities governed by the character values $\chi_i(g)$ and class sizes $|C_j|$:
+                                $$\sum_{i=1}^k \chi_i(g) \lambda_i \ge 0 \quad \forall g \in G$$
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Exact Polytope Volume Formula</h4>
+                            <p class="feature-desc">
+                                For groups whose character table is real (such as the symmetric groups $S_n$), the projected Perron spectratope is a simplex whose normalized volume is given by an exact formula in terms of group order $|G|$ and conjugacy class centralizer orders:
+                                $$\operatorname{Vol}(\mathcal{T}(X)) = \frac{1}{(k-1)!} \frac{\prod_{j=1}^k |C_j|^{1/2}}{|G|^{(k-1)/2}}$$
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Concrete Examples: S_3, S_4, and Dihedral Groups -->
+                <section class="deepdive-section" id="examples">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">5. Concrete Examples: Symmetric &amp; Dihedral Groups</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Consider the symmetric group $S_3$ (order $|G| = 6$, with $k=3$ conjugacy classes: identity, transpositions, and 3-cycles). Its character table is:
+                    </p>
+
+                    <div class="theory-formula">
+                        $$X = \begin{pmatrix} 1 & 1 & 1 \\ 1 & -1 & 1 \\ 2 & 0 & -1 \end{pmatrix}$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        Since $X$ is an ideal Perron similarity, its spectracone consists of all triples $(\lambda_1, \lambda_2, \lambda_3)$ satisfying:
+                    </p>
+
+                    <div class="theory-formula">
+                        $$\begin{aligned}
+                        \lambda_1 + \lambda_2 + 2\lambda_3 &\ge 0 \quad \text{(identity element)} \\[4pt]
+                        \lambda_1 - \lambda_2 &\ge 0 \quad \text{(transpositions)} \\[4pt]
+                        \lambda_1 + \lambda_2 - \lambda_3 &\ge 0 \quad \text{(3-cycles)}
+                        \end{aligned}$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        Every candidate spectrum inside this polyhedral cone is immediately realizable by an entrywise nonnegative matrix $A = X \operatorname{diag}(\lambda) X^{-1} \ge 0$!
+                    </p>
+                </section>
+
+                <!-- Section 6: Citations & Academic References -->
+                <section class="deepdive-section" id="references">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Key Literature &amp; Foundational Papers</h2>
+                    </div>
+
+                    <div class="feature-card-grid" style="grid-template-columns: 1fr;">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Johnson &amp; Paparella (2025/2026)</h4>
+                            <p class="feature-desc">
+                                Charles R. Johnson and Pietro Paparella, <em>"Perron similarities and the nonnegative inverse eigenvalue problem"</em>, <strong>Transactions of the American Mathematical Society</strong>.<br>
+                                <span style="font-size: 0.82rem; color: var(--text-muted);">Establishes the general theory of Perron similarities, spectracones, spectratopes, and row/column cone geometry.</span>
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Gershnik, Lewis, &amp; Paparella (2026)</h4>
+                            <p class="feature-desc">
+                                David Z. Gershnik, Alexander J. Lewis, and Pietro Paparella, <em>"Character tables are ideal Perron similarities"</em>, <strong>Journal of Algebra</strong>.<br>
+                                <span style="font-size: 0.82rem; color: var(--text-muted);">Proves that finite group character tables are ideal Perron similarities, gives group-theoretic facet equations for spectracones, and derives exact volume formulas.</span>
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Laffey &amp; Šmigoc (2007&ndash;2010)</h4>
+                            <p class="feature-desc">
+                                Thomas J. Laffey and Helena Šmigoc, <em>"Nonnegative realization of spectra via companion matrix perturbations and structured similarities"</em>, <strong>Linear Algebra and its Applications</strong>.<br>
+                                <span style="font-size: 0.82rem; color: var(--text-muted);">Introduced nilpotent upper-triangular similarity transforms that realize spectra on the boundary of trace sufficiency.</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 7: See Also -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Theory Pages</h2>
+                    </div>
+
+                    <div class="wiki-see-also-grid">
+                        <a href="niep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">The Core NIEP</h4>
+                            <p class="wiki-see-also-desc">Dimensional solvability progress, trace moment obstructions, and semi-algebraic cones.</p>
+                        </a>
+                        <a href="rniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <p class="wiki-see-also-desc">General real spectra, non-orthogonal eigenvector frames, and the symmetry divide.</p>
+                        </a>
+                        <a href="sniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="wiki-see-also-desc">Orthogonal eigenspaces, Soules bases, Fiedler theorems, and trace polyhedra.</p>
+                        </a>
+                        <a href="boyle-handelman.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Boyle-Handelman Theorem</h4>
+                            <p class="wiki-see-also-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

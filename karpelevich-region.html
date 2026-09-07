@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karpelevič Region &amp; Theorem | Theory Wiki | NIEP Research Hub</title>
+    <meta name="description"
+        content="Complete mathematical theory wiki article on Karpelevič's Theorem, Kolmogorov's 1937 problem, the stochastic eigenvalue region K_n, Farey boundary arcs, and Ito's algebraic polynomials.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-logo-badge">NIEP</span>
+            <div class="nav-brand-text">
+                <span class="nav-title">NIEP Research Hub</span>
+                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
+            </div>
+        </a>
+        <nav class="nav-center" aria-label="Main Navigation">
+            <a href="index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3E0;</span>
+                <span>NIEP Hub</span>
+            </a>
+            <a href="problem-background.html" class="nav-button active" aria-current="page">
+                <span class="nav-btn-icon">&#x1F4D6;</span>
+                <span>Problem Background</span>
+            </a>
+            <a href="karpelevich.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F3AF;</span>
+                <span>Karpelevi&#x010D; Viewer</span>
+            </a>
+            <a href="trace-polytope.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F4CA;</span>
+                <span>Trace Polytopes</span>
+            </a>
+            <a href="spectra-realizer.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F9EE;</span>
+                <span>Spectra Realizer</span>
+            </a>
+            <a href="personal/index.html" class="nav-button">
+                <span class="nav-btn-icon">&#x1F464;</span>
+                <span>Personal</span>
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-switch-group" role="group" aria-label="Color Theme">
+                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                    <span>&#x2600;</span> Light
+                </button>
+                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                    <span>&#x1F319;</span> Dark
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deepdive-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>Karpelevi&#x010D; Region &amp; Theorem</span>
+        </nav>
+
+                                        <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab">NIEP</a>
+            <a href="sniep.html" class="wiki-tab">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab active" aria-current="page">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        </nav>
+
+        <!-- Main Wiki Layout: Content + Infobox -->
+        <div class="wiki-layout">
+            <!-- Left Column: Article Body -->
+            <article class="wiki-main-content">
+                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                    <div class="hero-badge">Theory Wiki &middot; Geometric Foundations</div>
+                    <h1 class="hero-title" style="font-size: 2.2rem;">Karpelevi&#x010D;'s Theorem &amp; The Karpelevi&#x010D; Region</h1>
+                    <p class="hero-subtitle">
+                        The complete geometric determination of all complex numbers realizable as eigenvalues of $n \times n$ stochastic matrices, Farey sequence boundary points, and algebraic boundary arcs.
+                    </p>
+                </header>
+
+                <aside class="wiki-infobox" aria-label="Quick Facts">
+                    <div class="wiki-infobox-header">
+                        <span class="wiki-infobox-badge">Geometric Theorem</span>
+                        <h3 class="wiki-infobox-title">Karpelevi&#x010D; Region</h3>
+                        <p class="wiki-infobox-subtitle">$\mathcal{K}_n \subset \mathbb{C}$ (Stochastic Eigenvalues)</p>
+                    </div>
+
+                    <table class="wiki-infobox-table">
+                        <tbody>
+                            <tr>
+                                <th>Object</th>
+                                <td>$\mathcal{K}_n = \{\lambda \in \mathbb{C} : \exists A \in \mathcal{S}_n, A\mathbf{1}=\mathbf{1}, \lambda \in \sigma(A)\}$</td>
+                            </tr>
+                            <tr>
+                                <th>Origin Problem</th>
+                                <td>A. N. Kolmogorov (1937)</td>
+                            </tr>
+                            <tr>
+                                <th>Solved By</th>
+                                <td>F. I. Karpelevi&#x010D; (1951)</td>
+                            </tr>
+                            <tr>
+                                <th>Precursor Cases</th>
+                                <td>Dmitriev &amp; Dynkin (1946) for $n \le 4$</td>
+                            </tr>
+                            <tr>
+                                <th>Boundary Form</th>
+                                <td>Line segments &amp; curvilinear algebraic arcs</td>
+                            </tr>
+                            <tr>
+                                <th>Boundary Nodes</th>
+                                <td>$e^{i 2\pi p/q}$ for $0 \le p < q \le n$, $\gcd(p,q)=1$</td>
+                            </tr>
+                            <tr>
+                                <th>Segment Rule</th>
+                                <td>Chord when $q_1 + q_2 > n$</td>
+                            </tr>
+                            <tr>
+                                <th>Curved Rule</th>
+                                <td>Arc bowing inward when $q_1 + q_2 \le n$</td>
+                            </tr>
+                            <tr>
+                                <th>Implicit Equations</th>
+                                <td>H. Ito (1997), Johnson et al.</td>
+                            </tr>
+                            <tr>
+                                <th>Symmetries</th>
+                                <td>$\lambda \in \mathcal{K}_n \iff \bar{\lambda} \in \mathcal{K}_n$; star-shaped at $0$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="wiki-infobox-links">
+                        <a href="karpelevich.html" class="wiki-infobox-link"><strong>Launch Interactive Viewer &rarr;</strong>
+                        </a>
+                        <a href="problem-background.html" class="wiki-infobox-link">NIEP Theoretical Overview
+                        </a>
+                        <a href="rniep.html" class="wiki-infobox-link">Real NIEP (RNIEP)
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Section 1: Historical Context & Kolmogorov's Problem -->
+                <section class="deepdive-section" id="history">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">1. Kolmogorov's 1937 Problem &amp; Historical Genesis</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        In 1937, the celebrated Soviet mathematician <strong>Andrey Nikolaevich Kolmogorov</strong> posed a deceptively natural question concerning finite-state discrete-time Markov chains:
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Kolmogorov's Problem (1937)</h3>
+                        </div>
+                        <p>
+                            <em>What is the set $\mathcal{K}_n$ of all complex numbers that can arise as an eigenvalue of an $n \times n$ stochastic matrix (a nonnegative matrix with all row sums equal to $1$)?</em>
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        By the classical Perron-Frobenius theorem, any stochastic matrix $A \ge 0$ has spectral radius $\rho(A) = 1$, and $\lambda_0 = 1$ is always an eigenvalue associated with the right all-ones eigenvector $\mathbf{1} = (1, 1, \dots, 1)^T$. Consequently, all eigenvalues lie in the closed unit disk $\overline{\mathbb{D}} = \{z \in \mathbb{C} : |z| \le 1\}$. However, only a strict subset of the unit disk can ever be realized.
+                    </p>
+
+                    <p class="deepdive-text">
+                        In 1946, <strong>Nikolai Dmitriev</strong> and <strong>Eugene Dynkin</strong> made the first major breakthrough by establishing the region for dimensions $n = 2, 3, 4$:
+                    </p>
+
+                    <ul class="deepdive-list">
+                        <li><strong>$n = 2$:</strong> The interval $[-1, 1]$ along the real axis.</li>
+                        <li><strong>$n = 3$:</strong> An equilateral triangle with vertices at $1, e^{i 2\pi/3}, e^{i 4\pi/3}$, together with the real interval $[-1/2, 1]$, bounded by curved segments connecting the roots of unity to the negative real axis.</li>
+                        <li><strong>$n = 4$:</strong> A shape bounded by chords and curvilinear arcs connecting $1, i, -1, -i$, and the third roots of unity.</li>
+                    </ul>
+
+                    <p class="deepdive-text">
+                        In 1951, <strong>Fridrikh Izrailevich Karpelevič</strong> published a monumental 70-page paper in <em>Izvestiya Rossiiskoi Akademii Nauk</em> delivering the complete, definitive answer for all finite dimensions $n$. This crowning achievement is universally celebrated today as <strong>Karpelevič's Theorem</strong>.
+                    </p>
+                </section>
+
+                <!-- Section 2: Statement of Karpelevič's Theorem -->
+                <section class="deepdive-section" id="statement">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">2. Precise Statement of Karpelevič's Theorem</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Let $\mathcal{P}_n$ denote the set of all $n \times n$ stochastic matrices. The Karpelevič region is defined by:
+                    </p>
+
+                    <div class="math-callout highlight">
+                        $$\mathcal{K}_n = \{\lambda \in \mathbb{C} : \exists A \in \mathcal{P}_n \text{ such that } \det(\lambda I - A) = 0\}$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        Karpelevič showed that $\mathcal{K}_n$ possesses several fundamental structural properties:
+                    </p>
+
+                    <div class="feature-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.5rem 0;">
+                        <div class="feature-card">
+                            <h4 class="feature-title"><span>⭐</span> Star-Shaped at Origin</h4>
+                            <p class="feature-desc">If $\lambda \in \mathcal{K}_n$, then the entire radial segment $[0, \lambda] = \{t\lambda : 0 \le t \le 1\} \subset \mathcal{K}_n$. In particular, $\mathcal{K}_n$ is simply connected.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Conjugate Symmetry</h4>
+                            <p class="feature-desc">Since $A$ has real entries, its characteristic polynomial has real coefficients, so $\lambda \in \mathcal{K}_n \iff \bar{\lambda} \in \mathcal{K}_n$.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Roots of Unity</h4>
+                            <p class="feature-desc">The intersection of $\mathcal{K}_n$ with the unit circle $\partial \mathbb{D}$ consists exactly of all roots of unity of degree $q \le n$: $\mathcal{K}_n \cap \{z : |z|=1\} = \{e^{i 2\pi p/q} : 0 \le p < q \le n\}$.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">Monotonic Tower</h4>
+                            <p class="feature-desc">Any stochastic matrix of size $m < n$ can be embedded into an $n \times n$ stochastic matrix, guaranteeing $\mathcal{K}_2 \subsetneq \mathcal{K}_3 \subsetneq \cdots \subsetneq \mathcal{K}_n \subsetneq \mathbb{D}$.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Boundary Geometry & Farey Points -->
+                <section class="deepdive-section" id="geometry">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">3. Boundary Geometry &amp; The Farey Sequence</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The boundary $\partial \mathcal{K}_n$ in the upper half-plane $\operatorname{Im}(z) \ge 0$ is a continuous piecewise curve connecting consecutive roots of unity. The ordering of these boundary vertices is governed by the <strong>Farey sequence of order $n$</strong>, denoted $\mathcal{F}_n$.
+                    </p>
+
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Definition: Farey Sequence $\mathcal{F}_n$</h3>
+                        </div>
+                        <p>
+                            The Farey sequence $\mathcal{F}_n$ is the sequence of completely reduced fractions between $0$ and $1$ whose denominators do not exceed $n$, arranged in increasing order:
+                        </p>
+                        $$\mathcal{F}_n = \left\{ \frac{p}{q} : 0 \le p \le q \le n, \; \gcd(p, q) = 1 \right\}$$
+                    </div>
+
+                    <p class="deepdive-text">
+                        Let $p_1/q_1 < p_2/q_2$ be two consecutive fractions in $\mathcal{F}_n$. A classical property of Farey fractions guarantees that $p_2 q_1 - p_1 q_2 = 1$. Let $z_1 = e^{i 2\pi p_1/q_1}$ and $z_2 = e^{i 2\pi p_2/q_2}$ be the corresponding roots of unity on $\partial \mathbb{D}$. Karpelevič proved that the boundary arc $\Gamma(z_1, z_2)$ connecting $z_1$ and $z_2$ falls into exactly one of two geometric regimes:
+                    </p>
+
+                    <div class="data-table-wrapper" style="margin: 1.5rem 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Denominator Sum</th>
+                                    <th>Geometric Boundary Nature</th>
+                                    <th>Realizing Family</th>
+                                    <th>Visual Appearance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>$q_1 + q_2 > n$</strong></td>
+                                    <td><strong>Straight Line Segment (Chord)</strong> joining $z_1$ and $z_2$:
+                                        $$\{(1-t)z_1 + t z_2 : 0 \le t \le 1\}$$
+                                    </td>
+                                    <td>Direct convex combination of permutation matrices of cycles $q_1$ and $q_2$</td>
+                                    <td>Flat facet on $\partial \mathcal{K}_n$</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$q_1 + q_2 \le n$</strong></td>
+                                    <td><strong>Curvilinear Arc</strong> bowing inward toward the origin, given by the parametric curve of roots of a characteristic polynomial</td>
+                                    <td>Rank-one perturbed cyclic permutation blocks with varying weights</td>
+                                    <td>Smooth concave-inward arc touching $0$ or intermediate points</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="deepdive-text">
+                        When $q_1 + q_2 \le n$, the boundary arc curves strictly inside the unit disk. As $n$ increases, the number of straight segments diminishes relative to curvilinear arcs, and $\mathcal{K}_n$ gradually fills the unit disk $\mathbb{D}$ as $n \to \infty$.
+                    </p>
+                </section>
+
+                <!-- Section 4: Ito's Polynomial Reformulation -->
+                <section class="deepdive-section" id="ito-polynomial">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">4. Ito's Algebraic Polynomial Formulation (1997)</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        For nearly fifty years after Karpelevič's 1951 paper, his theorem was considered notoriously difficult to implement numerically or verify algebraically because his original parametric description required finding roots of a high-degree transcendentally weighted polynomial pencil.
+                    </p>
+
+                    <p class="deepdive-text">
+                        In 1997, <strong>Hisashi Ito</strong> published a monumental simplification in <em>Linear Algebra and its Applications</em>, deriving closed-form implicit algebraic equations for every curvilinear boundary arc of $\mathcal{K}_n$.
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Ito's Theorem (1997)</h3>
+                        </div>
+                        <p>
+                            Let $p_1/q_1$ and $p_2/q_2$ be adjacent in $\mathcal{F}_n$ with $q_1 + q_2 \le n$, and let $k = \lfloor (n - q_1) / q_2 \rfloor$. The curved boundary arc between $e^{i 2\pi p_1/q_1}$ and $e^{i 2\pi p_2/q_2}$ in polar coordinates $z = r e^{i\theta}$ is an algebraic curve satisfying:
+                        </p>
+                        $$(r^{q_2} \cos(q_2 \theta) - 1)(r^{q_1} \sin(q_1 \theta)) = (r^{q_2} \sin(q_2 \theta))(r^{q_1} \cos(q_1 \theta) - \alpha(r, \theta))$$
+                        <p>
+                            where $\alpha(r, \theta)$ is an explicit rational function of $r$ and $n$, yielding an exact polynomial relation $P_{p_1, q_1, p_2, q_2}(r, \theta) = 0$.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Ito's breakthrough allowed rapid, exact computer visualization of $\mathcal{K}_n$ for arbitrary $n$, and enabled Charles Johnson, Raphael Loewy, and others to formulate fast containment algorithms to determine whether an arbitrary candidate eigenvalue $\lambda \in \mathbb{C}$ belongs to $\mathcal{K}_n$.
+                    </p>
+                </section>
+
+                <!-- Section 5: Connection to the NIEP -->
+                <section class="deepdive-section" id="niep-connection">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">5. Significance for the General NIEP</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        How does Karpelevič's region relate to the general Nonnegative Inverse Eigenvalue Problem?
+                    </p>
+
+                    <div class="feature-card-grid" style="grid-template-columns: 1fr 1fr; margin: 1.5rem 0;">
+                        <div class="feature-card">
+                            <h4 class="feature-title">Individual Eigenvalue Localization</h4>
+                            <p class="feature-desc">
+                                If a multiset $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ is realizable by an $n \times n$ nonnegative matrix with spectral radius $\lambda_0$, then <strong>every single eigenvalue</strong> must satisfy:
+                                $$\frac{\lambda_j}{\lambda_0} \in \mathcal{K}_n \quad \forall j=1, \dots, n-1$$
+                                This provides the ultimate single-eigenvalue necessary condition for the NIEP.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title">The Multiset Gap</h4>
+                            <p class="feature-desc">
+                                Containment $\lambda_j / \lambda_0 \in \mathcal{K}_n$ is necessary for each individual eigenvalue, but <strong>far from sufficient for the joint multiset $\sigma$</strong>. For example, all $\lambda_j$ may lie in $\mathcal{K}_n$, but their sum (trace) may be negative, violating $\operatorname{Tr}(A) \ge 0$.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Consequently, the Karpelevič region represents the 1-dimensional projection of the full $n$-dimensional semi-algebraic realizability domain $\mathcal{E}_n$ onto a single eigenvalue coordinate in the complex plane.
+                    </p>
+                </section>
+
+                <!-- Section 6: Interactive Tool Link -->
+                <section class="deepdive-section" id="interactive">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Interactive Visualizer &amp; Real-Time Exploration</h2>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Our research hub includes an interactive visualization engine that renders the exact Karpelevič boundary $\partial \mathcal{K}_n$ for dimensions $n = 2$ through $n = 8$, displaying Farey vertices, curvilinear arcs, and testing user-entered test points $(\operatorname{Re}(\lambda), \operatorname{Im}(\lambda))$.
+                    </p>
+
+                    <div style="background: var(--bg-surface); border: 1px solid var(--accent); border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="margin: 0 0 0.4rem 0; font-size: 1.15rem; color: var(--text-primary);">Interactive Karpelevič Region Viewer</h3>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.88rem;">Explore the boundary curves, adjust matrix dimension $n$, and test arbitrary complex eigenvalues live in Canvas.</p>
+                        </div>
+                        <a href="karpelevich.html" class="deep-dive-btn" style="white-space: nowrap;">
+                            <span>Launch Karpelevič Tool &rarr;</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Section 7: See Also -->
+                <section class="deepdive-section">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Articles</h2>
+                    </div>
+
+                    <div class="wiki-see-also-grid">
+                        <a href="problem-background.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">NIEP Theoretical Survey</h4>
+                            <p class="wiki-see-also-desc">Master background covering Perron-Frobenius foundations, trace inequalities, and semi-algebraic geometry.</p>
+                        </a>
+                        <a href="sniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="wiki-see-also-desc">Orthogonal eigenspaces, Soules bases, Fiedler matrices, and polyhedral spectra geometry.</p>
+                        </a>
+                        <a href="rniep.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <p class="wiki-see-also-desc">Real spectra realized by non-symmetric nonnegative matrices and the Laffey-Loewy separation spectrum.</p>
+                        </a>
+                        <a href="suleimanova.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Suleimanova Spectra</h4>
+                            <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and constructive companion/Fiedler realizations.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <!-- Return to Hub -->
+        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+                <span>&larr; Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo-badge">NIEP</span>
+                <span>NIEP Research Hub &middot; Nonsensically Nonnegative</span>
+            </div>
+                                                <div class="footer-links">
+                <a href="index.html">NIEP Hub</a>
+                <a href="problem-background.html">Overview</a>
+                <a href="niep.html">NIEP</a>
+                <a href="sniep.html">SNIEP</a>
+                <a href="rniep.html">RNIEP</a>
+                <a href="karpelevich-region.html">Karpelevi&#x010D; Region</a>
+                <a href="suleimanova.html">Sule&#x012d;manova Spectra</a>
+                <a href="boyle-handelman.html">Boyle-Handelman</a>
+                <a href="perron-similarities.html">Perron Similarities</a>
+                <a href="trace-polytope.html">Trace Polytopes</a>
+                <a href="spectra-realizer.html">Spectra Realizer</a>
+                <a href="personal/index.html">Personal</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
