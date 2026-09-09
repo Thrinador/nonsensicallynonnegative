@@ -11,6 +11,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
     <script>
         window.MathJax = {
             tex: {
@@ -34,52 +36,8 @@
 </head>
 
 <body class="hub-page">
-    <!-- Top Navigation Bar -->
-    <header class="top-nav">
-        <a href="index.html" class="nav-brand">
-            <span class="nav-logo-badge">NIEP</span>
-            <div class="nav-brand-text">
-                <span class="nav-title">NIEP Research Hub</span>
-                <span class="nav-subtitle">Nonnegative Inverse Eigenvalue Problem</span>
-            </div>
-        </a>
-        <nav class="nav-center" aria-label="Main Navigation">
-            <a href="index.html" class="nav-button active" aria-current="page">
-                <span class="nav-btn-icon">&#x1F3E0;</span>
-                <span>NIEP Hub</span>
-            </a>
-            <a href="problem-background.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F4D6;</span>
-                <span>Problem Background</span>
-            </a>
-            <a href="karpelevich.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F3AF;</span>
-                <span>Karpelevi&#x010D; Viewer</span>
-            </a>
-            <a href="trace-polytope.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F4CA;</span>
-                <span>Trace Polytopes</span>
-            </a>
-            <a href="spectra-realizer.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F9EE;</span>
-                <span>Spectra Realizer</span>
-            </a>
-            <a href="personal/index.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F464;</span>
-                <span>Personal</span>
-            </a>
-        </nav>
-        <div class="nav-right">
-            <div class="theme-switch-group" role="group" aria-label="Color Theme">
-                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
-                    <span>&#x2600;</span> Light
-                </button>
-                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
-                    <span>&#x1F319;</span> Dark
-                </button>
-            </div>
-        </div>
-    </header>
+    <!-- Top Navigation Component -->
+    <hub-nav></hub-nav>
 
     <!-- Hub Main Content Container -->
     <main class="hub-container">
@@ -855,33 +813,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="hub-footer">
-            <div class="footer-content">
-                <p>&copy; 2026 Benjamin J. Clark &middot; Nonnegative Inverse Eigenvalue Problem (NIEP) Tools &amp;
-                    Research</p>
-                <div class="footer-links">
-                    <a href="karpelevich.html">Karpelevi&#x010D; Viewer</a>
-                    <span>&bull;</span>
-                    <a href="trace-polytope.html">Trace Polytopes</a>
-                    <a href="spectra-realizer.html">Spectra Realizer</a>
-                    <span>&bull;</span>
-                    <a href="personal/index.html">Personal Profile</a>
-                    <span>&bull;</span>
-                    <a href="personal/publications.html">Publications</a>
-                    <span>&bull;</span>
-                    <a href="personal/teaching.html">Teaching</a>
-                    <span>&bull;</span>
-                    <a href="personal/cv.html">CV</a>
-                    <span>&bull;</span>
-                    <a href="https://github.com/Thrinador" target="_blank" rel="noopener">GitHub</a>
-                    <span>&bull;</span>
-                    <a href="sitemap.html">Sitemap</a>
-                </div>
-            </div>
-        </footer>
     </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
 </body>
 
 </html>

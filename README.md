@@ -1,89 +1,241 @@
-# Academic Pages
-**Academic Pages is a GitHub Pages template for personal and professional portfolio-oriented websites.**
+# NIEP Research Hub · Nonsensically Nonnegative
 
-![Academic Pages template example](images/homepage.png "Academic Pages template example")
+An open-source computational research workbench, interactive visualization suite, and mathematical theory survey dedicated to the **Nonnegative Inverse Eigenvalue Problem (NIEP)** and its symmetric (SNIEP) and real (RNIEP) variants.
 
-# Getting Started
-
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
-
-See more info at https://academicpages.github.io/
-
-## Running locally
-
-When you are initially working on your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
-
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distribution and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    If you see error `Unable to locate package ruby-bundler`, `Unable to locate package nodejs `, run the following:
-    ```bash
-    sudo apt update && sudo apt upgrade -y
-    ```
-    then try run `sudo apt install ruby-dev ruby-bundler nodejs` again.
-
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-
-    If you see file permission error like `Fetching bundler-2.6.3.gem ERROR:  While executing gem (Gem::FilePermissionError) You don't have write permissions for the /var/lib/gems/3.2.0 directory.` or `Bundler::PermissionError: There was an error while trying to write to /usr/local/bin.`
-    Install Gems Locally (Recommended):
-    ```bash
-    bundle config set --local path 'vendor/bundle'
-    ```
-    then try run `bundle install` again. If succeeded, you should see a folder called `vendor` and open `.gitignore` then add `vendor` inside it.
-
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
-    You may also try `bundle exec jekyll serve -l -H localhost` to ensure jekyll to use specific dependencies on your own local machine.
-
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
-
-## Using Docker
-
-Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
-
-You can build and execute the container by running the following command in the repository:
-
-```bash
-docker compose up
-```
-
-You should now be able to access the website from `localhost:4000`.
-
-# Maintenance
-
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
-
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
-
-## Bugfixes and enhancements
-
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
-
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Status: Active Research](https://img.shields.io/badge/Status-Active%20Research-success.svg)](#)
+[![arXiv:2407.14472](https://img.shields.io/badge/arXiv-2407.14472-b31b1b.svg)](https://arxiv.org/abs/2407.14472)
+[![arXiv:2402.04508](https://img.shields.io/badge/arXiv-2402.04508-b31b1b.svg)](https://arxiv.org/abs/2402.04508)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0003--3492--8686-green.svg)](https://orcid.org/0000-0003-3492-8686)
+[![Live Site](https://img.shields.io/badge/Live%20Platform-nonsensicallynonnegative.com-7c3aed.svg)](https://nonsensicallynonnegative.com)
 
 ---
-<div align="center">
-    
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
 
-[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
-[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
-</div>
+## 📌 Table of Contents
+
+- [Overview](#-overview)
+- [Interactive Visualizers & Tools](#-interactive-visualizers--tools)
+- [Mathematical Theory Wiki](#-mathematical-theory-wiki)
+- [Architecture & Technology Stack](#-architecture--technology-stack)
+- [Local Development & Quick Start](#-local-development--quick-start)
+- [Project Directory Structure](#-project-directory-structure)
+- [Contributing & Community](#-contributing--community)
+- [Publications & Citations](#-publications--citations)
+- [Author & Maintainer](#-author--maintainer)
+- [License](#-license)
+
+---
+
+## 🔬 Overview
+
+The **Nonnegative Inverse Eigenvalue Problem (NIEP)** is a classical open problem at the intersection of linear algebra, spectral geometry, dynamical systems, and real algebraic geometry:
+
+> **The NIEP:** Given a multiset of $n$ complex numbers $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$, determine necessary and sufficient conditions for $\sigma$ to be the spectrum of an $n \times n$ entrywise nonnegative matrix $A \ge 0$.
+
+While the problem is completely solved for $n \le 4$, it remains open for $n \ge 5$ in the general case. Recent research has shown that the NIEP, SNIEP, and RNIEP are semi-algebraic sets decidable by finite systems of polynomial inequalities via Tarski-Seidenberg quantifier elimination, but characterizing these algebraic boundaries explicitly remains an active mathematical frontier.
+
+This hub bridges computational experimentation with theoretical analysis by providing:
+1. **Interactive numerical solvers and visualizers** to synthesize matrices from candidate spectra in real-time.
+2. **Geometric renderers** of spectral boundary regions like the Karpelevi&#x010D; region $\mathcal{K}_n$ and trace polytopes.
+3. **Rigorous surveys and reference articles** covering Perron-Frobenius theory, Soules bases, Boyle-Handelman symbolic dynamics, and spectracone geometry.
+
+---
+
+## 🚀 Interactive Visualizers & Tools
+
+### 1. [Karpelevi&#x010D; Region Interactive Viewer](karpelevich.html)
+- **Engine**: High-performance HTML5 Canvas renderer with pan/zoom and coordinate hover inspector.
+- **Functionality**:
+  - Plots the exact boundary $\partial \mathcal{K}_n$ of eigenvalues of normalized $n \times n$ stochastic matrices for orders $n=2$ through $n=8$.
+  - Computes Farey fractions $p/q \le 1/2$ and renders the corresponding curvilinear boundary arcs.
+  - Interactive test point placement with power orbit ray tracing ($z^k$) and Ito polynomial zero testing.
+  - Mobile-responsive layout with quick-test presets (roots of unity, boundary endpoints, interior/exterior points).
+
+### 2. [Numerical Spectra Realizer](spectra-realizer.html)
+- **Engine**: Interactive complex eigenvalue plane with alternating projection solvers (von Neumann / Dykstra algorithms).
+- **Functionality**:
+  - Drag-and-drop eigenvalues on the complex plane with conjugate symmetry constraints.
+  - Alternating projections onto the isospectral manifold and the non-negative matrix cone.
+  - Exact analytical synthesizers: **Sule&#x012d;manova spectra** and **Soules basis constructions**.
+  - One-click matrix exports: **LaTeX**, **NumPy (`np.array`)**, **MATLAB**, and **JSON**.
+  - Touch-drag navigation optimized for tablet and mobile devices.
+
+### 3. [Trace Polytope 3D Visualizer](trace-polytope.html)
+- **Engine**: 3D WebGL dataset browser powered by Plotly.js.
+- **Functionality**:
+  - Explores the geometry of order-5 trace polytopes for both symmetric (SNIEP) and general real (RNIEP) matrices.
+  - Filterable by dimension (2D polygon projections vs. 3D polyhedra) and vertex identifiers.
+  - Interactive orbit rotation, zoom, vertex inspection, and facet illumination.
+
+---
+
+## 📚 Mathematical Theory Wiki
+
+The platform contains self-contained, research-grade articles typeset with MathJax:
+
+| Article | Topic & Mathematical Scope |
+| :--- | :--- |
+| **[Foundational Overview](problem-background.html)** | Perron-Frobenius theorem, spectral radius, primitive matrices, and historical survey. |
+| **[NIEP Core Formulation](niep.html)** | Necessary trace conditions ($s_k \ge 0$), Loewy-London inequalities, and dimensional solvability status. |
+| **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's companion constructions, and Soules bases. |
+| **[Real NIEP (RNIEP)](rniep.html)** | Real non-symmetric spectra, non-orthogonal frames, and the Laffey-Loewy separation gap ($n \ge 5$). |
+| **[Karpelevi&#x010D; Region](karpelevich-region.html)** | Kolmogorov's problem, stochastic boundaries, Farey arc dissection, and Ito's algebraic polynomials. |
+| **[Sule&#x012d;manova Spectra](suleimanova.html)** | Single positive eigenvalue condition, trace sufficiency, and Fiedler's symmetric realization. |
+| **[Boyle-Handelman Theorem](boyle-handelman.html)** | Symbolic dynamics, shifts of finite type, and realization with auxiliary zero eigenvalues. |
+| **[Perron Similarities & Spectracones](perron-similarities.html)** | Johnson-Paparella theory, spectracones, and group character table realizations. |
+
+---
+
+## 🛠️ Architecture & Technology Stack
+
+The project adheres to a **zero-dependency, static-first architecture** designed for high performance, accessibility, and permanent archival stability:
+
+- **Core**: Semantic HTML5, Vanilla ES6+ JavaScript, CSS3 custom properties (variables).
+- **Styling**: Tailored design system with sleek dark mode by default, light mode toggle, glassmorphism cards, and responsive fluid typography (`clamp()`).
+- **Mathematical Typesetting**: [MathJax 3](https://www.mathjax.org/) for TeX/LaTeX rendering.
+- **Scientific Plotting**: [Plotly.js](https://plotly.com/javascript/) for interactive WebGL 3D geometric polyhedra.
+- **Hosting**: Pure static files compatible with GitHub Pages, Cloudflare Pages, Nginx, or any standard HTTP web server.
+
+---
+
+## 💻 Local Development & Quick Start
+
+Because the project is built purely with native web standards, **no build steps, bundlers, Ruby gems, or package managers are required**.
+
+### Option 1: Python (Built-in)
+```bash
+# Clone the repository
+git clone https://github.com/Thrinador/nonsensicallynonnegative.git
+cd nonsensicallynonnegative
+
+# Start a local HTTP server on port 8000
+python3 -m http.server 8000
+```
+Open your browser to [http://localhost:8000](http://localhost:8000).
+
+### Option 2: Node.js / npx
+```bash
+npx serve .
+```
+
+### Option 3: VS Code / IDE
+Install the **Live Server** extension in Visual Studio Code, right-click `index.html`, and select **Open with Live Server**.
+
+---
+
+## 📁 Project Directory Structure
+
+```text
+nonsensicallynonnegative/
+├── index.html                  # NIEP Research Hub master dashboard
+├── about.html                  # About the initiative & contribution guide
+├── sitemap.html                # Comprehensive visual site directory
+├── sitemap.xml                 # Search engine sitemap protocol
+├── 404.html                    # Unified error stage with standard hub navigation
+├── karpelevich.html            # Karpelevič Region interactive canvas viewer
+├── spectra-realizer.html       # Numerical Spectra Realizer application
+├── trace-polytope.html         # 3D Trace Polytope dataset visualizer
+│
+├── problem-background.html     # Theory Wiki: Foundations & Perron-Frobenius
+├── niep.html                   # Theory Wiki: Core NIEP formulation
+├── sniep.html                  # Theory Wiki: Symmetric NIEP
+├── rniep.html                  # Theory Wiki: Real NIEP
+├── karpelevich-region.html     # Theory Wiki: Karpelevič region & Ito polynomials
+├── suleimanova.html            # Theory Wiki: Suleĭmanova spectra
+├── boyle-handelman.html        # Theory Wiki: Boyle-Handelman theorem
+├── perron-similarities.html    # Theory Wiki: Perron similarities & spectracones
+│
+├── css/
+│   ├── style.css               # Core global design system & responsive navigation
+│   ├── personal.css            # Stylesheet for academic portfolio & profile
+│   ├── karpelevich.css         # Canvas UI & toolbar layout for Karpelevič viewer
+│   └── realizer.css            # Matrix realizer workspace & canvas styles
+│
+├── js/
+│   ├── app.js                  # Polytope data visualizer logic
+│   ├── karpelevich.js          # Karpelevič mathematical boundary computation & canvas
+│   ├── realizer.js             # Numerical projection solver & matrix synthesis
+│   └── theme.js                # System-preference & local-storage color theme toggle
+│
+├── personal/                   # Author academic profile, CV, papers, and lectures
+│   ├── index.html              # Academic biography & research overview
+│   ├── cv.html                 # Curriculum Vitae (PDF viewer & downloadable asset)
+│   ├── publications.html       # Peer-reviewed journal papers, preprints, and DOIs
+│   ├── talks.html              # Conference slides & invited seminar presentations
+│   └── teaching.html           # Course lecture notes & university instruction archives
+│
+├── plots/                      # Standalone Plotly HTML datasets for trace polytopes
+├── files/                      # Downloadable academic PDF publications and CV
+└── images/                     # Favicons, project branding, and asset graphics
+```
+
+---
+
+## 🤝 Contributing & Community
+
+We welcome contributions from researchers, software engineers, and students interested in computational matrix analysis:
+
+- **Mathematicians & Theoretical Researchers**: Propose new conjectures, submit counterexamples, refine proofs, or supply literature citations.
+- **Scientific Software Developers**: Implement faster matrix synthesis algorithms (e.g., WebAssembly, GPU shaders), improve numerical stability, or optimize touch UX.
+- **Students & Educators**: Contribute interactive pedagogical examples, problem sets, or documentation enhancements.
+
+For detailed guidelines and contribution workflows, visit the **[About & Contributing Page](about.html)**.
+
+### Submitting Changes
+1. Fork the repository (`https://github.com/Thrinador/nonsensicallynonnegative`).
+2. Create your feature branch (`git checkout -b feature/new-solver`).
+3. Commit your modifications (`git commit -m 'Add alternating projection acceleration'`).
+4. Push to the branch (`git push origin feature/new-solver`).
+5. Open a Pull Request on GitHub.
+
+---
+
+## 📖 Publications & Citations
+
+If you use this software, datasets, or theoretical surveys in your research, please cite:
+
+```bibtex
+@article{clark2024niep,
+  author  = {Clark, Benjamin J.},
+  title   = {The NIEP is solvable by reality and finitely many polynomial inequalities},
+  journal = {arXiv preprint arXiv:2407.14472},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/2407.14472}
+}
+
+@article{clark2023polynomials,
+  author  = {Clark, Benjamin J.},
+  title   = {Polynomials that preserve nonnegative matrices},
+  journal = {Linear Algebra and its Applications},
+  volume  = {676},
+  pages   = {267--276},
+  year    = {2023},
+  doi     = {10.1016/j.laa.2023.07.014}
+}
+
+@misc{clark2026niephub,
+  author       = {Clark, Benjamin J.},
+  title        = {NIEP Research Hub: Computational Tools and Theoretical Surveys for the Nonnegative Inverse Eigenvalue Problem},
+  year         = {2026},
+  howpublished = {\url{https://nonsensicallynonnegative.com}},
+  note         = {GitHub: \url{https://github.com/Thrinador/nonsensicallynonnegative}}
+}
+```
+
+---
+
+## 👨‍💻 Author & Maintainer
+
+**Benjamin J. Clark, Ph.D.**  
+*Department of Mathematics & Statistics, Washington State University*  
+- **Website**: [https://nonsensicallynonnegative.com](https://nonsensicallynonnegative.com)
+- **Profile**: [Academic Bio & Profile](personal/index.html)
+- **arXiv**: [arxiv.org/a/clark_b_1.html](https://arxiv.org/a/clark_b_1.html)
+- **ORCID**: [0000-0003-3492-8686](https://orcid.org/0000-0003-3492-8686)
+- **GitHub**: [@Thrinador](https://github.com/Thrinador)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for complete details.

@@ -894,3 +894,87 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ==========================================================================
+   Mobile Experience Enhancements for Spectra Realizer
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .realizer-workspace {
+        padding: 0.75rem 0.75rem 2rem 0.75rem;
+        gap: 1rem;
+    }
+
+    .realizer-card {
+        padding: 1rem;
+    }
+
+    .canvas-wrapper {
+        height: 340px;
+        min-height: 280px;
+    }
+
+    .matrix-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+    }
+
+    .copy-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 0.35rem;
+    }
+
+    .copy-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .precision-group {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .prec-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .status-banner {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .status-banner-content {
+        min-width: 0;
+    }
+
+    .status-banner-title {
+        font-size: 0.95rem;
+    }
+
+    .status-banner-desc {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-buttons-row {
+        flex-direction: column;
+    }
+
+    .canvas-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.75rem;
+    }
+
+    .matrix-viewport {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 welcomeMessage.classList.add('hidden');
                 plotFrame.classList.remove('hidden');
                 plotFrame.src = plot.file || plot.filename;
+
+                if (window.innerWidth <= 900 && plotFrame) {
+                    plotFrame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
             
             plotListEl.appendChild(item);

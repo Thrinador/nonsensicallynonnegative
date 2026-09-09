@@ -1454,6 +1454,7 @@
             this.matrixMeta = document.getElementById('matrixMeta');
             this.canvas = document.getElementById('spectralCanvas');
             this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
+            this.resizeCanvas();
 
             this.diagList = document.getElementById('diagList');
             this.eigenTableBody = document.getElementById('eigenTableBody');
@@ -1587,6 +1588,32 @@
                 window.addEventListener('mouseup', () => {
                     this.isDragging = false;
                 });
+
+                // Touch Pan Support for Mobile Devices
+                this.canvas.addEventListener('touchstart', (e) => {
+                    if (e.touches && e.touches.length === 1) {
+                        this.isDragging = true;
+                        this.dragStart = {
+                            x: e.touches[0].clientX - this.canvasOffset.x,
+                            y: e.touches[0].clientY - this.canvasOffset.y
+                        };
+                    }
+                }, { passive: true });
+
+                window.addEventListener('touchmove', (e) => {
+                    if (!this.isDragging || !e.touches || e.touches.length !== 1) return;
+                    this.canvasOffset.x = e.touches[0].clientX - this.dragStart.x;
+                    this.canvasOffset.y = e.touches[0].clientY - this.dragStart.y;
+                    this.drawCanvas();
+                }, { passive: true });
+
+                window.addEventListener('touchend', () => {
+                    this.isDragging = false;
+                });
+
+                window.addEventListener('touchcancel', () => {
+                    this.isDragging = false;
+                });
                 this.canvas.addEventListener('wheel', (e) => {
                     e.preventDefault();
                     const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
@@ -1611,7 +1638,14 @@
                     this.drawCanvas();
                 });
 
-                // Window resize listener (prevents feedback loops)
+                // Observer & Window resize listener
+                if (typeof ResizeObserver !== 'undefined' && this.canvas.parentElement) {
+                    const ro = new ResizeObserver(() => {
+                        this.resizeCanvas();
+                        this.drawCanvas();
+                    });
+                    ro.observe(this.canvas.parentElement);
+                }
                 window.addEventListener('resize', () => {
                     this.resizeCanvas();
                     this.drawCanvas();
@@ -2038,14 +2072,21 @@
 
         drawCanvas() {
             if (!this.canvas || !this.ctx) return;
+            this.resizeCanvas();
             const ctx = this.ctx;
             const rect = this.canvas.getBoundingClientRect();
             const width = rect.width;
             const height = rect.height;
+            if (width <= 0 || height <= 0) return;
+
+            const dpr = window.devicePixelRatio || 1;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(dpr, dpr);
 
             const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
             // Background
+            ctx.clearRect(0, 0, width, height);
             ctx.fillStyle = isDark ? '#0b1120' : '#ffffff';
             ctx.fillRect(0, 0, width, height);
 

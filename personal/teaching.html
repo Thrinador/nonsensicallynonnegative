@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/personal.css">
     <script src="../js/theme.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/footer.js" defer></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
@@ -18,52 +20,8 @@
     <meta name="theme-color" content="#0a0f1d">
 </head>
 <body class="personal-page">
-    <!-- Top Navigation Bar -->
-    <header class="top-nav">
-        <a href="../index.html" class="nav-brand">
-            <span class="nav-logo-badge">NIEP</span>
-            <div class="nav-brand-text">
-                <span class="nav-title">Nonsensically Nonnegative</span>
-                <span class="nav-subtitle">NIEP Research &amp; Visual Computing</span>
-            </div>
-        </a>
-        <nav class="nav-center" aria-label="Main Navigation">
-            <a href="../index.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F3E0;</span>
-                <span>NIEP Hub</span>
-            </a>
-            <a href="../problem-background.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F4D6;</span>
-                <span>Problem Background</span>
-            </a>
-            <a href="../karpelevich.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F3AF;</span>
-                <span>Karpelevi&#x010D; Viewer</span>
-            </a>
-            <a href="../trace-polytope.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F4CA;</span>
-                <span>Trace Polytopes</span>
-            </a>
-            <a href="../spectra-realizer.html" class="nav-button">
-                <span class="nav-btn-icon">&#x1F9EE;</span>
-                <span>Spectra Realizer</span>
-            </a>
-            <a href="index.html" class="nav-button active" aria-current="page">
-                <span class="nav-btn-icon">&#x1F464;</span>
-                <span>Personal</span>
-            </a>
-        </nav>
-        <div class="nav-right">
-            <div class="theme-switch-group" role="group" aria-label="Color Theme">
-                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
-                    <span>&#x2600;</span> Light
-                </button>
-                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
-                    <span>&#x1F319;</span> Dark
-                </button>
-            </div>
-        </div>
-    </header>
+    <!-- Top Navigation Component -->
+    <hub-nav type="personal"></hub-nav>
 
     <main class="personal-container">
         <!-- Sub Navigation -->
@@ -212,19 +170,8 @@
                 </div>
             </div>
         </section>
-        <!-- Personal Footer -->
-        <footer class="personal-footer">
-            <p>&copy; 2026 Benjamin J. Clark &middot; Department of Mathematics &amp; Statistics, Washington State University</p>
-            <div class="personal-footer-links">
-                <a href="https://arxiv.org/a/clark_b_1.html" target="_blank" rel="noopener">arXiv</a>
-                <span>&bull;</span>
-                <a href="https://orcid.org/0000-0003-3492-8686" target="_blank" rel="noopener">ORCID</a>
-                <span>&bull;</span>
-                <a href="https://github.com/Thrinador" target="_blank" rel="noopener">GitHub</a>
-                <span>&bull;</span>
-                <a href="../index.html">NIEP Research Hub &#x2197;</a>
-            </div>
-        </footer>
+                <!-- Personal Footer Component -->
+        <hub-footer type="personal"></hub-footer>
     </main>
 </body>
 </html>

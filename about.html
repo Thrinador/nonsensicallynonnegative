@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About &amp; Contributing | NIEP Research Hub</title>
+    <meta name="description"
+        content="Learn about the NIEP Research Hub initiative, open-source computational linear algebra tools, and how mathematicians, developers, and students can contribute.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: 2.5rem 1rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .about-section-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .about-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+        .about-card p {
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+            font-size: 0.96rem;
+        }
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contribute-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 1.5rem;
+            margin: 1.75rem 0;
+        }
+
+        .contribute-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .contribute-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .contribute-icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .contribute-card-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .contribute-role-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--accent);
+            width: fit-content;
+        }
+
+        .contribute-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .contribute-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .contribute-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+            line-height: 1.2;
+        }
+
+
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(124, 58, 237, 0.12) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 16px;
+            padding: 2.25rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta-banner h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .cta-banner p {
+            max-width: 600px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .cta-btn-group {
+            display: flex;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav></hub-nav>
+
+    <!-- Main Container -->
+    <main class="hub-container">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="hero-badge">Research &middot; Collaboration &middot; Open Source</div>
+            <h1 class="hero-title">About the NIEP Research Hub</h1>
+            <p class="hero-subtitle">
+                An open-source initiative dedicated to advancing research on spectral problems of nonnegative matrices
+                through interactive software, open datasets, and rigorous theoretical surveys.
+            </p>
+        </section>
+
+        <!-- Section 2: How You Can Help (Contributing) -->
+        <section class="about-section" id="contribute">
+            <div class="about-section-header">
+                <h2 class="about-section-title"><span>&#x1F91D;</span> How You Can Help &amp; Contribute</h2>
+                <p class="about-section-subtitle">We warmly welcome contributions from mathematicians, computational
+                    scientists, developers, and students</p>
+            </div>
+
+            <div class="contribute-grid">
+                <!-- Mathematicians & Researchers -->
+                <div class="contribute-card">
+                    <span class="contribute-icon">&#x1F9D0;</span>
+                    <span class="contribute-role-badge">Mathematics &amp; Theory</span>
+                    <h3 class="contribute-card-title">Mathematicians &amp; Researchers</h3>
+                    <ul class="contribute-list">
+                        <li>Submit new spectral realizability criteria or sufficiency theorems.</li>
+                        <li>Contribute counterexamples or edge-case spectra for dimensions $n \ge 5$.</li>
+                        <li>Expand and peer-review articles in the Theory Wiki (e.g. RNIEP, SNIEP, Perron Similarities).
+                        </li>
+                        <li>Suggest references, proofs, or landmark papers in modern inverse eigenvalue literature.</li>
+                    </ul>
+                </div>
+
+                <!-- Developers & Computational Scientists -->
+                <div class="contribute-card">
+                    <span class="contribute-icon">&#x1F4BB;</span>
+                    <span class="contribute-role-badge">Software &amp; Algorithms</span>
+                    <h3 class="contribute-card-title">Developers &amp; Engineers</h3>
+                    <ul class="contribute-list">
+                        <li>Optimize numerical realization algorithms (e.g., Riemannian conjugate gradient,
+                            Nelder-Mead).</li>
+                        <li>Enhance WebGL 3D polytope rendering and high-DPI Canvas graphics.</li>
+                        <li>Improve mobile touch interactions, responsiveness, and assistive accessibility.</li>
+                        <li>Add matrix export formatters (Julia, SymPy, Octave, Rust ndarray).</li>
+                    </ul>
+                </div>
+
+                <!-- Students & Educators -->
+                <div class="contribute-card">
+                    <span class="contribute-icon">&#x1F393;</span>
+                    <span class="contribute-role-badge">Education &amp; Community</span>
+                    <h3 class="contribute-card-title">Students &amp; Educators</h3>
+                    <ul class="contribute-list">
+                        <li>Test the interactive visualizers and report usability suggestions or bugs.</li>
+                        <li>Design classroom tutorials, pedagogical walkthroughs, or problem sets.</li>
+                        <li>Help proofread mathematical typography, LaTeX formulas, and explanations.</li>
+                        <li>Contribute interesting test spectra and visualization presets.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Getting Started / Call to Action Banner -->
+            <div class="cta-banner">
+                <h3>Ready to get started?</h3>
+                <p>
+                    Whether you have ideas for new theory articles, numerical algorithms, or UI improvements, the easiest ways to get involved are:
+                </p>
+                <div class="cta-btn-group">
+                    <a href="mailto:find.ben.clark@gmail.com" class="tool-launch-btn primary">
+                        <span>&#x2709;&#xFE0F; Email: find.ben.clark@gmail.com</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                    <a href="https://github.com/Thrinador/nonsensicallynonnegative" target="_blank" rel="noopener"
+                        class="tool-launch-btn secondary">
+                        <span>&#x1F4BB; Explore GitHub &amp; Propose Changes</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: About the Author -->
+        <section class="about-section">
+            <div class="about-section-header">
+                <h2 class="about-section-title"><span>&#x1F464;</span> Project Maintainer</h2>
+                <p class="about-section-subtitle">Academic background and research focus</p>
+            </div>
+            <div class="about-card" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 280px;">
+                    <p>
+                        This research platform is maintained by <strong>Benjamin J. Clark, Ph.D.</strong>, a
+                        mathematician specializing in nonnegative matrix theory, inverse eigenvalue problems, spectral
+                        graph theory, and mathematical computing.
+                    </p>
+                    <p>
+                        For inquiries regarding mathematical collaboration, talks, or joint research projects, please
+                        visit the <a href="personal/index.html" style="color: var(--accent); font-weight: 600;">Personal
+                            Profile</a> or explore our <a href="personal/publications.html"
+                            style="color: var(--accent); font-weight: 600;">Research Publications</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>
