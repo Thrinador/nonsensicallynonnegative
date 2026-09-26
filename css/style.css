@@ -1533,6 +1533,21 @@ hub-footer {
     background: linear-gradient(to right, rgba(139, 92, 246, 0.04), var(--bg-surface));
 }
 
+.math-callout.question {
+    border-left-color: #6366f1;
+    background: linear-gradient(to right, rgba(99, 102, 241, 0.04), var(--bg-surface));
+}
+
+.math-callout.proposition {
+    border-left-color: #0284c7;
+    background: linear-gradient(to right, rgba(2, 132, 199, 0.04), var(--bg-surface));
+}
+
+.math-callout.lemma {
+    border-left-color: #14b8a6;
+    background: linear-gradient(to right, rgba(20, 184, 166, 0.04), var(--bg-surface));
+}
+
 .math-callout-header {
     display: flex;
     align-items: center;
@@ -1579,6 +1594,105 @@ hub-footer {
 .math-callout.milestone .math-callout-tag {
     background: rgba(139, 92, 246, 0.15);
     color: #8b5cf6;
+}
+
+.math-callout.question .math-callout-tag {
+    background: rgba(99, 102, 241, 0.15);
+    color: #6366f1;
+}
+
+.math-callout.proposition .math-callout-tag {
+    background: rgba(2, 132, 199, 0.15);
+    color: #0284c7;
+}
+
+.math-callout.lemma .math-callout-tag {
+    background: rgba(20, 184, 166, 0.15);
+    color: #14b8a6;
+}
+
+/* LaTeX formula selection and copy tool */
+mjx-container {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+.display-math-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem 0;
+    overflow-x: auto;
+    padding: 0.35rem 0;
+}
+
+.display-math-container mjx-container {
+    margin: 0 !important;
+}
+
+.copy-latex-btn {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, background 0.15s ease, color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    padding: 0.22rem 0.55rem;
+    font-size: 0.72rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.display-math-container:hover .copy-latex-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.copy-latex-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+.copy-latex-btn.copied {
+    background: #059669 !important;
+    color: #ffffff !important;
+    border-color: #059669 !important;
+}
+
+.latex-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #111827;
+    color: #f9fafb;
+    border: 1px solid #374151;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 9999;
+}
+
+.latex-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Dimension Solvability Grid */

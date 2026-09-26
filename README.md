@@ -79,7 +79,7 @@ The platform contains self-contained, research-grade articles typeset with MathJ
 | **[NIEP Core Formulation](niep.html)** | Necessary trace conditions ($s_k \ge 0$), Loewy-London inequalities, and dimensional solvability status. |
 | **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's companion constructions, and Soules bases. |
 | **[Real NIEP (RNIEP)](rniep.html)** | Real non-symmetric spectra, non-orthogonal frames, and the Laffey-Loewy separation gap ($n \ge 5$). |
-| **[Karpelevi&#x010D; Region](karpelevich-region.html)** | Kolmogorov's problem, stochastic boundaries, Farey arc dissection, and Ito's algebraic polynomials. |
+| **[Karpelevi&#x010D; Region](karpelevich-region.html)** | Kolmogorov's problem, Dmitriev-Dynkin invariant polygons, Swift's thesis, Ito polynomials, Kirkland-Laffey-Šmigoc polar parametrization, and Verbeken-Ginis structural proof. |
 | **[Sule&#x012d;manova Spectra](suleimanova.html)** | Single positive eigenvalue condition, trace sufficiency, and Fiedler's symmetric realization. |
 | **[Boyle-Handelman Theorem](boyle-handelman.html)** | Symbolic dynamics, shifts of finite type, and realization with auxiliary zero eigenvalues. |
 | **[Perron Similarities & Spectracones](perron-similarities.html)** | Johnson-Paparella theory, spectracones, and group character table realizations. |
@@ -140,7 +140,7 @@ nonsensicallynonnegative/
 ├── niep.html                   # Theory Wiki: Core NIEP formulation
 ├── sniep.html                  # Theory Wiki: Symmetric NIEP
 ├── rniep.html                  # Theory Wiki: Real NIEP
-├── karpelevich-region.html     # Theory Wiki: Karpelevič region & Ito polynomials
+├── karpelevich-region.html     # Theory Wiki: Karpelevič region, Swift thesis, Ito polynomials & modern structural proofs
 ├── suleimanova.html            # Theory Wiki: Suleĭmanova spectra
 ├── boyle-handelman.html        # Theory Wiki: Boyle-Handelman theorem
 ├── perron-similarities.html    # Theory Wiki: Perron similarities & spectracones
