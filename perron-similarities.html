@@ -13,6 +13,7 @@
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
     <script>
         window.MathJax = {
             tex: {
@@ -60,6 +61,7 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab active" aria-current="page">Perron Similarities</a>
+        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
@@ -339,29 +341,12 @@
                         <h2 class="deepdive-section-title">6. Key Literature &amp; Foundational Papers</h2>
                     </div>
 
-                    <div class="feature-card-grid" style="grid-template-columns: 1fr;">
-                        <div class="feature-card">
-                            <h4 class="feature-title">Johnson &amp; Paparella (2025/2026)</h4>
-                            <p class="feature-desc">
-                                Charles R. Johnson and Pietro Paparella, <em>"Perron similarities and the nonnegative inverse eigenvalue problem"</em>, <strong>Transactions of the American Mathematical Society</strong>.<br>
-                                <span style="font-size: 0.82rem; color: var(--text-muted);">Establishes the general theory of Perron similarities, spectracones, spectratopes, and row/column cone geometry.</span>
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4 class="feature-title">Gershnik, Lewis, &amp; Paparella (2026)</h4>
-                            <p class="feature-desc">
-                                David Z. Gershnik, Alexander J. Lewis, and Pietro Paparella, <em>"Character tables are ideal Perron similarities"</em>, <strong>Journal of Algebra</strong>.<br>
-                                <span style="font-size: 0.82rem; color: var(--text-muted);">Proves that finite group character tables are ideal Perron similarities, gives group-theoretic facet equations for spectracones, and derives exact volume formulas.</span>
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4 class="feature-title">Laffey &amp; Šmigoc (2007&ndash;2010)</h4>
-                            <p class="feature-desc">
-                                Thomas J. Laffey and Helena Šmigoc, <em>"Nonnegative realization of spectra via companion matrix perturbations and structured similarities"</em>, <strong>Linear Algebra and its Applications</strong>.<br>
-                                <span style="font-size: 0.82rem; color: var(--text-muted);">Introduced nilpotent upper-triangular similarity transforms that realize spectra on the boundary of trace sufficiency.</span>
-                            </p>
-                        </div>
-                    </div>
+                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
+                        Perron similarity and spectracone literature sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>:
+                    </p>
+
+                    <!-- Global Citation Grid Component -->
+                    <cite-grid keys="johnson1981, johnson2016, johnson2025, gershnik2026, laffey2007"></cite-grid>
                 </section>
 
                 <!-- Section 7: See Also -->

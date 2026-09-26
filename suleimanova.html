@@ -4,16 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suleimanova Spectra | Theory Wiki | NIEP Research Hub</title>
+    <title>Suleĭmanova Spectra &amp; Realization Theorems | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
-        content="Comprehensive mathematical theory wiki article on Suleimanova spectra, single positive eigenvalue condition, Perfect's proof, Fiedler's symmetric realization theorem, and Soules bases.">
+        content="Academic theory wiki article on Suleĭmanova spectra, the single positive eigenvalue condition, Hazel Perfect's companion proof, Fiedler's symmetric realization theorem, and Soules bases.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
     <script>
+        function showLatexToast(msg) {
+            let toast = document.querySelector('.latex-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'latex-toast';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 1600);
+        }
+
+        function copyLatexSource(tex, sourceElem) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(tex).then(() => {
+                    if (sourceElem && sourceElem.classList.contains('copy-latex-btn')) {
+                        const originalHTML = sourceElem.innerHTML;
+                        sourceElem.classList.add('copied');
+                        sourceElem.innerHTML = '<span>Copied!</span>';
+                        setTimeout(() => {
+                            sourceElem.classList.remove('copied');
+                            sourceElem.innerHTML = originalHTML;
+                        }, 1500);
+                    } else {
+                        showLatexToast('LaTeX copied to clipboard');
+                    }
+                }).catch(() => fallbackCopy(tex));
+            } else {
+                fallbackCopy(tex);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showLatexToast('LaTeX copied to clipboard');
+        }
+
+        function attachLatexTools() {
+            if (!window.MathJax || !MathJax.startup || !MathJax.startup.document) return;
+            const doc = MathJax.startup.document;
+            if (!doc.math) return;
+
+            doc.math.forEach(item => {
+                const root = item.typesetRoot;
+                if (!root) return;
+                const tex = item.math;
+
+                root.setAttribute('data-tex', tex);
+                root.setAttribute('title', 'Double-click to copy LaTeX formula');
+
+                root.addEventListener('copy', (e) => {
+                    e.clipboardData.setData('text/plain', tex);
+                    e.preventDefault();
+                });
+
+                root.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    copyLatexSource(tex, root);
+                });
+
+                if (item.display && !root.parentElement.classList.contains('display-math-container')) {
+                    const container = document.createElement('div');
+                    container.className = 'display-math-container';
+                    root.parentNode.insertBefore(container, root);
+                    container.appendChild(root);
+
+                    const btn = document.createElement('button');
+                    btn.className = 'copy-latex-btn';
+                    btn.type = 'button';
+                    btn.setAttribute('aria-label', 'Copy LaTeX formula');
+                    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy TeX</span>';
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        copyLatexSource(tex, btn);
+                    });
+                    container.appendChild(btn);
+                }
+            });
+        }
+
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -22,6 +111,14 @@
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                    MathJax.startup.promise.then(() => {
+                        attachLatexTools();
+                    });
+                }
             }
         };
     </script>
@@ -46,10 +143,10 @@
             <span>&rsaquo;</span>
             <a href="problem-background.html">Theory Wiki</a>
             <span>&rsaquo;</span>
-            <span>Suleimanova Spectra</span>
+            <span>Suleĭmanova Spectra</span>
         </nav>
 
-                                        <!-- Wiki Sub-Navigation Bar -->
+        <!-- Wiki Sub-Navigation Bar -->
         <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
             <div class="wiki-subnav-label">Theory Wiki</div>
             <a href="problem-background.html" class="wiki-tab">Overview</a>
@@ -60,6 +157,7 @@
             <a href="suleimanova.html" class="wiki-tab active" aria-current="page">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+            <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
@@ -67,10 +165,10 @@
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
                 <header class="deepdive-hero" style="margin-bottom: 2rem;">
-                    <div class="hero-badge">Theory Wiki &middot; Solvable Classes</div>
+                    <div class="hero-badge">Theory Wiki &middot; Solvable Spectral Classes</div>
                     <h1 class="hero-title" style="font-size: 2.2rem;">Suleĭmanova Spectra &amp; Realization Theorems</h1>
                     <p class="hero-subtitle">
-                        The definitive solvable class of spectra with a single positive eigenvalue: trace nonnegativity, Hazel Perfect's companion matrix proof, Fiedler's symmetric realization, and Soules bases.
+                        The definitive solvable class of spectra with a single positive eigenvalue: trace nonnegativity, Hazel Perfect's companion matrix proof, Fiedler's symmetric tridiagonal realization, and Soules bases.
                     </p>
                 </header>
 
@@ -92,8 +190,8 @@
                                 <td>H. R. Suleĭmanova (1949)</td>
                             </tr>
                             <tr>
-                                <th>First Real Proof</th>
-                                <td>Hazel Perfect (1953)</td>
+                                <th>First Complete Proof</th>
+                                <td>Hazel Perfect (1953, 1955)</td>
                             </tr>
                             <tr>
                                 <th>Symmetric Proof</th>
@@ -105,7 +203,7 @@
                             </tr>
                             <tr>
                                 <th>Sufficiency</th>
-                                <td>Necessary <em>and</em> Sufficient for both general and symmetric!</td>
+                                <td><strong>Necessary &amp; Sufficient</strong> for both RNIEP and SNIEP</td>
                             </tr>
                             <tr>
                                 <th>Symmetry Gap</th>
@@ -117,18 +215,17 @@
                             </tr>
                             <tr>
                                 <th>Modern Extensions</th>
-                                <td>Soto (2003), Monov (2005), Ceva partitions, Guo (1997)</td>
+                                <td>Soto (2003), Monov (2005), Laffey-Šmigoc (2007)</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="wiki-infobox-links">
-                        <a href="spectra-realizer.html" class="wiki-infobox-link"><strong>Solve Live in Spectra Realizer &rarr;</strong>
-                        </a>
-                        <a href="sniep.html" class="wiki-infobox-link">Symmetric NIEP (SNIEP)
-                        </a>
-                        <a href="rniep.html" class="wiki-infobox-link">Real NIEP (RNIEP)
-                        </a>
+                        <a href="#references" class="wiki-infobox-link"><strong>View Key Literature &rarr;</strong></a>
+                        <a href="spectra-realizer.html" class="wiki-infobox-link">Solve in Spectra Realizer &rarr;</a>
+                        <a href="bibliography.html" class="wiki-infobox-link">Comprehensive Bibliography &rarr;</a>
+                        <a href="sniep.html" class="wiki-infobox-link">Symmetric NIEP (SNIEP) &rarr;</a>
+                        <a href="rniep.html" class="wiki-infobox-link">Real NIEP (RNIEP) &rarr;</a>
                     </div>
                 </aside>
 
@@ -139,66 +236,74 @@
                     </div>
 
                     <p class="deepdive-text">
-                        In the vast landscape of the Nonnegative Inverse Eigenvalue Problem, the most famous and completely understood family of spectra consists of real multisets possessing <strong>exactly one positive eigenvalue</strong> (the Perron root), with all other eigenvalues being non-positive (zero or negative).
+                        In the spectral theory of nonnegative matrices, the most thoroughly understood family of spectra consists of real multisets possessing <strong>exactly one positive eigenvalue</strong> (the Perron root), with all remaining eigenvalues being nonpositive.
                     </p>
 
                     <div class="math-callout definition">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Definition: Suleĭmanova Spectrum</h3>
+                            <h3 class="math-callout-title">Definition 1.1 (Suleĭmanova Spectrum)</h3>
+                            <span class="math-callout-tag">Definition</span>
                         </div>
                         <p>
                             A multiset of real numbers $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\} \subset \mathbb{R}$ is called a <strong>Suleĭmanova spectrum</strong> if:
                         </p>
                         $$\lambda_0 > 0 \ge \lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_{n-1}$$
                         <p>
-                            and the trace condition holds:
+                            and the first trace condition (trace nonnegativity) is satisfied:
                         </p>
                         $$s_1 = \sum_{i=0}^{n-1} \lambda_i = \lambda_0 - \sum_{j=1}^{n-1} |\lambda_j| \ge 0$$
                     </div>
 
                     <p class="deepdive-text">
-                        Why is this condition so remarkable? For general candidate spectra, ensuring nonnegativity requires satisfying infinitely many non-linear power-sum inequalities ($s_k = \operatorname{Tr}(A^k) \ge 0$), Newton-Girard relations, and Johnson-Loewy-London constraints. However, when all secondary eigenvalues are non-positive:
+                        For general candidate spectra, spectral nonnegativity requires verifying infinitely many nonlinear power-sum inequalities ($s_k = \operatorname{Tr}(A^k) \ge 0$), Newton-Girard relations, and Johnson-Loewy-London constraints. However, when all secondary eigenvalues are nonpositive:
                     </p>
 
                     <ul class="deepdive-list">
-                        <li><strong>Even powers ($k = 2m$):</strong> Every term $\lambda_i^{2m} \ge 0$, so the power sum $s_{2m} = \sum_{i=0}^{n-1} \lambda_i^{2m} > 0$ is <em>trivially and automatically positive</em>.</li>
-                        <li><strong>Odd powers ($k = 2m+1$):</strong> Because $\lambda_0 \ge |\lambda_j|$ for all $j$, we have $\lambda_0^{2m+1} \ge \sum_{j=1}^{n-1} |\lambda_j|^{2m+1}$ whenever $\lambda_0 \ge \sum_{j=1}^{n-1} |\lambda_j|$. Hence all odd power sums $s_{2m+1} \ge 0$ are automatically satisfied!</li>
+                        <li><strong>Even powers ($k = 2m$):</strong> Every term satisfies $\lambda_i^{2m} \ge 0$, ensuring $s_{2m} = \sum_{i=0}^{n-1} \lambda_i^{2m} > 0$ holds unconditionally.</li>
+                        <li><strong>Odd powers ($k = 2m+1$):</strong> Because $\lambda_0 \ge |\lambda_j|$ for all $j \ge 1$, we have $\lambda_0^{2m+1} \ge \sum_{j=1}^{n-1} |\lambda_j|^{2m+1}$ whenever $\lambda_0 \ge \sum_{j=1}^{n-1} |\lambda_j|$. Hence all odd power sums $s_{2m+1} \ge 0$ are satisfied simultaneously.</li>
                     </ul>
 
                     <p class="deepdive-text">
-                        Thus, every higher-order trace obstruction vanishes. The linear condition $\operatorname{Tr}(A) = s_1 \ge 0$ is the <em>sole necessary obstacle</em>.
+                        Consequently, all higher-order trace obstructions vanish identically. The linear condition $\operatorname{Tr}(A) = s_1 \ge 0$ is the <em>sole necessary obstacle</em>.
                     </p>
                 </section>
 
                 <!-- Section 2: Historical Development & Hazel Perfect's Proof -->
                 <section class="deepdive-section" id="history">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">2. Historical Breakthroughs &amp; Hazel Perfect's Proof</h2>
+                        <h2 class="deepdive-section-title">2. Historical Development &amp; Hazel Perfect's Proof</h2>
                     </div>
 
                     <p class="deepdive-text">
-                        In 1949, <strong>H. R. Suleĭmanova</strong> published a note in <em>Doklady Akademii Nauk SSSR</em> stating that the condition $\sum_{i=0}^{n-1} \lambda_i \ge 0$ is not only necessary, but also <strong>sufficient</strong> for the existence of an entrywise nonnegative matrix realizing $\sigma$. However, her published paper lacked complete proofs for several inductive steps.
+                        In 1949, the Soviet mathematician <cite-ref key="suleimanova1949">H. R. Suleĭmanova (1949)</cite-ref> published an announcement in <em>Doklady Akademii Nauk SSSR</em> asserting that the trace condition $s_1 \ge 0$ is sufficient to realize any such spectrum by an entrywise stochastic matrix. However, her original paper contained only a brief sketch of an induction argument without complete proofs.
                     </p>
 
                     <p class="deepdive-text">
-                        In 1953, the British mathematician <strong>Hazel Perfect</strong> provided the first completely rigorous, constructive proof in the <em>Duke Mathematical Journal</em>. Perfect's approach was based on companion matrices:
+                        In 1953 and 1955, the British mathematician <cite-ref key="perfect1953">Hazel Perfect (1953, 1955)</cite-ref> delivered the first complete, rigorous proofs using similarity transformations on companion matrices:
                     </p>
 
-                    <div class="math-callout highlight">
+                    <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Hazel Perfect's Construction (1953)</h3>
+                            <h3 class="math-callout-title">Theorem 2.1 (Suleĭmanova's Realization Theorem; Suleĭmanova 1949, Perfect 1953/1955)</h3>
+                            <span class="math-callout-tag">Theorem</span>
                         </div>
                         <p>
-                            Consider the monic polynomial $p(\lambda) = \prod_{i=0}^{n-1} (\lambda - \lambda_i) = \lambda^n - c_1 \lambda^{n-1} - \cdots - c_n$. Perfect constructed a similarity transformation:
+                            Let $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ be a multiset of real numbers such that:
                         </p>
-                        $$A = S C(p) S^{-1} \ge 0$$
+                        $$\lambda_0 > 0 \ge \lambda_1 \ge \cdots \ge \lambda_{n-1} \quad \text{and} \quad \lambda_0 + \sum_{j=1}^{n-1} \lambda_j \ge 0$$
                         <p>
-                            where $C(p)$ is the Frobenius companion matrix and $S$ is a carefully chosen lower triangular matrix whose entries are derived from the partial products of the non-positive eigenvalues $\lambda_1, \dots, \lambda_{n-1}$.
+                            Then $\sigma$ is realizable as the spectrum of an entrywise nonnegative matrix $A \in \mathcal{M}_n(\mathbb{R}_{\ge 0})$. If the inequality is strict ($s_1 > 0$), $A$ can be chosen strictly positive ($A > 0$).
                         </p>
                     </div>
 
                     <p class="deepdive-text">
-                        Perfect's construction proved that every Suleĭmanova spectrum belongs to the realizable set $\mathcal{RNIEP}$. However, the resulting matrix $A$ was generally asymmetric.
+                        Perfect established this by considering the monic polynomial $p(t) = \prod_{i=0}^{n-1} (t - \lambda_i) = t^n - c_1 t^{n-1} - \cdots - c_n$. She constructed an explicit similarity transformation:
+                    </p>
+
+                    $$A = S C(p) S^{-1} \ge 0$$
+
+                    <p class="deepdive-text">
+                        where $C(p)$ is the Frobenius companion matrix and $S$ is a lower-triangular matrix whose entries are derived from partial products of the nonpositive eigenvalues $\lambda_1, \dots, \lambda_{n-1}$. While constructive, the resulting matrix $A$ was generally asymmetric. Direct algebraic companion constructions were later simplified by <cite-ref key="radwan1996">Nizar Radwan (1996)</cite-ref>.
                     </p>
                 </section>
 
@@ -209,16 +314,17 @@
                     </div>
 
                     <p class="deepdive-text">
-                        For more than two decades, it remained an open question whether a Suleĭmanova spectrum could always be realized by a <strong>symmetric</strong> nonnegative matrix ($A = A^T \ge 0$).
+                        For more than two decades following Perfect's work, it remained open whether a Suleĭmanova spectrum could always be realized by a <strong>symmetric</strong> nonnegative matrix ($A = A^T \ge 0$).
                     </p>
 
                     <p class="deepdive-text">
-                        In 1974, the legendary Czech mathematician <strong>Miroslav Fiedler</strong> resolved this question definitively in <em>Linear Algebra and its Applications</em>, proving one of the landmark theorems of combinatorial matrix theory.
+                        In 1974, <cite-ref key="fiedler1974">Miroslav Fiedler (1974)</cite-ref> resolved this question affirmatively in <em>Linear Algebra and its Applications</em>, proving a cornerstone theorem of modern combinatorial matrix theory:
                     </p>
 
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Fiedler's Theorem (1974)</h3>
+                            <h3 class="math-callout-title">Theorem 3.1 (Fiedler's Symmetric Realization Theorem, 1974)</h3>
+                            <span class="math-callout-tag">Theorem</span>
                         </div>
                         <p>
                             Let $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ with $\lambda_0 > 0 \ge \lambda_1 \ge \dots \ge \lambda_{n-1}$. If $\sum_{i=0}^{n-1} \lambda_i \ge 0$, then there exists a <strong>symmetric, tridiagonal nonnegative matrix</strong> $A = A^T \ge 0$ having spectrum $\sigma$.
@@ -226,41 +332,37 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Fiedler's inductive construction builds a sequence of symmetric matrices $A_1, A_2, \dots, A_n = A$ where at step $k$:
+                        Fiedler's inductive proof constructs a sequence of symmetric matrices $A_1, A_2, \dots, A_n = A$ where at step $k$:
                     </p>
 
-                    <div class="math-callout highlight">
-                        $$A_k = \begin{pmatrix} A_{k-1} & \mathbf{v}_k \\ \mathbf{v}_k^T & \alpha_k \end{pmatrix}$$
-                    </div>
+                    $$A_k = \begin{pmatrix} A_{k-1} & \mathbf{v}_k \\ \mathbf{v}_k^T & \alpha_k \end{pmatrix}$$
 
                     <p class="deepdive-text">
-                        By carefully selecting the coupling vector $\mathbf{v}_k \ge 0$ and the diagonal entry $\alpha_k \ge 0$, Fiedler showed that the eigenvalues of $A_k$ interlace precisely with those of $A_{k-1}$, placing $\lambda_k \le 0$ into the spectrum without perturbing previous eigenvalues.
+                        By selecting the coupling vector $\mathbf{v}_k \ge 0$ and the diagonal scalar $\alpha_k \ge 0$, the eigenvalues of $A_k$ interlace precisely with those of $A_{k-1}$, adjoining $\lambda_k \le 0$ without shifting the previous spectrum. Fiedler's theorem established that <strong>there is no symmetry gap for Suleĭmanova spectra</strong>:
                     </p>
 
-                    <p class="deepdive-text">
-                        Fiedler's theorem established that <strong>there is no symmetry gap for Suleĭmanova spectra</strong>:
-                    </p>
-                    $$\sigma \text{ is Sule\u012dmanova} \implies \sigma \in \operatorname{SNIEP} \iff \sigma \in \operatorname{RNIEP} \iff \sum \lambda_i \ge 0$$
+                    $$\sigma \text{ is Sule\u012dmanova} \implies \sigma \in \operatorname{SNIEP} \iff \sigma \in \operatorname{RNIEP} \iff \sum_{i=0}^{n-1} \lambda_i \ge 0$$
                 </section>
 
-                <!-- Section 4: Soules Bases & Universal Similarity -->
+                <!-- Section 4: Soules Bases & Polyhedral Realization -->
                 <section class="deepdive-section" id="soules">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">4. Soules Bases &amp; Polyhedral Realization</h2>
+                        <h2 class="deepdive-section-title">4. Soules Bases &amp; Simplicial Spectral Geometry</h2>
                     </div>
 
                     <p class="deepdive-text">
-                        In 1983, <strong>George W. Soules</strong> discovered a magnificent geometric perspective: rather than constructing a custom matrix for each individual spectrum, one can find a single fixed orthogonal matrix $R \in \mathrm{O}(n)$ that diagonalizes <em>all</em> Suleĭmanova matrices simultaneously.
+                        In 1983, <cite-ref key="soules1983">George W. Soules (1983)</cite-ref> introduced a geometric paradigm shift: rather than constructing a bespoke matrix for each candidate spectrum, one can construct a single fixed orthogonal matrix $R \in \mathrm{O}(n)$ that diagonalizes <em>all</em> Suleĭmanova matrices simultaneously.
                     </p>
 
                     <div class="math-callout definition">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Definition: Soules Matrix</h3>
+                            <h3 class="math-callout-title">Definition 4.1 (Soules Matrices and Bases; Soules 1983)</h3>
+                            <span class="math-callout-tag">Definition</span>
                         </div>
                         <p>
                             An orthogonal matrix $R = [\mathbf{r}_0, \mathbf{r}_1, \dots, \mathbf{r}_{n-1}] \in \mathbb{R}^{n \times n}$ is called a <strong>Soules matrix</strong> if:
                         </p>
-                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <ol class="deepdive-list" style="margin-top: 0.5rem;">
                             <li>The first column is strictly positive: $\mathbf{r}_0 = \frac{1}{\sqrt{n}} \mathbf{1} = \frac{1}{\sqrt{n}}(1, 1, \dots, 1)^T$.</li>
                             <li>For <em>any</em> Suleĭmanova spectrum $\Lambda = \operatorname{diag}(\lambda_0, \lambda_1, \dots, \lambda_{n-1})$, the reconstructed matrix:
                                 $$A = R \Lambda R^T = \sum_{i=0}^{n-1} \lambda_i \mathbf{r}_i \mathbf{r}_i^T$$
@@ -269,41 +371,57 @@
                     </div>
 
                     <p class="deepdive-text">
-                        In 1998, <strong>Ludwig Elsner, Reinhard Nabben, and Michael Neumann</strong> published a complete constructive characterization of all Soules bases via binary tree sign patterns. They proved that:
+                        In 1998, <cite-ref key="elsner1998">Ludwig Elsner, Reinhard Nabben, and Michael Neumann (1998)</cite-ref> characterized all Soules bases via binary tree sign structures:
                     </p>
 
-                    <p class="deepdive-text">
-                        <em>The cone of Suleĭmanova spectra forms an extremal simplicial cone within the trace polytope of symmetric nonnegative matrices.</em> Every Soules matrix acts as a universal geometric embedding of this cone into the positive semidefinite affine cone of matrices.
-                    </p>
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem 4.1 (Simplicial Geometry via Soules Bases; Elsner, Nabben, &amp; Neumann 1998)</h3>
+                            <span class="math-callout-tag">Theorem</span>
+                        </div>
+                        <p>
+                            The cone of Suleĭmanova spectra forms an extremal simplicial cone within the trace polytope of symmetric nonnegative matrices. Every Soules matrix acts as a universal geometric embedding of this cone into the positive semidefinite affine cone of matrices.
+                        </p>
+                    </div>
                 </section>
 
                 <!-- Section 5: Generalizations Beyond Suleimanova -->
                 <section class="deepdive-section" id="generalizations">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">5. Generalizations Beyond Suleĭmanova</h2>
+                        <h2 class="deepdive-section-title">5. Generalizations Beyond Suleĭmanova Spectra</h2>
                     </div>
 
                     <p class="deepdive-text">
-                        Since Suleĭmanova's theorem is an exact necessary and sufficient condition, mathematicians have pushed to extend its philosophy to broader spectral configurations:
+                        Because Suleĭmanova's condition is an exact criterion for single-positive spectra, researchers have extended its mechanisms to broader configurations:
                     </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem 5.1 (Soto's Partition Theorem; Soto 2003)</h3>
+                            <span class="math-callout-tag">Theorem</span>
+                        </div>
+                        <p>
+                            Let $\sigma = \Gamma_1 \cup \cdots \cup \Gamma_k$ be a partition of a real spectrum into disjoint sub-multisets. If each $\Gamma_j$ satisfies a localized Suleĭmanova condition relative to an auxiliary positive eigenvalue, then $\sigma$ is realizable by a block-partitioned nonnegative matrix.
+                        </p>
+                    </div>
 
                     <div class="feature-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 1.5rem 0;">
                         <div class="feature-card">
-                            <h4 class="feature-title">Soto's Partition Theorems (2003)</h4>
+                            <h4 class="feature-title">Complex Spectra (<cite-ref key="monov2005">Monov 2005</cite-ref>)</h4>
                             <p class="feature-desc">
-                                Ricardo L. Soto and collaborators proved that if a spectrum $\sigma$ can be partitioned into $k$ disjoint subsets $\sigma = \Gamma_1 \cup \cdots \cup \Gamma_k$ such that each $\Gamma_j$ satisfies a Suleĭmanova condition relative to a sub-Perron root, then $\sigma$ is realizable by a block-structured nonnegative matrix.
+                                Extended the Suleĭmanova framework to complex conjugate pairs whose non-Perron eigenvalues have nonpositive real parts: $\lambda_0 > 0$ and $\operatorname{Re}(\lambda_j) \le 0$, under modulus and trace bounds.
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Monov's Complex Spectra (2005)</h4>
+                            <h4 class="feature-title">Negative Real Parts (<cite-ref key="laffey2007">Laffey &amp; Šmigoc 2007</cite-ref>)</h4>
                             <p class="feature-desc">
-                                Vladimir Monov generalized Suleĭmanova spectra to include complex conjugate pairs whose real parts are negative: $\lambda_0 > 0$ and $\operatorname{Re}(\lambda_j) \le 0$. Under trace and modulus constraints, nonnegativity is preserved.
+                                Established constructive realization theorems for spectra whose non-Perron eigenvalues have strictly negative real parts, exploiting companion matrix pencils and similarity reductions.
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Two Positive Eigenvalues (Ceva &amp; Laffey)</h4>
+                            <h4 class="feature-title">Multiple Positive Roots</h4>
                             <p class="feature-desc">
-                                When a spectrum has two positive eigenvalues $\{\lambda_0, \lambda_1 > 0 \ge \lambda_2 \ge \cdots \ge \lambda_{n-1}\}$, the trace alone is no longer sufficient; power sums $s_3$ and higher create non-trivial algebraic boundaries, studied extensively by Laffey, Šmigoc, and Loewy.
+                                When a spectrum has two positive eigenvalues $\{\lambda_0, \lambda_1 > 0 \ge \lambda_2 \ge \cdots \ge \lambda_{n-1}\}$, the trace $s_1$ alone is no longer sufficient; higher-order traces $s_3, s_5$ generate nonlinear semi-algebraic boundaries.
                             </p>
                         </div>
                     </div>
@@ -316,7 +434,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Our research hub includes the <strong>Spectra Realizer</strong>, an in-browser computational engine capable of instantly synthesizing both asymmetric companion realizations and symmetric Fiedler/Soules nonnegative matrices for any candidate Suleĭmanova spectrum.
+                        The <strong>Spectra Realizer</strong> tool on this research hub allows live synthesis of both asymmetric companion realizations and symmetric Fiedler/Soules matrices for any valid Suleĭmanova spectrum:
                     </p>
 
                     <div style="background: var(--bg-surface); border: 1px solid var(--accent); border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
@@ -330,10 +448,25 @@
                     </div>
                 </section>
 
-                <!-- Section 7: See Also -->
+                <!-- Section 7: Key Literature & Academic Citations -->
+                <section class="deepdive-section" id="references">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">7. Key Literature &amp; Academic Citations</h2>
+                        <span class="deepdive-section-desc">Pioneering and foundational publications on Suleĭmanova spectra, Fiedler tridiagonal matrices, and Soules bases</span>
+                    </div>
+
+                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
+                        The publications below are sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research notes, links to primary literature, and one-click BibTeX exports:
+                    </p>
+
+                    <!-- Global Citation Grid Component -->
+                    <cite-grid keys="suleimanova1949, perfect1953, perfect1955, fiedler1974, soules1983, radwan1996, elsner1998, soto2003, monov2005, laffey2007"></cite-grid>
+                </section>
+
+                <!-- Section 8: See Also -->
                 <section class="deepdive-section">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">7. See Also &amp; Related Articles</h2>
+                        <h2 class="deepdive-section-title">8. See Also &amp; Related Theory Articles</h2>
                     </div>
 
                     <div class="wiki-see-also-grid">
@@ -347,7 +480,7 @@
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
                             <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
-                            <p class="wiki-see-also-desc">Kolmogorov's problem, Farey boundary arcs, and algebraic polynomials $K_n$.</p>
+                            <p class="wiki-see-also-desc">Kolmogorov's problem, Farey boundary arcs, and algebraic polynomials $\mathcal{K}_n$.</p>
                         </a>
                         <a href="problem-background.html" class="wiki-see-also-card">
                             <h4 class="wiki-see-also-title">NIEP Theoretical Survey</h4>
@@ -366,7 +499,7 @@
         </div>
     </main>
 
-        <!-- Hub Footer Component -->
+    <!-- Hub Footer Component -->
     <hub-footer></hub-footer>
 </body>
 

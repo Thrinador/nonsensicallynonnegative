@@ -83,6 +83,7 @@ The platform contains self-contained, research-grade articles typeset with MathJ
 | **[Sule&#x012d;manova Spectra](suleimanova.html)** | Single positive eigenvalue condition, trace sufficiency, and Fiedler's symmetric realization. |
 | **[Boyle-Handelman Theorem](boyle-handelman.html)** | Symbolic dynamics, shifts of finite type, and realization with auxiliary zero eigenvalues. |
 | **[Perron Similarities & Spectracones](perron-similarities.html)** | Johnson-Paparella theory, spectracones, and group character table realizations. |
+| **[Comprehensive Bibliography](bibliography.html)** | Centralized literature database of 30+ papers across the NIEP with interactive search, filtering, and BibTeX export. |
 
 ---
 

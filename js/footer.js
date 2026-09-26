@@ -52,6 +52,7 @@
                 <a href="${prefix}index.html">Home</a>
                 <a href="${prefix}about.html">About &amp; Contributing</a>
                 <a href="${prefix}problem-background.html">Theory Wiki</a>
+                <a href="${prefix}bibliography.html">Comprehensive Bibliography</a>
                 <a href="${prefix}sitemap.html">Site Directory</a>
                 <a href="${prefix}personal/index.html">Author Profile</a>
             </div>

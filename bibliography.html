@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Bibliography &amp; Literature Archive | NIEP Research Hub</title>
+    <meta name="description"
+        content="The comprehensive, centralized academic literature archive for the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič region, Suleĭmanova spectra, Boyle-Handelman symbolic dynamics, and Perron similarities.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="wiki-page">
+    <!-- Hub Top Navigation Component -->
+    <hub-nav active="theory"></hub-nav>
+
+    <!-- Main Content Container -->
+    <main class="page-container" id="main-content" style="max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 5rem;">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 1.5rem;">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="problem-background.html">Theory Wiki</a>
+            <span>&rsaquo;</span>
+            <span>Comprehensive Bibliography</span>
+        </nav>
+
+        <!-- Wiki Sub-Navigation Bar -->
+        <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
+            <div class="wiki-subnav-label">Theory Wiki</div>
+            <a href="problem-background.html" class="wiki-tab">Overview</a>
+            <a href="niep.html" class="wiki-tab">NIEP</a>
+            <a href="sniep.html" class="wiki-tab">SNIEP</a>
+            <a href="rniep.html" class="wiki-tab">RNIEP</a>
+            <a href="karpelevich-region.html" class="wiki-tab">Karpelevi&#x010D; Region</a>
+            <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
+            <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
+            <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+            <a href="bibliography.html" class="wiki-tab active" aria-current="page">&#x1F4DA; Comprehensive Bibliography</a>
+        </nav>
+
+        <!-- Hero Header -->
+        <header class="deepdive-header" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+            <div class="hero-badge">Research Archive &middot; Single Source of Truth</div>
+            <h1 class="hero-title" style="font-size: 2.3rem;">NIEP Comprehensive Bibliography &amp; Literature Archive</h1>
+            <p class="hero-subtitle">
+                The centralized canonical archive of all foundational papers, milestone breakthroughs, doctoral dissertations, and modern preprints governing the Nonnegative Inverse Eigenvalue Problem.
+            </p>
+        </header>
+
+        <!-- Interactive Search, Filter, Sort & Export Bar -->
+        <div class="bib-controls-wrapper">
+            <div class="bib-search-row">
+                <div class="bib-search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="bib-search-input" class="bib-search-input" placeholder="Search by author, title, year, venue, or keyword..." aria-label="Search literature archive">
+                </div>
+
+                <div class="bib-sort-wrapper">
+                    <label for="bib-sort-select" class="bib-sort-label">Sort By:</label>
+                    <select id="bib-sort-select" class="bib-sort-select">
+                        <option value="year-desc">Year (Newest First)</option>
+                        <option value="year-asc">Year (Oldest First)</option>
+                        <option value="author-asc">Author (A &ndash; Z)</option>
+                        <option value="title-asc">Title (A &ndash; Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bib-filter-bar" role="toolbar" aria-label="Filter publications by research subfield">
+                <button type="button" class="bib-filter-pill active" data-category="all">All Literature</button>
+                <button type="button" class="bib-filter-pill" data-category="foundations">Foundations &amp; Classical</button>
+                <button type="button" class="bib-filter-pill" data-category="karpelevich">Karpelevi&#x010D; Region &amp; Stochastic</button>
+                <button type="button" class="bib-filter-pill" data-category="sniep">Real &amp; Symmetric NIEP</button>
+                <button type="button" class="bib-filter-pill" data-category="symbolic">Symbolic Dynamics</button>
+                <button type="button" class="bib-filter-pill" data-category="perron-sim">Perron Similarities &amp; Cones</button>
+                <button type="button" class="bib-filter-pill" data-category="structural">Modern Preprints &amp; Structure</button>
+            </div>
+
+            <div class="bib-status-row">
+                <span class="bib-count-badge" id="bib-count-badge">Loading catalog...</span>
+                <button type="button" class="bib-export-btn" onclick="NIEP_CITATIONS_SYS.exportAllBibtex()" title="Download complete collection as niep-literature.bib">
+                    <span>&#x1F4E5; Export All (.bib)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Comprehensive Bibliography Cards Grid (Dynamically Populated by js/citations.js) -->
+        <div class="bib-grid" id="master-bib-grid" style="margin-bottom: 4rem;">
+            <!-- Fallback content for no-JS environments -->
+            <noscript>
+                <p style="padding: 2rem; background: var(--bg-surface); border-radius: 8px;">
+                    Please enable JavaScript to view the interactive, searchable literature catalog.
+                </p>
+            </noscript>
+        </div>
+
+        <!-- Integration Guide Section for Researchers & Contributors -->
+        <section class="deepdive-section" id="integration-guide" style="border-top: 1px solid var(--border-subtle); padding-top: 3rem;">
+            <div class="deepdive-section-header">
+                <h2 class="deepdive-section-title">&#x1F517; Reusable Citation Architecture Across Hub Pages</h2>
+                <p class="deepdive-section-desc">How pages across this research hub pull standardized citation blocks from this central archive.</p>
+            </div>
+
+            <p class="deepdive-text">
+                To guarantee standard academic citations, uniform styling, and synchronized BibTeX metadata across all wiki articles and computational tools, all literature citations are maintained in a single global source of truth (<code>js/citations.js</code>).
+            </p>
+
+            <div class="math-callout definition">
+                <div class="math-callout-header">
+                    <h3 class="math-callout-title">Embedding Standard Citations in Any Page</h3>
+                    <span class="math-callout-tag">Web Components</span>
+                </div>
+                <p style="margin-bottom: 0.6rem;">
+                    Include <code>&lt;script src="js/citations.js" defer&gt;&lt;/script&gt;</code> in the page <code>&lt;head&gt;</code>. Then insert any of the following tags anywhere in your HTML:
+                </p>
+                <ul class="deepdive-list">
+                    <li><strong>Single Citation Card:</strong><br>
+                        <code>&lt;cite-card key="karpelevich1951"&gt;&lt;/cite-card&gt;</code>
+                    </li>
+                    <li><strong>Group of Citation Cards:</strong><br>
+                        <code>&lt;cite-grid keys="kolmogorov1938, dmitriev1946, karpelevich1951, swift1972, ito1997, kirkland2020, munger2023, verbeken2026"&gt;&lt;/cite-grid&gt;</code>
+                    </li>
+                    <li><strong>Static Data Attribute:</strong><br>
+                        <code>&lt;div class="bib-grid" data-citations="suleimanova1949, fiedler1974, laffey1999"&gt;&lt;/div&gt;</code>
+                    </li>
+                    <li><strong>Inline Text Citation:</strong><br>
+                        <code>According to the landmark result of &lt;cite-ref key="karpelevich1951"&gt;&lt;/cite-ref&gt;...</code>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

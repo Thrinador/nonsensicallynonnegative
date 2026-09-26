@@ -13,6 +13,7 @@
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
     <script>
         window.MathJax = {
             tex: {
@@ -61,6 +62,7 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
         </nav>
 
         <!-- Hero Header -->
@@ -495,67 +497,12 @@
                 <p class="deepdive-section-desc">Pioneering publications that established the theoretical core of the NIEP.</p>
             </div>
 
-            <div class="bib-grid">
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge foundation">Foundation</span>
-                        <span class="bib-year">1907</span>
-                    </div>
-                    <h4 class="bib-title">Zur Theorie der Matrices</h4>
-                    <p class="bib-authors">O. Perron</p>
-                    <p class="bib-venue">Mathematische Annalen, 64(2), 248&ndash;263</p>
-                </div>
+            <p class="deepdive-text" style="margin-bottom: 1.5rem;">
+                Key literature sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>:
+            </p>
 
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge foundation">Foundation</span>
-                        <span class="bib-year">1912</span>
-                    </div>
-                    <h4 class="bib-title">&#x00DC;ber Matrizen aus nicht negativen Elementen</h4>
-                    <p class="bib-authors">G. Frobenius</p>
-                    <p class="bib-venue">Sitzungsberichte der K&#x00F6;niglich Preussischen Akademie der Wissenschaften, 456&ndash;477</p>
-                </div>
-
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge geometry">Geometry</span>
-                        <span class="bib-year">1951</span>
-                    </div>
-                    <h4 class="bib-title">On the characteristic roots of matrices with non-negative elements</h4>
-                    <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
-                    <p class="bib-venue">Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya, 15(4), 361&ndash;383</p>
-                </div>
-
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge milestone">Milestone</span>
-                        <span class="bib-year">1978</span>
-                    </div>
-                    <h4 class="bib-title">A note on the nonnegative inverse eigenvalue problem</h4>
-                    <p class="bib-authors">R. Loewy &middot; D. London</p>
-                    <p class="bib-venue">Linear and Multilinear Algebra, 6(1), 83&ndash;90</p>
-                </div>
-
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge milestone">Milestone</span>
-                        <span class="bib-year">1996</span>
-                    </div>
-                    <h4 class="bib-title">The real dimension of the nonnegative inverse eigenvalue problem</h4>
-                    <p class="bib-authors">C. R. Johnson &middot; T. J. Laffey &middot; R. Loewy</p>
-                    <p class="bib-venue">Linear Algebra and its Applications, 241&ndash;243, 625&ndash;635</p>
-                </div>
-
-                <div class="bib-card">
-                    <div class="bib-top">
-                        <span class="theory-badge modern">Real Algebraic Geometry</span>
-                        <span class="bib-year">2024</span>
-                    </div>
-                    <h4 class="bib-title">The NIEP is solvable by reality and finitely many polynomial inequalities</h4>
-                    <p class="bib-authors">B. J. Clark</p>
-                    <p class="bib-venue">arXiv:2407.14472 [math.RA]</p>
-                </div>
-            </div>
+            <!-- Global Citation Grid Component -->
+            <cite-grid keys="perron1907, frobenius1912, karpelevich1951, loewy1978, johnson1996, clark2024"></cite-grid>
         </section>
 
         <!-- Footer Back Link -->

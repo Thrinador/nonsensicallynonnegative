@@ -6,22 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boyle-Handelman Theorem | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
-        content="Mathematical theory wiki article on the Boyle-Handelman Theorem (1991), symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.">
+        content="Academic theory wiki article on the Boyle-Handelman Theorem (1991), symbolic dynamics, shifts of finite type, positive polynomials, and spectral realization with auxiliary zero eigenvalues.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
     <script>
+        function showLatexToast(msg) {
+            let toast = document.querySelector('.latex-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'latex-toast';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 1600);
+        }
+
+        function copyLatexSource(tex, sourceElem) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(tex).then(() => {
+                    if (sourceElem && sourceElem.classList.contains('copy-latex-btn')) {
+                        const originalHTML = sourceElem.innerHTML;
+                        sourceElem.classList.add('copied');
+                        sourceElem.innerHTML = '<span>Copied!</span>';
+                        setTimeout(() => {
+                            sourceElem.classList.remove('copied');
+                            sourceElem.innerHTML = originalHTML;
+                        }, 1500);
+                    } else {
+                        showLatexToast('LaTeX copied to clipboard');
+                    }
+                }).catch(() => fallbackCopy(tex));
+            } else {
+                fallbackCopy(tex);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showLatexToast('LaTeX copied to clipboard');
+        }
+
+        function attachLatexTools() {
+            if (!window.MathJax || !MathJax.startup || !MathJax.startup.document) return;
+            const doc = MathJax.startup.document;
+            if (!doc.math) return;
+
+            doc.math.forEach(item => {
+                const root = item.typesetRoot;
+                if (!root) return;
+                const tex = item.math;
+
+                root.setAttribute('data-tex', tex);
+                root.setAttribute('title', 'Double-click to copy LaTeX formula');
+
+                root.addEventListener('copy', (e) => {
+                    e.clipboardData.setData('text/plain', tex);
+                    e.preventDefault();
+                });
+
+                root.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    copyLatexSource(tex, root);
+                });
+
+                if (item.display && !root.parentElement.classList.contains('display-math-container')) {
+                    const container = document.createElement('div');
+                    container.className = 'display-math-container';
+                    root.parentNode.insertBefore(container, root);
+                    container.appendChild(root);
+
+                    const btn = document.createElement('button');
+                    btn.className = 'copy-latex-btn';
+                    btn.type = 'button';
+                    btn.setAttribute('aria-label', 'Copy LaTeX formula');
+                    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy TeX</span>';
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        copyLatexSource(tex, btn);
+                    });
+                    container.appendChild(btn);
+                }
+            });
+        }
+
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+                displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
                 processEscapes: true
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                    MathJax.startup.promise.then(() => {
+                        attachLatexTools();
+                    });
+                }
             }
         };
     </script>
@@ -49,7 +146,7 @@
             <span>Boyle-Handelman Theorem</span>
         </nav>
 
-                <!-- Wiki Sub-Navigation Bar -->
+        <!-- Wiki Sub-Navigation Bar -->
         <nav class="wiki-subnav" aria-label="Theory Wiki Navigation">
             <div class="wiki-subnav-label">Theory Wiki</div>
             <a href="problem-background.html" class="wiki-tab">Overview</a>
@@ -60,6 +157,7 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab active" aria-current="page">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+            <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
@@ -67,10 +165,10 @@
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
                 <header class="deepdive-hero" style="margin-bottom: 2rem;">
-                    <div class="hero-badge">Theory Wiki &middot; Asymptotic Solvability</div>
+                    <div class="hero-badge">Theory Wiki &middot; Asymptotic Spectral Realization</div>
                     <h1 class="hero-title" style="font-size: 2.2rem;">The Boyle-Handelman Theorem</h1>
                     <p class="hero-subtitle">
-                        Resolving the spectral conjecture in symbolic dynamics: complete characterization of nonzero spectra realizable by primitive nonnegative matrices with auxiliary zero eigenvalues.
+                        Resolving Williams' spectral conjecture in symbolic dynamics: the definitive characterization of nonzero spectra realizable by primitive nonnegative matrices with auxiliary zero eigenvalues.
                     </p>
                 </header>
 
@@ -84,16 +182,16 @@
                     <table class="wiki-infobox-table">
                         <tbody>
                             <tr>
-                                <th>Authors</th>
-                                <td>Mike Boyle &amp; David Handelman</td>
+                                <th>Primary Paper</th>
+                                <td>Mike Boyle &amp; David Handelman (1991, <em>Annals of Mathematics</em>)</td>
                             </tr>
                             <tr>
-                                <th>Published</th>
-                                <td><em>Annals of Mathematics</em> (1991)</td>
+                                <th>Foundational Origin</th>
+                                <td>R. F. Williams (1973, Shifts of Finite Type)</td>
                             </tr>
                             <tr>
-                                <th>Origin</th>
-                                <td>Shifts of Finite Type (Williams' Spectral Conjecture)</td>
+                                <th>Dimension Bounds</th>
+                                <td>K. H. Kim, N. Ormes &amp; F. W. Roush (2000, <em>JAMS</em>)</td>
                             </tr>
                             <tr>
                                 <th>Core Problem</th>
@@ -109,84 +207,88 @@
                             </tr>
                             <tr>
                                 <th>Sufficiency</th>
-                                <td><strong>Necessary &amp; Sufficient</strong> if auxiliary zeros are allowed</td>
+                                <td><strong>Necessary &amp; Sufficient</strong> with auxiliary zeros</td>
                             </tr>
                             <tr>
                                 <th>Matrix Class</th>
                                 <td>Primitive nonnegative matrix ($A^p > 0$)</td>
                             </tr>
                             <tr>
-                                <th>Dimension $N$</th>
-                                <td>Augmented size $N \ge k$ (finite but potentially large)</td>
+                                <th>Augmented Size $N$</th>
+                                <td>$N \ge k$ (finite, constructively bounded)</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="wiki-infobox-links">
-                        <a href="niep.html" class="wiki-infobox-link">
-                            <strong>The Core NIEP &rarr;</strong>
-                        </a>
-                        <a href="problem-background.html" class="wiki-infobox-link">
-                            Theoretical Overview &rarr;
-                        </a>
-                        <a href="perron-similarities.html" class="wiki-infobox-link">
-                            Perron Similarities &rarr;
-                        </a>
+                        <a href="#references" class="wiki-infobox-link"><strong>View Key Literature &rarr;</strong></a>
+                        <a href="bibliography.html" class="wiki-infobox-link">Comprehensive Bibliography &rarr;</a>
+                        <a href="niep.html" class="wiki-infobox-link">The Core NIEP &rarr;</a>
+                        <a href="perron-similarities.html" class="wiki-infobox-link">Perron Similarities &rarr;</a>
                     </div>
                 </aside>
 
                 <!-- Section 1: Symbolic Dynamics Origin -->
                 <section class="deepdive-section" id="origin">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">1. The Origin in Symbolic Dynamics</h2>
+                        <h2 class="deepdive-section-title">1. The Origin in Symbolic Dynamics &amp; Shifts of Finite Type</h2>
                     </div>
 
                     <p class="deepdive-text">
-                        While the standard Nonnegative Inverse Eigenvalue Problem fixes the matrix dimension to the exact number of eigenvalues ($N = n$), a profoundly important related question arose from dynamical systems and ergodic theory in the 1970s and 1980s.
+                        While the standard Nonnegative Inverse Eigenvalue Problem fixes the matrix dimension strictly to the cardinality of the candidate spectrum ($N = n = |\sigma|$), a related question arose from dynamical systems and ergodic theory in the 1970s and 1980s.
                     </p>
 
                     <p class="deepdive-text">
-                        In the study of <strong>subshifts of finite type (SFTs)</strong>&mdash;which model topological Markov chains, data transmission coding, and hyperbolic dynamical systems&mdash;a shift space is defined by an adjacency matrix $A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$. The topological entropy of the dynamical system is given by:
+                        In the study of <strong>subshifts of finite type (SFTs)</strong>&mdash;which model topological Markov chains, hyperbolic dynamical systems, and data transmission coding&mdash;a shift space $X_A$ is defined by a 0-1 or nonnegative integer adjacency matrix $A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$. The topological entropy of the dynamical system is given by the logarithm of its spectral radius:
                     </p>
 
-                    <div class="theory-formula">
-                        $$h(X_A) = \log \lambda_1(A)$$
+                    $$h(X_A) = \log \lambda_1(A)$$
+
+                    <p class="deepdive-text">
+                        where $\lambda_1(A)$ is the dominant Perron-Frobenius eigenvalue. In 1973, <cite-ref key="williams1973">R. F. Williams (1973)</cite-ref> initiated the classification of shifts of finite type up to topological conjugacy and shift equivalence. Williams formulated a central question concerning the spectral invariants of mixing shifts:
+                    </p>
+
+                    <div class="math-callout question">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Question 1.1 (Williams' Spectral Conjecture, 1973)</h3>
+                            <span class="math-callout-tag">Question</span>
+                        </div>
+                        <p>
+                            Let $\sigma = \{\lambda_1, \dots, \lambda_k\}$ be a multiset of nonzero complex numbers closed under complex conjugation. What algebraic and spectral conditions are necessary and sufficient for $\sigma$ to be the nonzero spectrum of an irreducible or primitive matrix $A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$ of <em>some</em> finite dimension $N \ge k$?
+                        </p>
                     </div>
 
                     <p class="deepdive-text">
-                        where $\lambda_1(A)$ is the dominant Perron-Frobenius eigenvalue. In 1973, <strong>R. F. Williams</strong> initiated the classification of shifts of finite type up to topological conjugacy and shift equivalence. A major open question emerged: <em>Which algebraic numbers, and which multisets of nonzero complex numbers, can occur as the nonzero spectrum of the transition matrix of a mixing shift of finite type?</em>
-                    </p>
-
-                    <p class="deepdive-text">
-                        This question became known as the <strong>Spectral Conjecture</strong> of symbolic dynamics.
+                        This problem became known as the <strong>Spectral Conjecture</strong> of symbolic dynamics. Although the Strong Shift Equivalence Conjecture was later refuted by <cite-ref key="kim-roush1999">Ki Hang Kim and Fred W. Roush (1999)</cite-ref>, the spectral realization problem received a definitive affirmative answer.
                     </p>
                 </section>
 
-                <!-- Section 2: Statement of the Theorem -->
+                <!-- Section 2: Statement of the Boyle-Handelman Theorem -->
                 <section class="deepdive-section" id="statement">
                     <div class="deepdive-section-header">
                         <h2 class="deepdive-section-title">2. Statement of the Boyle-Handelman Theorem</h2>
                     </div>
 
                     <p class="deepdive-text">
-                        In 1991, <strong>Mike Boyle</strong> and <strong>David Handelman</strong> published a landmark 50-page paper in the <em>Annals of Mathematics</em> ("The spectra of nonnegative matrices via symbolic dynamics"), definitively resolving the Spectral Conjecture:
+                        In 1991, <cite-ref key="boyle1991">Mike Boyle and David Handelman (1991)</cite-ref> published their landmark paper in the <em>Annals of Mathematics</em> ("The spectra of nonnegative matrices via symbolic dynamics"), providing the complete characterization:
                     </p>
 
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">The Boyle-Handelman Theorem (1991)</h3>
+                            <h3 class="math-callout-title">Theorem 2.1 (The Boyle-Handelman Theorem, 1991)</h3>
+                            <span class="math-callout-tag">Theorem</span>
                         </div>
                         <p>
                             Let $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_k\}$ be a multiset of nonzero complex numbers closed under complex conjugation ($\sigma = \bar{\sigma}$).
                         </p>
-                        <p>
-                            There exists a <strong>primitive nonnegative matrix</strong> $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ of some finite size $N \ge k$ whose nonzero spectrum is precisely $\sigma$ (with $N - k$ auxiliary zero eigenvalues):
+                        <p style="margin-top: 0.5rem;">
+                            There exists a <strong>primitive nonnegative matrix</strong> $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ of some finite size $N \ge k$ whose nonzero spectrum is precisely $\sigma$:
                         </p>
                         $$\sigma(A) = \sigma \cup \underbrace{\{0, 0, \dots, 0\}}_{N - k \text{ zeros}}$$
                         <p>
                             <strong>if and only if</strong> the following two conditions hold:
                         </p>
-                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <ol class="deepdive-list" style="margin-top: 0.5rem;">
                             <li><strong>Strict Perron Dominance:</strong> There is a unique maximal eigenvalue $\lambda_1 \in \mathbb{R}_{> 0}$ such that:
                                 $$\lambda_1 > |\lambda_j| \quad \forall j = 2, 3, \dots, k$$
                             </li>
@@ -197,7 +299,25 @@
                     </div>
 
                     <p class="deepdive-text">
-                        A companion theorem in the same paper establishes that if the polynomial $\prod_{i=1}^k (\lambda - \lambda_i)$ has integer coefficients, the realizing matrix $A$ can be chosen with <strong>nonnegative integer entries</strong> ($A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$), completely settling the symbolic dynamics conjecture.
+                        A companion theorem in the same paper establishes the integral realization required for subshifts of finite type:
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem 2.2 (Integer Spectral Realization)</h3>
+                            <span class="math-callout-tag">Theorem</span>
+                        </div>
+                        <p>
+                            If, in addition to the conditions of Theorem 2.1, the characteristic polynomial $p(t) = \prod_{i=1}^k (t - \lambda_i)$ has integer coefficients ($p \in \mathbb{Z}[t]$), then the realizing matrix $A$ can be chosen with <strong>nonnegative integer entries</strong>:
+                        </p>
+                        $$A \in \mathcal{M}_N(\mathbb{Z}_{\ge 0})$$
+                        <p>
+                            Consequently, $\sigma$ is realizable as the nonzero spectrum of a mixing shift of finite type, settling Williams' Spectral Conjecture affirmatively.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        The proof developed by Boyle and Handelman merged symbolic dynamics (shift equivalence of Markov chains) with the algebraic theory of ordered rings and positive polynomials developed by <cite-ref key="handelman1992">David Handelman (1992)</cite-ref>.
                     </p>
                 </section>
 
@@ -208,7 +328,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        The contrast between the classical NIEP and the Boyle-Handelman setting offers profound mathematical insight:
+                        The contrast between the classical fixed-dimension NIEP and the Boyle-Handelman setting highlights why relaxing the matrix order removes traditional obstructions:
                     </p>
 
                     <div class="data-table-wrapper" style="margin: 1.5rem 0;">
@@ -229,16 +349,16 @@
                                 <tr>
                                     <td><strong>Solvability Status</strong></td>
                                     <td><strong>Open</strong> for all $n \ge 5$</td>
-                                    <td><strong>Completely Solved</strong> for all finite multisets!</td>
+                                    <td><strong>Completely Solved</strong> for all finite multisets</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Boundary Nature</strong></td>
-                                    <td>Subtle semi-algebraic constraints on eigenvector angles</td>
+                                    <td>Semi-algebraic constraints on eigenvector cones</td>
                                     <td>Purely algebraic trace positivity ($s_m > 0$)</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Trace Sufficiency</strong></td>
-                                    <td>Fails at $n=5$ (Laffey-Meehan counterexample)</td>
+                                    <td>Fails at $n=5$ (<cite-ref key="laffey1999">Laffey &amp; Meehan 1999</cite-ref>)</td>
                                     <td>Holds universally (with auxiliary zeros absorbed)</td>
                                 </tr>
                             </tbody>
@@ -246,11 +366,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Why does adding zero eigenvalues eliminate the obstructions that plague the classical NIEP?
-                    </p>
-
-                    <p class="deepdive-text">
-                        In matrix theory, adding zero eigenvalues corresponds to enlarging the state space. In the graph of the matrix, auxiliary states act as "intermediate delay nodes" that separate conflicting feedback cycles. By introducing sufficiently many delay nodes, one can decouple conflicting eigenvector configurations without disturbing the nonzero eigenvalues!
+                        <strong>Combinatorial Mechanism of Auxiliary Zeros:</strong> In graph-theoretic terms, adding zero eigenvalues corresponds to enlarging the state space of the underlying directed graph. Auxiliary states act as delay nodes that decouple conflicting feedback cycles without disturbing the nonzero cyclic spectrum.
                     </p>
                 </section>
 
@@ -261,23 +377,35 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Although Boyle and Handelman proved that a finite dimension $N$ always exists, their original proof relied on non-constructive compactness arguments and positive polynomial theory (Handelman's theorem on positive polynomials in ordered rings).
+                        Although Boyle and Handelman proved that a finite dimension $N$ always exists, their original proof relied on non-constructive compactness arguments and ordered ring theory:
                     </p>
 
-                    <div class="math-callout highlight">
+                    <div class="math-callout question">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">The Dimension Estimation Challenge</h3>
+                            <h3 class="math-callout-title">Problem 4.1 (Minimal Augmented Dimension Estimation)</h3>
+                            <span class="math-callout-tag">Problem</span>
                         </div>
                         <p>
-                            Given $\sigma$, what is the minimal dimension $N(\sigma)$ required to realize $\sigma$?
-                        </p>
-                        <p>
-                            In general, if the spectral gap $\lambda_1 - \max_{j \ge 2} |\lambda_j|$ is very small, or if some power trace $s_m$ is positive but extremely close to zero, the required dimension $N$ can grow exponentially large.
+                            Given $\sigma$, determine the minimal dimension $N_{\min}(\sigma)$ required to realize $\sigma$ by a primitive nonnegative matrix. How does $N_{\min}(\sigma)$ depend on the spectral gap $\lambda_1 - \max_{j \ge 2}|\lambda_j|$ and the trace margin $\inf_{m \ge 1} s_m$?
                         </p>
                     </div>
 
                     <p class="deepdive-text">
-                        In 2000, <strong>K. H. Kim, N. Ormes, and F. W. Roush</strong> developed explicit, constructive bounds on $N$ using state-splitting algorithms and polynomial division techniques.
+                        In 2000, <cite-ref key="kim2000">K. H. Kim, N. Ormes, and F. W. Roush (2000)</cite-ref> developed explicit, constructive bounds on $N$ using state-splitting algorithms and formal power series:
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem 4.1 (Constructive Dimension Bounds; Kim, Ormes, &amp; Roush, 2000)</h3>
+                            <span class="math-callout-tag">Theorem</span>
+                        </div>
+                        <p>
+                            Let $\sigma = \{\lambda_1, \dots, \lambda_k\}$ satisfy the Boyle-Handelman conditions. There exists an algorithmic procedure using formal power series division and state-splitting that constructs an explicit primitive matrix $A \ge 0$ realizing $\sigma \cup \{0\}^{N-k}$, with $N$ bounded as a computable function of the minimal trace ratio and the spectral gap.
+                        </p>
+                    </div>
+
+                    <p class="deepdive-text">
+                        Subsequent structural analyses by <cite-ref key="kirkland2001">Stephen Kirkland (2001)</cite-ref> further explored dimension bounds for companion matrix perturbations and low-rank constructions.
                     </p>
                 </section>
 
@@ -288,25 +416,40 @@
                     </div>
 
                     <p class="deepdive-text">
-                        The Boyle-Handelman Theorem establishes that:
+                        The Boyle-Handelman Theorem provides a fundamental perspective on the Nonnegative Inverse Eigenvalue Problem:
                     </p>
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
                             <h4 class="feature-title">Eventual Realizability</h4>
-                            <p class="feature-desc">Every candidate spectrum with a strictly dominant Perron root and positive power sums is <em>eventually realizable</em> if we relax the rigid fixed-dimension constraint.</p>
+                            <p class="feature-desc">Every candidate spectrum with a strictly dominant Perron root and positive power sums is <em>eventually realizable</em> once the rigid fixed-dimension constraint is relaxed.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">The True Frontier of the NIEP</h4>
-                            <p class="feature-desc">The genuine obstruction in the classical NIEP is not the realization of the spectrum itself, but the <strong>dimensional economy</strong>: cramming the realization into exactly $n$ dimensions without auxiliary slack.</p>
+                            <h4 class="feature-title">The Dimensional Frontier</h4>
+                            <p class="feature-desc">The primary mathematical difficulty of the classical NIEP is not the realization of the spectrum itself, but <strong>dimensional economy</strong>: packing the realization into exactly $n$ dimensions without auxiliary slack.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Section 6: See Also -->
+                <!-- Section 6: Key Literature & Academic Citations -->
+                <section class="deepdive-section" id="references">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Key Literature &amp; Academic Citations</h2>
+                        <span class="deepdive-section-desc">Pioneering publications in symbolic dynamics, shifts of finite type, and augmented spectral realization</span>
+                    </div>
+
+                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
+                        The publications below are sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research notes, links to primary literature, and one-click BibTeX exports:
+                    </p>
+
+                    <!-- Global Citation Grid Component -->
+                    <cite-grid keys="williams1973, boyle1991, handelman1992, kim-roush1999, kim2000, kirkland2001, laffey1999"></cite-grid>
+                </section>
+
+                <!-- Section 7: See Also -->
                 <section class="deepdive-section">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">6. See Also &amp; Related Theory Pages</h2>
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Theory Pages</h2>
                     </div>
 
                     <div class="wiki-see-also-grid">
@@ -339,7 +482,7 @@
         </div>
     </main>
 
-        <!-- Hub Footer Component -->
+    <!-- Hub Footer Component -->
     <hub-footer></hub-footer>
 </body>
 

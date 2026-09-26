@@ -13,6 +13,7 @@
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
     <script>
         function showLatexToast(msg) {
             let toast = document.querySelector('.latex-toast');
@@ -158,6 +159,7 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
+        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
@@ -690,152 +692,15 @@
                 <section class="deepdive-section" id="bibliography">
                     <div class="deepdive-section-header">
                         <h2 class="deepdive-section-title">9. Primary Literature &amp; References</h2>
+                        <span class="deepdive-section-desc">Key historical, foundational, and modern papers on the Karpelevi&#x010D; region</span>
                     </div>
 
-                    <div class="bib-grid" style="margin-top: 1.5rem;">
-                        <!-- Kolmogorov (1938) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1938</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Problem Origin</span>
-                            </div>
-                            <h4 class="bib-title">Markov chains with countably many possible states</h4>
-                            <p class="bib-authors">A. N. Kolmogorov</p>
-                            <p class="bib-venue">Bull. Univ. Moscow, Ser. Internat., Sect. A 1(3): 1–16. Original formulation of the stochastic eigenvalue problem.</p>
-                        </div>
+                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
+                        The publications below are sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research context, source/preprint links, and one-click BibTeX exports.
+                    </p>
 
-                        <!-- Dmitriev & Dynkin (1946) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1946</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Invariant Polygons</span>
-                            </div>
-                            <h4 class="bib-title">On characteristic roots of stochastic matrices</h4>
-                            <p class="bib-authors">N. A. Dmitriev, E. B. Dynkin</p>
-                            <p class="bib-venue">Bull. Acad. Sci. URSS. S&#xE9;r. Math. [Izv. Akad. Nauk SSSR] 10: 167–184. Invariant polygon duality and solutions for $n \le 4$.</p>
-                        </div>
-
-                        <!-- Suleĭmanova (1949) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1949</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Real Spectra</span>
-                            </div>
-                            <h4 class="bib-title">Stochastic matrices with real characteristic roots</h4>
-                            <p class="bib-authors">H. R. Sule&#x012d;manova</p>
-                            <p class="bib-venue">Doklady Akad. Nauk SSSR 66: 343–345. Sufficient conditions for real spectrum realizability.</p>
-                        </div>
-
-                        <!-- Karpelevič (1951) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1951</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Boundary Characterization</span>
-                            </div>
-                            <h4 class="bib-title">On the characteristic roots of matrices with nonnegative elements</h4>
-                            <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
-                            <p class="bib-venue">Izvestiya Akad. Nauk SSSR. Ser. Mat. 15(4): 361–383. AMS Transl. (2) 140 (1988): 79–100. Complete characterization for all $n$.</p>
-                        </div>
-
-                        <!-- Swift (1972) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1972</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Master's Thesis</span>
-                            </div>
-                            <h4 class="bib-title">The location of characteristic roots of stochastic matrices</h4>
-                            <p class="bib-authors">Joanne Swift</p>
-                            <p class="bib-venue">Master's thesis, McGill University. Contains English translations of Dmitriev &amp; Dynkin (App. A) and Sule&#x012d;manova (App. B), and establishes Kolmogorov's 1938 citation.</p>
-                            <div class="bib-actions">
-                                <a href="https://escholarship.mcgill.ca/concern/theses/v979v549t" target="_blank" rel="noopener" class="bib-link">McGill Repository &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Đoković (1990) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1990</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Cyclic Polygons</span>
-                            </div>
-                            <h4 class="bib-title">Cyclic polygons, roots of polynomials with decreasing nonnegative coefficients, and eigenvalues of stochastic matrices</h4>
-                            <p class="bib-authors">D. &#x017D;. &#x0110;okovi&#x0107;</p>
-                            <p class="bib-venue">Linear Algebra and its Applications 142: 173–193. Geometric simplification using cyclic polygons generated by powers of a complex number.</p>
-                            <div class="bib-actions">
-                                <a href="https://doi.org/10.1016/0024-3795(90)90278-D" target="_blank" rel="noopener" class="bib-link">DOI: 10.1016 &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Ito (1997) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">1997</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Algebraic Formulation</span>
-                            </div>
-                            <h4 class="bib-title">A new statement about the theorem determining the region of eigenvalues of stochastic matrices</h4>
-                            <p class="bib-authors">Hisashi Ito</p>
-                            <p class="bib-venue">Linear Algebra and its Applications 267: 241–246. Reduced algebraic polynomial equations for boundary arcs.</p>
-                            <div class="bib-actions">
-                                <a href="https://doi.org/10.1016/S0024-3795(97)00035-7" target="_blank" rel="noopener" class="bib-link">DOI: 10.1016 &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Johnson & Paparella (2017) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">2017</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Matrix Realization</span>
-                            </div>
-                            <h4 class="bib-title">A matricial view of the Karpelevi&#x010D; theorem</h4>
-                            <p class="bib-authors">Charles R. Johnson, Pietro Paparella</p>
-                            <p class="bib-venue">Linear Algebra and its Applications 520: 1–15. Classification of Types 0, I, II, III reduced Ito polynomials and constructive matrix realizations.</p>
-                            <div class="bib-actions">
-                                <a href="https://doi.org/10.1016/j.laa.2017.01.009" target="_blank" rel="noopener" class="bib-link">DOI: 10.1016 &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Kirkland, Laffey, Šmigoc (2020) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">2020</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Exact Polar</span>
-                            </div>
-                            <h4 class="bib-title">The Karpelevi&#x010D; region revisited</h4>
-                            <p class="bib-authors">Stephen Kirkland, Thomas Laffey, Helena &#x0160;migoc</p>
-                            <p class="bib-venue">Journal of Mathematical Analysis and Applications 490(2): 124332. Resolves root ambiguity, establishes exact polar boundary equations, proves $C^1$ smoothness, and proves the Universal Subdominance Theorem.</p>
-                            <div class="bib-actions">
-                                <a href="https://arxiv.org/abs/2005.02452" target="_blank" rel="noopener" class="bib-link">arXiv:2005.02452 &rarr;</a>
-                                <a href="https://doi.org/10.1016/j.jmaa.2020.124332" target="_blank" rel="noopener" class="bib-link">DOI: 10.1016 &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Munger, Nickerson, Paparella (2023) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">2023</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Elementary Proof</span>
-                            </div>
-                            <h4 class="bib-title">Demystifying the Karpelevic theorem</h4>
-                            <p class="bib-authors">Devon N. Munger, Andrew L. Nickerson, Pietro Paparella</p>
-                            <p class="bib-venue">arXiv:2309.03849v5. Proves that Type I Ito polynomials define simple monotonic curves, distinguishes boundary vs extremal points ($E_n$), and establishes $\partial\mathcal{K}_n = E_n$ for $n > 3$.</p>
-                            <div class="bib-actions">
-                                <a href="https://arxiv.org/abs/2309.03849" target="_blank" rel="noopener" class="bib-link">arXiv:2309.03849 &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Verbeken & Ginis (2026) -->
-                        <div class="bib-card">
-                            <div class="bib-header">
-                                <span class="bib-year">2026</span>
-                                <span class="wiki-infobox-badge" style="font-size: 0.72rem;">Structural Proof</span>
-                            </div>
-                            <h4 class="bib-title">A structural proof of the Karpelevi&#x010D; theorem</h4>
-                            <p class="bib-authors">Brecht Verbeken, Vincent Ginis</p>
-                            <p class="bib-venue">arXiv:2609.26058v2. First self-contained structural proof from Perron deflation, branching monotonicity, and logarithmic convexity. Establishes uniform $N^{-3}$ and $N^{-2}$ deficit asymptotics and optimal polygonal gauges.</p>
-                            <div class="bib-actions">
-                                <a href="https://arxiv.org/abs/2609.26058" target="_blank" rel="noopener" class="bib-link">arXiv:2609.26058 &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Global Citation Grid Component -->
+                    <cite-grid keys="kolmogorov1938, dmitriev1946, suleimanova1949, karpelevich1951, swift1972, djokovic1990, ito1997, johnson2017, kirkland2020, munger2023, verbeken2026"></cite-grid>
                 </section>
 
                 <!-- Section 10: See Also -->
