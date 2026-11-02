@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Table Spectracones &amp; the n=5 SNIEP | NIEP Research Blog</title>
+    <meta name="description"
+        content="Character-table constructions cover 99.97% by area of the Loewy–McDonald benchmark for (1,a,a,b,b). Explore the corrected areas, curved gap, and 3D inner approximations for (1,a,a,b,c).">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <!-- Plotly -->
+    <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>›</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>›</span>
+            <span>Character Table Spectracones &amp; the $n=5$ SNIEP</span>
+        </nav>
+
+        <!-- Blog Post Top Meta Bar -->
+        <div class="blog-post-topbar">
+            <a href="blog.html" class="blog-back-link">← All Blog Posts</a>
+            <div class="blog-meta-pills">
+                <span class="blog-pill">By Benjamin J. Clark</span>
+                <span class="blog-pill">Perron Spectracones</span>
+                <span class="blog-pill">$n=5$ SNIEP &amp; 3D Plotly</span>
+            </div>
+        </div>
+
+        <div class="wiki-layout">
+            <article class="wiki-main-content">
+
+                <header class="deepdive-hero">
+                    <div class="hero-badge">Research Blog Post · Polyhedral Spectracone Exploration</div>
+                    <h1 class="hero-title">Character Table Spectracones &amp; the $n=5$ SNIEP</h1>
+                    <p class="hero-subtitle">
+                        Two character-table constructions cover <strong>99.97% by area</strong> of the
+                        Loewy–McDonald benchmark for $\sigma=(1,a,a,b,b)$.
+                        The remaining curved gap shows what a fixed collection of linear inequalities misses.
+                        We then compare the same constructions in the three-parameter slice $\sigma=(1,a,a,b,c)$.
+                    </p>
+                </header>
+
+                <!-- Properly Styled Table of Contents -->
+                <nav class="deepdive-toc" aria-label="Table of Contents">
+                    <div class="deepdive-toc-title">Contents &amp; Interactive Structure</div>
+                    <div class="blog-toc-parts">
+                        <div class="blog-toc-part">
+                            <a href="#foundations" class="blog-toc-part-header">
+                                <span class="blog-toc-num">I</span>
+                                <span>Part I: Setup &amp; Character Cones</span>
+                            </a>
+                            <ul class="blog-toc-sublist">
+                                <li>
+                                    <a href="#perron-spectracones" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">1.1</span>
+                                        <span>Perron Similarities &amp; Spectracones</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#character-tables-ideal" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">1.2</span>
+                                        <span>Character Tables as Ideal Similarities</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="blog-toc-part">
+                            <a href="#part-2-aabb" class="blog-toc-part-header">
+                                <span class="blog-toc-num">II</span>
+                                <span>Part II: The $(1, a, a, b, b)$ Region</span>
+                            </a>
+                            <ul class="blog-toc-sublist">
+                                <li>
+                                    <a href="#benchmark-2d" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">2.1</span>
+                                        <span>Loewy–McDonald Benchmark</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#orbits-5x5" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">2.2</span>
+                                        <span>Selected $5 \times 5$ Orbits ($D_8, S_4, A_5, \mathbb{Z}_5$)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#missing-wedge" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">2.3</span>
+                                        <span>Union Without vs. With Reducible $V_4 \oplus [1]$</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#loewy-mcdonald-arc" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">2.4</span>
+                                        <span>99.97% Coverage &amp; the 0.03% Hyperbolic Arc</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="blog-toc-part">
+                            <a href="#frontier-3d" class="blog-toc-part-header">
+                                <span class="blog-toc-num">III</span>
+                                <span>Part III: The $(1, a, a, b, c)$ Region</span>
+                            </a>
+                            <ul class="blog-toc-sublist">
+                                <li>
+                                    <a href="#ambient-3d" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">3.1</span>
+                                        <span>Ambient 3D Trace Polytope $\Delta_3$</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#orbits-3d" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">3.2</span>
+                                        <span>3D Polyhedral Orbits &amp; Volumes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#explorer-3d" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">3.3</span>
+                                        <span>Interactive 3D Explorer</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#cross-sections" class="blog-toc-sublink">
+                                        <span class="blog-toc-subnum">3.4</span>
+                                        <span>2D Cross-Sectional Tomography &amp; $b=c$ Wall</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="blog-toc-grid">
+                        <li>
+                            <a href="#references" class="blog-toc-link">
+                                <span class="blog-toc-num">Ref</span>
+                                <span>Foundational Literature &amp; References</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- ================================================================
+                     PART I: SETUP — PERRON SIMILARITIES & CHARACTER CONES
+                     ================================================================ -->
+                <section class="deepdive-section" id="foundations">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">Part I: Perron Similarities and Character Tables</h2>
+                        <p class="deepdive-section-desc">Fixing eigenvectors turns entrywise nonnegativity into linear
+                            inequalities.</p>
+                    </div>
+                    <h3 class="subsection-title" id="perron-spectracones">1.1 Perron Similarities and Spectracones</h3>
+                    <p class="deepdive-text">The <strong>symmetric nonnegative inverse eigenvalue problem
+                            (SNIEP)</strong>
+                        asks which real lists are spectra of entrywise nonnegative symmetric matrices.
+                        For lists of length at most four, the Perron condition
+                        $\lambda_1=\max_i|\lambda_i|$ and nonnegative trace suffice. Dimension five introduces
+                        additional
+                        obstructions. Here $A\ge0$ always means entrywise nonnegative.</p>
+                    <p class="deepdive-text">An invertible matrix $S$ is a <strong>Perron similarity</strong> if it
+                        diagonalizes an irreducible nonnegative matrix. Johnson and Paparella developed the real theory
+                        <a class="text-link" href="#ref-jp2016">[JP16]</a> and later its complex extension
+                        <a class="text-link" href="#ref-jp2025">[JP25]</a>.
+                        In the general theory spectral vectors may be complex; the plots below use real vectors.
+                        We place a positive Perron column first.
+                    </p>
+                    <div class="theory-formula">$$
+                        \mathcal C(S)=\{x\in\mathbb C^n:S\operatorname{diag}(x)S^{-1}\ge0\},\qquad
+                        \mathcal T(S)=\{x\in\mathcal C(S):x_1=1\}.
+                        $$</div>
+                    <p class="deepdive-text">The entries of the realizing matrix depend linearly on $x$.
+                        Thus $\mathcal C(S)$ is polyhedral, and its normalized section is a polytope;
+                        the positive Perron column ensures $|x_i|\le1$ on this section.
+                        A Perron similarity is <strong>ideal</strong> when
+                        $\mathcal C(S)=\mathcal C_r(S)$, the conical hull of its rows.
+                        Character tables have the further useful property that one column of the realizing matrix
+                        tests nonnegativity of the entire matrix.</p>
+
+                    <h3 class="subsection-title" id="character-tables-ideal">1.2 Character Tables Give Explicit
+                        Symmetric Realizations</h3>
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Character tables are ideal Perron similarities</h3>
+                            <span class="math-callout-tag">Gershnik–Lewis–Paparella</span>
+                        </div>
+                        <p class="deepdive-text">Let $G$ have conjugacy classes $\mathcal K_1=\{1\},\ldots,\mathcal
+                            K_r$,
+                            sizes $c_k$, and character table $Q=[\chi_i(g_k)]$, with the trivial character first.
+                            Character orthogonality gives</p>
+                        <div class="theory-formula">$$
+                            QD_cQ^*=|G|I,\qquad Q^{-1}=\frac1{|G|}D_cQ^*,\qquad
+                            D_c=\operatorname{diag}(c_1,\ldots,c_r).
+                            $$</div>
+                        <p class="deepdive-text">For $x_1=1$, the matrix $A=Q\operatorname{diag}(x)Q^{-1}$ is entrywise
+                            nonnegative exactly when the following $r$ quantities are real and nonnegative
+                            <a class="text-link" href="#ref-glp">[GLP26, Theorem 4.3]</a>:
+                        </p>
+                        <div class="theory-formula">$$
+                            L_i(x)=\sum_{k=1}^r c_k\chi_i(g_k)x_k
+                            =d_i+\sum_{k=2}^r c_k\chi_i(g_k)x_k\ge0,\qquad d_i=\chi_i(1).
+                            $$</div>
+                        <p class="deepdive-text">For real $Q$ and real $x$, the column normalization</p>
+                        <div class="theory-formula">$$
+                            U=\frac1{\sqrt{|G|}}QD_c^{1/2},\qquad UU^T=I,\qquad
+                            A=U\operatorname{diag}(x)U^T
+                            $$</div>
+                        <p class="deepdive-text mb-0">proves that the resulting nonnegative matrix is symmetric.
+                            The first column of $Q$ is the positive degree vector $(d_i)$.
+                            Row normalization by $D_d^{-1}$ instead makes this column all ones;
+                            it preserves entrywise nonnegativity, but generally changes symmetry.
+                            For the complex Fourier table, equal real eigenvalues on conjugate frequency pairs
+                            give the real symmetric specialization used below.</p>
+                    </div>
+                    <p class="deepdive-text">For the trivial character,
+                        $L_1(x)=1+\sum_{k=2}^r c_kx_k$. Along $x_2=\cdots=x_r=t$,
+                        this gives $t\ge-1/(|G|-1)$; every nontrivial-character inequality becomes
+                        $d_i(1-t)\ge0$. These bounds explain the shared diagonal apex in each plotted family.</p>
+                    <p class="deepdive-text">Assigning the repeated eigenvalues to different nonidentity classes changes
+                        the halfspaces. We call assignments equivalent when they define the same polytope in the ordered
+                        chamber.
+                        The groups studied here are a selected family, not an exhaustive list of groups with five
+                        classes:
+                        the dihedral group of order $14$, for example, also has a real $5\times5$ character table
+                        <a class="text-link" href="#ref-d14">[D14]</a>.
+                    </p>
+                </section>
+
+                <!-- ================================================================
+                     PART II: THE TWO-PARAMETER REGION (1, a, a, b, b)
+                     ================================================================ -->
+                <section class="deepdive-section" id="part-2-aabb">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">Part II: The Two-Parameter Slice $\sigma=(1,a,a,b,b)$</h2>
+                        <p class="deepdive-section-desc">Comparing the selected character-table constructions with a
+                            curved benchmark.</p>
+                    </div>
+                    <h3 class="subsection-title" id="benchmark-2d">2.1 The Loewy–McDonald Benchmark</h3>
+                    <p class="deepdive-text">Fix $1\ge a\ge b\ge-1$. The ordered triangle has area $2$.
+                        Imposing trace nonnegativity $1+2a+2b\ge0$ leaves a quadrilateral with vertices
+                        $(-1/4,-1/4),(1,1),(1,-1),(1/2,-1)$ and area $23/16$.</p>
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The benchmark used in this article</h3>
+                        </div>
+                        <div class="theory-formula">$$
+                            \mathcal B=\{(a,b):1\ge a\ge b\ge-1,\ 1+2a+2b\ge0,
+                            \ (1+4ab\ge0\ \text{or}\ 1+a+2b\ge0)\}.
+                            $$</div>
+                        <p class="deepdive-text">This is the constructively realizable benchmark associated with the
+                            classical Soules and Loewy–McDonald constructions
+                            <a class="text-link" href="#ref-mn">[MN00]</a>, <a class="text-link"
+                                href="#ref-lm">[LM04]</a>.
+                            We use its explicit geometry for the comparisons below; this article does not supply a
+                            necessity proof
+                            identifying $\mathcal B$ with the entire SNIEP slice.
+                        </p>
+                    </div>
+                    <p class="deepdive-text">Write</p>
+                    <div class="theory-formula">$$
+                        K_1=\left(\frac{\sqrt5-1}{4},-\frac{\sqrt5+1}{4}\right),\qquad
+                        K_2=\left(\frac{\sqrt3-1}{2},-\frac{\sqrt3+1}{4}\right).
+                        $$</div>
+                    <p class="deepdive-text">The lower boundary is the trace-zero segment
+                        $b=-1/2-a$ for $-1/4\le a\le K_{1,a}$, the hyperbolic arc
+                        $b=-1/(4a)$ for $K_{1,a}\le a\le K_{2,a}$, and the line
+                        $b=-(1+a)/2$ for $K_{2,a}\le a\le1$.
+                        The remaining boundary follows $b=a$ and $a=1$.</p>
+                    <p class="deepdive-text">Integrating the vertical width gives the exact area</p>
+                    <div class="theory-formula">$$
+                        \operatorname{Area}(\mathcal B)=
+                        \frac{22+\sqrt5-2\sqrt3}{16}
+                        +\frac14\log\!\left(\frac{2(\sqrt3-1)}{\sqrt5-1}\right)
+                        \approx 1.340574514.
+                        $$</div>
+                    <div class="math-callout definition">
+                        <p class="deepdive-text mb-0"><strong>What is being measured?</strong>
+                            Every percentage in the two-parameter discussion is ordinary area in the $(a,b)$
+                            coordinates, divided by $\operatorname{Area}(\mathcal B)$ above.
+                            Coverage of that benchmark is a statement about these constructions;
+                            identifying it with the entire SNIEP slice requires a separate necessity proof.</p>
+                    </div>
+
+                    <h3 class="subsection-title" id="orbits-5x5">2.2 Selected $5\times5$ Character-Table Pieces</h3>
+                    <p class="deepdive-text">There are $\binom42=6$ assignments of $(a,a,b,b)$ to the four nonidentity
+                        classes:
+                        $(a,a,b,b),(a,b,a,b),(a,b,b,a),(b,a,a,b),(b,a,b,a),(b,b,a,a)$.</p>
+                    <details class="blog-details">
+                        <summary>Character tables and the individual assignment pieces</summary>
+                        <h4 class="subsubsection-title">Dihedral and quaternion groups of order eight</h4>
+                        <p class="deepdive-text">The two groups have the same table, with class sizes $(1,1,2,2,2)$:</p>
+                        <div class="theory-formula">
+                            $$Q_{D_8} = \begin{pmatrix}
+                            1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+                            1 &amp; 1 &amp; 1 &amp; -1 &amp; -1 \\
+                            1 &amp; 1 &amp; -1 &amp; 1 &amp; -1 \\
+                            1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 \\
+                            2 &amp; -2 &amp; 0 &amp; 0 &amp; 0
+                            \end{pmatrix}, \qquad c = (1, 1, 2, 2, 2).$$
+                        </div>
+
+                        <p class="deepdive-text">Their six assignments give two pieces, each representing three
+                            assignments.
+                            When $x_2=a$, the active condition is $1+3a+4b\ge0$; the triangle has vertices
+                            $(-1/7,-1/7),(1,1),(1,-1)$ and area $8/7$.
+                            When $x_2=b$, the active conditions are $1+4a+3b\ge0$ and $1-4a+3b\ge0$;
+                            the triangle has vertices $(-1/7,-1/7),(0,-1/3),(1,1)$ and area $4/21$.
+                            Adding its two inequalities shows $b\ge-1/3$.</p>
+                        <h4 class="subsubsection-title">The symmetric and alternating groups</h4>
+                        <p class="deepdive-text">For $S_4$ use class sizes $(1,6,8,6,3)$; for $A_5$ use
+                            $(1,20,15,12,12)$:</p>
+                        <div class="theory-formula">
+                            $$Q_{S_4} = \begin{pmatrix}
+                            1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+                            1 &amp; -1 &amp; 1 &amp; -1 &amp; 1 \\
+                            2 &amp; 0 &amp; -1 &amp; 0 &amp; 2 \\
+                            3 &amp; 1 &amp; 0 &amp; -1 &amp; -1 \\
+                            3 &amp; -1 &amp; 0 &amp; 1 &amp; -1
+                            \end{pmatrix}, \qquad
+                            Q_{A_5} = \begin{pmatrix}
+                            1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+                            3 &amp; 0 &amp; -1 &amp; \phi &amp; 1-\phi \\
+                            3 &amp; 0 &amp; -1 &amp; 1-\phi &amp; \phi \\
+                            4 &amp; 1 &amp; 0 &amp; -1 &amp; -1 \\
+                            5 &amp; -1 &amp; 1 &amp; 0 &amp; 0
+                            \end{pmatrix}, \quad \phi = \frac{1+\sqrt{5}}{2}.$$
+                        </div>
+
+                        <p class="deepdive-text">Each produces four distinct pieces in this slice. The shared diagonal
+                            apices are
+                            $(-1/23,-1/23)$ and $(-1/59,-1/59)$, respectively.
+                            Both selected unions are contained in the first $D_8$ piece; the apex locations alone do not
+                            prove containment.
+                            The table below reports union areas, so overlapping pieces are counted once.</p>
+                    </details>
+
+                    <h4 class="subsubsection-title">The cyclic group $\mathbb Z_5$</h4>
+                    <p class="deepdive-text">The Fourier table $F_5=[\omega^{jk}]_{j,k=0}^4$,
+                        $\omega=e^{2\pi i/5}$, becomes real symmetric on the paired assignment $(1,a,b,b,a)$.
+                        With $\phi=(1+\sqrt5)/2$, the three nonnegativity tests are</p>
+                    <div class="theory-formula">$$
+                        1+2a+2b\ge0,\qquad
+                        1+\phi^{-1}a-\phi b\ge0,\qquad
+                        1-\phi a+\phi^{-1}b\ge0.
+                        $$</div>
+                    <p class="deepdive-text">The resulting triangle has vertices $(-1/4,-1/4),K_1,(1,1)$ and area
+                        $5\sqrt5/16\approx0.698771243$. It exactly follows the trace-zero segment down to $K_1$.</p>
+                    <div class="viz-panel">
+                        <div class="viz-panel-header">
+                            <div>
+                                <h3 class="viz-panel-title">Interactive 2D Character Cone Explorer: $\sigma = (1, a, a,
+                                    b, b)$</h3>
+                                <p class="viz-panel-subtitle">Click any group button to inspect its individual
+                                    polyhedral orbits, compare the Selected $5 \times 5$ Union ($96.42\%$) against
+                                    the Full Union with $V_4 \oplus [1]$ ($99.97\%$), or view the 6-panel grid below.
+                                </p>
+                            </div>
+                            <div class="viz-controls" id="group-gallery-tabs">
+                                <button type="button" class="viz-btn" data-mode="D8">$D_8 / Q_8$ (2
+                                    Orbits)</button>
+                                <button type="button" class="viz-btn" data-mode="S4">$S_4$ (4 Orbits)</button>
+                                <button type="button" class="viz-btn" data-mode="A5">$A_5$ (4 Orbits)</button>
+                                <button type="button" class="viz-btn" data-mode="Z5">$\mathbb{Z}_5$ Circulant</button>
+                                <button type="button" class="viz-btn" data-mode="IRRED">Selected union (96.42%)</button>
+                                <button type="button" class="viz-btn" data-mode="V4">$V_4 \oplus [1]$ Adjoined</button>
+                                <button type="button" class="viz-btn active" data-mode="ALL">With adjoined block
+                                    (99.97%)</button>
+                            </div>
+                        </div>
+                        <div id="plot-2d-gallery" class="plotly-box plot-h-md"></div>
+                    </div>
+
+
+                    <details class="blog-details">
+                        <summary>Optional six-panel comparison</summary>
+                        <div class="viz-panel">
+                            <div class="viz-panel-header">
+                                <div>
+                                    <h3 class="viz-panel-title">6-Panel Simultaneous Group Comparison Grid: $\sigma =
+                                        (1, a,
+                                        a, b, b)$</h3>
+                                    <p class="viz-panel-subtitle">Side-by-side comparison of the five selected
+                                        constructions
+                                        ($D_8$, $S_4$, $A_5$, $\mathbb{Z}_5$, $V_4 \oplus [1]$) and their $99.97\%$
+                                        polyhedral union.</p>
+                                </div>
+                            </div>
+                            <div id="plot-2d-6panel" class="plotly-box plot-h-lg"></div>
+                        </div>
+
+                    </details>
+
+                    <h3 class="subsection-title" id="missing-wedge">2.3 What the Adjoined Block Adds</h3>
+                    <p class="deepdive-text">Before adjoining a block, the selected union is $D_8\cup\mathbb Z_5$;
+                        the displayed $S_4,A_5$ pieces add no area. Its area is $1.292589478$, or $96.42\%$ of $\mathcal
+                        B$.
+                        It misses the small curved gap and a triangular wedge with vertices $P_*,Q_*,(1,-1)$.</p>
+                    <p class="deepdive-text">The golden-ratio facet meets $1+a+2b=0$ at $P_*$ and
+                        $1+3a+4b=0$ at $Q_*$:</p>
+                    <div class="theory-formula">$$
+                        P_*=\left(\frac{4\sqrt5-5}{11},-\frac{3+2\sqrt5}{11}\right)
+                        \approx(0.358570,-0.679285),\qquad
+                        Q_*=\left(\frac{16\sqrt5-11}{61},-\frac{7+12\sqrt5}{61}\right)
+                        \approx(0.406182,-0.554636).
+                        $$</div>
+                    <p class="deepdive-text">The wedge has area approximately $0.047611591$, or $3.55\%$ of the
+                        benchmark.</p>
+                    <div class="math-callout definition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The adjoined construction $H_4\oplus[1]$</h3>
+                        </div>
+                        <p class="deepdive-text">Take the Klein four-group table $H_4$ and adjoin a scalar eigenvalue
+                            $a$:</p>
+                        <div class="theory-formula">
+                            $$S_{4 \oplus 1} = H_4 \oplus [1] = \begin{pmatrix}
+                            1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+                            1 &amp; 1 &amp; -1 &amp; -1 &amp; 0 \\
+                            1 &amp; -1 &amp; 1 &amp; -1 &amp; 0 \\
+                            1 &amp; -1 &amp; -1 &amp; 1 &amp; 0 \\
+                            0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+                            \end{pmatrix}, \qquad \Lambda = \operatorname{diag}(1, a, b, b, a).$$
+                        </div>
+
+                        <p class="deepdive-text">The resulting matrix is $B\oplus[a]$, with spectrum $(1,a,a,b,b)$.
+                            Its nonnegativity conditions are</p>
+                        <div class="theory-formula">$$
+                            a\ge0,\qquad 1+a+2b\ge0,\qquad 1+a-2b\ge0,\qquad 1-a\ge0.
+                            $$</div>
+                        <p class="deepdive-text">In the ordered chamber this is the quadrilateral
+                            $(0,0),(1,1),(1,-1),(0,-1/2)$, of area $5/4$.
+                            It fills the triangular wedge. We use the notation $V_4\oplus[1]$ for this construction;
+                            $H_4\oplus[1]$ is a block diagonalizer, not a Perron similarity under the irreducibility
+                            definition above.</p>
+                    </div>
+                    <p class="deepdive-text">The condition supplies a reducible realization; the equation
+                        $1+a+2b=0$ alone does not force every realization to be reducible.
+                        For example, $(1,1/3,1/3,-2/3,-2/3)$ has a strictly positive symmetric circulant realization
+                        whose first row is</p>
+                    <div class="theory-formula">$$
+                        \frac1{15}(1,\ 2+3\phi,\ 5-3\phi,\ 5-3\phi,\ 2+3\phi).
+                        $$</div>
+                    <details class="blog-details">
+                        <summary>Compare the selected union before and after adjoining the block</summary>
+                        <div class="viz-panel">
+                            <div class="viz-panel-header">
+                                <div>
+                                    <h3 class="viz-panel-title">Union Without vs. With the Reducible Piece $V_4 \oplus
+                                        [1]$
+                                    </h3>
+                                    <p class="viz-panel-subtitle">Left: The union of the selected $5 \times 5$ character
+                                        tables ($D_8 \cup S_4 \cup A_5 \cup \mathbb{Z}_5$, $96.42\%$), highlighting the
+                                        missing $3.55\%$ triangular wedge $\triangle P_* Q_* (1,-1)$ along $1 + a + 2b =
+                                        0$.
+                                        Right: Adding the reducible block $V_4 \oplus [1]$ fills the wedge completely,
+                                        boosting coverage to $99.97\%$.</p>
+                                </div>
+                            </div>
+                            <div class="plot-grid-2">
+                                <div id="plot-2d-no-v4" class="plotly-box plot-h-sm"></div>
+                                <div id="plot-2d-with-v4" class="plotly-box plot-h-sm"></div>
+                            </div>
+                        </div>
+
+                    </details>
+
+                    <h3 class="subsection-title" id="loewy-mcdonald-arc">2.4 The Remaining Curved Gap</h3>
+                    <p class="deepdive-text">Once the adjoined block is present, the final selected union is already
+                        $\mathbb Z_5\cup(V_4\oplus[1])$. The $D_8/Q_8$, $S_4$, and $A_5$ pieces provide useful
+                        comparisons, but add no area once these two constructions are present: for $a\le0$ the $D_8$
+                        pieces lie in the $\mathbb Z_5$ triangle, and for $a\ge0$ they lie in the adjoined
+                        quadrilateral.</p>
+                    <div class="theory-formula">$$
+                        \operatorname{Area}\bigl(\mathbb Z_5\cup(V_4\oplus[1])\bigr)
+                        =\frac{256-9\sqrt5}{176}\approx1.340201069.
+                        $$</div>
+                    <p class="deepdive-text">The fraction covered is $99.97214\%$.
+                        The missing area is approximately $0.000373445$, or $0.027857\%$.
+                        It lies between the hyperbolic arc $K_1K_2$ and the two straight segments
+                        $K_1P_*$ and $P_*K_2$ shown in the figure below.</p>
+                    <div class="viz-panel">
+                        <div class="viz-panel-header">
+                            <div>
+                                <h3 class="viz-panel-title">Selected Union and Curved Gap on the $0.03\%$
+                                    Loewy–McDonald Hyperbolic Gap</h3>
+                                <p class="viz-panel-subtitle">Left: The ordered trace chamber and selected
+                                    constructions. Right:
+                                    Microscopic zoom into $a \in [0.295, 0.382]$ showing the Loewy–McDonald
+                                    hyperbola $1 + 4ab = 0$ bowing below $K_1 \to P_* \to K_2$.</p>
+                            </div>
+                        </div>
+                        <div class="plot-grid-2">
+                            <div id="plot-2d-hero" class="plotly-box plot-h-sm"></div>
+                            <div id="plot-2d-zoom" class="plotly-box plot-h-sm"></div>
+                        </div>
+                    </div>
+                    <p class="deepdive-text">A finite collection of fixed similarities gives a finite polyhedral union.
+                        It therefore cannot equal this benchmark, whose boundary includes a nontrivial hyperbolic arc.
+                        If a separate necessity theorem identifies the benchmark with the entire SNIEP slice,
+                        the same observation applies to that full slice.</p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <caption>Areas in the $(a,b)$ coordinates; all percentages use $\operatorname{Area}(\mathcal
+                                B)$.</caption>
+                            <thead>
+                                <tr>
+                                    <th>Region</th>
+                                    <th>Conditions or description inside the chamber</th>
+                                    <th>Area</th>
+                                    <th>% of benchmark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Loewy–McDonald benchmark</td>
+                                    <td>$1+2a+2b\ge0$ and $(1+4ab\ge0\ \text{or}\ 1+a+2b\ge0)$</td>
+                                    <td><code>1.340574514</code></td>
+                                    <td>100.00%</td>
+                                </tr>
+                                <tr>
+                                    <td>Full selected union</td>
+                                    <td>$\mathbb Z_5\cup(V_4\oplus[1])$</td>
+                                    <td><code>1.340201069</code></td>
+                                    <td>99.97%</td>
+                                </tr>
+                                <tr>
+                                    <td>Selected union without adjoined block</td>
+                                    <td>$D_8\cup\mathbb Z_5$ (also contains the selected $S_4,A_5$ pieces)</td>
+                                    <td><code>1.292589478</code></td>
+                                    <td>96.42%</td>
+                                </tr>
+                                <tr>
+                                    <td>$V_4\oplus[1]$</td>
+                                    <td>$a\ge0,\ 1+a+2b\ge0$</td>
+                                    <td><code>1.250000000</code></td>
+                                    <td>93.24%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8/Q_8$ union</td>
+                                    <td>Two assignment pieces</td>
+                                    <td><code>1.150476190</code></td>
+                                    <td>85.82%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8$ piece 1</td>
+                                    <td>$1+3a+4b\ge0$; exact area $8/7$</td>
+                                    <td><code>1.142857143</code></td>
+                                    <td>85.25%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8$ piece 2</td>
+                                    <td>$1+4a+3b\ge0,\ 1-4a+3b\ge0$; exact area $4/21$</td>
+                                    <td><code>0.190476190</code></td>
+                                    <td>14.21%</td>
+                                </tr>
+                                <tr>
+                                    <td>$S_4$ union</td>
+                                    <td>Four assignment pieces</td>
+                                    <td><code>1.049424006</code></td>
+                                    <td>78.28%</td>
+                                </tr>
+                                <tr>
+                                    <td>$\mathbb Z_5$</td>
+                                    <td>$1+2a+2b\ge0,\ 1-\phi a+\phi^{-1}b\ge0$</td>
+                                    <td><code>0.698771243</code></td>
+                                    <td>52.12%</td>
+                                </tr>
+                                <tr>
+                                    <td>$A_5$ union</td>
+                                    <td>Four assignment pieces</td>
+                                    <td><code>0.150889828</code></td>
+                                    <td>11.26%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="deepdive-text">Decimals are approximations. Areas refer to the stated chamber;
+                        axis padding is only a display setting.</p>
+                </section>
+
+                <!-- ================================================================
+                     PART III: THE THREE-PARAMETER REGION (1, a, a, b, c)
+                     ================================================================ -->
+                <section class="deepdive-section" id="frontier-3d">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">Part III: The Three-Parameter Slice $\sigma=(1,a,a,b,c)$</h2>
+                        <p class="deepdive-section-desc">Constructive inner approximations inside the ordered trace
+                            polytope.</p>
+                    </div>
+                    <h3 class="subsection-title" id="ambient-3d">3.1 The Ambient Trace Polytope</h3>
+                    <p class="deepdive-text">Split the second repeated pair and impose $1\ge a\ge b\ge c\ge-1$.
+                        The natural necessary container is</p>
+                    <div class="theory-formula">$$
+                        \Delta_3=\{(a,b,c):1\ge a\ge b\ge c\ge-1,\ 1+2a+b+c\ge0\}.
+                        $$</div>
+                    <p class="deepdive-text">It has five facets, six vertices, and volume $55/48\approx1.145833333$.
+                        Its three positive-trace sign vertices are $(1,1,1),(1,1,-1),(1,-1,-1)$.
+                        The other three vertices lie on the trace-zero face:</p>
+                    <div class="theory-formula">$$
+                        \left(-\frac14,-\frac14,-\frac14\right),\qquad (0,0,-1),\qquad
+                        \left(\frac12,-1,-1\right).
+                        $$</div>
+                    <p class="deepdive-text">The character constructions below certify realizability of their own
+                        regions;
+                        the ambient trace polytope is not itself a realizability criterion.</p>
+
+                    <h3 class="subsection-title" id="orbits-3d">3.2 The Three-Dimensional Assignment Pieces</h3>
+                    <p class="deepdive-text">There are $4!/2!=12$ assignments of $(a,a,b,c)$ to the nonidentity classes.
+                        They give three distinct $D_8/Q_8$ pieces, seven $S_4$ pieces, and seven $A_5$ pieces.
+                        These are intersections of spectratopes with the ordered slice, so all are convex polytopes.</p>
+                    <h4 class="subsubsection-title">The three $D_8/Q_8$ tetrahedra</h4>
+                    <p class="deepdive-text">The following inequalities are additional to those defining $\Delta_3$:</p>
+                    <div class="theory-formula">$$\begin{aligned}
+                        T_1\ (x_2=a):\quad &amp;1+3a+2b+2c\ge0,\qquad 1-a-2b+2c\ge0,\\
+                        T_2\ (x_2=b):\quad &amp;1+4a+b+2c\ge0,\qquad 1-4a+b+2c\ge0,\\
+                        T_3\ (x_2=c):\quad &amp;1+4a+2b+c\ge0,\quad 1-4a+2b+c\ge0,\quad 1-2b+c\ge0.
+                        \end{aligned}$$</div>
+                    <p class="deepdive-text">Set $E=(-1/7,-1/7,-1/7)$ and $O=(1,1,1)$.
+                        Each piece has four vertices:</p>
+                    <div class="theory-formula">$$\begin{aligned}
+                        T_1&amp;=\operatorname{conv}\{E,O,(1,-1,-1),(0,0,-1/2)\},\\
+                        T_2&amp;=\operatorname{conv}\{E,O,(0,-1/3,-1/3),(0,0,-1/2)\},\\
+                        T_3&amp;=\operatorname{conv}\{E,O,(0,-1/3,-1/3),(0,0,-1)\}.
+                        \end{aligned}$$</div>
+                    <p class="deepdive-text">Their volumes are $4/21$, $2/63$, and $4/63$, respectively.
+                        Since $T_2\subseteq T_3$ and $\operatorname{Vol}(T_1\cap T_3)=292/6825$,</p>
+                    <div class="theory-formula">$$
+                        \operatorname{Vol}(T_1\cup T_2\cup T_3)
+                        =\frac4{21}+\frac4{63}-\frac{292}{6825}
+                        =\frac{4324}{20475}\approx0.211184371.
+                        $$</div>
+                    <h4 class="subsubsection-title">Containment of the selected $S_4$ and $A_5$ pieces</h4>
+                    <p class="deepdive-text">All seven $S_4$ pieces lie inside $T_1$.
+                        The selected $A_5$ pieces are contained in $T_1$ as well.
+                        Their union volumes are approximately $0.163113364$ and $0.022785841$.
+                        These groups illustrate different eigenvector choices, but contribute no additional volume to
+                        the selected nonabelian union.</p>
+                    <details class="blog-details">
+                        <summary>An exact vertex certificate for the $S_4$ containment</summary>
+                        <p class="deepdive-text">The first column below records $(x_2,x_3,x_4,x_5)$.
+                            The last two columns give the minimum values, over the listed vertices, of
+                            $1+3a+2b+2c$ and $1-a-2b+2c$.
+                            Every minimum is nonnegative; linearity and convexity prove containment in $T_1$.</p>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Assignment</th>
+                                        <th>Vertices</th>
+                                        <th>First minimum</th>
+                                        <th>Second minimum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>$(a,a,b,c)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad (0,0,\frac{-1}{3}),\quad
+                                            (\frac{1}{13},\frac{-3}{13},\frac{-3}{13}),\quad (1,1,1)$</td>
+                                        <td>$\frac{4}{13}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(a,a,c,b)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad
+                                            (\frac{1}{13},\frac{-3}{13},\frac{-3}{13}),\quad
+                                            (\frac{1}{13},\frac{1}{13},\frac{-5}{13}),\quad
+                                            (\frac{1}{7},\frac{-1}{7},\frac{-3}{7}),\quad (1,1,1)$</td>
+                                        <td>$\frac{2}{7}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(a,b,a,c)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad
+                                            (0,\frac{-1}{11},\frac{-1}{11}),\quad (0,0,\frac{-1}{3}),\quad (1,1,1)$</td>
+                                        <td>$\frac{1}{3}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(a,b,c,a)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad
+                                            (\frac{1}{13},\frac{1}{13},\frac{-5}{13}),\quad
+                                            (\frac{1}{5},\frac{-1}{5},\frac{-1}{5}),\quad (1,1,1)$</td>
+                                        <td>$\frac{8}{13}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(a,c,a,b)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad
+                                            (0,\frac{-1}{11},\frac{-1}{11}),\quad (0,0,\frac{-1}{8}),\quad (1,1,1)$</td>
+                                        <td>$\frac{7}{11}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(a,c,b,a)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad (0,0,\frac{-1}{8}),\quad
+                                            (\frac{1}{5},\frac{-1}{5},\frac{-1}{5}),\quad (1,1,1)$</td>
+                                        <td>$\frac{16}{23}$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$(b,a,c,a)$</td>
+                                        <td>$(\frac{-1}{23},\frac{-1}{23},\frac{-1}{23}),\quad
+                                            (\frac{1}{13},\frac{1}{13},\frac{-5}{13}),\quad (1,-1,-1),\quad (1,1,1)$
+                                        </td>
+                                        <td>$0$</td>
+                                        <td>$0$</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </details>
+
+                    <h4 class="subsubsection-title">The adjoined $V_4\oplus[1]$ polytope</h4>
+                    <p class="deepdive-text">Apply $H_4$ to $(1,a,b,c)$ and adjoin $[a]$.
+                        Inside $\Delta_3$ the active conditions are</p>
+                    <div class="theory-formula">$$
+                        a\ge0,\qquad 1+a+b+c\ge0,\qquad \boxed{1-a-b+c\ge0}.
+                        $$</div>
+                    <p class="deepdive-text">The other two $H_4$ inequalities are redundant here.
+                        The five vertices are $(0,-1/2,-1/2),(0,0,-1),(0,0,0),(1,-1,-1),(1,1,1)$.
+                        Its volume is $5/12$, or $4/11\approx36.36\%$ of $\Delta_3$.
+                        Dropping the final inequality would give a different, larger region.</p>
+                    <h4 class="subsubsection-title">Why $\mathbb Z_5$ has zero three-dimensional volume</h4>
+                    <p class="deepdive-text">A real symmetric circulant has equal eigenvalues on each conjugate
+                        frequency pair.
+                        For the spectrum $(1,a,a,b,c)$ this forces $b=c$.
+                        Thus the Fourier construction occupies a two-dimensional triangle on that wall,
+                        with vertices $(-1/4,-1/4,-1/4)$, $(K_{1,a},K_{1,b},K_{1,b})$, and $(1,1,1)$.
+                        Adding it changes the set but does not change its three-dimensional volume.</p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <caption>Three-dimensional volumes in $(a,b,c)$ coordinates. Percentages use $55/48$, not
+                                the unknown full realizable volume.</caption>
+                            <thead>
+                                <tr>
+                                    <th>Region</th>
+                                    <th>Conditions or description</th>
+                                    <th>Vertices</th>
+                                    <th>Volume</th>
+                                    <th>% of $\Delta_3$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Trace polytope $\Delta_3$</td>
+                                    <td>$1\ge a\ge b\ge c\ge-1,\ 1+2a+b+c\ge0$</td>
+                                    <td>6</td>
+                                    <td><code>1.145833333</code></td>
+                                    <td>100.00%</td>
+                                </tr>
+                                <tr>
+                                    <td>Adjoined $V_4\oplus[1]$</td>
+                                    <td>$a\ge0,\ 1+a+b+c\ge0,\ 1-a-b+c\ge0$</td>
+                                    <td>5</td>
+                                    <td><code>0.416666667</code></td>
+                                    <td>36.36%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8/Q_8$ union</td>
+                                    <td>$T_1\cup T_2\cup T_3=T_1\cup T_3$</td>
+                                    <td>—</td>
+                                    <td><code>0.211184371</code></td>
+                                    <td>18.43%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8$ piece $T_1$</td>
+                                    <td>Exact volume $\frac{4}{21}$</td>
+                                    <td>4</td>
+                                    <td><code>0.190476190</code></td>
+                                    <td>16.62%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8$ piece $T_2$</td>
+                                    <td>Exact volume $\frac{2}{63}$</td>
+                                    <td>4</td>
+                                    <td><code>0.031746032</code></td>
+                                    <td>2.77%</td>
+                                </tr>
+                                <tr>
+                                    <td>$D_8$ piece $T_3$</td>
+                                    <td>Exact volume $\frac{4}{63}$</td>
+                                    <td>4</td>
+                                    <td><code>0.063492063</code></td>
+                                    <td>5.54%</td>
+                                </tr>
+                                <tr>
+                                    <td>$S_4$ union</td>
+                                    <td>Seven assignment pieces, contained in $T_1$</td>
+                                    <td>4–5 per piece</td>
+                                    <td><code>0.163113364</code></td>
+                                    <td>14.24%</td>
+                                </tr>
+                                <tr>
+                                    <td>$A_5$ union</td>
+                                    <td>Seven assignment pieces, contained in $T_1$</td>
+                                    <td>4–5 per piece</td>
+                                    <td><code>0.022785841</code></td>
+                                    <td>1.99%</td>
+                                </tr>
+                                <tr>
+                                    <td>$\mathbb Z_5$ lamina</td>
+                                    <td>Located on $b=c$; area is two-dimensional</td>
+                                    <td>3 (2D)</td>
+                                    <td><code>0.000000000</code></td>
+                                    <td>0.00%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="subsection-title" id="explorer-3d">3.3 Interactive Three-Dimensional Explorer</h3>
+                    <p class="deepdive-text">Select a group to inspect its assignment pieces against the ambient
+                        polytope.
+                        The surfaces below use the same character-table inequalities as the cross-sections.</p>
+                    <div class="viz-panel">
+                        <div class="viz-panel-header">
+                            <div>
+                                <h3 class="viz-panel-title">Character-table pieces inside $\Delta_3$</h3>
+                                <p class="viz-panel-subtitle">Drag to rotate. Hover for coordinates; use the legend to
+                                    hide individual pieces.</p>
+                            </div>
+                            <div class="viz-controls">
+                                <label for="group-3d-select">Construction</label>
+                                <select id="group-3d-select" class="viz-btn">
+                                    <option value="D8">D₈ / Q₈</option>
+                                    <option value="S4">S₄</option>
+                                    <option value="A5">A₅</option>
+                                    <option value="V4">V₄ ⊕ [1]</option>
+                                    <option value="Z5">Z₅ lamina (b = c)</option>
+                                    <option value="ALL">All selected pieces</option>
+                                </select>
+                                <button type="button" class="viz-btn" data-camera="default">Reset camera</button>
+                                <button type="button" class="viz-btn" data-camera="trace">Trace-zero view</button>
+                                <button type="button" class="viz-btn" data-camera="wall">b = c view</button>
+                            </div>
+                        </div>
+                        <div id="plot-3d-inline" class="plotly-box plot-h-lg" role="img"
+                            aria-label="Interactive three-dimensional character-table polytopes in eigenvalue coordinates a, b, c">
+                        </div>
+                    </div>
+                    <details class="blog-details" id="dashboard-3d-details">
+                        <summary>Optional 2 × 2 group dashboard</summary>
+                        <div id="plot-3d-dashboard" class="plotly-box plot-h-xl" role="img"
+                            aria-label="Four-panel comparison of D8, S4, A5 and the adjoined block"></div>
+                    </details>
+
+                    <h3 class="subsection-title" id="cross-sections">3.4 Cross-Sections and the $b=c$ Wall</h3>
+                    <p class="deepdive-text">At fixed $a$, slice the triangle $a\ge b\ge c\ge-1$ by
+                        $b+c\ge-1-2a$. The slider spans $-1/4\le a\le1$.
+                        The companion plot shows where the slice meets the repeated-pair wall $b=c$.</p>
+                    <div class="viz-panel">
+                        <div class="viz-panel-header">
+                            <div>
+                                <h3 class="viz-panel-title">Live Interactive Cross-Section Explorer: $(b, c)$-Plane at
+                                    Fixed $a$</h3>
+                                <p class="viz-panel-subtitle">Drag the slider or click a preset value of $a$ to sweep
+                                    the slicing plane through $\Delta_3$ and watch the character cones ignite and merge.
+                                </p>
+                            </div>
+                            <div class="viz-controls" id="slice-presets">
+                                <button type="button" class="viz-btn" data-a="-0.15">$a = -0.15$</button>
+                                <button type="button" class="viz-btn" data-a="0.00">$a = 0.00$</button>
+                                <button type="button" class="viz-btn active" data-a="0.25">$a = 0.25$</button>
+                                <button type="button" class="viz-btn" data-a="0.50">$a = 0.50$</button>
+                                <button type="button" class="viz-btn" data-a="0.75">$a = 0.75$</button>
+                            </div>
+                        </div>
+                        <div class="slider-bar">
+                            <label id="slice-a-label" for="slice-a-slider">a = +0.250</label>
+                            <input type="range" id="slice-a-slider" min="-0.25" max="1" step="0.005" value="0.25">
+                        </div>
+                        <div class="plot-grid-2">
+                            <div id="plot-slice-live" class="plotly-box plot-h-sm"></div>
+                            <div id="plot-diagonal-check" class="plotly-box plot-h-sm"></div>
+                        </div>
+                    </div>
+
+
+                    <details class="blog-details">
+                        <summary>Optional six-panel cross-section comparison</summary>
+                        <div class="viz-panel">
+                            <div class="viz-panel-header">
+                                <div>
+                                    <h3 class="viz-panel-title">6-Panel Cross-Sectional Tomography Grid across $a \in
+                                        \{-0.15, 0.00, 0.20, 0.40, 0.60, 0.80\}$</h3>
+                                    <p class="viz-panel-subtitle">Compare six fixed-$a$ cross-sections simultaneously
+                                        from
+                                        the negative-$a$ regime ($a = -0.15$, before $D_8$ ignites) up to $a = 0.80$.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="plot-slice-6panel" class="plotly-box plot-h-lg"></div>
+                        </div>
+
+                    </details>
+                    <ul class="blog-list">
+                        <li><strong>Negative $a$:</strong> the selected nonabelian pieces begin at
+                            $a=-1/7$ for $D_8$, $a=-1/23$ for $S_4$, and $a=-1/59$ for $A_5$.
+                            Their absence below those thresholds reflects the limitations of these fixed similarities.
+                            In fact, the whole $a\le0$ part of $\Delta_3$ is already symmetrically realizable by the
+                            Suleĭmanova theorem: there is at most one positive eigenvalue and the trace is nonnegative
+                            <a class="text-link" href="#ref-glp">[GLP26, §1]</a>.
+                        </li>
+                        <li><strong>The adjoined block at $a=0$:</strong> it covers the triangle
+                            $0\ge b\ge c\ge-1$, $b+c\ge-1$, with vertices $(0,0),(0,-1),(-1/2,-1/2)$ in $(b,c)$
+                            coordinates.</li>
+                        <li><strong>Containment persists in each slice:</strong> every $S_4$ cross-section lies inside
+                            the
+                            first $D_8$ cross-section. Overlapping translucent fills should not be interpreted as new
+                            spectral coverage.</li>
+                    </ul>
+                    <p class="deepdive-text">The meshes and clipped polygons are numerical visualizations of the
+                        displayed
+                        halfspaces. The reported areas and volumes are computed separately from the corresponding
+                        polytopes
+                        or analytic boundary formulas; sampled hyperbola points are used only for drawing.</p>
+                </section>
+
+                <!-- ================================================================
+                     REFERENCES
+                     ================================================================ -->
+                <section class="deepdive-section" id="references">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">References</h2>
+                    </div>
+                    <ol class="blog-list reference-list">
+                        <li id="ref-glp"><strong>[GLP26]</strong> D. Z. Gershnik, A. J. Lewis, and P. Paparella,
+                            <em>Character tables are ideal Perron similarities</em>, Journal of Algebra 694 (2026),
+                            782–800.
+                            <a href="https://doi.org/10.1016/j.jalgebra.2026.02.004">Published paper</a>;
+                            <a href="https://arxiv.org/html/2508.02830v2">arXiv version 2</a>.
+                            The character inequalities are Theorem 4.3.
+                        </li>
+                        <li id="ref-jp2016"><strong>[JP16]</strong> C. R. Johnson and P. Paparella,
+                            <em>Perron spectratopes and the real nonnegative inverse eigenvalue problem</em>,
+                            Linear Algebra and its Applications 493 (2016), 281–300.
+                            <a href="https://arxiv.org/abs/1508.07400">Preprint</a>.
+                        </li>
+                        <li id="ref-jp2025"><strong>[JP25]</strong> C. R. Johnson and P. Paparella,
+                            <em>Perron similarities and the nonnegative inverse eigenvalue problem</em>,
+                            Transactions of the American Mathematical Society 378 (2025), 8361–8389.
+                            <a href="https://doi.org/10.1090/tran/9596">Published paper</a>;
+                            <a href="https://arxiv.org/abs/2409.07682">Preprint</a>.
+                        </li>
+                        <li id="ref-mn"><strong>[MN00]</strong> J. J. McDonald and M. Neumann,
+                            <em>The Soules approach to the inverse eigenvalue problem for nonnegative symmetric matrices
+                                of order $n\le5$</em>,
+                            Contemporary Mathematics 259 (2000), 387–390.
+                            <a href="https://math.wsu.edu/faculty/wsu-profile/jmcdonald1/">Author’s publication
+                                list</a>.
+                        </li>
+                        <li id="ref-lm"><strong>[LM04]</strong> R. Loewy and J. J. McDonald,
+                            <em>The symmetric nonnegative inverse eigenvalue problem for $5\times5$ matrices</em>,
+                            Linear Algebra and its Applications 393 (2004), 275–298.
+                            <a href="https://doi.org/10.1016/j.laa.2003.10.018">Published paper</a>.
+                        </li>
+                        <li id="ref-d14"><strong>[D14]</strong> GroupNames, character table of the dihedral group of
+                            order $14$
+                            (labelled $D_7$ in the convention used by that database).
+                            <a href="https://people.maths.bris.ac.uk/~matyd/GroupNames/1/D7.html">Character table and
+                                class sizes</a>.
+                        </li>
+                    </ol>
+                </section>
+
+            </article>
+        </div>
+
+        <!-- Return to Blog & Hub -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to All Blog Posts</span>
+            </a>
+            <a href="index.html" class="tool-launch-btn secondary inline">
+                <span>Return to NIEP Research Hub</span>
+            </a>
+        </div>
+    </main>
+
+    <hub-footer></hub-footer>
+
+    <!-- Client-Side Exact Polyhedral Geometry & Interactive Plotly Renderer -->
+    <script>
+        (function () {
+            "use strict";
+            const DATA = { "groups": { "D8": { "c": [1, 1, 2, 2, 2], "Q": [[1, 1, 1, 1, 1], [1, 1, 1, -1, -1], [1, 1, -1, 1, -1], [1, 1, -1, -1, 1], [2, -2, 0, 0, 0]] }, "S4": { "c": [1, 6, 8, 6, 3], "Q": [[1, 1, 1, 1, 1], [1, -1, 1, -1, 1], [2, 0, -1, 0, 2], [3, 1, 0, -1, -1], [3, -1, 0, 1, -1]] }, "A5": { "c": [1, 20, 15, 12, 12], "Q": [[1, 1, 1, 1, 1], [3, 0, -1, 1.618033988749895, -0.6180339887498949], [3, 0, -1, -0.6180339887498949, 1.618033988749895], [4, 1, 0, -1, -1], [5, -1, 1, 0, 0]] } }, "stats": { "benchmark": 1.3405745143669192, "full": 1.3402010693323971, "gap": 0.00037344503452207967, "noV4": 1.292589478378575, "wedge": 0.04761159095382217, "trace2D": 1.4375, "trace3D": 1.1458333333333333, "areas": { "D8": 1.1504761904761904, "S4": 1.049424005945745, "A5": 0.1508898283214118, "Z5": 0.6987712429686843, "V4": 1.25 }, "volumes": { "D8": 0.2111843711843712, "S4": 0.1631133639529441, "A5": 0.022785841065647437, "V4": 0.4166666666666667 } }, "orbits3D": { "D8": [{ "vertices": [[-0.14285714285714282, -0.14285714285714285, -0.14285714285714288], [0.0, 0.0, -0.49999999999999994], [1.0, -1.0, -1.0], [1.0, 1.0, 1.0]], "volume": 0.19047619047619047, "faces": [[3, 2, 0], [1, 2, 0], [1, 3, 0], [1, 3, 2]], "edges": [[2, 3], [0, 3], [0, 2], [1, 2], [0, 1], [1, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [3.0, 2.0, 2.0, 1.0], [3.0, -2.0, -2.0, 1.0], [-1.0, 2.0, -2.0, 1.0], [-1.0, -2.0, 2.0, 1.0], [-2.0, 0.0, 0.0, 2.0]], "assignment": [0, 0, 1, 2], "count": 6 }, { "vertices": [[-0.14285714285714285, -0.14285714285714285, -0.14285714285714288], [0.0, -0.33333333333333337, -0.3333333333333333], [0.0, 0.0, -0.5], [1.0, 1.0, 1.0]], "volume": 0.031746031746031744, "faces": [[1, 3, 0], [2, 3, 0], [2, 1, 0], [2, 1, 3]], "edges": [[1, 3], [0, 1], [0, 3], [2, 3], [0, 2], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [4.0, 1.0, 2.0, 1.0], [0.0, 1.0, -2.0, 1.0], [0.0, 1.0, -2.0, 1.0], [-4.0, 1.0, 2.0, 1.0], [0.0, -2.0, 0.0, 2.0]], "assignment": [1, 0, 0, 2], "count": 3 }, { "vertices": [[-0.14285714285714285, -0.14285714285714288, -0.14285714285714285], [0.0, -0.33333333333333337, -0.3333333333333333], [0.0, 0.0, -1.0], [1.0, 1.0, 1.0]], "volume": 0.06349206349206349, "faces": [[1, 3, 0], [2, 3, 0], [2, 1, 0], [2, 1, 3]], "edges": [[1, 3], [0, 1], [0, 3], [2, 3], [0, 2], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [4.0, 2.0, 1.0, 1.0], [0.0, -2.0, 1.0, 1.0], [0.0, -2.0, 1.0, 1.0], [-4.0, 2.0, 1.0, 1.0], [0.0, 0.0, -2.0, 2.0]], "assignment": [2, 0, 0, 1], "count": 3 }], "S4": [{ "vertices": [[-0.04347826086956522, -0.043478260869565216, -0.043478260869565216], [0.0, 0.0, -0.3333333333333333], [0.07692307692307689, -0.23076923076923067, -0.23076923076923078], [1.0, 1.0, 1.0]], "volume": 0.017837235228539562, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [14.0, 6.0, 3.0, 1.0], [2.0, -6.0, 3.0, 1.0], [-8.0, 0.0, 6.0, 2.0], [6.0, -6.0, -3.0, 3.0], [-6.0, 6.0, -3.0, 3.0]], "assignment": [0, 0, 1, 2], "count": 2 }, { "vertices": [[-0.04347826086956521, -0.043478260869565216, -0.043478260869565216], [0.0769230769230769, -0.23076923076923075, -0.23076923076923073], [0.07692307692307689, 0.07692307692307704, -0.3846153846153846], [0.14285714285714285, -0.14285714285714282, -0.4285714285714286], [1.0, 1.0, 1.0]], "volume": 0.03822264691829911, "faces": [[1, 4, 0], [3, 1, 4], [2, 4, 0], [2, 3, 4], [2, 3, 1], [2, 1, 0]], "edges": [[1, 4], [0, 1], [0, 4], [1, 3], [3, 4], [2, 4], [0, 2], [2, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [14.0, 3.0, 6.0, 1.0], [2.0, 3.0, -6.0, 1.0], [-8.0, 6.0, 0.0, 2.0], [6.0, -3.0, -6.0, 3.0], [-6.0, -3.0, 6.0, 3.0]], "assignment": [0, 0, 2, 1], "count": 2 }, { "vertices": [[-0.043478260869565216, -0.043478260869565216, -0.04347826086956522], [0.0, -0.09090909090909091, -0.09090909090909091], [0.0, 0.0, -0.33333333333333337], [1.0, 1.0, 1.0]], "volume": 0.005270092226613965, "faces": [[1, 3, 0], [2, 3, 0], [2, 1, 0], [2, 1, 3]], "edges": [[1, 3], [0, 1], [0, 3], [2, 3], [0, 2], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [12.0, 8.0, 3.0, 1.0], [-12.0, 8.0, 3.0, 1.0], [0.0, -8.0, 6.0, 2.0], [0.0, 0.0, -3.0, 3.0], [0.0, 0.0, -3.0, 3.0]], "assignment": [0, 1, 0, 2], "count": 1 }, { "vertices": [[-0.043478260869565216, -0.043478260869565216, -0.043478260869565216], [0.07692307692307694, 0.07692307692307687, -0.3846153846153846], [0.20000000000000004, -0.2, -0.2], [1.0, 1.0, 1.0]], "volume": 0.03210702341137123, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [9.0, 8.0, 6.0, 1.0], [-3.0, 8.0, -6.0, 1.0], [6.0, -8.0, 0.0, 2.0], [3.0, 0.0, -6.0, 3.0], [-9.0, 0.0, 6.0, 3.0]], "assignment": [0, 1, 2, 0], "count": 2 }, { "vertices": [[-0.043478260869565216, -0.04347826086956521, -0.04347826086956522], [0.0, -0.0909090909090909, -0.09090909090909091], [0.0, 0.0, -0.125], [1.0, 1.0, 1.0]], "volume": 0.001976284584980238, "faces": [[1, 3, 0], [2, 3, 0], [2, 1, 0], [2, 1, 3]], "edges": [[1, 3], [0, 1], [0, 3], [2, 3], [0, 2], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [12.0, 3.0, 8.0, 1.0], [-12.0, 3.0, 8.0, 1.0], [0.0, 6.0, -8.0, 2.0], [0.0, -3.0, 0.0, 3.0], [0.0, -3.0, 0.0, 3.0]], "assignment": [0, 2, 0, 1], "count": 1 }, { "vertices": [[-0.043478260869565216, -0.043478260869565216, -0.04347826086956522], [0.0, 0.0, -0.125], [0.20000000000000004, -0.2, -0.2], [1.0, 1.0, 1.0]], "volume": 0.008695652173913042, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [9.0, 6.0, 8.0, 1.0], [-3.0, -6.0, 8.0, 1.0], [6.0, 0.0, -8.0, 2.0], [3.0, -6.0, 0.0, 3.0], [-9.0, 6.0, 0.0, 3.0]], "assignment": [0, 2, 1, 0], "count": 2 }, { "vertices": [[-0.043478260869565216, -0.043478260869565216, -0.043478260869565216], [0.07692307692307701, 0.0769230769230768, -0.38461538461538464], [1.0, -1.0, -1.0], [1.0, 1.0, 1.0]], "volume": 0.16053511705685616, "faces": [[3, 2, 0], [1, 2, 0], [1, 3, 0], [1, 3, 2]], "edges": [[2, 3], [0, 3], [0, 2], [1, 2], [0, 1], [1, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [11.0, 6.0, 6.0, 1.0], [11.0, -6.0, -6.0, 1.0], [-2.0, 0.0, 0.0, 2.0], [-3.0, 6.0, -6.0, 3.0], [-3.0, -6.0, 6.0, 3.0]], "assignment": [1, 0, 2, 0], "count": 2 }], "A5": [{ "vertices": [[-0.01694915254237288, -0.016949152542372878, -0.01694915254237288], [0.0140352406600853, 0.0140352406600853, -0.1383046925853341], [0.07692307692307691, -0.15384615384615385, -0.15384615384615383], [1.0, 1.0, 1.0]], "volume": 0.005958537154318884, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [35.0, 12.0, 12.0, 1.0], [-15.0, 19.41640786499874, -7.416407864998739, 3.0], [-15.0, -7.416407864998739, 19.41640786499874, 3.0], [20.0, -12.0, -12.0, 4.0], [-5.0, 0.0, 0.0, 5.0]], "assignment": [0, 0, 1, 2], "count": 2 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.014035240660085317, 0.014035240660085288, -0.13830469258533412], [0.11764705882352942, -0.17647058823529413, -0.17647058823529413], [0.12973190755680383, -0.1603574565909282, -0.22883826607948332], [1.0, 1.0, 1.0]], "volume": 0.010904001512699836, "faces": [[2, 4, 0], [3, 2, 4], [1, 4, 0], [1, 3, 4], [1, 3, 2], [1, 2, 0]], "edges": [[2, 4], [0, 2], [0, 4], [2, 3], [3, 4], [1, 4], [0, 1], [1, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [32.0, 15.0, 12.0, 1.0], [19.41640786499874, -15.0, -7.416407864998739, 3.0], [-7.416407864998739, -15.0, 19.41640786499874, 3.0], [8.0, 0.0, -12.0, 4.0], [-20.0, 15.0, 0.0, 5.0]], "assignment": [0, 1, 0, 2], "count": 2 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.0625, 0.0625, -0.25], [0.1176470588235294, -0.17647058823529407, -0.17647058823529413], [1.0, 1.0, 1.0]], "volume": 0.015578265204386838, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [32.0, 12.0, 15.0, 1.0], [19.41640786499874, -7.416407864998739, -15.0, 3.0], [-7.416407864998739, 19.41640786499874, -15.0, 3.0], [8.0, -12.0, 0.0, 4.0], [-20.0, 0.0, 15.0, 5.0]], "assignment": [0, 2, 0, 1], "count": 2 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.014035240660085291, 0.01403524066008533, -0.13830469258533412], [0.06168295911713057, -0.08329499675507891, -0.08329499675507893], [1.0, 1.0, 1.0]], "volume": 0.003743378325360975, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [27.0, 20.0, 12.0, 1.0], [4.416407864998739, 0.0, -7.416407864998739, 3.0], [-22.41640786499874, 0.0, 19.41640786499874, 3.0], [-12.0, 20.0, -12.0, 4.0], [15.0, -20.0, 0.0, 5.0]], "assignment": [1, 0, 0, 2], "count": 2 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.0625, 0.0625, -0.25], [0.0909090909090909, -0.09090909090909091, -0.09090909090909091], [0.16666666666666666, 0.0, -0.3333333333333333], [1.0, 1.0, 1.0]], "volume": 0.019099897277863383, "faces": [[2, 4, 0], [3, 2, 4], [1, 4, 0], [1, 3, 4], [1, 3, 2], [1, 2, 0]], "edges": [[2, 4], [0, 2], [0, 4], [2, 3], [3, 4], [1, 4], [0, 1], [1, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [24.0, 20.0, 15.0, 1.0], [12.0, 0.0, -15.0, 3.0], [12.0, 0.0, -15.0, 3.0], [-24.0, 20.0, 0.0, 4.0], [0.0, -20.0, 15.0, 5.0]], "assignment": [1, 2, 0, 0], "count": 1 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.047619047619047665, 0.047619047619047554, -0.14285714285714288], [0.06168295911713058, -0.08329499675507893, -0.08329499675507893], [0.10056040392403999, -0.03841065637656498, -0.162710151471515], [1.0, 1.0, 1.0]], "volume": 0.007540909299544028, "faces": [[2, 4, 0], [3, 2, 4], [1, 4, 0], [1, 3, 4], [1, 3, 2], [1, 2, 0]], "edges": [[2, 4], [0, 2], [0, 4], [2, 3], [3, 4], [1, 4], [0, 1], [1, 3]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [27.0, 12.0, 20.0, 1.0], [4.416407864998739, -7.416407864998739, 0.0, 3.0], [-22.41640786499874, 19.41640786499874, 0.0, 3.0], [-12.0, -12.0, 20.0, 4.0], [15.0, 0.0, -20.0, 5.0]], "assignment": [2, 0, 0, 1], "count": 2 }, { "vertices": [[-0.01694915254237288, -0.01694915254237288, -0.01694915254237288], [0.04761904761904762, 0.047619047619047596, -0.14285714285714285], [0.0909090909090909, -0.0909090909090909, -0.09090909090909091], [1.0, 1.0, 1.0]], "volume": 0.0058698363783109535, "faces": [[2, 3, 0], [1, 3, 0], [1, 2, 0], [1, 2, 3]], "edges": [[2, 3], [0, 2], [0, 3], [1, 3], [0, 1], [1, 2]], "H": [[-1.0, 0.0, 0.0, 1.0], [1.0, -1.0, 0.0, 0.0], [0.0, 1.0, -1.0, 0.0], [0.0, 0.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [24.0, 15.0, 20.0, 1.0], [12.0, -15.0, 0.0, 3.0], [12.0, -15.0, 0.0, 3.0], [-24.0, 0.0, 20.0, 4.0], [0.0, 15.0, -20.0, 5.0]], "assignment": [2, 1, 0, 0], "count": 1 }] }, "ambient3D": { "vertices": [[-0.25, -0.25, -0.25], [0.0, 0.0, -1.0], [0.5, -1.0, -1.0], [1.0, -1.0, -1.0], [1.0, 1.0, -1.0], [1.0, 1.0, 1.0]], "volume": 1.1458333333333333, "faces": [[5, 4, 3], [2, 1, 0], [1, 5, 4], [1, 5, 0], [2, 5, 0], [2, 5, 3], [2, 1, 4], [2, 4, 3]], "edges": [[4, 5], [3, 5], [3, 4], [1, 2], [0, 2], [0, 1], [1, 4], [0, 5], [2, 3]] }, "v4_3D": { "vertices": [[0.0, -0.5, -0.5], [0.0, 0.0, -1.0], [0.0, 0.0, 0.0], [1.0, -1.0, -1.0], [1.0, 1.0, 1.0]], "volume": 0.41666666666666663, "faces": [[1, 3, 0], [1, 4, 3], [2, 1, 0], [2, 1, 4], [2, 4, 3], [2, 3, 0]], "edges": [[1, 3], [0, 1], [0, 3], [1, 4], [3, 4], [1, 2], [0, 2], [2, 4]] }, "points": { "K1": [0.30901699437494745, -0.8090169943749475], "K2": [0.3660254037844386, -0.6830127018922193], "P": [0.3585701736362872, -0.6792850868181436], "Q": [0.4061817645901088, -0.5546363234425816] } };
+            const STATS = DATA.stats;
+            const areaPercent = value => (100 * value / STATS.benchmark).toFixed(2);
+            const pointLabel = (label, a, b) => `${label} (${a.toFixed(4)}, ${b.toFixed(4)})`;
+            const PHI = (1 + Math.sqrt(5)) / 2;
+            const INV_PHI = PHI - 1;
+            const K1_A = (Math.sqrt(5) - 1) / 4;
+            const K1_B = -(Math.sqrt(5) + 1) / 4;
+            const K2_A = (Math.sqrt(3) - 1) / 2;
+            const K2_B = -(Math.sqrt(3) + 1) / 4;
+
+
+            function canonicalPolygon(poly) {
+                const eps = 1e-10;
+                const same = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]) < eps;
+                const p = [];
+                for (const v of poly || []) if (!p.length || !same(v, p[p.length - 1])) p.push(v);
+                if (p.length > 1 && same(p[0], p[p.length - 1])) p.pop();
+                let changed = true;
+                while (changed && p.length > 2) {
+                    changed = false;
+                    for (let i = 0; i < p.length; i++) {
+                        const a = p[(i + p.length - 1) % p.length], b = p[i], c = p[(i + 1) % p.length];
+                        const cross = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+                        const scale = 1 + Math.hypot(b[0] - a[0], b[1] - a[1]) * Math.hypot(c[0] - b[0], c[1] - b[1]);
+                        if (Math.abs(cross) <= eps * scale) { p.splice(i, 1); changed = true; break; }
+                    }
+                }
+                return p;
+            }
+
+            function polygonKey(poly) {
+                return canonicalPolygon(poly).map(p => p.map(v => Math.abs(v) < 5e-10 ? 0 : Number(v.toFixed(9))))
+                    .sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(p => p.join(',')).join(';');
+            }
+
+            // Sutherland-Hodgman 2D half-plane clipper: keeps points (x, y) where nx*x + ny*y + c >= 0
+            function clipPolygon(poly, nx, ny, c) {
+                if (!poly || poly.length === 0) return [];
+                const out = [];
+                const eps = 1e-11;
+                for (let i = 0; i < poly.length; i++) {
+                    const cur = poly[i];
+                    const prev = poly[(i + poly.length - 1) % poly.length];
+                    const vCur = nx * cur[0] + ny * cur[1] + c;
+                    const vPrev = nx * prev[0] + ny * prev[1] + c;
+                    if (vCur >= -eps) {
+                        if (vPrev < -eps) {
+                            const t = vPrev / (vPrev - vCur);
+                            out.push([prev[0] + t * (cur[0] - prev[0]), prev[1] + t * (cur[1] - prev[1])]);
+                        }
+                        out.push(cur);
+                    } else if (vPrev >= -eps) {
+                        const t = vPrev / (vPrev - vCur);
+                        out.push([prev[0] + t * (cur[0] - prev[0]), prev[1] + t * (cur[1] - prev[1])]);
+                    }
+                }
+                return canonicalPolygon(out);
+            }
+
+            // Base 2D chamber for (a, b): 1 >= a >= b >= -1 and 1 + 2a + 2b >= 0
+            function getBase2DChamber() {
+                let p = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+                p = clipPolygon(p, -1, 0, 1);  // a <= 1
+                p = clipPolygon(p, 0, 1, 1);   // b >= -1
+                p = clipPolygon(p, 1, -1, 0);  // a - b >= 0
+                p = clipPolygon(p, 2, 2, 1);   // 2a + 2b + 1 >= 0
+                return p;
+            }
+
+            const GROUPS = DATA.groups;
+
+            const PERMS_2D = [
+                { label: '(a,a,b,b)', aIdx: [1, 2], bIdx: [3, 4] },
+                { label: '(a,b,a,b)', aIdx: [1, 3], bIdx: [2, 4] },
+                { label: '(a,b,b,a)', aIdx: [1, 4], bIdx: [2, 3] },
+                { label: '(b,a,a,b)', aIdx: [2, 3], bIdx: [1, 4] },
+                { label: '(b,a,b,a)', aIdx: [2, 4], bIdx: [1, 3] },
+                { label: '(b,b,a,a)', aIdx: [3, 4], bIdx: [1, 2] }
+            ];
+
+            function polygonArea(poly) {
+                if (!poly || poly.length < 3) return 0;
+                let a = 0;
+                for (let i = 0; i < poly.length; i++) {
+                    const j = (i + 1) % poly.length;
+                    a += poly[i][0] * poly[j][1] - poly[j][0] * poly[i][1];
+                }
+                return Math.abs(a) / 2;
+            }
+
+            function get2DGroupOrbits(groupKey) {
+                const { c, Q } = GROUPS[groupKey];
+                const orbits = [];
+                const seen = new Set();
+                for (const perm of PERMS_2D) {
+                    let poly = getBase2DChamber();
+                    for (let i = 0; i < 5; i++) {
+                        const c0 = c[0] * Q[i][0];
+                        const na = perm.aIdx.reduce((s, idx) => s + c[idx] * Q[i][idx], 0);
+                        const nb = perm.bIdx.reduce((s, idx) => s + c[idx] * Q[i][idx], 0);
+                        poly = clipPolygon(poly, na, nb, c0);
+                    }
+                    const area = polygonArea(poly);
+                    const sig = polygonKey(poly);
+                    if (!seen.has(sig)) {
+                        seen.add(sig);
+                        orbits.push({ label: perm.label, poly, area, count: 1, sig });
+                    } else {
+                        const existing = orbits.find(o => o.sig === sig);
+                        if (existing) existing.count++;
+                    }
+                }
+                return orbits;
+            }
+
+            function getZ5Cone2D() {
+                let poly = getBase2DChamber();
+                poly = clipPolygon(poly, INV_PHI, -PHI, 1);
+                poly = clipPolygon(poly, -PHI, INV_PHI, 1);
+                return poly;
+            }
+
+            function getV4Cone2D() {
+                let poly = getBase2DChamber();
+                poly = clipPolygon(poly, 1, 0, 0);   // a >= 0
+                poly = clipPolygon(poly, 1, 2, 1);   // 1 + a + 2b >= 0
+                poly = clipPolygon(poly, 1, -2, 1);  // 1 + a - 2b >= 0
+                return poly;
+            }
+
+            function getBenchmarkPolygon() {
+                // Analytic areas use STATS; the hyperbola is sampled only for display.
+                return [[-0.25, -0.25], [1, 1], [1, -1], [K2_A, K2_B],
+                ...Array.from({ length: 160 }, (_, i) => {
+                    const a = K2_A - (K2_A - K1_A) * (i + 1) / 160;
+                    return [a, -1 / (4 * a)];
+                })];
+            }
+
+            function polyToXY(poly) {
+                if (!poly || poly.length === 0) return { x: [], y: [] };
+                const x = poly.map(p => p[0]);
+                const y = poly.map(p => p[1]);
+                x.push(poly[0][0]);
+                y.push(poly[0][1]);
+                return { x, y };
+            }
+
+            function getThemeColors() {
+                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+                const p = window.NIEPTheme ? window.NIEPTheme.getPalette(isLight ? 'light' : 'dark') : null;
+                return {
+                    isLight,
+                    bg: p ? p.plotBg : (isLight ? '#fdfcf9' : '#081221'),
+                    paper: p ? p.plotPaper : (isLight ? '#ffffff' : '#0e1d33'),
+                    text: p ? p.textPrimary : (isLight ? '#15370d' : '#eaf2ff'),
+                    subtext: p ? p.textSecondary : (isLight ? '#2b4c23' : '#a9c1e2'),
+                    grid: p ? p.plotGrid : (isLight ? '#e8e2d2' : '#152946'),
+                    zero: p ? p.plotZero : (isLight ? '#728e6d' : '#213b61'),
+                    legendBg: p ? p.legendBg : (isLight ? 'rgba(255,255,255,0.94)' : 'rgba(14,29,51,0.90)'),
+                    chamberStroke: p ? p.chamberStroke : (isLight ? '#64748b' : '#6e8eb8'),
+                    chamberFill: p ? p.chamberFill : 'rgba(100,116,139,0.07)',
+                    d8Stroke: p ? p.d8Stroke : (isLight ? '#2563eb' : '#38bdf8'),
+                    d8Fill: p ? p.d8Fill : (isLight ? 'rgba(37,99,235,0.22)' : 'rgba(56,189,248,0.26)'),
+                    s4Stroke: p ? p.s4Stroke : (isLight ? '#d97706' : '#f59e0b'),
+                    s4Fill: p ? p.s4Fill : (isLight ? 'rgba(217,119,6,0.24)' : 'rgba(245,158,11,0.28)'),
+                    a5Stroke: p ? p.a5Stroke : (isLight ? '#7c3aed' : '#a855f7'),
+                    a5Fill: p ? p.a5Fill : (isLight ? 'rgba(124,58,237,0.24)' : 'rgba(168,85,247,0.28)'),
+                    z5Stroke: p ? p.z5Stroke : (isLight ? '#15803d' : '#10b981'),
+                    z5Fill: p ? p.z5Fill : (isLight ? 'rgba(21,128,61,0.24)' : 'rgba(16,185,129,0.26)'),
+                    v4Stroke: p ? p.v4Stroke : (isLight ? '#0d9488' : '#2dd4bf'),
+                    v4Fill: p ? p.v4Fill : (isLight ? 'rgba(13,148,136,0.20)' : 'rgba(45,212,191,0.24)'),
+                    sniepStroke: p ? p.sniepStroke : (isLight ? '#b91c1c' : '#f43f5e'),
+                    sniepFill: p ? p.sniepFill : (isLight ? 'rgba(185,28,28,0.14)' : 'rgba(244,63,94,0.18)'),
+                    trace0Color: p ? p.trace0Color : (isLight ? '#15803d' : '#10b981'),
+                    highlightColor: p ? p.highlightColor : (isLight ? '#ca8a04' : '#eab308')
+                };
+            }
+
+            // 1. Interactive 2D Gallery (Single-chart tab switcher)
+            let currentGalleryMode = 'ALL';
+            function render2DGallery(mode) {
+                currentGalleryMode = mode || currentGalleryMode;
+                const tc = getThemeColors();
+                const chamber = polyToXY(getBase2DChamber());
+                const sniep = polyToXY(getBenchmarkPolygon());
+
+                const traces = [
+                    {
+                        x: chamber.x, y: chamber.y,
+                        mode: 'lines',
+                        name: 'Trace Chamber (1+2a+2b ≥ 0)',
+                        line: { color: tc.chamberStroke, width: 1.5, dash: 'dot' },
+                        fill: 'toself',
+                        fillcolor: tc.chamberFill
+                    },
+                    {
+                        x: sniep.x, y: sniep.y,
+                        mode: 'lines',
+                        name: 'Loewy–McDonald benchmark',
+                        line: { color: tc.sniepStroke, width: 2.5, dash: 'dash' }
+                    }
+                ];
+
+                const groupPalettes = {
+                    D8: tc.isLight ? ['#2563eb', '#1d4ed8'] : ['#38bdf8', '#0284c7'],
+                    S4: tc.isLight ? ['#d97706', '#b45309', '#f59e0b', '#92400e'] : ['#f59e0b', '#fbbf24', '#d97706', '#f97316'],
+                    A5: tc.isLight ? ['#7c3aed', '#6d28d9', '#8b5cf6', '#5b21b6'] : ['#a855f7', '#c084fc', '#9333ea', '#7e22ce']
+                };
+
+                let titleText = '';
+                if (currentGalleryMode === 'D8' || currentGalleryMode === 'S4' || currentGalleryMode === 'A5') {
+                    const orbits = get2DGroupOrbits(currentGalleryMode);
+                    const palette = groupPalettes[currentGalleryMode];
+                    orbits.forEach((orb, idx) => {
+                        const xy = polyToXY(orb.poly);
+                        traces.push({
+                            x: xy.x, y: xy.y,
+                            mode: 'lines',
+                            fill: 'toself',
+                            name: `${currentGalleryMode} Orbit ${idx + 1} (${orb.count} perms, Area=${orb.area.toFixed(4)})`,
+                            line: { color: palette[idx % palette.length], width: 2.2 },
+                            fillcolor: palette[idx % palette.length] + '33'
+                        });
+                    });
+                    const apexMap = { D8: -1 / 7, S4: -1 / 23, A5: -1 / 59 };
+                    const ap = apexMap[currentGalleryMode];
+                    traces.push({
+                        x: [ap], y: [ap],
+                        mode: 'markers+text',
+                        name: `${currentGalleryMode} Apex (-1/${Math.round(-1 / ap)}, -1/${Math.round(-1 / ap)})`,
+                        text: [`Apex (-1/${Math.round(-1 / ap)})`],
+                        textposition: 'top left',
+                        marker: { color: tc.highlightColor, size: 9, symbol: 'diamond' }
+                    });
+                    titleText = `${currentGalleryMode} Character Table Orbits inside (1, a, a, b, b)`;
+                } else if (currentGalleryMode === 'Z5') {
+                    const xy = polyToXY(getZ5Cone2D());
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: `Z₅ (Area=${STATS.areas.Z5.toFixed(5)}, ${areaPercent(STATS.areas.Z5)}%)`,
+                        line: { color: tc.z5Stroke, width: 2.5 },
+                        fillcolor: tc.z5Fill
+                    });
+                    traces.push({
+                        x: [K1_A], y: [K1_B],
+                        mode: 'markers+text',
+                        name: 'Loewy–McDonald Kink K₁',
+                        text: ['K₁ (cos 2π/5, cos 4π/5)'],
+                        textposition: 'bottom right',
+                        marker: { color: tc.highlightColor, size: 10, symbol: 'star' }
+                    });
+                    titleText = 'Abelian Z₅ Circulant Cone (Golden-Ratio Facet hitting K₁)';
+                } else if (currentGalleryMode === 'IRRED') {
+                    const pStarA = (1 - 0.5 * INV_PHI) / (PHI + 0.5 * INV_PHI);
+                    const pStarB = -(1 + pStarA) / 2;
+                    const qStarA = (1 + 2 * Math.sqrt(5)) / (9 + 2 * Math.sqrt(5));
+                    const qStarB = -(1 + 3 * qStarA) / 4;
+
+                    const d8 = get2DGroupOrbits('D8');
+                    d8.forEach((orb, idx) => {
+                        const xy = polyToXY(orb.poly);
+                        traces.push({
+                            x: xy.x, y: xy.y,
+                            mode: 'lines',
+                            fill: 'toself',
+                            name: `D₈ Orbit ${idx + 1} `,
+                            line: { color: tc.d8Stroke, width: 1.8 },
+                            fillcolor: tc.d8Fill
+                        });
+                    });
+                    const z5 = polyToXY(getZ5Cone2D());
+                    traces.push({
+                        x: z5.x, y: z5.y,
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: 'Z₅ Circulant Cone',
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fillcolor: tc.z5Fill
+                    });
+                    traces.push({
+                        x: [pStarA, qStarA, 1, pStarA],
+                        y: [pStarB, qStarB, -1, pStarB],
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: `Triangular wedge (${areaPercent(STATS.wedge)}% of benchmark)`,
+                        line: { color: tc.sniepStroke, width: 2.2 },
+                        fillcolor: tc.isLight ? 'rgba(185,28,28,0.38)' : 'rgba(244,63,94,0.45)'
+                    });
+                    traces.push({
+                        x: [pStarA, qStarA],
+                        y: [pStarB, qStarB],
+                        mode: 'markers+text',
+                        name: 'Wedge Vertices P* & Q*',
+                        text: [pointLabel('P*', pStarA, pStarB), pointLabel('Q*', qStarA, qStarB)],
+                        textposition: ['bottom left', 'top right'],
+                        marker: { color: tc.highlightColor, size: 9, symbol: 'circle' }
+                    });
+                    titleText = `Selected union before adjoining the block (${areaPercent(STATS.noV4)}% of benchmark)`;
+                } else if (currentGalleryMode === 'V4') {
+                    const xy = polyToXY(getV4Cone2D());
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: `V₄ ⊕ [1] (Area=${STATS.areas.V4.toFixed(5)}, ${areaPercent(STATS.areas.V4)}%)`,
+                        line: { color: tc.v4Stroke, width: 2.5 },
+                        fillcolor: tc.v4Fill
+                    });
+                    titleText = 'Reducible Adjoined Character Cone V₄ ⊕ [1] (Solving the 1+a+2b ≥ 0 Wedge)';
+                } else if (currentGalleryMode === 'ALL') {
+                    const d8 = get2DGroupOrbits('D8');
+                    d8.forEach((orb, idx) => {
+                        const xy = polyToXY(orb.poly);
+                        traces.push({
+                            x: xy.x, y: xy.y,
+                            mode: 'lines',
+                            fill: 'toself',
+                            name: `D₈ Orbit ${idx + 1}`,
+                            line: { color: tc.d8Stroke, width: 1.8 },
+                            fillcolor: tc.d8Fill
+                        });
+                    });
+                    const z5 = polyToXY(getZ5Cone2D());
+                    traces.push({
+                        x: z5.x, y: z5.y,
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: 'Z₅ Circulant Cone',
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fillcolor: tc.z5Fill
+                    });
+                    const v4 = polyToXY(getV4Cone2D());
+                    traces.push({
+                        x: v4.x, y: v4.y,
+                        mode: 'lines',
+                        fill: 'toself',
+                        name: 'V₄ ⊕ [1] Adjoined Block',
+                        line: { color: tc.v4Stroke, width: 2 },
+                        fillcolor: tc.v4Fill
+                    });
+                    titleText = `Final selected union Z₅ ∪ (V₄ ⊕ [1]) — ${areaPercent(STATS.full)}% of benchmark`;
+                }
+
+                Plotly.react('plot-2d-gallery', traces, {
+                    title: { text: titleText, font: { color: tc.text, size: 15 } },
+                    paper_bgcolor: tc.paper,
+                    plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 55, r: 25, t: 48, b: 55 },
+                    xaxis: { title: { text: 'Eigenvalue a' }, range: [-0.35, 1.08], gridcolor: tc.grid, zerolinecolor: tc.zero },
+                    yaxis: { title: { text: 'Eigenvalue b' }, range: [-1.08, 1.08], gridcolor: tc.grid, zerolinecolor: tc.zero, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.18, font: { size: 11 } }
+                }, { responsive: true });
+            }
+
+            // 1B. Render 6-Panel Simultaneous 2D Grid
+            function render2D6Panel() {
+                const tc = getThemeColors();
+                const chamber = polyToXY(getBase2DChamber());
+                const sniep = polyToXY(getBenchmarkPolygon());
+                const panels = [
+                    { key: 'D8', title: `D₈ / Q₈ (${areaPercent(STATS.areas.D8)}%)` },
+                    { key: 'S4', title: `S₄ (${areaPercent(STATS.areas.S4)}%)` },
+                    { key: 'A5', title: `A₅ (${areaPercent(STATS.areas.A5)}%)` },
+                    { key: 'Z5', title: `Z₅ (${areaPercent(STATS.areas.Z5)}%)` },
+                    { key: 'V4', title: `V₄ ⊕ [1] (${areaPercent(STATS.areas.V4)}%)` },
+                    { key: 'ALL', title: `Selected union (${areaPercent(STATS.full)}%)` }
+                ];
+
+                const groupPalettes = {
+                    D8: tc.isLight ? ['#2563eb', '#1d4ed8'] : ['#38bdf8', '#0284c7'],
+                    S4: tc.isLight ? ['#d97706', '#b45309', '#f59e0b', '#92400e'] : ['#f59e0b', '#fbbf24', '#d97706', '#f97316'],
+                    A5: tc.isLight ? ['#7c3aed', '#6d28d9', '#8b5cf6', '#5b21b6'] : ['#a855f7', '#c084fc', '#9333ea', '#7e22ce']
+                };
+
+                const traces = [];
+                const layout = {
+                    paper_bgcolor: tc.paper,
+                    plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif', size: 11 },
+                    margin: { l: 45, r: 20, t: 40, b: 40 },
+                    grid: { rows: 2, columns: 3, pattern: 'independent', roworder: 'top to bottom' },
+                    showlegend: false,
+                    annotations: []
+                };
+
+                panels.forEach((p, idx) => {
+                    const axNum = idx === 0 ? '' : String(idx + 1);
+                    const xref = `x${axNum}`;
+                    const yref = `y${axNum}`;
+
+                    // Base chamber + Benchmark
+                    traces.push({
+                        x: chamber.x, y: chamber.y, xaxis: xref, yaxis: yref,
+                        mode: 'lines', line: { color: tc.chamberStroke, width: 1, dash: 'dot' },
+                        fill: 'toself', fillcolor: tc.chamberFill, hoverinfo: 'skip'
+                    });
+                    traces.push({
+                        x: sniep.x, y: sniep.y, xaxis: xref, yaxis: yref,
+                        mode: 'lines', name: 'Loewy–McDonald', line: { color: tc.sniepStroke, width: 1.8, dash: 'dash' }
+                    });
+
+                    if (p.key === 'D8' || p.key === 'S4' || p.key === 'A5') {
+                        const orbits = get2DGroupOrbits(p.key);
+                        const palette = groupPalettes[p.key];
+                        orbits.forEach((orb, oIdx) => {
+                            const xy = polyToXY(orb.poly);
+                            traces.push({
+                                x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                                mode: 'lines', fill: 'toself',
+                                name: `${p.key} Orbit ${oIdx + 1}`,
+                                line: { color: palette[oIdx % palette.length], width: 1.8 },
+                                fillcolor: palette[oIdx % palette.length] + '33'
+                            });
+                        });
+                    } else if (p.key === 'Z5') {
+                        const xy = polyToXY(getZ5Cone2D());
+                        traces.push({
+                            x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'Z₅ Cone',
+                            line: { color: tc.z5Stroke, width: 2 }, fillcolor: tc.z5Fill
+                        });
+                    } else if (p.key === 'V4') {
+                        const xy = polyToXY(getV4Cone2D());
+                        traces.push({
+                            x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'V₄ ⊕ [1]',
+                            line: { color: tc.v4Stroke, width: 2 }, fillcolor: tc.v4Fill
+                        });
+                    } else if (p.key === 'ALL') {
+                        const d8 = polyToXY(get2DGroupOrbits('D8')[0].poly);
+                        const z5 = polyToXY(getZ5Cone2D());
+                        const v4 = polyToXY(getV4Cone2D());
+                        traces.push({
+                            x: d8.x, y: d8.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'D₈',
+                            line: { color: tc.d8Stroke, width: 1.5 }, fillcolor: tc.d8Fill
+                        });
+                        traces.push({
+                            x: z5.x, y: z5.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'Z₅',
+                            line: { color: tc.z5Stroke, width: 1.5 }, fillcolor: tc.z5Fill
+                        });
+                        traces.push({
+                            x: v4.x, y: v4.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'V₄ ⊕ [1]',
+                            line: { color: tc.v4Stroke, width: 1.5 }, fillcolor: tc.v4Fill
+                        });
+                    }
+
+                    layout[`xaxis${axNum}`] = { range: [-0.32, 1.05], gridcolor: tc.grid, zerolinecolor: tc.zero, title: { text: idx >= 3 ? 'a' : '' } };
+                    layout[`yaxis${axNum}`] = { range: [-1.05, 1.05], gridcolor: tc.grid, zerolinecolor: tc.zero, title: { text: idx % 3 === 0 ? 'b' : '' } };
+                    layout.annotations.push({
+                        text: `<b>${p.title}</b>`,
+                        xref: `${xref} domain`, yref: `${yref} domain`,
+                        x: 0.5, y: 1.08, showarrow: false,
+                        font: { color: tc.text, size: 12 }
+                    });
+                });
+
+                Plotly.react('plot-2d-6panel', traces, layout, { responsive: true });
+            }
+
+            // 1C. Render Side-by-Side Comparison: Without vs. With Reducible V4 + [1]
+            function renderWedgeComparison() {
+                const tc = getThemeColors();
+                const chamber = polyToXY(getBase2DChamber());
+                const sniep = polyToXY(getBenchmarkPolygon());
+                const z5 = polyToXY(getZ5Cone2D());
+                const v4 = polyToXY(getV4Cone2D());
+                const d8 = get2DGroupOrbits('D8');
+                const d8_1 = polyToXY(d8[0].poly);
+                const d8_2 = polyToXY(d8[1].poly);
+
+                const pStarA = (1 - 0.5 * INV_PHI) / (PHI + 0.5 * INV_PHI);
+                const pStarB = -(1 + pStarA) / 2;
+                const qStarA = (1 + 2 * Math.sqrt(5)) / (9 + 2 * Math.sqrt(5));
+                const qStarB = -(1 + 3 * qStarA) / 4;
+
+                const noV4Traces = [
+                    {
+                        x: chamber.x, y: chamber.y,
+                        mode: 'lines', name: 'Trace Chamber',
+                        line: { color: tc.chamberStroke, width: 1.2, dash: 'dot' },
+                        fill: 'toself', fillcolor: tc.chamberFill
+                    },
+                    {
+                        x: d8_1.x, y: d8_1.y,
+                        mode: 'lines', name: 'D₈ Orbit 1 (1+3a+4b ≥ 0)',
+                        line: { color: tc.d8Stroke, width: 1.8 },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    },
+                    {
+                        x: d8_2.x, y: d8_2.y,
+                        mode: 'lines', name: 'D₈ Orbit 2 (stops at b = -1/3)',
+                        line: { color: tc.d8Stroke, width: 1.4, dash: 'dot' },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    },
+                    {
+                        x: z5.x, y: z5.y,
+                        mode: 'lines', name: `Z₅ (${areaPercent(STATS.areas.Z5)}% of benchmark)`,
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.z5Fill
+                    },
+                    {
+                        x: [pStarA, qStarA, 1, pStarA],
+                        y: [pStarB, qStarB, -1, pStarB],
+                        mode: 'lines', name: `Triangular wedge (${areaPercent(STATS.wedge)}% of benchmark)`,
+                        line: { color: tc.sniepStroke, width: 2.2 },
+                        fill: 'toself',
+                        fillcolor: tc.isLight ? 'rgba(185,28,28,0.40)' : 'rgba(244,63,94,0.48)'
+                    },
+                    {
+                        x: sniep.x, y: sniep.y,
+                        mode: 'lines', name: 'Benchmark boundary',
+                        line: { color: tc.sniepStroke, width: 2.2, dash: 'dash' }
+                    },
+                    {
+                        x: [pStarA, qStarA],
+                        y: [pStarB, qStarB],
+                        mode: 'markers+text', name: 'P* & Q* Intersections',
+                        text: ['P*', 'Q*'], textposition: ['bottom left', 'top right'],
+                        marker: { color: tc.highlightColor, size: 8, symbol: 'circle' }
+                    }
+                ];
+
+                Plotly.react('plot-2d-no-v4', noV4Traces, {
+                    title: { text: `Selected union before adjoining the block (${areaPercent(STATS.noV4)}%)`, font: { color: tc.text, size: 13.5 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 50, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'a' }, range: [-0.32, 1.05], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'b' }, range: [-1.05, 1.05], gridcolor: tc.grid, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10 } }
+                }, { responsive: true });
+
+                const withV4Traces = [
+                    {
+                        x: chamber.x, y: chamber.y,
+                        mode: 'lines', name: 'Trace Chamber',
+                        line: { color: tc.chamberStroke, width: 1.2, dash: 'dot' },
+                        fill: 'toself', fillcolor: tc.chamberFill
+                    },
+                    {
+                        x: d8_1.x, y: d8_1.y,
+                        mode: 'lines', name: `D₈ piece 1 (${areaPercent(8 / 7)}% of benchmark)`,
+                        line: { color: tc.d8Stroke, width: 1.8 },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    },
+                    {
+                        x: z5.x, y: z5.y,
+                        mode: 'lines', name: `Z₅ (${areaPercent(STATS.areas.Z5)}% of benchmark)`,
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.z5Fill
+                    },
+                    {
+                        x: v4.x, y: v4.y,
+                        mode: 'lines', name: `V₄ ⊕ [1] (${areaPercent(STATS.areas.V4)}% of benchmark)`,
+                        line: { color: tc.v4Stroke, width: 2.4 },
+                        fill: 'toself', fillcolor: tc.v4Fill
+                    },
+                    {
+                        x: sniep.x, y: sniep.y,
+                        mode: 'lines', name: 'Benchmark boundary',
+                        line: { color: tc.sniepStroke, width: 2.2, dash: 'dash' }
+                    },
+                    {
+                        x: [0, pStarA, 1],
+                        y: [-0.5, pStarB, -1],
+                        mode: 'markers+text', name: '1+a+2b=0 Boundary Points',
+                        text: ['(0, -1/2)', 'P*', '(1, -1)'], textposition: ['top left', 'bottom left', 'top left'],
+                        marker: { color: tc.highlightColor, size: 8, symbol: 'circle' }
+                    }
+                ];
+
+                Plotly.react('plot-2d-with-v4', withV4Traces, {
+                    title: { text: `With the adjoined block (${areaPercent(STATS.full)}% of benchmark)`, font: { color: tc.text, size: 13.5 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 50, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'a' }, range: [-0.32, 1.05], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'b' }, range: [-1.05, 1.05], gridcolor: tc.grid, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10 } }
+                }, { responsive: true });
+            }
+
+            // 2. Render Hero 2D + Zoom on the 0.03% Loewy–McDonald Arc
+            function renderHeroAndZoom() {
+                const tc = getThemeColors();
+                const chamber = polyToXY(getBase2DChamber());
+                const sniep = polyToXY(getBenchmarkPolygon());
+                const z5 = polyToXY(getZ5Cone2D());
+                const v4 = polyToXY(getV4Cone2D());
+                const d8_1 = polyToXY(get2DGroupOrbits('D8')[0].poly);
+
+                const heroTraces = [
+                    {
+                        x: chamber.x, y: chamber.y,
+                        mode: 'lines', name: 'Trace Chamber',
+                        line: { color: tc.chamberStroke, width: 1.2, dash: 'dot' },
+                        fill: 'toself', fillcolor: tc.chamberFill
+                    },
+                    {
+                        x: d8_1.x, y: d8_1.y,
+                        mode: 'lines', name: `D₈ piece 1 (${areaPercent(8 / 7)}% of benchmark)`,
+                        line: { color: tc.d8Stroke, width: 1.8 },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    },
+                    {
+                        x: z5.x, y: z5.y,
+                        mode: 'lines', name: `Z₅ (${areaPercent(STATS.areas.Z5)}% of benchmark)`,
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.z5Fill
+                    },
+                    {
+                        x: v4.x, y: v4.y,
+                        mode: 'lines', name: `V₄ ⊕ [1] (${areaPercent(STATS.areas.V4)}% of benchmark)`,
+                        line: { color: tc.v4Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.v4Fill
+                    },
+                    {
+                        x: sniep.x, y: sniep.y,
+                        mode: 'lines', name: 'Benchmark boundary',
+                        line: { color: tc.sniepStroke, width: 2.5, dash: 'dash' }
+                    },
+                    {
+                        x: [K1_A, K2_A], y: [K1_B, K2_B],
+                        mode: 'markers+text', name: 'K₁ & K₂ Kinks',
+                        text: ['K₁', 'K₂'], textposition: 'bottom left',
+                        marker: { color: tc.highlightColor, size: 9, symbol: 'star' }
+                    }
+                ];
+
+                Plotly.react('plot-2d-hero', heroTraces, {
+                    title: { text: `Selected union (${areaPercent(STATS.full)}% of benchmark)`, font: { color: tc.text, size: 14 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 50, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'a' }, range: [-0.32, 1.05], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'b' }, range: [-1.05, 1.05], gridcolor: tc.grid, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10.5 } }
+                }, { responsive: true });
+
+                const arcX = [], arcY = [];
+                for (let i = 0; i <= 60; i++) {
+                    const a = K1_A + (K2_A - K1_A) * (i / 60);
+                    arcX.push(a);
+                    arcY.push(-1 / (4 * a));
+                }
+
+                const pStarA = (1 - 0.5 * INV_PHI) / (PHI + 0.5 * INV_PHI);
+                const pStarB = -(1 + pStarA) / 2;
+
+                const sliverX = [K1_A, pStarA, K2_A];
+                const sliverY = [K1_B, pStarB, K2_B];
+                for (let i = 40; i >= 0; i--) {
+                    const a = K1_A + (K2_A - K1_A) * (i / 40);
+                    sliverX.push(a);
+                    sliverY.push(-1 / (4 * a));
+                }
+
+                const zoomTraces = [
+                    {
+                        x: z5.x, y: z5.y,
+                        mode: 'lines', name: 'Z₅ Golden Facet (1 - φa + φ⁻¹b = 0)',
+                        line: { color: tc.z5Stroke, width: 2.5 },
+                        fill: 'toself', fillcolor: tc.z5Fill
+                    },
+                    {
+                        x: v4.x, y: v4.y,
+                        mode: 'lines', name: 'V₄ ⊕ [1] Facet (1 + a + 2b = 0)',
+                        line: { color: tc.v4Stroke, width: 2.5 },
+                        fill: 'toself', fillcolor: tc.v4Fill
+                    },
+                    {
+                        x: sliverX, y: sliverY,
+                        mode: 'lines', name: `Uncovered gap (${areaPercent(STATS.gap)}%, area=${STATS.gap.toFixed(9)})`,
+                        line: { color: tc.sniepStroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.isLight ? 'rgba(185,28,28,0.45)' : 'rgba(244,63,94,0.55)'
+                    },
+                    {
+                        x: arcX, y: arcY,
+                        mode: 'lines', name: 'Loewy–McDonald Hyperbola (1 + 4ab = 0)',
+                        line: { color: tc.sniepStroke, width: 2.5, dash: 'dash' }
+                    },
+                    {
+                        x: [K1_A, pStarA, K2_A],
+                        y: [K1_B, pStarB, K2_B],
+                        mode: 'markers+text',
+                        name: 'Key Boundary Vertices',
+                        text: [pointLabel('K₁', K1_A, K1_B), pointLabel('P*', pStarA, pStarB), pointLabel('K₂', K2_A, K2_B)],
+                        textposition: ['bottom left', 'top right', 'bottom right'],
+                        marker: { color: tc.highlightColor, size: 10, symbol: ['star', 'circle', 'star'] }
+                    }
+                ];
+
+                Plotly.react('plot-2d-zoom', zoomTraces, {
+                    title: { text: `Curved gap: ${areaPercent(STATS.gap)}% of benchmark`, font: { color: tc.text, size: 14 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 55, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'a (Zoomed)' }, range: [0.295, 0.382], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'b (Zoomed)' }, range: [-0.825, -0.655], gridcolor: tc.grid },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10.5 } }
+                }, { responsive: true });
+            }
+
+            // 3. 12 Permutations of (a, a, b, c) for 2D Cross-Sectional Slices in (b, c) at fixed a
+            const PERMS_3D = [
+                { aIdx: [1, 2], bIdx: 3, cIdx: 4 },
+                { aIdx: [1, 2], bIdx: 4, cIdx: 3 },
+                { aIdx: [1, 3], bIdx: 2, cIdx: 4 },
+                { aIdx: [1, 3], bIdx: 4, cIdx: 2 },
+                { aIdx: [1, 4], bIdx: 2, cIdx: 3 },
+                { aIdx: [1, 4], bIdx: 3, cIdx: 2 },
+                { aIdx: [2, 3], bIdx: 1, cIdx: 4 },
+                { aIdx: [2, 3], bIdx: 4, cIdx: 1 },
+                { aIdx: [2, 4], bIdx: 1, cIdx: 3 },
+                { aIdx: [2, 4], bIdx: 3, cIdx: 1 },
+                { aIdx: [3, 4], bIdx: 1, cIdx: 2 },
+                { aIdx: [3, 4], bIdx: 2, cIdx: 1 }
+            ];
+
+            function getSliceChamberBC(aVal) {
+                let p = [[-1, -1], [aVal, -1], [aVal, aVal]];
+                p = clipPolygon(p, 1, 1, 1 + 2 * aVal);
+                return p;
+            }
+
+            function getGroupSliceOrbitsBC(groupKey, aVal) {
+                const { c, Q } = GROUPS[groupKey];
+                const polys = [];
+                const seen = new Set();
+                for (const perm of PERMS_3D) {
+                    let poly = getSliceChamberBC(aVal);
+                    if (poly.length === 0) continue;
+                    for (let i = 0; i < 5; i++) {
+                        const constTerm = c[0] * Q[i][0] + perm.aIdx.reduce((s, idx) => s + c[idx] * Q[i][idx], 0) * aVal;
+                        const nb = c[perm.bIdx] * Q[i][perm.bIdx];
+                        const nc = c[perm.cIdx] * Q[i][perm.cIdx];
+                        poly = clipPolygon(poly, nb, nc, constTerm);
+                    }
+                    const area = polygonArea(poly);
+                    if (poly.length === 0) continue;
+                    const sig = polygonKey(poly);
+                    if (!seen.has(sig)) {
+                        seen.add(sig);
+                        polys.push(poly);
+                    }
+                }
+                return polys;
+            }
+
+            function getV4SliceBC(aVal) {
+                if (aVal < 0) return [];
+                let poly = getSliceChamberBC(aVal);
+                poly = clipPolygon(poly, 1, 1, 1 + aVal);
+                poly = clipPolygon(poly, -1, -1, 1 + aVal);
+                poly = clipPolygon(poly, 1, -1, 1 - aVal);
+                poly = clipPolygon(poly, -1, 1, 1 - aVal);
+                return canonicalPolygon(poly);
+            }
+
+            function renderLiveSlice(aVal) {
+                const tc = getThemeColors();
+                const chamberPoly = getSliceChamberBC(aVal);
+                const chamberXY = polyToXY(chamberPoly);
+                const traces = [
+                    {
+                        x: chamberXY.x, y: chamberXY.y,
+                        mode: 'lines',
+                        name: 'Trace Polytope Slice Δ₃(a)',
+                        line: { color: tc.chamberStroke, width: 2, dash: 'dash' },
+                        fill: 'toself', fillcolor: tc.chamberFill
+                    }
+                ];
+
+                const v4Poly = getV4SliceBC(aVal);
+                if (v4Poly.length > 0) {
+                    const xy = polyToXY(v4Poly);
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        name: `V₄ ⊕ [1] (Area=${polygonArea(v4Poly).toFixed(3)})`,
+                        line: { color: tc.v4Stroke, width: 2.2 },
+                        fill: 'toself', fillcolor: tc.v4Fill
+                    });
+                }
+
+                const d8Polys = getGroupSliceOrbitsBC('D8', aVal);
+                d8Polys.forEach((p, idx) => {
+                    const xy = polyToXY(p);
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        name: idx === 0 ? `D₈ Orbits (${d8Polys.length} active)` : `D₈ Orbit ${idx + 1}`,
+                        showlegend: idx === 0,
+                        line: { color: tc.d8Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    });
+                });
+
+                const s4Polys = getGroupSliceOrbitsBC('S4', aVal);
+                s4Polys.forEach((p, idx) => {
+                    const xy = polyToXY(p);
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        name: idx === 0 ? `S₄ Orbits (${s4Polys.length} active)` : `S₄ Orbit ${idx + 1}`,
+                        showlegend: idx === 0,
+                        line: { color: tc.s4Stroke, width: 1.8 },
+                        fill: 'toself', fillcolor: tc.s4Fill
+                    });
+                });
+
+                const a5Polys = getGroupSliceOrbitsBC('A5', aVal);
+                a5Polys.forEach((p, idx) => {
+                    const xy = polyToXY(p);
+                    traces.push({
+                        x: xy.x, y: xy.y,
+                        mode: 'lines',
+                        name: idx === 0 ? `A₅ Orbits (${a5Polys.length} active)` : `A₅ Orbit ${idx + 1}`,
+                        showlegend: idx === 0,
+                        line: { color: tc.a5Stroke, width: 1.5 },
+                        fill: 'toself', fillcolor: tc.a5Fill
+                    });
+                });
+
+                traces.push({
+                    x: [-1, aVal], y: [-1, aVal],
+                    mode: 'lines',
+                    name: 'Symmetry Wall (b = c)',
+                    line: { color: tc.sniepStroke, width: 2, dash: 'dot' }
+                });
+
+                for (const trace of traces) {
+                    if (trace.fill === 'toself' && trace.x && trace.y) {
+                        const p = trace.x.map((x, i) => [x, trace.y[i]]);
+                        if (polygonArea(p) < 1e-12) { trace.mode = 'lines+markers'; trace.marker = { size: 5 }; }
+                    }
+                }
+                Plotly.react('plot-slice-live', traces, {
+                    title: { text: `2D Cross-Section in (b, c) at a = ${aVal >= 0 ? '+' : ''}${aVal.toFixed(3)}`, font: { color: tc.text, size: 14 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 55, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'Eigenvalue b' }, range: [-1.08, 1.08], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'Eigenvalue c' }, range: [-1.08, 1.08], gridcolor: tc.grid, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10.5 } }
+                }, { responsive: true });
+
+                renderDiagonalCheck(aVal);
+            }
+
+            function renderDiagonalCheck(aVal) {
+                const tc = getThemeColors();
+                const chamber = polyToXY(getBase2DChamber());
+                const sniep = polyToXY(getBenchmarkPolygon());
+                const v4 = polyToXY(getV4Cone2D());
+                const d8 = polyToXY(get2DGroupOrbits('D8')[0].poly);
+                const z5 = polyToXY(getZ5Cone2D());
+
+                const traces = [
+                    {
+                        x: chamber.x, y: chamber.y,
+                        mode: 'lines', name: 'Δ₃ Wall (b = c)',
+                        line: { color: tc.chamberStroke, width: 1.5, dash: 'dot' }
+                    },
+                    {
+                        x: d8.x, y: d8.y,
+                        mode: 'lines', name: 'D₈ on b=c',
+                        line: { color: tc.d8Stroke, width: 1.8 },
+                        fill: 'toself', fillcolor: tc.d8Fill
+                    },
+                    {
+                        x: z5.x, y: z5.y,
+                        mode: 'lines', name: 'Z₅ Lamina on b=c',
+                        line: { color: tc.z5Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.z5Fill
+                    },
+                    {
+                        x: v4.x, y: v4.y,
+                        mode: 'lines', name: 'V₄ ⊕ [1] on b=c',
+                        line: { color: tc.v4Stroke, width: 2 },
+                        fill: 'toself', fillcolor: tc.v4Fill
+                    },
+                    {
+                        x: sniep.x, y: sniep.y,
+                        mode: 'lines', name: '2D Loewy–McDonald',
+                        line: { color: tc.sniepStroke, width: 2, dash: 'dash' }
+                    },
+                    {
+                        x: [aVal, aVal], y: [-1.05, 1.05],
+                        mode: 'lines', name: `Current Slice a = ${aVal.toFixed(2)}`,
+                        line: { color: tc.highlightColor, width: 2.5 }
+                    }
+                ];
+
+                Plotly.react('plot-diagonal-check', traces, {
+                    title: { text: 'Diagonal Wall b = c (3D → 2D Consistency & Slice Plane)', font: { color: tc.text, size: 14 } },
+                    paper_bgcolor: tc.paper, plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 50, r: 20, t: 45, b: 55 },
+                    xaxis: { title: { text: 'Eigenvalue a' }, range: [-0.32, 1.05], gridcolor: tc.grid },
+                    yaxis: { title: { text: 'Diagonal Eigenvalue b = c' }, range: [-1.05, 1.05], gridcolor: tc.grid, scaleanchor: 'x', scaleratio: 1 },
+                    legend: { orientation: 'h', y: -0.22, font: { size: 10.5 } }
+                }, { responsive: true });
+            }
+
+            // 4. Render 6-Panel Cross-Sectional Tomography Grid
+            function renderSlice6Panel() {
+                const tc = getThemeColors();
+                const aSlices = [-0.15, 0.00, 0.20, 0.40, 0.60, 0.80];
+                const traces = [];
+                const layout = {
+                    paper_bgcolor: tc.paper,
+                    plot_bgcolor: tc.bg,
+                    font: { color: tc.text, family: 'Inter, sans-serif', size: 11 },
+                    margin: { l: 45, r: 20, t: 40, b: 40 },
+                    grid: { rows: 2, columns: 3, pattern: 'independent', roworder: 'top to bottom' },
+                    showlegend: false,
+                    annotations: []
+                };
+
+                aSlices.forEach((aVal, idx) => {
+                    const axNum = idx === 0 ? '' : String(idx + 1);
+                    const xref = `x${axNum}`;
+                    const yref = `y${axNum}`;
+
+                    const chXY = polyToXY(getSliceChamberBC(aVal));
+                    traces.push({
+                        x: chXY.x, y: chXY.y, xaxis: xref, yaxis: yref,
+                        mode: 'lines', line: { color: tc.chamberStroke, width: 1.5, dash: 'dash' },
+                        fill: 'toself', fillcolor: tc.chamberFill
+                    });
+
+                    const v4P = getV4SliceBC(aVal);
+                    if (v4P.length > 0) {
+                        const xy = polyToXY(v4P);
+                        traces.push({
+                            x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'V₄ ⊕ [1]',
+                            line: { color: tc.v4Stroke, width: 1.8 }, fillcolor: tc.v4Fill
+                        });
+                    }
+
+                    getGroupSliceOrbitsBC('D8', aVal).forEach(p => {
+                        const xy = polyToXY(p);
+                        traces.push({
+                            x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'D₈',
+                            line: { color: tc.d8Stroke, width: 1.6 }, fillcolor: tc.d8Fill
+                        });
+                    });
+
+                    getGroupSliceOrbitsBC('S4', aVal).forEach(p => {
+                        const xy = polyToXY(p);
+                        traces.push({
+                            x: xy.x, y: xy.y, xaxis: xref, yaxis: yref,
+                            mode: 'lines', fill: 'toself', name: 'S₄',
+                            line: { color: tc.s4Stroke, width: 1.4 }, fillcolor: tc.s4Fill
+                        });
+                    });
+
+                    layout[`xaxis${axNum}`] = { range: [-1.08, 1.05], gridcolor: tc.grid, zerolinecolor: tc.zero, title: { text: idx >= 3 ? 'b' : '' } };
+                    layout[`yaxis${axNum}`] = { range: [-1.08, 1.05], gridcolor: tc.grid, zerolinecolor: tc.zero, title: { text: idx % 3 === 0 ? 'c' : '' } };
+                    layout.annotations.push({
+                        text: `<b>Slice at a = ${aVal >= 0 ? '+' : ''}${aVal.toFixed(2)}</b>`,
+                        xref: `${xref} domain`, yref: `${yref} domain`,
+                        x: 0.5, y: 1.08, showarrow: false,
+                        font: { color: tc.text, size: 12 }
+                    });
+                });
+
+                Plotly.react('plot-slice-6panel', traces, layout, { responsive: true });
+            }
+
+
+            // Inline meshes use vertices derived from the same character-table inequalities.
+            let current3DMode = 'D8';
+            const CAMERAS = {
+                default: { eye: { x: 1.6, y: 1.55, z: 1.1 } },
+                trace: { eye: { x: -1.9, y: -0.95, z: -0.95 } },
+                wall: { eye: { x: 0.12, y: 1.8, z: -1.8 } }
+            };
+            function sceneStyle(tc) {
+                const axis = (text, range) => ({
+                    title: { text }, range, gridcolor: tc.grid,
+                    zerolinecolor: tc.zero, backgroundcolor: tc.bg, showbackground: true
+                });
+                return {
+                    xaxis: axis('a', [-0.3, 1.05]), yaxis: axis('b', [-1.05, 1.05]),
+                    zaxis: axis('c', [-1.05, 1.05]), aspectmode: 'data', camera: CAMERAS.default
+                };
+            }
+            function meshTrace(poly, name, color, scene = 'scene', opacity = 0.17) {
+                const p = poly.vertices, f = poly.faces;
+                return {
+                    type: 'mesh3d', scene, name, color, opacity, flatshading: true, showlegend: true,
+                    x: p.map(v => v[0]), y: p.map(v => v[1]), z: p.map(v => v[2]),
+                    i: f.map(v => v[0]), j: f.map(v => v[1]), k: f.map(v => v[2]),
+                    hovertemplate: 'a=%{x:.5f}<br>b=%{y:.5f}<br>c=%{z:.5f}<extra>' + name + '</extra>'
+                };
+            }
+            function edgeTrace(poly, color, scene = 'scene', name = 'Trace polytope Δ₃') {
+                const p = poly.vertices, x = [], y = [], z = [];
+                for (const [a, b] of poly.edges || []) {
+                    x.push(p[a][0], p[b][0], null); y.push(p[a][1], p[b][1], null); z.push(p[a][2], p[b][2], null);
+                }
+                return {
+                    type: 'scatter3d', scene, mode: 'lines', x, y, z, name,
+                    line: { color, width: 2 }, hoverinfo: 'skip', showlegend: false
+                };
+            }
+            function group3DTraces(mode, tc, scene = 'scene') {
+                const traces = [edgeTrace(DATA.ambient3D, tc.chamberStroke, scene)];
+                const groups = mode === 'ALL' ? ['D8', 'S4', 'A5', 'V4', 'Z5'] : [mode];
+                for (const group of groups) {
+                    if (group === 'V4') {
+                        traces.push(meshTrace(DATA.v4_3D, 'V₄ ⊕ [1]', tc.v4Stroke, scene, 0.22));
+                        traces.push(edgeTrace(DATA.v4_3D, tc.v4Stroke, scene));
+                    } else if (group === 'Z5') {
+                        const k = DATA.points.K1;
+                        traces.push(meshTrace({ vertices: [[-.25, -.25, -.25], [k[0], k[1], k[1]], [1, 1, 1]], faces: [[0, 1, 2]] },
+                            'Z₅ lamina on b=c (zero 3D volume)', tc.z5Stroke, scene, 0.45));
+                    } else {
+                        const colors = { D8: tc.d8Stroke, S4: tc.s4Stroke, A5: tc.a5Stroke };
+                        DATA.orbits3D[group].forEach((poly, i) => {
+                            traces.push(meshTrace(poly, `${group} piece ${i + 1} (${poly.count} assignments)`, colors[group], scene));
+                            traces.push(edgeTrace(poly, colors[group], scene));
+                        });
+                    }
+                }
+                return traces;
+            }
+            function render3D(mode) {
+                current3DMode = mode || current3DMode;
+                const tc = getThemeColors();
+                return Plotly.react('plot-3d-inline', group3DTraces(current3DMode, tc), {
+                    paper_bgcolor: tc.paper, font: { color: tc.text, family: 'Inter, sans-serif' },
+                    margin: { l: 0, r: 0, t: 15, b: 0 }, scene: sceneStyle(tc), uirevision: 'character-polytope',
+                    legend: { orientation: 'h', y: -0.02, font: { size: 11 } }, showlegend: true
+                }, { responsive: true, displaylogo: false });
+            }
+            function render3DDashboard() {
+                const tc = getThemeColors(), traces = [], layout = {
+                    paper_bgcolor: tc.paper,
+                    font: { color: tc.text, family: 'Inter, sans-serif' }, margin: { l: 0, r: 0, t: 45, b: 0 },
+                    annotations: [], showlegend: false
+                };
+                ['D8', 'S4', 'A5', 'V4'].forEach((g, i) => {
+                    const scene = i === 0 ? 'scene' : `scene${i + 1}`;
+                    const col = i % 2, row = Math.floor(i / 2), dx = col === 0 ? [0, .48] : [.52, 1], dy = row === 0 ? [.53, 1] : [0, .47];
+                    traces.push(...group3DTraces(g, tc, scene));
+                    layout[scene] = { ...sceneStyle(tc), domain: { x: dx, y: dy } };
+                    layout.annotations.push({
+                        text: g === 'V4' ? 'V₄ ⊕ [1]' : g, x: (dx[0] + dx[1]) / 2,
+                        y: dy[1] + .015, xref: 'paper', yref: 'paper', showarrow: false, font: { size: 14 }
+                    });
+                });
+                return Plotly.react('plot-3d-dashboard', traces, layout, { responsive: true, displaylogo: false });
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (!window.Plotly) {
+                    document.querySelectorAll('.plotly-box').forEach(el => {
+                        el.textContent = 'The interactive charts need Plotly to load. The formulas and tables above remain available.';
+                    });
+                    return;
+                }
+                render3D();
+                document.getElementById('group-3d-select').addEventListener('change', e => render3D(e.target.value));
+                document.querySelectorAll('[data-camera]').forEach(button => {
+                    button.addEventListener('click', () => Plotly.relayout('plot-3d-inline', { 'scene.camera': CAMERAS[button.dataset.camera] }));
+                });
+                document.getElementById('dashboard-3d-details').addEventListener('toggle', e => {
+                    if (e.currentTarget.open) render3DDashboard();
+                });
+                document.querySelectorAll('details').forEach(detail => detail.addEventListener('toggle', () => {
+                    if (detail.open) detail.querySelectorAll('.js-plotly-plot').forEach(el => Plotly.Plots.resize(el));
+                }));
+                render2DGallery('ALL');
+                render2D6Panel();
+                renderWedgeComparison();
+                renderHeroAndZoom();
+                renderLiveSlice(0.25);
+                renderSlice6Panel();
+
+                document.querySelectorAll('#group-gallery-tabs .viz-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('#group-gallery-tabs .viz-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        render2DGallery(btn.getAttribute('data-mode'));
+                    });
+                });
+
+                const slider = document.getElementById('slice-a-slider');
+                const label = document.getElementById('slice-a-label');
+                function updateSlice(val) {
+                    const num = parseFloat(val);
+                    slider.value = num;
+                    label.textContent = `a = ${num >= 0 ? '+' : ''}${num.toFixed(3)}`;
+                    renderLiveSlice(num);
+                }
+                slider.addEventListener('input', e => {
+                    document.querySelectorAll('#slice-presets .viz-btn').forEach(b => b.classList.remove('active'));
+                    updateSlice(e.target.value);
+                });
+                document.querySelectorAll('#slice-presets .viz-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('#slice-presets .viz-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        updateSlice(btn.getAttribute('data-a'));
+                    });
+                });
+
+                const observer = new MutationObserver(() => {
+                    render3D();
+                    if (document.getElementById('dashboard-3d-details').open) render3DDashboard();
+                    render2DGallery();
+                    render2D6Panel();
+                    renderWedgeComparison();
+                    renderHeroAndZoom();
+                    renderLiveSlice(parseFloat(slider.value));
+                    renderSlice6Panel();
+                });
+                observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            });
+        })();
+    </script>
+</body>
+
+</html>

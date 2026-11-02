@@ -28,9 +28,9 @@
     <hub-nav active="theory"></hub-nav>
 
     <!-- Main Content Container -->
-    <main class="page-container" id="main-content" style="max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 5rem;">
+    <main class="page-container" id="main-content">
         <!-- Breadcrumb Navigation -->
-        <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 1.5rem;">
+        <nav class="breadcrumb-nav mb-lg" aria-label="Breadcrumb">
             <a href="index.html">NIEP Hub</a>
             <span>&rsaquo;</span>
             <a href="problem-background.html">Theory Wiki</a>
@@ -49,13 +49,13 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-            <a href="bibliography.html" class="wiki-tab active" aria-current="page">&#x1F4DA; Comprehensive Bibliography</a>
+            <a href="bibliography.html" class="wiki-tab active" aria-current="page">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Hero Header -->
-        <header class="deepdive-header" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+        <header class="deepdive-header deepdive-hero mt-lg">
             <div class="hero-badge">Research Archive &middot; Single Source of Truth</div>
-            <h1 class="hero-title" style="font-size: 2.3rem;">NIEP Comprehensive Bibliography &amp; Literature Archive</h1>
+            <h1 class="hero-title">NIEP Comprehensive Bibliography &amp; Literature Archive</h1>
             <p class="hero-subtitle">
                 The centralized canonical archive of all foundational papers, milestone breakthroughs, doctoral dissertations, and modern preprints governing the Nonnegative Inverse Eigenvalue Problem.
             </p>
@@ -102,17 +102,17 @@
         </div>
 
         <!-- Comprehensive Bibliography Cards Grid (Dynamically Populated by js/citations.js) -->
-        <div class="bib-grid" id="master-bib-grid" style="margin-bottom: 4rem;">
+        <div class="bib-grid bib-grid-spaced" id="master-bib-grid">
             <!-- Fallback content for no-JS environments -->
             <noscript>
-                <p style="padding: 2rem; background: var(--bg-surface); border-radius: 8px;">
+                <p class="bib-loading">
                     Please enable JavaScript to view the interactive, searchable literature catalog.
                 </p>
             </noscript>
         </div>
 
         <!-- Integration Guide Section for Researchers & Contributors -->
-        <section class="deepdive-section" id="integration-guide" style="border-top: 1px solid var(--border-subtle); padding-top: 3rem;">
+        <section class="deepdive-section section-divider" id="integration-guide">
             <div class="deepdive-section-header">
                 <h2 class="deepdive-section-title">&#x1F517; Reusable Citation Architecture Across Hub Pages</h2>
                 <p class="deepdive-section-desc">How pages across this research hub pull standardized citation blocks from this central archive.</p>
@@ -127,7 +127,7 @@
                     <h3 class="math-callout-title">Embedding Standard Citations in Any Page</h3>
                     <span class="math-callout-tag">Web Components</span>
                 </div>
-                <p style="margin-bottom: 0.6rem;">
+                <p class="mb-sm">
                     Include <code>&lt;script src="js/citations.js" defer&gt;&lt;/script&gt;</code> in the page <code>&lt;head&gt;</code>. Then insert any of the following tags anywhere in your HTML:
                 </p>
                 <ul class="deepdive-list">

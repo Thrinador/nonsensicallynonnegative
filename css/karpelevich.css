@@ -74,9 +74,9 @@
     font-size: 0.7rem;
     padding: 0.2rem 0.5rem;
     border-radius: 6px;
-    background: rgba(37, 99, 235, 0.12);
+    background: var(--accent-soft);
     color: var(--accent);
-    border: 1px solid rgba(37, 99, 235, 0.25);
+    border: 1px solid var(--accent-border);
     text-transform: none;
     font-weight: 600;
 }
@@ -148,7 +148,7 @@
     background: var(--accent);
     border-color: var(--accent);
     color: var(--accent-text);
-    box-shadow: 0 1px 6px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 1px 6px var(--accent-shadow);
 }
 
 /* Complex Number Inputs */
@@ -184,7 +184,7 @@
 
 .input-field input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
 /* Point Status Banner */
@@ -289,7 +289,7 @@
     background: var(--accent);
     border-color: var(--accent);
     color: var(--accent-text);
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 2px 8px var(--accent-shadow);
 }
 
 .action-btn.primary:hover {
@@ -345,11 +345,11 @@
 }
 
 .powers-table tr:hover {
-    background: rgba(37, 99, 235, 0.08);
+    background: var(--accent-soft);
 }
 
 .powers-table tr.active-power-row {
-    background: rgba(37, 99, 235, 0.18);
+    background: var(--accent-soft);
     font-weight: 700;
 }
 
@@ -413,7 +413,7 @@
 
 .tool-icon-btn.active {
     color: var(--accent);
-    background: rgba(37, 99, 235, 0.12);
+    background: var(--accent-soft);
 }
 
 /* Stage Bottom HUD */
@@ -577,7 +577,7 @@
 
 .sidebar-resizer:hover,
 .sidebar-resizer.dragging {
-    background: rgba(37, 99, 235, 0.18);
+    background: var(--accent-soft);
 }
 
 .resizer-handle {
@@ -593,7 +593,7 @@
     background: var(--accent);
     height: 72px;
     width: 5px;
-    box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 0 8px var(--accent-shadow);
 }
 
 /* Ensure inputs and cards never overflow sidebar */
@@ -772,4 +772,53 @@
         padding: 0.25rem 0.5rem;
         font-size: 0.72rem;
     }
+}
+
+/* Legend swatches */
+.legend-color.legend-region {
+    background: var(--canvas-region-stroke);
+}
+
+.legend-color.legend-unit-circle {
+    background: transparent;
+    border: 1.5px dashed var(--canvas-unit-circle);
+}
+
+.legend-color.legend-trail {
+    background: var(--canvas-trail);
+}
+
+.legend-color.legend-farey-root {
+    background: var(--canvas-farey-root);
+    border: 1px solid var(--canvas-farey-stroke);
+    border-radius: 50%;
+}
+
+/* Matrix power status badges */
+.power-status {
+    font-weight: 700;
+}
+
+.power-status.inside {
+    color: #34d399;
+}
+
+.power-status.boundary {
+    color: #fbbf24;
+}
+
+.power-status.outside {
+    color: #fb7185;
+}
+
+[data-theme="light"] .power-status.inside {
+    color: #059669;
+}
+
+[data-theme="light"] .power-status.boundary {
+    color: #d97706;
+}
+
+[data-theme="light"] .power-status.outside {
+    color: #dc2626;
 }

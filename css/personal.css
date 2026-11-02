@@ -648,6 +648,7 @@
     gap: 0.5rem;
     flex-wrap: wrap;
     font-size: 0.88rem;
+    margin-top: 0.35rem;
 }
 
 .venue-name {
@@ -801,4 +802,15 @@ hub-footer {
         border-top: 1px solid var(--border-subtle);
         padding: 0.4rem;
     }
+}
+
+/* CV: fallback when the embedded PDF viewer is unavailable */
+.welcome-msg.pdf-fallback {
+    padding: 3rem;
+    text-align: center;
+}
+
+.welcome-msg.pdf-fallback p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
 }

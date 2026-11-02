@@ -9,51 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.js"></script>
-    <style>
-        .redirect-stage {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-        .redirect-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 3rem 2.5rem;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: var(--shadow-card);
-        }
-        .redirect-card h1 {
-            font-size: 1.5rem;
-            margin: 0 0 1rem;
-            color: var(--text-primary);
-        }
-        .redirect-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.75rem;
-        }
-        .redirect-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent);
-            color: #ffffff;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .redirect-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-        }
-    </style>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
@@ -67,11 +22,11 @@
         <div class="redirect-card">
             <h1>Page Relocated</h1>
             <p>This content has moved to <strong>NIEP Research Hub</strong>. If you are not redirected automatically, please click below.</p>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+            <div class="redirect-actions">
                 <a href="../problem-background.html" class="redirect-btn">
                     <span>Problem Background &amp; Formulation &rarr;</span>
                 </a>
-                <a href="../index.html" style="font-size: 0.88rem; color: var(--accent); text-decoration: none;">
+                <a class="redirect-alt-link" href="../index.html">
                     Or visit NIEP Research Hub &rarr;
                 </a>
             </div>

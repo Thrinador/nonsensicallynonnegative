@@ -61,16 +61,17 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab active" aria-current="page">Perron Similarities</a>
-        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+            <a href="character-cones.html" class="wiki-tab">Character Cones ($n=5$)</a>
+        <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
         <div class="wiki-layout">
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
-                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                <header class="deepdive-hero">
                     <div class="hero-badge">Theory Wiki &middot; Modern Advances</div>
-                    <h1 class="hero-title" style="font-size: 2.2rem;">Perron Similarities &amp; Ideal Spectracones</h1>
+                    <h1 class="hero-title">Perron Similarities &amp; Ideal Spectracones</h1>
                     <p class="hero-subtitle">
                         Invertible similarity transformations that diagonalize nonnegative matrices, the geometry of spectracones and spectratopes, and the representation-theoretic discovery that character tables are ideal Perron similarities.
                     </p>
@@ -125,6 +126,9 @@
                     </table>
 
                     <div class="wiki-infobox-links">
+                        <a href="character-cones.html" class="wiki-infobox-link">
+                            <strong>Character Cones ($n=5$) Explorer &rarr;</strong>
+                        </a>
                         <a href="niep.html" class="wiki-infobox-link">
                             <strong>The Core NIEP &rarr;</strong>
                         </a>
@@ -333,6 +337,23 @@
                     <p class="deepdive-text">
                         Every candidate spectrum inside this polyhedral cone is immediately realizable by an entrywise nonnegative matrix $A = X \operatorname{diag}(\lambda) X^{-1} \ge 0$!
                     </p>
+
+                    <div class="math-callout highlight mt-lg">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Interactive Exploration: Character Table Cones for the $n=5$ SNIEP</h3>
+                        </div>
+                        <p>
+                            How much of the $n=5$ Symmetric NIEP can be solved using $5 \times 5$ character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$)?
+                        </p>
+                        <p>
+                            In our companion interactive deep-dive, we show that combining $D_8$, $\mathbb{Z}_5$, and $V_4 \oplus [1]$ covers <strong>99.97%</strong> of the known 2D $(1, a, a, b, b)$ Loewy–McDonald region (leaving only a $0.03\%$ curved sliver along the Loewy–McDonald hyperbola $1 + 4ab = 0$), and we map all 17 polyhedral character cone orbits inside the unsolved 3D $(1, a, a, b, c)$ trace polytope $\Delta_3$.
+                        </p>
+                        <p class="mt-md">
+                            <a href="character-cones.html" class="deep-dive-btn">
+                                <span>Explore Character Table Cones &amp; 3D $(1,a,a,b,c)$ Visualizations &rarr;</span>
+                            </a>
+                        </p>
+                    </div>
                 </section>
 
                 <!-- Section 6: Citations & Academic References -->
@@ -341,8 +362,8 @@
                         <h2 class="deepdive-section-title">6. Key Literature &amp; Foundational Papers</h2>
                     </div>
 
-                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
-                        Perron similarity and spectracone literature sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>:
+                    <p class="deepdive-text mb-lg">
+                        Perron similarity and spectracone literature sourced directly from the global <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a>:
                     </p>
 
                     <!-- Global Citation Grid Component -->
@@ -378,8 +399,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

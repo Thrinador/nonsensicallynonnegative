@@ -159,16 +159,16 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+        <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
         <div class="wiki-layout">
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
-                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                <header class="deepdive-hero">
                     <div class="hero-badge">Theory Wiki &middot; Geometric Foundations</div>
-                    <h1 class="hero-title" style="font-size: 2.2rem;">Karpelevi&#x010D;'s Theorem &amp; The Karpelevi&#x010D; Region</h1>
+                    <h1 class="hero-title">Karpelevi&#x010D;'s Theorem &amp; The Karpelevi&#x010D; Region</h1>
                     <p class="hero-subtitle">
                         The complete geometric determination of all complex numbers realizable as eigenvalues of $n \times n$ stochastic matrices, Farey boundary arcs, algebraic polynomial pencils, and structural proofs.
                     </p>
@@ -273,7 +273,7 @@
                         <strong>Bibliographic Note on Origin Date:</strong> Many mathematical treatises, tracing back to Felix Gantmacher's 1959 textbook <em>The Theory of Matrices</em>, cite Kolmogorov's problem as having appeared in 1937. As documented by Joanne Swift (1972), Kolmogorov originally presented this question in a 1938 publication in the <em>Bulletin of Moscow University</em>.
                     </p>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">1.2 Dmitriev &amp; Dynkin's Invariant Polygon Duality (1946)</h3>
+                    <h3 class="subsection-title">1.2 Dmitriev &amp; Dynkin's Invariant Polygon Duality (1946)</h3>
                     <p class="deepdive-text">
                         In 1946, <strong>Nikolai Dmitriev</strong> and <strong>Eugene Dynkin</strong> established a fundamental geometric duality relating stochastic matrix spectra to contracting polygonal rotations in the complex plane.
                     </p>
@@ -301,7 +301,7 @@
                         <li><strong>$n = 4$:</strong> The region bounded by chords connecting 4th roots of unity $\{1, i, -1, -i\}$ and 3rd roots of unity, and curvilinear arcs between adjacent vertices.</li>
                     </ul>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">1.3 Joanne Swift's Thesis &amp; Western Dissemination (1972)</h3>
+                    <h3 class="subsection-title">1.3 Joanne Swift's Thesis &amp; Western Dissemination (1972)</h3>
                     <p class="deepdive-text">
                         Because the foundational papers of Dmitriev and Dynkin (1946) and H. R. Sule&#x012d;manova (1949) were published exclusively in Russian journals during the early postwar period, their direct technical methods remained difficult to access in Western literature.
                     </p>
@@ -314,7 +314,7 @@
                         <li><strong>Citation Rectification:</strong> Documentation tracing the 1938 origin of Kolmogorov's problem.</li>
                     </ul>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">1.4 Karpelevi&#x010D;'s Extremal Boundary Game</h3>
+                    <h3 class="subsection-title">1.4 Karpelevi&#x010D;'s Extremal Boundary Game</h3>
                     <p class="deepdive-text">
                         In his 1951 paper, Karpelevi&#x010D; characterized the boundary $\partial\mathcal{K}_n$ by formulating an extremal geometric problem that can be understood as a game between radial expansion and polygonal support constraints.
                     </p>
@@ -327,10 +327,10 @@
                         <p>
                             Fix an angle $\theta \in [0, 2\pi)$. The objective is to maximize the radius $\rho \in (0, 1]$ such that the linear transformation $T: z \mapsto \rho e^{i\theta} z$ admits an invariant polygon $P = \operatorname{conv}\{v_1, \dots, v_n\}$ with $0 \in \operatorname{int}(P)$. The configuration is governed by three structural principles:
                         </p>
-                        <ol class="deepdive-list" style="margin-top: 0.6rem;">
+                        <ol class="deepdive-list mt-sm">
                             <li><strong>Boundary Contact Constraint:</strong> For $\rho$ to be maximal, no image vertex $T(v_i)$ can lie in $\operatorname{int}(P)$. Every $T(v_i)$ must lie on the boundary $\partial P$. If an image vertex were interior, a positive Perron deflation could trim the polygon, allowing $\rho$ to increase strictly.</li>
                             <li><strong>Deterministic vs. Branching Transitions:</strong> Each transformed vertex $T(v_i)$ either:
-                                <ul style="margin: 0.2rem 0 0.2rem 1.2rem;">
+                                <ul class="nested-list">
                                     <li>Maps directly to another vertex $v_j$ (a <em>deterministic contact</em>: $T(v_i) = v_j$), or</li>
                                     <li>Maps to the relative interior of an edge $(v_{j-1}, v_j)$ (a <em>branching contact</em>: $T(v_i) = (1-\beta_i)v_j + \beta_i v_{j-1}$ with $\beta_i \in (0, 1)$).</li>
                                 </ul>
@@ -369,7 +369,7 @@
                         <p>
                             Let $\mathcal{P}_n$ denote the set of all $n \times n$ stochastic matrices. The region $\mathcal{K}_n = \{\lambda \in \mathbb{C} : \exists A \in \mathcal{P}_n, \det(\lambda I - A) = 0\}$ is a compact, simply connected subset of the closed unit disk $\overline{\mathbb{D}}$ satisfying:
                         </p>
-                        <ol class="deepdive-list" style="margin-top: 0.6rem;">
+                        <ol class="deepdive-list mt-sm">
                             <li><strong>Conjugate Symmetry:</strong> $\lambda \in \mathcal{K}_n \iff \bar{\lambda} \in \mathcal{K}_n$.</li>
                             <li><strong>Star-Shapedness:</strong> If $\lambda \in \mathcal{K}_n$, then $[0, \lambda] \subset \mathcal{K}_n$.</li>
                             <li><strong>Unit Circle Intersection:</strong> $\mathcal{K}_n \cap \partial\mathbb{D} = \{e^{i 2\pi p/q} : 0 \le p \le q \le n, \gcd(p, q) = 1\}$.</li>
@@ -378,7 +378,7 @@
                         </ol>
                     </div>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">2.2 Radially Extremal Points vs. Boundary Points</h3>
+                    <h3 class="subsection-title">2.2 Radially Extremal Points vs. Boundary Points</h3>
                     <p class="deepdive-text">
                         A point $\lambda \in \mathcal{K}_n$ is called <strong>radially extremal</strong> (denoted $\lambda \in E_n$) if $\gamma \lambda \notin \mathcal{K}_n$ for all $\gamma > 1$. Karpelevi&#x010D; asserted that $\partial\mathcal{K}_n = E_n$ because $\mathcal{K}_n$ is closed. As clarified by Munger, Nickerson, and Paparella (2023), this assertion requires qualification for small dimensions.
                     </p>
@@ -391,7 +391,7 @@
                         <p>
                             Let $E_n = \{\lambda \in \mathcal{K}_n : \forall \gamma > 1, \gamma\lambda \notin \mathcal{K}_n\}$. Then:
                         </p>
-                        <ul class="deepdive-list" style="margin-top: 0.6rem;">
+                        <ul class="deepdive-list mt-sm">
                             <li>For $n = 2$, $\partial\mathcal{K}_2 = [-1, 1]$ while $E_2 = \{-1, 1\}$; thus $\partial\mathcal{K}_2 \setminus E_2 = (-1, 1) \neq \emptyset$.</li>
                             <li>For $n = 3$, the negative real segment $[-1, -1/2] \subset \partial\mathcal{K}_3$, but points in $(-1, -1/2]$ are not radially extremal; thus $\partial\mathcal{K}_3 \setminus E_3 = (-1, -1/2] \neq \emptyset$.</li>
                             <li>For all $n \ge 4$, $\partial\mathcal{K}_n = E_n$. Every boundary point is strictly radially extremal.</li>
@@ -424,7 +424,7 @@
                         Let $z_1 = e^{i 2\pi p/q}$ and $z_2 = e^{i 2\pi r/s}$ with $q < s$. The geometry of the boundary curve $\Gamma(z_1, z_2)$ is determined by the denominator sum:
                     </p>
 
-                    <div class="data-table-wrapper" style="margin: 1.5rem 0;">
+                    <div class="data-table-wrapper">
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -451,7 +451,7 @@
                         </table>
                     </div>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">3.2 Classification of Reduced Ito Polynomials</h3>
+                    <h3 class="subsection-title">3.2 Classification of Reduced Ito Polynomials</h3>
                     <p class="deepdive-text">
                         In 1997, <strong>Hisashi Ito</strong> formulated algebraic equations for Karpelevi&#x010D;'s boundary arcs. With $d = \lfloor n/q \rfloor$ and $\beta = 1 - \alpha$, the boundary arcs correspond to four reduced polynomial families (Johnson &amp; Paparella 2017; Munger, Nickerson &amp; Paparella 2023):
                     </p>
@@ -504,7 +504,7 @@
                         <p>
                             Let $(p/q, r/s)$ be a Farey pair in $\mathcal{F}_n$ with $q < s$, $d = \lfloor n/q \rfloor$, and $\delta = \gcd(d, s)$. Define $s = s_1 \delta$, $d = d_1 \delta$, and $r = r_1 \delta + j_0$ with $j_0 \in \{0, \dots, \delta-1\}$. Let $\hat{r} \in \{0, \dots, s_1-1\}$ and $l_0 \in \{0, \dots, d_1-1\}$ solve $r_1 = d_1 \hat{r} - l_0 s_1$.
                         </p>
-                        <p style="margin-top: 0.6rem;">
+                        <p class="mt-sm">
                             For any angle $\theta \in [2\pi p/q, 2\pi r/s]$, the unique boundary point on $\partial\mathcal{K}_n$ with argument $\theta$ is:
                         </p>
                         $$z(\theta) = \hat{\rho}^{d_1} e^{i\theta}$$
@@ -528,7 +528,7 @@
                         </p>
                     </div>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">4.3 The Universal Subdominance Theorem</h3>
+                    <h3 class="subsection-title">4.3 The Universal Subdominance Theorem</h3>
                     <p class="deepdive-text">
                         For any stochastic matrix $A \in \mathcal{P}_n$, an eigenvalue $\lambda$ is subdominant if its modulus is second-largest after the Perron eigenvalue $\rho(A) = 1$. The subdominant modulus governs the asymptotic mixing rate and spectral gap $1 - |\lambda|$ of the Markov chain.
                     </p>
@@ -541,7 +541,7 @@
                         <p>
                             Let $n \ge 2$. Every point $t \in \mathcal{K}_n$ is a subdominant eigenvalue of some $n \times n$ stochastic matrix. Furthermore:
                         </p>
-                        <ul class="deepdive-list" style="margin-top: 0.6rem;">
+                        <ul class="deepdive-list mt-sm">
                             <li>If $t \neq 1$, $t$ is realizable as a subdominant eigenvalue of an <strong>irreducible</strong> $n \times n$ stochastic matrix.</li>
                             <li>If $t \neq e^{i 2\pi p/q}$ for all $p/q \in \mathcal{F}_n$, $t$ is realizable as a subdominant eigenvalue of a <strong>primitive</strong> $n \times n$ stochastic matrix.</li>
                         </ul>
@@ -591,7 +591,7 @@
                         In 2026, <strong>Brecht Verbeken and Vincent Ginis</strong> (arXiv:2609.26058v2) provided a completely self-contained structural proof of Karpelevi&#x010D;'s Theorem that derives the boundary equations directly from an arbitrary radial extremum of least order $N \ge 4$.
                     </p>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">6.1 Structural Architecture</h3>
+                    <h3 class="subsection-title">6.1 Structural Architecture</h3>
                     <p class="deepdive-text">
                         The proof proceeds through four structural stages:
                     </p>
@@ -618,7 +618,7 @@
                         </p>
                     </div>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">6.2 Asymptotics of the Radial Deficit ($1 - \rho_N(\theta)$)</h3>
+                    <h3 class="subsection-title">6.2 Asymptotics of the Radial Deficit ($1 - \rho_N(\theta)$)</h3>
                     <p class="deepdive-text">
                         From their scalar boundary equation, Verbeken and Ginis established the asymptotic convergence rate of $\mathcal{K}_N$ toward the unit disk $\mathbb{D}$ as $N \to \infty$:
                     </p>
@@ -650,7 +650,7 @@
                         The Karpelevi&#x010D; region provides the primary single-eigenvalue localization criterion for the general Nonnegative Inverse Eigenvalue Problem (NIEP).
                     </p>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">7.1 Individual Eigenvalue Localization vs. Multiset Sufficiency</h3>
+                    <h3 class="subsection-title">7.1 Individual Eigenvalue Localization vs. Multiset Sufficiency</h3>
                     <p class="deepdive-text">
                         If a multiset $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ with Perron root $\lambda_0$ is realizable by an $n \times n$ nonnegative matrix, then:
                     </p>
@@ -659,7 +659,7 @@
                         While containment $\lambda_j/\lambda_0 \in \mathcal{K}_n$ is strictly necessary for each individual eigenvalue, it is not sufficient for the joint spectrum $\sigma$. Joint realizability additionally requires trace nonnegativity $\sum \lambda_j \ge 0$, Loewy-London inequalities, and higher Newton power-sum conditions.
                     </p>
 
-                    <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.6rem 0; color: var(--text-primary);">7.2 Structured Stochastic Subclasses</h3>
+                    <h3 class="subsection-title">7.2 Structured Stochastic Subclasses</h3>
                     <ul class="deepdive-list">
                         <li><strong>Stochastic Leslie Matrices (Kirkland 1992):</strong> Single-eigenvalue regions for Leslie matrices form a strict subregion of $\mathcal{K}_n$ bounded by roots of Type I polynomials.</li>
                         <li><strong>Cycle-Plus-Diagonal Matrices (Ran &amp; Teng 2016; Verbeken et al.):</strong> Matrices supported on a single directed cycle and diagonal entries satisfy one-factor logarithmic convexity.</li>
@@ -677,12 +677,12 @@
                         The research hub provides an interactive visualization engine that computes the exact Karpelevi&#x010D; boundary $\partial\mathcal{K}_n$ for dimensions $n = 2$ through $n = 8$, displaying Farey vertices, curvilinear arcs, and testing candidate eigenvalues $(\operatorname{Re}(\lambda), \operatorname{Im}(\lambda))$:
                     </p>
 
-                    <div style="background: var(--bg-surface); border: 1px solid var(--accent); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div class="tool-cta-card">
                         <div>
-                            <h3 style="margin: 0 0 0.3rem 0; font-size: 1.1rem; color: var(--text-primary);">Interactive Karpelevi&#x010D; Region Viewer</h3>
-                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Compute boundary arcs, examine Farey dissections, and test point containment in real time.</p>
+                            <h3 class="tool-cta-title">Interactive Karpelevi&#x010D; Region Viewer</h3>
+                            <p class="tool-cta-desc">Compute boundary arcs, examine Farey dissections, and test point containment in real time.</p>
                         </div>
-                        <a href="karpelevich.html" class="deep-dive-btn" style="white-space: nowrap;">
+                        <a href="karpelevich.html" class="deep-dive-btn">
                             <span>Launch Tool &rarr;</span>
                         </a>
                     </div>
@@ -695,8 +695,8 @@
                         <span class="deepdive-section-desc">Key historical, foundational, and modern papers on the Karpelevi&#x010D; region</span>
                     </div>
 
-                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
-                        The publications below are sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research context, source/preprint links, and one-click BibTeX exports.
+                    <p class="deepdive-text mb-lg">
+                        The publications below are sourced directly from the global <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research context, source/preprint links, and one-click BibTeX exports.
                     </p>
 
                     <!-- Global Citation Grid Component -->
@@ -732,8 +732,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

@@ -30,6 +30,9 @@
                 } else if (filename === 'trace-polytope.html') {
                     title = title || 'Trace Polytope Gallery';
                     subtitle = subtitle || 'Nonnegative Inverse Eigenvalue Problem';
+                } else if (filename === 'blog.html' || filename === 'character-cones.html') {
+                    title = title || 'NIEP Research Blog';
+                    subtitle = subtitle || 'Explorations in Spectral Nonnegativity';
                 } else {
                     title = title || 'NIEP Research Hub';
                     subtitle = subtitle || 'Nonnegative Inverse Eigenvalue Problem';
@@ -49,6 +52,8 @@
                     'perron-similarities.html'
                 ].includes(filename)) {
                     active = 'theory';
+                } else if (filename === 'blog.html' || filename === 'character-cones.html') {
+                    active = 'blog';
                 } else if (filename === 'karpelevich.html') {
                     active = 'karpelevich';
                 } else if (filename === 'trace-polytope.html') {
@@ -71,37 +76,34 @@
         </a>
         <nav class="nav-center" aria-label="Main Navigation">
             <a href="${prefix}index.html" class="nav-button ${active === 'hub' ? 'active' : ''}" ${active === 'hub' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F3E0;</span>
                 <span>NIEP Hub</span>
             </a>
             <a href="${prefix}problem-background.html" class="nav-button ${active === 'theory' ? 'active' : ''}" ${active === 'theory' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F4D6;</span>
                 <span>Problem Background</span>
             </a>
             <a href="${prefix}karpelevich.html" class="nav-button ${active === 'karpelevich' ? 'active' : ''}" ${active === 'karpelevich' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F3AF;</span>
                 <span>Karpelevi&#x010D; Viewer</span>
             </a>
             <a href="${prefix}trace-polytope.html" class="nav-button ${active === 'trace-polytope' ? 'active' : ''}" ${active === 'trace-polytope' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F4CA;</span>
                 <span>Trace Polytopes</span>
             </a>
             <a href="${prefix}spectra-realizer.html" class="nav-button ${active === 'realizer' ? 'active' : ''}" ${active === 'realizer' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F9EE;</span>
                 <span>Spectra Realizer</span>
             </a>
+            <a href="${prefix}blog.html" class="nav-button ${active === 'blog' ? 'active' : ''}" ${active === 'blog' ? 'aria-current="page"' : ''}>
+                <span>Blog Posts</span>
+            </a>
             <a href="${prefix}personal/index.html" class="nav-button ${active === 'personal' ? 'active' : ''}" ${active === 'personal' ? 'aria-current="page"' : ''}>
-                <span class="nav-btn-icon">&#x1F464;</span>
                 <span>Personal</span>
             </a>
         </nav>
         <div class="nav-right">
             <div class="theme-switch-group" role="group" aria-label="Color Theme">
                 <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
-                    <span>&#x2600;</span> Light
+                    Light
                 </button>
                 <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
-                    <span>&#x1F319;</span> Dark
+                    Dark
                 </button>
             </div>
         </div>

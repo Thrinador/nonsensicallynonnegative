@@ -102,7 +102,7 @@
 .styled-select:focus, .styled-input:focus, .styled-textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+    box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 /* Target Class Pills Grid */
@@ -136,7 +136,7 @@
 .class-option-label.active,
 .class-option-label:has(input[type="radio"]:checked) {
     border-color: var(--accent);
-    background: rgba(59, 130, 246, 0.12);
+    background: var(--accent-soft);
 }
 
 .class-name {
@@ -173,10 +173,10 @@
     font-weight: 700;
     padding: 0.12rem 0.45rem;
     border-radius: 999px;
-    background: rgba(37, 99, 235, 0.12);
+    background: var(--accent-soft);
     color: var(--accent);
     letter-spacing: 0.02em;
-    border: 1px solid rgba(37, 99, 235, 0.25);
+    border: 1px solid var(--accent-border);
 }
 
 .settings-row {
@@ -201,7 +201,7 @@
 
 .styled-input-num:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 /* Search Effort Profile Chips */
@@ -237,13 +237,13 @@
 .chip-btn:hover {
     border-color: var(--accent);
     color: var(--text-primary);
-    background: var(--bg-surface-elevated);
+    background: var(--bg-surface-secondary);
     transform: translateY(-1px);
 }
 
 .chip-btn.active {
     border-color: var(--accent);
-    background: rgba(37, 99, 235, 0.12);
+    background: var(--accent-soft);
     color: var(--accent);
     font-weight: 700;
     box-shadow: 0 0 0 1px var(--accent);
@@ -285,13 +285,13 @@
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px var(--accent-shadow);
 }
 
 .btn-primary-action:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 6px 16px var(--accent-shadow);
 }
 
 .btn-primary-action.loading {
@@ -370,6 +370,7 @@
 }
 
 .progress-bar-fill {
+    width: 10%;
     height: 100%;
     background: linear-gradient(90deg, var(--accent) 0%, #38bdf8 100%);
     border-radius: 999px;
@@ -716,7 +717,7 @@
 }
 
 .legend-swatch.target {
-    border: 2px solid #3b82f6;
+    border: 2px solid var(--accent);
     background: transparent;
 }
 
@@ -725,7 +726,7 @@
 }
 
 .legend-swatch.unit-circle {
-    border: 1px dashed #38bdf8;
+    border: 1px dashed var(--accent-hover);
     background: transparent;
 }
 
@@ -977,4 +978,11 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
+}
+
+.realizer-subheading {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin: 1.25rem 0 0.25rem;
 }

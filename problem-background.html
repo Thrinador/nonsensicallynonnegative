@@ -62,7 +62,8 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+            <a href="character-cones.html" class="wiki-tab">Character Cones ($n=5$)</a>
+        <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Hero Header -->
@@ -105,7 +106,7 @@
                     <h3 class="math-callout-title">Definition: The NIEP</h3>
                     <span class="math-callout-tag">Problem Statement</span>
                 </div>
-                <p class="deepdive-text" style="margin-bottom: 0.5rem;">
+                <p class="deepdive-text mb-sm">
                     Let $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$ be a multiset of $n$ complex numbers. The <strong>NIEP</strong> asks: does there exist an $n \times n$ matrix $A = (a_{ij}) \in \mathbb{R}^{n \times n}$ satisfying:
                 </p>
                 <div class="theory-formula">
@@ -114,7 +115,7 @@
                     \det(\lambda I - A) &= \prod_{i=1}^n (\lambda - \lambda_i)
                     \end{aligned}$$
                 </div>
-                <p class="deepdive-text" style="margin-top: 0.5rem; margin-bottom: 0;">
+                <p class="deepdive-text mt-sm mb-0">
                     When such an $A$ exists, the multiset $\sigma$ is said to be <strong>realizable</strong>, and the matrix $A$ is a <strong>nonnegative realization</strong> of $\sigma$.
                 </p>
             </div>
@@ -149,12 +150,12 @@
                 <p class="deepdive-text">
                     Let $A \ge 0$ be an $n \times n$ nonnegative matrix. Then:
                 </p>
-                <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem;">
+                <ol class="compact-list">
                     <li><strong>Perron Root:</strong> The spectral radius $\rho(A) = \max_{\lambda \in \sigma(A)} |\lambda|$ is itself an eigenvalue of $A$. That is, $\rho(A) \in \sigma(A)$.</li>
                     <li><strong>Nonnegative Eigenvector:</strong> There exists a nonzero vector $v \ge 0$ such that $Av = \rho(A)v$.</li>
                     <li><strong>Irreducibility &amp; Primitivity:</strong> If $A$ is irreducible (its associated directed graph is strongly connected), then $\rho(A) > 0$ is an algebraically simple eigenvalue with a strictly positive eigenvector $v > 0$.</li>
                     <li><strong>Cyclic Peripheral Spectrum:</strong> If $A$ is irreducible with $h$ peripheral eigenvalues on the circle $|z| = \rho(A)$, then these eigenvalues are exactly the $h$ equally spaced roots of unity scaled by $\rho(A)$:
-                        <div class="theory-formula" style="margin: 0.5rem 0;">
+                        <div class="theory-formula">
                             $$\lambda_k = \rho(A) \exp\left(\frac{2\pi i k}{h}\right), \quad k = 0, 1, \dots, h-1$$
                         </div>
                     </li>
@@ -182,7 +183,7 @@
                     <h3 class="math-callout-title">Universal Necessary Conditions</h3>
                     <span class="math-callout-tag">Spectral Invariants</span>
                 </div>
-                <div class="conditions-grid" style="margin-top: 0.5rem;">
+                <div class="conditions-grid mt-sm">
                     <div class="condition-card">
                         <div class="condition-header">
                             <span class="condition-num">1</span>
@@ -236,13 +237,13 @@
                     <h3 class="math-callout-title">The Insufficiency of Trace Conditions ($n \ge 5$)</h3>
                     <span class="math-callout-tag">Non-Sufficiency Frontier</span>
                 </div>
-                <p class="deepdive-text" style="margin-bottom: 0;">
+                <p class="deepdive-text mb-0">
                     While trace nonnegativity and Loewy-London conditions completely solve the problem for $n \le 3$ (and with additional refinements for $n = 4$), Laffey and Meehan showed that for $n = 5$, there exist spectra satisfying all Loewy-London, JLL, and trace inequalities that <strong>cannot</strong> be realized by any $5 \times 5$ nonnegative matrix! A celebrated example is:
                 </p>
-                <div class="theory-formula" style="margin: 0.6rem 0;">
+                <div class="theory-formula">
                     $$\sigma = \{3+t, 3-t, -2, -2, -2\} \quad \text{for specific intervals } t \in (0, 1)$$
                 </div>
-                <p class="deepdive-text" style="margin: 0;">
+                <p class="deepdive-text m-0">
                     This failure of trace sufficiency at $n = 5$ demonstrates that realization requires deeper geometric and algebraic compatibility beyond moment power sums.
                 </p>
             </div>
@@ -259,38 +260,38 @@
                 To isolate specific algebraic and structural difficulties, researchers study several prominent subproblems:
             </p>
 
-                                    <div class="subproblems-grid" style="margin-bottom: 1.5rem;">
-                <a href="niep.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="subproblems-grid mb-lg">
+                <a href="niep.html" class="subproblem-item">
                     <span class="subproblem-tag">Core NIEP</span>
                     <h4 class="subproblem-title">The NIEP &rarr;</h4>
                     <p class="subproblem-desc">Dimensional solvability ($n=1$ to $n \ge 5$), necessary moments, trace non-sufficiency, and semi-algebraic complexity.</p>
                 </a>
-                <a href="sniep.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="sniep.html" class="subproblem-item">
                     <span class="subproblem-tag">SNIEP</span>
                     <h4 class="subproblem-title">Symmetric NIEP &rarr;</h4>
                     <p class="subproblem-desc">Requires $A = A^T$. Since symmetric real matrices are orthogonally diagonalizable, every eigenvalue is guaranteed to be real ($\sigma \subset \mathbb{R}$).</p>
                 </a>
-                <a href="rniep.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="rniep.html" class="subproblem-item">
                     <span class="subproblem-tag">RNIEP</span>
                     <h4 class="subproblem-title">Real NIEP &rarr;</h4>
                     <p class="subproblem-desc">Requires $A \ge 0$ with $\sigma \subset \mathbb{R}$, but does <em>not</em> enforce symmetry. Eigenvectors need not be orthogonal.</p>
                 </a>
-                <a href="karpelevich-region.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="karpelevich-region.html" class="subproblem-item">
                     <span class="subproblem-tag">Karpelevi&#x010D;</span>
                     <h4 class="subproblem-title">Karpelevi&#x010D; Region $\mathcal{K}_n$ &rarr;</h4>
                     <p class="subproblem-desc">The exact set of all individual complex numbers $z \in \mathbb{C}$ that can belong to the spectrum of some $n \times n$ stochastic matrix.</p>
                 </a>
-                <a href="suleimanova.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="suleimanova.html" class="subproblem-item">
                     <span class="subproblem-tag">Suleimanova</span>
                     <h4 class="subproblem-title">Sule&#x012d;manova Spectra &rarr;</h4>
                     <p class="subproblem-desc">Real spectra with exactly one positive eigenvalue $\lambda_0 > 0 \ge \lambda_1 \dots$, where the trace condition $s_1 \ge 0$ is necessary and sufficient.</p>
                 </a>
-                <a href="boyle-handelman.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="boyle-handelman.html" class="subproblem-item">
                     <span class="subproblem-tag">Dynamics</span>
                     <h4 class="subproblem-title">Boyle-Handelman Theorem &rarr;</h4>
                     <p class="subproblem-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization when auxiliary zero eigenvalues are permitted.</p>
                 </a>
-                <a href="perron-similarities.html" class="subproblem-item" style="text-decoration: none; color: inherit; display: block;">
+                <a href="perron-similarities.html" class="subproblem-item">
                     <span class="subproblem-tag">Similarities</span>
                     <h4 class="subproblem-title">Perron Similarities &rarr;</h4>
                     <p class="subproblem-desc">Non-orthogonal similarity transformations that preserve nonnegative cone geometry and resolve the RNIEP vs SNIEP gap.</p>
@@ -314,7 +315,7 @@
                 <div class="theory-formula">
                     $$\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n) \quad \text{for all } n \ge 5$$
                 </div>
-                <p class="deepdive-text" style="margin-bottom: 0;">
+                <p class="deepdive-text mb-0">
                     Specifically, the spectrum $\sigma = \{4, 2, 2, -4, -4\}$ is realizable by a $5 \times 5$ nonnegative matrix, but cannot be realized by any symmetric $5 \times 5$ nonnegative matrix! Non-symmetric realizations possess extra degrees of freedom via non-orthogonal eigenvector geometries that can accommodate spectra where symmetric matrices fail.
                 </p>
             </div>
@@ -404,7 +405,7 @@
                 <div class="theory-formula">
                     $$\sigma \text{ is realizable} \iff (\sigma = \bar{\sigma}) \;\wedge\; \Phi(\lambda_1, \dots, \lambda_n) \ge 0$$
                 </div>
-                <p class="deepdive-text" style="margin-bottom: 0;">
+                <p class="deepdive-text mb-0">
                     where $\Phi$ is a finite Boolean combination (unions and intersections) of polynomial inequalities in the spectrum entries. By reformulating the realization problem as the projection of the semialgebraic set of nonnegative matrices $(A \ge 0, \det(\lambda I - A) = p(\lambda))$ via the <strong>Tarski-Seidenberg theorem</strong>, it is proven that the NIEP, SNIEP, and RNIEP are semi-algebraic sets and are therefore solvable by finitely many polynomial inequalities.
                 </p>
             </div>
@@ -423,7 +424,7 @@
                 <p class="deepdive-text">
                     While polynomials with nonnegative coefficients clearly belong to $\mathcal{P}_n$, it is known that $\mathcal{P}_n$ contains polynomials with negative coefficients (e.g., $x^4 - x^2 + 1$ under specific scaling). Recent breakthroughs show:
                 </p>
-                <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem;">
+                <ul class="compact-list">
                     <li><strong>Non-Polyhedral Cones:</strong> For fixed degree $d \ge 2n$, the cone $\mathcal{P}_n$ is non-polyhedral.</li>
                     <li><strong>Arbitrarily Negative Coefficients:</strong> A polynomial preserving $n \times n$ nonnegative matrices can have its largest term, in absolute value, be arbitrarily negative while remaining coefficients are $1$.</li>
                     <li><strong>Spectral Filter:</strong> If $p \in \mathcal{P}_n$ and $\sigma$ is realizable by $A \ge 0$, then $p(\sigma) = \{p(\lambda_1), \dots, p(\lambda_n)\}$ must be realizable by $p(A) \ge 0$, creating infinite families of necessary trace tests.</li>
@@ -446,7 +447,6 @@
                 <!-- Tool 1: Karpelevic Viewer -->
                 <div class="deepdive-tool-card">
                     <div>
-                        <div class="deepdive-tool-icon">&#x1F3AF;</div>
                         <h3 class="deepdive-tool-title">Karpelevi&#x010D; Region Viewer</h3>
                         <p class="deepdive-tool-desc">
                             Visualize the exact region $\mathcal{K}_n$ of eigenvalues of stochastic matrices up to order $n=16$. Features dynamic Farey arcs, Ito polynomial solvers, containment tests, and power-up orbit trails.
@@ -461,7 +461,6 @@
                 <!-- Tool 2: Trace Polytope Gallery -->
                 <div class="deepdive-tool-card">
                     <div>
-                        <div class="deepdive-tool-icon">&#x1F4CA;</div>
                         <h3 class="deepdive-tool-title">Trace Polytope Gallery</h3>
                         <p class="deepdive-tool-desc">
                             Explore interactive 2D and 3D WebGL projections of trace polytopes for SNIEP and RNIEP across dimensions $n = 4, 5, 6$. Filter by matrix class, dimension, and polytope vertex signatures.
@@ -476,7 +475,6 @@
                 <!-- Tool 3: Spectra Realizer -->
                 <div class="deepdive-tool-card">
                     <div>
-                        <div class="deepdive-tool-icon">&#x1F9EE;</div>
                         <h3 class="deepdive-tool-title">Spectra Realizer</h3>
                         <p class="deepdive-tool-desc">
                             Input arbitrary candidate multisets $\sigma \subset \mathbb{C}$, test necessary conditions (Perron, reality, trace nonnegativity, Loewy-London), and solve for nonnegative matrix realizations.
@@ -497,8 +495,8 @@
                 <p class="deepdive-section-desc">Pioneering publications that established the theoretical core of the NIEP.</p>
             </div>
 
-            <p class="deepdive-text" style="margin-bottom: 1.5rem;">
-                Key literature sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>:
+            <p class="deepdive-text mb-lg">
+                Key literature sourced directly from the global <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a>:
             </p>
 
             <!-- Global Citation Grid Component -->
@@ -506,8 +504,8 @@
         </section>
 
         <!-- Footer Back Link -->
-        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

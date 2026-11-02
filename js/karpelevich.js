@@ -5,36 +5,40 @@ function getThemeCanvasColors() {
         return {
             isLight: true,
             hasGlow: false,
-            canvasBg: '#ffffff',
-            grid: '#e2e8f0',
-            axes: '#334155',
-            axesText: '#0f172a',
-            unitCircle: 'rgba(37, 99, 235, 0.3)',
-            regionFill: 'rgba(37, 99, 235, 0.14)', // Clean, uniform mathematical tint - no flashy cosmic gradient
-            regionStroke: '#2563eb', // Clean solid mathematical line
-            fareyRoot: '#1e293b',
+            canvasBg: '#fdfcf9',
+            grid: '#e8e2d2',
+            axes: '#15370d',
+            axesText: '#15370d',
+            unitCircle: 'rgba(114, 142, 109, 0.45)',
+            regionFill: 'rgba(21, 55, 13, 0.16)',
+            regionFill0: 'rgba(21, 55, 13, 0.22)',
+            regionFill1: 'rgba(114, 142, 109, 0.18)',
+            regionFill2: 'rgba(229, 205, 130, 0.25)',
+            regionStroke: '#15370d',
+            fareyRoot: '#15370d',
             fareyRootStroke: '#ffffff',
-            fareyRootText: '#0f172a',
-            trail: '#2563eb',
-            basePoint: '#2563eb'
+            fareyRootText: '#15370d',
+            trail: '#728e6d',
+            basePoint: '#15370d'
         };
     } else {
         return {
             isLight: false,
             hasGlow: true,
-            canvasBg: '#0a0f1d',
-            grid: 'rgba(255, 255, 255, 0.05)',
-            axes: '#94a3b8',
-            axesText: '#f8fafc',
+            canvasBg: '#081221',
+            grid: 'rgba(169, 193, 226, 0.07)',
+            axes: '#8ab4f8',
+            axesText: '#eaf2ff',
             unitCircle: 'rgba(56, 189, 248, 0.35)',
+            regionFill: 'rgba(59, 130, 246, 0.18)',
             regionFill0: 'rgba(59, 130, 246, 0.35)',
-            regionFill1: 'rgba(139, 92, 246, 0.2)',
-            regionFill2: 'rgba(236, 72, 153, 0.12)',
+            regionFill1: 'rgba(14, 165, 233, 0.22)',
+            regionFill2: 'rgba(56, 189, 248, 0.14)',
             regionStroke: '#60a5fa',
             fareyRoot: '#ffffff',
-            fareyRootStroke: '#0f172a',
-            fareyRootText: '#f8fafc',
-            trail: '#f472b6',
+            fareyRootStroke: '#081221',
+            fareyRootText: '#eaf2ff',
+            trail: '#38bdf8',
             basePoint: '#60a5fa'
         };
     }
@@ -1284,13 +1288,8 @@ function renderPowersTable() {
         tr.id = `power-row-${p.k}`;
         if (p.k === state.currentPower) tr.classList.add('active-power-row');
 
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        const colorInside = isLight ? '#059669' : '#34d399';
-        const colorBoundary = isLight ? '#d97706' : '#fbbf24';
-        const colorOutside = isLight ? '#dc2626' : '#fb7185';
-        const badgeColor = p.status === 'inside' ? colorInside : (p.status === 'boundary' ? colorBoundary : colorOutside);
-
-        const statusBadge = `<span style="color: ${badgeColor}; font-weight: 700;">` +
+        // Status colors (inside / boundary / outside) are theme-aware in css/karpelevich.css
+        const statusBadge = `<span class="power-status ${p.status}">` +
             `${p.status.toUpperCase()}</span>`;
 
         tr.innerHTML = `

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderList(plotsData);
     } catch (error) {
         console.error("Failed to load plots index", error);
-        plotListEl.innerHTML = `<div class="welcome-msg" style="padding:1rem"><p>Error loading plots data.</p></div>`;
+        plotListEl.innerHTML = `<div class="welcome-msg compact"><p>Error loading plots data.</p></div>`;
     }
 
     function applyFilters() {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderList(plots) {
         plotListEl.innerHTML = '';
         if (plots.length === 0) {
-            plotListEl.innerHTML = `<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">No plots match your search.</p>`;
+            plotListEl.innerHTML = `<p class="plot-list-empty">No plots match your search.</p>`;
             return;
         }
 

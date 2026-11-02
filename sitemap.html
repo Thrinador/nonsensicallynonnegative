@@ -20,88 +20,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/manifest.json">
     <meta name="theme-color" content="#0a0f1d">
-    <style>
-        .sitemap-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0 3rem;
-        }
-        .sitemap-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 14px;
-            padding: 1.75rem;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-        .sitemap-card-header {
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 0.85rem;
-        }
-        .sitemap-card-badge {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.2rem 0.6rem;
-            border-radius: 999px;
-            background: rgba(37, 99, 235, 0.12);
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        .sitemap-card-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin: 0;
-        }
-        .sitemap-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin: 0;
-            padding: 0;
-        }
-        .sitemap-item-link {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            text-decoration: none;
-            padding: 0.5rem 0.6rem;
-            border-radius: 8px;
-            transition: background 0.15s ease;
-        }
-        .sitemap-item-link:hover {
-            background: var(--bg-surface-secondary);
-        }
-        .sitemap-item-title {
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .sitemap-item-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.45;
-        }
-        .sitemap-actions-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 2rem;
-        }
-    </style>
 </head>
 
 <body class="hub-page">
@@ -116,7 +34,7 @@
             <span>Site Directory &amp; Sitemap</span>
         </nav>
 
-        <header class="deepdive-hero" style="margin-bottom: 1.5rem;">
+        <header class="deepdive-hero">
             <div class="hero-badge">Navigation &amp; Index</div>
             <h1 class="hero-title">Site Directory &amp; Sitemap</h1>
             <p class="hero-subtitle">
@@ -127,10 +45,10 @@
         <!-- Actions Bar -->
         <div class="sitemap-actions-bar">
             <div>
-                <strong style="color: var(--text-primary); font-size: 0.95rem;">Search Engine XML Sitemap</strong>
-                <p style="margin: 0; color: var(--text-muted); font-size: 0.82rem;">Standard protocol sitemap for web spiders and search indexers.</p>
+                <strong class="sitemap-actions-title">Search Engine XML Sitemap</strong>
+                <p class="sitemap-actions-desc">Standard protocol sitemap for web spiders and search indexers.</p>
             </div>
-            <a href="sitemap.html" target="_blank" rel="noopener" class="deep-dive-btn" style="display: inline-flex;">
+            <a href="sitemap.html" target="_blank" rel="noopener" class="deep-dive-btn">
                 <span>View Raw XML (sitemap.xml) &rarr;</span>
             </a>
         </div>
@@ -172,6 +90,12 @@
                         <a href="spectra-realizer.html" class="sitemap-item-link">
                             <span class="sitemap-item-title">Numerical Spectra Realizer</span>
                             <span class="sitemap-item-desc">Alternating projection solver with exact Suleimanova and Soules synthesis.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Research Blog &amp; Visual Explorations</span>
+                            <span class="sitemap-item-desc">In-depth mathematical blog posts and interactive 2D/3D explorations on open problems in the NIEP.</span>
                         </a>
                     </li>
                 </ul>
@@ -233,8 +157,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="character-cones.html" class="sitemap-item-link">
+                            <span class="sitemap-item-title">Character Table Cones ($n=5$ SNIEP)</span>
+                            <span class="sitemap-item-desc">Interactive 2D &amp; 3D exploration of $D_8, Q_8, S_4, A_5, \mathbb{Z}_5$, and $V_4 \oplus [1]$ character cones for $(1,a,a,b,b)$ and $(1,a,a,b,c)$.</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="bibliography.html" class="sitemap-item-link">
-                            <span class="sitemap-item-title">&#x1F4DA; Comprehensive Bibliography &amp; Literature Archive</span>
+                            <span class="sitemap-item-title">Comprehensive Bibliography &amp; Literature Archive</span>
                             <span class="sitemap-item-desc">Comprehensive catalog of 30+ papers across Perron-Frobenius, stochastic matrices, SNIEP, and spectracones with interactive search and BibTeX export.</span>
                         </a>
                     </li>
@@ -301,8 +231,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

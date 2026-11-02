@@ -30,7 +30,7 @@
             <!-- 1. Target Matrix Class Card -->
             <div class="realizer-card">
                 <div class="card-header-row">
-                    <span class="card-title"><span>&#x2699;&#xFE0F;</span> Target Matrix Class</span>
+                    <span class="card-title">Target Matrix Class</span>
                 </div>
                 <div class="class-selector-grid">
                     <label class="class-option-label">
@@ -62,7 +62,7 @@
             <!-- 2. Target Spectrum Input Card -->
             <div class="realizer-card">
                 <div class="card-header-row">
-                    <span class="card-title"><span>&#x1F522;</span> Target Spectrum &sigma;</span>
+                    <span class="card-title">Target Spectrum &sigma;</span>
                     <button type="button" class="btn-secondary-action" id="resetBtn" title="Reset to preset">
                         <span>&#x21BA;</span> Reset
                     </button>
@@ -88,7 +88,7 @@
             <!-- 3. Numerical Settings Card -->
             <div class="realizer-card">
                 <div class="card-header-row">
-                    <span class="card-title"><span>&#x1F3AF;</span> Numerical Parameters</span>
+                    <span class="card-title">Numerical Parameters</span>
                 </div>
 
                 <div class="form-group">
@@ -160,7 +160,7 @@
                         <span class="progress-pct" id="progressPctText">10%</span>
                     </div>
                     <div class="progress-bar-track">
-                        <div class="progress-bar-fill" id="progressBarFill" style="width: 10%;"></div>
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
                     </div>
                     <div class="progress-sub-row">
                         <span class="progress-best" id="progressBestText">Best error: computing...</span>
@@ -174,7 +174,7 @@
         <section class="realizer-main" aria-label="Realizer Results">
             <!-- Status Banner -->
             <div class="status-banner" id="statusBanner">
-                <span class="status-icon" id="statusIcon">&#x23F3;</span>
+                <span class="status-icon" id="statusIcon">&bull;</span>
                 <div class="status-content">
                     <div class="status-title-row">
                         <h2 class="status-title" id="statusTitle">Analyzing Spectrum...</h2>
@@ -191,7 +191,7 @@
                 <!-- Left: Matrix Display Card -->
                 <div class="matrix-card">
                     <div class="card-header-row">
-                        <span class="card-title"><span>&#x25A6;</span> Realization Matrix A</span>
+                        <span class="card-title">Realization Matrix A</span>
                         <div class="matrix-toolbar">
                             <div class="precision-group" role="group" aria-label="Decimal Precision">
                                 <button type="button" class="prec-btn active" data-prec="4">4 Dec</button>
@@ -209,13 +209,13 @@
                     <div class="matrix-viewport" id="matrixContainer">
                         <!-- Injected by JS -->
                     </div>
-                    <div class="card-helper" id="matrixMeta" style="margin-top: 0.75rem; text-align: center;"></div>
+                    <div class="card-helper mt-md text-center" id="matrixMeta"></div>
                 </div>
 
                 <!-- Right: Complex Plane Visualizer Card -->
                 <div class="visualizer-card">
                     <div class="card-header-row">
-                        <span class="card-title"><span>&#x25CE;</span> Spectral Comparison Canvas</span>
+                        <span class="card-title">Spectral Comparison Canvas</span>
                         <div class="canvas-legend">
                             <div class="legend-item">
                                 <span class="legend-swatch target"></span>
@@ -240,8 +240,8 @@
                             <button type="button" class="canvas-tool-btn" id="zoomResetBtn" title="Reset View">&#x21BA;</button>
                         </div>
                     </div>
-                    <div class="card-helper" style="margin-top: 0.75rem;">
-                        Interactive complex plane: Drag to pan, scroll to zoom. Blue rings indicate target eigenvalues &sigma;, filled dots represent realized eigenvalues of A, and dashed red lines indicate residual discrepancies.
+                    <div class="card-helper mt-md">
+                        Interactive complex plane: Drag to pan, scroll to zoom. Rings indicate target eigenvalues &sigma;, filled dots represent realized eigenvalues of A, and dashed red lines indicate residual discrepancies.
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
                 <!-- Left: Theoretical Invariant Checks -->
                 <div class="diag-card">
                     <div class="card-header-row">
-                        <span class="card-title"><span>&#x1F9D0;</span> Theoretical Invariant Analysis</span>
+                        <span class="card-title">Theoretical Invariant Analysis</span>
                     </div>
                     <p class="card-helper">
                         Universal necessary conditions governing entrywise nonnegative and stochastic spectral realizations.
@@ -264,10 +264,10 @@
                 <!-- Right: Spectral Verification & Matrix Properties -->
                 <div class="diag-card">
                     <div class="card-header-row">
-                        <span class="card-title"><span>&#x1F50E;</span> Numerical Verification &amp; Invariants</span>
+                        <span class="card-title">Numerical Verification &amp; Invariants</span>
                     </div>
                     
-                    <h3 style="font-size: 0.82rem; color: var(--text-secondary); text-transform: uppercase; margin: 0.75rem 0 0.25rem;">
+                    <h3 class="realizer-subheading mt-md">
                         Target vs. Candidate Eigenvalues
                     </h3>
                     <table class="data-table">
@@ -284,7 +284,7 @@
                         </tbody>
                     </table>
 
-                    <h3 style="font-size: 0.82rem; color: var(--text-secondary); text-transform: uppercase; margin: 1.25rem 0 0.25rem;">
+                    <h3 class="realizer-subheading">
                         Structured Cone Properties
                     </h3>
                     <table class="data-table">

@@ -157,16 +157,16 @@
             <a href="suleimanova.html" class="wiki-tab active" aria-current="page">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-            <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+            <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
         <div class="wiki-layout">
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
-                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                <header class="deepdive-hero">
                     <div class="hero-badge">Theory Wiki &middot; Solvable Spectral Classes</div>
-                    <h1 class="hero-title" style="font-size: 2.2rem;">Suleĭmanova Spectra &amp; Realization Theorems</h1>
+                    <h1 class="hero-title">Suleĭmanova Spectra &amp; Realization Theorems</h1>
                     <p class="hero-subtitle">
                         The definitive solvable class of spectra with a single positive eigenvalue: trace nonnegativity, Hazel Perfect's companion matrix proof, Fiedler's symmetric tridiagonal realization, and Soules bases.
                     </p>
@@ -362,7 +362,7 @@
                         <p>
                             An orthogonal matrix $R = [\mathbf{r}_0, \mathbf{r}_1, \dots, \mathbf{r}_{n-1}] \in \mathbb{R}^{n \times n}$ is called a <strong>Soules matrix</strong> if:
                         </p>
-                        <ol class="deepdive-list" style="margin-top: 0.5rem;">
+                        <ol class="deepdive-list mt-sm">
                             <li>The first column is strictly positive: $\mathbf{r}_0 = \frac{1}{\sqrt{n}} \mathbf{1} = \frac{1}{\sqrt{n}}(1, 1, \dots, 1)^T$.</li>
                             <li>For <em>any</em> Suleĭmanova spectrum $\Lambda = \operatorname{diag}(\lambda_0, \lambda_1, \dots, \lambda_{n-1})$, the reconstructed matrix:
                                 $$A = R \Lambda R^T = \sum_{i=0}^{n-1} \lambda_i \mathbf{r}_i \mathbf{r}_i^T$$
@@ -405,7 +405,7 @@
                         </p>
                     </div>
 
-                    <div class="feature-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 1.5rem 0;">
+                    <div class="feature-card-grid">
                         <div class="feature-card">
                             <h4 class="feature-title">Complex Spectra (<cite-ref key="monov2005">Monov 2005</cite-ref>)</h4>
                             <p class="feature-desc">
@@ -437,12 +437,12 @@
                         The <strong>Spectra Realizer</strong> tool on this research hub allows live synthesis of both asymmetric companion realizations and symmetric Fiedler/Soules matrices for any valid Suleĭmanova spectrum:
                     </p>
 
-                    <div style="background: var(--bg-surface); border: 1px solid var(--accent); border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div class="tool-cta-card">
                         <div>
-                            <h3 style="margin: 0 0 0.4rem 0; font-size: 1.15rem; color: var(--text-primary);">Interactive Spectra Realizer</h3>
-                            <p style="margin: 0; color: var(--text-muted); font-size: 0.88rem;">Input your candidate eigenvalues, verify the Suleĭmanova trace condition, and generate the realization matrix live.</p>
+                            <h3 class="tool-cta-title">Interactive Spectra Realizer</h3>
+                            <p class="tool-cta-desc">Input your candidate eigenvalues, verify the Suleĭmanova trace condition, and generate the realization matrix live.</p>
                         </div>
-                        <a href="spectra-realizer.html" class="deep-dive-btn" style="white-space: nowrap;">
+                        <a href="spectra-realizer.html" class="deep-dive-btn">
                             <span>Launch Realizer Tool &rarr;</span>
                         </a>
                     </div>
@@ -455,8 +455,8 @@
                         <span class="deepdive-section-desc">Pioneering and foundational publications on Suleĭmanova spectra, Fiedler tridiagonal matrices, and Soules bases</span>
                     </div>
 
-                    <p class="deepdive-text" style="margin-bottom: 1.5rem;">
-                        The publications below are sourced directly from the global <a href="bibliography.html" style="color: var(--accent); font-weight: 600;">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research notes, links to primary literature, and one-click BibTeX exports:
+                    <p class="deepdive-text mb-lg">
+                        The publications below are sourced directly from the global <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a>. Each record provides academic metadata, research notes, links to primary literature, and one-click BibTeX exports:
                     </p>
 
                     <!-- Global Citation Grid Component -->
@@ -492,8 +492,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

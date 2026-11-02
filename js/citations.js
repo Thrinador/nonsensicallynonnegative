@@ -587,6 +587,21 @@
         "url": "https://doi.org/10.1016/j.jalgebra.2025.10.015",
         "note": "Proves that finite group character tables act as ideal Perron similarities, derives exact group-theoretic facet equations for spectracones, and computes exact cone volumes.",
         "bibtex": "@article{GershnikLewisPaparella2026,\n  author  = {Gershnik, David Z. and Lewis, Alexander J. and Paparella, Pietro},\n  title   = {Character tables are ideal {P}erron similarities},\n  journal = {Journal of Algebra},\n  volume  = {642},\n  pages   = {120--145},\n  year    = {2026},\n  doi     = {10.1016/j.jalgebra.2025.10.015}\n}"
+    },
+    {
+        "key": "loewy2004",
+        "title": "The symmetric nonnegative inverse eigenvalue problem for 5×5 matrices",
+        "authors": "Raphael Loewy and Judith J. McDonald",
+        "year": 2004,
+        "venue": "Linear Algebra and its Applications, 393: 275–298",
+        "category": "sniep",
+        "categoryName": "Real & Symmetric NIEP",
+        "badge": "5×5 (1,a,a,b,b) SNIEP",
+        "badgeClass": "breakthrough",
+        "doi": "https://doi.org/10.1016/j.laa.2004.02.022",
+        "url": "https://doi.org/10.1016/j.laa.2004.02.022",
+        "note": "Establishes the hyperbolic sufficient curve 1 + 4ab >= 0 and conjectures the exact realizable boundary for 5×5 symmetric nonnegative matrices with spectrum (1, a, a, b, b).",
+        "bibtex": "@article{LoewyMcDonald2004,\n  author  = {Loewy, Raphael and McDonald, Judith J.},\n  title   = {The symmetric nonnegative inverse eigenvalue problem for $5 \\times 5$ matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {393},\n  pages   = {275--298},\n  year    = {2004},\n  doi     = {10.1016/j.laa.2004.02.022}\n}"
     }
 ];
 
@@ -685,33 +700,33 @@
         // Determine wiki link based on category
         let wikiLink = '';
         if (entry.category === 'karpelevich') {
-            wikiLink = `<a href="${base}karpelevich-region.html" class="bib-link" title="Read theory wiki chapter"><span>&#x1F517; Karpelevi&#x010D; Wiki</span></a>`;
+            wikiLink = `<a href="${base}karpelevich-region.html" class="bib-link" title="Read theory wiki chapter"><span>Karpelevi&#x010D; Wiki</span></a>`;
         } else if (entry.category === 'sniep') {
-            wikiLink = `<a href="${base}sniep.html" class="bib-link" title="Read SNIEP theory wiki"><span>&#x1F517; SNIEP Wiki</span></a>`;
+            wikiLink = `<a href="${base}sniep.html" class="bib-link" title="Read SNIEP theory wiki"><span>SNIEP Wiki</span></a>`;
         } else if (entry.category === 'symbolic') {
-            wikiLink = `<a href="${base}boyle-handelman.html" class="bib-link" title="Read Boyle-Handelman theory wiki"><span>&#x1F517; Boyle-Handelman</span></a>`;
+            wikiLink = `<a href="${base}boyle-handelman.html" class="bib-link" title="Read Boyle-Handelman theory wiki"><span>Boyle-Handelman</span></a>`;
         } else if (entry.category === 'perron-sim') {
-            wikiLink = `<a href="${base}perron-similarities.html" class="bib-link" title="Read Perron similarities theory wiki"><span>&#x1F517; Spectracones</span></a>`;
+            wikiLink = `<a href="${base}perron-similarities.html" class="bib-link" title="Read Perron similarities theory wiki"><span>Spectracones</span></a>`;
         }
 
         let paperLink = '';
         if (entry.arxiv) {
-            paperLink = `<a href="${entry.arxiv}" target="_blank" rel="noopener" class="bib-link" title="Open on arXiv"><span>&#x1F4C4; arXiv</span></a>`;
+            paperLink = `<a href="${entry.arxiv}" target="_blank" rel="noopener" class="bib-link" title="Open on arXiv"><span>arXiv</span></a>`;
         } else if (entry.doi) {
-            paperLink = `<a href="${entry.doi}" target="_blank" rel="noopener" class="bib-link" title="Open via DOI"><span>&#x1F517; DOI</span></a>`;
+            paperLink = `<a href="${entry.doi}" target="_blank" rel="noopener" class="bib-link" title="Open via DOI"><span>DOI</span></a>`;
         } else if (entry.url) {
-            paperLink = `<a href="${entry.url}" target="_blank" rel="noopener" class="bib-link" title="Open publication source"><span>&#x1F310; Publication</span></a>`;
+            paperLink = `<a href="${entry.url}" target="_blank" rel="noopener" class="bib-link" title="Open publication source"><span>Publication</span></a>`;
         }
 
         const isBibPage = typeof window !== 'undefined' && window.location && window.location.pathname && window.location.pathname.endsWith('bibliography.html');
-        const permalink = isBibPage ? '' : `<a href="${bibUrl}" class="bib-link bib-archive-link" title="View in NIEP Comprehensive Bibliography"><span>&#x1F4DA; Comprehensive Archive</span></a>`;
+        const permalink = isBibPage ? '' : `<a href="${bibUrl}" class="bib-link bib-archive-link" title="View in NIEP Comprehensive Bibliography"><span>Bibliography Archive</span></a>`;
 
         const badgeHtml = entry.badge ? `<span class="theory-badge ${entry.badgeClass || 'foundation'}">${entry.badge}</span>` : '';
 
         return `
 <div class="bib-card" id="cite-${entry.key}" data-key="${entry.key}" data-category="${entry.category}" data-year="${entry.year}">
     <div class="bib-header">
-        <div class="bib-header-left" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="bib-header-left">
             <span class="bib-year">${entry.year}</span>
             ${badgeHtml}
         </div>
@@ -726,7 +741,7 @@
         ${wikiLink}
         ${permalink}
         <button type="button" class="bib-link bib-copy-btn" onclick="NIEP_CITATIONS_SYS.copyBibtex('${entry.key}', this)" title="Copy BibTeX citation to clipboard">
-            <span>&#x1F4CB; BibTeX</span>
+            <span>Copy BibTeX</span>
         </button>
     </div>
 </div>`.trim();
@@ -859,9 +874,9 @@
             // Render Cards
             if (filtered.length === 0) {
                 gridElem.innerHTML = `
-                    <div class="bib-empty-state" style="grid-column: 1 / -1; text-align: center; padding: 3rem 1.5rem; background: var(--bg-surface); border: 1px dashed var(--border-subtle); border-radius: 12px;">
-                        <p style="font-size: 1.1rem; color: var(--text-muted); margin: 0 0 0.5rem 0;">No citations match your search query.</p>
-                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Try adjusting your keywords or category filters.</p>
+                    <div class="bib-empty-state">
+                        <p class="bib-empty-title">No citations match your search query.</p>
+                        <p class="bib-empty-hint">Try adjusting your keywords or category filters.</p>
                     </div>`;
             } else {
                 gridElem.innerHTML = filtered.map(item => renderBibCardHTML(item)).join('\n');

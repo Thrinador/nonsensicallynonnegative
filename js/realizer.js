@@ -1793,19 +1793,19 @@
             // 1. Status Banner
             this.statusBanner.className = 'status-banner ' + (isFound ? 'success' : (result.cancelled ? 'warning' : (result.theoretical.allPassed ? 'warning' : 'danger')));
             if (isFound) {
-                this.statusIcon.innerHTML = '&#x2714;&#xFE0F;';
+                this.statusIcon.innerHTML = '&#x2713;';
                 this.statusTitle.textContent = 'Realization Found';
                 this.statusBadge.className = 'badge success';
                 this.statusBadge.textContent = `Error: ${result.dist.toExponential(2)} ≤ ${tol.toExponential(0)}`;
                 this.statusDesc.textContent = `A valid ${this.getClassName(targetClass)} was successfully constructed in ${result.iterations.toLocaleString()} iterations across ${result.restarts} attempt(s) (${elapsedMs} ms) using ${result.method}.`;
             } else if (result.cancelled) {
-                this.statusIcon.innerHTML = '&#x23F9;&#xFE0F;';
+                this.statusIcon.innerHTML = '&#x25A0;';
                 this.statusTitle.textContent = 'Search Stopped (Best Found Candidate)';
                 this.statusBadge.className = 'badge warning';
                 this.statusBadge.textContent = `Error: ${result.dist.toExponential(3)}`;
                 this.statusDesc.textContent = `Search was halted early after ${result.restarts} attempt(s) (${result.iterations.toLocaleString()} iterations, ${elapsedMs} ms). Displaying the best candidate approximation found so far.`;
             } else {
-                this.statusIcon.innerHTML = result.theoretical.allPassed ? '&#x26A0;&#xFE0F;' : '&#x274C;';
+                this.statusIcon.innerHTML = result.theoretical.allPassed ? '!' : '&times;';
                 this.statusTitle.textContent = result.theoretical.allPassed ? 'Best Found Candidate' : 'Infeasible / Best Approximation';
                 this.statusBadge.className = 'badge warning';
                 this.statusBadge.textContent = `Best Residual: ${result.dist.toExponential(3)} > tol`;
@@ -1869,7 +1869,7 @@
                     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
                     const bg = isDark
                         ? `rgba(59, 130, 246, ${0.08 + intensity * 0.35})`
-                        : `rgba(37, 99, 235, ${0.06 + intensity * 0.28})`;
+                        : `rgba(21, 55, 13, ${0.06 + intensity * 0.28})`;
                     
                     const strVal = cleanVal.toFixed(this.matrixPrecision);
                     html += `<td style="background: ${bg};" title="A[${i+1},${j+1}] = ${val}">${strVal}</td>`;
@@ -1884,12 +1884,10 @@
             if (!this.diagList) return;
             let html = '';
             for (const d of theoretical.diagnostics) {
-                const icon = d.status === 'pass' ? '&#x2705;' : '&#x274C;';
                 const pillClass = d.status === 'pass' ? 'pass-pill' : 'fail-pill';
                 html += `
                     <div class="diag-item ${d.status}">
                         <div class="diag-item-header">
-                            <span class="diag-icon">${icon}</span>
                             <span class="diag-name">${d.name}</span>
                             <span class="diag-pill ${pillClass}">${d.status.toUpperCase()}</span>
                         </div>
@@ -1978,7 +1976,7 @@
         renderEmptyState(msg) {
             if (this.statusBanner) {
                 this.statusBanner.className = 'status-banner warning';
-                this.statusIcon.innerHTML = '&#x2139;&#xFE0F;';
+                this.statusIcon.innerHTML = 'i';
                 this.statusTitle.textContent = 'Input Required';
                 this.statusBadge.className = 'badge warning';
                 this.statusBadge.textContent = 'Awaiting Input';
@@ -2087,7 +2085,7 @@
 
             // Background
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = isDark ? '#0b1120' : '#ffffff';
+            ctx.fillStyle = isDark ? '#060f1d' : '#fdfcf9';
             ctx.fillRect(0, 0, width, height);
 
             const centerX = width / 2 + this.canvasOffset.x;
@@ -2111,7 +2109,7 @@
             const toScreenY = (y) => centerY - y * pxPerUnit;
 
             // Grid lines
-            ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)';
+            ctx.strokeStyle = isDark ? 'rgba(169, 193, 226, 0.08)' : 'rgba(21, 55, 13, 0.08)';
             ctx.lineWidth = 1;
 
             const step = maxCoord > 4 ? 2 : (maxCoord > 2 ? 1 : 0.5);
@@ -2133,7 +2131,7 @@
             }
 
             // Axes
-            ctx.strokeStyle = isDark ? '#475569' : '#94a3b8';
+            ctx.strokeStyle = isDark ? '#325688' : '#728e6d';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(0, centerY);
@@ -2143,7 +2141,7 @@
             ctx.stroke();
 
             // Unit circle
-            ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.35)' : 'rgba(37, 99, 235, 0.3)';
+            ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(21, 55, 13, 0.35)';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([4, 4]);
             ctx.beginPath();
@@ -2152,7 +2150,7 @@
             ctx.setLineDash([]);
 
             // Labels for axes
-            ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
+            ctx.fillStyle = isDark ? '#a9c1e2' : '#536e4e';
             ctx.font = '11px Inter, sans-serif';
             ctx.fillText('Re', width - 24, centerY - 6);
             ctx.fillText('Im', centerX + 6, 16);
@@ -2163,8 +2161,8 @@
             const targetClass = this.getSelectedClass();
             if ((targetClass === 'stochastic' || targetClass === 'stochastic-symmetric') && this.currentTargetSpectrum.length === 3) {
                 // Draw Karpelevic K_3 triangle: 1, e^{i 2pi/3}, e^{i 4pi/3}
-                ctx.strokeStyle = isDark ? 'rgba(244, 114, 182, 0.4)' : 'rgba(219, 39, 119, 0.4)';
-                ctx.fillStyle = isDark ? 'rgba(244, 114, 182, 0.08)' : 'rgba(219, 39, 119, 0.06)';
+                ctx.strokeStyle = isDark ? 'rgba(59, 130, 246, 0.5)' : 'rgba(21, 55, 13, 0.45)';
+                ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(114, 142, 109, 0.15)';
                 ctx.lineWidth = 1.5;
                 ctx.beginPath();
                 const kPts = [
@@ -2195,22 +2193,23 @@
                 ctx.setLineDash([]);
             }
 
-            // Draw Target Spectrum (Blue Rings)
+            // Draw Target Spectrum (Rings)
+            const targetColor = isDark ? '#3b82f6' : '#15370d';
             for (let i = 0; i < this.currentTargetSpectrum.length; i++) {
                 const t = this.currentTargetSpectrum[i];
                 const sx = toScreenX(t.re);
                 const sy = toScreenY(t.im);
 
-                ctx.strokeStyle = '#3b82f6';
+                ctx.strokeStyle = targetColor;
                 ctx.lineWidth = 2.5;
-                ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
+                ctx.fillStyle = isDark ? '#0e1d33' : '#ffffff';
                 ctx.beginPath();
                 ctx.arc(sx, sy, 7, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.stroke();
 
                 // Inner cross
-                ctx.strokeStyle = '#3b82f6';
+                ctx.strokeStyle = targetColor;
                 ctx.lineWidth = 1.5;
                 ctx.beginPath();
                 ctx.moveTo(sx - 3, sy);

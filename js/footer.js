@@ -43,13 +43,14 @@
                 </p>
                 <div class="footer-brand-links">
                     <a href="https://github.com/Thrinador/nonsensicallynonnegative" target="_blank" rel="noopener" class="footer-ext-link">
-                        <span>&#x1F4BB; GitHub Repository</span>
+                        <span>GitHub Repository &rarr;</span>
                     </a>
                 </div>
             </div>
             <div class="footer-links-group">
                 <span class="footer-col-title">Navigation</span>
                 <a href="${prefix}index.html">Home</a>
+                <a href="${prefix}blog.html">Blog Posts</a>
                 <a href="${prefix}about.html">About &amp; Contributing</a>
                 <a href="${prefix}problem-background.html">Theory Wiki</a>
                 <a href="${prefix}bibliography.html">Comprehensive Bibliography</a>

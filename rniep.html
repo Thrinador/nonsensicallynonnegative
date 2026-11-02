@@ -61,16 +61,16 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+        <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
         <div class="wiki-layout">
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
-                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                <header class="deepdive-hero">
                     <div class="hero-badge">Theory Wiki &middot; Subproblem Analysis</div>
-                    <h1 class="hero-title" style="font-size: 2.2rem;">Real Nonnegative Inverse Eigenvalue Problem</h1>
+                    <h1 class="hero-title">Real Nonnegative Inverse Eigenvalue Problem</h1>
                     <p class="hero-subtitle">
                         Investigating real spectra realizable by general nonnegative matrices ($A \ge 0$, $\sigma \subset \mathbb{R}$), non-orthogonal eigenvector geometries, and the symmetry gap.
                     </p>
@@ -143,7 +143,7 @@
                             <h3 class="math-callout-title">Definition: The RNIEP</h3>
                             <span class="math-callout-tag">Formal Statement</span>
                         </div>
-                        <p class="deepdive-text" style="margin-bottom: 0.5rem;">
+                        <p class="deepdive-text mb-sm">
                             Find an $n \times n$ matrix $A = (a_{ij}) \in \mathbb{R}^{n \times n}$ such that:
                         </p>
                         <div class="theory-formula">
@@ -155,7 +155,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Unlike the <a href="sniep.html" style="color: var(--accent); font-weight: 600;">Symmetric NIEP (SNIEP)</a> where $A$ must be orthogonally diagonalizable ($A = Q \Lambda Q^T$), a general real realization $A$ diagonalizes as:
+                        Unlike the <a class="text-link" href="sniep.html">Symmetric NIEP (SNIEP)</a> where $A$ must be orthogonally diagonalizable ($A = Q \Lambda Q^T$), a general real realization $A$ diagonalizes as:
                     </p>
                     <div class="theory-formula">
                         $$A = X \Lambda X^{-1}, \quad X \in \mathrm{GL}(n, \mathbb{R})$$
@@ -172,7 +172,7 @@
                         <p class="deepdive-section-desc">Trace nonnegativity, Newton inequalities, and moment constraints.</p>
                     </div>
 
-                    <div class="conditions-grid" style="margin-top: 0.5rem;">
+                    <div class="conditions-grid mt-sm">
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">1</span>
@@ -207,7 +207,7 @@
                         </div>
                     </div>
 
-                    <p class="deepdive-text" style="margin-top: 1.25rem;">
+                    <p class="deepdive-text mt-lg">
                         In addition to Newton's inequalities, any realizable spectrum must obey the <strong>Johnson-Loewy-London (JLL) inequalities</strong> (1996):
                     </p>
                     <div class="theory-formula">
@@ -258,7 +258,7 @@
                             64 & 0 & 32 & 0 & 0
                             \end{pmatrix}$$
                         </div>
-                        <p class="deepdive-text" style="margin-bottom: 0;">
+                        <p class="deepdive-text mb-0">
                             The characteristic polynomial is $p(\lambda) = \lambda^5 - 32\lambda^3 - 64 = (\lambda - 4)(\lambda - 2)^2(\lambda + 4)^2$. While this non-symmetric companion matrix realizes $\sigma$, Johnson, Laffey, and Loewy proved that no symmetric nonnegative matrix can realize $\sigma$ because the eigenspace corresponding to $-4$ cannot be embedded orthogonally without forcing negative off-diagonal entries.
                         </p>
                     </div>
@@ -317,18 +317,18 @@
                             <h3 class="math-callout-title">Semi-Algebraic Solvability (Clark, 2024)</h3>
                             <span class="math-callout-tag">Real Algebraic Geometry</span>
                         </div>
-                        <p class="deepdive-text" style="margin-bottom: 0;">
+                        <p class="deepdive-text mb-0">
                             In 2024, Benjamin J. Clark demonstrated that the RNIEP forms a <strong>semi-algebraic set</strong>. By the Tarski-Seidenberg projection theorem, the set of realizable real spectra $\operatorname{RNIEP}(n) \subset \mathbb{R}^n$ can be defined by a finite Boolean combination of polynomial equalities and inequalities:
                         </p>
-                        <div class="theory-formula" style="margin: 0.65rem 0;">
+                        <div class="theory-formula">
                             $$\sigma \in \operatorname{RNIEP}(n) \iff \bigvee_{i=1}^M \bigwedge_{j=1}^{K_i} \big( P_{ij}(\lambda_1, \dots, \lambda_n) \ge 0 \big)$$
                         </div>
-                        <p class="deepdive-text" style="margin: 0;">
+                        <p class="deepdive-text m-0">
                             This confirms that the RNIEP is solvable by finitely many algebraic conditions, shifting modern research toward identifying minimal defining systems.
                         </p>
                     </div>
 
-                    <div class="deepdive-callout" style="margin-top: 1.5rem;">
+                    <div class="deepdive-callout mt-lg">
                         <div class="deepdive-callout-text">
                             <h4>Interactive Trace Polytope Gallery</h4>
                             <p>Compare RNIEP vs. SNIEP trace polytopes in real-time 3D WebGL. See how the RNIEP polytope expands beyond the symmetric boundary for dimensions $n = 4, 5, 6$.</p>
@@ -372,8 +372,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>

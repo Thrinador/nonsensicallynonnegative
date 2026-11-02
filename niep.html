@@ -61,16 +61,16 @@
             <a href="suleimanova.html" class="wiki-tab">Sule&#x012d;manova Spectra</a>
             <a href="boyle-handelman.html" class="wiki-tab">Boyle-Handelman</a>
             <a href="perron-similarities.html" class="wiki-tab">Perron Similarities</a>
-        <a href="bibliography.html" class="wiki-tab">&#x1F4DA; Comprehensive Bibliography</a>
+        <a href="bibliography.html" class="wiki-tab">Comprehensive Bibliography</a>
         </nav>
 
         <!-- Main Wiki Layout: Content + Infobox -->
         <div class="wiki-layout">
             <!-- Left Column: Article Body -->
             <article class="wiki-main-content">
-                <header class="deepdive-hero" style="margin-bottom: 2rem;">
+                <header class="deepdive-hero">
                     <div class="hero-badge">Theory Wiki &middot; Core Problem</div>
-                    <h1 class="hero-title" style="font-size: 2.2rem;">The Nonnegative Inverse Eigenvalue Problem</h1>
+                    <h1 class="hero-title">The Nonnegative Inverse Eigenvalue Problem</h1>
                     <p class="hero-subtitle">
                         The overarching challenge in matrix theory: finding necessary and sufficient conditions for a multiset of complex numbers to be the spectrum of an entrywise nonnegative matrix.
                     </p>
@@ -182,7 +182,7 @@
                         The mathematical difficulty of characterizing realizable spectra escalates dramatically with matrix dimension $n$. The boundary between completely solved and open currently lies at dimension $n = 5$:
                     </p>
 
-                    <div class="data-table-wrapper" style="margin: 1.5rem 0;">
+                    <div class="data-table-wrapper">
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -195,37 +195,37 @@
                             <tbody>
                                 <tr>
                                     <td><strong>$n = 1$</strong></td>
-                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td><span class="status-solved">Solved</span></td>
                                     <td>Classical</td>
                                     <td>$\sigma = \{\lambda_1\}$ is realizable $\iff \lambda_1 \ge 0$.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n = 2$</strong></td>
-                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td><span class="status-solved">Solved</span></td>
                                     <td>Classical</td>
                                     <td>$\lambda_1 \ge 0$, $\lambda_1 \ge |\lambda_2|$, and $\lambda_1 + \lambda_2 \ge 0$ with $\lambda_2 \in \mathbb{R}$ or $\lambda_2 = \bar{\lambda}_1$.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n = 3$</strong></td>
-                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td><span class="status-solved">Solved</span></td>
                                     <td>Loewy &amp; London (1978)</td>
                                     <td>$\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, and the first two traces are nonnegative: $s_1 \ge 0$, $s_2 \ge 0$.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n = 4$</strong></td>
-                                    <td><span style="color: #10b981; font-weight: 700;">Solved</span></td>
+                                    <td><span class="status-solved">Solved</span></td>
                                     <td>Meehan (1998), Torre-Mayo et al. (2007)</td>
                                     <td>Completely classified into cases depending on whether eigenvalues are all real or contain complex pairs; $\operatorname{RNIEP}(4) = \operatorname{SNIEP}(4)$.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n = 5$</strong></td>
-                                    <td><span style="color: #ef4444; font-weight: 700;">Open</span></td>
+                                    <td><span class="status-open">Open</span></td>
                                     <td>Laffey, Meehan, Loewy (1996&ndash;1999)</td>
                                     <td>Trace conditions fail to be sufficient! Symmetric and general problems diverge: $\operatorname{SNIEP}(5) \subsetneq \operatorname{RNIEP}(5)$.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n \ge 6$</strong></td>
-                                    <td><span style="color: #ef4444; font-weight: 700;">Open</span></td>
+                                    <td><span class="status-open">Open</span></td>
                                     <td>Active Research</td>
                                     <td>General semi-algebraic complexity; Tarski-Seidenberg quantifier elimination is computationally intractable.</td>
                                 </tr>
@@ -282,13 +282,13 @@
                         <div class="math-callout-header">
                             <h3 class="math-callout-title">The Laffey-Meehan Counterexample (1999)</h3>
                         </div>
-                        <p class="deepdive-text" style="margin-bottom: 0;">
+                        <p class="deepdive-text mb-0">
                             Thomas J. Laffey and Eleanor Meehan discovered that for $n = 5$, there exist spectra that satisfy <strong>all</strong> trace inequalities, Loewy-London conditions, and Johnson-Loewy-London inequalities, yet <strong>cannot</strong> be realized by any $5 \times 5$ nonnegative matrix! A celebrated family is:
                         </p>
-                        <div class="theory-formula" style="margin: 0.8rem 0;">
+                        <div class="theory-formula">
                             $$\sigma = \{3+t, 3-t, -2, -2, -2\} \quad \text{for } t \in (0, 1)$$
                         </div>
-                        <p class="deepdive-text" style="margin: 0;">
+                        <p class="deepdive-text m-0">
                             This foundational counterexample proved that the boundary of the realizable domain $\mathcal{E}_n$ is not cut out purely by trace polynomials, but involves subtle semi-algebraic geometric constraints on the eigenvector configurations.
                         </p>
                     </div>
@@ -391,8 +391,8 @@
         </div>
 
         <!-- Return to Hub -->
-        <div style="clear: both; text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-            <a href="index.html" class="deep-dive-btn" style="display: inline-flex;">
+        <div class="deepdive-footer-nav">
+            <a href="index.html" class="deep-dive-btn">
                 <span>&larr; Return to NIEP Research Hub</span>
             </a>
         </div>
