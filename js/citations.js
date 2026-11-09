@@ -145,10 +145,10 @@
         "categoryName": "Karpelevič Region & Stochastic",
         "badge": "Algebraic Equations",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.1016/S0024-3795(97)00037-7",
-        "url": "https://doi.org/10.1016/S0024-3795(97)00037-7",
+        "doi": "https://doi.org/10.1016/S0024-3795(97)80052-3",
+        "url": "https://doi.org/10.1016/S0024-3795(97)80052-3",
         "note": "Converts Karpelevič's transcendental parametric formulation into closed-form implicit algebraic equations for all curved boundary arcs, enabling fast computation.",
-        "bibtex": "@article{Ito1997,\n  author  = {Ito, Hisashi},\n  title   = {A new statement about the theorem determining the region of eigenvalues of stochastic matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {267},\n  pages   = {241--246},\n  year    = {1997},\n  doi     = {10.1016/S0024-3795(97)00037-7}\n}"
+        "bibtex": "@article{Ito1997,\n  author  = {Ito, Hisashi},\n  title   = {A new statement about the theorem determining the region of eigenvalues of stochastic matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {267},\n  pages   = {241--246},\n  year    = {1997},\n  doi     = {10.1016/S0024-3795(97)80052-3}\n}"
     },
     {
         "key": "johnson2016",
@@ -175,42 +175,42 @@
         "categoryName": "Karpelevič Region & Stochastic",
         "badge": "Matrix Realizations",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/j.laa.2017.01.007",
-        "url": "https://doi.org/10.1016/j.laa.2017.01.007",
+        "doi": "https://doi.org/10.1016/j.laa.2017.01.009",
+        "url": "https://doi.org/10.1016/j.laa.2017.01.009",
         "note": "Provides explicit n x n stochastic matrix realization families for every reduced Ito boundary polynomial, showing how companion pencils generate all extremal curves.",
-        "bibtex": "@article{JohnsonPaparella2017,\n  author  = {Johnson, Charles R. and Paparella, Pietro},\n  title   = {A matricial view of the {K}arpelevi{\\v{c}} theorem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {520},\n  pages   = {1--15},\n  year    = {2017},\n  doi     = {10.1016/j.laa.2017.01.007}\n}"
+        "bibtex": "@article{JohnsonPaparella2017,\n  author  = {Johnson, Charles R. and Paparella, Pietro},\n  title   = {A matricial view of the {K}arpelevi{\\v{c}} theorem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {520},\n  pages   = {1--15},\n  year    = {2017},\n  doi     = {10.1016/j.laa.2017.01.009}\n}"
     },
     {
         "key": "kirkland2020",
         "title": "The Karpelevič region revisited",
         "authors": "Stephen Kirkland, Thomas J. Laffey, and Helena Šmigoc",
         "year": 2020,
-        "venue": "Linear Algebra and its Applications, 593: 87–119",
+        "venue": "Journal of Mathematical Analysis and Applications, 490(2): 124332",
         "category": "karpelevich",
         "categoryName": "Karpelevič Region & Stochastic",
         "badge": "Polar Parametrization",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.1016/j.laa.2020.02.007",
+        "doi": "https://doi.org/10.1016/j.jmaa.2020.124332",
         "arxiv": "https://arxiv.org/abs/2005.02452",
-        "url": "https://arxiv.org/abs/2005.02452",
+        "url": "https://doi.org/10.1016/j.jmaa.2020.124332",
         "note": "Eliminates multi-root selection ambiguity in Ito's formulation via an exact polar radius equation, proves C^1 arc regularity, and establishes the Universal Subdominance Theorem.",
-        "bibtex": "@article{KirklandLaffeySmigoc2020,\n  author  = {Kirkland, Stephen and Laffey, Thomas J. and {\\v{S}}migoc, Helena},\n  title   = {The {K}arpelevi{\\v{c}} region revisited},\n  journal = {Linear Algebra and its Applications},\n  volume  = {593},\n  pages   = {87--119},\n  year    = {2020},\n  doi     = {10.1016/j.laa.2020.02.007},\n  eprint  = {2005.02452},\n  archivePrefix = {arXiv}\n}"
+        "bibtex": "@article{KirklandLaffeySmigoc2020,\n  author  = {Kirkland, Stephen and Laffey, Thomas J. and {\\v{S}}migoc, Helena},\n  title   = {The {K}arpelevi{\\v{c}} region revisited},\n  journal = {Journal of Mathematical Analysis and Applications},\n  volume  = {490},\n  number  = {2},\n  pages   = {124332},\n  year    = {2020},\n  doi     = {10.1016/j.jmaa.2020.124332},\n  eprint  = {2005.02452},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "munger2023",
-        "title": "Demystifying the Karpelevic theorem",
+        "title": "Demystifying the Karpelevič theorem",
         "authors": "Devon N. Munger, Andrew L. Nickerson, and Pietro Paparella",
-        "year": 2023,
-        "venue": "Linear Algebra and its Applications, 687: 134–160 (2024)",
+        "year": 2024,
+        "venue": "Linear Algebra and its Applications, 702: 46–62",
         "category": "karpelevich",
         "categoryName": "Karpelevič Region & Stochastic",
         "badge": "Arc Simpleness",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/j.laa.2024.01.009",
+        "doi": "https://doi.org/10.1016/j.laa.2024.08.006",
         "arxiv": "https://arxiv.org/abs/2309.03849",
-        "url": "https://arxiv.org/abs/2309.03849",
+        "url": "https://doi.org/10.1016/j.laa.2024.08.006",
         "note": "Proves that Ito boundary arcs are simple curves with strictly monotonic argument connecting Farey neighbours, providing an elementary self-contained pathway to the theorem.",
-        "bibtex": "@article{MungerNickersonPaparella2024,\n  author  = {Munger, Devon N. and Nickerson, Andrew L. and Paparella, Pietro},\n  title   = {Demystifying the {K}arpelevic theorem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {687},\n  pages   = {134--160},\n  year    = {2024},\n  doi     = {10.1016/j.laa.2024.01.009},\n  eprint  = {2309.03849},\n  archivePrefix = {arXiv}\n}"
+        "bibtex": "@article{MungerNickersonPaparella2024,\n  author  = {Munger, Devon N. and Nickerson, Andrew L. and Paparella, Pietro},\n  title   = {Demystifying the {K}arpelevi{\\v{c}} theorem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {702},\n  pages   = {46--62},\n  year    = {2024},\n  doi     = {10.1016/j.laa.2024.08.006},\n  eprint  = {2309.03849},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "verbeken2026",
@@ -612,6 +612,9 @@
     NIEP_CITATIONS.forEach(c => {
         CITATIONS_MAP[c.key] = c;
     });
+    if (CITATIONS_MAP['munger2023']) {
+        CITATIONS_MAP['munger2024'] = CITATIONS_MAP['munger2023'];
+    }
 
     // Determine base URL path prefix based on location
     function getBasePath() {
@@ -711,14 +714,17 @@
             wikiLink = `<a href="${base}perron-similarities.html" class="bib-link" title="Read Perron similarities theory wiki"><span>Spectracones</span></a>`;
         }
 
-        let paperLink = '';
-        if (entry.arxiv) {
-            paperLink = `<a href="${entry.arxiv}" target="_blank" rel="noopener" class="bib-link" title="Open on arXiv"><span>arXiv</span></a>`;
-        } else if (entry.doi) {
-            paperLink = `<a href="${entry.doi}" target="_blank" rel="noopener" class="bib-link" title="Open via DOI"><span>DOI</span></a>`;
-        } else if (entry.url) {
-            paperLink = `<a href="${entry.url}" target="_blank" rel="noopener" class="bib-link" title="Open publication source"><span>Publication</span></a>`;
+        const paperLinks = [];
+        if (entry.doi) {
+            paperLinks.push(`<a href="${entry.doi}" target="_blank" rel="noopener" class="bib-link" title="Open via DOI"><span>DOI</span></a>`);
         }
+        if (entry.arxiv) {
+            paperLinks.push(`<a href="${entry.arxiv}" target="_blank" rel="noopener" class="bib-link" title="Open on arXiv"><span>arXiv</span></a>`);
+        }
+        if (!paperLinks.length && entry.url) {
+            paperLinks.push(`<a href="${entry.url}" target="_blank" rel="noopener" class="bib-link" title="Open publication source"><span>Publication</span></a>`);
+        }
+        const paperLink = paperLinks.join('\n        ');
 
         const isBibPage = typeof window !== 'undefined' && window.location && window.location.pathname && window.location.pathname.endsWith('bibliography.html');
         const permalink = isBibPage ? '' : `<a href="${bibUrl}" class="bib-link bib-archive-link" title="View in NIEP Comprehensive Bibliography"><span>Bibliography Archive</span></a>`;

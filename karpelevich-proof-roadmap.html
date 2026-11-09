@@ -105,7 +105,7 @@
                     <li><a href="#stop-9">Induction on the order</a></li>
                     <li class="plain"><a href="#at-a-glance">The series at a glance</a></li>
                     <li class="plain"><a href="#notation">Standard notation</a></li>
-                    <li class="plain"><a href="#ledger">Proof ledger &amp; modern route</a></li>
+                    <li class="plain"><a href="#ledger">Proof ledger &amp; chapter dependencies</a></li>
                     <li class="plain"><a href="#reading-original">Reading the original paper</a></li>
                 </ol>
                 <div class="essay-side-note">Nine stops, shared notation, and a complete proof ledger.</div>
@@ -119,7 +119,7 @@
                     It reads the polygon’s contact pattern as arithmetic, uses geometric variations to force rigidity, and turns the resulting relations into equations. A final argument places those equations in the right angular sectors and assembles the boundary.
                 </p>
                 <p>
-                    This guide maps that nine-stop journey. Each stop identifies a question, the result that answers it, and the next piece it makes possible, followed by a shared <a href="#notation">notation table</a> and a <a href="#ledger">proof ledger</a> recording what is proved in the series, what is cited from 1946–1951, and where the modern literature completes the boundary description.
+                    This guide maps that nine-stop journey. Each stop identifies a question, the result that answers it, and the next piece it makes possible, followed by a shared <a href="#notation">notation table</a> and a <a href="#ledger">proof ledger</a> recording what is proved in the series, what is cited from 1946–1951, and how the completed proof connects to modern formulations.
                 </p>
 
                 <section class="essay-section" id="destination">
@@ -172,22 +172,28 @@
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
                             <h3 class="math-callout-title">Theorem B — Boundary Arcs in Ito’s Unified Form (Karpelevich 1951; Ito 1997)</h3>
-                            <span class="math-callout-tag"><a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a> · <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> · <a href="karpelevich-induction.html#modern-completion">Stop 9</a></span>
+                            <span class="math-callout-tag"><a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a> · <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> · <a href="karpelevich-induction.html#5-how-the-induction-applies-this-exclusion-everywhere-needed">Stop 9: Comparison</a> · <a href="karpelevich-induction.html#6-the-two-cases-now-exhaust-the-boundary">Induction</a></span>
                         </div>
                         <p>
-                            The region $\mathcal K_n$ ($n\geq2$) is compact, star-shaped with respect to $0$, and symmetric across the real axis. Its intersection with the unit circle consists of all roots of unity $e^{2\pi i a/b}$ with $a/b\in F_n$. For each adjacent pair $a/b&lt;c/d$ in the Farey sequence $F_n$, put
+                            For every $n\geq2$, the region $\mathcal K_n$ is compact, star-shaped with respect to $0$, and symmetric across the real axis, and its intersection with the unit circle consists of all roots of unity $e^{2\pi i a/b}$ with $a/b\in F_n$. At low orders,
                         </p>
                         <div class="theory-formula">
-                            $$\ell=\min(b,d),\qquad s=\max(b,d),\qquad m=\lfloor n/\ell\rfloor.$$
+                            $$\mathcal K_2=[-1,1],\qquad \mathcal K_3=\operatorname{conv}\{1,\omega,\omega^2\}\cup[-1,1]\quad(\omega=e^{2\pi i/3}).$$
                         </div>
                         <p>
-                            Then the outer boundary of $\mathcal K_n$ in the angular sector $[2\pi a/b,2\pi c/d]$ is the curve connecting $e^{2\pi i a/b}$ to $e^{2\pi i c/d}$ traced by the unique root of maximum modulus in each direction of the reduced equation
+                            For $n\geq4$, the topological boundary $\partial\mathcal K_n$ coincides with the radial frontier $\{R_n(\theta)e^{2\pi i\theta}:\theta\in[0,1)\}$. For each adjacent pair $a/b&lt;c/d$ in the Farey sequence $F_n$, put
+                        </p>
+                        <div class="theory-formula">
+                            $$\ell=\min(b,d),\qquad s=\max(b,d),\qquad m=\lfloor n/\ell\rfloor,\qquad D=\max(s,\ell m)\leq n.$$
+                        </div>
+                        <p>
+                            With directions $\theta\in[0,1)$ measured in turns, $\partial\mathcal K_n$ in the angular sector $a/b\leq\theta\leq c/d$ is the simple arc connecting $e^{2\pi i a/b}$ to $e^{2\pi i c/d}$ traced by the unique root of maximum modulus in each direction of the degree-$D$ reduced equation from
                         </p>
                         <div class="theory-formula">
                             $$\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m},\qquad 0\leq t\leq1,$$
                         </div>
                         <p>
-                            which reduces to Family I, $\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ with $\tau=s-\ell m$, when $s\geq\ell m$, and to Family II, $(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$ with $\sigma=\ell m-s$, when $s&lt;\ell m$.
+                            which reduces to Family I, $\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ with $\tau=s-\ell m$ and degree $D=s=\ell m+\tau\leq n$, when $s\geq\ell m$, and to Family II, $(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$ with $\sigma=\ell m-s$ and degree $D=\ell m=s+\sigma\leq n$, when $s&lt;\ell m$. (An open arc is new at order $n$ when $D=n$, and inherited from a smaller order when $D&lt;n$.)
                         </p>
                     </div>
 
@@ -343,10 +349,10 @@
                 <section class="essay-section" id="stop-2">
                     <h2>Ask what a genuinely extremal polygon must do</h2>
                     <p>
-                        Fix an angle and consider the farthest realizable point along that ray. For nonreal directions, write its modulus as
+                        Fix a direction $\theta\in[0,1)$ (measured in turns) and consider the farthest realizable point along that ray. For nonreal directions, write its modulus as
                     </p>
                     <div class="theory-formula">
-                        $$R_n(\theta)=\max\{r\geq0:re^{i\theta}\in\mathcal K_n\}.$$
+                        $$R_n(\theta)=\max\{r\geq0:re^{2\pi i\theta}\in\mathcal K_n\}.$$
                     </div>
                     <p>
                         To study a new part of the boundary at order $n$, separate it from points already realizable at smaller order. The extremal contact theorem then organizes the image vertices along the polygon’s edges. In the orientation used in our game post, it gives
@@ -456,10 +462,16 @@
                         $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma,\qquad0\leq t\leq1.$$
                     </div>
                     <p>
-                        Here $\ell$ is the chain length, $m=\lfloor n/\ell\rfloor$ is the number of repeated chains, $\tau$ ($0\leq\tau&lt;\ell$) is the closing tail in the first form ($n=\ell m+\tau$), and $\sigma$ ($0&lt;\sigma&lt;\ell$) is the closing shift in the second ($n=\ell m$). Both combine into <a href="karpelevich-boundary-equations.html#ito-form">Ito’s unified equation</a> $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$.
+                        Here $\ell$ is the chain length, $m=\lfloor n/\ell\rfloor$ is the number of repeated chains, $\tau=s-\ell m$ ($0\leq\tau&lt;\ell$) is the closing tail in the first form, and $\sigma=\ell m-s$ ($0&lt;\sigma&lt;\ell$) is the closing shift in the second. Their reduced polynomial has realizing degree
+                    </p>
+                    <div class="theory-formula">
+                        $$D=\max(s,\ell m)\leq n,$$
+                    </div>
+                    <p>
+                        namely $D=s=\ell m+\tau$ in Family I and $D=\ell m=s+\sigma$ in Family II. Both combine into <a href="karpelevich-boundary-equations.html#ito-form">Ito’s unified equation</a> $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$.
                     </p>
                     <p>
-                        These are the two reduced equation families. For instance, the <a href="#example">running example</a> below is the first family with $\tau=1$, $\ell=3$, $m=1$: it reads $\lambda(\lambda^3-t)=1-t$, and indeed $\ell m+\tau=4=n$.
+                        The identities asserting degree $n$ ($D=\ell m+\tau=n$ in Family I or $D=\ell m=n$ in Family II) apply to <em>new</em> open arcs at order $n$. For instance, the <a href="#example">running example</a> below between $1/4$ and $1/3$ is a new Family I arc in $\mathcal K_4$ with $\tau=1$, $\ell=3$, $m=1$: it reads $\lambda(\lambda^3-t)=1-t$ of degree $D=\ell m+\tau=4=n$. When that same arc between $1/4$ and $1/3$ is inherited in $\mathcal K_5$, its Farey neighbors and integer data $(\ell,s,m,\tau)=(3,4,1,1)$ are unchanged, so it still has realizing degree $D=4&lt;5$.
                     </p>
                     <p>
                         The detailed post defines their exponents precisely and derives them from the contact equations.
@@ -640,14 +652,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>$n,\ \mathcal K_n$</td><td>Matrix order and the region of eigenvalues of $n\times n$ row-stochastic matrices.</td><td><a href="karpelevich-polygons.html">Stop 1</a></td></tr>
+                                <tr><td>$n,\ \mathcal K_n$</td><td>Ambient matrix order and the region of eigenvalues of $n\times n$ row-stochastic matrices.</td><td><a href="karpelevich-polygons.html">Stop 1</a></td></tr>
+                                <tr><td>$\theta\in[0,1),\ R_n(\theta)$</td><td>Direction measured in turns ($e^{2\pi i\theta}$) and radial frontier modulus $R_n(\theta)=\max\{r\geq0:re^{2\pi i\theta}\in\mathcal K_n\}$.</td><td><a href="karpelevich-contacts.html">Stop 2</a>, <a href="karpelevich-farey.html">Stop 7</a>, <a href="karpelevich-induction.html">Stop 9</a></td></tr>
                                 <tr><td>$k,\ g=\gcd(n,k)$</td><td>Fixed cyclic contact shift $\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k}$ and cycle count of $i\mapsto i+k\pmod n$.</td><td><a href="karpelevich-contacts.html">Stop 2</a>, <a href="karpelevich-game.html">Stop 3</a></td></tr>
-                                <tr><td>$\varphi,\ r$</td><td>Reduced consecutive edge-contact run length $\varphi$ and Euclidean remainder $r\equiv\varphi\pmod{r_{2j-1}}$.</td><td><a href="karpelevich-game.html">Stop 3</a>, <a href="karpelevich-returns.html">Stop 4</a></td></tr>
+                                <tr><td>$\varphi,\ r$</td><td>Reduced consecutive edge-contact run length $\varphi=r_{2j-1}-c\,r_{2j}$ and selected even-position Euclidean remainder $0&lt;r=r_{2j}&lt;\varphi\leq r_{2j-1}$, satisfying $kp\equiv r,\ kq\equiv-\varphi\pmod n$, and $p\varphi+qr=n$.</td><td><a href="karpelevich-game.html">Stop 3</a>, <a href="karpelevich-returns.html">Stop 4</a></td></tr>
                                 <tr><td>$p,q$ and $U,L$</td><td>Record return times ($p,q$) and spatial gaps ($U,L$) in the subtractive Euclidean identity $pU+qL=n$.</td><td><a href="karpelevich-returns.html">Stop 4</a></td></tr>
                                 <tr><td>$F_n,\ a/b&lt;c/d$</td><td>Farey sequence of order $n$ and neighboring reduced fractions satisfying $bc-ad=1$ and $b+d&gt;n$.</td><td><a href="karpelevich-farey.html">Stop 7</a></td></tr>
                                 <tr><td>$f/b&lt;k/n$</td><td>Farey predecessor $f/b$ of the reduced fraction $k/n$ in the chosen orientation ($kb-nf=g$).</td><td><a href="karpelevich-farey.html">Stop 7</a>, <a href="karpelevich-induction.html">Stop 9</a></td></tr>
                                 <tr><td>$\ell=\min(b,d),\ s=\max(b,d)$</td><td>Smaller and larger Farey denominators; $\ell$ is the chain length and $m=\lfloor n/\ell\rfloor$ is the repetition count.</td><td><a href="karpelevich-boundary-equations.html">Stop 6</a>, <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a></td></tr>
-                                <tr><td>$\tau=s-\ell m,\ \sigma=\ell m-s$</td><td>Closing tail $\tau$ ($0\leq\tau&lt;\ell$) in Family I and closing shift $\sigma$ ($0&lt;\sigma&lt;\ell$) in Family II.</td><td><a href="karpelevich-rigidity.html">Stop 5</a>, <a href="karpelevich-boundary-equations.html">Stop 6</a></td></tr>
+                                <tr><td>$D=\max(s,\ell m)\leq n$</td><td>Realizing degree of the reduced boundary polynomial in sector $[a/b,c/d]$ ($D=n$ on new open order-$n$ arcs; $D&lt;n$ on inherited arcs, such as $D=4$ on $[1/4,1/3]$ in $\mathcal K_5$).</td><td><a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a>, <a href="karpelevich-induction.html">Stop 9</a></td></tr>
+                                <tr><td>$\tau=s-\ell m,\ \sigma=\ell m-s$</td><td>Closing tail $\tau$ ($0\leq\tau&lt;\ell$, realizing degree $D=s=\ell m+\tau$) in Family I and closing shift $\sigma$ ($0&lt;\sigma&lt;\ell$, realizing degree $D=\ell m=s+\sigma$) in Family II.</td><td><a href="karpelevich-rigidity.html">Stop 5</a>, <a href="karpelevich-boundary-equations.html">Stop 6</a></td></tr>
                                 <tr><td>$t\in[0,1]$</td><td>Common local-return weight ($t=\alpha$ in the forward branch, $t=\beta$ in the gcd branch).</td><td><a href="karpelevich-rigidity.html">Stop 5</a>, <a href="karpelevich-boundary-equations.html">Stop 6</a></td></tr>
                                 <tr><td>$C(\mu,h)$</td><td>Cyclic polygon generated by powers $\mu^m$ and $h$th roots of unity $\varepsilon=e^{2\pi i/h}$.</td><td><a href="karpelevich-cyclic.html">Stop 8</a></td></tr>
                                 <tr><td>$n_*&lt;n$</td><td>Smaller comparison order satisfying $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$.</td><td><a href="karpelevich-induction.html">Stop 9</a></td></tr>
@@ -657,9 +671,9 @@
                 </section>
 
                 <section class="essay-section" id="ledger">
-                    <h2 class="essay-unnumbered">Proof ledger and where the modern route enters</h2>
+                    <h2 class="essay-unnumbered">Proof ledger and chapter dependencies</h2>
                     <p>
-                        To make the logical status of every step completely transparent, the table below records what is proved in full in each of the nine stops, how the chapters depend on one another, and how the original arguments of Dmitriev–Dynkin (1946) and Karpelevich (1951) connect to modern formulations in the literature (1997–2026).
+                        To make the logical status of every step completely transparent, the table below records what is proved in full in each of the nine stops, how the chapters depend on one another, and how the completed proof of Dmitriev–Dynkin (1946) and Karpelevich (1951) connects to modern formulations in the literature (1997–2026).
                     </p>
                     <div class="table-responsive">
                         <table class="data-table">
@@ -667,7 +681,7 @@
                                 <tr>
                                     <th>Stop</th>
                                     <th>Proved in full in the post</th>
-                                    <th>Cited input &amp; modern completion</th>
+                                    <th>Earlier inputs, sources &amp; modern context</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -679,12 +693,12 @@
                                 <tr>
                                     <td><a href="karpelevich-contacts.html"><strong>Stop 2</strong></a></td>
                                     <td>Radial expansion; resolvent exclusion of an interior image; supporting-face sparsity; contact-count and corner-cut lemmas; closed-edge and half-open-edge contact arguments; fixed cyclic shift and consistent endpoint convention; angular bound and low-order examples.</td>
-                                    <td>Standard Perron–Frobenius and elementary polygon facts from Stop 1. The Dmitriev–Dynkin contact conclusions are proved in the chapter, with the original paper <cite-ref key="dmitriev1946"></cite-ref> and Swift’s translation <cite-ref key="swift1972"></cite-ref> cited as sources.</td>
+                                    <td>Standard Perron–Frobenius and elementary polygon facts from Stop 1. The Dmitriev–Dynkin contact conclusions are proved in the chapter, with the original paper <cite-ref key="dmitriev1946">[Dmitriev–Dynkin, 1946]</cite-ref> and Swift’s translation <cite-ref key="swift1972">[Swift, 1972]</cite-ref> cited as sources.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-game.html"><strong>Stop 3</strong></a></td>
                                     <td>Corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$; Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$ ($g=\gcd(n,k)$); single consecutive run of length $\varphi$ via strict modular records; complete multi-run elimination via the record-gap game.</td>
-                                    <td>Contact and fixed-shift lemmas from Stop 2 (Karpelevich §3, Lemmas 1–2 &amp; Theorems I–II <cite-ref key="karpelevich1951"></cite-ref>).</td>
+                                    <td>Contact and fixed-shift lemmas from Stop 2 (Karpelevich §3, Lemmas 1–2 &amp; Theorems I–II <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref>).</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-returns.html"><strong>Stop 4</strong></a></td>
@@ -694,27 +708,27 @@
                                 <tr>
                                     <td><a href="karpelevich-rigidity.html"><strong>Stop 5</strong></a></td>
                                     <td>Face persistence and exposing carrier lines; projective-chain lemma with a positive-coordinate proof of the strict closing comparison; both moving-block placements; verification of every image constraint; Theorem V and the full-block reduction; common-weight variations in both branches, including zero-weight marks.</td>
-                                    <td>Contact and return lemmas proved in Stops 2–4. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited for the geometric method; the required geometric arguments are developed in full here.</td>
+                                    <td>Contact and return lemmas proved in Stops 2–4. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited for the geometric method; the required geometric arguments are developed in full here.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-boundary-equations.html"><strong>Stop 6</strong></a></td>
-                                    <td>Elimination along chains for Family I ($\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$) and Family II ($(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$); cycle-expansion determinant proof; equivalence with Ito’s unified equation and matrix realization of all reduced Ito roots.</td>
-                                    <td><strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref> unified equation; <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref> stochastic realization.</td>
+                                    <td>Elimination along chains for Family I ($\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$) and Family II ($(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$); cycle-expansion determinant proof; equivalence with Ito’s unified equation and matrix realization of all reduced Ito roots (of realizing degree $D=\max(s,\ell m)\leq n$).</td>
+                                    <td><cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref> unified equation; <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref> stochastic realization.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-farey.html"><strong>Stop 7</strong></a></td>
                                     <td>Farey-neighbor criterion and mediant threshold; lifted vertex-angle identities; forward and gcd-branch angular bounds; inverse-window return partition; single-contact exclusion by the zero-weight slide; complete exponent dictionary for every new nonreal strict-contraction extremum; endpoint-root labels in the worked example.</td>
-                                    <td>Contact, return, and rigidity lemmas proved in Stops 2–5. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited as sources for the angular and return methods; the required arguments are developed in the chapter. No final boundary theorem is used for single-contact case selection. Root-branch existence and final outer selection remain part of Stop 9.</td>
+                                    <td>Contact, return, and rigidity lemmas proved in Stops 2–5. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the angular and return methods; the required arguments are developed in the chapter. No final boundary theorem is used for single-contact case selection. Root-branch existence and final outer selection remain part of Stop 9.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-cyclic.html"><strong>Stop 8</strong></a></td>
                                     <td>Finite closing certificate; multiplicative closure and stochastic realization of every point in a cyclic polygon; Bézout phase lemma and explicit closing constructions for both return patterns, with $hL=n_*$; conjugate, unit-circle, real, and low-order cases; full deduction of Theorem A.</td>
-                                    <td>Common-weight return relations and their exponent counts, proved in Stops 5 and 7. Karpelevich §5, Theorem X <cite-ref key="karpelevich1951"></cite-ref> is proved here using an explicit Bézout form of the root-and-phase construction. Đoković (1990) <cite-ref key="djokovic1990"></cite-ref> is cited only for the historical distinction from the narrower single-orbit conjecture.</td>
+                                    <td>Common-weight return relations and their exponent counts, proved in Stops 5 and 7. Karpelevich §5, Theorem X <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref> is proved here using an explicit Bézout form of the root-and-phase construction. <cite-ref key="djokovic1990">Đoković (1990)</cite-ref> is cited only for the historical distinction from the narrower single-orbit conjecture.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-induction.html"><strong>Stop 9</strong></a></td>
                                     <td>Denominator divisibility test ($b\mid n$ or $d\mid n$); scalar branch equation, stochastic attainability, and winding-based necessity; factor-count and mediant outward comparisons; general strict interior-image polygon construction; order-four base case, full induction $R_n=\widehat R_n$, topological-boundary equality for $n\geq4$, and simple monotone parameterization; comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$ and explicit $n=6$ hexagon witness.</td>
-                                    <td>Common-weight return relations, angular lifts, low-order regions, and explicit chain matrices proved in Stops 5–8. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited as sources for the boundary-comparison method; <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref>, <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref>, <strong>Kirkland–Laffey–Šmigoc (2020)</strong> <cite-ref key="kirkland2020"></cite-ref>, and <strong>Munger–Nickerson–Paparella (2024)</strong> <cite-ref key="munger2023"></cite-ref> are cited as modern alternative formulations.</td>
+                                    <td>Common-weight return relations, angular lifts, low-order regions, and explicit chain matrices proved in Stops 5–8. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the boundary-comparison method; <cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref>, <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref>, <cite-ref key="kirkland2020"><strong>Kirkland–Laffey–Šmigoc (2020)</strong></cite-ref>, and <cite-ref key="munger2023"><strong>Munger–Nickerson–Paparella (2024)</strong></cite-ref> are cited as modern alternative formulations.</td>
                                 </tr>
                             </tbody>
                         </table>
