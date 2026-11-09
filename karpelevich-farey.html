@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Farey Neighbors Label the Arcs · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="Why Farey neighbors label Karpelevich boundary arcs: exact mediants, Bezout identities, angular winding, and endpoint-root selection, with two interactive explorers. Stop 7 of Inside Karpelevich's Proof.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-farey.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Why Farey Neighbors Label the Arcs · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="Why Farey neighbors label Karpelevich boundary arcs: exact mediants, Bezout identities, angular winding, and endpoint-root selection, with two interactive explorers. Stop 7 of Inside Karpelevich&#x27;s Proof.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-farey.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-farey.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>&rsaquo;</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>&rsaquo;</span>
+            <span>Why Farey Neighbors Label the Arcs</span>
+        </nav>
+
+        <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-7"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof &middot; Stop 7</div>
+                    <h1 class="essay-title essay-title-long">Why <em>Farey<br>Neighbors</em><br>Label the Arcs</h1>
+                    <p class="essay-deck">Turn counts locate the algebraic curves.</p>
+                    <div class="essay-tags">
+                        <span>Rational landmarks</span>
+                        <span>Exact angular sectors</span>
+                        <span>Endpoint selection</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 7 of 9 in <em>Inside Karpelevich’s Proof</em> &middot; See the roadmap &rarr;</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 330" role="img" aria-label="The mediant three eighths enters between one third and two fifths at order eight"><text x="195" y="65" text-anchor="middle" fill="#a7cdb8" font-family="system-ui,sans-serif" font-size="17">Order 7 → order 8</text><path d="M45 157H345" stroke="#9ebfae" stroke-width="2"/><circle cx="45" cy="157" r="6" fill="#d0e6d1"/><circle cx="345" cy="157" r="6" fill="#d0e6d1"/><circle cx="232.5" cy="157" r="8" fill="#e1ac67"/><text x="45" y="130" text-anchor="middle" fill="#c5ddca" font-family="system-ui,sans-serif" font-size="25">1/3</text><text x="345" y="130" text-anchor="middle" fill="#c5ddca" font-family="system-ui,sans-serif" font-size="25">2/5</text><text x="232.5" y="207" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="31">3/8</text><text x="195" y="285" text-anchor="middle" fill="#b8d7c0" font-family="system-ui,sans-serif" font-size="20">3 + 5 = 8</text></svg>
+                    <div class="essay-hero-caption">At order 8, the mediant 3/8 enters between consecutive Farey fractions 1/3 and 2/5.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The Farey and winding explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">Angular placement</div>
+                <ol>
+                    <li><a href="#the-unit-circle-supplies-rational-landmarks">The unit circle supplies rational landmarks</a></li>
+                    <li><a href="#what-makes-two-fractions-neighbors">What makes two fractions neighbors?</a></li>
+                    <li><a href="#a-new-order-inserts-a-mediant">A new order inserts a mediant</a></li>
+                    <li><a href="#the-polygons-angle-bounds-produce-these-exact-neighbors">The polygon’s angle bounds produce these exact neighbors</a></li>
+                    <li><a href="#one-angular-estimate-with-the-turn-count-kept-visible">One angular estimate, with the turn count kept visible</a></li>
+                    <li><a href="#exponent-dictionary">The angular sector fixes the exponents</a></li>
+                    <li><a href="#the-labels-distinguish-the-endpoint-roots">The labels distinguish the endpoint roots</a></li>
+                    <li class="plain"><a href="#source-and-scope">Source and scope</a></li>
+                </ol>
+                <div class="essay-side-note">Reduce the fractions.<br>Keep the integer turns.<br>Locate the endpoints.</div>
+            </aside>
+
+            <article class="essay" id="article">
+                <section class="essay-section" id="overview">
+                    <p class="essay-lead">
+                        We have <a href="karpelevich-boundary-equations.html">equations for the boundary candidates</a>. An equation can have many complex roots, and its endpoint equations can have many roots of unity. We still need to locate the relevant roots in the plane.
+                    </p>
+                    <p>
+                        Karpelevich gets that information from angles in the invariant polygon. The integer congruences already controlling the vertex chains become determinant-one identities between rational angles. Those identities identify Farey neighbors.
+                    </p>
+                    <p>
+                        This post connects the geometric angle estimates to the labels on the arcs. We will prove the Farey arithmetic, work through one angular estimate in full, and use the eight-state equation to see why the labels matter.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="the-unit-circle-supplies-rational-landmarks">
+                    <h2>The unit circle supplies rational landmarks</h2>
+                    <p>
+                        Write a direction in turns:
+                    </p>
+                    <div class="theory-formula">
+                        $$\theta=\frac{\arg\lambda}{2\pi},\qquad \lambda=|\lambda|e^{2\pi i\theta}.$$
+                    </div>
+                    <p>
+                        From <a href="karpelevich-polygons.html">the polygon correspondence</a>, the unit-circle points in $\mathcal K_n$ are exactly the roots of unity of order at most $n$. Thus their directions are the reduced fractions
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac ab,\qquad 0\leq a\leq b,\qquad \gcd(a,b)=1,\qquad b\leq n.$$
+                    </div>
+                    <p>
+                        In increasing order, these form the <strong>Farey sequence $F_n$</strong>. The fractions $0/1$ and $1/1$ represent the same point $1$ on the circle; keep both when discussing the interval $[0,1]$, and identify them when drawing the circle.
+                    </p>
+                    <p>
+                        For example, the upper-half directions in $F_7$ are
+                    </p>
+                    <div class="theory-formula">
+                        $$0,\ \frac17,\ \frac16,\ \frac15,\ \frac14,\ \frac27,\ \frac13,\ \frac25,\ \frac37,\ \frac12.$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" role="img" aria-labelledby="01-unit-circle-landmarks-title 01-unit-circle-landmarks-desc"><title id="01-unit-circle-landmarks-title">Farey fractions label the roots of unity of order at most seven</title><desc id="01-unit-circle-landmarks-desc">Upper-half unit-circle landmarks of order seven are labeled by reduced fractions. The neighboring directions one third and two fifths bound a twenty-four degree angular gap.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">UNIT-CIRCLE LANDMARKS ARE REDUCED RATIONAL ANGLES</text><polygon points="245.000,255.000 162.500,112.106 161.306,112.802 160.117,113.508 158.935,114.224 157.759,114.950 156.589,115.686 155.425,116.431 154.267,117.187 153.116,117.952 151.971,118.726 150.832,119.510 149.701,120.304 148.575,121.107 147.457,121.920 146.346,122.741 145.241,123.573 144.144,124.413 143.053,125.262 141.970,126.121 140.894,126.989 139.825,127.865 138.764,128.751 137.710,129.645 136.663,130.549 135.625,131.460 134.593,132.381 133.570,133.310 132.555,134.248 131.547,135.194 130.547,136.149 129.556,137.112 128.572,138.083 127.597,139.063 126.629,140.050 125.671,141.046 124.720,142.050 123.778,143.061 122.845,144.081 121.920,145.108 121.003,146.143 120.096,147.186 119.197,148.236 118.307,149.293 117.426,150.359 116.554,151.431 115.691,152.511 114.837,153.598 113.992,154.692 113.156,155.793 112.329,156.901 111.512,158.015" fill="#e3f1e7" stroke="none"/><circle cx="245" cy="255" r="165" fill="none" stroke="#cfdbd1" stroke-width="1.4"/><path d="M60.000 255.000L450.000 255.000" fill="none" stroke="#d5dfd4" stroke-width="1" stroke-dasharray=""/><circle cx="410.000" cy="255.000" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="439.0" y="259.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">0/1</text><circle cx="347.876" cy="125.998" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="365.9570215605943" y="107.32469240120221" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1/7</text><circle cx="347.876" cy="384.002" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="327.500" cy="112.106" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="342.0" y="90.99107166581891" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1/6</text><circle cx="327.500" cy="397.894" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="295.988" cy="98.076" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="304.9492969087398" y="74.49503583874022" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1/5</text><circle cx="295.988" cy="411.924" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="245.000" cy="90.000" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="245.0" y="65.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1/4</text><circle cx="245.000" cy="420.000" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="208.284" cy="94.137" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="201.830938812475" y="69.8639850367262" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">2/7</text><circle cx="208.284" cy="415.863" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><path d="M245.000 255.000L162.500 112.106" fill="none" stroke="#168579" stroke-width="1.4" stroke-dasharray=""/><circle cx="162.500" cy="112.106" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><text x="148.00000000000006" y="90.99107166581888" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1/3</text><circle cx="162.500" cy="397.894" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><path d="M245.000 255.000L111.512 158.015" fill="none" stroke="#168579" stroke-width="1.4" stroke-dasharray=""/><circle cx="111.512" cy="158.015" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><text x="88.0507030912602" y="144.9696610552602" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">2/5</text><circle cx="111.512" cy="351.985" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="96.340" cy="183.409" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="70.2120396269307" y="174.8265546111937" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">3/7</text><circle cx="96.340" cy="326.591" r="3" fill="#cbd8cc" stroke="none" stroke-width="1.8"/><circle cx="80.000" cy="255.000" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="51.0" y="259.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1/2</text><circle cx="245.000" cy="255.000" r="2" fill="#607b7e" stroke="none" stroke-width="1.8"/><text x="254" y="271" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="520" y="108" font-size="24" fill="#17343f" text-anchor="start" font-weight="400">Landmarks at order 7</text><text x="520" y="165" font-size="21" fill="#168579" text-anchor="start" font-weight="400">1/3 ↔ 120°</text><text x="520" y="207" font-size="21" fill="#168579" text-anchor="start" font-weight="400">2/5 ↔ 144°</text><text x="520" y="265" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">Gap = 1/15 turn = 24°</text><text x="520" y="324" font-size="16" fill="#607b7e" text-anchor="start" font-weight="400">No denominator ≤ 7 fits between</text><text x="520" y="353" font-size="16" fill="#607b7e" text-anchor="start" font-weight="400">these two reduced fractions.</text><text x="520" y="411" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">Lower landmarks follow by conjugation.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. Consecutive fractions $1/3$ and $2/5$ give directions $120^\circ$ and $144^\circ$. At order seven, no other unit-circle landmark lies between them. The picture marks directions and landmarks; it does not draw a boundary arc.</em>
+                    </p>
+                </section>
+
+                <section class="essay-section" id="what-makes-two-fractions-neighbors">
+                    <h2>What makes two fractions neighbors?</h2>
+                    <p>
+                        Two reduced fractions $a/b&lt;c/d$ are consecutive in $F_n$ exactly when
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{bc-ad=1,\qquad b+d&gt;n.}$$
+                    </div>
+                    <p>
+                        The determinant condition makes them a particularly close rational pair. The denominator condition says their gap contains no allowable new landmark at this order.
+                    </p>
+                    <p>
+                        Here is the useful calculation. Suppose $bc-ad=1$ and a fraction $u/v$ lies strictly between them. The two integers
+                    </p>
+                    <div class="theory-formula">
+                        $$bu-av\quad\text{and}\quad cv-du$$
+                    </div>
+                    <p>
+                        are positive. Moreover,
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{v=b(cv-du)+d(bu-av)\geq b+d.}$$
+                    </div>
+                    <p>
+                        Every fraction between the pair therefore needs denominator at least $b+d$.
+                    </p>
+                    <p>
+                        The bound is attained by the <strong>mediant</strong>:
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac{a+c}{b+d}.$$
+                    </div>
+                    <p>
+                        It is reduced, because a common divisor of its numerator and denominator would divide $b(a+c)-a(b+d)=1$. It is also the unique fraction in the gap with the minimum denominator: equality in the boxed identity forces both positive integers to be one.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>Why the determinant-one condition is necessary too</summary>
+                        <p>
+                            The preceding argument proves that determinant one together with $b+d&gt;n$ is sufficient. To find the actual predecessor of a reduced $c/d\in F_n$ with $0&lt;c/d&lt;1$, use the Euclidean algorithm to solve
+                        </p>
+                        <div class="theory-formula">
+                            $$cb\equiv1\pmod d.$$
+                        </div>
+                        <p>
+                            Choose the largest positive solution $b\leq n$, and put $a=(cb-1)/d$. Then $a/b$ is reduced, lies below $c/d$, and satisfies $bc-ad=1$. Maximality of $b$ gives $b+d&gt;n$.
+                        </p>
+                        <p>
+                            The denominator bound now proves that no fraction of $F_n$ lies between these two. Thus this construction finds the predecessor, and every neighboring pair has determinant one. The endpoint $1/1$ has predecessor $(n-1)/n$, which satisfies the same criterion.
+                        </p>
+                    </details>
+
+                    <p>
+                        The angular width of a neighboring gap is consequently exact:
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac cd-\frac ab=\frac1{bd},\qquad \Delta\arg=\frac{2\pi}{bd}.$$
+                    </div>
+                </section>
+
+                <section class="essay-section" id="a-new-order-inserts-a-mediant">
+                    <h2>A new order inserts a mediant</h2>
+                    <p>
+                        The pair $1/3&lt;2/5$ is neighboring at order seven:
+                    </p>
+                    <div class="theory-formula">
+                        $$3\cdot2-1\cdot5=1,\qquad3+5=8&gt;7.$$
+                    </div>
+                    <p>
+                        Its first new fraction is $3/8$. It appears at order eight, splitting the angular gap into two neighboring gaps:
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac13&lt;\frac38&lt;\frac25.$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 445" role="img" aria-labelledby="02-mediant-insertion-title 02-mediant-insertion-desc"><title id="02-mediant-insertion-title">The mediant three eighths first appears at order eight</title><desc id="02-mediant-insertion-desc">The neighboring gap one third to two fifths has width twenty-four degrees. Adding denominators gives eight, when three eighths enters and divides it into fifteen and nine degree gaps.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">A MEDIANT ENTERS WHEN THE DENOMINATORS ADD UP TO THE ORDER</text><text x="45" y="155" font-size="16" fill="#607b7e" text-anchor="start" font-weight="400">n = 7</text><path d="M115.000 150.000L825.000 150.000" fill="none" stroke="#168579" stroke-width="2.5" stroke-dasharray=""/><circle cx="115.000" cy="150.000" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="825.000" cy="150.000" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><text x="115" y="184" font-size="20" fill="#168579" text-anchor="middle" font-weight="400">1/3</text><text x="825" y="184" font-size="20" fill="#168579" text-anchor="middle" font-weight="400">2/5</text><text x="45" y="305" font-size="16" fill="#607b7e" text-anchor="start" font-weight="400">n = 8</text><path d="M115.000 300.000L825.000 300.000" fill="none" stroke="#168579" stroke-width="2.5" stroke-dasharray=""/><circle cx="115.000" cy="300.000" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="825.000" cy="300.000" r="6" fill="#168579" stroke="none" stroke-width="1.8"/><text x="115" y="334" font-size="20" fill="#168579" text-anchor="middle" font-weight="400">1/3</text><text x="825" y="334" font-size="20" fill="#168579" text-anchor="middle" font-weight="400">2/5</text><text x="470.0" y="111" font-size="24" fill="#17343f" text-anchor="middle" font-weight="400">24°</text><path d="M558.750 163.000L558.750 282.000" fill="none" stroke="#beac8b" stroke-width="1.3" stroke-dasharray="4 5"/><circle cx="558.750" cy="150.000" r="6" fill="#fbfaf6" stroke="#d98026" stroke-width="1.8"/><circle cx="558.750" cy="300.000" r="7" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="558.75" y="226" font-size="15" fill="#d98026" text-anchor="middle" font-weight="400">new at order 8</text><text x="558.75" y="337" font-size="22" fill="#d98026" text-anchor="middle" font-weight="400">3/8</text><text x="336.875" y="272" font-size="21" fill="#168579" text-anchor="middle" font-weight="400">15°</text><text x="691.875" y="272" font-size="21" fill="#168579" text-anchor="middle" font-weight="400">9°</text><text x="460" y="407" font-size="18" fill="#17343f" text-anchor="middle" font-weight="400">3 + 5 = 8  ·  the first denominator that can enter this gap</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. The old gap has width $24^\circ$. Its new pieces have widths $15^\circ$ and $9^\circ$. The mediant is not generally the angular midpoint.</em>
+                    </p>
+                    <p>
+                        The neighbor relation depends on the matrix order. A pair stays neighboring through order $b+d-1$ and separates when order $b+d$ admits its mediant. This describes the changing angular labels. How the actual boundary curves change is part of the later induction.
+                    </p>
+
+                    <section class="lab" aria-label="Explore Farey neighbors and the arrival of mediants">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Consecutive rational directions</div>
+                                <div class="lab-title">Which landmarks are neighbors at this order?</div>
+                            </div>
+                            <small>Exact integer data</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="farey-slider">
+                                <label for="farey-n">Matrix order n = <output id="farey-n-value">7</output></label>
+                                <input id="farey-n" type="range" min="4" max="18" step="1" value="7">
+                            </div>
+                            <div class="farey-controls">
+                                <label for="farey-pair">Upper-half neighboring pair<select id="farey-pair"></select></label>
+                                <button type="button" id="farey-seven">Before 3/8: order 7</button>
+                                <button type="button" id="farey-eight">After 3/8: order 8</button>
+                                <button type="button" id="farey-ghost">Hide future mediant</button>
+                            </div>
+                            <div class="farey-layout">
+                                <svg id="farey-plot" viewBox="0 0 500 350" role="img" aria-label="Upper-half unit-circle landmarks and a selected Farey gap"></svg>
+                                <div>
+                                    <p class="farey-pair-labels"><span class="left" id="farey-left"></span> &lt; <span class="right" id="farey-right"></span></p>
+                                    <p class="farey-values" id="farey-determinant"></p>
+                                    <p class="farey-values" id="farey-sum"></p>
+                                    <p class="farey-exact" id="farey-width"></p>
+                                    <p class="farey-note" id="farey-mediant" role="status" aria-live="polite"></p>
+                                    <p class="farey-values" id="farey-split"></p>
+                                </div>
+                            </div>
+                            <p class="small-note">Filled points are current unit-circle landmarks. The dashed ray marks the future mediant direction; its hollow marker is inset for legibility and assigns no eigenvalue modulus. The mediant denominator exceeds the current order. Changing the order changes the neighbor list. The highlighted wedge describes directions.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="the-polygons-angle-bounds-produce-these-exact-neighbors">
+                    <h2>The polygon’s angle bounds produce these exact neighbors</h2>
+                    <p>
+                        Return to a nonreal radial extremum new at order $n&gt;3$, with $0&lt;|\lambda|&lt;1$. Choose the contact orientation from the earlier posts, and let $k$ be its cyclic shift. Initially <a href="karpelevich-contacts.html">the contact theorem</a> gives the coarse sector
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac{k-1}{n}\leq\theta\leq\frac{k}{n}.$$
+                    </div>
+                    <p>
+                        Karpelevich’s angular estimates, Theorems VIII–IX, refine this. Put $g=\gcd(k,n)$. Choose the unique integers $f,b$ satisfying
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{kb-nf=g,\qquad0&lt;n-b&lt;n/g.}$$
+                    </div>
+                    <p>
+                        Then the chosen orientation lies in the open sector
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\frac fb&lt;\theta&lt;\frac kn.}$$
+                    </div>
+                    <p>
+                        The general angular refinement is a geometric input from §5 of the original proof. Its Farey meaning follows immediately. Reduce $k/n$ to $c/d$, where $c=k/g$ and $d=n/g$. Dividing the determinant identity by $g$ gives
+                    </p>
+                    <div class="theory-formula">
+                        $$cb-df=1,$$
+                    </div>
+                    <p>
+                        and the bound on $b$ gives $b+d&gt;n$. Thus $f/b$ and $c/d$ are neighbors in $F_n$.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order $n$</th>
+                                    <th>Shift $k$</th>
+                                    <th>Bézout identity</th>
+                                    <th>Selected angular sector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$8$</td>
+                                    <td>$3$</td>
+                                    <td>$3\cdot3-8\cdot1=1$</td>
+                                    <td>$1/3&lt;\theta&lt;3/8$</td>
+                                </tr>
+                                <tr>
+                                    <td>$7$</td>
+                                    <td>$3$</td>
+                                    <td>$3\cdot5-7\cdot2=1$</td>
+                                    <td>$2/5&lt;\theta&lt;3/7$</td>
+                                </tr>
+                                <tr>
+                                    <td>$8$</td>
+                                    <td>$2$</td>
+                                    <td>$2\cdot5-8\cdot1=2$</td>
+                                    <td>$1/5&lt;\theta&lt;1/4$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        The last row shows why reduction matters. The raw fraction $2/8$ gives determinant two; its reduced form $1/4$ gives determinant one with $1/5$.
+                    </p>
+                    <p>
+                        Conjugation reflects a sector and reverses its endpoints:
+                    </p>
+                    <div class="theory-formula">
+                        $$\left(\frac ab,\frac cd\right)\longmapsto\left(1-\frac cd,\ 1-\frac ab\right).$$
+                    </div>
+                    <p>
+                        The determinant and denominator conditions are preserved, so the same labeling works in the opposite orientation.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="one-angular-estimate-with-the-turn-count-kept-visible">
+                    <h2>One angular estimate, with the turn count kept visible</h2>
+                    <p>
+                        Here is a complete derivation for the forward branch from <a href="karpelevich-rigidity.html#put-the-surviving-relations-in-a-usable-form">the rigidity post</a>, in the standard notation: $\ell$ is the chain length, $m$ the number of repeated chains, and $\tau$ the tail. Its relations include
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\ell x_0=\alpha x_0+\beta x_1,\qquad\alpha,\beta&gt;0,\quad\alpha+\beta=1,$$
+                    </div>
+                    <p>
+                        and $n=\ell m+\tau$ with $m\geq2$, $\tau\geq0$. In particular $\ell\leq n/2$. The arithmetic gives
+                    </p>
+                    <div class="theory-formula">
+                        $$k\ell-fn=1.$$
+                    </div>
+                    <p>
+                        Since $x_0,x_1$ are consecutive counterclockwise vertices and the origin is interior, their angular separation is strictly between zero and $\pi$. Dividing the contact equation by $x_0$ therefore gives
+                    </p>
+                    <div class="theory-formula">
+                        $$0&lt;\operatorname{Arg}(\lambda^\ell)&lt;\pi.$$
+                    </div>
+                    <p>
+                        We must relate this principal argument to $\ell\theta$. The coarse sector and the integer identity imply
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac{1-\ell}{n}\leq \ell\theta-f\leq\frac1n.$$
+                    </div>
+                    <p>
+                        Because $\ell\leq n/2$ and $n&gt;3$, this whole interval lies inside $(-1/2,1/2)$. There is no ambiguity about the principal turn:
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac{\operatorname{Arg}(\lambda^\ell)}{2\pi}=\ell\theta-f.$$
+                    </div>
+                    <p>
+                        Its positivity forces $\theta&gt;f/\ell$. Also $\theta&lt;k/n$: on the endpoint ray the root $e^{2\pi ik/n}$ is realizable, so a strict contraction there cannot be radially extremal. We obtain
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\frac{f}{\ell}&lt;\theta&lt;\frac kn.}$$
+                    </div>
+                    <p>
+                        This is precisely the Farey pair with $k\ell-fn=1$. For the eight-state example, $\ell=3$, $f=1$, and $k/n=3/8$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-labelledby="03-keep-the-turn-count-title 03-keep-the-turn-count-desc"><title id="03-keep-the-turn-count-title">A lifted angle retains its integer winding</title><desc id="03-keep-the-turn-count-desc">The exact angle seventeen forty-eighths becomes seventeen sixteenths after multiplication by three. Subtracting one full turn gives one sixteenth, the principal argument in turns.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">KEEP THE INTEGER TURN BEFORE TAKING THE PRINCIPAL ARGUMENT</text><text x="40" y="115" font-size="22" fill="#17343f" text-anchor="start" font-weight="400">θ</text><path d="M190.000 110.000L755.000 110.000" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray=""/><circle cx="190.000" cy="110.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="190" y="142" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">1/3</text><circle cx="472.500" cy="110.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="472.5" y="142" font-size="20" fill="#d98026" text-anchor="middle" font-weight="400">17/48</text><circle cx="755.000" cy="110.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="755" y="142" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">3/8</text><text x="40" y="240" font-size="22" fill="#17343f" text-anchor="start" font-weight="400">3θ</text><path d="M190.000 235.000L755.000 235.000" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray=""/><circle cx="190.000" cy="235.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="190" y="267" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="472.500" cy="235.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="472.5" y="267" font-size="20" fill="#d98026" text-anchor="middle" font-weight="400">17/16</text><circle cx="755.000" cy="235.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="755" y="267" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">9/8</text><text x="40" y="365" font-size="22" fill="#17343f" text-anchor="start" font-weight="400">3θ − 1</text><path d="M190.000 360.000L755.000 360.000" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray=""/><circle cx="190.000" cy="360.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="190" y="392" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">0</text><circle cx="472.500" cy="360.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="472.5" y="392" font-size="20" fill="#d98026" text-anchor="middle" font-weight="400">1/16</text><circle cx="755.000" cy="360.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><text x="755" y="392" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">1/8</text><text x="820" y="179" font-size="21" fill="#607b7e" text-anchor="middle" font-weight="400">×3</text><text x="820" y="304" font-size="21" fill="#607b7e" text-anchor="middle" font-weight="400">−1</text><text x="460" y="430" font-size="22" fill="#17343f" text-anchor="middle" font-weight="400">127.5° × 3 = 382.5° = 360° + 22.5°</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. At $\theta=17/48$, the original direction is $127.5^\circ$. Multiplication by three gives $3\theta=17/16$ turns. Removing the full turn leaves $1/16$ turn, or $22.5^\circ$. The integer $f=1$ is part of the argument.</em>
+                    </p>
+                    <p>
+                        The other branch uses the angle-packing estimate in Theorem VIII. We use the resulting general bound from section 4; the full packing argument is not reconstructed here.
+                    </p>
+
+                    <section class="lab" aria-label="Explore the integer winding in the forward angular estimate">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Keep the full turns</div>
+                                <div class="lab-title">Watch a coarse angular sector narrow to a Farey gap</div>
+                            </div>
+                            <small>Forward-branch examples</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="farey-controls">
+                                <label for="winding-case">Canonical example<select id="winding-case"><option value="eight">n=8, k=3: the eight-state example</option><option value="seven_lower">n=7, k=5: lower-half orientation</option><option value="seven_other">n=7, k=4: another lower-half example</option><option value="first">n=7, k=1: the first sector</option></select></label>
+                            </div>
+                            <div class="farey-slider">
+                                <label for="winding-angle">Direction θ = <output id="winding-theta-value">17/48</output> turn</label>
+                                <input id="winding-angle" type="range" min="0" max="1000" step="1" value="833">
+                            </div>
+                            <div class="farey-controls">
+                                <button type="button" id="winding-coarse">Coarse lower ray</button>
+                                <button type="button" id="winding-left">Farey left endpoint</button>
+                                <button type="button" id="winding-mid">Sector midpoint</button>
+                                <button type="button" id="winding-right">Right endpoint</button>
+                            </div>
+                            <div class="winding-scroll">
+                                <svg id="winding-plot" class="winding-plot" viewBox="0 0 860 360" role="img" aria-label="Directions of the multiplier and its power with integer winding retained"></svg>
+                            </div>
+                            <p class="farey-values" id="winding-sector"></p>
+                            <p class="farey-values" id="winding-direction"></p>
+                            <p class="farey-values" id="winding-identity"></p>
+                            <p class="farey-exact" id="winding-phase"></p>
+                            <p class="farey-values" id="winding-principal"></p>
+                            <p class="farey-values" id="winding-degree"></p>
+                            <p class="farey-note" id="winding-status" role="status" aria-live="polite"></p>
+                            <p class="small-note">The slider moves inside the coarse sector. Buttons set exact rational rays; their displayed slider positions may be rounded. This tests the angle condition and assigns no modulus or eigenvalue realization to a ray. The pale wedge is the coarse range; teal is the selected angular sector.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="exponent-dictionary">
+                    <h2>The angular sector fixes the exponents</h2>
+                    <p>
+                        The two families of <a href="karpelevich-boundary-equations.html">Stop 6</a> each carry three integers: the chain length $\ell$, the repetition count $m$, and either a tail $\tau$ or a closing shift $\sigma$. Once the angular sector is known, all three are determined by the Farey pair that bounds it. They are exactly the integers in <a href="karpelevich-boundary-equations.html#ito-form">Ito’s equation</a> for that pair.
+                    </p>
+                    <div class="math-callout lemma">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Exponent dictionary</h3>
+                            <span class="math-callout-tag">Proved here</span>
+                        </div>
+                        <p>
+                            Let $\lambda$ be a nonreal radial extremum, new at order $n&gt;3$, with $0&lt;|\lambda|&lt;1$, in the chosen orientation with shift $k$ and $g=\gcd(n,k)$. Its sector $f/b&lt;\theta&lt;k/n$ is bounded by Farey neighbours. Write $\ell$ and $s$ for the smaller and larger of their denominators, and $m=\lfloor n/\ell\rfloor$.
+                        </p>
+                        <ol class="essay-steps">
+                            <li><strong>Forward branch</strong> ($\varphi&gt;g$, so $g=1$). Here $s=n$, and $\ell=b$ is the inverse of $k$ modulo $n$. The relations of Stop 5 are the first family with tail $\tau=n-\ell m$, where $0\leq\tau&lt;\ell$.</li>
+                            <li><strong>gcd branch with $g\geq2$</strong> ($\varphi=g$). Here $\ell=n/g$ is the reduced denominator of $k/n$, $m=g$, and $s=b$. The relations are the second family with closing shift $\sigma=n-b$.</li>
+                        </ol>
+                        <p>
+                            In both cases the reduced equation is Ito’s equation for the pair.
+                        </p>
+                    </div>
+                    <details class="essay-proof">
+                        <summary>Proof of the exponent dictionary</summary>
+                        <p>
+                            <strong>Forward branch.</strong> The window identity of Stop 5 reads $n=\ell m+\tau$. Here $\ell$ and $\tau$ are the record times $p$ and $q$ of <a href="karpelevich-returns.html#euclid-finds-the-records-and-their-times">Stop 4</a> at the stage $(L,U)=(1,m)$. Since $k\ell\equiv1\pmod n$, $\ell$ is the inverse of $k$ modulo $n$, and the previous section identified $f/\ell$ as the predecessor of $k/n$ in $F_n$. In particular $\ell&lt;n=s$.
+                        </p>
+                        <p>
+                            It remains to show $\tau&lt;\ell$, which gives $m=\lfloor n/\ell\rfloor$. If $k=1$, the stage is the initial one, with $\ell=1$, $\tau=0$ and $m=n$. Otherwise $m=r_{2j-1}$ for some $j\geq2$. When $U$ first takes the value $r_{2j-1}$, the current value of $L$ is $r_{2j-2}&gt;r_{2j-1}$. The algorithm therefore subtracts $U$ from $L$ at least once before $L$ reaches $r_{2j}=1$, and each such step replaces $p$ by $p+q$. Hence $\ell=p&gt;q=\tau$. Finally $s=n\geq\ell m$, so Ito’s reduced form is the first family with $\tau=s-\ell m$.
+                        </p>
+                        <p>
+                            <strong>gcd branch.</strong> The block has one target label in each residue class modulo $g$, so the $m=g$ chains all have length $\ell=n/g$. Label $0$ lies on the chain that starts at label $g$, at the step $\sigma$ with $g+\sigma k\equiv0\pmod n$; this is the closing relation $\lambda^\sigma x_g=x_0$ of Stop 5. The predecessor $f/b$ of $k/n$ satisfies $kb-nf=g$ with $0&lt;n-b&lt;\ell$. Hence $\sigma'=n-b$ satisfies $k\sigma'\equiv-g\pmod n$ and $0&lt;\sigma'&lt;\ell$. The congruence $k\sigma\equiv-g\pmod n$ determines $\sigma$ modulo $n/g=\ell$, so $\sigma=n-b$.
+                        </p>
+                        <p>
+                            Since $b&gt;n-\ell=\ell(g-1)\geq\ell$, the smaller denominator is $\ell$ and $s=b$. Then $\ell m=n&gt;s$, so Ito’s reduced form is the second family with $\sigma=\ell m-s=n-b$.
+                        </p>
+                    </details>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>$n,k$</th><th>Branch</th><th>Sector</th><th>$\ell,\ s,\ m$</th><th>Boundary equation</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$8,3$</td><td>Forward</td><td>$1/3&lt;\theta&lt;3/8$</td><td>$3,\ 8,\ 2$</td><td>$\lambda^2(\lambda^3-t)^2=(1-t)^2$</td></tr>
+                                <tr><td>$8,2$</td><td>gcd, $g=2$</td><td>$1/5&lt;\theta&lt;1/4$</td><td>$4,\ 5,\ 2$</td><td>$(\lambda^4-t)^2=(1-t)^2\lambda^3$</td></tr>
+                                <tr><td>$6,2$</td><td>gcd, $g=2$</td><td>$1/4&lt;\theta&lt;1/3$</td><td>$3,\ 4,\ 2$</td><td>$(\lambda^3-t)^2=(1-t)^2\lambda^2$</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="math-callout route">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Route change: one case is settled by the modern statement</h3>
+                            <span class="math-callout-tag">Ito 1997</span>
+                        </div>
+                        <p>
+                            The dictionary leaves one configuration open: $g=1$ with a single edge contact ($\varphi=g=1$). Its relation from Stop 5 has $\ell=n$ and $m=1$, namely $\lambda^n-t=(1-t)\lambda^{n-b}$. Ito’s equation for the same pair, with smaller denominator $b$, is $\lambda^{\tau'}(\lambda^b-t')^{m'}=(1-t')^{m'}$ with $m'=\lfloor n/b\rfloor$.
+                        </p>
+                        <p>
+                            If $b&gt;n/2$, then $m'=1$ and the two equations coincide after $t'=1-t$. For example, $n=7$, $k=3$ gives the sector $2/5&lt;\theta&lt;3/7$ and $\lambda^2(\lambda^5-t)=1-t$. If $b&lt;n/2$, they are different curves with the same endpoints, and only Ito’s is the boundary. Karpelevich’s final assembly decides between such candidates; we do not reconstruct that step.
+                        </p>
+                        <p>
+                            From here on the series uses <strong>Karpelevich’s theorem in Ito’s form</strong> <cite-ref key="ito1997"></cite-ref> for this selection: the arc in each Farey sector is governed by Ito’s equation for that pair. <a href="karpelevich-induction.html#modern-completion">Stop 9</a> marks where the selection is used, and the <a href="karpelevich-proof-roadmap.html#ledger">roadmap ledger</a> lists it as a cited input.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="the-labels-distinguish-the-endpoint-roots">
+                    <h2>The labels distinguish the endpoint roots</h2>
+                    <p>
+                        Our eight-state relations produced
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^2(\lambda^3-t)^2=(1-t)^2.$$
+                    </div>
+                    <p>
+                        The corresponding sector is $1/3&lt;\theta&lt;3/8$. At the parameter endpoints, the polynomial factors exactly:
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Endpoint polynomial</th>
+                                    <th>Unit-circle root in the closed selected sector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$t=0$</td>
+                                    <td>$\lambda^8-1$</td>
+                                    <td>$e^{2\pi i(3/8)}$</td>
+                                </tr>
+                                <tr>
+                                    <td>$t=1$</td>
+                                    <td>$\lambda^2(\lambda^3-1)^2$</td>
+                                    <td>$e^{2\pi i(1/3)}$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="04-endpoint-roots-title 04-endpoint-roots-desc"><title id="04-endpoint-roots-title">Endpoint polynomials have many roots but one selected unit-circle root each</title><desc id="04-endpoint-roots-desc">The eight roots at parameter zero and the three distinct unit-circle roots at parameter one are shown. The closed sector selects the eighth root at three eighths and the cube root at one third. Zero is also a double root at parameter one.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">THE SECTOR SELECTS ONE UNIT-CIRCLE ROOT AT EACH END</text><text x="245" y="86" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">t = 0: λ⁸ = 1</text><polygon points="245.000,235.000 185.500,131.943 184.961,132.256 184.424,132.572 183.889,132.890 183.355,133.212 182.823,133.536 182.292,133.863 181.764,134.192 181.237,134.525 180.711,134.860 180.188,135.198 179.666,135.539 179.146,135.882 178.628,136.229 178.112,136.577 177.598,136.929 177.085,137.283 176.574,137.640 176.066,138.000 175.559,138.362 175.054,138.727 174.550,139.095 174.049,139.465 173.550,139.838 173.053,140.213 172.557,140.591 172.064,140.972 171.573,141.355 171.083,141.740 170.596,142.129 170.111,142.520 169.628,142.913 169.147,143.309 168.667,143.707 168.191,144.108 167.716,144.512 167.243,144.918 166.772,145.326 166.304,145.737 165.838,146.150 165.373,146.566 164.912,146.984 164.452,147.404 163.994,147.827 163.539,148.253 163.086,148.680 162.635,149.111 162.186,149.543 161.740,149.978 161.296,150.415 160.854,150.854" fill="#e3f1e7" stroke="none"/><circle cx="245" cy="235" r="119" fill="none" stroke="#cbd8cc" stroke-width="1.4"/><path d="M245.000 235.000L185.500 131.943" fill="none" stroke="#c1d7c6" stroke-width="1" stroke-dasharray=""/><path d="M245.000 235.000L160.854 150.854" fill="none" stroke="#c1d7c6" stroke-width="1" stroke-dasharray=""/><circle cx="364.000" cy="235.000" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="329.146" cy="150.854" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="245.000" cy="116.000" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="160.854" cy="150.854" r="7" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="126.000" cy="235.000" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="160.854" cy="319.146" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="245.000" cy="354.000" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="329.146" cy="319.146" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><text x="141.76240994676408" y="124.76240994676405" font-size="17" fill="#d98026" text-anchor="middle" font-weight="400">3/8</text><circle cx="245.000" cy="235.000" r="2" fill="#607b7e" stroke="none" stroke-width="1.8"/><text x="685" y="86" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">t = 1: λ³ = 1, plus zero</text><polygon points="685.000,235.000 625.500,131.943 624.961,132.256 624.424,132.572 623.889,132.890 623.355,133.212 622.823,133.536 622.292,133.863 621.764,134.192 621.237,134.525 620.711,134.860 620.188,135.198 619.666,135.539 619.146,135.882 618.628,136.229 618.112,136.577 617.598,136.929 617.085,137.283 616.574,137.640 616.066,138.000 615.559,138.362 615.054,138.727 614.550,139.095 614.049,139.465 613.550,139.838 613.053,140.213 612.557,140.591 612.064,140.972 611.573,141.355 611.083,141.740 610.596,142.129 610.111,142.520 609.628,142.913 609.147,143.309 608.667,143.707 608.191,144.108 607.716,144.512 607.243,144.918 606.772,145.326 606.304,145.737 605.838,146.150 605.373,146.566 604.912,146.984 604.452,147.404 603.994,147.827 603.539,148.253 603.086,148.680 602.635,149.111 602.186,149.543 601.740,149.978 601.296,150.415 600.854,150.854" fill="#e3f1e7" stroke="none"/><circle cx="685" cy="235" r="119" fill="none" stroke="#cbd8cc" stroke-width="1.4"/><path d="M685.000 235.000L625.500 131.943" fill="none" stroke="#c1d7c6" stroke-width="1" stroke-dasharray=""/><path d="M685.000 235.000L600.854 150.854" fill="none" stroke="#c1d7c6" stroke-width="1" stroke-dasharray=""/><circle cx="804.000" cy="235.000" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><circle cx="625.500" cy="131.943" r="7" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="625.500" cy="338.057" r="4.5" fill="#9eafa5" stroke="none" stroke-width="1.8"/><text x="612.0" y="101.56029104747195" font-size="17" fill="#d98026" text-anchor="middle" font-weight="400">1/3</text><circle cx="685.000" cy="235.000" r="4" fill="#607b7e" stroke="none" stroke-width="1.8"/><text x="698" y="252" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">0 (double)</text><text x="460" y="415" font-size="20" fill="#168579" text-anchor="middle" font-weight="400">Closed angular sector: 1/3 ≤ θ ≤ 3/8</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. The gray points are other unit-circle roots of the endpoint polynomials. The selected sector distinguishes the eighth root at $135^\circ$ from the cube root at $120^\circ$. At $t=1$, zero is also a root, but it is not a unit-circle landmark.</em>
+                    </p>
+
+                    <p>
+                        An arc in this sector joining unit-circle landmarks must use those endpoint labels. The argument has identified their locations exactly. It has not certified every root of the equation, or every root path inside an angular sector, as an outer-boundary arc.
+                    </p>
+                    <p>
+                        That final selection belongs to the induction on the order. The same distinction applies to the mediant picture: inserting a rational landmark organizes the sectors; establishing the new and inherited boundary pieces requires the remaining proof.
+                    </p>
+                    <p>
+                        The algebra now has angular labels. The next stop follows the other conclusion of the original paper: <em>Cyclic Polygons and the Whole Region</em>.
+                    </p>
+
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop &middot; Theorem A (Stop 8)</span>
+                        <p>With the algebraic boundary curves placed inside their exact Farey angular sectors, we turn to the other headline conclusion of the 1951 paper — <a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region &rarr;</a></p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="source-and-scope">
+                    <h2 class="essay-unnumbered">Source and scope</h2>
+                    <p class="essay-sources">
+                        [1] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The angular estimates are Theorems VIII–IX, pp. 377–379; their conversion to neighboring rational sectors begins the final assembly on p. 380.
+                    </p>
+                    <p class="essay-sources">
+                        This post uses the general angular refinement as a cited geometric input. It proves the Farey criterion, the mediant threshold, the forward-branch angular lift, the exponent dictionary, and the endpoint-root identification in the worked example. The selection between candidate equations in the single-contact case is taken from Karpelevich’s theorem in Ito’s form (H. Ito, <em>A new statement about the theorem determining the region of eigenvalues of stochastic matrices</em>, Linear Algebra Appl. <strong>267</strong> (1997), 241–246). All figures and explorers use exact rational or integer data, with trigonometric coordinates only for drawing. No numerical root tracking is used to establish a boundary claim.
+                    </p>
+                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997"></cite-grid>
+                </section>
+
+                <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-boundary-equations.html" class="book-pager-title">Stop 6: Where Boundary Equations Come From</a>
+                        <p class="book-pager-desc">Multiplying along deterministic chains, tail shifts, and cycle-expansion proofs.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-cyclic.html" class="book-pager-title">Stop 8: Cyclic Polygons and the Whole Region</a>
+                        <p class="book-pager-desc">Theorem A: every boundary eigenvalue realized by a cyclic polygon and star-shaped interior expansion.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>&larr; Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

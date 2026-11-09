@@ -100,7 +100,7 @@
     };
 
     function getTheme() {
-        return document.documentElement.getAttribute('data-theme') || localStorage.getItem('niep_theme') || 'dark';
+        return document.documentElement.getAttribute('data-theme') || localStorage.getItem('niep_theme') || 'light';
     }
 
     function getPalette(modeOverride) {
@@ -108,7 +108,15 @@
         return PALETTES[mode === 'light' ? 'light' : 'dark'];
     }
 
+    function syncMetaThemeColor(mode) {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+            meta.setAttribute('content', mode === 'dark' ? '#081221' : '#faf8f2');
+        }
+    }
+
     function notifyIframes(newTheme) {
+        syncMetaThemeColor(newTheme);
         document.querySelectorAll('iframe').forEach(frame => {
             try {
                 if (frame.contentDocument && frame.contentDocument.documentElement) {
@@ -130,13 +138,15 @@
     };
 
     // 1. Immediate theme application to avoid FOIT / theme flash
-    const savedTheme = localStorage.getItem('niep_theme') || 'dark';
+    const savedTheme = localStorage.getItem('niep_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    syncMetaThemeColor(savedTheme);
 
     // 2. Setup theme switch buttons once DOM is loaded
     function setupThemeButtons() {
-        const currentTheme = localStorage.getItem('niep_theme') || 'dark';
+        const currentTheme = localStorage.getItem('niep_theme') || 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
+        syncMetaThemeColor(currentTheme);
         if (document.body) {
             document.body.setAttribute('data-theme', currentTheme);
         }

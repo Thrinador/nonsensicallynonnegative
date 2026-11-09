@@ -99,10 +99,10 @@
         </nav>
         <div class="nav-right">
             <div class="theme-switch-group" role="group" aria-label="Color Theme">
-                <button type="button" class="theme-btn" data-theme="light" title="Light Theme">
+                <button type="button" class="theme-btn active" data-theme="light" title="Light Theme">
                     Light
                 </button>
-                <button type="button" class="theme-btn active" data-theme="dark" title="Dark Theme">
+                <button type="button" class="theme-btn" data-theme="dark" title="Dark Theme">
                     Dark
                 </button>
             </div>
@@ -110,7 +110,7 @@
     </header>`;
 
             // Sync current theme to the rendered buttons
-            var currentTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('niep_theme')) || 'dark';
+            var currentTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('niep_theme')) || 'light';
             var lightBtn = this.querySelector('.theme-btn[data-theme="light"]');
             var darkBtn = this.querySelector('.theme-btn[data-theme="dark"]');
             if (currentTheme === 'light') {

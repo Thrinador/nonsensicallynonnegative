@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Theme initialization and synchronization
-    const savedTheme = localStorage.getItem('niep_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.theme === savedTheme);
-        btn.addEventListener('click', () => {
-            const newTheme = btn.dataset.theme;
-            document.documentElement.setAttribute('data-theme', newTheme);
-            if (document.body) {
-                document.body.setAttribute('data-theme', newTheme);
-            }
-            localStorage.setItem('niep_theme', newTheme);
-            document.querySelectorAll('.theme-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.theme === newTheme);
-            });
-        });
-    });
-
     const plotListEl = document.getElementById('plotList');
     const searchInput = document.getElementById('searchInput');
     const plotFrame = document.getElementById('plotFrame');
@@ -28,11 +10,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     let plotsData = [];
 
+    function selectPlot(plot, itemEl) {
+        document.querySelectorAll('.plot-item').forEach(el => el.classList.remove('active'));
+        if (itemEl) itemEl.classList.add('active');
+        welcomeMessage.classList.add('hidden');
+        plotFrame.classList.remove('hidden');
+        plotFrame.src = plot.file || plot.filename;
+    }
+
     // Fetch data
     try {
         const response = await fetch('plots_index.json');
         plotsData = await response.json();
         renderList(plotsData);
+
+        const params = new URLSearchParams(window.location.search);
+        const targetId = params.get('plot');
+        const initialPlot = (targetId && plotsData.find(p => p.id === targetId)) || (window.innerWidth > 900 ? plotsData[0] : null);
+        if (initialPlot) {
+            const idx = plotsData.indexOf(initialPlot);
+            const firstEl = plotListEl.children[idx >= 0 ? idx : 0];
+            selectPlot(initialPlot, firstEl);
+        }
     } catch (error) {
         console.error("Failed to load plots index", error);
         plotListEl.innerHTML = `<div class="welcome-msg compact"><p>Error loading plots data.</p></div>`;
@@ -88,16 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
             
             item.addEventListener('click', () => {
-                document.querySelectorAll('.plot-item').forEach(el => el.classList.remove('active'));
-                item.classList.add('active');
-                
-                welcomeMessage.classList.add('hidden');
-                plotFrame.classList.remove('hidden');
-                plotFrame.src = plot.file || plot.filename;
-
-                if (window.innerWidth <= 900 && plotFrame) {
-                    plotFrame.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                selectPlot(plot, item, true);
             });
             
             plotListEl.appendChild(item);

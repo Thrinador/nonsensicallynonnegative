@@ -1362,7 +1362,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.viewer = viewer;
 
     // 3. Theme initialization
-    const savedTheme = localStorage.getItem('niep_theme') || 'dark';
+    const savedTheme = localStorage.getItem('niep_theme') || 'light';
     setTheme(savedTheme);
 
     document.querySelectorAll('.theme-btn').forEach(btn => {

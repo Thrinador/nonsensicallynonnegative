@@ -1,61 +1,5 @@
 /* Global & Theme Definitions */
-:root, [data-theme="dark"] {
-    --theme-mode: dark;
-    --bg-page: #081221;
-    --bg-surface: #0e1d33;
-    --bg-surface-secondary: #152946;
-    --border-subtle: #213b61;
-    --border-strong: #325688;
-    --border-hover: #4a7ec7;
-    --text-primary: #eaf2ff;
-    --text-secondary: #a9c1e2;
-    --text-muted: #6e8eb8;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-text: #ffffff;
-    --accent-soft: rgba(59, 130, 246, 0.14);
-    --accent-border: rgba(59, 130, 246, 0.34);
-    --accent-shadow: rgba(37, 99, 235, 0.32);
-    --logo-bg: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
-    --banner-grad-1: linear-gradient(135deg, rgba(29, 78, 216, 0.20) 0%, rgba(2, 132, 199, 0.16) 100%);
-    --banner-grad-2: linear-gradient(135deg, rgba(14, 116, 144, 0.20) 0%, rgba(30, 58, 138, 0.24) 100%);
-    --input-bg: #081221;
-    --input-border: #213b61;
-    --btn-inactive-bg: #152946;
-    --btn-inactive-border: #213b61;
-    --btn-inactive-text: #d8e6fa;
-    --btn-inactive-hover: #1e385e;
-    --shadow-card: 0 4px 20px rgba(3, 8, 18, 0.45);
-    --canvas-bg: #081221;
-    --canvas-grid: rgba(169, 193, 226, 0.07);
-    --canvas-axes: #8ab4f8;
-    --canvas-text: #eaf2ff;
-    --canvas-unit-circle: rgba(56, 189, 248, 0.35);
-    --canvas-region-fill0: rgba(59, 130, 246, 0.35);
-    --canvas-region-fill1: rgba(14, 165, 233, 0.22);
-    --canvas-region-fill2: rgba(56, 189, 248, 0.14);
-    --canvas-region-stroke: #60a5fa;
-    --canvas-farey-root: #ffffff;
-    --canvas-farey-stroke: #081221;
-    --canvas-trail: #38bdf8;
-    --canvas-base-point: #60a5fa;
-    /* Standardized Scientific Plot Palette (Dark) */
-    --plot-bg: #081221;
-    --plot-paper: #0e1d33;
-    --plot-grid: #152946;
-    --plot-zero: #213b61;
-    --plot-chamber: #6e8eb8;
-    --plot-d8: #38bdf8;
-    --plot-s4: #f59e0b;
-    --plot-a5: #a855f7;
-    --plot-z5: #10b981;
-    --plot-v4: #2dd4bf;
-    --plot-sniep: #f43f5e;
-    --plot-trace0: #10b981;
-    --plot-highlight: #eab308;
-}
-
-[data-theme="light"] {
+:root, [data-theme="light"] {
     --theme-mode: light;
     /* Softened ColorHunt Palette: #15370D (Forest), #728E6D (Sage), #E5CD82 (Warm Gold), #FAF8F2 (Soft Ivory Paper) */
     --bg-page: #faf8f2;
@@ -110,6 +54,62 @@
     --plot-sniep: #b91c1c;
     --plot-trace0: #15803d;
     --plot-highlight: #ca8a04;
+}
+
+[data-theme="dark"] {
+    --theme-mode: dark;
+    --bg-page: #081221;
+    --bg-surface: #0e1d33;
+    --bg-surface-secondary: #152946;
+    --border-subtle: #213b61;
+    --border-strong: #325688;
+    --border-hover: #4a7ec7;
+    --text-primary: #eaf2ff;
+    --text-secondary: #a9c1e2;
+    --text-muted: #6e8eb8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-text: #ffffff;
+    --accent-soft: rgba(59, 130, 246, 0.14);
+    --accent-border: rgba(59, 130, 246, 0.34);
+    --accent-shadow: rgba(37, 99, 235, 0.32);
+    --logo-bg: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
+    --banner-grad-1: linear-gradient(135deg, rgba(29, 78, 216, 0.20) 0%, rgba(2, 132, 199, 0.16) 100%);
+    --banner-grad-2: linear-gradient(135deg, rgba(14, 116, 144, 0.20) 0%, rgba(30, 58, 138, 0.24) 100%);
+    --input-bg: #081221;
+    --input-border: #213b61;
+    --btn-inactive-bg: #152946;
+    --btn-inactive-border: #213b61;
+    --btn-inactive-text: #d8e6fa;
+    --btn-inactive-hover: #1e385e;
+    --shadow-card: 0 4px 20px rgba(3, 8, 18, 0.45);
+    --canvas-bg: #081221;
+    --canvas-grid: rgba(169, 193, 226, 0.07);
+    --canvas-axes: #8ab4f8;
+    --canvas-text: #eaf2ff;
+    --canvas-unit-circle: rgba(56, 189, 248, 0.35);
+    --canvas-region-fill0: rgba(59, 130, 246, 0.35);
+    --canvas-region-fill1: rgba(14, 165, 233, 0.22);
+    --canvas-region-fill2: rgba(56, 189, 248, 0.14);
+    --canvas-region-stroke: #60a5fa;
+    --canvas-farey-root: #ffffff;
+    --canvas-farey-stroke: #081221;
+    --canvas-trail: #38bdf8;
+    --canvas-base-point: #60a5fa;
+    /* Standardized Scientific Plot Palette (Dark) */
+    --plot-bg: #081221;
+    --plot-paper: #0e1d33;
+    --plot-grid: #152946;
+    --plot-zero: #213b61;
+    --plot-chamber: #6e8eb8;
+    --plot-d8: #38bdf8;
+    --plot-s4: #f59e0b;
+    --plot-a5: #a855f7;
+    --plot-z5: #10b981;
+    --plot-v4: #2dd4bf;
+    --plot-sniep: #f43f5e;
+    --plot-trace0: #10b981;
+    --plot-highlight: #eab308;
 }
 
 * {

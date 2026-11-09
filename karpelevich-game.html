@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karpelevich’s Game · Inside the Original Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="A chip jumping around a circle can stand for a change to an invariant polygon. Play the game from Karpelevich's original proof, see why each move preserves the eigenvalue, and discover how modular records narrow the configurations a boundary proof needs to consider.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-game.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Karpelevich’s Game · Inside the Original Proof | NIEP Research Blog">
+    <meta property="og:description" content="A chip jumping around a circle can stand for a change to an invariant polygon. Play the game from Karpelevich&#x27;s original proof, see why each move preserves the eigenvalue, and discover how modular records narrow the configurations a boundary proof needs to consider.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-game.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-game.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>›</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>›</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>›</span>
+            <span>Karpelevich’s Game</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-3"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof · Stop 3</div>
+                    <h1 class="essay-title">Karpelevich’s<br><em>Game</em></h1>
+                    <p class="essay-deck">A circular board, a corner cut, and a way to simplify an eigenvalue.</p>
+                    <div class="essay-tags">
+                        <span>Original proof</span>
+                        <span>Exact moves</span>
+                        <span>Playable examples</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 3 of 9 in <em>Inside Karpelevich’s Proof</em> · See the roadmap →</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 380 330" role="img" aria-label="Three chips on a seven-site circular board; the chip at 2 can move to 5">
+                                <defs>
+                                    <marker id="hero-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                        <path d="M0 0L10 5L0 10Z" fill="#a3d1bd"></path>
+                                    </marker>
+                                </defs>
+                                <circle cx="190" cy="160" r="111" fill="none" stroke="#47656c" stroke-width="1"></circle>
+                                <circle cx="190" cy="49" r="12" fill="#e7a45d" stroke="#e7a45d" stroke-width="2"></circle>
+                                <text x="190" y="24" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">0</text>
+                                <circle cx="103.22" cy="90.79" r="9" fill="#102b36" stroke="#73988f" stroke-width="2"></circle>
+                                <text x="80.54" y="76.71" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">1</text>
+                                <circle cx="81.78" cy="184.70" r="12" fill="#e7a45d" stroke="#e7a45d" stroke-width="2"></circle>
+                                <text x="53.51" y="195.15" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">2</text>
+                                <circle cx="141.84" cy="260.01" r="9" fill="#102b36" stroke="#73988f" stroke-width="2"></circle>
+                                <text x="129.26" y="290.14" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">3</text>
+                                <circle cx="238.16" cy="260.01" r="12" fill="#e7a45d" stroke="#e7a45d" stroke-width="2"></circle>
+                                <text x="250.74" y="290.14" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">4</text>
+                                <circle cx="298.22" cy="184.70" r="9" fill="#102b36" stroke="#73988f" stroke-width="2"></circle>
+                                <text x="326.49" y="195.15" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">5</text>
+                                <circle cx="276.78" cy="90.79" r="9" fill="#102b36" stroke="#73988f" stroke-width="2"></circle>
+                                <text x="299.46" y="76.71" text-anchor="middle" fill="#a9c2bc" font-family="system-ui,sans-serif" font-size="13">6</text>
+                                <path d="M100.31 180.47 Q190 160 279.69 180.47" fill="none" stroke="#a3d1bd" stroke-width="2" marker-end="url(#hero-arr)"></path>
+                                <text x="190" y="137" fill="#a5c8bd" font-size="12" font-family="system-ui,sans-serif" text-anchor="middle">n = 7 · k = 3</text>
+                                <text x="190" y="190" fill="#a5c8bd" font-size="12" font-family="system-ui,sans-serif" text-anchor="middle">2 → 5</text>
+                            </svg>
+                    <div class="essay-hero-caption">Change the polygon. Keep the eigenvalue.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The article and all five static figures remain readable without JavaScript. The three interactive explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">On this page</div>
+                <ol>
+                    <li><a href="#turn-eigenvector-into-polygon">Turn the eigenvector into a polygon</a></li>
+                    <li><a href="#contact-pattern">The contact pattern we will study</a></li>
+                    <li><a href="#the-rules">The rules</a></li>
+                    <li><a href="#move-preserves-eigenvalue">Why a legal move preserves the eigenvalue</a></li>
+                    <li><a href="#what-it-means-to-win">What does it mean to win?</a></li>
+                    <li><a href="#small-alternative">Why geometry rules out the small alternative</a></li>
+                    <li><a href="#one-run">One run is still not an arbitrary run</a></li>
+                    <li><a href="#series-next">Where the series goes next</a></li>
+                </ol>
+                <div class="essay-side-note">A proof about matrices becomes a finite game about contacts.</div>
+            </aside>
+
+            <article class="essay">
+                <p class="essay-lead">
+                    Put a few chips around a circle. A chip can jump forward, but only when the next space is empty. Land on another chip and remove it.
+                </p>
+                <p>
+                    It sounds like a puzzle from a recreational mathematics book. It is also a step in the original proof of the Karpelevich region: the set of possible eigenvalues of stochastic matrices.
+                </p>
+                <p>
+                    The surprise is what a move accomplishes. We change a polygon, and therefore change a realizing matrix, while preserving the eigenvalue we are trying to understand. Complicated configurations can be replaced by simpler ones. Eventually, the surviving possibilities are controlled by a short list of modular records.
+                </p>
+                <p>
+                    Let’s play the game, then unpack why it belongs in a proof about matrices.
+                </p>
+
+                <!-- 1. First, turn the eigenvector into a polygon -->
+                <section class="essay-section" id="turn-eigenvector-into-polygon">
+                    <h2>First, turn the eigenvector into a polygon</h2>
+
+                    <p>
+                        A row-stochastic matrix has nonnegative entries and each row sums to one. If
+                    </p>
+                    <div class="theory-formula">
+                        $$Av=\lambda v,$$
+                    </div>
+                    <p>
+                        then its $i$th row says
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda v_i=\sum_j a_{ij}v_j,\qquad a_{ij}\geq0,\qquad \sum_j a_{ij}=1.$$
+                    </div>
+                    <p>
+                        View the complex coordinates $v_1,\ldots,v_n$ as points in the plane. Each image $\lambda v_i$ is a convex combination of those points. Consequently,
+                    </p>
+                    <div class="theory-formula">
+                        $$Q=\operatorname{conv}\{v_1,\ldots,v_n\}\quad\Longrightarrow\quad\lambda Q\subseteq Q.$$
+                    </div>
+                    <p>
+                        Multiplication by $\lambda$ rotates the polygon by $\arg\lambda$ and scales it by $|\lambda|$. An eigenvalue becomes a rotation and contraction that fits a polygon inside itself.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" role="img" aria-labelledby="01-invariant-polygon-title 01-invariant-polygon-desc">
+                            <title id="01-invariant-polygon-title">An invariant regular pentagon</title>
+                            <desc id="01-invariant-polygon-desc">The teal image polygon has each vertex on an edge of the original pentagon. The image is generated by the stated exact convex combination.</desc>
+                            <defs>
+                                <marker id="01-invariant-polygon-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#188b81"></path>
+                                </marker>
+                                <marker id="01-invariant-polygon-arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#d98026"></path>
+                                </marker>
+                            </defs>
+                            <rect width="100%" height="100%" rx="18" fill="#fbfaf6"></rect>
+                            <polygon points="255.00,70.00 107.59,177.10 163.89,350.40 346.11,350.40 402.41,177.10" fill="#122c39" fill-opacity=".035" stroke="#122c39" stroke-width="2.5"></polygon>
+                            <polygon points="132.92,255.09 245.89,350.40 371.44,272.41 336.08,128.91 188.66,118.20" fill="#188b81" fill-opacity=".12" stroke="#188b81" stroke-width="2.5"></polygon>
+                            <circle cx="255.0" cy="70.0" r="5" fill="#122c39"></circle>
+                            <text x="255.00" y="48.00" class="label" text-anchor="middle">z0</text>
+                            <circle cx="107.58623997425121" cy="177.10236587188314" r="5" fill="#122c39"></circle>
+                            <text x="81.91" y="173.76" class="label" text-anchor="middle">z1</text>
+                            <circle cx="163.89328589466663" cy="350.3976341281168" r="5" fill="#122c39"></circle>
+                            <text x="148.02" y="377.24" class="label" text-anchor="middle">z2</text>
+                            <circle cx="346.1067141053333" cy="350.39763412811686" r="5" fill="#122c39"></circle>
+                            <text x="361.98" y="377.24" class="label" text-anchor="middle">z3</text>
+                            <circle cx="402.41376002574884" cy="177.1023658718832" r="5" fill="#122c39"></circle>
+                            <text x="428.09" y="173.76" class="label" text-anchor="middle">z4</text>
+                            <circle cx="132.92441063843816" cy="255.0852365871883" r="5" fill="#188b81"></circle>
+                            <text x="116.92" y="241.09" class="label" text-anchor="end" fill="#188b81">λz₀</text>
+                            <circle cx="245.88932858946666" cy="350.39763412811686" r="5" fill="#188b81"></circle>
+                            <circle cx="371.4448847695203" cy="272.41476341281174" r="5" fill="#188b81"></circle>
+                            <circle cx="336.0775680141619" cy="128.90630122953576" r="5" fill="#188b81"></circle>
+                            <circle cx="188.66380798841305" cy="118.19606464234741" r="5" fill="#188b81"></circle>
+                            <circle cx="255" cy="225" r="3.5" fill="#5c737b"></circle>
+                            <text x="269.00" y="243.00" class="small" text-anchor="middle">0</text>
+                            <text x="520.00" y="120.00" class="title" text-anchor="start">A polygon inside itself</text>
+                            <text x="520.00" y="160.00" class="label" text-anchor="start">Q: the original pentagon</text>
+                            <line x1="520" y1="182" x2="565" y2="182" stroke="#122c39" stroke-width="3"></line>
+                            <text x="520.00" y="222.00" class="label" text-anchor="start">λQ: rotated and contracted</text>
+                            <line x1="520" y1="244" x2="565" y2="244" stroke="#188b81" stroke-width="3"></line>
+                            <text x="520.00" y="292.00" class="label" text-anchor="start">λzᵢ = (1 − t)zᵢ₊₁ + tzᵢ₊₂</text>
+                            <text x="520.00" y="323.00" class="small" text-anchor="start">t = 0.45 in this drawing</text>
+                            <text x="520.00" y="355.00" class="small" text-anchor="start">Every image stays on a pentagon edge.</text>
+                        </svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. A concrete example: take $\zeta=e^{2\pi i/5}$ and $\lambda=(1-t)\zeta+t\zeta^2$. For the regular pentagon, numbered counterclockwise, every image is the displayed convex combination of two adjacent vertices. A common rotation of all vertices leaves the construction unchanged. This illustrates invariance; it does not assert radial extremality.</em>
+                    </p>
+
+                    <!-- Interactive Lab 1: Polygon Lab -->
+                    <section class="lab" aria-label="Invariant polygon explorer">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Visual experiment 01</div>
+                                <div class="lab-title">Rotate, contract, and stay inside</div>
+                            </div>
+                            <small>Exact construction</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="polygon-layout">
+                                <svg id="polygon-svg" viewBox="0 0 410 360" role="img" aria-label="Invariant pentagon diagram"></svg>
+                                <div>
+                                    <p class="lab-desc">Move the convex-combination weight. The green image vertices stay on the original pentagon’s edges.</p>
+                                    <label for="polygon-t">Weight t = <output id="polygon-val">0.45</output></label>
+                                    <input id="polygon-t" type="range" min="0" max="100" value="45">
+                                    <p class="readout" id="polygon-readout"></p>
+                                    <p class="small-note">λ = (1 − t)ζ + tζ², with ζ = exp(2πi/5). At the endpoints the image equals the pentagon. This demonstration illustrates invariance, not extremal geometry.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <p>
+                        The implication also runs backward. Given a nontrivial polygon with $m\leq n$ vertices and $\lambda Q\subseteq Q$, choose convex coefficients for each image vertex. These coefficients form an $m\times m$ stochastic matrix with eigenvalue $\lambda$. If necessary, adjoin an identity block to reach order $n$.
+                    </p>
+                    <p>
+                        That correspondence lets us work with polygons instead of matrix entries.
+                    </p>
+                </section>
+
+                <!-- 2. The contact pattern we will study -->
+                <section class="essay-section" id="contact-pattern">
+                    <h2>The contact pattern we will study</h2>
+
+                    <p>
+                        The interesting boundary question is radial: for a fixed angle, how large can $|\lambda|$ be?
+                    </p>
+                    <p>
+                        We begin after the extremal contact reduction used in the original proof. Its hypotheses matter: $\lambda$ is a nonreal radial extremum of least realizing order $n$. In the orientation considered below, the vertices of an invariant polygon can be numbered counterclockwise so that, for a fixed integer $1\leq k &lt; n$,
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k},\qquad \alpha_i\geq0,\quad\beta_i&gt;0,\quad\alpha_i+\beta_i=1.$$
+                    </div>
+                    <p>
+                        All indices are taken modulo $n$. The opposite orientation is handled by complex conjugation. The same contact reduction applies to the invariant polygons obtained during the argument. We use this result as an input; it is the Dmitriev–Dynkin theorem <cite-ref key="dmitriev1946"></cite-ref> quoted in Karpelevich’s §2, p. 363 <cite-ref key="karpelevich1951"></cite-ref> (see <a href="karpelevich-contacts.html">Stop 2: What Extremality Forces</a> for the supporting-edge sparsity proof, the resolvent proof of no interior contacts, and the orientation analysis).
+                    </p>
+                    <p>
+                        There are two possibilities:
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Contact</th>
+                                    <th>Equation</th>
+                                    <th>Board symbol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Vertex contact</strong></td>
+                                    <td>$\alpha_i=0$, so $\lambda z_i=z_{i+k}$</td>
+                                    <td>Empty site</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Edge contact</strong></td>
+                                    <td>$\alpha_i&gt;0$, so $\lambda z_i$ lies strictly inside the indicated edge</td>
+                                    <td>Chip</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        The board records <strong>which vertices have edge contacts</strong>. It does not record their positions or the values of the coefficients.
+                    </p>
+                </section>
+
+                <!-- 3. The rules -->
+                <section class="essay-section" id="the-rules">
+                    <h2>The rules</h2>
+
+                    <p>
+                        Number the $n$ sites counterclockwise, $0,1,\ldots,n-1$. Keep the jump length $k$ fixed.
+                    </p>
+                    <ol class="essay-steps">
+                        <li>Choose an occupied site $i$.</li>
+                        <li>The next site, $i+1$, must be empty.</li>
+                        <li>Move the chip to $i+k$.</li>
+                        <li>If the landing site was occupied, remove the chip already there. One chip remains at the destination.</li>
+                    </ol>
+                    <p>
+                        Equivalently, if $S$ is the set of occupied sites, a legal move is
+                    </p>
+                    <div class="theory-formula">
+                        $$i\in S,\quad i+1\notin S,\qquad S'=(S\setminus\{i\})\cup\{i+k\}.$$
+                    </div>
+                    <p>
+                        Only the immediately next site is checked. The landing site is allowed to be occupied. These are the rules introduced in Karpelevich’s §3, p. 364 <cite-ref key="karpelevich1951"></cite-ref>.
+                    </p>
+                    <p>
+                        Here is a complete example with $n=7$ and $k=3$:
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 710" role="img" aria-labelledby="03-worked-moves-title 03-worked-moves-desc">
+                            <title id="03-worked-moves-title">Four legal moves on seven sites</title>
+                            <desc id="03-worked-moves-desc">Three chips at 0, 2 and 4 are reduced to one chip at 0 by moves from 2, then 5, then 1, then 4, each with jump length 3.</desc>
+                            <defs>
+                                <marker id="03-worked-moves-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#188b81"></path>
+                                </marker>
+                                <marker id="03-worked-moves-arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#d98026"></path>
+                                </marker>
+                            </defs>
+                            <rect width="100%" height="100%" rx="18" fill="#fbfaf6"></rect>
+                            <text x="160.00" y="34.00" class="small" text-anchor="middle">01 · 3 chips</text>
+                            <circle cx="160" cy="150" r="76" fill="none" stroke="#c9d6d7" stroke-width="1.5"></circle>
+                            <circle cx="160.00" cy="74.00" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="160.00" y="55.00" class="small" text-anchor="middle">0</text>
+                            <circle cx="100.58" cy="102.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="81.82" y="92.65" class="small" text-anchor="middle">1</text>
+                            <circle cx="85.91" cy="166.91" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="62.51" y="177.25" class="small" text-anchor="middle">2</text>
+                            <circle cx="127.02" cy="218.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="116.61" y="245.10" class="small" text-anchor="middle">3</text>
+                            <circle cx="192.98" cy="218.47" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="203.39" y="245.10" class="small" text-anchor="middle">4</text>
+                            <circle cx="234.09" cy="166.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="257.49" y="177.25" class="small" text-anchor="middle">5</text>
+                            <circle cx="219.42" cy="102.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="238.18" y="92.65" class="small" text-anchor="middle">6</text>
+                            <path d="M98.58 164.02 Q160.00 150.00 221.42 164.02" fill="none" stroke="#188b81" stroke-width="2.4" marker-end="url(#03-worked-moves-arrow)"></path>
+                            <text x="160.00" y="284.00" class="small" text-anchor="middle">Start · move 2 → 5</text>
+                            <text x="460.00" y="34.00" class="small" text-anchor="middle">02 · 3 chips</text>
+                            <circle cx="460" cy="150" r="76" fill="none" stroke="#c9d6d7" stroke-width="1.5"></circle>
+                            <circle cx="460.00" cy="74.00" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="460.00" y="55.00" class="small" text-anchor="middle">0</text>
+                            <circle cx="400.58" cy="102.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="381.82" y="92.65" class="small" text-anchor="middle">1</text>
+                            <circle cx="385.91" cy="166.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="362.51" y="177.25" class="small" text-anchor="middle">2</text>
+                            <circle cx="427.02" cy="218.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="416.61" y="245.10" class="small" text-anchor="middle">3</text>
+                            <circle cx="492.98" cy="218.47" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="503.39" y="245.10" class="small" text-anchor="middle">4</text>
+                            <circle cx="534.09" cy="166.91" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="557.49" y="177.25" class="small" text-anchor="middle">5</text>
+                            <circle cx="519.42" cy="102.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="538.18" y="92.65" class="small" text-anchor="middle">6</text>
+                            <path d="M521.42 164.02 Q460.00 150.00 410.74 110.72" fill="none" stroke="#188b81" stroke-width="2.4" marker-end="url(#03-worked-moves-arrow)"></path>
+                            <text x="460.00" y="284.00" class="small" text-anchor="middle">Move 5 → 1</text>
+                            <text x="760.00" y="34.00" class="small" text-anchor="middle">03 · 3 chips</text>
+                            <circle cx="760" cy="150" r="76" fill="none" stroke="#c9d6d7" stroke-width="1.5"></circle>
+                            <circle cx="760.00" cy="74.00" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="760.00" y="55.00" class="small" text-anchor="middle">0</text>
+                            <circle cx="700.58" cy="102.61" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="681.82" y="92.65" class="small" text-anchor="middle">1</text>
+                            <circle cx="685.91" cy="166.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="662.51" y="177.25" class="small" text-anchor="middle">2</text>
+                            <circle cx="727.02" cy="218.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="716.61" y="245.10" class="small" text-anchor="middle">3</text>
+                            <circle cx="792.98" cy="218.47" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="803.39" y="245.10" class="small" text-anchor="middle">4</text>
+                            <circle cx="834.09" cy="166.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="857.49" y="177.25" class="small" text-anchor="middle">5</text>
+                            <circle cx="819.42" cy="102.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="838.18" y="92.65" class="small" text-anchor="middle">6</text>
+                            <path d="M710.74 110.72 Q760.00 150.00 787.33 206.76" fill="none" stroke="#188b81" stroke-width="2.4" marker-end="url(#03-worked-moves-arrow)"></path>
+                            <text x="760.00" y="284.00" class="small" text-anchor="middle">Capture · 1 → 4</text>
+                            <text x="310.00" y="359.00" class="small" text-anchor="middle">04 · 2 chips</text>
+                            <circle cx="310" cy="475" r="76" fill="none" stroke="#c9d6d7" stroke-width="1.5"></circle>
+                            <circle cx="310.00" cy="399.00" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="310.00" y="380.00" class="small" text-anchor="middle">0</text>
+                            <circle cx="250.58" cy="427.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="231.82" y="417.65" class="small" text-anchor="middle">1</text>
+                            <circle cx="235.91" cy="491.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="212.51" y="502.25" class="small" text-anchor="middle">2</text>
+                            <circle cx="277.02" cy="543.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="266.61" y="570.10" class="small" text-anchor="middle">3</text>
+                            <circle cx="342.98" cy="543.47" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="353.39" y="570.10" class="small" text-anchor="middle">4</text>
+                            <circle cx="384.09" cy="491.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="407.49" y="502.25" class="small" text-anchor="middle">5</text>
+                            <circle cx="369.42" cy="427.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="388.18" y="417.65" class="small" text-anchor="middle">6</text>
+                            <path d="M337.33 531.76 Q310.00 475.00 310.00 412.00" fill="none" stroke="#188b81" stroke-width="2.4" marker-end="url(#03-worked-moves-arrow)"></path>
+                            <text x="310.00" y="609.00" class="small" text-anchor="middle">Capture · 4 → 0</text>
+                            <text x="610.00" y="359.00" class="small" text-anchor="middle">05 · 1 chip</text>
+                            <circle cx="610" cy="475" r="76" fill="none" stroke="#c9d6d7" stroke-width="1.5"></circle>
+                            <circle cx="610.00" cy="399.00" r="10" fill="#d98026" stroke="#d98026" stroke-width="2"></circle>
+                            <text x="610.00" y="380.00" class="small" text-anchor="middle">0</text>
+                            <circle cx="550.58" cy="427.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="531.82" y="417.65" class="small" text-anchor="middle">1</text>
+                            <circle cx="535.91" cy="491.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="512.51" y="502.25" class="small" text-anchor="middle">2</text>
+                            <circle cx="577.02" cy="543.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="566.61" y="570.10" class="small" text-anchor="middle">3</text>
+                            <circle cx="642.98" cy="543.47" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="653.39" y="570.10" class="small" text-anchor="middle">4</text>
+                            <circle cx="684.09" cy="491.91" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="707.49" y="502.25" class="small" text-anchor="middle">5</text>
+                            <circle cx="669.42" cy="427.61" r="10" fill="#fbfaf6" stroke="#9ab0b5" stroke-width="2"></circle>
+                            <text x="688.18" y="417.65" class="small" text-anchor="middle">6</text>
+                            <text x="610.00" y="609.00" class="small" text-anchor="middle">One chip remains</text>
+                            <text x="460.00" y="680.00" class="small" text-anchor="middle">Each arrow checks only the next site; an occupied destination is allowed.</text>
+                        </svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. The occupied sets are $\{0,2,4\}\to\{0,4,5\}\to\{0,1,4\}\to\{0,4\}\to\{0\}$. The moving sites are $2,5,1,4$. The last two moves capture a chip. This is a combinatorial example, without a claim that the starting board comes from a particular extremal polygon.</em>
+                    </p>
+
+                    <!-- Interactive Lab 2: Playable Game Lab -->
+                    <section class="lab" aria-label="Playable Karpelevich chip game">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Play the original game</div>
+                                <div class="lab-title">Click a chip with a teal ring</div>
+                            </div>
+                            <small>Legal moves only</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="controls">
+                                <label for="game-n">Sites n
+                                    <select id="game-n">
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7" selected>7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </label>
+                                <label for="game-k">Jump k
+                                    <select id="game-k">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3" selected>3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </label>
+                                <button id="game-example" type="button">Worked example</button>
+                                <button id="game-reset" type="button">Reset</button>
+                                <button id="game-undo" type="button">Undo</button>
+                            </div>
+                            <div class="board-layout">
+                                <div>
+                                    <svg class="board-svg" id="game-board" viewBox="0 0 360 340" role="group" aria-label="Interactive circular board"></svg>
+                                    <div class="legend">
+                                        <span><i class="dot"></i>chip</span>
+                                        <span><i class="dot empty"></i>empty</span>
+                                        <span><i class="dot legal"></i>legal move</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="stat-row">
+                                        <div class="stat"><span>CHIPS</span><strong id="stat-chips">3</strong></div>
+                                        <div class="stat"><span>RUNS</span><strong id="stat-runs">3</strong></div>
+                                        <div class="stat"><span>g = gcd(n, k)</span><strong id="stat-gcd">1</strong></div>
+                                    </div>
+                                    <div class="status" id="game-status" role="status" aria-live="polite">Start at site 2, or find a reduction to see a legal path.</div>
+                                    <ol class="history" id="game-history" aria-label="Recent moves"></ol>
+                                    <p class="board-help"><label><input type="checkbox" id="game-edit"> Edit starting chips</label></p>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="primary" id="game-find" type="button">Find a reduction</button>
+                                <button id="game-step" type="button" disabled>Next suggested move</button>
+                            </div>
+                            <p class="small-note">The search finds a shortest legal path to either one run with a record complement or fewer than g = gcd(n, k) chips. It searches the finite board graph; it does not test whether a board comes from an extremal polygon. A reduced board need not have the globally smallest possible chip count.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- 4. Why a legal move preserves the eigenvalue -->
+                <section class="essay-section" id="move-preserves-eigenvalue">
+                    <h2>Why a legal move preserves the eigenvalue</h2>
+
+                    <p>
+                        Suppose there is a chip at $i$ and site $i+1$ is empty. Write $j=i+k$. The two contacts are
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i\in\operatorname{relint}[z_{j-1},z_j],\qquad \lambda z_{i+1}=z_{j+1}.$$
+                    </div>
+                    <p>
+                        Replace the corner $z_j$ by the point $y=\lambda z_i$. Call the resulting polygon $Q'$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 410" role="img" aria-labelledby="02-corner-cut-title 02-corner-cut-desc">
+                            <title id="02-corner-cut-title">A corner cut preserves invariance</title>
+                            <desc id="02-corner-cut-desc">The old corner zj is replaced by y=lambda zi, cutting away a triangular cap without losing any image vertices.</desc>
+                            <defs>
+                                <marker id="02-corner-cut-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#188b81"></path>
+                                </marker>
+                                <marker id="02-corner-cut-arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#d98026"></path>
+                                </marker>
+                            </defs>
+                            <rect width="100%" height="100%" rx="18" fill="#fbfaf6"></rect>
+                            <polygon points="100.00,340.00 110.00,160.00 320.00,70.00 500.00,150.00 545.00,340.00" fill="#122c39" fill-opacity=".025" stroke="#122c39" stroke-width="2.5"></polygon>
+                            <polygon points="194.00,124.00 320.00,70.00 500.00,150.00" fill="#d98026" fill-opacity=".2"></polygon>
+                            <polygon points="100.00,340.00 110.00,160.00 194.00,124.00 500.00,150.00 545.00,340.00" fill="#188b81" fill-opacity=".11" stroke="#188b81" stroke-width="2.5"></polygon>
+                            <circle cx="110" cy="160" r="5.5" fill="#122c39"></circle>
+                            <text x="92.00" y="148.00" class="label" text-anchor="middle">zⱼ₋₁</text>
+                            <circle cx="320" cy="70" r="5.5" fill="#122c39"></circle>
+                            <text x="320.00" y="53.00" class="label" text-anchor="middle">zⱼ</text>
+                            <circle cx="500" cy="150" r="5.5" fill="#122c39"></circle>
+                            <text x="548.00" y="144.00" class="label" text-anchor="middle">zⱼ₊₁</text>
+                            <circle cx="194" cy="124" r="7" fill="#188b81"></circle>
+                            <text x="191.00" y="105.00" class="label" text-anchor="middle">y = λzᵢ</text>
+                            <text x="335.00" y="118.00" class="small" text-anchor="middle">removed corner</text>
+                            <text x="290.00" y="294.00" class="title" text-anchor="middle">Q′</text>
+                            <text x="630.00" y="112.00" class="title" text-anchor="start">The next image is safe</text>
+                            <text x="630.00" y="150.00" class="label" text-anchor="start">λzᵢ₊₁ = zⱼ₊₁</text>
+                            <text x="630.00" y="195.00" class="label" text-anchor="start">No image vertex is lost.</text>
+                            <text x="630.00" y="253.00" class="title" text-anchor="start">λQ ⊆ Q′ ⊆ Q</text>
+                            <text x="630.00" y="291.00" class="title" text-anchor="start">λQ′ ⊆ λQ ⊆ Q′</text>
+                            <text x="630.00" y="348.00" class="small" text-anchor="start">The eigenvalue λ stays fixed.</text>
+                        </svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. A local schematic. The amber triangle is removed. The next image contact is already at $z_{j+1}$, so the removed corner contains no image vertex that needs to be retained. The diagram shows the contact geometry, rather than a numerically fitted global extremal polygon.</em>
+                    </p>
+
+                    <p>
+                        Every image vertex remains in the smaller polygon: the image at $i$ is its new corner $y$, the image at $i+1$ is $z_{j+1}$, and all other image contacts lie on retained edges. Thus
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q\subseteq Q'\subseteq Q.$$
+                    </div>
+                    <p>
+                        Now apply $\lambda$ to the second inclusion:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda Q'\subseteq\lambda Q\subseteq Q'.}$$
+                    </div>
+                    <p>
+                        So $Q'$ is invariant for the <strong>same</strong> $\lambda$.
+                    </p>
+                    <p>
+                        We can also check the chip bookkeeping. Site $i$ is now empty because $\lambda z_i=y$ is a vertex. At the replacement vertex,
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda y=\alpha_i\lambda z_{j-1}+\beta_i\lambda z_j.$$
+                    </div>
+                    <p>
+                        Both coefficients are positive, and the two points on the right are distinct and belong to $Q'$. The extremal contact input places $\lambda y$ on the boundary of $Q'$. A strict convex combination of two distinct points on a supporting line lies in the relative interior of an edge. Therefore site $j$ carries a chip. All other contact types stay unchanged.
+                    </p>
+                    <p>
+                        That is exactly the board move. A capture means two edge contacts have become one.
+                    </p>
+                    <p>
+                        This is Karpelevich’s corner-replacement lemma in geometric form (§3, Lemma 1) <cite-ref key="karpelevich1951"></cite-ref>. The chip game packages its repeated use.
+                    </p>
+                </section>
+
+                <!-- 5. What does it mean to win? -->
+                <section class="essay-section" id="what-it-means-to-win">
+                    <h2>What does it mean to win?</h2>
+
+                    <p>
+                        Call a maximal consecutive string of chips a <strong>run</strong>. A full board counts as one run.
+                    </p>
+                    <p>
+                        We want a reachable board with as few runs as possible, and among those, as few chips as possible. This is a finite choice: there are only $2^n$ boards.
+                    </p>
+                    <p>
+                        It is not an instruction to make every move decrease those numbers. Intermediate moves may make the board look worse. A single chip can keep moving forever. We are selecting a simplest reachable representative.
+                    </p>
+                    <p>
+                        Let
+                    </p>
+                    <div class="theory-formula">
+                        $$g=\gcd(n,k).$$
+                    </div>
+
+                    <div class="math-callout lemma">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Concentration lemma</h3>
+                            <span class="math-callout-tag">Karpelevich §3, Lemma 3 &amp; Thm. I(a)</span>
+                        </div>
+                        <p>A simplest reachable nonempty board has either <strong>one run</strong>, or <strong>fewer than $g$ chips</strong>.</p>
+                    </div>
+
+                    <p>
+                        The key observation is that a run can be moved forward by $k$ by moving its leading chip first, then working backward through the run. In a simplest board, this sweep cannot produce a capture or merge: its final board would have no more runs and would improve one of our two counts.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>A complete proof of the concentration lemma</summary>
+                        <p>
+                            Choose a reachable board minimizing the pair (number of runs, number of chips), in that order. Suppose it has at least two runs.
+                        </p>
+                        <p>
+                            First, a run of length $L$ must satisfy $L\leq n-k$. Otherwise its leading chip jumps onto another chip of the same run. Removing that leading chip leaves a run, so this would reduce the chip count without increasing the run count.
+                        </p>
+                        <p>
+                            For $L\leq n-k$, sweep the run from its leading chip backward. Every next site is empty when needed, and no moving chip captures a chip still waiting to move in its own run. The final occupied set is the union of the translated run and the other runs. It has no more runs than before. A capture would reduce its chip count; a merger would reduce its run count. Both contradict minimality. Thus any chosen run can be translated by $k$, with the other runs fixed, and the board remains a minimizer.
+                        </p>
+                        <p>
+                            Because every translation step keeps the board a minimizer, no step can ever capture a chip or merge two runs: either event would lower one of the two counts. Fix one run $F$ and rotate the labels so that its <em>trailing</em> chip is at site $0$. Then $F$ occupies $0,1,\ldots,L_F-1$. Mark the window $W=\{0,1,\ldots,g-1\}$ of $g$ consecutive sites.
+                        </p>
+                        <p>
+                            Take another run $G$, of length $L_G$, and translate it repeatedly by $k$. The multiples of $k$ modulo $n$ are exactly the multiples of $g$, so its leading chip visits every site of its residue class modulo $g$. Stop the first time that chip lands at a site $s\in W$. At that moment $G$ occupies $s-L_G+1,\ldots,s$. It cannot overlap or touch $F$, since that would be a capture or a merger. Its sites therefore lie in $L_F+1,\ldots,s$, inside $W$, with an empty site separating it from $F$. In particular $F$ itself lies in $W$.
+                        </p>
+                        <p>
+                            Place every remaining run the same way, keeping the runs already placed fixed. Each new run also lands inside $W$, separated from the others by empty sites. All chips now lie in the $g$ sites of $W$, and at least one of those sites is empty. Hence there are fewer than $g$ chips.
+                        </p>
+                        <p>
+                            This proves the lemma: a minimizer with at least two runs has fewer than $g$ chips.
+                        </p>
+                    </details>
+                </section>
+
+                <!-- 6. Why geometry rules out the small alternative -->
+                <section class="essay-section" id="small-alternative">
+                    <h2>Why geometry rules out the small alternative</h2>
+
+                    <p>
+                        The arithmetic map
+                    </p>
+                    <div class="theory-formula">
+                        $$i\longmapsto i+k\pmod n$$
+                    </div>
+                    <p>
+                        has $g$ disjoint cycles, each of length $n/g$. They are the residue classes modulo $g$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" role="img" aria-labelledby="05-gcd-cycles-title 05-gcd-cycles-desc">
+                            <title id="05-gcd-cycles-title">Two residue cycles for n=8 and k=2</title>
+                            <desc id="05-gcd-cycles-desc">Even indices cycle 0 to 2 to 4 to 6 to 0; odd indices cycle 1 to 3 to 5 to 7 to 1. An empty cycle forces lambda to the fourth power to equal 1.</desc>
+                            <defs>
+                                <marker id="05-gcd-cycles-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#188b81"></path>
+                                </marker>
+                                <marker id="05-gcd-cycles-arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#d98026"></path>
+                                </marker>
+                            </defs>
+                            <rect width="100%" height="100%" rx="18" fill="#fbfaf6"></rect>
+                            <path d="M244.44365081389594 145.55634918610406 L186.97056274847714 203.02943725152286" fill="none" stroke="#188b81" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrow)"></path>
+                            <circle cx="260.0" cy="130.0" r="20" fill="#fbfaf6" stroke="#188b81" stroke-width="2.5"></circle>
+                            <text x="260.00" y="136.00" class="label" text-anchor="middle">0</text>
+                            <path d="M185.55634918610406 235.55634918610406 L243.02943725152286 293.02943725152284" fill="none" stroke="#188b81" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrow)"></path>
+                            <circle cx="170.0" cy="220.0" r="20" fill="#fbfaf6" stroke="#188b81" stroke-width="2.5"></circle>
+                            <text x="170.00" y="226.00" class="label" text-anchor="middle">2</text>
+                            <path d="M275.55634918610406 294.44365081389594 L333.02943725152284 236.97056274847716" fill="none" stroke="#188b81" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrow)"></path>
+                            <circle cx="260.0" cy="310.0" r="20" fill="#fbfaf6" stroke="#188b81" stroke-width="2.5"></circle>
+                            <text x="260.00" y="316.00" class="label" text-anchor="middle">4</text>
+                            <path d="M334.44365081389594 204.44365081389597 L276.97056274847716 146.97056274847714" fill="none" stroke="#188b81" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrow)"></path>
+                            <circle cx="350.0" cy="220.00000000000003" r="20" fill="#fbfaf6" stroke="#188b81" stroke-width="2.5"></circle>
+                            <text x="350.00" y="226.00" class="label" text-anchor="middle">6</text>
+                            <text x="260.00" y="226.00" class="title" text-anchor="middle">+2</text>
+                            <text x="260.00" y="355.00" class="label" text-anchor="middle">Even sites</text>
+                            <path d="M644.4436508138959 145.55634918610406 L586.9705627484772 203.02943725152286" fill="none" stroke="#d98026" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrowA)"></path>
+                            <circle cx="660.0" cy="130.0" r="20" fill="#fbfaf6" stroke="#d98026" stroke-width="2.5"></circle>
+                            <text x="660.00" y="136.00" class="label" text-anchor="middle">1</text>
+                            <path d="M585.5563491861041 235.55634918610406 L643.0294372515228 293.02943725152284" fill="none" stroke="#d98026" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrowA)"></path>
+                            <circle cx="570.0" cy="220.0" r="20" fill="#fbfaf6" stroke="#d98026" stroke-width="2.5"></circle>
+                            <text x="570.00" y="226.00" class="label" text-anchor="middle">3</text>
+                            <path d="M675.5563491861041 294.44365081389594 L733.0294372515228 236.97056274847716" fill="none" stroke="#d98026" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrowA)"></path>
+                            <circle cx="660.0" cy="310.0" r="20" fill="#fbfaf6" stroke="#d98026" stroke-width="2.5"></circle>
+                            <text x="660.00" y="316.00" class="label" text-anchor="middle">5</text>
+                            <path d="M734.4436508138959 204.44365081389597 L676.9705627484772 146.97056274847714" fill="none" stroke="#d98026" stroke-width="2.5" marker-end="url(#05-gcd-cycles-arrowA)"></path>
+                            <circle cx="750.0" cy="220.00000000000003" r="20" fill="#fbfaf6" stroke="#d98026" stroke-width="2.5"></circle>
+                            <text x="750.00" y="226.00" class="label" text-anchor="middle">7</text>
+                            <text x="660.00" y="226.00" class="title" text-anchor="middle">+2</text>
+                            <text x="660.00" y="355.00" class="label" text-anchor="middle">Odd sites</text>
+                            <text x="460.00" y="46.00" class="title" text-anchor="middle">gcd(8, 2) = 2 independent index cycles</text>
+                        </svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. With $n=8$ and $k=2$, the even sites form one cycle and the odd sites form another. Fewer than two chips leave one entire cycle without an edge contact.</em>
+                    </p>
+
+                    <p>
+                        If there are fewer than $g$ chips, at least one cycle is completely empty. On that cycle every contact is deterministic:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=z_{i+k},\quad\lambda^2z_i=z_{i+2k},\quad\ldots,\quad\lambda^{n/g}z_i=z_i.$$
+                    </div>
+                    <p>
+                        The origin lies inside a nontrivial invariant polygon for a nonreal strict contraction. To see this, first iterate any nonzero point: its images approach the origin, so $0\in Q$. A supporting line through $0$ would put its entire rotation orbit in a closed half-plane, which is impossible for a nonreal rotation. Thus $0$ is interior, and no vertex equals $0$. We obtain
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^{n/g}=1.$$
+                    </div>
+                    <p>
+                        For a strict contraction, $0 &lt; |\lambda| &lt; 1$, this is impossible.
+                    </p>
+                    <p>
+                        Combine this observation with the concentration lemma: <strong>for the strict-contraction extremal case, we can choose an invariant polygon whose edge-contact vertices form one consecutive run.</strong> Unit-circle eigenvalues require their own treatment; the contradiction just used does not apply there.
+                    </p>
+                    <p>
+                        Notice what we have eliminated. A scattered configuration may occur. It simply does not need its own case in the boundary proof, because a simpler polygon realizes the same eigenvalue.
+                    </p>
+                </section>
+
+                <!-- 7. One run is still not an arbitrary run -->
+                <section class="essay-section" id="one-run">
+                    <h2>One run is still not an arbitrary run</h2>
+
+                    <p>
+                        There is one more reduction. Form the modular orbit
+                    </p>
+                    <div class="theory-formula">
+                        $$a_j=jk\pmod n,\qquad 0\leq j &lt; n/g,$$
+                    </div>
+                    <p>
+                        using representatives in $\{0,\ldots,n-1\}$. Keep an entry only when it exceeds every earlier entry. Include $a_0=0$. These entries are the <strong>record maxima</strong>.
+                    </p>
+                    <div class="math-callout proposition">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Record condition</h3>
+                            <span class="math-callout-tag">Karpelevich §3, Thm. I(b)</span>
+                        </div>
+                        <p>If a simplest one-run board has $\varphi\geq g$ chips, then $n-\varphi$ is a record maximum of the modular orbit $a_j = jk \bmod n$.</p>
+                    </div>
+
+                    <details class="essay-proof">
+                        <summary>Why the number of empty sites must be a record</summary>
+                        <p>
+                            The full board gives $n-\varphi=0$, our initial record. Otherwise rotate the board so that its occupied sites are
+                        </p>
+                        <div class="theory-formula">
+                            $$n-\varphi+1,\ldots,n-1,0.$$
+                        </div>
+                        <p>
+                            Keep every chip except the one at $0$ fixed. Move that chip repeatedly by $k$. Its positions follow $a_0,a_1,a_2,\ldots$.
+                        </p>
+                        <p>
+                            The first time it reaches the interval $\{n-\varphi,\ldots,n-1\}$, it either lands at $n-\varphi$, immediately before the stationary run, or captures one of its chips. A capture would leave a single run with fewer chips, contradicting our choice of board. It must therefore reach $n-\varphi$ first, with all its earlier positions strictly smaller.
+                        </p>
+                        <p>
+                            Why must it reach this interval at all? The orbit visits every multiple of $g$, and an interval of $\varphi\geq g$ consecutive sites contains one. Thus the moving chip cannot circulate forever without encountering it.
+                        </p>
+                        <p>
+                            Its first encounter is exactly a record maximum, as claimed.
+                        </p>
+                    </details>
+
+                    <p>
+                        For $n=7$ and $k=3$,
+                    </p>
+                    <div class="theory-formula">
+                        $$0,3,6,2,5,1,4$$
+                    </div>
+                    <p>
+                        has records $0,3,6$. The candidate run lengths are therefore
+                    </p>
+                    <div class="theory-formula">
+                        $$\varphi=7-0,\quad7-3,\quad7-6:\qquad\boxed{\varphi\in\{7,4,1\}.}$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 410" role="img" aria-labelledby="04-modular-records-title 04-modular-records-desc">
+                            <title id="04-modular-records-title">Records in the modular orbit</title>
+                            <desc id="04-modular-records-desc">The sequence 0, 3, 6, 2, 5, 1, 4 has record maxima 0, 3 and 6, giving candidate chip counts 7, 4 and 1.</desc>
+                            <defs>
+                                <marker id="04-modular-records-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#188b81"></path>
+                                </marker>
+                                <marker id="04-modular-records-arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M0 0L10 5L0 10Z" fill="#d98026"></path>
+                                </marker>
+                            </defs>
+                            <rect width="100%" height="100%" rx="18" fill="#fbfaf6"></rect>
+                            <text x="50.00" y="43.00" class="title" text-anchor="start">Orbit: aₘ = 3m mod 7</text>
+                            <text x="50.00" y="72.00" class="small" text-anchor="start">A new highest value selects the number of empty sites.</text>
+                            <circle cx="100" cy="280" r="4" fill="#188b81"></circle>
+                            <text x="100.00" y="268.00" class="title" text-anchor="middle">0</text>
+                            <text x="100.00" y="307.00" class="small" text-anchor="middle">m = 0</text>
+                            <text x="100.00" y="338.00" class="small" text-anchor="middle">record</text>
+                            <text x="100.00" y="375.00" class="label" text-anchor="middle">q = 7</text>
+                            <rect x="188" y="208" width="48" height="72" rx="7" fill="#188b81" fill-opacity=".8"></rect>
+                            <text x="212.00" y="196.00" class="title" text-anchor="middle">3</text>
+                            <text x="212.00" y="307.00" class="small" text-anchor="middle">m = 1</text>
+                            <text x="212.00" y="338.00" class="small" text-anchor="middle">record</text>
+                            <text x="212.00" y="375.00" class="label" text-anchor="middle">q = 4</text>
+                            <rect x="300" y="136" width="48" height="144" rx="7" fill="#188b81" fill-opacity=".8"></rect>
+                            <text x="324.00" y="124.00" class="title" text-anchor="middle">6</text>
+                            <text x="324.00" y="307.00" class="small" text-anchor="middle">m = 2</text>
+                            <text x="324.00" y="338.00" class="small" text-anchor="middle">record</text>
+                            <text x="324.00" y="375.00" class="label" text-anchor="middle">q = 1</text>
+                            <rect x="412" y="232" width="48" height="48" rx="7" fill="#b6c5c9" fill-opacity=".8"></rect>
+                            <text x="436.00" y="220.00" class="title" text-anchor="middle">2</text>
+                            <text x="436.00" y="307.00" class="small" text-anchor="middle">m = 3</text>
+                            <rect x="524" y="160" width="48" height="120" rx="7" fill="#b6c5c9" fill-opacity=".8"></rect>
+                            <text x="548.00" y="148.00" class="title" text-anchor="middle">5</text>
+                            <text x="548.00" y="307.00" class="small" text-anchor="middle">m = 4</text>
+                            <rect x="636" y="256" width="48" height="24" rx="7" fill="#b6c5c9" fill-opacity=".8"></rect>
+                            <text x="660.00" y="244.00" class="title" text-anchor="middle">1</text>
+                            <text x="660.00" y="307.00" class="small" text-anchor="middle">m = 5</text>
+                            <rect x="748" y="184" width="48" height="96" rx="7" fill="#b6c5c9" fill-opacity=".8"></rect>
+                            <text x="772.00" y="172.00" class="title" text-anchor="middle">4</text>
+                            <text x="772.00" y="307.00" class="small" text-anchor="middle">m = 6</text>
+                            <line x1="55" y1="280" x2="855" y2="280" stroke="#c9d6d7"></line>
+                        </svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 5. Record heights select the number of empty sites. The complementary numbers select the chip counts. This is a restriction on reduced representatives, not a claim that every listed board is geometrically realizable.</em>
+                    </p>
+
+                    <!-- Interactive Lab 3: Modular Orbit Explorer -->
+                    <section class="lab" aria-label="Modular orbit explorer">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Visual experiment 03</div>
+                                <div class="lab-title">Which run lengths survive the arithmetic?</div>
+                            </div>
+                            <small>Integer arithmetic</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="controls">
+                                <label for="orbit-n">Sites n
+                                    <select id="orbit-n">
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7" selected>7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </label>
+                                <label for="orbit-k">Jump k
+                                    <select id="orbit-k">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3" selected>3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div id="orbit-tiles" class="orbit-tiles" aria-label="Modular orbit; green tiles are record maxima"></div>
+                            <p id="orbit-gcd" class="small-note"></p>
+                            <div class="small-note">Candidate one-run chip counts φ ≥ g = gcd(n, k):</div>
+                            <div id="orbit-candidates" class="candidate-list" aria-live="polite"></div>
+                            <p class="small-note">Green tiles mark strict record maxima, including the initial 0. These give necessary candidates for the reduced representative. Geometric realizability is a further question.</p>
+                        </div>
+                    </section>
+
+                    <p>
+                        For comparison:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>$n$</th>
+                                    <th>$k$</th>
+                                    <th>$g$</th>
+                                    <th>Record maxima</th>
+                                    <th>Candidate one-run chip counts with $\varphi\geq g$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$7$</td>
+                                    <td>$3$</td>
+                                    <td>$1$</td>
+                                    <td>$0,3,6$</td>
+                                    <td>$7,4,1$</td>
+                                </tr>
+                                <tr>
+                                    <td>$8$</td>
+                                    <td>$3$</td>
+                                    <td>$1$</td>
+                                    <td>$0,3,6,7$</td>
+                                    <td>$8,5,2,1$</td>
+                                </tr>
+                                <tr>
+                                    <td>$8$</td>
+                                    <td>$2$</td>
+                                    <td>$2$</td>
+                                    <td>$0,2,4,6$</td>
+                                    <td>$8,6,4,2$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        Together, the concentration argument and the record argument give the game reduction in Karpelevich’s Theorems I and II (§3, pp. 367–368) <cite-ref key="karpelevich1951"></cite-ref>. The proofs above spell out the relevant combinatorial steps in the notation of this post.
+                    </p>
+                </section>
+
+                <!-- 8. Where the series goes next & Source and scope -->
+                <section class="essay-section" id="series-next">
+                    <h2>Where the series goes next</h2>
+
+                    <p>
+                        An arbitrary stochastic eigenvector gave us a polygon. Extremality supplied a contact pattern. The corner cut turned that pattern into a game, and the game reduced it to a consecutive block whose size is constrained by modular arithmetic.
+                    </p>
+                    <p>
+                        The remaining vertices are connected by chains of exact equations $\lambda z_i=z_{i+k}$. The next question is how long those chains are before they meet the block of edge contacts. Karpelevich organizes those return times using the Euclidean algorithm.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop · Return arithmetic (Stop 4)</span>
+                        <p>Why the Euclidean algorithm appears in an eigenvalue problem: following the deterministic chains $\lambda z_i = z_{i+k}$ until they meet the block of edge contacts in <a href="karpelevich-returns.html">Why the Euclidean Algorithm Appears in an Eigenvalue Problem →</a>. Or see the <a href="karpelevich-proof-roadmap.html">series roadmap</a> and Stop 6 (<a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From</a>).</p>
+                    </div>
+
+                    <h2 class="essay-unnumbered" id="source-and-scope">Source and scope</h2>
+                    <p class="essay-sources">
+                        [1] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper and scan</a>. The contact input is in §2, p. 363; the corner cut and game are in §3, p. 364; the game reductions are Theorems I–II, pp. 367–368. <a href="https://doi.org/10.1090/trans2/140/05" target="_blank" rel="noopener">English translation</a>: American Mathematical Society Translations, Series 2, <strong>140</strong> (1988), 79–100.
+                    </p>
+                    <p class="essay-sources">
+                        The exposition, illustrations, examples, and interactive boards here are newly prepared. The post proves the game reduction and explains its geometric implementation, taking the stated extremal contact theorem as an input. It does not attempt to derive the complete boundary description or certify arbitrary boards as extremal polygons.
+                    </p>
+
+                    <cite-grid keys="karpelevich1951, dmitriev1946, kolmogorov1938"></cite-grid>
+                </section>
+
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-contacts.html" class="book-pager-title">Stop 2: What Extremality Forces</a>
+                        <p class="book-pager-desc">Extremal boundary contacts, supporting lines, and the Dmitriev–Dynkin fixed cyclic shift.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-returns.html" class="book-pager-title">Stop 4: Why the Euclidean Algorithm Appears</a>
+                        <p class="book-pager-desc">Records, remainders, and exact first returns (n = pφ + qr).</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

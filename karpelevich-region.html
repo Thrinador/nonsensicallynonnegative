@@ -7,6 +7,14 @@
     <title>Karpelevič Region &amp; Theorem | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
         content="Academic theory wiki article on Karpelevič's Theorem and the stochastic eigenvalue region K_n: Kolmogorov's 1938 problem, Dmitriev-Dynkin invariant polygons, Swift's 1972 thesis, Karpelevič's contact game, Ito polynomials, polar parametrization by Kirkland-Laffey-Šmigoc (2020), Munger-Nickerson-Paparella (2023), and the structural proof &amp; uniform deficit asymptotics by Verbeken-Ginis (2026).">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-region.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Karpelevič Region &amp; Theorem | Theory Wiki | NIEP Research Hub">
+    <meta property="og:description" content="Academic theory wiki article on Karpelevič&#x27;s Theorem and the stochastic eigenvalue region K_n: Kolmogorov&#x27;s 1938 problem, Dmitriev-Dynkin invariant polygons, Swift&#x27;s 1972 thesis, Karpelevič&#x27;s contact game, Ito polynomials, polar parametrization by Kirkland-Laffey-Šmigoc (2020), Munger-Nickerson-Paparella (2023), and the structural proof &amp; uniform deficit asymptotics by Verbeken-Ginis (2026).">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-region.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -131,7 +139,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/manifest.json">
-    <meta name="theme-color" content="#0a0f1d">
+    <meta name="theme-color" content="#faf8f2">
 </head>
 
 <body class="hub-page">
@@ -221,7 +229,7 @@
                             </tr>
                             <tr>
                                 <th>Boundary Form</th>
-                                <td>Chords ($q_1+q_2 > n$) &amp;<br>curvilinear arcs ($q_1+q_2 \le n$)</td>
+                                <td>Type 0 chords $(0/1, 1/n)$ &amp;<br>curvilinear Ito arcs ($q \ge 2$)</td>
                             </tr>
                             <tr>
                                 <th>Farey Vertices</th>
@@ -244,6 +252,7 @@
 
                     <div class="wiki-infobox-links">
                         <a href="karpelevich.html" class="wiki-infobox-link"><strong>Launch Interactive Viewer &rarr;</strong></a>
+                        <a href="karpelevich-proof-roadmap.html" class="wiki-infobox-link"><strong>Inside Karpelevi&#x010D;&rsquo;s Proof (9-Stop Series) &rarr;</strong></a>
                         <a href="problem-background.html" class="wiki-infobox-link">NIEP Theoretical Overview</a>
                         <a href="rniep.html" class="wiki-infobox-link">Real NIEP (RNIEP)</a>
                     </div>
@@ -297,8 +306,8 @@
                     </p>
                     <ul class="deepdive-list">
                         <li><strong>$n = 2$:</strong> The real segment $[-1, 1]$.</li>
-                        <li><strong>$n = 3$:</strong> The union of the equilateral triangle with vertices $\{1, e^{i 2\pi/3}, e^{i 4\pi/3}\}$, the curvilinear arcs connecting these roots of unity to the negative real axis at $-1/2$, and the real segment $[-1, -1/2]$.</li>
-                        <li><strong>$n = 4$:</strong> The region bounded by chords connecting 4th roots of unity $\{1, i, -1, -i\}$ and 3rd roots of unity, and curvilinear arcs between adjacent vertices.</li>
+                        <li><strong>$n = 3$:</strong> The union of the equilateral triangle $\operatorname{conv}\{1, e^{i 2\pi/3}, e^{i 4\pi/3}\}$ (whose vertical edge $\operatorname{Re}(z) = -1/2$ meets the real axis at $-1/2$) and the negative real spike $[-1, -1/2]$.</li>
+                        <li><strong>$n = 4$:</strong> The region bounded by straight chords from $1$ to $\pm i$ and from $\pm i$ to $e^{\pm i 2\pi/3}$, together with the first genuinely curvilinear arcs connecting $e^{\pm i 2\pi/3}$ to $-1$.</li>
                     </ul>
 
                     <h3 class="subsection-title">1.3 Joanne Swift's Thesis &amp; Western Dissemination (1972)</h3>
@@ -421,14 +430,14 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Let $z_1 = e^{i 2\pi p/q}$ and $z_2 = e^{i 2\pi r/s}$ with $q < s$. The geometry of the boundary curve $\Gamma(z_1, z_2)$ is determined by the denominator sum:
+                        Let $p/q$ and $r/s$ be consecutive Farey neighbours in $\mathcal{F}_n$ with $z_1 = e^{i 2\pi p/q}$, $z_2 = e^{i 2\pi r/s}$, and $q &lt; s$ (so $q + s &gt; n$). The geometry of the boundary curve $\Gamma(z_1, z_2)$ depends on the smaller denominator $q$ and the multiplicity $d = \lfloor n/q \rfloor$:
                     </p>
 
                     <div class="data-table-wrapper">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>Condition</th>
+                                    <th>Farey Pair Regime</th>
                                     <th>Boundary Geometry</th>
                                     <th>Matrix Realization</th>
                                     <th>Analytical Description</th>
@@ -436,15 +445,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>$q + s > n$</strong></td>
-                                    <td><strong>Straight Chord:</strong> Line segment connecting $z_1$ and $z_2$</td>
-                                    <td>Convex combinations of decoupled permutation cycles of orders $q$ and $s$</td>
-                                    <td>$\lambda(\alpha) = (1-\alpha)e^{i 2\pi p/q} + \alpha e^{i 2\pi r/s}$, $\alpha \in [0, 1]$</td>
+                                    <td><strong>Type 0 ($q = 1, s = n$)</strong><br>Pairs $(0/1, 1/n)$ &amp; $((n-1)/n, 1/1)$</td>
+                                    <td><strong>Straight Chord:</strong> Line segment connecting $1$ and $e^{\pm i 2\pi / n}$</td>
+                                    <td>Convex combination $(1-\alpha)I_n + \alpha P_n$ of the identity and an $n$-cycle permutation</td>
+                                    <td>$(t - (1-\alpha))^n = \alpha^n \implies \lambda(\alpha) = (1-\alpha) + \alpha e^{\pm i 2\pi / n}$, $\alpha \in [0, 1]$</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>$q + s \le n$</strong></td>
-                                    <td><strong>Curvilinear Arc:</strong> Algebraic curve bowing inward toward 0</td>
-                                    <td>Coupled cyclic permutation blocks with a rank-one transition perturbation</td>
+                                    <td><strong>Types I, II, III ($2 \le q &lt; s \le n$)</strong><br>All interior Farey pairs ($n \ge 4$)</td>
+                                    <td><strong>Curvilinear Ito Arc:</strong> Algebraic curve bowing inward toward $0$</td>
+                                    <td>Coupled cyclic companion / permutation blocks (Johnson &amp; Paparella 2017)</td>
                                     <td>Roots of Ito's reduced polynomial pencil $P_\alpha(t) = 0$, $\alpha \in [0, 1]$</td>
                                 </tr>
                             </tbody>
@@ -465,7 +474,7 @@
                             <li><strong>Type 0 ($d = n$):</strong> Associated with the Farey pair $(0/1, 1/n)$:
                                 $$P_\alpha^0(t) = (t - \beta)^n - \alpha^n$$
                             </li>
-                            <li><strong>Type I ($d = \lfloor n/q \rfloor = 1$):</strong> Arises when $q + s \le n$ and $q > n/2$:
+                            <li><strong>Type I ($d = \lfloor n/q \rfloor = 1$):</strong> Arises when $q &gt; n/2$ (so $q + s &gt; n$ and $d = 1$):
                                 $$P_\alpha^{\mathrm{I}}(t) = t^s - \beta t^{s-q} - \alpha$$
                             </li>
                             <li><strong>Type II ($1 < d < n, s > qd$):</strong> Arises when the larger denominator exceeds $qd$:
@@ -710,6 +719,10 @@
                     </div>
 
                     <div class="wiki-see-also-grid">
+                        <a href="karpelevich-proof-roadmap.html" class="wiki-see-also-card">
+                            <h4 class="wiki-see-also-title">Inside Karpelevič’s Proof (Blog Series)</h4>
+                            <p class="wiki-see-also-desc">A nine-stop visual roadmap of the 1951 proof, starting with the chip game that concentrates edge contacts.</p>
+                        </a>
                         <a href="problem-background.html" class="wiki-see-also-card">
                             <h4 class="wiki-see-also-title">NIEP Theoretical Survey</h4>
                             <p class="wiki-see-also-desc">Master background covering Perron-Frobenius foundations, trace inequalities, and semi-algebraic geometry.</p>

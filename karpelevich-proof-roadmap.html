@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside Karpelevich’s Proof · The Roadmap | NIEP Research Blog</title>
+    <meta name="description"
+        content="From invariant polygons and the chip game to Euclidean arithmetic, geometric rigidity, boundary equations, and induction: a visual guide to the nine stops of Karpelevich's proof, with standardized notation and a complete proof ledger.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-proof-roadmap.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Inside Karpelevich’s Proof · The Roadmap | NIEP Research Blog">
+    <meta property="og:description" content="From invariant polygons and the chip game to Euclidean arithmetic, geometric rigidity, boundary equations, and induction: a visual guide to the nine stops of Karpelevich&#x27;s proof, with standardized notation and a complete proof ledger.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-proof-roadmap.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-roadmap.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>›</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>›</span>
+            <span>Inside Karpelevich’s Proof · The Roadmap</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="roadmap"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof · Series guide</div>
+                    <h1 class="essay-title">Inside<br>Karpelevich’s<br><em>Proof</em></h1>
+                    <p class="essay-deck">From matrices to boundary arcs: a nine-stop map of the argument, standard notation, and proof ledger.</p>
+                    <div class="essay-tags">
+                        <span>Nine major steps</span>
+                        <span>Two conclusions</span>
+                        <span>One worked example</span>
+                    </div>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 400 365" role="img" aria-label="A shared polygon argument branches toward cyclic polygons and boundary arcs"><g fill="none" stroke="#77a99a" stroke-width="1.7"><rect x="61" y="32" width="278" height="68" rx="11"/><path d="M200 101V137"/><rect x="61" y="138" width="278" height="68" rx="11"/><path d="M200 207V235H99V270M200 235H300V270"/><rect x="11" y="271" width="175" height="66" rx="11"/><rect x="214" y="271" width="175" height="66" rx="11"/></g><g font-family="system-ui,sans-serif" text-anchor="middle"><text x="200" y="62" fill="#bfded0" font-size="13">INVARIANT POLYGONS</text><text x="200" y="84" fill="#87aea0" font-size="11">a geometric witness for λ</text><text x="200" y="166" fill="#bfded0" font-size="13">CONTACTS → EQUATIONS</text><text x="200" y="189" fill="#87aea0" font-size="11">arithmetic and rigidity</text><text x="99" y="299" fill="#e4be85" font-size="12">CYCLIC POLYGONS</text><text x="99" y="322" fill="#a8bbaf" font-size="11">Theorem A</text><text x="301" y="299" fill="#abd8c2" font-size="12">BOUNDARY ARCS</text><text x="301" y="322" fill="#a8bbaf" font-size="11">Theorem B</text></g></svg>
+                    <div class="essay-hero-caption">Two descriptions. One shared argument.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The article and static figures remain readable without JavaScript. The step explorer and the moving eigenvalue example require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">The proof roadmap</div>
+                <ol>
+                    <li class="plain"><a href="#destination">The destination</a></li>
+                    <li><a href="#stop-1">Replace a matrix by an invariant polygon</a></li>
+                    <li><a href="#stop-2">What a genuinely extremal polygon must do</a></li>
+                    <li><a href="#stop-3">Play the game to concentrate the edge contacts</a></li>
+                    <li><a href="#stop-4">Read the chains with the Euclidean algorithm</a></li>
+                    <li><a href="#stop-5">Use variations to force rigidity</a></li>
+                    <li><a href="#stop-6">Eliminate the vertices, obtain equations</a></li>
+                    <li class="plain"><a href="#example">A small example</a></li>
+                    <li><a href="#stop-7">Angles and Farey neighbors</a></li>
+                    <li><a href="#stop-8">The other branch: cyclic polygons</a></li>
+                    <li><a href="#stop-9">Induction on the order</a></li>
+                    <li class="plain"><a href="#at-a-glance">The series at a glance</a></li>
+                    <li class="plain"><a href="#notation">Standard notation</a></li>
+                    <li class="plain"><a href="#ledger">Proof ledger &amp; modern route</a></li>
+                    <li class="plain"><a href="#reading-original">Reading the original paper</a></li>
+                </ol>
+                <div class="essay-side-note">Nine stops, shared notation, and a complete proof ledger.</div>
+            </aside>
+
+            <article class="essay">
+                <p class="essay-lead">
+                    The chip game gives us a simpler polygon. What does the rest of the proof do with it?
+                </p>
+                <p>
+                    It reads the polygon’s contact pattern as arithmetic, uses geometric variations to force rigidity, and turns the resulting relations into equations. A final argument places those equations in the right angular sectors and assembles the boundary.
+                </p>
+                <p>
+                    This guide maps that nine-stop journey. Each stop identifies a question, the result that answers it, and the next piece it makes possible, followed by a shared <a href="#notation">notation table</a> and a <a href="#ledger">proof ledger</a> recording what is proved in the series, what is cited from 1946–1951, and where the modern literature completes the boundary description.
+                </p>
+
+                <section class="essay-section" id="destination">
+                    <h2 class="essay-unnumbered">The destination: one region, two descriptions</h2>
+                    <p>Write</p>
+                    <div class="theory-formula">
+                        $$\mathcal K_n=\{\lambda\in\mathbb C:\lambda\text{ is an eigenvalue of an }n\times n\text{ row-stochastic matrix}\}.$$
+                    </div>
+                    <p>
+                        We want to know exactly what this region looks like. The unit circle provides landmarks: the possible eigenvalues on it are roots of unity whose orders are at most $n$. Between consecutive landmarks, the boundary follows particular algebraic arcs.
+                    </p>
+                    <p>
+                        Karpelevich’s original paper <cite-ref key="karpelevich1951"></cite-ref> has two headline conclusions:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Conclusion</th>
+                                    <th>What it describes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Theorem A: cyclic polygons</strong></td>
+                                    <td>The entire region as a union of a special family of polygons with at most $n$ vertices.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Theorem B: boundary arcs</strong></td>
+                                    <td>The boundary through its unit-circle endpoints and equations for the intervening arcs.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        These conclusions share much of the same machinery. Our map keeps both visible, and states both theorems explicitly in the standardized notation used throughout the series:
+                    </p>
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem A — Cyclic-Polygon Covering (Karpelevich 1951)</h3>
+                            <span class="math-callout-tag"><a href="karpelevich-cyclic.html">Stop 8</a></span>
+                        </div>
+                        <p>
+                            For every $\mu\in\mathbb C$ and integer $h\geq1$ with $\varepsilon=e^{2\pi i/h}$, let $C(\mu,h)$ denote the closed convex hull of the orbit $\{\mu^m\varepsilon^j:m\geq0,\ 0\leq j&lt;h\}$ whenever that hull is a finite polygon. For every $n\geq2$,
+                        </p>
+                        <div class="theory-formula">
+                            $$\mathcal K_n=\bigcup_{\substack{C(\mu,h)\text{ cyclic polygon}\\#\operatorname{vertices}(C(\mu,h))\leq n}}C(\mu,h).$$
+                        </div>
+                    </div>
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Theorem B — Boundary Arcs in Ito’s Unified Form (Karpelevich 1951; Ito 1997)</h3>
+                            <span class="math-callout-tag"><a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a> · <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> · <a href="karpelevich-induction.html#modern-completion">Stop 9</a></span>
+                        </div>
+                        <p>
+                            The region $\mathcal K_n$ ($n\geq2$) is compact, star-shaped with respect to $0$, and symmetric across the real axis. Its intersection with the unit circle consists of all roots of unity $e^{2\pi i a/b}$ with $a/b\in F_n$. For each adjacent pair $a/b&lt;c/d$ in the Farey sequence $F_n$, put
+                        </p>
+                        <div class="theory-formula">
+                            $$\ell=\min(b,d),\qquad s=\max(b,d),\qquad m=\lfloor n/\ell\rfloor.$$
+                        </div>
+                        <p>
+                            Then the outer boundary of $\mathcal K_n$ in the angular sector $[2\pi a/b,2\pi c/d]$ is the curve connecting $e^{2\pi i a/b}$ to $e^{2\pi i c/d}$ traced by the unique root of maximum modulus in each direction of the reduced equation
+                        </p>
+                        <div class="theory-formula">
+                            $$\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m},\qquad 0\leq t\leq1,$$
+                        </div>
+                        <p>
+                            which reduces to Family I, $\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ with $\tau=s-\ell m$, when $s\geq\ell m$, and to Family II, $(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$ with $\sigma=\ell m-s$, when $s&lt;\ell m$.
+                        </p>
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 895" role="img" aria-labelledby="01-proof-map-title 01-proof-map-desc"><title id="01-proof-map-title">A map of Karpelevich's original proof</title><desc id="01-proof-map-desc">Nine numbered tasks lead from invariant polygons through the chip game, arithmetic, geometric rigidity and equations. The argument branches toward cyclic polygons and toward angular placement and boundary induction.</desc><defs><marker id="01-proof-map-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">A SHARED ARGUMENT, TWO CONCLUSIONS</text><rect x="40" y="65" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="65" cy="93" r="13" fill="#168579"/><text x="65" y="98" font-size="13" fill="white" text-anchor="middle" font-weight="600">1</text><text x="89" y="99" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Matrices → polygons</text><text x="59" y="130" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Convex combinations</text><text x="59" y="152" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">give invariant witnesses.</text><rect x="335" y="65" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="360" cy="93" r="13" fill="#168579"/><text x="360" y="98" font-size="13" fill="white" text-anchor="middle" font-weight="600">2</text><text x="384" y="99" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Extremal contacts</text><text x="354" y="130" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">A radial extremum</text><text x="354" y="152" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">has organized contacts.</text><rect x="630" y="65" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="655" cy="93" r="13" fill="#168579"/><text x="655" y="98" font-size="13" fill="white" text-anchor="middle" font-weight="600">3</text><text x="679" y="99" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">The chip game</text><text x="649" y="130" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Choose a simpler</text><text x="649" y="152" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">contact representative.</text><path d="M291 117H328" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><path d="M586 117H623" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><path d="M755 176V223H165V270" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><text x="460" y="215" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">Follow the deterministic chains</text><rect x="40" y="280" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="65" cy="308" r="13" fill="#168579"/><text x="65" y="313" font-size="13" fill="white" text-anchor="middle" font-weight="600">4</text><text x="89" y="314" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Return arithmetic</text><text x="59" y="345" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Euclidean remainders</text><text x="59" y="367" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">control the chains.</text><rect x="335" y="280" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="360" cy="308" r="13" fill="#168579"/><text x="360" y="313" font-size="13" fill="white" text-anchor="middle" font-weight="600">5</text><text x="384" y="314" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Geometric rigidity</text><text x="354" y="345" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Admissible variations</text><text x="354" y="367" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">force restricted patterns.</text><rect x="630" y="280" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="655" cy="308" r="13" fill="#168579"/><text x="655" y="313" font-size="13" fill="white" text-anchor="middle" font-weight="600">6</text><text x="679" y="314" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Algebraic relations</text><text x="649" y="345" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Common weights allow</text><text x="649" y="367" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">coordinate elimination.</text><path d="M291 332H328" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><path d="M586 332H623" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><path d="M755 391V440H165V487" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><text x="460" y="458" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">Next, use the angular information</text><rect x="40" y="500" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="65" cy="528" r="13" fill="#168579"/><text x="65" y="533" font-size="13" fill="white" text-anchor="middle" font-weight="600">7</text><text x="89" y="534" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Angular placement</text><text x="59" y="565" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Root branches, endpoints,</text><text x="59" y="587" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">and Farey neighbors.</text><rect x="630" y="500" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="655" cy="528" r="13" fill="#168579"/><text x="655" y="533" font-size="13" fill="white" text-anchor="middle" font-weight="600">8</text><text x="679" y="534" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Cyclic polygons</text><text x="649" y="565" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">A geometric description</text><text x="649" y="587" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">of the whole region.</text><path d="M292 551H622" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><text x="460" y="533" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">uses the angle estimates</text><path d="M165 612V637" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><rect x="40" y="650" width="250" height="109" rx="12" fill="#eff4ee" stroke="#b7cdc6"/><circle cx="65" cy="678" r="13" fill="#168579"/><text x="65" y="683" font-size="13" fill="white" text-anchor="middle" font-weight="600">9</text><text x="89" y="684" font-size="16" fill="#17343f" text-anchor="start" font-weight="650">Induction on order</text><text x="59" y="715" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Compare inherited arcs</text><text x="59" y="737" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">with newly exposed arcs.</text><path d="M755 612V658" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><rect x="630" y="670" width="250" height="87" rx="12" fill="#f6ead8" stroke="#d2b38a"/><text x="755" y="704" font-size="16" fill="#805d2c" text-anchor="middle" font-weight="650">THEOREM A</text><text x="755" y="732" font-size="13" fill="#805d2c" text-anchor="middle" font-weight="400">Union of cyclic polygons</text><path d="M165 762V789" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#01-proof-map-arr)"/><rect x="40" y="802" width="250" height="65" rx="12" fill="#e0efe5" stroke="#8bb59d"/><text x="165" y="827" font-size="16" fill="#27624e" text-anchor="middle" font-weight="650">THEOREM B</text><text x="165" y="850" font-size="13" fill="#27624e" text-anchor="middle" font-weight="400">Boundary arcs</text><text x="460" y="650" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">Two conclusions</text><text x="460" y="679" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">from the shared analysis</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. A dependency map of the main ideas. The numbers identify the stops below. The cyclic-polygon conclusion uses the extremal relations and angular estimates; the boundary branch continues through Farey bookkeeping and induction on the order.</em>
+                    </p>
+
+                    <!-- Interactive Lab: Proof explorer -->
+                    <section class="lab" aria-label="Interactive proof roadmap">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Explore the argument</div>
+                                <div class="lab-title">What does each step contribute?</div>
+                            </div>
+                            <small>Nine major pieces</small>
+                        </div>
+                        <div class="lab-body">
+                            <p class="lab-desc">Select a stop to see its input, its operation, and the result the next steps can use.</p>
+                            <div class="proof-buttons">
+                                <button type="button" id="stage-button-1" aria-pressed="true" aria-controls="stage-panel-1"><span>1.</span> Matrices → polygons</button>
+                                <button type="button" id="stage-button-2" aria-pressed="false" aria-controls="stage-panel-2"><span>2.</span> Extremal contacts</button>
+                                <button type="button" id="stage-button-3" aria-pressed="false" aria-controls="stage-panel-3"><span>3.</span> The chip game</button>
+                                <button type="button" id="stage-button-4" aria-pressed="false" aria-controls="stage-panel-4"><span>4.</span> Return arithmetic</button>
+                                <button type="button" id="stage-button-5" aria-pressed="false" aria-controls="stage-panel-5"><span>5.</span> Geometric rigidity</button>
+                                <button type="button" id="stage-button-6" aria-pressed="false" aria-controls="stage-panel-6"><span>6.</span> Algebraic relations</button>
+                                <button type="button" id="stage-button-7" aria-pressed="false" aria-controls="stage-panel-7"><span>7.</span> Angular placement</button>
+                                <button type="button" id="stage-button-8" aria-pressed="false" aria-controls="stage-panel-8"><span>8.</span> Cyclic polygons</button>
+                                <button type="button" id="stage-button-9" aria-pressed="false" aria-controls="stage-panel-9"><span>9.</span> Boundary induction</button>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-1" role="region" aria-labelledby="stage-button-1">
+                                <h3>Matrices → polygons</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>A stochastic matrix and a nonreal eigenvalue.</div>
+                                    <div><strong>Operation</strong>Read each row of the eigenvector equation as a convex combination.</div>
+                                    <div><strong>Result</strong>A polygon Q satisfying λQ ⊆ Q, with at most n vertices.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 1</small><a href="karpelevich-polygons.html">From Matrix Rows to Convex Hulls →</a></div>
+                                <div class="stage-source">Original source: §2 · p. 363</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-2" hidden role="region" aria-labelledby="stage-button-2">
+                                <h3>Extremal contacts</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>A nonreal radial extremum that is new at its realizing order.</div>
+                                    <div><strong>Operation</strong>Apply the extremal contact reduction with its least-order and orientation hypotheses.</div>
+                                    <div><strong>Result</strong>A two-neighbor contact pattern with a fixed cyclic shift.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 2</small><a href="karpelevich-contacts.html">What Extremality Forces →</a></div>
+                                <div class="stage-source">Original source: §2 · p. 363</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-3" hidden role="region" aria-labelledby="stage-button-3">
+                                <h3>The chip game</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>An invariant polygon with the controlled contact pattern.</div>
+                                    <div><strong>Operation</strong>Replace corners through legal chip moves, preserving the eigenvalue.</div>
+                                    <div><strong>Result</strong>A concentrated block of edge contacts in the strict-contraction case.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 3</small><a href="karpelevich-game.html">Karpelevich’s Game →</a></div>
+                                <div class="stage-source">Original source: §3 · pp. 364, 367–368</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-4" hidden role="region" aria-labelledby="stage-button-4">
+                                <h3>Return arithmetic</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>A consecutive contact block and the deterministic index shift.</div>
+                                    <div><strong>Operation</strong>Use modular records and Euclidean remainders to track the returns.</div>
+                                    <div><strong>Result</strong>Power-generated vertex chains with constrained return relations.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 4</small><a href="karpelevich-returns.html">Why the Euclidean Algorithm Appears in an Eigenvalue Problem →</a></div>
+                                <div class="stage-source">Original source: §3 · Lemma 2, Theorems III–IV</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-5" hidden role="region" aria-labelledby="stage-button-5">
+                                <h3>Geometric rigidity</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>The chain structures and their edge-contact weights.</div>
+                                    <div><strong>Operation</strong>Test invariant variations against the extremal contact theorem.</div>
+                                    <div><strong>Result</strong>Restricted return patterns and equality of the relevant weights.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 5</small><a href="karpelevich-rigidity.html">Moving Polygons Until the Weights Agree →</a></div>
+                                <div class="stage-source">Original source: §4 · Theorems V–VII</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-6" hidden role="region" aria-labelledby="stage-button-6">
+                                <h3>Algebraic relations</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>Rigid chains joined by a common contact parameter.</div>
+                                    <div><strong>Operation</strong>Eliminate vertex coordinates from the power and contact equations.</div>
+                                    <div><strong>Result</strong>The two characteristic equation families in the original paper.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 6</small><a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From →</a></div>
+                                <div class="stage-source">Original source: §4 · Theorems VI–VII</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-7" hidden role="region" aria-labelledby="stage-button-7">
+                                <h3>Angular placement</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>Candidate relations and their geometric winding information.</div>
+                                    <div><strong>Operation</strong>Use angle estimates and arithmetic relations between rational angles.</div>
+                                    <div><strong>Result</strong>The angular sectors and endpoints needed to organize the arcs.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 7</small><a href="karpelevich-farey.html">Why Farey Neighbors Label the Arcs →</a></div>
+                                <div class="stage-source">Original source: §5 · Theorems VIII–IX and final assembly</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-8" hidden role="region" aria-labelledby="stage-button-8">
+                                <h3>Cyclic polygons</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>The extremal relations and the preceding angular information.</div>
+                                    <div><strong>Operation</strong>Pass to the special power-generated polygons of the original definition.</div>
+                                    <div><strong>Result</strong>Theorem A: a union description of the whole eigenvalue region.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 8</small><a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region →</a></div>
+                                <div class="stage-source">Original source: §5 · Theorem X, p. 379</div>
+                            </div>
+                            <div class="stage-panel" id="stage-panel-9" hidden role="region" aria-labelledby="stage-button-9">
+                                <h3>Boundary induction</h3>
+                                <div class="stage-io">
+                                    <div><strong>Input</strong>Angular organization, the candidate families, and smaller-order regions.</div>
+                                    <div><strong>Operation</strong>Compare inherited and newly exposed pieces, and exclude spurious boundary candidates.</div>
+                                    <div><strong>Result</strong>Theorem B: a complete assignment of equations to boundary arcs.</div>
+                                </div>
+                                <div class="stage-post is-live"><small>Stop 9</small><a href="karpelevich-induction.html">Closing the Boundary: Old Arcs, New Arcs, and Induction →</a></div>
+                                <div class="stage-source">Original source: §5 · pp. 380–383</div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="stop-1">
+                    <h2>Replace a matrix by an invariant polygon</h2>
+                    <p>
+                        The first change is one of viewpoint. For a stochastic matrix, the eigenvector equation says
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda v_i=\sum_j a_{ij}v_j,\qquad a_{ij}\geq0,\qquad\sum_j a_{ij}=1.$$
+                    </div>
+                    <p>
+                        The complex coordinates of the eigenvector therefore form a polygon
+                    </p>
+                    <div class="theory-formula">
+                        $$Q=\operatorname{conv}\{v_1,\ldots,v_n\},\qquad\lambda Q\subseteq Q.$$
+                    </div>
+                    <p>
+                        Conversely, convex coefficients for the image vertices of an invariant polygon give the rows of a stochastic matrix. Fewer than $n$ vertices can be accommodated by adjoining a stochastic block.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> the existence of a matrix becomes the existence of a polygon that contains its rotated and scaled image.
+                    </p>
+                    <p>
+                        The <a href="karpelevich-polygons.html">foundational post</a> also explains normalization, conjugate symmetry, nested orders, and radial sections. For an irreducible nonnegative matrix, the familiar normalization uses a positive Perron eigenvector; <a href="karpelevich-polygons.html#normalization">Stop 1</a> proves the Frobenius block reduction that handles reducible matrices without losing any nonreal eigenvalue.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 1</span> <a href="karpelevich-polygons.html">From Matrix Rows to Convex Hulls →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-2">
+                    <h2>Ask what a genuinely extremal polygon must do</h2>
+                    <p>
+                        Fix an angle and consider the farthest realizable point along that ray. For nonreal directions, write its modulus as
+                    </p>
+                    <div class="theory-formula">
+                        $$R_n(\theta)=\max\{r\geq0:re^{i\theta}\in\mathcal K_n\}.$$
+                    </div>
+                    <p>
+                        To study a new part of the boundary at order $n$, separate it from points already realizable at smaller order. The extremal contact theorem then organizes the image vertices along the polygon’s edges. In the orientation used in our game post, it gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k},\qquad\alpha_i\geq0,\quad\beta_i&gt;0,\quad\alpha_i+\beta_i=1.$$
+                    </div>
+                    <p>
+                        Indices are cyclic, and $k$ is fixed for the configuration. The conjugate orientation handles the complementary case.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> a general invariant polygon acquires a controlled contact pattern. Each image is either a vertex contact or an interior point of a specified edge.
+                    </p>
+                    <p>
+                        This is an important input from Dmitriev and Dynkin <cite-ref key="dmitriev1946"></cite-ref>, recalled in §2 of the original paper. <a href="karpelevich-contacts.html">What Extremality Forces</a> explains the reduction and its assumptions. We will use radial extremality in this discussion, with the low-order and real-axis cases treated separately.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 2</span> <a href="karpelevich-contacts.html">What Extremality Forces →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-3">
+                    <h2>Play the game to concentrate the edge contacts</h2>
+                    <p>
+                        Place a chip at each vertex whose image lies in the interior of an edge. A legal jump corresponds to replacing a corner of the polygon while preserving
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q'\subseteq Q'.$$
+                    </div>
+                    <p>
+                        The game lets us choose a simpler representative of the same eigenvalue. For the nonreal strict-contraction case under the contact hypotheses, the edge-contact vertices can be concentrated into one consecutive block. The possible reduced block sizes are further restricted by records in the orbit $0,k,2k,\ldots\pmod n$.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> the later proof can work with one organized block of edge contacts and the deterministic chains attached to it.
+                    </p>
+                    <p>
+                        This is the stage covered in <a href="karpelevich-game.html">Karpelevich’s Game</a>. The reduction concerns representatives: a scattered pattern may occur, but it need not receive its own case in the boundary analysis.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 3</span> <a href="karpelevich-game.html">Karpelevich’s Game →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-4">
+                    <h2>Read the deterministic chains using the Euclidean algorithm</h2>
+                    <p>
+                        Away from an edge contact, the equation is exact:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=z_{i+k}.$$
+                    </div>
+                    <p>
+                        Following these equalities gives chains
+                    </p>
+                    <div class="theory-formula">
+                        $$z,\lambda z,\lambda^2z,\ldots$$
+                    </div>
+                    <p>
+                        that eventually reach an edge-contact relation. The index map $i\mapsto i+k\pmod n$ controls when that happens.
+                    </p>
+                    <p>
+                        Here the modular records from the game connect to the Euclidean algorithm. For example,
+                    </p>
+                    <div class="theory-formula">
+                        $$7=2\cdot3+1,\qquad3=3\cdot1$$
+                    </div>
+                    <p>
+                        encodes much more than the fact that $7$ and $3$ are coprime: the remainder structure organizes the returns. In the original proof, Theorems III and IV give the return relations for the two cases determined by the block size and $\gcd(n,k)$.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> the polygon’s vertices fall into power-generated chains whose lengths and connections can be described arithmetically.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 4</span> <a href="karpelevich-returns.html">Why the Euclidean Algorithm Appears in an Eigenvalue Problem →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-5">
+                    <h2>Use variations to force geometric rigidity</h2>
+                    <p>
+                        The game simplifies a configuration. Geometric variation places stronger restrictions on the configurations that survive.
+                    </p>
+                    <p>
+                        The strategy is to move selected generating vertices and propagate those moves along their chains. If the perturbed polygon remains invariant while an image vertex moves into its interior, it contradicts the extremal contact theorem. This eliminates certain return patterns. Further variations force the relevant edge-contact coefficients to agree.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" role="img" aria-labelledby="02-rigidity-title 02-rigidity-desc"><title id="02-rigidity-title">The role of geometric variation</title><desc id="02-rigidity-desc">A three-panel schematic shows a boundary contact, a proposed invariant variation, and an interior image contact that would contradict the extremal contact theorem.</desc><defs><marker id="02-rigidity-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="42" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">WHAT A VARIATION MUST ACCOMPLISH</text><rect x="35" y="66" width="260" height="294" rx="13" fill="#f4f5ef" stroke="#b7cdc6"/><polygon points="73,258 63,155 167,100 258,170 255,258" fill="#e2eee6" stroke="#17343f" stroke-width="2"/><circle cx="115" cy="127.5" r="7" fill="#d98026"/><text x="165" y="302" font-size="15" fill="#17343f" text-anchor="middle" font-weight="650">Start with contacts</text><text x="165" y="333" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">Images lie on edges.</text><rect x="335" y="66" width="260" height="294" rx="13" fill="#f4f5ef" stroke="#b7cdc6"/><polygon points="373,258 363,155 467,100 558,170 555,258" fill="#e2eee6" stroke="#17343f" stroke-width="2"/><circle cx="415" cy="127.5" r="7" fill="#d98026"/><path d="M470 97l25 -14" fill="none" stroke="#168579" stroke-width="2" marker-end="url(#02-rigidity-arr)"/><text x="448" y="205" font-size="16" fill="#168579" text-anchor="middle" font-weight="400">λQ′ ⊆ Q′ ?</text><text x="465" y="302" font-size="15" fill="#17343f" text-anchor="middle" font-weight="650">Preserve invariance</text><text x="465" y="333" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">Only certain motions work.</text><rect x="635" y="66" width="260" height="294" rx="13" fill="#f4f5ef" stroke="#b7cdc6"/><polygon points="673,258 663,155 767,100 858,170 855,258" fill="#e2eee6" stroke="#17343f" stroke-width="2"/><circle cx="745" cy="190" r="7" fill="#d98026"/><text x="770" y="229" font-size="12" fill="#9b692e" text-anchor="middle" font-weight="400">interior image</text><text x="765" y="302" font-size="15" fill="#17343f" text-anchor="middle" font-weight="650">Contradict extremality</text><text x="765" y="333" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">An image leaves the boundary.</text><text x="460" y="400" font-size="15" fill="#17343f" text-anchor="middle" font-weight="400">A permissible perturbation can eliminate a whole contact pattern.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. The logical role of a variation. A proposed motion must preserve polygon invariance. If it also creates an interior image contact, the assumed extremal configuration cannot persist. This is a schematic of the argument, not a claim that every direction of motion is permissible.</em>
+                    </p>
+
+                    <p>
+                        One striking ingredient is projective geometry. Successive projections turn a displacement on one line into a fractional linear return map. Comparing the returned displacement with the starting one supplies the needed variation in the nondegenerate cases.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> a collection of separate contact coefficients collapses to a common parameter, and only particular chain structures remain. Theorem V and the variation arguments in Theorems VI–VII occupy the core of §4.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 5</span> <a href="karpelevich-rigidity.html">Moving Polygons Until the Weights Agree →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-6">
+                    <h2>Eliminate the vertices and obtain equations</h2>
+                    <p>
+                        Once the chain relations and contact weights are controlled, the coordinates can be eliminated. In our standardized series notation, the two characteristic forms are
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,$$
+                    </div>
+                    <p>and</p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma,\qquad0\leq t\leq1.$$
+                    </div>
+                    <p>
+                        Here $\ell$ is the chain length, $m=\lfloor n/\ell\rfloor$ is the number of repeated chains, $\tau$ ($0\leq\tau&lt;\ell$) is the closing tail in the first form ($n=\ell m+\tau$), and $\sigma$ ($0&lt;\sigma&lt;\ell$) is the closing shift in the second ($n=\ell m$). Both combine into <a href="karpelevich-boundary-equations.html#ito-form">Ito’s unified equation</a> $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$.
+                    </p>
+                    <p>
+                        These are the two reduced equation families. For instance, the <a href="#example">running example</a> below is the first family with $\tau=1$, $\ell=3$, $m=1$: it reads $\lambda(\lambda^3-t)=1-t$, and indeed $\ell m+\tau=4=n$.
+                    </p>
+                    <p>
+                        The detailed post defines their exponents precisely and derives them from the contact equations.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> geometry produces a small set of algebraic candidates for the boundary. Identifying the appropriate root branch and proving its extremality remain part of the argument.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 6</span> <a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From →</a></p>
+                </section>
+
+                <section class="essay-section" id="example">
+                    <h2 class="essay-unnumbered">A small example to keep in view</h2>
+                    <p>
+                        One simple family makes the preceding transformations concrete:
+                    </p>
+                    <div class="theory-formula">
+                        $$A_t=\begin{pmatrix}0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\\1-t&amp;t&amp;0&amp;0\end{pmatrix},\qquad0\leq t\leq1.$$
+                    </div>
+                    <p>
+                        For an eigenvalue $\lambda$, the vector $(1,\lambda,\lambda^2,\lambda^3)^T$ closes up precisely when
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^4=(1-t)+t\lambda.$$
+                    </div>
+                    <p>
+                        There are three deterministic steps and one convex-combination relation. The upper nonreal root traces a curve from $i$ to $e^{2\pi i/3}$. At $t=5/8$, one point is exactly
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda=\frac{-1+i\sqrt{11}}4.$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="03-example-title 03-example-desc"><title id="03-example-title">A stochastic example joins the algebra to the geometry</title><desc id="03-example-desc">The upper nonreal root of lambda to the fourth minus t lambda minus one minus t runs from i to the cubic root of unity. At t=5/8 its exact value is (-1+i sqrt(11))/4; the polygon of its first four powers is invariant.</desc><defs><marker id="03-example-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="38" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">ONE EQUATION, A SELECTED ROOT, AN INVARIANT POLYGON</text><line x1="76" y1="305.0" x2="435" y2="305.0" stroke="#e2e6df"/><text x="63" y="309.0" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.7</text><line x1="76" y1="256.99999999999994" x2="435" y2="256.99999999999994" stroke="#e2e6df"/><text x="63" y="260.99999999999994" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.8</text><line x1="76" y1="208.99999999999997" x2="435" y2="208.99999999999997" stroke="#e2e6df"/><text x="63" y="212.99999999999997" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.9</text><line x1="76" y1="160.99999999999997" x2="435" y2="160.99999999999997" stroke="#e2e6df"/><text x="63" y="164.99999999999997" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">1.0</text><line x1="148.0" y1="120" x2="148.0" y2="305" stroke="#e2e6df"/><text x="148.0" y="326" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.5</text><line x1="268.0" y1="120" x2="268.0" y2="305" stroke="#e2e6df"/><text x="268.0" y="326" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.25</text><line x1="388.0" y1="120" x2="388.0" y2="305" stroke="#e2e6df"/><text x="388.0" y="326" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">0.0</text><polyline points="388.00,161.00 385.49,161.01 382.97,161.03 380.46,161.06 377.95,161.11 375.44,161.16 372.92,161.24 370.41,161.32 367.90,161.42 365.39,161.53 362.88,161.66 360.37,161.80 357.86,161.95 355.35,162.11 352.85,162.29 350.34,162.48 347.83,162.68 345.33,162.90 342.83,163.13 340.33,163.37 337.83,163.63 335.33,163.90 332.83,164.18 330.33,164.48 327.84,164.78 325.35,165.11 322.86,165.44 320.37,165.79 317.88,166.15 315.39,166.52 312.91,166.91 310.43,167.31 307.95,167.72 305.47,168.15 303.00,168.59 300.53,169.04 298.06,169.50 295.59,169.98 293.12,170.47 290.66,170.97 288.20,171.49 285.75,172.02 283.29,172.56 280.84,173.11 278.39,173.68 275.95,174.26 273.50,174.86 271.06,175.46 268.63,176.08 266.20,176.71 263.77,177.36 261.34,178.01 258.92,178.68 256.50,179.36 254.08,180.06 251.67,180.77 249.26,181.49 246.86,182.22 244.46,182.96 242.06,183.72 239.67,184.49 237.28,185.28 234.90,186.07 232.52,186.88 230.14,187.70 227.77,188.53 225.41,189.38 223.04,190.23 220.69,191.10 218.33,191.99 215.98,192.88 213.64,193.79 211.30,194.71 208.97,195.64 206.64,196.58 204.31,197.54 201.99,198.51 199.68,199.49 197.37,200.48 195.07,201.48 192.77,202.50 190.47,203.53 188.19,204.57 185.90,205.62 183.63,206.68 181.35,207.76 179.09,208.85 176.83,209.95 174.58,211.06 172.33,212.18 170.08,213.32 167.85,214.46 165.62,215.62 163.39,216.79 161.18,217.97 158.96,219.17 156.76,220.37 154.56,221.59 152.37,222.82 150.18,224.06 148.00,225.31" fill="none" stroke="#bbcac4" stroke-width="2" stroke-dasharray="5 5"/><polyline points="388.00,161.00 387.60,161.40 387.20,161.80 386.79,162.20 386.39,162.61 385.98,163.01 385.58,163.41 385.17,163.82 384.76,164.22 384.34,164.63 383.93,165.03 383.52,165.44 383.10,165.85 382.68,166.26 382.26,166.67 381.84,167.08 381.42,167.49 381.00,167.90 380.57,168.31 380.15,168.72 379.72,169.14 379.29,169.55 378.86,169.96 378.43,170.38 377.99,170.80 377.56,171.21 377.12,171.63 376.68,172.05 376.24,172.47 375.80,172.89 375.35,173.31 374.90,173.73 374.46,174.15 374.01,174.57 373.56,175.00 373.10,175.42 372.65,175.84 372.19,176.27 371.74,176.69 371.28,177.12 370.81,177.55 370.35,177.98 369.88,178.41 369.42,178.84 368.95,179.27 368.48,179.70 368.00,180.13 367.53,180.56 367.05,180.99 366.57,181.43 366.09,181.86 365.61,182.30 365.12,182.73 364.64,183.17 364.15,183.61 363.66,184.05 363.16,184.48 362.67,184.92 362.17,185.36 361.67,185.80 361.17,186.25 360.66,186.69 360.16,187.13 359.65,187.58 359.14,188.02 358.62,188.46 358.11,188.91 357.59,189.36 357.07,189.80 356.55,190.25 356.02,190.70 355.50,191.15 354.97,191.60 354.43,192.05 353.90,192.50 353.36,192.95 352.82,193.41 352.28,193.86 351.73,194.31 351.19,194.77 350.64,195.22 350.08,195.68 349.53,196.13 348.97,196.59 348.41,197.05 347.84,197.51 347.28,197.96 346.71,198.42 346.13,198.88 345.56,199.34 344.98,199.81 344.40,200.27 343.81,200.73 343.23,201.19 342.64,201.65 342.04,202.12 341.45,202.58 340.85,203.05 340.24,203.51 339.64,203.98 339.03,204.44 338.41,204.91 337.80,205.38 337.18,205.85 336.55,206.31 335.93,206.78 335.30,207.25 334.66,207.72 334.03,208.19 333.39,208.66 332.74,209.13 332.09,209.60 331.44,210.07 330.79,210.54 330.13,211.01 329.46,211.48 328.80,211.95 328.13,212.43 327.45,212.90 326.77,213.37 326.09,213.84 325.40,214.31 324.71,214.79 324.02,215.26 323.32,215.73 322.61,216.20 321.90,216.67 321.19,217.14 320.47,217.62 319.75,218.09 319.03,218.56 318.29,219.03 317.56,219.50 316.82,219.97 316.07,220.44 315.33,220.91 314.57,221.38 313.81,221.85 313.05,222.31 312.28,222.78 311.50,223.25 310.72,223.71 309.94,224.18 309.15,224.64 308.36,225.10 307.55,225.56 306.75,226.03 305.94,226.48 305.12,226.94 304.30,227.40 303.47,227.86 302.64,228.31 301.80,228.76 300.95,229.21 300.10,229.66 299.25,230.11 298.39,230.56 297.52,231.00 296.64,231.44 295.76,231.88 294.88,232.32 293.98,232.76 293.09,233.19 292.18,233.62 291.27,234.05 290.35,234.47 289.43,234.90 288.50,235.31 287.56,235.73 286.62,236.14 285.67,236.55 284.72,236.96 283.75,237.36 282.78,237.76 281.81,238.15 280.83,238.54 279.84,238.93 278.84,239.31 277.84,239.69 276.83,240.06 275.82,240.43 274.80,240.79 273.77,241.14 272.74,241.50 271.69,241.84 270.65,242.18 269.59,242.52 268.53,242.84 267.47,243.17 266.39,243.48 265.31,243.79 264.23,244.09 263.14,244.38 262.04,244.67 260.94,244.95 259.83,245.22 258.71,245.49 257.59,245.74 256.47,245.99 255.33,246.23 254.20,246.46 253.06,246.69 251.91,246.90 250.76,247.10 249.60,247.30 248.44,247.49 247.28,247.66 246.11,247.83 244.94,247.98 243.76,248.13 242.59,248.27 241.40,248.39 240.22,248.51 239.03,248.62 237.84,248.71 236.65,248.80 235.46,248.87 234.26,248.93 233.06,248.98 231.87,249.02 230.67,249.05 229.47,249.07 228.27,249.08 227.07,249.08 225.87,249.06 224.67,249.04 223.47,249.00 222.27,248.96 221.08,248.90 219.88,248.83 218.69,248.75 217.50,248.66 216.31,248.56 215.12,248.45 213.94,248.33 212.76,248.19 211.58,248.05 210.41,247.90 209.24,247.74 208.07,247.56 206.91,247.38 205.75,247.19 204.60,246.99 203.45,246.78 202.31,246.56 201.17,246.34 200.04,246.10 198.91,245.86 197.79,245.60 196.67,245.34 195.56,245.07 194.45,244.80 193.35,244.51 192.26,244.22 191.17,243.92 190.09,243.62 189.01,243.31 187.94,242.99 186.88,242.66 185.82,242.33 184.77,241.99 183.73,241.65 182.69,241.30 181.66,240.95 180.63,240.59 179.62,240.22 178.61,239.85 177.60,239.48 176.60,239.10 175.61,238.71 174.63,238.33 173.65,237.93 172.68,237.54 171.71,237.14 170.75,236.73 169.80,236.33 168.85,235.91 167.92,235.50 166.98,235.08 166.06,234.66 165.14,234.24 164.22,233.81 163.31,233.38 162.41,232.95 161.52,232.52 160.63,232.08 159.75,231.64 158.87,231.20 158.00,230.76 157.13,230.31 156.28,229.86 155.42,229.41 154.58,228.96 153.73,228.51 152.90,228.06 152.07,227.60 151.24,227.15 150.42,226.69 149.61,226.23 148.80,225.77 148.00,225.31" fill="none" stroke="#168579" stroke-width="3.2"/><circle cx="388.0" cy="160.99999999999997" r="5" fill="#168579"/><text x="398.0" y="150.99999999999997" font-size="13" fill="#17343f" text-anchor="start" font-weight="400">i</text><circle cx="148.0" cy="225.30780618346944" r="5" fill="#168579"/><text x="143.0" y="211.30780618346944" font-size="13" fill="#17343f" text-anchor="start" font-weight="400">ω₃</text><circle cx="268.0" cy="243.005025157352" r="5" fill="#d98026"/><text x="282.0" y="268.005025157352" font-size="13" fill="#17343f" text-anchor="start" font-weight="400">t = 5/8</text><text x="76" y="89" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">λ⁴ − tλ − (1 − t) = 0</text><text x="76" y="366" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">A cropped view of the upper nonreal root curve.</text><polygon points="826.00,236.00 656.00,123.23 605.00,292.38 758.00,292.38" fill="#edf1eb" stroke="#17343f" stroke-width="2.5"/><polygon points="656.00,123.23 605.00,292.38 758.00,292.38 719.75,165.52" fill="#168579" fill-opacity=".1" stroke="#168579" stroke-width="2"/><circle cx="826.0" cy="236.0" r="4" fill="#17343f"/><text x="840.0" y="226.0" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="656.0" cy="123.23475712791641" r="4" fill="#17343f"/><text x="644.0" y="113.23475712791641" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">λ</text><circle cx="605.0" cy="292.3826214360418" r="4" fill="#17343f"/><text x="593.0" y="310.3826214360418" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">λ²</text><circle cx="758.0" cy="292.3826214360418" r="4" fill="#17343f"/><text x="772.0" y="310.3826214360418" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">λ³</text><circle cx="719.75" cy="165.52172320494776" r="6" fill="#d98026"/><text x="739.75" y="159.52172320494776" font-size="14" fill="#d98026" text-anchor="start" font-weight="400">λ⁴</text><circle cx="690" cy="236" r="2" fill="#607b7e"/><text x="698" y="251" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="690" y="89" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">Q = conv{1, λ, λ², λ³}</text><text x="690" y="366" font-size="12" fill="#607b7e" text-anchor="middle" font-weight="400">λ⁴ = 3/8 + (5/8)λ lies on [1, λ].</text><text x="460" y="420" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">At t = 5/8:  λ = (−1 + i√11)/4  and  |λ| = √3/2.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. The teal curve follows the upper nonreal root of the displayed polynomial. Its endpoints are $i$ and $e^{2\pi i/3}$. The amber point is the exact example at $t=5/8$; the right-hand drawing is its invariant polygon.</em>
+                    </p>
+
+                    <!-- Interactive Lab: Arc explorer -->
+                    <section class="lab" aria-label="Example eigenvalue curve and invariant polygon">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">One example through the proof</div>
+                                <div class="lab-title">Move the weight; follow the eigenvalue</div>
+                            </div>
+                            <small>A 4 × 4 stochastic family</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="arc-controls">
+                                <button id="arc-preset-0" type="button">t = 0</button>
+                                <button id="arc-preset-625" type="button">t = 5/8</button>
+                                <button id="arc-preset-1000" type="button">t = 1</button>
+                            </div>
+                            <div class="arc-slider">
+                                <label for="arc-t">Weight t = <output id="arc-t-value">5/8</output></label>
+                                <input id="arc-t" type="range" min="0" max="1000" value="625" step="1">
+                            </div>
+                            <div class="arc-layout">
+                                <svg id="arc-curve" viewBox="0 0 430 335" role="img" aria-label="Selected upper nonreal eigenvalue curve"></svg>
+                                <svg id="arc-polygon" viewBox="0 0 430 335" role="img" aria-label="The corresponding invariant polygon"></svg>
+                            </div>
+                            <div class="arc-readouts">
+                                <p id="arc-readout" class="readout" role="status" aria-live="polite"></p>
+                                <p id="arc-row" class="readout"></p>
+                            </div>
+                            <p class="small-note">The matrix realizes this curve. Its role as an outer boundary arc requires the extremal argument. Coordinates in the explorer are numerical; the identity and the point at t = 5/8 are exact in the article. At t = 1, two listed powers coincide and the polygon becomes a triangle.</p>
+                        </div>
+                    </section>
+
+                    <p>
+                        The matrix proves realizability of this curve. The remaining proof machinery explains why the corresponding curve is the outer boundary in this angular sector. This example will serve as a guide when the general notation becomes more involved.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="stop-7">
+                    <h2>Locate the curves using angles and Farey neighbors</h2>
+                    <p>
+                        An equation can have several roots. Its unit-circle limits can also contain several roots of unity. We need to determine which roots belong to a particular boundary arc.
+                    </p>
+                    <p>
+                        Geometric angle estimates and integer congruences provide that information. The relevant rational angles are organized by the Farey sequence of order $n$: the reduced fractions in $[0,1]$ with denominator at most $n$.
+                    </p>
+                    <p>
+                        For consecutive fractions $a/b&lt;c/d$ in that sequence,
+                    </p>
+                    <div class="theory-formula">
+                        $$bc-ad=1,\qquad b+d&gt;n.$$
+                    </div>
+                    <p>
+                        Their associated landmarks are $e^{2\pi ia/b}$ and $e^{2\pi ic/d}$. The same integer arithmetic that controlled the contact chains now helps place the candidate curves in angular order.
+                    </p>
+                    <p>
+                        The running example fits this pattern. Its endpoints $i=e^{2\pi i\cdot 1/4}$ and $e^{2\pi i\cdot 1/3}$ come from the neighbours $1/4&lt;1/3$ in the Farey sequence of order $4$: here $4\cdot1-1\cdot3=1$ and $4+3&gt;4$.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> algebraic relations acquire angular locations and identified endpoints. The angular estimates are Theorems VIII–IX; the Farey organization enters the final assembly in §5.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 7</span> <a href="karpelevich-farey.html">Why Farey Neighbors Label the Arcs →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-8">
+                    <h2>Follow the other branch: cyclic polygons</h2>
+                    <p>
+                        Before finishing the boundary description, the original proof obtains another geometric result. Its extremal relations lead to membership in a cyclic polygon, and this yields Theorem A’s union description of $\mathcal K_n$.
+                    </p>
+                    <p>
+                        Here “cyclic” means generated by geometric progressions, with a possible finite rotational symmetry. It is a specific definition in the paper. It does not mean merely that a polygon has vertices on a circle.
+                    </p>
+                    <p>
+                        There are also two different uses of polygons to distinguish. An invariant eigenvector polygon is a witness for one eigenvalue: it contains its own image under multiplication by that eigenvalue. The polygons in Theorem A collectively describe the eigenvalue region itself.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> the argument gives a geometric description of the whole region, alongside its eventual boundary equations. Theorem X and the deduction of Theorem A appear on p. 379.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 8</span> <a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region →</a></p>
+                </section>
+
+                <section class="essay-section" id="stop-9">
+                    <h2>Assemble the boundary by induction on the order</h2>
+                    <p>
+                        The regions are nested:
+                    </p>
+                    <div class="theory-formula">
+                        $$\mathcal K_{n-1}\subseteq\mathcal K_n.$$
+                    </div>
+                    <p>
+                        Consequently, the boundary at order $n$ can include pieces inherited from a smaller order, as well as newly exposed pieces. The final stage must determine which are which.
+                    </p>
+                    <p>
+                        Karpelevich uses induction, angular sectors, and the preceding equation families to complete that comparison. The analysis also rules out putative boundary points that admit an invariant polygon with strictly interior image vertices: such a polygon has room for a small radial expansion.
+                    </p>
+                    <p class="essay-takeaway">
+                        <strong>What this accomplishes:</strong> the candidate pieces become a complete boundary description. Every nonreal outer boundary point is accounted for, the endpoints are placed in circular order, and the appropriate equations are assigned to the arcs. The low-order cases and unit-circle endpoints supply the necessary starting and limiting cases.
+                    </p>
+                    <p class="essay-post-tag is-live"><span>Published · Stop 9</span> <a href="karpelevich-induction.html">Closing the Boundary: Old Arcs, New Arcs, and Induction →</a></p>
+                </section>
+
+                <section class="essay-section" id="at-a-glance">
+                    <h2 class="essay-unnumbered">The series at a glance</h2>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Stop</th>
+                                    <th>The question for its post</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><a href="karpelevich-polygons.html"><strong>1. Matrices and polygons</strong></a></td><td>Why does a stochastic eigenvalue have an invariant polygon witness?</td></tr>
+                                <tr><td><a href="karpelevich-contacts.html"><strong>2. Extremal contacts</strong></a></td><td>What does radial extremality force, and under which hypotheses?</td></tr>
+                                <tr><td><a href="karpelevich-game.html"><strong>3. The game</strong></a></td><td>How can we simplify contacts while keeping the eigenvalue?</td></tr>
+                                <tr><td><a href="karpelevich-returns.html"><strong>4. Return arithmetic</strong></a></td><td>How do the Euclidean remainders determine the chains?</td></tr>
+                                <tr><td><a href="karpelevich-rigidity.html"><strong>5. Geometric rigidity</strong></a></td><td>Which patterns admit a variation, and why must weights agree?</td></tr>
+                                <tr><td><a href="karpelevich-boundary-equations.html"><strong>6. Equations</strong></a></td><td>How do the polygon coordinates disappear?</td></tr>
+                                <tr><td><a href="karpelevich-farey.html"><strong>7. Angles and Farey neighbors</strong></a></td><td>Which roots and endpoints belong together?</td></tr>
+                                <tr><td><a href="karpelevich-cyclic.html"><strong>8. Cyclic polygons</strong></a></td><td>How does the proof describe the whole region?</td></tr>
+                                <tr><td><a href="karpelevich-induction.html"><strong>9. Induction</strong></a></td><td>Why do the identified pieces exhaust the boundary?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The game sits near the start of this structure. It prepares a polygon that arithmetic can read. Rigidity then makes that arithmetic restrictive enough to produce equations, and the final geometric and inductive arguments turn those equations into a theorem about the region.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="notation">
+                    <h2 class="essay-unnumbered">Standard notation across the series</h2>
+                    <p>
+                        Karpelevich’s 1951 paper reuses letters across sections ($q$ for chip count, Euclidean step count, and tail exponent; $d$ for $\gcd(n,k)$, chain count, and cyclic-polygon symmetry). Throughout this monograph series we use a single collision-free notation:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Meaning</th>
+                                    <th>Where introduced</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$n,\ \mathcal K_n$</td><td>Matrix order and the region of eigenvalues of $n\times n$ row-stochastic matrices.</td><td><a href="karpelevich-polygons.html">Stop 1</a></td></tr>
+                                <tr><td>$k,\ g=\gcd(n,k)$</td><td>Fixed cyclic contact shift $\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k}$ and cycle count of $i\mapsto i+k\pmod n$.</td><td><a href="karpelevich-contacts.html">Stop 2</a>, <a href="karpelevich-game.html">Stop 3</a></td></tr>
+                                <tr><td>$\varphi,\ r$</td><td>Reduced consecutive edge-contact run length $\varphi$ and Euclidean remainder $r\equiv\varphi\pmod{r_{2j-1}}$.</td><td><a href="karpelevich-game.html">Stop 3</a>, <a href="karpelevich-returns.html">Stop 4</a></td></tr>
+                                <tr><td>$p,q$ and $U,L$</td><td>Record return times ($p,q$) and spatial gaps ($U,L$) in the subtractive Euclidean identity $pU+qL=n$.</td><td><a href="karpelevich-returns.html">Stop 4</a></td></tr>
+                                <tr><td>$F_n,\ a/b&lt;c/d$</td><td>Farey sequence of order $n$ and neighboring reduced fractions satisfying $bc-ad=1$ and $b+d&gt;n$.</td><td><a href="karpelevich-farey.html">Stop 7</a></td></tr>
+                                <tr><td>$f/b&lt;k/n$</td><td>Farey predecessor $f/b$ of the reduced fraction $k/n$ in the chosen orientation ($kb-nf=g$).</td><td><a href="karpelevich-farey.html">Stop 7</a>, <a href="karpelevich-induction.html">Stop 9</a></td></tr>
+                                <tr><td>$\ell=\min(b,d),\ s=\max(b,d)$</td><td>Smaller and larger Farey denominators; $\ell$ is the chain length and $m=\lfloor n/\ell\rfloor$ is the repetition count.</td><td><a href="karpelevich-boundary-equations.html">Stop 6</a>, <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a></td></tr>
+                                <tr><td>$\tau=s-\ell m,\ \sigma=\ell m-s$</td><td>Closing tail $\tau$ ($0\leq\tau&lt;\ell$) in Family I and closing shift $\sigma$ ($0&lt;\sigma&lt;\ell$) in Family II.</td><td><a href="karpelevich-rigidity.html">Stop 5</a>, <a href="karpelevich-boundary-equations.html">Stop 6</a></td></tr>
+                                <tr><td>$t\in[0,1]$</td><td>Common local-return weight ($t=\alpha$ in the forward branch, $t=\beta$ in the gcd branch).</td><td><a href="karpelevich-rigidity.html">Stop 5</a>, <a href="karpelevich-boundary-equations.html">Stop 6</a></td></tr>
+                                <tr><td>$C(\mu,h)$</td><td>Cyclic polygon generated by powers $\mu^m$ and $h$th roots of unity $\varepsilon=e^{2\pi i/h}$.</td><td><a href="karpelevich-cyclic.html">Stop 8</a></td></tr>
+                                <tr><td>$n_*&lt;n$</td><td>Smaller comparison order satisfying $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$.</td><td><a href="karpelevich-induction.html">Stop 9</a></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="ledger">
+                    <h2 class="essay-unnumbered">Proof ledger and where the modern route enters</h2>
+                    <p>
+                        To make the logical status of every step completely transparent, the table below records what is proved in full in the nine stops, what is used as an explicit cited input from Dmitriev–Dynkin (1946) and Karpelevich (1951), and where the series switches to the modern literature (1997–2024) to complete the boundary-arc description cleanly.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Stop</th>
+                                    <th>Proved in full in the post</th>
+                                    <th>Cited input &amp; modern completion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="karpelevich-polygons.html"><strong>Stop 1</strong></a></td>
+                                    <td>Matrix rows $\leftrightarrow$ invariant polygons $\lambda Q\subseteq Q$; Perron normalization; Frobenius block reduction for reducible matrices; $0\in\operatorname{int}Q$; unit disk, star-shapedness, compactness, and root-of-unity landmarks.</td>
+                                    <td>Classical Perron–Frobenius theorem for irreducible nonnegative matrices; Bolzano–Weierstrass compactness.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-contacts.html"><strong>Stop 2</strong></a></td>
+                                    <td>Elementary radial-expansion lemma (why all image vertices cannot be strictly interior); resolvent proof that no single image vertex is interior; supporting-line sparsity; $n=2,3$ base regions.</td>
+                                    <td>Dmitriev–Dynkin (1946) cyclic-shift ordering $\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k}$ (Karpelevich §2, Theorem I).</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-game.html"><strong>Stop 3</strong></a></td>
+                                    <td>Corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$; Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$ ($g=\gcd(n,k)$); single consecutive run of length $\varphi$ via strict modular records.</td>
+                                    <td>Karpelevich §3, Theorem II (elimination of multiple separate runs via the record-gap game).</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-returns.html"><strong>Stop 4</strong></a></td>
+                                    <td>Subtractive Euclidean invariant $pU+qL=n$; two-length first-return theorem ($p$ and $p+q$) in both the forward branch ($\varphi&gt;g$) and gcd branch ($\varphi=g$); vertex-budget identity $n=p\varphi+qr$.</td>
+                                    <td>Self-contained (Karpelevich §3, Lemma 2 &amp; Theorems III–IV).</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-rigidity.html"><strong>Stop 5</strong></a></td>
+                                    <td>Fractional linear return map $u(s)=as/(1+cs)$ under central projection; inward perturbation lemma ($u'(0)\neq1$ and $u'(0)=1$); barycentric two-weight slide forcing $\alpha_1=\cdots=\alpha_m=t$ in both branches.</td>
+                                    <td>Karpelevich §4, Theorem V ($r=1\implies g=1$ in the forward branch and the full-block reduction $\varphi=n\implies k=1$).</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-boundary-equations.html"><strong>Stop 6</strong></a></td>
+                                    <td>Elimination along chains for Family I ($\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$) and Family II ($(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$); cycle-expansion determinant proof; equivalence with Ito’s unified equation and matrix realization of all reduced Ito roots.</td>
+                                    <td><strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref> unified equation; <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref> stochastic realization.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-farey.html"><strong>Stop 7</strong></a></td>
+                                    <td>Farey neighbor criterion ($bc-ad=1,\ b+d&gt;n$) and mediant threshold; forward-branch angular lift $f/\ell&lt;\theta&lt;k/n$; <strong>Exponent Dictionary</strong> identifying $(\ell,s,m,\tau,\sigma)$ for all $\varphi&gt;1$ and $g\geq2$.</td>
+                                    <td>Karpelevich §5, Theorems VIII–IX (gcd-branch angle bound); <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref> for the single-contact ($g=1,\varphi=1$) selection when $b&lt;n/2$.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-cyclic.html"><strong>Stop 8</strong></a></td>
+                                    <td>Finite closing certificate $\mu^L\in P\implies P=C(\mu,h)$; multiplicative closure $z,w\in C\implies zw\in C$; stochastic matrix realization of every $z\in C$; $n=3$ trace-inequality proof; deduction of Theorem A from radial coverage.</td>
+                                    <td>Karpelevich §5, Theorem X (root-extraction covering of new radial extrema by cyclic polygons); Đoković (1990) <cite-ref key="djokovic1990"></cite-ref>.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="karpelevich-induction.html"><strong>Stop 9</strong></a></td>
+                                    <td>Denominator divisibility test ($b\mid n$ or $d\mid n$); comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$; quantitative interior-image lemma $B(\mu,\delta/M)\subseteq\mathcal K_n$; explicit $n=6$ hexagon witness.</td>
+                                    <td>Dmitriev–Dynkin interior-image construction (p. 382); <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref>, <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref>, <strong>Kirkland–Laffey–Šmigoc (2020)</strong> <cite-ref key="kirkland2020"></cite-ref>, and <strong>Munger–Nickerson–Paparella (2024)</strong> <cite-ref key="munger2023"></cite-ref> for unique smooth simple polar arcs and radial extremality.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="reading-original">
+                    <h2 class="essay-unnumbered">Reading the original paper alongside the series</h2>
+                    <p>
+                        The original paper has five numbered sections. This series divides it by mathematical task, so several posts will draw on the same section.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Original location</th>
+                                    <th>Main role in our map</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>§1, pp. 361–363</td><td>Statements of Theorems A and B; examples of boundary equations.</td></tr>
+                                <tr><td>§2, p. 363</td><td>Stochastic formulation, invariant polygons, and the quoted extremal contact theorem.</td></tr>
+                                <tr><td>§3, pp. 364–371</td><td>The game, modular records, Euclidean arithmetic, and return relations.</td></tr>
+                                <tr><td>§4, pp. 372–377</td><td>Polygon variations, coefficient rigidity, and the two equation families.</td></tr>
+                                <tr><td>§5, pp. 377–383</td><td>Angular estimates, cyclic polygons, Farey bookkeeping, and boundary induction.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="essay-sources">
+                        F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper and scan</a>. <a href="https://doi.org/10.1090/trans2/140/05" target="_blank" rel="noopener">English translation</a>: American Mathematical Society Translations, Series 2, <strong>140</strong> (1988), 79–100.
+                    </p>
+                    <p class="essay-sources">
+                        This roadmap outlines the nine-stop argument, standardizes the notation across all chapters, and records where the modern formulations of Ito (1997), Johnson–Paparella (2017), Kirkland–Laffey–Šmigoc (2020), and Munger–Nickerson–Paparella (2024) complete the boundary-arc description.
+                    </p>
+
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Start at the beginning · Stop 1</span>
+                        <p><a href="karpelevich-polygons.html">From Matrix Rows to Convex Hulls</a>: an eigenvector becomes a geometric witness. Or begin with the game: <a href="karpelevich-game.html">Karpelevich’s Game</a>.</p>
+                    </div>
+
+                    <cite-grid keys="karpelevich1951, dmitriev1946, kolmogorov1938, djokovic1990, ito1997, johnson2017, kirkland2020, munger2023"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev disabled">
+                        <span class="book-pager-meta">Monograph Overview</span>
+                        <a href="karpelevich-proof-roadmap.html" class="book-pager-title">Roadmap: A Map of the Argument</a>
+                        <p class="book-pager-desc">Visual architecture, dependency map between Theorem A and Theorem B, and nine stops.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-polygons.html" class="book-pager-title">Stop 1: From Matrix Rows to Convex Hulls</a>
+                        <p class="book-pager-desc">An eigenvector becomes a geometric witness: row-stochastic matrices, invariant polygons, and Perron normalization.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

@@ -35,7 +35,7 @@
             );
 
             function applySubplotsStandardTheme(mode) {
-                const isLight = (mode || localStorage.getItem('niep_theme') || 'dark') === 'light';
+                const isLight = (mode || localStorage.getItem('niep_theme') || 'light') === 'light';
                 const gd = document.getElementById("plotly-3d-subplots");
                 if (!gd || !gd.data) return;
 

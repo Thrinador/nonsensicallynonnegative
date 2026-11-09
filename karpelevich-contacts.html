@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Extremality Forces · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="What radial extremality forces on invariant eigenvector polygons: boundary contacts, sparse stochastic rows, a common cyclic shift, and the orientation behind Karpelevich's chip game.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-contacts.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="What Extremality Forces · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="What radial extremality forces on invariant eigenvector polygons: boundary contacts, sparse stochastic rows, a common cyclic shift, and the orientation behind Karpelevich&#x27;s chip game.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-contacts.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-contacts.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>&rsaquo;</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>&rsaquo;</span>
+            <span>What Extremality Forces</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-2"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof &middot; Stop 2</div>
+                    <h1 class="essay-title">What <em>Extremality</em><br>Forces</h1>
+                    <p class="essay-deck">A polygon with no room to spare.</p>
+                    <div class="essay-tags">
+                        <span>Boundary contacts</span>
+                        <span>Two cyclic diagonals</span>
+                        <span>One exact extremum</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 2 of 9 in <em>Inside Karpelevich’s Proof</em> &middot; See the roadmap &rarr;</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 310" role="img" aria-label="An extremal triangle has two vertex contacts and one edge contact"><polygon points="318.00,145.00 185.00,78.50 118.50,211.50" fill="#193d45" stroke="#a4c4b0" stroke-width="1.8"/><polygon points="118.50,211.50 218.25,178.25 185.00,78.50" fill="#82bfa5" fill-opacity=".17" stroke="#b4dbbf" stroke-width="2"/><circle cx="318.00" cy="145.00" r="4" fill="#d2e8d5"/><circle cx="185.00" cy="78.50" r="4" fill="#d2e8d5"/><circle cx="118.50" cy="211.50" r="4" fill="#d2e8d5"/><circle cx="118.50" cy="211.50" r="6" fill="#102b36" stroke="#b6ddc1" stroke-width="2"/><circle cx="218.25" cy="178.25" r="6" fill="#e1ac67" stroke="#e1ac67" stroke-width="2"/><circle cx="185.00" cy="78.50" r="6" fill="#102b36" stroke="#b6ddc1" stroke-width="2"/><text x="195" y="280" fill="#bdd8c8" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17">Every image vertex touches.</text></svg>
+                    <div class="essay-hero-caption">Every image vertex touches the boundary.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The two interactive explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">From invariance to contacts</div>
+                <ol>
+                    <li><a href="#two-hypotheses-do-different-jobs">Two hypotheses do different jobs</a></li>
+                    <li><a href="#if-the-whole-image-is-interior-expand-it">If the whole image is interior, expand it</a></li>
+                    <li><a href="#why-even-one-interior-image-is-impossible">Why even one interior image is impossible</a></li>
+                    <li><a href="#a-supporting-edge-forces-a-sparse-row">A supporting edge forces a sparse row</a></li>
+                    <li><a href="#the-fixed-cyclic-shift-is-the-deeper-input">The fixed cyclic shift is the deeper input</a></li>
+                    <li><a href="#an-exact-extremal-polygon">An exact extremal polygon</a></li>
+                    <li><a href="#why-the-choice-of-orientation-matters">Why the choice of orientation matters</a></li>
+                    <li><a href="#the-board-is-finally-defined">The board is finally defined</a></li>
+                    <li><a href="#sources-and-scope">Sources and scope</a></li>
+                </ol>
+                <div class="essay-side-note">One contact blocks a fixed expansion.<br>Extremality forces every image to touch.</div>
+            </aside>
+
+            <article class="essay" id="article">
+                <section class="essay-section" id="overview">
+                    <p class="essay-lead">
+                        An invariant polygon can have plenty of room inside it. Its rotated, contracted image can sit comfortably away from every edge.
+                    </p>
+                    <p>
+                        An extremal eigenvalue behaves differently. At its least realizing order, every image vertex must touch the polygon’s boundary. A theorem of Dmitriev and Dynkin <cite-ref key="dmitriev1946"></cite-ref> then organizes those contacts: every vertex looks toward the same pair of cyclic neighbors.
+                    </p>
+                    <p>
+                        This is the missing step between <a href="karpelevich-polygons.html">the matrix–polygon correspondence</a> and <a href="karpelevich-game.html">Karpelevich’s chip game</a>. We will separate the elementary lack-of-slack argument from the stronger contact theorem, prove the no-interior-contact conclusion, and work through an exact extremal example.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="two-hypotheses-do-different-jobs">
+                    <h2>Two hypotheses do different jobs</h2>
+                    <p>
+                        Write $\mathcal K_n$ for the eigenvalues of stochastic matrices of order $n$. Recall the geometric translation:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda\in\mathcal K_n\quad\Longleftrightarrow\quad \lambda Q\subseteq Q\text{ for a nontrivial convex hull with at most }n\text{ vertices}.$$
+                    </div>
+                    <p>
+                        Throughout the main argument, $\lambda$ is nonreal. Its invariant polygons have the origin in their interior.
+                    </p>
+                    <p>
+                        We need two additional hypotheses:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Hypothesis</th>
+                                    <th>Exact meaning</th>
+                                    <th>Its role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Radial extremality at order $n$</td>
+                                    <td>$\lambda\in\mathcal K_n$ and $c\lambda\notin\mathcal K_n$ for every real $c&gt;1$</td>
+                                    <td>Rules out an outward improvement along the same ray</td>
+                                </tr>
+                                <tr>
+                                    <td>New at order $n$</td>
+                                    <td>$\lambda\notin\mathcal K_{n-1}$</td>
+                                    <td>Rules out a realization with fewer states or fewer polygon vertices</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        In particular, every witness with at most $n$ vertices must have exactly $n$ vertices. Otherwise the reverse construction from <a href="karpelevich-polygons.html#go-backward">Stop 1</a> would put $\lambda$ in $\mathcal K_{n-1}$.
+                    </p>
+                    <p>
+                        The order matters. Padding a smaller matrix with an identity block does not produce a new least-order configuration. Nor can we apply the contact theorem merely because a point lies somewhere on the topological boundary: the hypothesis here is specifically radial extremality.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="if-the-whole-image-is-interior-expand-it">
+                    <h2>If the whole image is interior, expand it</h2>
+                    <p>
+                        Suppose every image vertex lies strictly inside $Q$. There are finitely many vertices and edges, so a small outward expansion still fits:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q\subset\operatorname{int}Q \quad\Longrightarrow\quad (1+\varepsilon)\lambda Q\subseteq Q \quad\text{for some }\varepsilon&gt;0.$$
+                    </div>
+                    <p>
+                        The same polygon now realizes a larger eigenvalue on the same ray. Such a $\lambda$ cannot be radially extremal.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 465" role="img" aria-labelledby="01-slack-and-contact-title 01-slack-and-contact-desc"><title id="01-slack-and-contact-title">Strict containment leaves room to expand</title><desc id="01-slack-and-contact-desc">Two square witnesses show the image at radial factors one and four thirds. The latter has four edge contacts.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="34" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">STRICT SLACK ALLOWS A RADIAL IMPROVEMENT</text><text x="245" y="67" font-size="20" fill="#17343f" text-anchor="middle" font-weight="650">Strict slack · c = 1</text><polygon points="364.000,227.000 245.000,108.000 126.000,227.000 245.000,346.000" fill="#edf2e9" fill-opacity="1" stroke="#17343f" stroke-width="2"/><polygon points="274.750,167.500 185.500,197.250 215.250,286.500 304.500,256.750" fill="#c5e5d9" fill-opacity="0.4" stroke="#168579" stroke-width="2"/><circle cx="364.000" cy="227.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="387" y="231" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="245.000" cy="108.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="245.0" y="89.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">i</text><circle cx="126.000" cy="227.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="103" y="231" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">−1</text><circle cx="245.000" cy="346.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="245.0" y="373.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">−i</text><circle cx="274.750" cy="167.500" r="5" fill="#168579" stroke="none" stroke-width="1.5"/><circle cx="185.500" cy="197.250" r="5" fill="#168579" stroke="none" stroke-width="1.5"/><circle cx="215.250" cy="286.500" r="5" fill="#168579" stroke="none" stroke-width="1.5"/><circle cx="304.500" cy="256.750" r="5" fill="#168579" stroke="none" stroke-width="1.5"/><circle cx="245.000" cy="227.000" r="2.3" fill="#607b7e" stroke="none" stroke-width="1.5"/><text x="253" y="242" font-size="10" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="245" y="393" font-size="18" fill="#168579" text-anchor="middle" font-weight="400">(3/4)c &lt; 1</text><text x="675" y="67" font-size="20" fill="#17343f" text-anchor="middle" font-weight="650">First contact · c = 4/3</text><polygon points="794.000,227.000 675.000,108.000 556.000,227.000 675.000,346.000" fill="#edf2e9" fill-opacity="1" stroke="#17343f" stroke-width="2"/><polygon points="714.667,147.667 595.667,187.333 635.333,306.333 754.333,266.667" fill="#c5e5d9" fill-opacity="0.4" stroke="#168579" stroke-width="2"/><circle cx="794.000" cy="227.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="817" y="231" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="675.000" cy="108.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="675.0" y="89.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">i</text><circle cx="556.000" cy="227.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="533" y="231" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">−1</text><circle cx="675.000" cy="346.000" r="3.8" fill="#17343f" stroke="none" stroke-width="1.5"/><text x="675.0" y="373.0" font-size="13" fill="#17343f" text-anchor="middle" font-weight="400">−i</text><circle cx="714.667" cy="147.667" r="5" fill="#d98026" stroke="none" stroke-width="1.5"/><circle cx="595.667" cy="187.333" r="5" fill="#d98026" stroke="none" stroke-width="1.5"/><circle cx="635.333" cy="306.333" r="5" fill="#d98026" stroke="none" stroke-width="1.5"/><circle cx="754.333" cy="266.667" r="5" fill="#d98026" stroke="none" stroke-width="1.5"/><circle cx="675.000" cy="227.000" r="2.3" fill="#607b7e" stroke="none" stroke-width="1.5"/><text x="683" y="242" font-size="10" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="675" y="393" font-size="18" fill="#d98026" text-anchor="middle" font-weight="400">(3/4)c = 1</text><text x="460" y="435" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">The threshold is computed for this fixed square.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. For $Q=\operatorname{conv}\{1,i,-1,-i\}$ and $\lambda=1/4+i/2$, invariance of $c\lambda Q$ is equivalent to $3c/4\leq1$. Thus the initial image has room to expand. At $c=4/3$, its vertices reach the edges. This calculation concerns the fixed square; it does not establish the outer boundary of the full order-four region.</em>
+                    </p>
+
+                    <!-- Interactive Lab 01: Slack explorer -->
+                    <section class="lab" aria-label="Explore radial slack for one fixed square">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">An elementary obstruction</div>
+                                <div class="lab-title">Expand the image until the square runs out of room</div>
+                            </div>
+                            <small>Q stays fixed</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="contact-slider">
+                                <label for="slack-c">Radial factor $c \approx$ <output id="slack-c-value">1.000</output></label>
+                                <input type="range" id="slack-c" min="1000" max="1550" value="1000" step="1">
+                            </div>
+                            <div class="contact-controls">
+                                <button type="button" id="slack-reset">Initial image</button>
+                                <button type="button" id="slack-contact">Exact first contact: c = 4/3</button>
+                            </div>
+                            <div class="contact-layout">
+                                <svg id="slack-polygon" viewBox="0 0 420 395" role="img" aria-label="A fixed square and a radially expanded image"></svg>
+                                <div>
+                                    <p class="readout">$\lambda=\frac14+\frac12i$</p>
+                                    <p class="contact-state" id="slack-norm"></p>
+                                    <p class="contact-status" id="slack-status" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p class="small-note">This test concerns the fixed square. A failed containment test does not exclude a different polygon. Readouts are rounded; the first-contact factor 4/3 is exact.</p>
+                        </div>
+                    </section>
+
+                    <details class="essay-proof">
+                        <summary>A finite-inequality proof of the expansion claim</summary>
+                        <p>
+                            Write the polygon as an intersection of supporting half-planes,
+                        </p>
+                        <div class="theory-formula">
+                            $$Q=\{z:h_\ell(z)\leq b_\ell\text{ for every edge }\ell\},$$
+                        </div>
+                        <p>
+                            where each $h_\ell$ is a real linear functional. The origin is interior, so each $b_\ell&gt;0$. If the vertices are $z_i$, strict containment says
+                        </p>
+                        <div class="theory-formula">
+                            $$h_\ell(\lambda z_i)&lt;b_\ell\qquad\text{for every }i,\ell.$$
+                        </div>
+                        <p>
+                            These are finitely many strict inequalities. By continuity they remain valid when each left side is multiplied by $1+\varepsilon$ for sufficiently small $\varepsilon&gt;0$. Taking convex hulls proves the claim.
+                        </p>
+                    </details>
+
+                    <p>
+                        This argument only shows that <strong>at least one contact is necessary</strong>. If one image point already touches an edge, expanding the whole image may fail immediately, even while other image vertices are interior. Getting every image vertex onto the boundary requires an additional argument.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="why-even-one-interior-image-is-impossible">
+                    <h2>Why even one interior image is impossible</h2>
+                    <p>
+                        Here is the stronger conclusion, under both hypotheses from Section 1:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda z_i\in\partial Q\qquad\text{for every vertex }z_i.}$$
+                    </div>
+                    <p>
+                        One way to understand it is to allow the polygon to move while the multiplier moves. If an image vertex is interior, its convex-combination equation has room to adjust. We can keep the other matrix rows fixed, solve their equations continuously, and use that room to close the remaining row for a slightly larger multiplier.
+                    </p>
+                    <p>
+                        The following proof makes that idea exact. It is an analytic explanation of the no-interior-contact conclusion; the stronger cyclic organization comes afterward.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>A complete proof using one adjustable matrix row</summary>
+                        <p>
+                            Suppose $\lambda z_i$ is interior. Choose stochastic realizing rows for the polygon and call the matrix $P$. This matrix must be irreducible. Otherwise a smaller diagonal block containing $\lambda$ has spectral radius $\rho\leq1$. Stochastic normalization, as in <a href="karpelevich-polygons.html#normalization">Stop 1</a>, realizes $\lambda/\rho$ at that smaller order. If $\rho=1$, this contradicts least order; if $\rho&lt;1$, it contradicts radial extremality. Here $\rho&gt;0$ because $\lambda$ is nonreal.
+                        </p>
+                        <p>
+                            Delete row and column $i$, leaving a nonnegative principal submatrix $B$. Then $\rho(B)&lt;1$. To see this directly, regard $P$ as a finite irreducible Markov chain. From every remaining state there is a positive-probability path to the deleted state. For some common finite number of steps, every row of the corresponding power of $B$ has sum strictly less than one. Hence $\rho(B)&lt;1$.
+                        </p>
+                        <p>
+                            Also $\lambda\notin\operatorname{spec}B$. Otherwise $\rho(B)&gt;0$ and the nonnegative matrix $B/\rho(B)$, of order $n-1$, would realize $\lambda/\rho(B)$ after stochastic normalization. Since $\rho(B)&lt;1$, that is an outward improvement along the same ray, contradicting extremality at order $n$.
+                        </p>
+                        <p>
+                            No polygon vertex is zero, so scale all coordinates to make $z_i=1$. Let $z_J$ collect the other coordinates, and let $c$ be column $i$ of $P$ with its $i$th entry removed. The unchanged rows say
+                        </p>
+                        <div class="theory-formula">
+                            $$\lambda z_J=Bz_J+c.$$
+                        </div>
+                        <p>
+                            For a complex number $\mu$ sufficiently close to $\lambda$, define
+                        </p>
+                        <div class="theory-formula">
+                            $$v_i(\mu)=1,\qquad v_J(\mu)=(\mu I-B)^{-1}c.$$
+                        </div>
+                        <p>
+                            These coordinates vary continuously and equal the original coordinates at $\mu=\lambda$. All rows except row $i$ already satisfy the eigenvector equation for $\mu$.
+                        </p>
+                        <p>
+                            Originally $\lambda v_i(\lambda)=\lambda$ is strictly inside the hull of the coordinates. Interior membership persists when both the point and these finitely many vertices move sufficiently little. Therefore, for all sufficiently close $\mu$,
+                        </p>
+                        <div class="theory-formula">
+                            $$\mu\in\operatorname{conv}\{v_1(\mu),\ldots,v_n(\mu)\}.$$
+                        </div>
+                        <p>
+                            Choose convex coefficients for this last inclusion as row $i$. Together with the unchanged rows they form a stochastic matrix having eigenvalue $\mu$. In particular, choose $\mu=(1+\varepsilon)\lambda$ for small $\varepsilon&gt;0$. This contradicts radial extremality and proves the claim.
+                        </p>
+                        <p>
+                            For completeness, the stability assertion follows from supporting functionals: a small disk centered at $\lambda$ lies in the original hull. Moving every vertex by less than half the disk’s radius changes every unit supporting value by at most that amount, leaving a smaller disk available for the moving point.
+                        </p>
+                    </details>
+
+                    <p>
+                        This explains why the least-order hypothesis is useful even in a geometric statement: it prevents the realizing matrix from splitting into smaller pieces when we try to move it.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="a-supporting-edge-forces-a-sparse-row">
+                    <h2>A supporting edge forces a sparse row</h2>
+                    <p>
+                        Now let an image point $\lambda z_i$ lie on an edge $[z_a,z_b]$. Choose a supporting functional $h$ with
+                    </p>
+                    <div class="theory-formula">
+                        $$h(z)\leq b\text{ on }Q,\qquad h(\lambda z_i)=b.$$
+                    </div>
+                    <p>
+                        In any stochastic representation of this image,
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\sum_jp_{ij}z_j,$$
+                    </div>
+                    <p>
+                        we obtain
+                    </p>
+                    <div class="theory-formula">
+                        $$0=b-h(\lambda z_i)=\sum_jp_{ij}\bigl(b-h(z_j)\bigr).$$
+                    </div>
+                    <p>
+                        Every summand is nonnegative. A vertex off that supporting edge has $b-h(z_j)&gt;0$, so its coefficient must vanish. Only the two endpoints can participate:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\alpha_i z_a+\beta_i z_b,\qquad \alpha_i,\beta_i\geq0,\qquad\alpha_i+\beta_i=1.$$
+                    </div>
+                    <p>
+                        If the image is itself a vertex, its row has just one nonzero entry. For a fixed eigenvector polygon, the coefficients are now determined by the image point’s position on its supporting face.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="02-supporting-face-title 02-supporting-face-desc"><title id="02-supporting-face-title">A contact edge determines a sparse matrix row</title><desc id="02-supporting-face-desc">The supporting functional real part minus three times imaginary part is one on the contact edge and strictly less at the third vertex. Its row weight must be zero.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="34" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">A SUPPORTING LINE FORCES THE OTHER WEIGHTS TO ZERO</text><polygon points="410.000,235.000 235.000,147.500 147.500,322.500" fill="#edf2e9" fill-opacity="1" stroke="#17343f" stroke-width="2"/><path d="M86.250 342.917L441.500 224.500" fill="none" stroke="#607b7e" stroke-width="1.2" stroke-dasharray="5 5"/><path d="M147.500 322.500L410.000 235.000" fill="none" stroke="#d98026" stroke-width="4" stroke-dasharray=""/><circle cx="410.000" cy="235.000" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="235.000" cy="147.500" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="147.500" cy="322.500" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="278.750" cy="278.750" r="7" fill="#d98026" stroke="none" stroke-width="1.5"/><text x="427" y="215" font-size="17" fill="#17343f" text-anchor="start" font-weight="400">z₀</text><text x="235" y="128" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₁</text><text x="125" y="349" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₂</text><text x="304" y="298" font-size="16" fill="#d98026" text-anchor="start" font-weight="400">λz₁</text><text x="81" y="387" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">h(z) = Re z − 3 Im z ≤ 1</text><text x="505" y="112" font-size="18" fill="#17343f" text-anchor="start" font-weight="650">Only the contact edge contributes</text><text x="505" y="161" font-size="18" fill="#17343f" text-anchor="start" font-weight="400">h(z₀) = h(z₂) = h(λz₁) = 1</text><text x="505" y="199" font-size="18" fill="#607b7e" text-anchor="start" font-weight="400">h(z₁) = −3/2 &lt; 1</text><text x="546" y="256" font-size="15" fill="#17343f" text-anchor="middle" font-weight="400">z₀</text><rect x="505" y="270" width="82" height="60" rx="8" fill="#e7f3ed" stroke="#cfddd1"/><text x="546" y="307" font-size="23" fill="#17343f" text-anchor="middle" font-weight="400">1/2</text><text x="651" y="256" font-size="15" fill="#17343f" text-anchor="middle" font-weight="400">z₁</text><rect x="610" y="270" width="82" height="60" rx="8" fill="#f0f1e9" stroke="#cfddd1"/><text x="651" y="307" font-size="23" fill="#17343f" text-anchor="middle" font-weight="400">0</text><text x="756" y="256" font-size="15" fill="#17343f" text-anchor="middle" font-weight="400">z₂</text><rect x="715" y="270" width="82" height="60" rx="8" fill="#e7f3ed" stroke="#cfddd1"/><text x="756" y="307" font-size="23" fill="#17343f" text-anchor="middle" font-weight="400">1/2</text><text x="505" y="376" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">Positive weight off the line would lower h.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. In the exact example below, $\lambda z_1$ is the midpoint of $[z_2,z_0]$. A positive coefficient at $z_1$, which lies strictly off that supporting line, would pull the average away from the line. Its coefficient must be zero.</em>
+                    </p>
+
+                    <p>
+                        We have obtained a row with at most two nonzero entries. We still have to determine <strong>which</strong> edge each image can occupy.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="the-fixed-cyclic-shift-is-the-deeper-input">
+                    <h2>The fixed cyclic shift is the deeper input</h2>
+                    <p>
+                        Number the vertices counterclockwise as $z_0,\ldots,z_{n-1}$, and use indices modulo $n$. The Dmitriev–Dynkin contact theorem <cite-ref key="dmitriev1946"></cite-ref>, recalled in Karpelevich’s §2 <cite-ref key="karpelevich1951"></cite-ref>, provides the global organization.
+                    </p>
+                    <p>
+                        Under the two hypotheses above, there is an integer $k$ corresponding to
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac{2\pi(k-1)}n\leq\arg\lambda\leq\frac{2\pi k}n$$
+                    </div>
+                    <p>
+                        such that every image satisfies
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k},\qquad \alpha_i,\beta_i\geq0,\qquad\alpha_i+\beta_i=1.}$$
+                    </div>
+                    <p>
+                        Here $1\leq k\leq n$, with $0&lt;\arg\lambda&lt;2\pi$. At a sector endpoint, take a compatible choice of $k$. The theorem also rules out the simultaneous occurrence of an $\alpha_i=0$ and a $\beta_j=0$. Thus either every $\alpha_i$ is positive or every $\beta_i$ is positive, possibly both <cite-ref key="dmitriev1946"></cite-ref> <cite-ref key="karpelevich1951"></cite-ref>.
+                    </p>
+                    <p>
+                        The formula says much more than “each image lies on some edge.” <strong>The same index shift works at every vertex</strong>, even when the polygon is very irregular. In matrix language, all the nonzero entries occupy two specified cyclic diagonals.
+                    </p>
+                    <p>
+                        The global shift and the prohibition on mixed zero endpoints are the part of the Dmitriev–Dynkin theorem we invoke as a cited input. The supporting-line calculation proves sparsity once the contact edge is known; it does not prove that global organization.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="an-exact-extremal-polygon">
+                    <h2>An exact extremal polygon</h2>
+                    <p>
+                        Set
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda=-\frac{1+i}{2},\qquad z_0=1,\quad z_1=\frac i2,\quad z_2=-\frac{1+i}{2}.$$
+                    </div>
+                    <p>
+                        The three vertices are numbered counterclockwise. Direct multiplication gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_0=z_2,\qquad \lambda z_1=\frac12z_2+\frac12z_0,\qquad \lambda z_2=z_1.$$
+                    </div>
+                    <p>
+                        So this is an invariant triangle, with realizing matrix
+                    </p>
+                    <div class="theory-formula">
+                        $$P=\begin{pmatrix}0&amp;0&amp;1\\1/2&amp;0&amp;1/2\\0&amp;1&amp;0\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        It is genuinely extremal at order three. A real stochastic $3\times3$ matrix with nonreal eigenvalue $\mu$ has spectrum $1,\mu,\overline\mu$. Its nonnegative diagonal gives
+                    </p>
+                    <div class="theory-formula">
+                        $$0\leq\operatorname{tr}P=1+2\operatorname{Re}\mu.$$
+                    </div>
+                    <p>
+                        Our $\lambda$ has real part $-1/2$. Every outward multiple $c\lambda$, $c&gt;1$, violates that trace inequality. And $\lambda$ is new at order three: the second eigenvalue of a stochastic $2\times2$ matrix is real.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="03-exact-extremum-title 03-exact-extremum-desc"><title id="03-exact-extremum-title">A rigorously extremal three-state example</title><desc id="03-exact-extremum-desc">The triangle with vertices one, i over two, and negative one half minus i over two contains its image, with two vertex contacts and one midpoint edge contact. A trace inequality proves radial extremality.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="34" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">AN EXACT RADIAL EXTREMUM: THREE STATES, SHIFT TWO</text><polygon points="425.000,238.000 247.000,149.000 158.000,327.000" fill="#edf2e9" fill-opacity="1" stroke="#17343f" stroke-width="2"/><polygon points="158.000,327.000 291.500,282.500 247.000,149.000" fill="#b8dfce" fill-opacity="0.35" stroke="#168579" stroke-width="2.2"/><circle cx="425.000" cy="238.000" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="247.000" cy="149.000" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="158.000" cy="327.000" r="4.5" fill="#17343f" stroke="none" stroke-width="1.5"/><circle cx="158.000" cy="327.000" r="7" fill="#fbfaf6" stroke="#168579" stroke-width="2.4"/><circle cx="291.500" cy="282.500" r="7" fill="#d98026" stroke="none" stroke-width="1.5"/><circle cx="247.000" cy="149.000" r="7" fill="#fbfaf6" stroke="#168579" stroke-width="2.4"/><circle cx="247.000" cy="238.000" r="2.2" fill="#607b7e" stroke="none" stroke-width="1.5"/><text x="255" y="253" font-size="10" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="439" y="242" font-size="15" fill="#17343f" text-anchor="start" font-weight="400">z₀ = 1</text><text x="247" y="130" font-size="15" fill="#17343f" text-anchor="middle" font-weight="400">z₁ = i/2</text><text x="103" y="351" font-size="15" fill="#17343f" text-anchor="start" font-weight="400">z₂ = λ</text><text x="307" y="302" font-size="14" fill="#d98026" text-anchor="start" font-weight="400">λz₁</text><text x="525" y="111" font-size="25" fill="#17343f" text-anchor="start" font-weight="400">λ = −(1 + i)/2</text><text x="525" y="155" font-size="16" fill="#607b7e" text-anchor="start" font-weight="400">n = 3     k = 2     |λ| = 1/√2</text><text x="525" y="218" font-size="21" fill="#168579" text-anchor="start" font-weight="400">λz₀ = z₂</text><text x="525" y="267" font-size="21" fill="#d98026" text-anchor="start" font-weight="400">λz₁ = (z₂ + z₀)/2</text><text x="525" y="316" font-size="21" fill="#168579" text-anchor="start" font-weight="400">λz₂ = z₁</text><text x="525" y="378" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">1 + 2 Re λ = 0</text><text x="525" y="408" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Any outward multiple violates trace ≥ 0.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. Here $n=3$ and $k=2$. The three target edges are $[z_1,z_2]$, $[z_2,z_0]$, and $[z_0,z_1]$. Two images hit the second endpoint; the remaining image is a midpoint. The modulus is $1/\sqrt2$.</em>
+                    </p>
+
+                    <p>
+                        The contact coefficients are
+                    </p>
+                    <div class="theory-formula">
+                        $$\alpha=(0,1/2,0),\qquad\beta=(1,1/2,1).$$
+                    </div>
+                    <p>
+                        Every $\beta_i$ is positive, exactly as the game convention requires.
+                    </p>
+
+                    <!-- Interactive Lab 02: Contact explorer -->
+                    <section class="lab" aria-label="Explore an exactly extremal family and its conjugate orientation">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">A boundary proof from trace</div>
+                                <div class="lab-title">Follow the contacts, then reflect the polygon</div>
+                            </div>
+                            <small>n = 3 &middot; k = 2</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="contact-slider">
+                                <label for="contact-t">Family parameter $t =$ <output id="contact-t-value">0.500</output></label>
+                                <input type="range" id="contact-t" min="0" max="740" step="1" value="500">
+                            </div>
+                            <div class="contact-controls">
+                                <button type="button" id="contact-lower">Game orientation</button>
+                                <button type="button" id="contact-upper">Reflect across the real axis</button>
+                                <button type="button" id="contact-example">Exact example: t = 1/2</button>
+                                <button type="button" id="contact-root">Unit-circle limit: t = 0</button>
+                                <label for="contact-row">Highlight a source row
+                                    <select id="contact-row">
+                                        <option value="0">Row 1 &middot; source z₀</option>
+                                        <option value="1" selected>Row 2 &middot; source z₁</option>
+                                        <option value="2">Row 3 &middot; source z₂</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="contact-layout">
+                                <svg id="contact-polygon" viewBox="0 0 420 395" role="img" aria-label="An extremal triangle and its image with the selected supporting edge"></svg>
+                                <svg id="contact-matrix" viewBox="0 0 420 315" role="img" aria-label="A realizing stochastic matrix with its selected row"></svg>
+                            </div>
+                            <p class="readout" id="contact-value"></p>
+                            <p class="contact-equation" id="contact-row-equation"></p>
+                            <p class="coefficient-readout" id="contact-coefficients"></p>
+                            <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+                            <p class="small-note" id="contact-orientation-note"></p>
+                            <p class="contact-legend"><span class="contact-swatch"></span>Image polygon <span class="contact-swatch amber"></span>Selected image and target edge</p>
+                            <p class="small-note">Every displayed multiplier is radially extremal at order three: it has real part −1/2, while every outward multiple violates the trace inequality. The family stops before t = 3/4, where nonreality and the triangle would be lost. Rounded displays illustrate the exact formulas proved below.</p>
+                        </div>
+                    </section>
+
+                    <details class="essay-proof">
+                        <summary>The exact boundary family behind the explorer</summary>
+                        <p>
+                            For $0\leq t&lt;3/4$, take the lower nonreal root
+                        </p>
+                        <div class="theory-formula">
+                            $$\lambda_t=\frac{-1-i\sqrt{3-4t}}2,\qquad \lambda_t^2+\lambda_t+1-t=0.$$
+                        </div>
+                        <p>
+                            Use the counterclockwise vertices $(1,\lambda_t^2,\lambda_t)$. Their realizing matrix and coefficients are
+                        </p>
+                        <div class="theory-formula">
+                            $$P_t=\begin{pmatrix}0&amp;0&amp;1\\1-t&amp;0&amp;t\\0&amp;1&amp;0\end{pmatrix},\qquad \alpha=(0,t,0),\qquad\beta=(1,1-t,1).$$
+                        </div>
+                        <p>
+                            The identity $\lambda_t^3=(1-t)+t\lambda_t$ closes the middle row. The same trace argument proves radial extremality for every member of this nonreal family. At $t=0$ the multiplier is a cube root of unity and all contacts are vertex contacts. For $0&lt;t&lt;3/4$ it is a strict contraction with one edge contact. The endpoint $t=3/4$ is excluded: the multiplier becomes real and the triangle degenerates.
+                        </p>
+                    </details>
+                </section>
+
+                <section class="essay-section" id="why-the-choice-of-orientation-matters">
+                    <h2>Why the choice of orientation matters</h2>
+                    <p>
+                        Reflect the worked example across the real axis. Its eigenvalue is now $(-1+i)/2$. Counterclockwise order becomes
+                    </p>
+                    <div class="theory-formula">
+                        $$w_0=1,\qquad w_1=\overline\lambda,\qquad w_2=\overline\lambda^{\,2}=-\frac i2.$$
+                    </div>
+                    <p>
+                        Again $k=2$, but this time
+                    </p>
+                    <div class="theory-formula">
+                        $$\alpha=(1,1,1/2),\qquad\beta=(0,0,1/2).$$
+                    </div>
+                    <p>
+                        The first two contacts are now at the <strong>first</strong> endpoint of their designated edges. We cannot simply declare those zero $\beta$ coefficients positive while retaining the same counterclockwise convention.
+                    </p>
+                    <p>
+                        The theorem’s no-mixed-zero conclusion provides the remedy: choose the conjugate orientation in which every $\beta_i&gt;0$. The explorer lets you see the endpoint roles switch. No eigenvalue is lost from the eventual description, since the region is symmetric under conjugation.
+                    </p>
+                    <p>
+                        More generally, reflection followed by counterclockwise renumbering swaps the two coefficient families and changes the shift to $n-k+1$. The game can use $1\leq k&lt;n$: if the provisional shift is $n$, nonreality forces all first-endpoint coefficients to be positive, and reflection supplies shift $1$ with every second-endpoint coefficient positive.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="the-board-is-finally-defined">
+                    <h2>The board is finally defined</h2>
+                    <p>
+                        In this chosen orientation, the contact equation reads
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k},\qquad\beta_i&gt;0.$$
+                    </div>
+                    <p>
+                        There are precisely two cases:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Geometry</th>
+                                    <th>Coefficients</th>
+                                    <th>Chip-game symbol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Image is the vertex $z_{i+k}$</td>
+                                    <td>$\alpha_i=0$, $\beta_i=1$</td>
+                                    <td>Empty site at $i$</td>
+                                </tr>
+                                <tr>
+                                    <td>Image is strictly inside the edge $[z_{i+k-1},z_{i+k}]$</td>
+                                    <td>$\alpha_i&gt;0$, $\beta_i&gt;0$</td>
+                                    <td>Chip at $i$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" role="img" aria-labelledby="04-contacts-to-chips-title 04-contacts-to-chips-desc"><title id="04-contacts-to-chips-title">The contact pattern becomes a chip board</title><desc id="04-contacts-to-chips-desc">Source zero and source two have vertex contacts, so their sites are empty. Source one has an edge contact and receives the board’s only chip.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="34" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">RECORD THE SOURCE VERTEX’S CONTACT TYPE</text><text x="60" y="106" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">Source</text><text x="180" y="106" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">Image</text><text x="380" y="106" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">Site</text><text x="60" y="156" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">z₀</text><text x="180" y="156" font-size="20" fill="#168579" text-anchor="start" font-weight="400">z₂</text><text x="380" y="156" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Empty</text><path d="M60.000 180.000L456.000 180.000" fill="none" stroke="#d9e1d7" stroke-width="1" stroke-dasharray=""/><text x="60" y="230" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">z₁</text><text x="180" y="230" font-size="20" fill="#d98026" text-anchor="start" font-weight="400">(z₂ + z₀)/2</text><text x="380" y="230" font-size="15" fill="#d98026" text-anchor="start" font-weight="400">Chip</text><path d="M60.000 254.000L456.000 254.000" fill="none" stroke="#d9e1d7" stroke-width="1" stroke-dasharray=""/><text x="60" y="304" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">z₂</text><text x="180" y="304" font-size="20" fill="#168579" text-anchor="start" font-weight="400">z₁</text><text x="380" y="304" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Empty</text><path d="M60.000 328.000L456.000 328.000" fill="none" stroke="#d9e1d7" stroke-width="1" stroke-dasharray=""/><circle cx="715" cy="225" r="103" fill="none" stroke="#cfdbd0" stroke-width="1.3" stroke-dasharray="4 5"/><circle cx="715.000" cy="122.000" r="12" fill="#fbfaf6" stroke="#8ba99b" stroke-width="2"/><text x="715.0" y="96.0" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">0</text><circle cx="625.799" cy="276.500" r="12" fill="#d98026" stroke="#ca8c38" stroke-width="2"/><text x="598.9525958928853" y="296.99999999999994" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="804.201" cy="276.500" r="12" fill="#fbfaf6" stroke="#8ba99b" stroke-width="2"/><text x="831.0474041071147" y="297.00000000000006" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">2</text><text x="715" y="230" font-size="20" fill="#607b7e" text-anchor="middle" font-weight="400">k = 2</text><text x="715" y="379" font-size="16" fill="#d98026" text-anchor="middle" font-weight="400">One edge contact → one chip</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. The worked triangle has a chip only at site $1$. Sites $0$ and $2$ are empty because their images are vertices. A chip records the type of contact of the source vertex, rather than the location of the image point in the plane.</em>
+                    </p>
+
+                    <p>
+                        The contact theorem applies to every invariant witness with at most $n$ vertices for this same extremal $\lambda$. This makes it reusable during the proof. Whenever a replacement satisfies
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q\subseteq Q'\subseteq Q,$$
+                    </div>
+                    <p>
+                        we automatically have $\lambda Q'\subseteq Q'$. If $Q'$ has at most $n$ vertices, least order forces it to have exactly $n$, and the contact conclusions apply again. A valid invariant variation cannot leave an image vertex strictly interior.
+                    </p>
+                    <p>
+                        Karpelevich’s game now has its geometric foundation: a legal move replaces a corner while preserving the multiplier, and the resulting contacts still obey the theorem. The next stop uses those moves to collect scattered edge contacts into a simpler configuration.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop &middot; Karpelevich’s Game (Stop 3)</span>
+                        <p>With the circular board and contact rules established, play the corner-cutting game to concentrate scattered edge contacts into a single run: <a href="karpelevich-game.html">Karpelevich’s Game &rarr;</a></p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="sources-and-scope">
+                    <h2 class="essay-unnumbered">Sources and scope</h2>
+                    <p class="essay-sources">
+                        [1] N. Dmitriev and E. Dynkin, <em>On characteristic roots of stochastic matrices</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>10:2</strong> (1946), 167–184, §2, main theorem (formulation 5.1 and its endpoint qualification). <a href="https://www.mathnet.ru/eng/im3595" target="_blank" rel="noopener">Original journal record</a>.
+                    </p>
+                    <p class="essay-sources">
+                        [2] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383, §2, p. 363. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>.
+                    </p>
+                    <p class="essay-sources">
+                        Karpelevich takes the Dmitriev–Dynkin theorem as an input. This post does the same for the fixed-shift and endpoint conclusions, while giving proofs of the expansion, no-interior-contact, supporting-face, and example claims. The resolvent argument is presented as an explanatory proof here, rather than as a reconstruction of Dmitriev and Dynkin’s geometric proof. The diagrams and explorer are newly prepared for this exposition.
+                    </p>
+                    <cite-grid keys="dmitriev1946, karpelevich1951"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-polygons.html" class="book-pager-title">Stop 1: From Matrix Rows to Convex Hulls</a>
+                        <p class="book-pager-desc">Stochastic rows as convex combinations, invariant polygons (λQ ⊆ Q), and Perron normalization.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-game.html" class="book-pager-title">Stop 3: Karpelevič’s Game</a>
+                        <p class="book-pager-desc">A circular board, a corner cut, and a way to simplify an eigenvalue.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>&larr; Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

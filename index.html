@@ -7,6 +7,14 @@
     <title>NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem</title>
     <meta name="description"
         content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevi&#x010D; regions, and trace polytopes.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem">
+    <meta property="og:description" content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +41,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/manifest.json">
-    <meta name="theme-color" content="#0a0f1d">
+    <meta name="theme-color" content="#faf8f2">
 </head>
 
 <body class="hub-page">
@@ -104,6 +112,36 @@
                     </div>
                 </div>
 
+                <!-- Card: Inside Karpelevič's Proof (9-Stop Monograph Series) -->
+                <div class="tool-card">
+                    <div class="tool-card-banner karpelevich-banner">
+                        <span class="banner-icon">&part;&mathcal;K<sub>n</sub></span>
+                        <div class="banner-tags">
+                            <span class="mini-tag">9-Stop Monograph</span>
+                            <span class="mini-tag">Invariant Polygons</span>
+                            <span class="mini-tag">Interactive Proofs</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3 class="tool-card-title">Inside Karpelevi&#x010D;&rsquo;s Proof (9-Stop Series)</h3>
+                        <p class="tool-card-desc">
+                            A complete nine-stop visual monograph reconstructing F. I. Karpelevi&#x010D;&rsquo;s 1951 characterization of the stochastic eigenvalue region $K_n$, paired with the modern completion via Ito polynomials and Johnson&ndash;Paparella realizations.
+                        </p>
+                        <div class="tool-card-features">
+                            <div class="feature-item">&check; 9 interactive labs: polygons, chip game, returns &amp; Farey</div>
+                            <div class="feature-item">&check; Explicit cyclic polygons &amp; companion realizations</div>
+                            <div class="feature-item">&check; Unified notation table &amp; Theorem A / Theorem B ledger</div>
+                            <div class="feature-item">&check; Chapter navigator across the Roadmap &amp; Stops 1&ndash;9</div>
+                        </div>
+                        <div class="tool-card-footer">
+                            <a href="karpelevich-proof-roadmap.html" class="tool-launch-btn primary">
+                                <span>Read Proof Monograph</span>
+                                <span class="arrow">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Card 2: Trace Polytope Gallery -->
                 <div class="tool-card">
                     <div class="tool-card-banner polytope-banner">
@@ -152,7 +190,7 @@
                             Interactive exploration of finite group character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$) as ideal Perron similarities—covering <strong>99.97%</strong> of the 2D $(1,a,a,b,b)$ SNIEP and mapping the unsolved 3D $(1,a,a,b,c)$ frontier.
                         </p>
                         <div class="tool-card-features">
-                            <div class="feature-item">&check; 99.97% coverage &amp; 0.03% Karpelevi&#x010D; hyperbola zoom</div>
+                            <div class="feature-item">&check; 99.97% coverage &amp; 0.03% Loewy&ndash;McDonald hyperbola zoom</div>
                             <div class="feature-item">&check; Interactive 2D &amp; 3D orbit breakdowns ($D_8, S_4, A_5, \mathbb{Z}_5$)</div>
                             <div class="feature-item">&check; Rotatable 3D $(1,a,a,b,c)$ polyhedral cone explorer</div>
                             <div class="feature-item">&check; Live $(b,c)$ cross-sectional tomography slider</div>
@@ -566,8 +604,8 @@
                             Completely determined the compact region $\mathcal{K}_n \subset \mathbb{C}$ of all possible
                             eigenvalues of $n \times n$ stochastic matrices. The boundary consists of curvilinear arcs
                             connecting roots of unity corresponding to Farey fractions $p/q \le 1$ with $q \le n$. In
-                            1997, T. Ito reformulated these boundary curves as explicit minimal algebraic polynomial
-                            equations.
+                            1997, H. Ito reformulated these boundary curves as explicit minimal algebraic polynomial
+                            equations. (<a href="karpelevich-proof-roadmap.html" class="text-link">Explore the 9-stop proof series &rarr;</a>)
                         </p>
                     </div>
 
@@ -626,7 +664,7 @@
                             <span class="bib-year">1998 &middot; 1999</span>
                         </div>
                         <h4 class="bib-title">Full Resolution of Dimension 4</h4>
-                        <p class="bib-authors">H. Meehan &middot; T. J. Laffey</p>
+                        <p class="bib-authors">M. E. Meehan &middot; T. J. Laffey</p>
                         <p>
                             Conclusively resolved the general NIEP for $n = 4$ including positive trace cases.
                             Demonstrated that for order 4, the known Loewy-London inequalities, trace nonnegativity, and

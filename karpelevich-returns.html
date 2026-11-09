@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why the Euclidean Algorithm Appears in an Eigenvalue Problem · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="Why Euclidean remainders and modular records determine the vertex-chain lengths in Karpelevich's proof, with exact first-return formulas and interactive integer explorers. Stop 4 of Inside Karpelevich's Proof.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-returns.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Why the Euclidean Algorithm Appears in an Eigenvalue Problem · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="Why Euclidean remainders and modular records determine the vertex-chain lengths in Karpelevich&#x27;s proof, with exact first-return formulas and interactive integer explorers. Stop 4 of Inside Karpelevich&#x27;s Proof.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-returns.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-returns.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>&rsaquo;</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>&rsaquo;</span>
+            <span>Why the Euclidean Algorithm Appears</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-4"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof &middot; Stop 4</div>
+                    <h1 class="essay-title essay-title-long">Why the<br><em>Euclidean Algorithm</em><br>Appears in an<br>Eigenvalue Problem</h1>
+                    <p class="essay-deck">Modular returns become powers of an eigenvalue.</p>
+                    <div class="essay-tags">
+                        <span>Records and remainders</span>
+                        <span>Exact first returns</span>
+                        <span>Vertex-chain counts</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 4 of 9 in <em>Inside Karpelevich’s Proof</em> &middot; See the roadmap &rarr;</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 330" role="img" aria-label="Chains of three and five vertices account for eight states"><text x="195" y="65" text-anchor="middle" fill="#a9d4c4" font-family="system-ui,sans-serif" font-size="16">3 vertices</text><rect x="108.0" y="90" width="48" height="48" rx="7" fill="#a9d4c4" fill-opacity=".12" stroke="#a9d4c4"/><text x="132.0" y="121" text-anchor="middle" fill="#a9d4c4" font-family="system-ui,sans-serif" font-size="21">1</text><rect x="166.0" y="90" width="48" height="48" rx="7" fill="#a9d4c4" fill-opacity=".12" stroke="#a9d4c4"/><text x="190.0" y="121" text-anchor="middle" fill="#a9d4c4" font-family="system-ui,sans-serif" font-size="21">4</text><rect x="224.0" y="90" width="48" height="48" rx="7" fill="#a9d4c4" fill-opacity=".12" stroke="#a9d4c4"/><text x="248.0" y="121" text-anchor="middle" fill="#a9d4c4" font-family="system-ui,sans-serif" font-size="21">7</text><text x="195" y="178" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="16">5 vertices</text><rect x="50.0" y="203" width="48" height="48" rx="7" fill="#e1ac67" fill-opacity=".12" stroke="#e1ac67"/><text x="74.0" y="234" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="21">2</text><rect x="108.0" y="203" width="48" height="48" rx="7" fill="#e1ac67" fill-opacity=".12" stroke="#e1ac67"/><text x="132.0" y="234" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="21">5</text><rect x="166.0" y="203" width="48" height="48" rx="7" fill="#e1ac67" fill-opacity=".12" stroke="#e1ac67"/><text x="190.0" y="234" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="21">0</text><rect x="224.0" y="203" width="48" height="48" rx="7" fill="#e1ac67" fill-opacity=".12" stroke="#e1ac67"/><text x="248.0" y="234" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="21">3</text><rect x="282.0" y="203" width="48" height="48" rx="7" fill="#e1ac67" fill-opacity=".12" stroke="#e1ac67"/><text x="306.0" y="234" text-anchor="middle" fill="#e1ac67" font-family="system-ui,sans-serif" font-size="21">6</text><text x="195" y="308" text-anchor="middle" fill="#c5dfcc" font-family="system-ui,sans-serif" font-size="26">8 = 3 + 5</text></svg>
+                    <div class="essay-hero-caption">Chains of three and five vertices partition all eight states.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The two integer explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">Return arithmetic</div>
+                <ol>
+                    <li><a href="#cut-the-index-rotation-at-the-contact-block">Cut the index rotation at the contact block</a></li>
+                    <li><a href="#why-records-matter">Why records matter</a></li>
+                    <li><a href="#euclid-finds-the-records-and-their-times">Euclid finds the records and their times</a></li>
+                    <li><a href="#the-first-return-rule">The first-return rule</a></li>
+                    <li><a href="#the-chain-lengths-account-for-every-vertex">The chain lengths account for every vertex</a></li>
+                    <li><a href="#the-gcd-case-has-equal-length-chains">The gcd case has equal-length chains</a></li>
+                    <li><a href="#what-the-arithmetic-has-prepared">What the arithmetic has prepared</a></li>
+                    <li><a href="#source-and-scope">Source and scope</a></li>
+                </ol>
+                <div class="essay-side-note">Spatial remainders.<br>Hitting times.<br>Powers of $\lambda$.</div>
+            </aside>
+
+            <article class="essay" id="article">
+                <section class="essay-section" id="overview">
+                    <p class="essay-lead">
+                        The chip game leaves us with a consecutive block of edge contacts. Everywhere else, multiplying a polygon vertex by the eigenvalue lands exactly on another vertex.
+                    </p>
+                    <p>
+                        Follow those exact steps. How long until a chain reaches an edge contact? Which contact does it reach? Those questions determine the powers that will eventually appear in the boundary equations.
+                    </p>
+                    <p>
+                        Their answer is encoded by the Euclidean algorithm. Its remainders organize the spatial returns; a companion addition rule counts the steps.
+                    </p>
+                    <p>
+                        We will see this explicitly in an eight-site example, then prove the arithmetic behind it. The diagrams describe index patterns; deciding which such patterns admit extremal convex polygons is the geometric task of the next stop.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="cut-the-index-rotation-at-the-contact-block">
+                    <h2>Cut the index rotation at the contact block</h2>
+                    <p>
+                        We continue under the hypotheses of <a href="karpelevich-contacts.html">the contact post</a>: a nonreal, least-order radial extremum, in the orientation with positive second-endpoint coefficients. Here assume $0&lt;|\lambda|&lt;1$.
+                    </p>
+                    <p>
+                        After <a href="karpelevich-game.html">the chip-game reduction</a>, the edge-contact sources form one block. Write $\varphi$ for their number. Rotate the cyclic labels so their image points are
+                    </p>
+                    <div class="theory-formula">
+                        $$\xi_j=\lambda x_{j-k}=\alpha_jx_{j-1}+\beta_jx_j,\qquad j=1,\ldots,\varphi,$$
+                    </div>
+                    <p>
+                        where $\alpha_j,\beta_j&gt;0$ and $\alpha_j+\beta_j=1$. We have relabeled the weights by their target edges. All indices are taken modulo $n$.
+                    </p>
+                    <p>
+                        The chipped <strong>sources</strong> are $1-k,\ldots,\varphi-k$. The corresponding <strong>target labels</strong> are $1,\ldots,\varphi$. At every other source,
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda x_i=x_{i+k}.$$
+                    </div>
+                    <p>
+                        Thus the permutation $i\mapsto i+k\pmod n$ describes the deterministic steps. When its next target enters $\{1,\ldots,\varphi\}$, that step is instead a weighted contact $\xi_j$.
+                    </p>
+                    <p>
+                        For $n=8$, $k=3$, and $\varphi=2$, the chipped sources are $6$ and $7$. The chains are
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda x_1=x_4,\qquad\lambda^2x_1=x_7,\qquad\boxed{\lambda^3x_1=\xi_2},$$
+                    </div>
+                    <p>
+                        and
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda x_2=x_5,\quad\lambda^2x_2=x_0,\quad \lambda^3x_2=x_3,\quad\lambda^4x_2=x_6,\quad\boxed{\lambda^5x_2=\xi_1}.$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 530" role="img" aria-labelledby="01-two-chains-title 01-two-chains-desc"><title id="01-two-chains-title">Three-step and five-step returns</title><desc id="01-two-chains-desc">Two vertical index chains have source lists one four seven and two five zero three six. Their final weighted steps reach xi two and xi one respectively.</desc><defs><marker id="01-two-chains-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="01-two-chains-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">FOLLOW VERTICES; STOP AT THE WEIGHTED CONTACT</text><text x="240" y="77" font-size="20" fill="#17343f" text-anchor="middle" font-weight="650">3 steps in total</text><circle cx="240" cy="118" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="240" y="124" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₁</text><circle cx="240" cy="197" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="240" y="203" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₄</text><path d="M240 143L240 169" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="258" y="161.5" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><circle cx="240" cy="276" r="23" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="240" y="282" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₇</text><path d="M240 222L240 248" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="258" y="240.5" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><path d="M240 301L240 329" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#01-two-chains-amber)"/><path d="M240 332L267 355L240 378L213 355Z" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="240" y="361" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">ξ₂</text><text x="286" y="319.5" font-size="12" fill="#d98026" text-anchor="start" font-weight="400">weighted</text><text x="240" y="465" font-size="22" fill="#168579" text-anchor="middle" font-weight="400">λ³x₁ = ξ₂</text><text x="650" y="77" font-size="20" fill="#17343f" text-anchor="middle" font-weight="650">5 steps in total</text><circle cx="650" cy="118" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="650" y="124" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₂</text><circle cx="650" cy="176" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="650" y="182" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₅</text><path d="M650 143L650 148" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="668" y="151.0" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><circle cx="650" cy="234" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="650" y="240" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₀</text><path d="M650 201L650 206" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="668" y="209.0" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><circle cx="650" cy="292" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="650" y="298" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₃</text><path d="M650 259L650 264" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="668" y="267.0" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><circle cx="650" cy="350" r="23" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="650" y="356" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₆</text><path d="M650 317L650 322" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#01-two-chains-teal)"/><text x="668" y="325.0" font-size="13" fill="#168579" text-anchor="start" font-weight="400">λ</text><path d="M650 375L650 382" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#01-two-chains-amber)"/><path d="M650 385L677 408L650 431L623 408Z" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="650" y="414" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">ξ₁</text><text x="696" y="383.0" font-size="12" fill="#d98026" text-anchor="start" font-weight="400">weighted</text><text x="650" y="465" font-size="22" fill="#168579" text-anchor="middle" font-weight="400">λ⁵x₂ = ξ₁</text><text x="460" y="504" font-size="14" fill="#607b7e" text-anchor="middle" font-weight="400">n = 8 · k = 3 · target block {1, 2} · chipped sources {6, 7}</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. The final amber arrow lands at an edge point $\xi_j$, rather than at the vertex $x_j$. The return lengths are three and five: each counts the deterministic steps <strong>and the final weighted step</strong>.</em>
+                    </p>
+                </section>
+
+                <section class="essay-section" id="why-records-matter">
+                    <h2>Why records matter</h2>
+                    <p>
+                        Put $g=\gcd(n,k)$. The modular orbit
+                    </p>
+                    <div class="theory-formula">
+                        $$a_j=jk\pmod n$$
+                    </div>
+                    <p>
+                        has period $n/g$, with representatives in $\{0,\ldots,n-1\}$. A record maximum exceeds every earlier entry; include $a_0=0$ as the initial record.
+                    </p>
+                    <p>
+                        The game gave us a necessary condition on a reduced block:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\varphi\geq g,\qquad n-\varphi\text{ is a record maximum}.}$$
+                    </div>
+                    <p>
+                        For our example,
+                    </p>
+                    <div class="theory-formula">
+                        $$0,3,6,1,4,7,2,5$$
+                    </div>
+                    <p>
+                        has record maxima $0,3,6,7$. Their complementary gaps are
+                    </p>
+                    <div class="theory-formula">
+                        $$8,5,2,1.$$
+                    </div>
+                    <p>
+                        These are the candidate block sizes. They are arithmetic candidates, not a geometric sufficiency theorem. Our choice $\varphi=2$ comes from the orbit’s record entry $a_2=6=8-2$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" role="img" aria-labelledby="02-record-gaps-title 02-record-gaps-desc"><title id="02-record-gaps-title">The records in the orbit for eight sites and jump three</title><desc id="02-record-gaps-desc">Bars show residues zero three six one four seven two five. The record maxima zero three six seven have gaps eight five two one; positive record minima are three and one.</desc><defs><marker id="02-record-gaps-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="02-record-gaps-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">RECORD HEIGHTS AND THEIR COMPLEMENTARY GAPS</text><path d="M60 342H820M60 94H820" stroke="#cbd8cf" stroke-width="1.2" stroke-dasharray="4 5"/><text x="839" y="98" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">n = 8</text><circle cx="100" cy="342" r="5" fill="#d98026"/><text x="100" y="330" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">0</text><text x="100" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">0</text><rect x="163" y="249" width="48" height="93" rx="5" fill="#d98026" stroke="#168579" stroke-width="3"/><text x="187" y="237" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">3</text><text x="187" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">1</text><rect x="250" y="156" width="48" height="186" rx="5" fill="#d98026" stroke="#d98026" stroke-width="1"/><text x="274" y="144" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">6</text><text x="274" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">2</text><rect x="337" y="311" width="48" height="31" rx="5" fill="#168579" stroke="#168579" stroke-width="3"/><text x="361" y="299" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">1</text><text x="361" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">3</text><rect x="424" y="218" width="48" height="124" rx="5" fill="#cfdad0" stroke="#cfdad0" stroke-width="1"/><text x="448" y="206" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">4</text><text x="448" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">4</text><rect x="511" y="125" width="48" height="217" rx="5" fill="#d98026" stroke="#d98026" stroke-width="1"/><text x="535" y="113" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">7</text><text x="535" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">5</text><rect x="598" y="280" width="48" height="62" rx="5" fill="#cfdad0" stroke="#cfdad0" stroke-width="1"/><text x="622" y="268" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">2</text><text x="622" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">6</text><rect x="685" y="187" width="48" height="155" rx="5" fill="#cfdad0" stroke="#cfdad0" stroke-width="1"/><text x="709" y="175" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">5</text><text x="709" y="367" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">7</text><text x="52" y="367" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">m</text><text x="100" y="404" font-size="13" fill="#d98026" text-anchor="start" font-weight="400">Amber: record maximum</text><text x="420" y="404" font-size="13" fill="#168579" text-anchor="start" font-weight="400">Teal: positive record minimum</text><text x="460" y="452" font-size="23" fill="#17343f" text-anchor="middle" font-weight="400">Maximum gaps: 8 → 5 → 2 → 1</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. Amber bars mark record maxima; the initial zero is marked on the baseline. Their gaps from $8$ give $8,5,2,1$. The positive record minima, which will control the other side of the return calculation, are $3$ and $1$.</em>
+                    </p>
+                </section>
+
+                <section class="essay-section" id="euclid-finds-the-records-and-their-times">
+                    <h2>Euclid finds the records and their times</h2>
+                    <p>
+                        There is a useful way to find both kinds of records together. Keep four positive integers:
+                    </p>
+                    <div class="theory-formula">
+                        $$L=a_p,\qquad U=n-a_q.$$
+                    </div>
+                    <p>
+                        Here $L$ is the current positive record minimum, reached at time $p$, and $U$ is the gap above the current record maximum, reached at time $q$. Start with
+                    </p>
+                    <div class="theory-formula">
+                        $$L=k,\qquad U=n-k,\qquad p=q=1.$$
+                    </div>
+                    <p>
+                        The next record occurs at time $p+q$. Add the two congruences:
+                    </p>
+                    <div class="theory-formula">
+                        $$k(p+q)\equiv L-U\pmod n.$$
+                    </div>
+                    <p>
+                        If $L&gt;U$, this gives a new positive minimum. If $U&gt;L$, it gives a new maximum, with smaller gap $U-L$. So the update is
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{array}{ll} L&gt;U:&amp;(L,p)\leftarrow(L-U,p+q),\\ U&gt;L:&amp;(U,q)\leftarrow(U-L,p+q). \end{array}$$
+                    </div>
+                    <p>
+                        <strong>Subtract the spatial gaps; add their hitting times.</strong> The gaps follow the subtractive Euclidean algorithm. The times travel with them.
+                    </p>
+                    <p>
+                        For $n=8$, $k=3$:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>$L$</th>
+                                    <th>$U$</th>
+                                    <th>$p$</th>
+                                    <th>$q$</th>
+                                    <th>New information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$3$</td>
+                                    <td>$5$</td>
+                                    <td>$1$</td>
+                                    <td>$1$</td>
+                                    <td>$a_1=3$, initially both records</td>
+                                </tr>
+                                <tr>
+                                    <td>$3$</td>
+                                    <td>$2$</td>
+                                    <td>$1$</td>
+                                    <td>$2$</td>
+                                    <td>New maximum: $a_2=6$</td>
+                                </tr>
+                                <tr>
+                                    <td>$1$</td>
+                                    <td>$2$</td>
+                                    <td>$3$</td>
+                                    <td>$2$</td>
+                                    <td>New minimum: $a_3=1$</td>
+                                </tr>
+                                <tr>
+                                    <td>$1$</td>
+                                    <td>$1$</td>
+                                    <td>$3$</td>
+                                    <td>$5$</td>
+                                    <td>New maximum: $a_5=7$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        When $L=U=g$, the next sum of times is the full period $n/g$. The corresponding residue is zero, so there is no further positive minimum or strict maximum.
+                    </p>
+                    <p>
+                        Why can’t another record arrive before $p+q$? The next proof supplies that missing part.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>A complete proof of the record update</summary>
+                        <p>
+                            Throughout the process,
+                        </p>
+                        <div class="theory-formula">
+                            $$kp\equiv L,\qquad kq\equiv-U\pmod n, \qquad\boxed{pU+qL=n}.$$
+                        </div>
+                        <p>
+                            These identities hold initially and are preserved by either update. For any integer pair $(j,x)$ with $x\equiv kj\pmod n$, define
+                        </p>
+                        <div class="theory-formula">
+                            $$A=\frac{Uj+qx}{n},\qquad B=\frac{Lj-px}{n}.$$
+                        </div>
+                        <p>
+                            The congruences make $A,B$ integers, and the boxed identity gives
+                        </p>
+                        <div class="theory-formula">
+                            $$j=Ap+Bq,\qquad x=AL-BU.$$
+                        </div>
+                        <p>
+                            If $j&gt;0$ and $0&lt;x&lt;L$, then $A,B$ must both be positive. Indeed, opposite signs either give $x\leq0$ or $x\geq L$; both nonpositive give $j\leq0$. Hence $j\geq p+q$.
+                        </p>
+                        <p>
+                            The same argument, with $-U&lt;x&lt;0$, proves that a residue above $n-U$ cannot occur at a positive time less than $p+q$. We use its negative representative $x=a_j-n$.
+                        </p>
+                        <p>
+                            At time $p+q$, the signed residue is $L-U$. It is strictly inside one of those two record gaps unless $L=U$. This proves that the stated update produces exactly the next record. Induction proves the algorithm.
+                        </p>
+                        <p>
+                            The gcd is preserved under subtraction. Thus it ends at $L=U=g$, and $pU+qL=n$ then gives $p+q=n/g$.
+                        </p>
+                    </details>
+
+                    <p>
+                        Grouping consecutive subtractions recovers the usual divisions:
+                    </p>
+                    <div class="theory-formula">
+                        $$8=2\cdot3+2,\qquad3=1\cdot2+1,\qquad2=2\cdot1.$$
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Euclidean division</th>
+                                    <th>Its record contribution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$8=2\cdot3+2$</td>
+                                    <td>Maximum gaps $8\to5\to2$</td>
+                                </tr>
+                                <tr>
+                                    <td>$3=1\cdot2+1$</td>
+                                    <td>Positive minima $3\to1$</td>
+                                </tr>
+                                <tr>
+                                    <td>$2=2\cdot1$</td>
+                                    <td>Maximum gaps $2\to1$; omit zero</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        More generally, write the Euclidean remainders as $r_1=n,r_2=k,r_3,\ldots,r_s=g$. Begin the gap list with $n$. For each even-position remainder $r_{2j}$, subtract it repeatedly from the preceding odd-position remainder $r_{2j-1}$, retaining the positive results. These are precisely the complementary record gaps&mdash;and hence the candidate block sizes.
+                    </p>
+
+                    <!-- Interactive Lab 01: Record Explorer -->
+                    <section class="lab" aria-label="Explore Euclidean record updates">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Subtract gaps &middot; add times</div>
+                                <div class="lab-title">Watch Euclid find the records</div>
+                            </div>
+                            <small>Exact integer arithmetic</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="return-controls">
+                                <label for="record-n">Sites n
+                                    <select id="record-n"><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8" selected>8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
+                                </label>
+                                <label for="record-k">Jump k
+                                    <select id="record-k"></select>
+                                </label>
+                                <button type="button" id="preset-eight">8 sites, jump 3</button>
+                                <button type="button" id="preset-thirteen">13 sites, jump 5</button>
+                                <button type="button" id="preset-gcd">8 sites, jump 2</button>
+                            </div>
+                            <svg id="record-orbit" viewBox="0 0 860 310" role="img" aria-label="Residues of a modular orbit with record minima and maxima"></svg>
+                            <div class="record-slider">
+                                <label for="record-stage">Record pair <output id="record-stage-value">1 / 4</output></label>
+                                <input id="record-stage" type="range" min="0" max="3" step="1" value="0">
+                            </div>
+                            <div class="return-controls">
+                                <button type="button" id="record-prev">Previous record</button>
+                                <button type="button" id="record-next">Next record</button>
+                            </div>
+                            <p class="record-meta" id="record-pair"></p>
+                            <p class="record-identity" id="record-identity"></p>
+                            <p class="record-event" id="record-event" role="status" aria-live="polite"></p>
+                            <p class="record-divisions" id="record-divisions"></p>
+                            <p class="small-note">Complementary record gaps: candidate block sizes &phi;. The outlined candidate is selected in the return explorer below.</p>
+                            <div class="record-candidates" id="record-candidates"></div>
+                            <p class="small-note">The full orbit and all records stay visible. The dark outlines mark the selected pair of hitting times p and q. Changing n or k also updates the return explorer.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="the-first-return-rule">
+                    <h2>The first-return rule</h2>
+                    <p>
+                        Now choose a proper candidate block with $g&lt;\varphi&lt;n$. In the record algorithm, find the stage with
+                    </p>
+                    <div class="theory-formula">
+                        $$U=\varphi,\qquad L&lt;\varphi.$$
+                    </div>
+                    <p>
+                        It always exists: after $U$ first becomes $\varphi$, subtract it from $L$ as needed. Since the gcd is $g&lt;\varphi$, those subtractions leave a positive remainder smaller than $\varphi$.
+                    </p>
+                    <p>
+                        Write that remainder as $r$. Grouping the subtractions identifies it as the unique even-position Euclidean remainder satisfying
+                    </p>
+                    <div class="theory-formula">
+                        $$0&lt;r=r_{2j}&lt;\varphi\leq r_{2j-1}.$$
+                    </div>
+                    <p>
+                        Its accompanying times are characterized by
+                    </p>
+                    <div class="theory-formula">
+                        $$kp\equiv r,\qquad kq\equiv-\varphi\pmod n,\qquad0&lt;p,q&lt;n/g.$$
+                    </div>
+                    <p>
+                        For each starting label $i\in\{1,\ldots,\varphi\}$, stop the index orbit at its first positive return to that set. Then:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Starting label</th>
+                                    <th>Return time</th>
+                                    <th>Contact reached</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$1\leq i\leq\varphi-r$</td>
+                                    <td>$p$</td>
+                                    <td>$\xi_{i+r}$</td>
+                                </tr>
+                                <tr>
+                                    <td>$\varphi-r&lt;i\leq\varphi$</td>
+                                    <td>$p+q$</td>
+                                    <td>$\xi_{i+r-\varphi}$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        All earlier steps are deterministic. The last source is $x_{j-k}$, whose image is $\xi_j$. Thus the index returns give the geometric relations
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\begin{aligned} \lambda^p x_i&amp;=\xi_{i+r}&amp;&amp; (1\leq i\leq\varphi-r),\\ \lambda^{p+q}x_i&amp;=\xi_{i+r-\varphi}&amp;&amp; (\varphi-r&lt;i\leq\varphi). \end{aligned}}$$
+                    </div>
+                    <p>
+                        For $8,3,2$, the selected pair is $L=1,U=2,p=3,q=2$. Thus $r=1$: label $1$ takes three steps to contact $2$; label $2$ takes five steps to contact $1$.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>Why these are the first returns</summary>
+                        <p>
+                            Use the integer representation from the record proof at the selected stage $L=r,U=\varphi$. It shows
+                        </p>
+                        <div class="theory-formula">
+                            $$r\leq a_j\leq n-\varphi\qquad(0&lt;j&lt;p+q).$$
+                        </div>
+                        <p>
+                            It also gives the stronger lower bound
+                        </p>
+                        <div class="theory-formula">
+                            $$a_j\geq r+\varphi\qquad(0&lt;j&lt;p).$$
+                        </div>
+                        <p>
+                            For this second bound, if $0&lt;x&lt;r+\varphi$ and $0&lt;j&lt;p$, the representation $j=Ap+Bq$, $x=Ar-B\varphi$ is impossible: $A\geq1,B\geq0$ forces $j\geq p$; $A\geq1,B\leq-1$ forces $x\geq r+\varphi$; the other signs force $x\leq0$ or $j\leq0$.
+                        </p>
+                        <p>
+                            Consequently $a_j+i$ cannot wrap into $\{1,\ldots,\varphi\}$ before time $p$, for any $0\leq i\leq\varphi$. At time $p$, $a_p=r$. The starting labels $i\leq\varphi-r$ therefore land at $i+r$ and stop.
+                        </p>
+                        <p>
+                            For the remaining labels, $i+r&gt;\varphi$. The first pair of bounds shows that they stay outside the target set for every $j&lt;p+q$: their sums lie above $\varphi$ and at most $n$. At time $p+q$, the residue is $n-\varphi+r$, which wraps them to $i+r-\varphi$. These are exactly the claimed first returns.
+                        </p>
+                        <p>
+                            There is no zero residue in the time range used here: $\varphi&gt;r\geq g$ and $p\varphi+qr=n$ imply $p+q&lt;n/g$.
+                        </p>
+                    </details>
+
+                    <!-- Interactive Lab 02: Return Explorer -->
+                    <section class="lab" aria-label="Explore first returns to a contact block">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">From indices to powers</div>
+                                <div class="lab-title">Walk a chain to its weighted contact</div>
+                            </div>
+                            <small>Integer contact model</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="return-controls">
+                                <label for="return-phi">Contact block size &phi;
+                                    <select id="return-phi"></select>
+                                </label>
+                                <label for="return-base">Starting vertex
+                                    <select id="return-base"></select>
+                                </label>
+                            </div>
+                            <p class="return-profile" id="return-profile"></p>
+                            <div class="return-layout">
+                                <svg id="return-board" viewBox="0 0 420 355" role="img" aria-label="An index board showing the selected chain"></svg>
+                                <div>
+                                    <div class="return-equation" id="return-relation"></div>
+                                    <p class="return-progress" id="return-progress"></p>
+                                    <div class="return-controls">
+                                        <button type="button" id="return-prev">Previous step</button>
+                                        <button type="button" id="return-next">Next step</button>
+                                        <button type="button" id="return-reset">Restart chain</button>
+                                    </div>
+                                    <p class="return-status" id="return-status" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p class="return-legend"><span class="return-dot"></span>Target vertex label <span class="return-dot chip"></span>Chipped source &middot; Dark ring: current source vertex</p>
+                            <p class="return-count" id="return-count"></p>
+                            <details class="essay-proof">
+                                <summary>All chains and their vertex counts</summary>
+                                <div class="chain-table">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Start</th>
+                                                <th>Vertex indices in order</th>
+                                                <th>Steps</th>
+                                                <th>Final contact</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="return-chains"></tbody>
+                                    </table>
+                                </div>
+                            </details>
+                            <p class="small-note">The circle records indices, not complex-plane locations. The final weighted step is displayed as &xi;, rather than as a jump to a target vertex. These integer patterns require a separate geometric realizability argument.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="the-chain-lengths-account-for-every-vertex">
+                    <h2>The chain lengths account for every vertex</h2>
+                    <p>
+                        The index permutation has $g$ cycles. Since $\varphi\geq g$, the consecutive target block meets every residue class modulo $g$. Cutting the weighted steps therefore breaks all cycles into paths, one starting at each of $1,\ldots,\varphi$.
+                    </p>
+                    <p>
+                        These paths have no repeated or shared vertices, and together they contain all $n$ vertices. A path of return time $p$ contains $p$ vertices: the starting vertex and $p-1$ further deterministic vertices. Its next image is the edge point.
+                    </p>
+                    <p>
+                        There are $\varphi-r$ short paths and $r$ long paths. Hence
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{n=(\varphi-r)p+r(p+q)=p\varphi+qr.}$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 410" role="img" aria-labelledby="03-count-every-vertex-title 03-count-every-vertex-desc"><title id="03-count-every-vertex-title">Every vertex is counted once</title><desc id="03-count-every-vertex-desc">The short path contains indices one four seven; the long path contains two five zero three six. These disjoint lists contain all eight indices.</desc><defs><marker id="03-count-every-vertex-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="03-count-every-vertex-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">THE PATHS PARTITION THE POLYGON’S VERTEX INDICES</text><text x="55" y="141" font-size="17" fill="#168579" text-anchor="start" font-weight="400">Short</text><rect x="177" y="107" width="66" height="56" rx="8" fill="#e6f1e9" stroke="#168579" stroke-width="1.4"/><text x="210" y="142" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₁</text><rect x="256" y="107" width="66" height="56" rx="8" fill="#e6f1e9" stroke="#168579" stroke-width="1.4"/><text x="289" y="142" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₄</text><rect x="335" y="107" width="66" height="56" rx="8" fill="#e6f1e9" stroke="#168579" stroke-width="1.4"/><text x="368" y="142" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₇</text><text x="670" y="141" font-size="20" fill="#168579" text-anchor="start" font-weight="400">3 vertices</text><text x="55" y="241" font-size="17" fill="#d98026" text-anchor="start" font-weight="400">Long</text><rect x="177" y="207" width="66" height="56" rx="8" fill="#f8ecd9" stroke="#d98026" stroke-width="1.4"/><text x="210" y="242" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₂</text><rect x="256" y="207" width="66" height="56" rx="8" fill="#f8ecd9" stroke="#d98026" stroke-width="1.4"/><text x="289" y="242" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₅</text><rect x="335" y="207" width="66" height="56" rx="8" fill="#f8ecd9" stroke="#d98026" stroke-width="1.4"/><text x="368" y="242" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₀</text><rect x="414" y="207" width="66" height="56" rx="8" fill="#f8ecd9" stroke="#d98026" stroke-width="1.4"/><text x="447" y="242" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₃</text><rect x="493" y="207" width="66" height="56" rx="8" fill="#f8ecd9" stroke="#d98026" stroke-width="1.4"/><text x="526" y="242" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">x₆</text><text x="670" y="241" font-size="20" fill="#d98026" text-anchor="start" font-weight="400">5 vertices</text><text x="460" y="334" font-size="29" fill="#17343f" text-anchor="middle" font-weight="400">n = 3 + 5 = 8</text><text x="460" y="381" font-size="14" fill="#607b7e" text-anchor="middle" font-weight="400">The final edge points ξ₁ and ξ₂ are images, not extra vertices.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. The paths contain $\{1,4,7\}$ and $\{2,5,0,3,6\}$. These disjoint sets exhaust all eight indices. The contact points $\xi_1,\xi_2$ are images, so they are not extra polygon vertices.</em>
+                    </p>
+
+                    <p>
+                        This is why return arithmetic will control polynomial degrees. Its step counts already account for the order of the realizing matrix.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="the-gcd-case-has-equal-length-chains">
+                    <h2>The gcd case has equal-length chains</h2>
+                    <p>
+                        If $\varphi=g$, each residue class modulo $g$ has exactly one target label. The index orbit can return to the target block only by returning to that same label, after $n/g$ steps. Thus
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda^{n/g}x_i=\xi_i,\qquad i=1,\ldots,g.}$$
+                    </div>
+                    <p>
+                        For $n=8,k=2$, take $\varphi=g=2$. The paths have index lists $1,3,5,7$ and $2,4,6,0$. Both return times are four.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" role="img" aria-labelledby="04-gcd-case-title 04-gcd-case-desc"><title id="04-gcd-case-title">The gcd case has equal four-step chains</title><desc id="04-gcd-case-desc">For eight sites and jump two, one target in each parity class gives paths one three five seven and two four six zero. Each has three deterministic steps followed by a weighted contact.</desc><defs><marker id="04-gcd-case-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="04-gcd-case-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">WHEN THE BLOCK SIZE IS THE GCD, EVERY RETURN HAS ONE LENGTH</text><text x="460" y="83" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">n = 8 · k = 2 · φ = gcd(8, 2) = 2</text><circle cx="110" cy="170" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="110" y="176" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₁</text><circle cx="245" cy="170" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="245" y="176" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₃</text><path d="M136 170L216 170" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><circle cx="380" cy="170" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="380" y="176" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₅</text><path d="M271 170L351 170" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><circle cx="515" cy="170" r="23" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="515" y="176" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₇</text><path d="M406 170L486 170" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><path d="M541 170L745 170" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#04-gcd-case-amber)"/><path d="M780 147L807 170L780 193L753 170Z" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="780" y="176" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">ξ₁</text><text x="646" y="154" font-size="12" fill="#d98026" text-anchor="middle" font-weight="400">weighted contact</text><circle cx="110" cy="300" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="110" y="306" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₂</text><circle cx="245" cy="300" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="245" y="306" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₄</text><path d="M136 300L216 300" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><circle cx="380" cy="300" r="23" fill="#eef5ee" stroke="#168579" stroke-width="2"/><text x="380" y="306" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₆</text><path d="M271 300L351 300" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><circle cx="515" cy="300" r="23" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="515" y="306" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">x₀</text><path d="M406 300L486 300" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray="" marker-end="url(#04-gcd-case-teal)"/><path d="M541 300L745 300" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#04-gcd-case-amber)"/><path d="M780 277L807 300L780 323L753 300Z" fill="#faecd8" stroke="#d98026" stroke-width="2"/><text x="780" y="306" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">ξ₂</text><text x="646" y="284" font-size="12" fill="#d98026" text-anchor="middle" font-weight="400">weighted contact</text><text x="460" y="392" font-size="23" fill="#168579" text-anchor="middle" font-weight="400">λ⁴x₁ = ξ₁     and     λ⁴x₂ = ξ₂</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. One target in each parity class cuts each rotation cycle once. The resulting relations are $\lambda^4x_1=\xi_1$ and $\lambda^4x_2=\xi_2$.</em>
+                    </p>
+
+                    <p>
+                        The full block $\varphi=n$ is another direct case: every source already has an edge contact, so every first return takes one step. The two-length formula was stated only for $g&lt;\varphi&lt;n$.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="what-the-arithmetic-has-prepared">
+                    <h2>What the arithmetic has prepared</h2>
+                    <p>
+                        Return to the eight-site example. The long path contains $x_0=\lambda^2x_2$, so its two contacts give
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned} (\lambda^3-\alpha_2)x_1&amp;=\beta_2x_2,\\ \lambda^2(\lambda^3-\alpha_1)x_2&amp;=\beta_1x_1. \end{aligned}$$
+                    </div>
+                    <p>
+                        The generating vertices are nonzero. Eliminate them:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda^2(\lambda^3-\alpha_1)(\lambda^3-\alpha_2)=\beta_1\beta_2.}$$
+                    </div>
+                    <p>
+                        The exponents are already fixed. The weights have not yet been forced to agree. If the next geometric step gives $\alpha_1=\alpha_2=t$, then
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^2(\lambda^3-t)^2=(1-t)^2,$$
+                    </div>
+                    <p>
+                        one of the forms explained in <a href="karpelevich-boundary-equations.html">the boundary-equations post</a>.
+                    </p>
+                    <p>
+                        That is what Euclid contributes to this proof: it turns a contact block into an exact inventory of powers and return relations. The next stop, <em>Moving Polygons Until the Weights Agree</em>, asks which arithmetic patterns survive geometric variation and how their separate coefficients collapse to a common parameter.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop &middot; Geometric rigidity (Stop 5)</span>
+                        <p>Why separate edge-contact weights $\alpha_j$ must collapse to a single common parameter $t$: <a href="karpelevich-rigidity.html">Moving Polygons Until the Weights Agree &rarr;</a>. Or continue to Stop 6 (<a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From</a>) and the <a href="karpelevich-proof-roadmap.html#stop-5">series roadmap</a>.</p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="source-and-scope">
+                    <h2 class="essay-unnumbered">Source and scope</h2>
+                    <p class="essay-sources">
+                        F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The record arithmetic is in §3, Lemma 2, pp. 365–366; Theorems III–IV and the ensuing vertex-chain description occupy pp. 369–371.
+                    </p>
+                    <p class="essay-sources">
+                        This post gives new illustrations and an elementary proof of the record update and the return rules needed here. It continues to use the extremal contact and chip-game reductions from the earlier posts. All explorer data are exact integer calculations; they describe contact-index blueprints and do not certify geometric realizability or boundary status. Equality of weights and boundary-arc selection remain later steps.
+                    </p>
+                    <cite-grid keys="karpelevich1951, dmitriev1946"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-game.html" class="book-pager-title">Stop 3: Karpelevič’s Game</a>
+                        <p class="book-pager-desc">Corner cuts that contract polygons, legal chip jump rules, and modular record reduction.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-rigidity.html" class="book-pager-title">Stop 5: Moving Polygons Until Weights Agree</a>
+                        <p class="book-pager-desc">Central-projection return maps, geometric rigidity, and proving all contact weights coincide.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>&larr; Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

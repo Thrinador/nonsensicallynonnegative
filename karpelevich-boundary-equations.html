@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where the Boundary Equations Come From · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="The powers in Karpelevich's boundary equations count contact steps, repeated chains, and a closing shift. Derive both original families visually, then inspect the stochastic matrices whose characteristic polynomials they are.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-boundary-equations.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Where the Boundary Equations Come From · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="The powers in Karpelevich&#x27;s boundary equations count contact steps, repeated chains, and a closing shift. Derive both original families visually, then inspect the stochastic matrices whose characteristic polynomials they are.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-boundary-equations.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-equations-data.js" defer></script>
+    <script src="js/karpelevich-equations.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>›</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>›</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>›</span>
+            <span>Where the Boundary Equations Come From</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-6"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof · Stop 6</div>
+                    <h1 class="essay-title essay-title-long">Where the<br>Boundary Equations<br><em>Come From</em></h1>
+                    <p class="essay-deck">Multiply along the chains.<br>Then close the loop.</p>
+                    <div class="essay-tags">
+                        <span>Two complete derivations</span>
+                        <span>Exact stochastic realizations</span>
+                        <span>Interactive spectra</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 6 of 9 in <em>Inside Karpelevich’s Proof</em> · See the roadmap →</a>
+                </div>
+                <div class="essay-hero-art">
+                    <div class="essay-formula-card">
+                        <div class="essay-eyebrow">Close through a tail</div>
+                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$$
+                    </div>
+                    <div class="essay-formula-card">
+                        <div class="essay-eyebrow">Close inside a chain</div>
+                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$$
+                    </div>
+                    <div class="essay-hero-caption">The closing relation places the extra power.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">All derivations and static figures remain readable without JavaScript. The step-by-step and spectral explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">From chains to equations</div>
+                <ol>
+                    <li><a href="#familiar-equation">A familiar equation, read as a chain</a></li>
+                    <li><a href="#geometry-supplies">What the geometry supplies</a></li>
+                    <li><a href="#first-family">First family: close through an extra tail</a></li>
+                    <li><a href="#second-family">Second family: close inside a chain</a></li>
+                    <li><a href="#common-weight">Why the common weight matters</a></li>
+                    <li><a href="#characteristic-polynomials">These are characteristic polynomials</a></li>
+                    <li><a href="#endpoints">What happens at the endpoints?</a></li>
+                    <li><a href="#ito-form">The same equations in Ito’s form</a></li>
+                    <li><a href="#what-established">What the equations establish</a></li>
+                    <li class="plain"><a href="#source">Source and place in the series</a></li>
+                </ol>
+                <div class="essay-side-note">A tail adds states. A shifted target reuses them.</div>
+            </aside>
+
+            <article class="essay">
+                <p class="essay-lead">
+                    The boundary equations in Karpelevich’s theorem can look like an unexpected collection of powers. Each power has a geometric job: it counts steps along a chain, repetitions of a contact relation, or the shift that closes the configuration.
+                </p>
+                <p>
+                    The algebra becomes much easier to follow once we can see those jobs.
+                </p>
+                <p>
+                    In <a href="karpelevich-proof-roadmap.html#stop-6">our roadmap</a>, this was the step where the polygon coordinates disappear. We will now carry it out for both equation families in the original proof, then explain why the resulting expressions are characteristic polynomials of stochastic matrices.
+                </p>
+
+                <section class="essay-section" id="familiar-equation">
+                    <h2>A familiar equation, read as a chain</h2>
+                    <p>
+                        Recall the four-state example from <a href="karpelevich-proof-roadmap.html#example">the roadmap</a>:
+                    </p>
+                    <div class="theory-formula">
+                        $$A_t=\begin{pmatrix}0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\\1-t&amp;t&amp;0&amp;0\end{pmatrix},\qquad0\leq t\leq1.$$
+                    </div>
+                    <p>
+                        The first three rows propagate the eigenvector coordinates as
+                    </p>
+                    <div class="theory-formula">
+                        $$1,\lambda,\lambda^2,\lambda^3.$$
+                    </div>
+                    <p>
+                        The final row closes the chain:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^4=(1-t)+t\lambda.$$
+                    </div>
+                    <p>
+                        Rearranging gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda(\lambda^3-t)=1-t.$$
+                    </div>
+                    <p>
+                        This already has the shape of the first family. The general case contains several such contact relations, followed by one closing condition.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="geometry-supplies">
+                    <h2>What the geometry supplies</h2>
+                    <p>
+                        At this point in the proof, deterministic contacts give equations of the form
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z=z'.$$
+                    </div>
+                    <p>
+                        Following a sequence of them produces powers of $\lambda$ (as tracked arithmetically in <a href="karpelevich-returns.html">Stop 4: Why the Euclidean Algorithm Appears</a>). At an edge contact, an image is a convex combination of two coordinates. After <a href="karpelevich-rigidity.html">the preceding rigidity arguments</a> have equated the relevant weights, one repeatedly encounters
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\ell z_i=t z_i+(1-t)z_{i+1}.$$
+                    </div>
+                    <p>
+                        Here the $z_i$ are selected generating coordinates, rather than a fresh numbering of every polygon vertex. The integer $\ell$ counts steps up to and including the weighted transition. There are $\ell-1$ deterministic steps followed by that transition.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 355" role="img" aria-labelledby="01-one-contact-title 01-one-contact-desc"><title id="01-one-contact-title">A three-step contact relation</title><desc id="01-one-contact-desc">The states zi, lambda zi and lambda squared zi are followed by a branching transition of weight t back to zi and weight 1-t forward to zi+1.</desc><defs><marker id="01-one-contact-det" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="01-one-contact-local" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#397c91"/></marker><marker id="01-one-contact-forward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="39" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">THREE STEPS TO ONE WEIGHTED CONTACT</text><rect x="37" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="95" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">zᵢ</text><rect x="267" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="325" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λzᵢ</text><rect x="497" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="555" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ²zᵢ</text><rect x="747" y="166" width="116" height="48" rx="11" fill="#f9eddb" stroke="#d98026" stroke-width="2"/><text x="805" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">zᵢ₊₁</text><path d="M155 190H258" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#01-one-contact-det)"/><text x="208" y="170" font-size="14" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M385 190H488" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#01-one-contact-det)"/><text x="438" y="170" font-size="14" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M615 190H738" fill="none" stroke="#d98026" stroke-width="2.4" marker-end="url(#01-one-contact-forward)"/><text x="680" y="170" font-size="15" fill="#d98026" text-anchor="middle" font-weight="400">1 − t</text><path d="M555 164Q325 45 95 158" fill="none" stroke="#397c91" stroke-width="2.4" marker-end="url(#01-one-contact-local)"/><text x="325" y="116" font-size="16" fill="#397c91" text-anchor="middle" font-weight="400">t</text><text x="460" y="283" font-size="21" fill="#17343f" text-anchor="middle" font-weight="400">λ³zᵢ = tzᵢ + (1 − t)zᵢ₊₁</text><text x="460" y="321" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">Two deterministic rows, followed by one branching row.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. The example $\ell=3$. Arrows are row transitions: an arrow of weight $1$ from $u$ to $v$ means $\lambda u=v$. At the last state, the outgoing weights are $t$ and $1-t$.</em>
+                    </p>
+
+                    <p>
+                        We take the canonical chain structures and equality of weights as inputs from the earlier geometric part of the proof. The elimination below is complete. For that elimination, assume $0&lt;t&lt;1$, a nonreal eigenvalue $\lambda$, and a nonzero generating coordinate $z_0$. The endpoint matrices will be considered afterward.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="first-family">
+                    <h2>First family: close through an extra tail</h2>
+                    <p>
+                        Suppose the contact relations are
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\ell z_i=t z_i+(1-t)z_{i+1},\qquad i=0,\ldots,m-1,$$
+                    </div>
+                    <p>
+                        and the final generating point returns to the first through $\tau$ deterministic steps:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau z_m=z_0.$$
+                    </div>
+                    <p>
+                        The symbols have specific meanings:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Symbol</th><th>What it counts</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$\ell\geq1$</td><td>Chain length: steps in each repeated contact chain.</td></tr>
+                                <tr><td>$m\geq1$</td><td>Number of repeated contact chains.</td></tr>
+                                <tr><td>$\tau\geq0$</td><td>Tail length: additional states in the closing tail; $\tau=0$ means $z_m=z_0$.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Move the local return term to the left:
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)z_i=(1-t)z_{i+1}.$$
+                    </div>
+                    <p>
+                        Apply this successively, keeping the common factor visible:
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned}
+                        (\lambda^\ell-t)z_0&amp;=(1-t)z_1,\\
+                        (\lambda^\ell-t)^2z_0&amp;=(1-t)^2z_2,\\
+                        &amp;\ \vdots\\
+                        (\lambda^\ell-t)^mz_0&amp;=(1-t)^mz_m.
+                        \end{aligned}$$
+                    </div>
+                    <p>
+                        Multiply the last equation by $\lambda^\tau$, use the closing condition, and cancel the nonzero coordinate $z_0$. The result is
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">First equation family</h3>
+                            <span class="math-callout-tag">Karpelevich §4, Thm. VI</span>
+                        </div>
+                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,\qquad n=\ell m+\tau.$$
+                    </div>
+
+                    <p>
+                        The count of states gives the degree $n=\ell m+\tau$. This is the first equation family in the original paper. The exponent $m$ appears because we repeat the same contact relation $m$ times. The factor $\lambda^\tau$ accounts for the closing tail. Throughout the series, $t$ always denotes the weight of the <em>local return</em>: the coefficient on the chain’s own generator.
+                    </p>
+
+                    <h3 class="essay-h3">A seven-state example</h3>
+                    <p>
+                        Take $\ell=3$, $m=2$, and $\tau=1$. The relations are
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned}
+                        \lambda^3z_0&amp;=tz_0+(1-t)z_1,\\
+                        \lambda^3z_1&amp;=tz_1+(1-t)z_2,\\
+                        \lambda z_2&amp;=z_0.
+                        \end{aligned}$$
+                    </div>
+                    <p>
+                        Two applications of the contact relation give
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^3-t)^2z_0=(1-t)^2z_2.$$
+                    </div>
+                    <p>
+                        The final step supplies the remaining factor:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda(\lambda^3-t)^2=(1-t)^2.}$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 638" role="img" aria-labelledby="02-tail-family-title 02-tail-family-desc"><title id="02-tail-family-title">Two contact chains with an extra tail</title><desc id="02-tail-family-desc">Two three-state chains have local return weights t and forward weights 1-t. A seventh state z2 returns to z0 by a deterministic transition.</desc><defs><marker id="02-tail-family-det" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="02-tail-family-local" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#397c91"/></marker><marker id="02-tail-family-forward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="38" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">FAMILY I · AN EXTRA TAIL</text><rect x="45" y="135" width="570" height="113" rx="14" fill="#f2f5ee"/><rect x="45" y="365" width="570" height="113" rx="14" fill="#f2f5ee"/><path d="M180 190H253" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#02-tail-family-det)"/><text x="216" y="176" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M380 190H453" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#02-tail-family-det)"/><text x="416" y="176" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M180 420H253" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#02-tail-family-det)"/><text x="216" y="406" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M380 420H453" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#02-tail-family-det)"/><text x="416" y="406" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M520 164Q320 53 120 158" fill="none" stroke="#397c91" stroke-width="2.4" marker-end="url(#02-tail-family-local)"/><text x="320" y="124" font-size="15" fill="#397c91" text-anchor="middle" font-weight="400">t</text><path d="M520 446Q320 557 120 452" fill="none" stroke="#397c91" stroke-width="2.4" marker-end="url(#02-tail-family-local)"/><text x="320" y="491" font-size="15" fill="#397c91" text-anchor="middle" font-weight="400">t</text><path d="M579 190H631V303H120V388" fill="none" stroke="#d98026" stroke-width="2.4" marker-end="url(#02-tail-family-forward)"/><text x="528" y="291" font-size="14" fill="#d98026" text-anchor="middle" font-weight="400">1 − t</text><path d="M579 420H707" fill="none" stroke="#d98026" stroke-width="2.4" marker-end="url(#02-tail-family-forward)"/><text x="645" y="402" font-size="14" fill="#d98026" text-anchor="middle" font-weight="400">1 − t</text><path d="M775 394V75H120V157" fill="none" stroke="#fbfaf6" stroke-width="7"/><path d="M775 394V75H120V157" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#02-tail-family-det)"/><text x="790" y="270" font-size="15" fill="#168579" text-anchor="start" font-weight="400">1</text><text x="790" y="296" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">one extra</text><text x="790" y="315" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">state</text><rect x="62" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="120" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₀</text><rect x="262" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="320" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λz₀</text><rect x="462" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="520" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ²z₀</text><rect x="62" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="120" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₁</text><rect x="262" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="320" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λz₁</text><rect x="462" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="520" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ²z₁</text><rect x="717" y="396" width="116" height="48" rx="11" fill="#f9eddb" stroke="#d98026" stroke-width="2"/><text x="775" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₂</text><text x="460" y="561" font-size="18" fill="#17343f" text-anchor="middle" font-weight="400">λz₂ = z₀ · 2 × 3 + 1 = 7 states</text><text x="460" y="606" font-size="24" fill="#168579" text-anchor="middle" font-weight="400">λ(λ³ − t)² = (1 − t)²</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. Two chains contribute six states. The extra state $z_2$ closes the configuration through $\lambda z_2=z_0$, bringing the order to seven. The two edges of weight $1-t$ advance between chains; the edges of weight $t$ return locally.</em>
+                    </p>
+                </section>
+
+                <section class="essay-section" id="second-family">
+                    <h2>Second family: close at a point already in a chain</h2>
+                    <p>
+                        Now suppose there are $m$ contact chains of length $\ell$. Write
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\ell z_i=t z_i+(1-t)z_{i+1},\qquad i=0,\ldots,m-1.$$
+                    </div>
+                    <p>
+                        The difference lies in the closing identification:
+                    </p>
+                    <div class="theory-formula">
+                        $$z_m=\lambda^\sigma z_0,\qquad0\leq \sigma&lt;\ell.$$
+                    </div>
+                    <p>
+                        The final target is already the $\sigma$th point along the first chain. It contributes no extra states. There are $\ell m$ states altogether.
+                    </p>
+                    <p>
+                        The same repeated substitution now gives
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)^mz_0=(1-t)^mz_m=(1-t)^m\lambda^\sigma z_0.$$
+                    </div>
+                    <p>
+                        Cancel $z_0$:
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Second equation family</h3>
+                            <span class="math-callout-tag">Karpelevich §4, Thm. VII</span>
+                        </div>
+                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma,\qquad n=\ell m,\quad 0\leq \sigma&lt;\ell.$$
+                    </div>
+
+                    <p>
+                        The geometry puts $\lambda^\sigma$ on the right because the closing target is $\lambda^\sigma z_0$. This is the second equation family.
+                    </p>
+                    <p>
+                        In Karpelevich’s canonical second case, $m=g=\gcd(n,k)$ is the greatest common divisor of the order and the cyclic contact shift, and $\ell=n/g$. The closing shift is determined by the same arithmetic: <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> shows that $\sigma=n-b$, where $b$ is the denominator of the other endpoint of the angular sector. Here we derive the equation from those data.
+                    </p>
+
+                    <h3 class="essay-h3">A six-state example</h3>
+                    <p>
+                        Take $\ell=3$, $m=2$, and $\sigma=1$:
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned}
+                        \lambda^3z_0&amp;=tz_0+(1-t)z_1,\\
+                        \lambda^3z_1&amp;=tz_1+(1-t)\lambda z_0.
+                        \end{aligned}$$
+                    </div>
+                    <p>
+                        Consequently,
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{(\lambda^3-t)^2=(1-t)^2\lambda.}$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 638" role="img" aria-labelledby="03-shift-family-title 03-shift-family-desc"><title id="03-shift-family-title">Two contact chains with an existing shifted target</title><desc id="03-shift-family-desc">Two three-state chains have local return weights t and forward weights 1-t. The final forward edge lands at the existing state lambda z0, leaving six states.</desc><defs><marker id="03-shift-family-det" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="03-shift-family-local" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#397c91"/></marker><marker id="03-shift-family-forward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="38" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">FAMILY II · A SHIFTED CLOSURE</text><rect x="45" y="135" width="570" height="113" rx="14" fill="#f2f5ee"/><rect x="45" y="365" width="570" height="113" rx="14" fill="#f2f5ee"/><path d="M180 190H253" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#03-shift-family-det)"/><text x="216" y="176" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M380 190H453" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#03-shift-family-det)"/><text x="416" y="176" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M180 420H253" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#03-shift-family-det)"/><text x="216" y="406" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M380 420H453" fill="none" stroke="#168579" stroke-width="2.4" marker-end="url(#03-shift-family-det)"/><text x="416" y="406" font-size="13" fill="#168579" text-anchor="middle" font-weight="400">1</text><path d="M520 164Q320 53 120 158" fill="none" stroke="#397c91" stroke-width="2.4" marker-end="url(#03-shift-family-local)"/><text x="320" y="124" font-size="15" fill="#397c91" text-anchor="middle" font-weight="400">t</text><path d="M520 446Q320 557 120 452" fill="none" stroke="#397c91" stroke-width="2.4" marker-end="url(#03-shift-family-local)"/><text x="320" y="491" font-size="15" fill="#397c91" text-anchor="middle" font-weight="400">t</text><path d="M579 190H631V303H120V388" fill="none" stroke="#d98026" stroke-width="2.4" marker-end="url(#03-shift-family-forward)"/><text x="528" y="291" font-size="14" fill="#d98026" text-anchor="middle" font-weight="400">1 − t</text><path d="M579 420H775V75H320V157" fill="none" stroke="#fbfaf6" stroke-width="7"/><path d="M579 420H775V75H320V157" fill="none" stroke="#d98026" stroke-width="2.4" marker-end="url(#03-shift-family-forward)"/><text x="672" y="402" font-size="14" fill="#d98026" text-anchor="middle" font-weight="400">1 − t</text><text x="798" y="267" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">land at</text><text x="798" y="292" font-size="19" fill="#d98026" text-anchor="start" font-weight="400">λz₀</text><rect x="62" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="120" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₀</text><rect x="262" y="166" width="116" height="48" rx="11" fill="#f9eddb" stroke="#d98026" stroke-width="2"/><text x="320" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λz₀</text><rect x="462" y="166" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="520" y="195" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ²z₀</text><rect x="62" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="120" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">z₁</text><rect x="262" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="320" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λz₁</text><rect x="462" y="396" width="116" height="48" rx="11" fill="#edf3ed" stroke="#b7cdc6" stroke-width="1.5"/><text x="520" y="425" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ²z₁</text><text x="460" y="561" font-size="18" fill="#17343f" text-anchor="middle" font-weight="400">z₂ = λz₀ · 2 × 3 = 6 states</text><text x="460" y="606" font-size="24" fill="#168579" text-anchor="middle" font-weight="400">(λ³ − t)² = (1 − t)²λ</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. The first six states agree with Figure 2. The last forward edge now lands at $\lambda z_0$, an existing state in the first chain. Its target explains both the right-hand factor $\lambda$ and the absence of a seventh state.</em>
+                    </p>
+
+                    <p>
+                        The distinction is visible in one table:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Closure</th><th>Resulting equation</th><th>Order in these examples</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$\lambda z_2=z_0$</td><td>$\lambda(\lambda^3-t)^2=(1-t)^2$</td><td>$7$</td></tr>
+                                <tr><td>$z_2=\lambda z_0$</td><td>$(\lambda^3-t)^2=(1-t)^2\lambda$</td><td>$6$</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Interactive Lab: Elimination explorer -->
+                    <section class="lab" aria-label="Step through the two elimination arguments">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Follow the cancellation</div>
+                                <div class="lab-title">The same local relations, a different closure</div>
+                            </div>
+                            <small>Exact algebra</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="equations-controls">
+                                <button type="button" id="elim-family-I">Extra tail · n = 7</button>
+                                <button type="button" id="elim-family-II">Shifted closure · n = 6</button>
+                            </div>
+                            <div class="closing-relation" id="elim-close-I">$$\lambda z_2=z_0$$</div>
+                            <div class="closing-relation" id="elim-close-II" hidden>$$z_2=\lambda z_0$$</div>
+                            <div class="equations-controls steps">
+                                <button type="button" id="elim-step-0">1 · Contacts</button>
+                                <button type="button" id="elim-step-1">2 · Multiply</button>
+                                <button type="button" id="elim-step-2">3 · Close &amp; cancel</button>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-I-0">
+                                $$(\lambda^3-t)z_0=(1-t)z_1,\qquad(\lambda^3-t)z_1=(1-t)z_2.$$
+                                <p>Both examples share these local contact relations.</p>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-I-1" hidden>
+                                $$(\lambda^3-t)^2z_0=(1-t)^2z_2.$$
+                                <p>Substitute the first relation into the second. The common factor is repeated twice.</p>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-I-2" hidden>
+                                $$\begin{aligned}\lambda(\lambda^3-t)^2z_0&amp;=(1-t)^2\lambda z_2=(1-t)^2z_0,\\\lambda(\lambda^3-t)^2&amp;=(1-t)^2.\end{aligned}$$
+                                <p>Multiply by λ, apply λz₂ = z₀, and cancel the nonzero z₀.</p>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-II-0" hidden>
+                                $$(\lambda^3-t)z_0=(1-t)z_1,\qquad(\lambda^3-t)z_1=(1-t)z_2.$$
+                                <p>Both examples share these local contact relations.</p>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-II-1" hidden>
+                                $$(\lambda^3-t)^2z_0=(1-t)^2z_2.$$
+                                <p>Substitute the first relation into the second. The common factor is repeated twice.</p>
+                            </div>
+                            <div class="elimination-panel" id="elim-panel-II-2" hidden>
+                                $$\begin{aligned}(\lambda^3-t)^2z_0&amp;=(1-t)^2\lambda z_0,\\(\lambda^3-t)^2&amp;=(1-t)^2\lambda.\end{aligned}$$
+                                <p>Apply z₂ = λz₀ and cancel the nonzero z₀.</p>
+                            </div>
+                            <p class="small-note">The earlier geometric reductions supply these chain structures and the common weight. The cancellation assumes a nonzero generating coordinate.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="common-weight">
+                    <h2>Why the common weight matters</h2>
+                    <p>
+                        The repeated factor also records a geometric fact. If the weights were $t_0,\ldots,t_{m-1}$, the first calculation would instead produce
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau\prod_{i=0}^{m-1}(\lambda^\ell-t_i)=\prod_{i=0}^{m-1}(1-t_i).$$
+                    </div>
+                    <p>
+                        The common weight turns this product into the power $(\lambda^\ell-t)^m$. Equality of the weights is supplied by the earlier variation arguments. The present calculation explains what that rigidity buys us algebraically.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="characteristic-polynomials">
+                    <h2>These are characteristic polynomials</h2>
+                    <p>
+                        The arrows in Figures 2 and 3 define stochastic matrices: each deterministic row has one entry $1$, and each branching row has the entries $t$ and $1-t$. All omitted entries are zero. The same construction works for general chain lengths; coincident targets have their weights added. In the determinant expansion, those weights can be expanded separately by distributivity.
+                    </p>
+                    <p>
+                        We can compute the characteristic polynomials directly from their directed cycles. This also verifies multiplicities and covers the endpoint parameters, including any zero eigenvalues.
+                    </p>
+                    <p>
+                        For a weighted directed graph with adjacency matrix $A$, the determinant expansion gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\det(\lambda I-A)=\sum_{\mathcal C}(-1)^{|\mathcal C|}w(\mathcal C)\lambda^{n-v(\mathcal C)}.$$
+                    </div>
+                    <p>
+                        Here $\mathcal C$ ranges over collections of pairwise vertex-disjoint directed cycles, including the empty collection. Its weight $w(\mathcal C)$ is the product of the edge weights in its cycles, and $v(\mathcal C)$ counts their vertices. Each directed cycle contributes one minus sign; every uncovered vertex contributes $\lambda$.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>Why each cycle contributes one minus sign</summary>
+                        <p>
+                            A cycle of length $j$ has permutation sign $(-1)^{j-1}$. Its $j$ chosen entries from $\lambda I-A$ contribute another factor $(-1)^j$. Their product is $-1$. Distinct cycles multiply their signs and weights. At uncovered vertices we choose the diagonal term $\lambda$. For a self-loop, expanding $\lambda-a_{ii}$ gives the same rule.
+                        </p>
+                    </details>
+
+                    <h3 class="essay-h3">First graph: short cycles and one full cycle</h3>
+                    <p>
+                        Each contact chain has a local cycle of length $\ell$ and weight $t$. These $m$ short cycles are disjoint. Summing their possible selections, with the $\tau$ tail vertices uncovered, gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau(\lambda^\ell-t)^m.$$
+                    </div>
+                    <p>
+                        There is also one cycle that takes every forward branch and traverses the tail. It uses all $n$ vertices and has weight $(1-t)^m$. It intersects every short cycle, so it cannot be combined with any of them in a disjoint collection. Its contribution is $-(1-t)^m$.
+                    </p>
+                    <p>
+                        Those are all the possibilities: a simple cycle either returns locally or advances through all the contact chains before it closes. Therefore
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\det(\lambda I-A_t)=\lambda^\tau(\lambda^\ell-t)^m-(1-t)^m.}$$
+                    </div>
+
+                    <h3 class="essay-h3">Second graph: the forward cycle skips the first $\sigma$ states</h3>
+                    <p>
+                        The $m$ disjoint local cycles now have length $\ell$, yielding
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)^m.$$
+                    </div>
+                    <p>
+                        The cycle taking all forward branches lands at the $\sigma$th state of the first chain. It visits $\ell m-\sigma$ vertices, leaving the first $\sigma$ states uncovered. Its weight is $(1-t)^m$, and its contribution is therefore
+                    </p>
+                    <div class="theory-formula">
+                        $$-(1-t)^m\lambda^\sigma.$$
+                    </div>
+                    <p>
+                        Again this forward cycle intersects every local cycle, since $\sigma&lt;\ell$. We obtain
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\det(\lambda I-A_t)=(\lambda^\ell-t)^m-(1-t)^m\lambda^\sigma.}$$
+                    </div>
+                    <p>
+                        This is a second way to see why the closing shift appears on the right. In the determinant, it counts the vertices outside the forward cycle.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>The two concrete matrices</summary>
+                        <p>
+                            In the state order used in the figures, the seven-state matrix is
+                        </p>
+                        <div class="theory-formula">
+                            $$\begin{pmatrix}
+                            0&amp;1&amp;0&amp;0&amp;0&amp;0&amp;0\\
+                            0&amp;0&amp;1&amp;0&amp;0&amp;0&amp;0\\
+                            t&amp;0&amp;0&amp;1-t&amp;0&amp;0&amp;0\\
+                            0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;0\\
+                            0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;0\\
+                            0&amp;0&amp;0&amp;t&amp;0&amp;0&amp;1-t\\
+                            1&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0
+                            \end{pmatrix}.$$
+                        </div>
+                        <p>
+                            The six-state matrix is
+                        </p>
+                        <div class="theory-formula">
+                            $$\begin{pmatrix}
+                            0&amp;1&amp;0&amp;0&amp;0&amp;0\\
+                            0&amp;0&amp;1&amp;0&amp;0&amp;0\\
+                            t&amp;0&amp;0&amp;1-t&amp;0&amp;0\\
+                            0&amp;0&amp;0&amp;0&amp;1&amp;0\\
+                            0&amp;0&amp;0&amp;0&amp;0&amp;1\\
+                            0&amp;1-t&amp;0&amp;t&amp;0&amp;0
+                            \end{pmatrix}.$$
+                        </div>
+                        <p>
+                            Their characteristic polynomials expand to
+                        </p>
+                        <div class="theory-formula">
+                            $$\lambda^7-2t\lambda^4+t^2\lambda-(1-t)^2$$
+                        </div>
+                        <p>and</p>
+                        <div class="theory-formula">
+                            $$\lambda^6-2t\lambda^3+t^2-(1-t)^2\lambda,$$
+                        </div>
+                        <p>respectively.</p>
+                    </details>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 453" role="img" aria-labelledby="04-root-paths-title 04-root-paths-desc"><title id="04-root-paths-title">Two selected eigenvalue paths</title><desc id="04-root-paths-desc">For the seven-state tail family, the chosen path runs from exp(4pi i/7) to exp(2pi i/3). For the six-state shifted family it runs from exp(4pi i/5) to exp(2pi i/3). The full polynomials also have other eigenvalues.</desc><defs><marker id="04-root-paths-det" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker><marker id="04-root-paths-local" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#397c91"/></marker><marker id="04-root-paths-forward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d98026"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="38" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">SAME LOCAL FACTOR, TWO DIFFERENT CLOSURES</text><line x1="70" y1="350.0" x2="690" y2="350.0" stroke="#e1e7df"/><text x="58" y="354.0" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.5</text><line x1="70" y1="290.0" x2="690" y2="290.0" stroke="#e1e7df"/><text x="58" y="294.0" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.6</text><line x1="70" y1="230.00000000000003" x2="690" y2="230.00000000000003" stroke="#e1e7df"/><text x="58" y="234.00000000000003" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.7</text><line x1="70" y1="169.99999999999997" x2="690" y2="169.99999999999997" stroke="#e1e7df"/><text x="58" y="173.99999999999997" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.8</text><line x1="70" y1="110.0" x2="690" y2="110.0" stroke="#e1e7df"/><text x="58" y="114.0" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">0.9</text><line x1="70" y1="50.0" x2="690" y2="50.0" stroke="#e1e7df"/><text x="58" y="54.0" font-size="11" fill="#607b7e" text-anchor="end" font-weight="400">1.0</text><line x1="130.0" y1="50" x2="130.0" y2="350" stroke="#e1e7df"/><text x="130.0" y="373" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.8</text><line x1="250.00000000000003" y1="50" x2="250.00000000000003" y2="350" stroke="#e1e7df"/><text x="250.00000000000003" y="373" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.6</text><line x1="370.0" y1="50" x2="370.0" y2="350" stroke="#e1e7df"/><text x="370.0" y="373" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.4</text><line x1="490.0" y1="50" x2="490.0" y2="350" stroke="#e1e7df"/><text x="490.0" y="373" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">-0.2</text><line x1="610.0" y1="50" x2="610.0" y2="350" stroke="#e1e7df"/><text x="610.0" y="373" font-size="11" fill="#607b7e" text-anchor="middle" font-weight="400">0.0</text><polyline points="610.00,50.00 607.16,50.01 604.32,50.03 601.48,50.06 598.63,50.11 595.79,50.17 592.95,50.24 590.11,50.33 587.27,50.43 584.43,50.54 581.59,50.67 578.76,50.81 575.92,50.97 573.08,51.14 570.25,51.32 567.41,51.51 564.58,51.72 561.74,51.94 558.91,52.18 556.08,52.43 553.25,52.69 550.42,52.97 547.60,53.25 544.77,53.56 541.95,53.87 539.12,54.20 536.30,54.54 533.48,54.90 530.67,55.27 527.85,55.65 525.04,56.05 522.23,56.46 519.42,56.88 516.61,57.31 513.80,57.76 511.00,58.22 508.20,58.70 505.40,59.19 502.60,59.69 499.81,60.21 497.01,60.73 494.22,61.28 491.44,61.83 488.65,62.40 485.87,62.98 483.09,63.57 480.32,64.18 477.54,64.80 474.77,65.44 472.01,66.08 469.24,66.74 466.48,67.42 463.72,68.10 460.97,68.80 458.22,69.52 455.47,70.24 452.73,70.98 449.99,71.73 447.25,72.49 444.52,73.27 441.79,74.06 439.06,74.87 436.34,75.68 433.62,76.51 430.91,77.35 428.20,78.21 425.49,79.07 422.79,79.95 420.09,80.85 417.40,81.75 414.71,82.67 412.02,83.60 409.34,84.55 406.67,85.50 404.00,86.47 401.33,87.45 398.67,88.45 396.01,89.46 393.36,90.48 390.71,91.51 388.07,92.55 385.43,93.61 382.80,94.68 380.17,95.76 377.55,96.86 374.93,97.96 372.32,99.08 369.71,100.22 367.11,101.36 364.52,102.52 361.93,103.69 359.34,104.87 356.76,106.06 354.19,107.27 351.62,108.48 349.06,109.71 346.50,110.95 343.95,112.21 341.41,113.47 338.87,114.75 336.34,116.04 333.81,117.34 331.30,118.66 328.78,119.98 326.27,121.32 323.77,122.67 321.28,124.03 318.79,125.41 316.31,126.79 313.84,128.19 311.37,129.60 308.91,131.02 306.45,132.45 304.00,133.89 301.56,135.35 299.13,136.81 296.70,138.29 294.28,139.78 291.87,141.28 289.46,142.80 287.07,144.32 284.67,145.85 282.29,147.40 279.91,148.96 277.54,150.53 275.18,152.11 272.83,153.70 270.48,155.30 268.14,156.91 265.81,158.54 263.49,160.17 261.17,161.82 258.86,163.48 256.56,165.15 254.27,166.83 251.99,168.52 249.71,170.22 247.44,171.93 245.18,173.65 242.93,175.38 240.69,177.13 238.45,178.88 236.22,180.65 234.00,182.42 231.79,184.21 229.59,186.01 227.40,187.81 225.22,189.63 223.04,191.46 220.87,193.30 218.71,195.14 216.56,197.00 214.42,198.87 212.29,200.75 210.17,202.64 208.05,204.54 205.95,206.44 203.85,208.36 201.76,210.29 199.69,212.23 197.62,214.18 195.56,216.14 193.51,218.10 191.47,220.08 189.44,222.07 187.41,224.06 185.40,226.07 183.40,228.09 181.40,230.11 179.42,232.15 177.45,234.19 175.48,236.24 173.53,238.31 171.58,240.38 169.65,242.46 167.72,244.55 165.81,246.65 163.90,248.76 162.01,250.87 160.12,253.00 158.25,255.13 156.38,257.28 154.53,259.43 152.68,261.59 150.85,263.76 149.02,265.94 147.21,268.13 145.41,270.33 143.61,272.53 141.83,274.74 140.06,276.97 138.30,279.19 136.55,281.43 134.81,283.68 133.08,285.93 131.36,288.20 129.65,290.47 127.95,292.75 126.27,295.03 124.59,297.33" fill="none" stroke="#b9c9c1" stroke-width="1.8" stroke-dasharray="5 5"/><polyline points="476.49,65.04 475.90,65.51 475.32,65.97 474.73,66.43 474.14,66.90 473.55,67.36 472.96,67.83 472.37,68.29 471.77,68.75 471.17,69.22 470.57,69.68 469.96,70.15 469.36,70.61 468.75,71.07 468.14,71.54 467.52,72.00 466.91,72.46 466.29,72.93 465.67,73.39 465.05,73.85 464.42,74.32 463.80,74.78 463.17,75.24 462.54,75.71 461.90,76.17 461.27,76.63 460.63,77.09 459.99,77.55 459.34,78.02 458.70,78.48 458.05,78.94 457.40,79.40 456.75,79.86 456.09,80.32 455.43,80.78 454.77,81.24 454.11,81.70 453.44,82.15 452.77,82.61 452.10,83.07 451.43,83.53 450.75,83.98 450.07,84.44 449.39,84.90 448.71,85.35 448.02,85.81 447.33,86.26 446.64,86.71 445.94,87.17 445.25,87.62 444.55,88.07 443.84,88.52 443.14,88.97 442.43,89.42 441.72,89.87 441.00,90.32 440.29,90.77 439.57,91.21 438.84,91.66 438.12,92.10 437.39,92.55 436.66,92.99 435.93,93.43 435.19,93.87 434.45,94.31 433.71,94.75 432.96,95.19 432.21,95.63 431.46,96.06 430.71,96.50 429.95,96.93 429.19,97.36 428.43,97.80 427.66,98.23 426.90,98.65 426.12,99.08 425.35,99.51 424.57,99.93 423.79,100.36 423.01,100.78 422.22,101.20 421.43,101.62 420.64,102.04 419.84,102.45 419.04,102.87 418.24,103.28 417.44,103.69 416.63,104.10 415.82,104.51 415.00,104.91 414.19,105.32 413.37,105.72 412.54,106.12 411.72,106.52 410.89,106.91 410.06,107.31 409.22,107.70 408.38,108.09 407.54,108.48 406.70,108.87 405.85,109.25 405.00,109.63 404.15,110.01 403.29,110.39 402.43,110.77 401.57,111.14 400.71,111.51 399.84,111.88 398.97,112.24 398.09,112.60 397.22,112.96 396.34,113.32 395.45,113.68 394.57,114.03 393.68,114.38 392.79,114.72 391.89,115.07 391.00,115.41 390.10,115.75 389.19,116.08 388.29,116.41 387.38,116.74 386.47,117.07 385.56,117.39 384.64,117.71 383.72,118.03 382.80,118.34 381.87,118.65 380.95,118.96 380.02,119.26 379.09,119.56 378.15,119.86 377.21,120.15 376.28,120.44 375.33,120.73 374.39,121.01 373.44,121.29 372.49,121.56 371.54,121.84 370.59,122.10 369.63,122.37 368.68,122.63 367.72,122.88 366.75,123.14 365.79,123.38 364.82,123.63 363.86,123.87 362.89,124.10 361.91,124.34 360.94,124.57 359.96,124.79 358.99,125.01 358.01,125.23 357.03,125.44 356.04,125.65 355.06,125.85 354.08,126.05 353.09,126.24 352.10,126.43 351.11,126.62 350.12,126.80 349.13,126.98 348.13,127.15 347.14,127.32 346.14,127.48 345.15,127.64 344.15,127.80 343.15,127.95 342.15,128.10 341.15,128.24 340.15,128.37 339.14,128.51 338.14,128.64 337.14,128.76 336.13,128.88 335.13,128.99 334.12,129.10 333.12,129.21 332.11,129.31 331.11,129.41 330.10,129.50 329.09,129.58 328.09,129.67 327.08,129.75 326.07,129.82 325.07,129.89 324.06,129.95 323.05,130.01 322.05,130.07 321.04,130.12 320.03,130.17 319.03,130.21 318.02,130.24 317.02,130.28 316.01,130.31 315.01,130.33 314.01,130.35 313.00,130.37 312.00,130.38 311.00,130.38 310.00,130.38" fill="none" stroke="#168579" stroke-width="3"/><circle cx="405.8524030852482" cy="109.25126069748535" r="5.5" fill="#168579"/><text x="417.8524030852482" y="133.25126069748535" font-size="12" fill="#168579" text-anchor="start" font-weight="400">I · t = 1/2</text><polyline points="124.59,297.33 125.93,296.89 127.27,296.44 128.61,295.99 129.95,295.53 131.29,295.06 132.63,294.59 133.97,294.10 135.31,293.61 136.65,293.12 137.98,292.61 139.32,292.10 140.65,291.59 141.99,291.06 143.32,290.53 144.65,289.99 145.97,289.44 147.30,288.89 148.62,288.32 149.95,287.76 151.27,287.18 152.59,286.60 153.90,286.01 155.21,285.41 156.53,284.80 157.83,284.19 159.14,283.57 160.44,282.95 161.74,282.31 163.04,281.67 164.33,281.02 165.62,280.37 166.91,279.71 168.19,279.04 169.47,278.37 170.75,277.69 172.02,277.00 173.29,276.30 174.56,275.60 175.82,274.89 177.07,274.18 178.33,273.46 179.57,272.73 180.82,272.00 182.06,271.26 183.29,270.51 184.52,269.76 185.74,269.00 186.96,268.24 188.18,267.47 189.39,266.70 190.59,265.91 191.79,265.13 192.99,264.34 194.18,263.54 195.36,262.74 196.54,261.93 197.71,261.12 198.88,260.30 200.04,259.48 201.20,258.65 202.35,257.82 203.49,256.98 204.63,256.14 205.76,255.29 206.89,254.44 208.01,253.59 209.12,252.73 210.23,251.87 211.34,251.00 212.43,250.13 213.52,249.26 214.61,248.38 215.69,247.50 216.76,246.61 217.83,245.73 218.89,244.84 219.94,243.94 220.99,243.04 222.03,242.14 223.06,241.24 224.09,240.33 225.12,239.43 226.13,238.51 227.14,237.60 228.15,236.68 229.15,235.77 230.14,234.85 231.12,233.92 232.10,233.00 233.08,232.07 234.04,231.14 235.01,230.21 235.96,229.28 236.91,228.35 237.85,227.41 238.79,226.47 239.72,225.54 240.64,224.60 241.56,223.66 242.48,222.72 243.38,221.77 244.28,220.83 245.18,219.88 246.07,218.94 246.95,217.99 247.83,217.04 248.70,216.10 249.57,215.15 250.43,214.20 251.29,213.25 252.13,212.30 252.98,211.35 253.82,210.40 254.65,209.45 255.48,208.50 256.30,207.54 257.12,206.59 257.93,205.64 258.73,204.69 259.53,203.74 260.33,202.79 261.12,201.84 261.91,200.89 262.69,199.93 263.46,198.98 264.23,198.03 265.00,197.08 265.76,196.14 266.51,195.19 267.26,194.24 268.01,193.29 268.75,192.34 269.49,191.40 270.22,190.45 270.94,189.50 271.67,188.56 272.38,187.61 273.10,186.67 273.81,185.73 274.51,184.79 275.21,183.85 275.91,182.91 276.60,181.97 277.28,181.03 277.97,180.09 278.65,179.15 279.32,178.22 279.99,177.28 280.66,176.35 281.32,175.42 281.98,174.48 282.63,173.55 283.28,172.62 283.93,171.70 284.57,170.77 285.21,169.84 285.84,168.92 286.47,167.99 287.10,167.07 287.72,166.15 288.34,165.23 288.96,164.31 289.57,163.39 290.18,162.48 290.79,161.56 291.39,160.65 291.99,159.74 292.58,158.82 293.17,157.91 293.76,157.01 294.35,156.10 294.93,155.19 295.51,154.29 296.08,153.38 296.65,152.48 297.22,151.58 297.79,150.68 298.35,149.78 298.91,148.89 299.47,147.99 300.02,147.10 300.57,146.21 301.12,145.31 301.66,144.42 302.21,143.54 302.74,142.65 303.28,141.76 303.81,140.88 304.34,140.00 304.87,139.12 305.40,138.24 305.92,137.36 306.44,136.48 306.95,135.61 307.47,134.73 307.98,133.86 308.49,132.99 308.99,132.12 309.50,131.25 310.00,130.38" fill="none" stroke="#d98026" stroke-width="3"/><circle cx="242.47641991639415" cy="222.715048731857" r="5.5" fill="#d98026"/><text x="254.47641991639415" y="246.715048731857" font-size="12" fill="#d98026" text-anchor="start" font-weight="400">II · t = 1/2</text><circle cx="476.4874396262114" cy="65.04325269090583" r="4" fill="#17343f"/><text x="486.4874396262114" y="53.04325269090583" font-size="12" fill="#17343f" text-anchor="start" font-weight="400">exp(4πi/7)</text><circle cx="310.0" cy="130.38475772933685" r="4" fill="#17343f"/><text x="307.0" y="115.38475772933685" font-size="12" fill="#17343f" text-anchor="start" font-weight="400">exp(2πi/3)</text><circle cx="124.58980337503161" cy="297.32884862451607" r="4" fill="#17343f"/><text x="134.5898033750316" y="321.32884862451607" font-size="12" fill="#17343f" text-anchor="start" font-weight="400">exp(4πi/5)</text><text x="745" y="140" font-size="17" fill="#168579" text-anchor="start" font-weight="650">Family I</text><text x="745" y="166" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">7 states</text><text x="745" y="230" font-size="17" fill="#d98026" text-anchor="start" font-weight="650">Family II</text><text x="745" y="256" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">6 states</text><text x="460" y="421" font-size="13" fill="#607b7e" text-anchor="middle" font-weight="400">Selected upper-half-plane root paths; the full polynomials have other roots.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. Two selected root paths of the concrete matrix families, with equal scales on the real and imaginary axes. The full polynomials have other roots, including the Perron eigenvalue $1$. The paths illustrate the equations; their boundary interpretation uses the additional extremal analysis.</em>
+                    </p>
+                    <p>
+                        The endpoints are not arbitrary. The extra-tail path runs from $e^{2\pi i\cdot 2/7}$ to $e^{2\pi i\cdot 1/3}$, and $2/7&lt;1/3$ are neighbours in the Farey sequence of order $7$: $7\cdot1-2\cdot3=1$ and $7+3&gt;7$. The shifted-closure path runs from $e^{2\pi i\cdot 2/5}$ to $e^{2\pi i\cdot 1/3}$, and $1/3&lt;2/5$ are neighbours in the Farey sequence of order $6$: $3\cdot2-1\cdot5=1$ and $3+5&gt;6$. Why Farey neighbours label the arcs is the subject of <a href="karpelevich-proof-roadmap.html#stop-7">Stop 7</a>.
+                    </p>
+
+                    <!-- Interactive Lab: Spectral explorer -->
+                    <section class="lab" aria-label="Explore the stochastic matrices and their spectra">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">The polynomials as spectra</div>
+                                <div class="lab-title">Move the weight; inspect every eigenvalue</div>
+                            </div>
+                            <small id="spec-order">7 states</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="equations-controls">
+                                <button type="button" id="spec-I">Extra tail · I</button>
+                                <button type="button" id="spec-II">Shifted closure · II</button>
+                            </div>
+                            <div class="spectral-equation" id="spec-equation-I">$$\lambda(\lambda^3-t)^2-(1-t)^2=0$$</div>
+                            <div class="spectral-equation" id="spec-equation-II" hidden>$$(\lambda^3-t)^2-(1-t)^2\lambda=0$$</div>
+                            <div class="spec-slider">
+                                <label for="spec-t">Weight t = <output id="spec-t-value">0.500</output></label>
+                                <input type="range" id="spec-t" min="0" max="200" step="1" value="100">
+                            </div>
+                            <div class="equations-controls">
+                                <button type="button" id="spec-preset-0">t = 0</button>
+                                <button type="button" id="spec-preset-100">t = 1/2</button>
+                                <button type="button" id="spec-preset-200">t = 1</button>
+                            </div>
+                            <p class="spec-description" id="spec-description"></p>
+                            <div class="spec-layout">
+                                <svg id="spec-roots" viewBox="0 0 420 395" role="img" aria-label="All eigenvalues and a selected root path"></svg>
+                                <svg id="spec-matrix" viewBox="0 0 420 395" role="img" aria-label="A stochastic matrix with these eigenvalues"></svg>
+                            </div>
+                            <p class="readout" id="spec-readout" role="status" aria-live="polite"></p>
+                            <p class="small-note">The finite parameter grid and root coordinates are numerical illustrations. All roots, including multiplicities at the endpoints, come from the characteristic polynomials proved above. Selecting an outer boundary arc additionally uses the geometric and angular arguments.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="endpoints">
+                    <h2>What happens at the endpoints?</h2>
+                    <p>
+                        The geometric elimination used $0&lt;t&lt;1$ and a nonzero generating coordinate. The determinant identities are polynomial identities and remain valid at $t=0$ and $t=1$.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Family</th><th>At $t=0$</th><th>At $t=1$</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Extra tail</td><td>$\lambda^{\ell m+\tau}-1$</td><td>$\lambda^\tau(\lambda^\ell-1)^m$</td></tr>
+                                <tr><td>Shifted closure</td><td>$\lambda^\sigma(\lambda^{\ell m-\sigma}-1)$</td><td>$(\lambda^\ell-1)^m$</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        At $t=0$, all forward transitions are active. The first graph becomes a cycle on all its states. The second has a cycle of length $\ell m-\sigma$, with $\sigma$ transient states feeding into it.
+                    </p>
+                    <p>
+                        At $t=1$, the local cycles remain: $m$ cycles of length $\ell$ in either family. The first family’s tail contributes $\tau$ zero eigenvalues. When $\tau=0$, there are no such additional zeros.
+                    </p>
+                    <p>
+                        The Perron eigenvalue is visible throughout. Substituting $\lambda=1$ into either polynomial gives zero, as it must for a stochastic matrix.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="ito-form">
+                    <h2>The same equations in Ito’s form</h2>
+                    <p>
+                        Later work packages both families into one equation <cite-ref key="ito1997"></cite-ref>. Let $a/b&lt;c/d$ be neighbours in the Farey sequence $F_n$, write $\ell=\min(b,d)$ and $s=\max(b,d)$ for the smaller and larger denominators, and put $m=\lfloor n/\ell\rfloor$. Ito’s equation for the arc between $e^{2\pi ia/b}$ and $e^{2\pi ic/d}$ is
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m},\qquad0\leq t\leq1.$$
+                    </div>
+                    <p>
+                        Ito writes $\beta=1-\alpha$ for the parameter we call $t$. Dividing by the common power of $\lambda$ gives exactly our two families:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Case</th><th>Reduced equation</th><th>Integers</th><th>Degree</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$s\geq\ell m$</td><td>$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ (first family)</td><td>$\tau=s-\ell m$</td><td>$s$</td></tr>
+                                <tr><td>$s&lt;\ell m$</td><td>$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$ (second family)</td><td>$\sigma=\ell m-s$</td><td>$\ell m$</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The ranges match as well. In the first case $\tau=s-\ell m\leq n-\ell\lfloor n/\ell\rfloor&lt;\ell$. In the second, the neighbour condition $\ell+s&gt;n$ gives $\sigma=\ell m-s&lt;\ell m-n+\ell\leq\ell$. Setting $t=1$ leaves the factor $(\lambda^\ell-1)^m$, whose root in the sector is the landmark with denominator $\ell$; setting $t=0$ leaves $\lambda^s=1$, the landmark with denominator $s$.
+                    </p>
+                    <p>
+                        The cycle expansion above therefore proves a general inclusion. <strong>Every root of every reduced Ito polynomial is an eigenvalue of an explicit stochastic matrix</strong> whose order is the reduced degree, $s$ or $\ell m$. Both are at most $n$, so padding with an identity block places the root in $\mathcal K_n$. Johnson and Paparella construct realizing matrices for Ito’s polynomials <cite-ref key="johnson2017"></cite-ref>; the chain matrices of this post give a self-contained proof of the same inclusion.
+                    </p>
+                    <div class="math-callout route">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Where the modern sources enter</h3>
+                            <span class="math-callout-tag">Route note</span>
+                        </div>
+                        <p>
+                            Realizability is proved here. Two further facts are needed to identify a boundary arc: which polynomial governs each Farey sector, and which of its roots is the boundary point in each direction. The series takes the first from Karpelevich’s final assembly in Ito’s form, and the second from Kirkland–Laffey–Šmigoc and Munger–Nickerson–Paparella. That switch is marked in <a href="karpelevich-induction.html#modern-completion">Stop 9</a>, and the full ledger is on the <a href="karpelevich-proof-roadmap.html#ledger">roadmap</a>.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="what-established">
+                    <h2>What the equations establish</h2>
+                    <p>
+                        We have derived the two families from explicit chain relations, explained every exponent, and proved exact characteristic-polynomial identities for the corresponding stochastic constructions. Every root of those characteristic polynomials is consequently realizable, with its algebraic multiplicity.
+                    </p>
+                    <p>
+                        To identify a boundary arc, the original proof also needs the admissible integer data from its geometric and arithmetic reductions, the relevant root branch, and the final extremality argument. Those tasks locate the equations in the Karpelevich region.
+                    </p>
+                    <p>
+                        The mechanism producing the equations is now visible: <strong>repeat a contact relation, then use the closing identification.</strong> The generating coordinates cancel, leaving only powers of $\lambda$ and the common weight.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop · Angles and Farey neighbors (Stop 7)</span>
+                        <p>Which root of each equation, and which pair of roots of unity, belong to a given boundary arc? Turn counts in the polygon locate the curves inside Farey angular sectors: <a href="karpelevich-farey.html">Why Farey Neighbors Label the Arcs →</a></p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="source">
+                    <h2 class="essay-unnumbered">Source and place in the series</h2>
+                    <p class="essay-sources">
+                        The original source is §4, Theorems VI–VII, pp. 375–377 of F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper and scan</a>. <a href="https://doi.org/10.1090/trans2/140/05" target="_blank" rel="noopener">English translation</a>: American Mathematical Society Translations, Series 2, <strong>140</strong> (1988), 79–100.
+                    </p>
+                    <p class="essay-sources">
+                        We write the common weights as $t$ and $1-t$ and reindex the second family in the forward direction. In the first case, the original closing relation $\lambda^{\ell+\tau}z_m=tz_0+(1-t)z_1$ combines with the first contact relation to give $\lambda^\tau z_m=z_0$. In the second, reversing the order of the generating coordinates gives the closure used here.
+                    </p>
+                    <p class="essay-sources">
+                        The chain drawings, matrix constructions, cycle-expansion explanation, and interactive examples are prepared for this exposition. They make the elimination explicit while leaving the preceding geometric rigidity and subsequent angular classification to their own posts.
+                    </p>
+                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997, johnson2017"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-rigidity.html" class="book-pager-title">Stop 5: Moving Polygons Until Weights Agree</a>
+                        <p class="book-pager-desc">Central-projection return maps, geometric rigidity, and proving all contact weights coincide.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-farey.html" class="book-pager-title">Stop 7: Why Farey Neighbors Label the Arcs</a>
+                        <p class="book-pager-desc">Determinant-one Farey neighbors, mediant insertion, integer winding, and endpoint root selection.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Matrix Rows to Convex Hulls · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="A visual proof of the stochastic matrix–invariant polygon correspondence, with exact convex combinations, Perron normalization, and interactive witnesses. Stop 1 of Inside Karpelevich's Proof.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-polygons.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="From Matrix Rows to Convex Hulls · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="A visual proof of the stochastic matrix–invariant polygon correspondence, with exact convex combinations, Perron normalization, and interactive witnesses. Stop 1 of Inside Karpelevich&#x27;s Proof.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-polygons.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-polygons.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>›</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>›</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>›</span>
+            <span>From Matrix Rows to Convex Hulls</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-1"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof · Stop 1</div>
+                    <h1 class="essay-title essay-title-long">From Matrix Rows<br>to <em>Convex Hulls</em></h1>
+                    <p class="essay-deck">An eigenvector becomes a geometric witness.</p>
+                    <div class="essay-tags">
+                        <span>Convex combinations</span>
+                        <span>Invariant polygons</span>
+                        <span>Perron normalization</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 1 of 9 in <em>Inside Karpelevich’s Proof</em> · See the roadmap →</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 330" role="img" aria-label="A complex eigenvector becomes an invariant square"><polygon points="304.00,148.00 195.00,39.00 86.00,148.00 195.00,257.00" fill="#193d45" stroke="#9cbfaf" stroke-width="1.7"></polygon><polygon points="222.25,93.50 140.50,120.75 167.75,202.50 249.50,175.25" fill="#82bfa5" fill-opacity=".16" stroke="#a7d7bd" stroke-width="2"></polygon><circle cx="304.00" cy="148.00" r="4.5" fill="#d4e9d8"></circle><text x="330.00" y="152.00" text-anchor="middle" fill="#a8c7b6" font-family="system-ui,sans-serif" font-size="13">1</text><circle cx="195.00" cy="39.00" r="4.5" fill="#d4e9d8"></circle><text x="195.00" y="17.00" text-anchor="middle" fill="#a8c7b6" font-family="system-ui,sans-serif" font-size="13">i</text><circle cx="86.00" cy="148.00" r="4.5" fill="#d4e9d8"></circle><text x="60.00" y="152.00" text-anchor="middle" fill="#a8c7b6" font-family="system-ui,sans-serif" font-size="13">−1</text><circle cx="195.00" cy="257.00" r="4.5" fill="#d4e9d8"></circle><text x="195.00" y="287.00" text-anchor="middle" fill="#a8c7b6" font-family="system-ui,sans-serif" font-size="13">−i</text><circle cx="222.25" cy="93.50" r="4.5" fill="#e1ac67"></circle><circle cx="140.50" cy="120.75" r="4.5" fill="#e1ac67"></circle><circle cx="167.75" cy="202.50" r="4.5" fill="#e1ac67"></circle><circle cx="249.50" cy="175.25" r="4.5" fill="#e1ac67"></circle><text x="195" y="314" text-anchor="middle" fill="#bad6c5" font-family="system-ui,sans-serif" font-size="17">Pv = λv → λQ ⊆ Q</text></svg>
+                    <div class="essay-hero-caption">A row is a convex combination. A polygon is a witness.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The proofs and static figures remain readable without JavaScript. The matrix and witness explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">The geometric foundation</div>
+                <ol>
+                    <li><a href="#weighted-average">Every row is a weighted average</a></li>
+                    <li><a href="#hull-contains-image">The hull contains its own image</a></li>
+                    <li><a href="#go-backward">Go backward: rows from a polygon</a></li>
+                    <li><a href="#origin-inside">Why the origin is inside</a></li>
+                    <li><a href="#normalization">Why stochastic is the right normalization</a></li>
+                    <li><a href="#change-witness">The region lets the polygon change</a></li>
+                    <li><a href="#basic-geometry">Basic geometry of the region</a></li>
+                    <li><a href="#unit-circle">On the unit circle, vertices are permuted</a></li>
+                    <li><a href="#boundary-next">What changes at the boundary?</a></li>
+                    <li class="plain"><a href="#sources">Sources and scope</a></li>
+                </ol>
+                <div class="essay-side-note">A row is a convex combination. A polygon is a witness.</div>
+            </aside>
+
+            <article class="essay">
+                <p class="essay-lead">
+                    Take a complex eigenvector and plot its coordinates as points in the plane. Connect their outermost points. A matrix problem has just produced a polygon.
+                </p>
+                <p>
+                    For a stochastic matrix, the eigenvector equation says something remarkably concrete about this picture: multiplying the polygon by the eigenvalue sends it into itself.
+                </p>
+                <p>
+                    This is the first major change of viewpoint in <a href="karpelevich-proof-roadmap.html#stop-1">our proof roadmap</a>. We will prove the correspondence in both directions, build an exact example, and see how much of the region’s geometry follows before the boundary analysis even begins.
+                </p>
+
+                <section class="essay-section" id="weighted-average">
+                    <h2>Every row is a weighted average</h2>
+                    <p>
+                        A row-stochastic matrix $P=(p_{ij})$ satisfies
+                    </p>
+                    <div class="theory-formula">
+                        $$p_{ij}\geq0,\qquad\sum_jp_{ij}=1.$$
+                    </div>
+                    <p>
+                        If $Pv=\lambda v$, its $i$th row reads
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\lambda v_i=\sum_jp_{ij}v_j.}$$
+                    </div>
+                    <p>
+                        The numbers $v_j$ are complex, so we can regard them as points in a plane. The coefficients in that row are nonnegative and sum to one. Thus the point $\lambda v_i$ is a <strong>convex combination</strong> of the eigenvector coordinates.
+                    </p>
+                    <p>
+                        Here is one row with no approximation:
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac38(1)+\frac12(i)+\frac18(-1)+0(-i)=\frac14+\frac12i.$$
+                    </div>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 465" role="img" aria-labelledby="01-row-as-average-title 01-row-as-average-desc"><title id="01-row-as-average-title">One stochastic row is a barycenter</title><desc id="01-row-as-average-desc">The coordinates 1, i, minus 1 and minus i form a square. The weights 3/8, 1/2, 1/8 and zero place the image 1/4+i/2 inside their convex hull.</desc><defs><marker id="01-row-as-average-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">A STOCHASTIC ROW IS A CONVEX COMBINATION</text><polygon points="392.000,247.000 235.000,90.000 78.000,247.000 235.000,404.000" fill="#f0f3ed" fill-opacity="1" stroke="#17343f" stroke-width="2.3"/><polygon points="392.000,247.000 235.000,90.000 78.000,247.000" fill="#f6dcb6" fill-opacity="0.45" stroke="#d98026" stroke-width="2.3"/><circle cx="392.0" cy="247.0" r="4.5" fill="#17343f"/><text x="417.0" y="252.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="235.0" cy="90.0" r="4.5" fill="#17343f"/><text x="235.0" y="70.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">i</text><circle cx="78.0" cy="247.0" r="4.5" fill="#17343f"/><text x="53.0" y="252.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−1</text><circle cx="235.0" cy="404.0" r="4.5" fill="#17343f"/><text x="235.0" y="434.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−i</text><circle cx="274.25" cy="168.5" r="7" fill="#d98026"/><text x="288.25" y="161.5" font-size="15" fill="#d98026" text-anchor="start" font-weight="400">λ · 1 = 1/4 + i/2</text><circle cx="235" cy="247" r="2.5" fill="#607b7e"/><text x="244" y="262" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="505" y="108" font-size="19" fill="#17343f" text-anchor="start" font-weight="600">One row, four possible targets</text><rect x="505" y="159" width="76" height="59" rx="8" fill="#f5ead8" stroke="#c5d4ca"/><text x="543" y="144" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">1</text><text x="543" y="195" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">3/8</text><rect x="596" y="159" width="76" height="59" rx="8" fill="#f5ead8" stroke="#c5d4ca"/><text x="634" y="144" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">i</text><text x="634" y="195" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">1/2</text><rect x="687" y="159" width="76" height="59" rx="8" fill="#f5ead8" stroke="#c5d4ca"/><text x="725" y="144" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−1</text><text x="725" y="195" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">1/8</text><rect x="778" y="159" width="76" height="59" rx="8" fill="#eef1eb" stroke="#c5d4ca"/><text x="816" y="144" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−i</text><text x="816" y="195" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">0</text><text x="505" y="266" font-size="17" fill="#168579" text-anchor="start" font-weight="400">3/8 + 1/2 + 1/8 + 0 = 1</text><text x="505" y="311" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">The weights place the image point</text><text x="505" y="337" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">inside the hull of the target coordinates.</text><text x="505" y="391" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">λ = 1/4 + i/2</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. The three nonzero weights locate the amber point inside the triangle with vertices $1,i,-1$. Their sum is one. This is one row of the matrix below.</em>
+                    </p>
+                    <p>
+                        Each matrix row gives another such statement. We now put them together.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="hull-contains-image">
+                    <h2>The eigenvector hull contains its own image</h2>
+                    <p>Let</p>
+                    <div class="theory-formula">
+                        $$Q=\operatorname{conv}\{v_1,\ldots,v_n\}.$$
+                    </div>
+                    <p>
+                        Every image $\lambda v_i$ belongs to $Q$. Multiplication by $\lambda$ preserves convex combinations, so
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q=\operatorname{conv}\{\lambda v_1,\ldots,\lambda v_n\}\subseteq Q.$$
+                    </div>
+                    <p>
+                        That proves the forward direction:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{Pv=\lambda v\quad\Longrightarrow\quad\lambda Q\subseteq Q.}$$
+                    </div>
+                    <p>
+                        If $\lambda=re^{i\theta}$, the map rotates by $\theta$ about the origin and scales distances by $r$. The polygon contains the result of that rotation and scaling.
+                    </p>
+                    <p>
+                        For our running example, set
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda=\frac14+\frac12i,\qquad
+                        v=\begin{pmatrix}1\\i\\-1\\-i\end{pmatrix},\qquad
+                        P=\frac18\begin{pmatrix}3&amp;4&amp;1&amp;0\\0&amp;3&amp;4&amp;1\\1&amp;0&amp;3&amp;4\\4&amp;1&amp;0&amp;3\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        The first row is Figure 1. The other rows are its quarter-turns, and direct substitution gives $Pv=\lambda v$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 468" role="img" aria-labelledby="02-invariant-square-title 02-invariant-square-desc"><title id="02-invariant-square-title">The eigenvector hull contains its image</title><desc id="02-invariant-square-desc">Multiplication by 1/4+i/2 rotates and contracts a square. Every image vertex lies strictly inside the original square.</desc><defs><marker id="02-invariant-square-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">ALL ROWS TOGETHER GIVE AN INVARIANT POLYGON</text><polygon points="421.000,247.000 260.000,86.000 99.000,247.000 260.000,408.000" fill="#eef2eb" fill-opacity="1" stroke="#17343f" stroke-width="2.3"/><polygon points="300.250,166.500 179.500,206.750 219.750,327.500 340.500,287.250" fill="#a9d5c2" fill-opacity="0.32" stroke="#168579" stroke-width="2.3"/><circle cx="421.0" cy="247.0" r="4.5" fill="#17343f"/><text x="447.0" y="252.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">1</text><circle cx="260.0" cy="86.0" r="4.5" fill="#17343f"/><text x="260.0" y="65.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">i</text><circle cx="99.0" cy="247.0" r="4.5" fill="#17343f"/><text x="73.0" y="252.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−1</text><circle cx="260.0" cy="408.0" r="4.5" fill="#17343f"/><text x="260.0" y="439.0" font-size="16" fill="#17343f" text-anchor="middle" font-weight="400">−i</text><circle cx="300.25" cy="166.5" r="5" fill="#168579"/><circle cx="179.5" cy="206.75" r="5" fill="#168579"/><circle cx="219.75" cy="327.5" r="5" fill="#168579"/><circle cx="340.5" cy="287.25" r="5" fill="#168579"/><circle cx="260" cy="247" r="2.5" fill="#607b7e"/><text x="269" y="262" font-size="12" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="535" y="128" font-size="25" fill="#17343f" text-anchor="start" font-weight="400">Pv = λv</text><text x="535" y="184" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">Q = conv{1, i, −1, −i}</text><text x="535" y="252" font-size="32" fill="#168579" text-anchor="start" font-weight="400">λQ ⊆ Q</text><text x="535" y="314" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Rotation: arctan(2)</text><text x="535" y="345" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Scale: √5/4 ≈ 0.559</text><text x="535" y="398" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">All four image points are interior.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. The original hull has vertices $1,i,-1,-i$. The four image coordinates form the smaller teal square. Here $|\lambda|=\sqrt5/4$, and all four image points lie strictly inside the original polygon.</em>
+                    </p>
+
+                    <!-- Interactive Lab: Row explorer -->
+                    <section class="lab" aria-label="Explore matrix rows and their invariant square">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Move between algebra and geometry</div>
+                                <div class="lab-title">Move λ inside the fixed square’s diamond</div>
+                            </div>
+                            <small>Four-state realizations</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="row-sliders">
+                                <div class="row-slider">
+                                    <label for="row-x">Real part = <output id="row-x-value">0.250</output></label>
+                                    <input type="range" id="row-x" min="-1000" max="1000" step="1" value="250">
+                                </div>
+                                <div class="row-slider">
+                                    <label for="row-y">Imaginary part = <output id="row-y-value">0.500</output></label>
+                                    <input type="range" id="row-y" min="-1000" max="1000" step="1" value="500">
+                                </div>
+                            </div>
+                            <div class="equations-controls">
+                                <label class="lab-select" for="row-select">Highlight a row
+                                    <select id="row-select">
+                                        <option value="0">Row 1 · coordinate 1</option>
+                                        <option value="1">Row 2 · coordinate i</option>
+                                        <option value="2">Row 3 · coordinate −1</option>
+                                        <option value="3">Row 4 · coordinate −i</option>
+                                    </select>
+                                </label>
+                                <button type="button" id="row-example">Exact example</button>
+                                <button type="button" id="row-rotation">Quarter-turn: λ = i</button>
+                                <button type="button" id="row-center">λ = 0</button>
+                            </div>
+                            <div class="spec-layout">
+                                <svg id="row-polygon" viewBox="0 0 420 395" role="img" aria-label="A square and its invariant rotated image"></svg>
+                                <svg id="row-matrix" viewBox="0 0 420 395" role="img" aria-label="A stochastic matrix for the chosen eigenvalue"></svg>
+                            </div>
+                            <p class="readout" id="row-readout" role="status" aria-live="polite"></p>
+                            <p class="readout" id="row-sum"></p>
+                            <p class="small-note">The orange point and matrix row represent the same convex combination. The other slider adjusts at the diamond’s edge so all coefficients remain nonnegative. This diamond is the admissible multiplier region for this fixed square; the full Karpelevich region also uses other witnesses.</p>
+                        </div>
+                    </section>
+
+                    <details class="essay-proof">
+                        <summary>An exact construction behind the explorer</summary>
+                        <p>
+                            For $\lambda=x+iy$ with $|x|+|y|\leq1$, use the weights
+                        </p>
+                        <div class="theory-formula">
+                            $$\left(\frac{1-|y|+x}{2},\ \max(y,0),\ \frac{1-|y|-x}{2},\ \max(-y,0)\right)$$
+                        </div>
+                        <p>
+                            at the points $1,i,-1,-i$. They are nonnegative, sum to one, and their weighted point is $x+iy$. Cyclic shifts of these weights give the other matrix rows. The fixed eigenvector remains $(1,i,-1,-i)^T$.
+                        </p>
+                        <p>
+                            The explorer includes real parameters as well; this particular square construction remains valid there.
+                        </p>
+                    </details>
+                </section>
+
+                <section class="essay-section" id="go-backward">
+                    <h2>Go backward: build matrix rows from a polygon</h2>
+                    <p>
+                        Now start with a convex polygon
+                    </p>
+                    <div class="theory-formula">
+                        $$Q=\operatorname{conv}\{z_1,\ldots,z_m\},\qquad\lambda Q\subseteq Q.$$
+                    </div>
+                    <p>
+                        For each vertex, choose coefficients expressing its image as a convex combination:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda z_i=\sum_{j=1}^mp_{ij}z_j,\qquad p_{ij}\geq0,\qquad\sum_jp_{ij}=1.$$
+                    </div>
+                    <p>
+                        Use those coefficients as the rows of $P$. Then $P$ is stochastic, and
+                    </p>
+                    <div class="theory-formula">
+                        $$P\begin{pmatrix}z_1\\\vdots\\z_m\end{pmatrix}=\lambda\begin{pmatrix}z_1\\\vdots\\z_m\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        The coordinate vector is nonzero, so $\lambda$ is an eigenvalue. If $m&lt;n$, adjoin an identity block, $P\oplus I_{n-m}$. This gives a stochastic matrix of order $n$ with the same chosen eigenvalue.
+                    </p>
+
+                    <div class="math-callout theorem">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">The polygon correspondence</h3>
+                            <span class="math-callout-tag">Dmitriev–Dynkin · Karpelevich §2</span>
+                        </div>
+                        <p>For a nonreal number $\lambda$, the following are equivalent:</p>
+                        <ol class="essay-steps">
+                            <li>$\lambda$ is an eigenvalue of an $n\times n$ stochastic matrix.</li>
+                            <li>There is a convex polygon $Q$ with at most $n$ vertices, with $0$ in its interior, such that $\lambda Q\subseteq Q$.</li>
+                        </ol>
+                    </div>
+
+                    <p>
+                        The only remaining point in the forward implication is why the origin is interior. We prove that next.
+                    </p>
+                    <p>
+                        Two useful details already follow from the construction. First, coordinates of the original eigenvector can repeat or lie inside their hull: the hull may have fewer vertices than the matrix has rows. Second, choosing new rows from just those vertices preserves the selected eigenvalue; the other eigenvalues can change.
+                    </p>
+                    <p>
+                        To find sparse rows, triangulate the polygon. Every image point lies in one of its triangles, so each row can be chosen with at most three nonzero entries. An image on an edge needs at most two, and an image at a vertex needs only one. These are existence statements about a choice of realizing rows.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="origin-inside">
+                    <h2>Why the origin is inside</h2>
+                    <p>
+                        Let $Q$ be a compact convex set, not just $\{0\}$, with $\lambda Q\subseteq Q$, where $\lambda$ is nonreal.
+                    </p>
+                    <p>
+                        Choose a point of maximum modulus. Its image is still in $Q$, so $|\lambda|\leq1$. The repeated images of any nonzero point remain in $Q$. Their averages approach the origin, forcing $0\in Q$.
+                    </p>
+                    <p>
+                        The origin cannot lie on a supporting line of $Q$. Such a line would confine every repeated image to one closed half-plane through $0$. A nonreal rotation eventually leaves that half-plane. Thus
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{0\in\operatorname{int}Q.}$$
+                    </div>
+                    <p>
+                        In particular, the hull is genuinely two-dimensional and none of its vertices is zero.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>The averaging and half-plane arguments in full</summary>
+                        <p>
+                            Choose $z\in Q$ with $z\ne0$. Convexity gives
+                        </p>
+                        <div class="theory-formula">
+                            $$\frac1N\sum_{j=0}^{N-1}\lambda^jz\in Q.$$
+                        </div>
+                        <p>
+                            Since $\lambda\ne1$ and $|\lambda|\leq1$,
+                        </p>
+                        <div class="theory-formula">
+                            $$\left|\frac1N\sum_{j=0}^{N-1}\lambda^jz\right|=\left|\frac{z(1-\lambda^N)}{N(1-\lambda)}\right|\leq\frac{2|z|}{N|1-\lambda|}\longrightarrow0.$$
+                        </div>
+                        <p>
+                            Closedness gives $0\in Q$. If $0$ is not interior, a supporting line through $0$ puts $Q$ in a closed half-plane. After rotating the picture and, if necessary, conjugating it, that half-plane has arguments in $[0,\pi]$ and the multiplier has argument $\theta\in(0,\pi)$.
+                        </p>
+                        <p>
+                            Starting from a nonzero point of argument $\phi\in[0,\pi]$, choose the first integer $k$ for which $\phi+k\theta&gt;\pi$. Then
+                        </p>
+                        <div class="theory-formula">
+                            $$\pi&lt;\phi+k\theta\leq\pi+\theta&lt;2\pi.$$
+                        </div>
+                        <p>
+                            The point $\lambda^kz$ is outside the half-plane, contradicting invariance. This proves the assertion, including when $|\lambda|=1$.
+                        </p>
+                    </details>
+
+                    <p>
+                        The nonreal hypothesis matters: a real eigenvalue can have a segment as its natural witness. Our polygon theorem is stated for the nonreal case, where the two-dimensional picture is automatic.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="normalization">
+                    <h2>Why stochastic matrices are the right normalization</h2>
+                    <p>
+                        The original problem is posed for nonnegative matrices with fixed spectral radius. A positive Perron eigenvector explains the passage to stochastic matrices.
+                    </p>
+                    <p>
+                        Suppose $A\geq0$ is irreducible, with spectral radius $\rho&gt;0$ and positive Perron eigenvector $u$. Put $D=\operatorname{diag}(u_1,\ldots,u_n)$. Then
+                    </p>
+                    <div class="theory-formula">
+                        $$P=\frac1\rho D^{-1}AD\geq0,\qquad P\mathbf1=\frac1\rho D^{-1}Au=\mathbf1.$$
+                    </div>
+                    <p>
+                        Thus $P$ is stochastic, and its spectrum is the spectrum of $A$ divided by $\rho$.
+                    </p>
+                    <p>
+                        A reducible matrix can lack a strictly positive Perron eigenvector. For example,
+                    </p>
+                    <div class="theory-formula">
+                        $$A=\begin{pmatrix}1&amp;1\\0&amp;1/2\end{pmatrix}$$
+                    </div>
+                    <p>
+                        has Perron eigenvectors proportional to $(1,0)^T$. Nevertheless, its eigenvalues are realized stochastically by
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{pmatrix}1/2&amp;1/2\\0&amp;1\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        The general repair uses diagonal blocks.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>A complete block construction for the reducible case</summary>
+                        <p>
+                            Assume $\rho(A)=1$. Put $A$ in Frobenius block triangular form, with irreducible diagonal blocks and possible scalar zero blocks. The characteristic polynomial is the product of the characteristic polynomials of its diagonal blocks.
+                        </p>
+                        <p>
+                            In each irreducible block, scale by its positive Perron eigenvector, without dividing by that block’s spectral radius. Its rows then sum to a number $\rho_j\leq1$. A scalar zero block already has row sum zero. At least one block has $\rho_j=1$; choose one such block as the receiving block.
+                        </p>
+                        <p>
+                            Place these scaled blocks on a block diagonal, with the receiving block last. For every row in every other block, add the missing mass $1-\rho_j$ to one fixed column of the receiving block. The receiving block’s own rows already sum to one.
+                        </p>
+                        <p>
+                            The resulting matrix is nonnegative and stochastic. It is block upper triangular with the same diagonal-block characteristic polynomials as $A$, so it has exactly the same eigenvalues, with algebraic multiplicities. Eigenvectors and Jordan structure can change.
+                        </p>
+                        <p>
+                            This proves that the normalized nonnegative eigenvalue problem and the stochastic formulation have the same region at the same order.
+                        </p>
+                    </details>
+                </section>
+
+                <section class="essay-section" id="change-witness">
+                    <h2>The region lets the polygon change</h2>
+                    <p>
+                        For a fixed polygon $Q$, the condition $\lambda Q\subseteq Q$ describes the eigenvalues that this particular witness can realize. The Karpelevich region allows every polygon with at most $n$ vertices.
+                    </p>
+                    <p>
+                        For our square, $Q=\operatorname{conv}\{1,i,-1,-i\}$, invariance is equivalent to
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{|\operatorname{Re}\lambda|+|\operatorname{Im}\lambda|\leq1.}$$
+                    </div>
+                    <p>
+                        Necessity follows by applying the multiplier to the vertex $1$. For sufficiency, the square is invariant under quarter-turns, so all four images belong to $Q$ whenever $\lambda\in Q$.
+                    </p>
+                    <p>
+                        There are also four-state eigenvalues outside this diamond. One exact example is
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda_*=\frac{-1+i\sqrt{11}}4,\qquad|\operatorname{Re}\lambda_*|+|\operatorname{Im}\lambda_*|=\frac{1+\sqrt{11}}4&gt;1.$$
+                    </div>
+                    <p>
+                        Change the witness to
+                    </p>
+                    <div class="theory-formula">
+                        $$Q_*=\operatorname{conv}\{1,\lambda_*,\lambda_*^2,\lambda_*^3\}.$$
+                    </div>
+                    <p>
+                        The first three images are listed vertices, and the fourth satisfies
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda_*^4=\frac38+\frac58\lambda_*.$$
+                    </div>
+                    <p>
+                        So $\lambda_*Q_*\subseteq Q_*$. The coefficients give a stochastic matrix directly:
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{pmatrix}0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\\3/8&amp;5/8&amp;0&amp;0\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        This is the $t=5/8$ member of the four-state family in <a href="karpelevich-proof-roadmap.html#example">the roadmap’s running example</a>.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 535" role="img" aria-labelledby="03-change-the-witness-title 03-change-the-witness-desc"><title id="03-change-the-witness-title">One eigenvalue and two polygon witnesses</title><desc id="03-change-the-witness-desc">At lambda star=(-1+i sqrt(11))/4 the fixed square fails invariance. The quadrilateral generated by the first four powers succeeds, because the fourth power is 3/8+(5/8)lambda star.</desc><defs><marker id="03-change-the-witness-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">KEEP THE EIGENVALUE. CHANGE THE WITNESS.</text><text x="240" y="84" font-size="20" fill="#17343f" text-anchor="middle" font-weight="600">The fixed square</text><circle cx="240" cy="260" r="142" fill="none" stroke="#d4ded4" stroke-dasharray="4 5"/><polygon points="382.000,260.000 240.000,118.000 98.000,260.000 240.000,402.000" fill="#eef2eb" fill-opacity="1" stroke="#17343f" stroke-width="2.3"/><polygon points="204.500,142.260 122.260,295.500 275.500,377.740 357.740,224.500" fill="#e8c5b7" fill-opacity="0.25" stroke="#b05b46" stroke-width="2.3"/><circle cx="382.0" cy="260.0" r="4" fill="#17343f"/><circle cx="240.0" cy="118.0" r="4" fill="#17343f"/><circle cx="98.0" cy="260.0" r="4" fill="#17343f"/><circle cx="240.0" cy="402.0" r="4" fill="#17343f"/><circle cx="204.5" cy="142.2598199423833" r="5" fill="#b05b46"/><circle cx="122.2598199423833" cy="295.5" r="5" fill="#b05b46"/><circle cx="275.5" cy="377.7401800576167" r="5" fill="#b05b46"/><circle cx="357.7401800576167" cy="224.5" r="5" fill="#b05b46"/><circle cx="240" cy="260" r="2" fill="#607b7e"/><text x="248" y="275" font-size="10" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="240" y="448" font-size="15" fill="#b05b46" text-anchor="middle" font-weight="400">Four images lie outside.</text><text x="690" y="84" font-size="20" fill="#17343f" text-anchor="middle" font-weight="600">The power polygon</text><circle cx="690" cy="260" r="142" fill="none" stroke="#d4ded4" stroke-dasharray="4 5"/><polygon points="832.000,260.000 654.500,142.260 601.250,318.870 761.000,318.870" fill="#eef2eb" fill-opacity="1" stroke="#17343f" stroke-width="2.3"/><polygon points="654.500,142.260 601.250,318.870 761.000,318.870 721.062,186.412" fill="#a9d5c2" fill-opacity="0.25" stroke="#168579" stroke-width="2.3"/><circle cx="832.0" cy="260.0" r="4" fill="#17343f"/><circle cx="654.5" cy="142.2598199423833" r="4" fill="#17343f"/><circle cx="601.25" cy="318.87009002880836" r="4" fill="#17343f"/><circle cx="761.0" cy="318.87009002880836" r="4" fill="#17343f"/><circle cx="654.5" cy="142.2598199423833" r="5" fill="#168579"/><circle cx="601.25" cy="318.87009002880836" r="5" fill="#168579"/><circle cx="761.0" cy="318.87009002880836" r="5" fill="#168579"/><circle cx="721.0625" cy="186.41238746398957" r="5" fill="#168579"/><circle cx="690" cy="260" r="2" fill="#607b7e"/><text x="698" y="275" font-size="10" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="690" y="448" font-size="15" fill="#168579" text-anchor="middle" font-weight="400">Every image is retained.</text><text x="460" y="505" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">λ* = (−1 + i√11)/4 · both witnesses have four vertices</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. At the fixed value $\lambda_*$, the square’s image vertices lie outside it. The power-generated quadrilateral contains its image. Each witness has four vertices.</em>
+                    </p>
+
+                    <!-- Interactive Lab: Witness explorer -->
+                    <section class="lab" aria-label="Compare two polygon witnesses for one fixed eigenvalue">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Keep λ fixed</div>
+                                <div class="lab-title">Which polygon can witness the eigenvalue?</div>
+                            </div>
+                            <small>Four vertices in each case</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="equations-controls">
+                                <button type="button" id="witness-square">Use the square</button>
+                                <button type="button" id="witness-powers">Use the power polygon</button>
+                            </div>
+                            <div class="witness-layout">
+                                <svg id="witness-polygon" viewBox="0 0 420 395" role="img" aria-label="Compare a failed square with an invariant power polygon"></svg>
+                                <div>
+                                    <div class="readout">$\lambda_*=\dfrac{-1+i\sqrt{11}}4$</div>
+                                    <p class="witness-status" id="witness-status" role="status" aria-live="polite"></p>
+                                    <div class="witness-proof" id="witness-proof-square">$$\frac{1+\sqrt{11}}4&gt;1$$</div>
+                                    <div class="witness-proof" id="witness-proof-powers" hidden>$$\lambda_*^4=\frac38+\frac58\lambda_*$$</div>
+                                </div>
+                            </div>
+                            <p class="small-note">Dark outline: the witness polygon. Colored outline and points: its image under the same fixed λ*. Teal indicates containment; red shows failure. The power-polygon identity and its stochastic matrix are exact in the text above.</p>
+                        </div>
+                    </section>
+
+                    <p>
+                        This is the geometric freedom the later proof must control: many different polygons can witness the same eigenvalue, and changing the polygon can enlarge the set of eigenvalues we can realize.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="basic-geometry">
+                    <h2>Basic geometry of the eigenvalue region</h2>
+                    <p>
+                        Write $\mathcal K_n$ for the eigenvalues realizable by stochastic matrices of order $n$. For this discussion, take $n\geq3$.
+                    </p>
+                    <p>
+                        <strong>The unit disk.</strong> If $|v_i|$ is a largest eigenvector coordinate, the row equation gives
+                    </p>
+                    <div class="theory-formula">
+                        $$|\lambda||v_i|\leq\sum_jp_{ij}|v_j|\leq|v_i|,$$
+                    </div>
+                    <p>
+                        so $|\lambda|\leq1$.
+                    </p>
+                    <p>
+                        <strong>Conjugate symmetry.</strong> The matrices are real, so conjugating $Pv=\lambda v$ gives $P\overline v=\overline\lambda\,\overline v$. Geometrically, reflect the witness across the real axis.
+                    </p>
+                    <p>
+                        <strong>Nested orders.</strong> Adjoining an identity block gives $\mathcal K_m\subseteq\mathcal K_n$ for $m\leq n$.
+                    </p>
+                    <p>
+                        <strong>Star-shapedness.</strong> If $\lambda$ is nonreal and $\lambda Q\subseteq Q$, then $0\in Q$ and convexity gives
+                    </p>
+                    <div class="theory-formula">
+                        $$s\lambda Q\subseteq sQ\subseteq Q,\qquad0\leq s\leq1.$$
+                    </div>
+                    <p>
+                        The reverse construction realizes every $s\lambda$ in the same order, including the endpoint $0$. Real points cause no difficulty: every $x\in[-1,1]$ is already an eigenvalue of
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac12\begin{pmatrix}1+x&amp;1-x\\1-x&amp;1+x\end{pmatrix}.$$
+                    </div>
+                    <p>
+                        Padding this two-state realization proves the real part of the claim. Thus every segment from $0$ to a point of $\mathcal K_n$ lies in $\mathcal K_n$.
+                    </p>
+                    <p>
+                        <strong>Compactness.</strong> The stochastic matrices form a compact set, their eigenvalues stay in the closed unit disk, and $\det(\lambda I-P)=0$ is a closed condition. Projecting this compact matrix–eigenvalue set onto the $\lambda$ coordinate shows that $\mathcal K_n$ is compact.
+                    </p>
+                    <p>
+                        In particular, each nonreal angular direction has a farthest realizable point. A regular triangle with circumradius $1$ and inradius $1/2$ is invariant under every multiplier with $|\lambda|\leq1/2$: all its image vertices lie in that contained disk. Thus positive radii are available in every direction. This makes the radial boundary question precise:
+                    </p>
+                    <div class="theory-formula">
+                        $$R_n(\theta)=\max\{r\geq0:re^{i\theta}\in\mathcal K_n\}.$$
+                    </div>
+                </section>
+
+                <section class="essay-section" id="unit-circle">
+                    <h2>On the unit circle, the vertices are permuted</h2>
+                    <p>
+                        Suppose $|\lambda|=1$ and $\lambda$ is nonreal. An invariant polygon and its image have equal area. Since $\lambda Q\subseteq Q$, equality of area forces
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda Q=Q.$$
+                    </div>
+                    <p>
+                        Multiplication by $\lambda$ therefore permutes the polygon’s vertices. Following one nonzero vertex around its permutation cycle gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^qz=z\quad\Longrightarrow\quad\lambda^q=1,\qquad q\leq n.$$
+                    </div>
+                    <p>
+                        Conversely, a cyclic permutation matrix of order $q$ realizes every $q$th root of unity. Pad it if $q&lt;n$. The real unit-circle points $1$ and $-1$ have orders one and two and are handled directly.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" role="img" aria-labelledby="04-unit-circle-title 04-unit-circle-desc"><title id="04-unit-circle-title">A unit-circle eigenvalue permutes polygon vertices</title><desc id="04-unit-circle-desc">Multiplication by the primitive fifth root of unity cycles through five regular-pentagon vertices. The polygon equals its image.</desc><defs><marker id="04-unit-circle-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#168579"/></marker></defs><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="40" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">UNIT MODULUS TURNS INVARIANCE INTO A PERMUTATION</text><polygon points="399.000,255.000 299.498,118.048 138.502,170.359 138.502,339.641 299.498,391.952" fill="#e4efe5" fill-opacity="1" stroke="#168579" stroke-width="2.3"/><circle cx="399.0" cy="255.0" r="6" fill="#d98026"/><text x="426.0" y="260.0" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">1</text><path d="M372.48004672169964 236.04113341290474 A119 119 0 0 0 309.3342845461954 149.1284480001683" fill="none" stroke="#168579" stroke-width="1.6" marker-end="url(#04-unit-circle-arr)"/><circle cx="299.4984471899924" cy="118.0478616534979" r="6" fill="#168579"/><text x="307.841906038116" y="97.36933571352876" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">ζ</text><path d="M273.2723773277406 137.4112240611687 A119 119 0 0 0 171.10038788225734 170.60891583530682" fill="none" stroke="#168579" stroke-width="1.6" marker-end="url(#04-unit-circle-arr)"/><circle cx="138.50155281000758" cy="170.35892366988386" r="6" fill="#168579"/><text x="116.65809396188399" y="159.4887218579871" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">ζ²</text><path d="M148.81290352210704 201.2850063614017 A119 119 0 0 0 148.81290352210704 308.7149936385983" fill="none" stroke="#168579" stroke-width="1.6" marker-end="url(#04-unit-circle-arr)"/><circle cx="138.50155281000758" cy="339.6410763301161" r="6" fill="#168579"/><text x="116.65809396188399" y="360.5112781420129" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">ζ³</text><path d="M171.10038788225734 339.39108416469315 A119 119 0 0 0 273.27237732774057 372.5887759388313" fill="none" stroke="#168579" stroke-width="1.6" marker-end="url(#04-unit-circle-arr)"/><circle cx="299.4984471899924" cy="391.9521383465021" r="6" fill="#168579"/><text x="307.841906038116" y="422.63066428647124" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">ζ⁴</text><path d="M309.3342845461954 360.8715519998317 A119 119 0 0 0 372.48004672169964 273.9588665870953" fill="none" stroke="#168579" stroke-width="1.6" marker-end="url(#04-unit-circle-arr)"/><circle cx="255" cy="255" r="2.5" fill="#607b7e"/><text x="265" y="270" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="530" y="138" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">λ = ζ = exp(2πi/5)</text><text x="530" y="209" font-size="31" fill="#168579" text-anchor="start" font-weight="400">λQ = Q</text><text x="530" y="270" font-size="18" fill="#17343f" text-anchor="start" font-weight="400">1 → ζ → ζ² → ζ³ → ζ⁴ → 1</text><text x="530" y="327" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">A closed vertex cycle forces λ⁵ = 1.</text><text x="530" y="367" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">For at most n vertices, its length is ≤ n.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. For $\lambda=e^{2\pi i/5}$, multiplication cycles through the five vertices. There is no radial contraction, so the image polygon equals the original one.</em>
+                    </p>
+                    <p>
+                        We have obtained the unit-circle landmarks of the Karpelevich region from the polygon picture alone: roots of unity of order at most $n$.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="boundary-next">
+                    <h2>What changes at the boundary?</h2>
+                    <p>
+                        So far, the images are allowed anywhere inside the polygon. Our first example has four strictly interior image points. The correspondence itself imposes no requirement that images touch edges.
+                    </p>
+                    <p>
+                        The next stop asks what happens at a nonreal radial extremum, particularly when its realizing order cannot be reduced. The extremal contact theorem supplies additional constraints that organize those image points along the boundary. That is the input that will make <a href="karpelevich-game.html">the chip game</a> possible.
+                    </p>
+                    <p>
+                        The foundation is now in place: <strong>a stochastic eigenvalue is a rotation and scaling with a polygonal witness.</strong> We can move in either direction between convex coefficients and matrix rows.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop · What extremality forces (Stop 2)</span>
+                        <p>At a nonreal radial extremum, the image points are pushed onto the edges in a controlled pattern: <a href="karpelevich-contacts.html">What Extremality Forces →</a>. Or continue to <a href="karpelevich-game.html">Stop 3: Karpelevich’s Game</a> and the <a href="karpelevich-proof-roadmap.html#stop-2">series roadmap</a>.</p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="sources">
+                    <h2 class="essay-unnumbered">Sources and scope</h2>
+                    <p class="essay-sources">
+                        The invariant-polygon correspondence is due to N. Dmitriev and E. Dynkin, <em>On characteristic roots of stochastic matrices</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>10</strong> (1946), 167–184. <a href="https://www.mathnet.ru/eng/im3595" target="_blank" rel="noopener">Journal record</a>. Karpelevich recalls it, together with the stochastic formulation, in §2, p. 363 of <em>On the characteristic roots of matrices with nonnegative elements</em>, <strong>15</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>.
+                    </p>
+                    <p class="essay-sources">
+                        The proofs and visual examples here are prepared for this exposition. We use the Perron–Frobenius theorem for irreducible blocks and the standard Frobenius block decomposition in the normalization argument. The correspondence concerns a chosen eigenvalue; the separate block normalization preserves the full normalized spectrum. No extremal contact theorem is assumed in this post.
+                    </p>
+                    <cite-grid keys="dmitriev1946, karpelevich1951, perron1907, frobenius1912"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-proof-roadmap.html" class="book-pager-title">Series Roadmap: A Map of the Argument</a>
+                        <p class="book-pager-desc">Visual architecture of the nine stops, dependency map, and 4×4 running example.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-contacts.html" class="book-pager-title">Stop 2: What Extremality Forces</a>
+                        <p class="book-pager-desc">Extremal boundary contacts, supporting lines, and the Dmitriev–Dynkin fixed cyclic shift.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

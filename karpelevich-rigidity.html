@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Polygons Until the Weights Agree · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="How Karpelevich uses projective variation and exact neighboring-weight slides to force rigidity in invariant polygons, with two interactive local models. Stop 5 of Inside Karpelevich's Proof.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-rigidity.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Moving Polygons Until the Weights Agree · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="How Karpelevich uses projective variation and exact neighboring-weight slides to force rigidity in invariant polygons, with two interactive local models. Stop 5 of Inside Karpelevich&#x27;s Proof.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-rigidity.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-rigidity.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>&rsaquo;</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>&rsaquo;</span>
+            <span>Moving Polygons Until the Weights Agree</span>
+        </nav>
+
+                <!-- Karpelevič Series Book Navigator -->
+        <karpelevich-book-nav current="stop-5"></karpelevich-book-nav>
+
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof &middot; Stop 5</div>
+                    <h1 class="essay-title essay-title-long">Moving <em>Polygons</em><br>Until the<br>Weights Agree</h1>
+                    <p class="essay-deck">Geometric freedom becomes a contradiction.</p>
+                    <div class="essay-tags">
+                        <span>Projective return maps</span>
+                        <span>Invariant variations</span>
+                        <span>One common weight</span>
+                    </div>
+                    <a class="essay-series-link" href="karpelevich-proof-roadmap.html">Stop 5 of 9 in <em>Inside Karpelevich’s Proof</em> &middot; See the roadmap &rarr;</a>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 330" role="img" aria-label="A local slide moves an image from an edge into a triangle"><polygon points="290.00,150.00 210.00,96.67 103.33,256.67" fill="none" stroke="#759b8e" stroke-dasharray="5 5"/><polygon points="290.00,150.00 170.00,70.00 103.33,256.67" fill="#9bc9ac" fill-opacity=".1" stroke="#abd6b7" stroke-width="1.8"/><circle cx="290.00" cy="150.00" r="4" fill="#cbe1ce"/><circle cx="103.33" cy="256.67" r="4" fill="#cbe1ce"/><circle cx="210.00" cy="96.67" r="5.5" fill="#779e8d"/><circle cx="170.00" cy="70.00" r="5.5" fill="#e1ac67"/><circle cx="160.00" cy="150.00" r="5.5" fill="#e1ac67"/><circle cx="230.00" cy="110.00" r="5.5" fill="#a8d5bb"/><text x="195" y="309" text-anchor="middle" fill="#bad7c3" font-family="system-ui,sans-serif" font-size="16">Unequal weights permit an inward slide.</text></svg>
+                    <div class="essay-hero-caption">A local slide moves an edge image into the interior when weights differ.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The two local explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">The geometric rigidity step</div>
+                <ol>
+                    <li><a href="#move-a-generator-and-its-whole-chain">Move a generator and its whole chain</a></li>
+                    <li><a href="#projective-geometry-eliminates-a-return-pattern">Projective geometry eliminates a return pattern</a></li>
+                    <li><a href="#put-the-surviving-relations-in-a-usable-form">Put the surviving relations in a usable form</a></li>
+                    <li><a href="#unequal-weights-create-an-interior-image">Unequal weights create an interior image</a></li>
+                    <li><a href="#the-gcd-branch-uses-the-opposite-slide">The gcd branch uses the opposite slide</a></li>
+                    <li><a href="#what-is-rigid-now">What is rigid now?</a></li>
+                    <li><a href="#source-and-scope">Source and scope</a></li>
+                </ol>
+                <div class="essay-side-note">Move the chain.<br>Check every contact.<br>Force the weights to agree.</div>
+            </aside>
+
+            <article class="essay" id="article">
+                <section class="essay-section" id="overview">
+                    <p class="essay-lead">
+                        The boundary equations use one contact weight. Our polygon begins with a different weight at every edge contact. The missing step is rigidity: unequal neighboring weights would let us move the polygon while keeping it invariant, with one image now strictly inside.
+                    </p>
+                    <p>
+                        That would contradict <a href="karpelevich-contacts.html">what extremality forces</a>. The polygon can change, but its multiplier stays fixed throughout the argument.
+                    </p>
+                    <p>
+                        Karpelevich uses this strategy twice. A projective variation first eliminates certain return patterns. A simpler slide then forces the surviving weights to agree. We will explain the projective mechanism and prove the weight calculation explicitly, including the zero-weight case that finishes the reduction.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="move-a-generator-and-its-whole-chain">
+                    <h2>Move a generator and its whole chain</h2>
+                    <p>
+                        Continue with a nonreal radial extremum $\lambda$ of least realizing order $n&gt;3$, with $0&lt;|\lambda|&lt;1$. The origin is interior to every invariant polygon under consideration. Every image vertex lies on its boundary.
+                    </p>
+                    <p>
+                        <a href="karpelevich-returns.html">The return arithmetic</a> organized the vertices into chains
+                    </p>
+                    <div class="theory-formula">
+                        $$x_i,\lambda x_i,\ldots,\lambda^{h_i-1}x_i.$$
+                    </div>
+                    <p>
+                        To move a generating vertex $x_i$ to $x_i'$, move every vertex it generates to $\lambda^j x_i'$. All power relations within the chosen chains remain exact. The remaining checks concern the terminal images at the chain ends.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="01-propagate-the-motion-title 01-propagate-the-motion-desc"><title id="01-propagate-the-motion-title">Propagate a generating motion along a power chain</title><desc id="01-propagate-the-motion-desc">Original and shifted power chains show that each displacement is multiplied by the same complex multiplier. The diagram illustrates exact propagation, without asserting an invariant polygon.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">MOVE A GENERATOR; PROPAGATE EVERY POWER</text><path d="M65.000 302.000L465.000 302.000" fill="none" stroke="#d7e0d5" stroke-width="1" stroke-dasharray=""/><path d="M230.000 110.000L230.000 355.000" fill="none" stroke="#d7e0d5" stroke-width="1" stroke-dasharray=""/><path d="M435.000 302.000L332.500 199.500L230.000 199.500L178.750 250.750" fill="none" stroke="#168579" stroke-width="1.8" stroke-dasharray=""/><path d="M435.000 261.000L312.000 179.000L209.500 199.500L168.500 261.000" fill="none" stroke="#d98026" stroke-width="1.8" stroke-dasharray=""/><path d="M435.000 302.000L435.000 261.000" fill="none" stroke="#607b7e" stroke-width="1" stroke-dasharray="4 4"/><circle cx="435.000" cy="302.000" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="435.000" cy="261.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><path d="M332.500 199.500L312.000 179.000" fill="none" stroke="#607b7e" stroke-width="1" stroke-dasharray="4 4"/><circle cx="332.500" cy="199.500" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="312.000" cy="179.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><path d="M230.000 199.500L209.500 199.500" fill="none" stroke="#607b7e" stroke-width="1" stroke-dasharray="4 4"/><circle cx="230.000" cy="199.500" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="209.500" cy="199.500" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><path d="M178.750 250.750L168.500 261.000" fill="none" stroke="#607b7e" stroke-width="1" stroke-dasharray="4 4"/><circle cx="178.750" cy="250.750" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="168.500" cy="261.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="451.0" y="307.0" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">z</text><text x="346.5" y="207.5" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">λz</text><text x="222.0" y="181.5" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">λ²z</text><text x="151.75" y="275.75" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">λ³z</text><circle cx="230.000" cy="302.000" r="2" fill="#607b7e" stroke="none" stroke-width="1.8"/><text x="238" y="318" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">0</text><text x="520" y="125" font-size="25" fill="#17343f" text-anchor="start" font-weight="400">zₛ = z + sv</text><text x="520" y="180" font-size="23" fill="#168579" text-anchor="start" font-weight="400">λʲzₛ = λʲz + sλʲv</text><text x="520" y="245" font-size="18" fill="#607b7e" text-anchor="start" font-weight="400">λ = (1 + i)/2</text><text x="520" y="280" font-size="17" fill="#607b7e" text-anchor="start" font-weight="400">z = 1,   v = i,   s = 1/5</text><text x="520" y="346" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">Every deterministic relation survives.</text><text x="520" y="376" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">The terminal contacts need checking.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 1. An exact chain illustration with $\lambda=(1+i)/2$, $z=1$, and $z_s=1+i/5$. Each displacement is the preceding displacement multiplied by $\lambda$. This illustrates propagation along a chain; no polygon-invariance claim is needed for this picture.</em>
+                    </p>
+
+                    <p>
+                        A sufficiently small motion keeps the vertices extreme and in the same cyclic order: a finite set of strict convexity inequalities remains strict. To contradict extremality, we must then verify two things:
+                    </p>
+                    <ol class="essay-steps">
+                        <li>Every new vertex image still belongs to the new polygon.</li>
+                        <li>At least one belongs to its interior.</li>
+                    </ol>
+                    <p>
+                        An interior image alone is insufficient if some other image has escaped. This is why the directions of motion and the supporting edges matter.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="projective-geometry-eliminates-a-return-pattern">
+                    <h2>Projective geometry eliminates a return pattern</h2>
+                    <p>
+                        Write $\varphi$ for the contact-block size and $g=\gcd(n,k)$. In the proper-block case $g&lt;\varphi&lt;n$, <a href="karpelevich-returns.html#the-first-return-rule">Stop 4</a> found an even-position Euclidean remainder $r$ with
+                    </p>
+                    <div class="theory-formula">
+                        $$0&lt;r&lt;\varphi,\qquad n=p\varphi+qr.$$
+                    </div>
+                    <p>
+                        <strong>Karpelevich’s geometric reduction, Theorem V.</strong> Under the extremal hypotheses above, $r=1$. Every Euclidean remainder is a multiple of $g$, so this forces $g=1$. The same part of the paper shows that a full block ($\varphi=n$) has shift $k=1$, which puts it in the forward contact form described below <cite-ref key="karpelevich1951"></cite-ref>. We use both conclusions as cited inputs.
+                    </p>
+                    <p>
+                        This removes some integer patterns that the arithmetic allowed:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>$n,k,\varphi$</th>
+                                    <th>Selected $r$</th>
+                                    <th>Remainder test</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$8,3,2$</td>
+                                    <td>$1$</td>
+                                    <td>Passes this test</td>
+                                </tr>
+                                <tr>
+                                    <td>$13,5,3$</td>
+                                    <td>$2$</td>
+                                    <td>Eliminated as an extremal configuration</td>
+                                </tr>
+                                <tr>
+                                    <td>$8,2,2$</td>
+                                    <td>Separate case $\varphi=g$</td>
+                                    <td>Uses the other branch</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The proof moves selected generators along lines, then uses successive projections through fixed contact points to determine the neighboring motions. At the end, the question is whether the last image lies on the inward side of a closing edge.
+                    </p>
+                    <p>
+                        With suitable line coordinates, the starting configuration is $s=0$ and the returned coordinate is a fractional linear function
+                    </p>
+                    <div class="theory-formula">
+                        $$u(s)=\frac{as}{1+cs},\qquad u(0)=0.$$
+                    </div>
+                    <p>
+                        The desired inward displacement is exactly $s-u(s)&gt;0$. Central projection between lines is fractional linear; a composition of such projections remains fractional linear.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" role="img" aria-labelledby="02-one-projection-title 02-one-projection-desc"><title id="02-one-projection-title">An exact central projection gives s over one plus s</title><desc id="02-one-projection-desc">Projection from zero one sends s zero onto the diagonal at u u with u equal to s divided by one plus s. The starting coordinate one maps to one half.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">CENTRAL PROJECTION PRODUCES A FRACTIONAL LINEAR MAP</text><path d="M65.000 350.000L448.000 350.000" fill="none" stroke="#17343f" stroke-width="1.7" stroke-dasharray=""/><path d="M108.500 381.500L392.000 98.000" fill="none" stroke="#168579" stroke-width="1.8" stroke-dasharray=""/><path d="M140.000 140.000L350.000 350.000" fill="none" stroke="#bacac0" stroke-width="1.2" stroke-dasharray="5 5"/><path d="M140.000 140.000L245.000 350.000" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray=""/><circle cx="140.000" cy="350.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="140.000" cy="140.000" r="5" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="245.000" cy="350.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="210.000" cy="280.000" r="5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="350.000" cy="350.000" r="5" fill="#607b7e" stroke="none" stroke-width="1.8"/><circle cx="245.000" cy="245.000" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="350.000" cy="140.000" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><text x="131" y="375" font-size="14" fill="#17343f" text-anchor="start" font-weight="400">0</text><text x="121" y="127" font-size="17" fill="#17343f" text-anchor="start" font-weight="400">C</text><text x="245.0" y="382" font-size="14" fill="#d98026" text-anchor="middle" font-weight="400">s = 1/2</text><text x="350" y="377" font-size="14" fill="#607b7e" text-anchor="middle" font-weight="400">1</text><text x="202.0" y="267.0" font-size="14" fill="#d98026" text-anchor="end" font-weight="400">u = 1/3</text><text x="257.0" y="249.0" font-size="13" fill="#168579" text-anchor="start" font-weight="400">u(1) = 1/2</text><text x="362" y="143" font-size="13" fill="#168579" text-anchor="start" font-weight="400">u = 1</text><text x="520" y="120" font-size="26" fill="#17343f" text-anchor="start" font-weight="400">u(s) = s/(1 + s)</text><text x="520" y="185" font-size="21" fill="#d98026" text-anchor="start" font-weight="400">s = 1/2  →  u = 1/3</text><text x="520" y="233" font-size="22" fill="#168579" text-anchor="start" font-weight="400">s − u(s) = 1/6</text><text x="520" y="310" font-size="17" fill="#607b7e" text-anchor="start" font-weight="400">Successive central projections</text><text x="520" y="341" font-size="17" fill="#607b7e" text-anchor="start" font-weight="400">remain fractional linear.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 2. Project $(s,0)$ from $C=(0,1)$ onto the line $y=x$. Its intersection is $(u,u)$ with $u=s/(1+s)$. At $s=1/2$, the returned coordinate is $1/3$. This exact local model displays the projective mechanism.</em>
+                    </p>
+
+                    <p>
+                        The return-map calculation has two cases. Exactly,
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{s-u(s)=\frac{s\bigl((1-a)+cs\bigr)}{1+cs}.}$$
+                    </div>
+                    <p>
+                        If $a\ne1$, choose a sufficiently small $s$ with the sign of $1-a$. The numerator and denominator then give $s-u(s)&gt;0$.
+                    </p>
+                    <p>
+                        If $a=1$, the first-order difference vanishes. Karpelevich’s geometric ordering gives $0&lt;u(1)&lt;1$ in the relevant nondegenerate configuration. Since $u(1)=1/(1+c)$, this forces $c&gt;0$. Therefore
+                    </p>
+                    <div class="theory-formula">
+                        $$s-u(s)=\frac{cs^2}{1+cs}&gt;0$$
+                    </div>
+                    <p>
+                        for every sufficiently small nonzero $s$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" role="img" aria-labelledby="03-three-return-maps-title 03-three-return-maps-desc"><title id="03-three-return-maps-title">Three return maps compared with the starting coordinate</title><desc id="03-three-return-maps-desc">For derivative below one choose a positive displacement; above one choose a negative displacement; at derivative one a quadratic inward gap persists on both sides near zero.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">A NONZERO INWARD GAP, EVEN WHEN THE FIRST DERIVATIVES AGREE</text><text x="164" y="81" font-size="22" fill="#17343f" text-anchor="middle" font-weight="400">a = 3/4</text><path d="M52.450 207.000L275.550 207.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M164.000 311.000L164.000 103.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M57.300 264.200L270.700 149.800" fill="none" stroke="#9caea3" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M57.300 262.000L59.434 260.598L61.568 259.211L63.702 257.840L65.836 256.483L67.970 255.142L70.104 253.815L72.238 252.503L74.372 251.205L76.506 249.921L78.640 248.650L80.774 247.394L82.908 246.150L85.042 244.919L87.176 243.702L89.310 242.496L91.444 241.304L93.578 240.124L95.712 238.955L97.846 237.799L99.980 236.654L102.114 235.521L104.248 234.400L106.382 233.289L108.516 232.190L110.650 231.101L112.784 230.023L114.918 228.956L117.052 227.899L119.186 226.852L121.320 225.816L123.454 224.789L125.588 223.772L127.722 222.765L129.856 221.768L131.990 220.779L134.124 219.801L136.258 218.831L138.392 217.870L140.526 216.918L142.660 215.975L144.794 215.040L146.928 214.114L149.062 213.197L151.196 212.288L153.330 211.387L155.464 210.493L157.598 209.608L159.732 208.731L161.866 207.862L164.000 207.000L166.134 206.146L168.268 205.299L170.402 204.460L172.536 203.627L174.670 202.802L176.804 201.984L178.938 201.173L181.072 200.369L183.206 199.572L185.340 198.782L187.474 197.998L189.608 197.220L191.742 196.449L193.876 195.685L196.010 194.927L198.144 194.175L200.278 193.429L202.412 192.689L204.546 191.956L206.680 191.228L208.814 190.506L210.948 189.790L213.082 189.080L215.216 188.375L217.350 187.676L219.484 186.982L221.618 186.294L223.752 185.611L225.886 184.934L228.020 184.261L230.154 183.595L232.288 182.933L234.422 182.276L236.556 181.624L238.690 180.977L240.824 180.336L242.958 179.699L245.092 179.066L247.226 178.439L249.360 177.816L251.494 177.198L253.628 176.585L255.762 175.976L257.896 175.371L260.030 174.771L262.164 174.176L264.298 173.584L266.432 172.997L268.566 172.415L270.700 171.836" fill="none" stroke="#168579" stroke-width="2.2" stroke-dasharray=""/><path d="M251.300 160.200L251.300 177.254" fill="none" stroke="#d98026" stroke-width="3.5" stroke-dasharray=""/><circle cx="251.300" cy="160.200" r="3.5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="251.300" cy="177.254" r="3.5" fill="#168579" stroke="none" stroke-width="1.8"/><text x="282" y="212" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">s</text><text x="170" y="99" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">u</text><text x="164" y="348" font-size="15" fill="#168579" text-anchor="middle" font-weight="400">Choose s &gt; 0</text><text x="460" y="81" font-size="22" fill="#17343f" text-anchor="middle" font-weight="400">a = 1</text><path d="M348.450 207.000L571.550 207.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M460.000 311.000L460.000 103.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M353.300 264.200L566.700 149.800" fill="none" stroke="#9caea3" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M353.300 280.333L355.434 278.464L357.568 276.615L359.702 274.786L361.836 272.978L363.970 271.190L366.104 269.421L368.238 267.671L370.372 265.940L372.506 264.228L374.640 262.534L376.774 260.858L378.908 259.200L381.042 257.559L383.176 255.935L385.310 254.329L387.444 252.738L389.578 251.165L391.712 249.607L393.846 248.065L395.980 246.539L398.114 245.028L400.248 243.533L402.382 242.052L404.516 240.586L406.650 239.135L408.784 237.698L410.918 236.275L413.052 234.865L415.186 233.470L417.320 232.088L419.454 230.719L421.588 229.363L423.722 228.020L425.856 226.690L427.990 225.373L430.124 224.067L432.258 222.774L434.392 221.493L436.526 220.224L438.660 218.967L440.794 217.721L442.928 216.486L445.062 215.262L447.196 214.050L449.330 212.849L451.464 211.658L453.598 210.478L455.732 209.308L457.866 208.149L460.000 207.000L462.134 205.861L464.268 204.732L466.402 203.613L468.536 202.503L470.670 201.403L472.804 200.313L474.938 199.231L477.072 198.159L479.206 197.096L481.340 196.042L483.474 194.997L485.608 193.960L487.742 192.933L489.876 191.913L492.010 190.902L494.144 189.900L496.278 188.905L498.412 187.919L500.546 186.941L502.680 185.971L504.814 185.008L506.948 184.053L509.082 183.106L511.216 182.166L513.350 181.234L515.484 180.309L517.618 179.392L519.752 178.481L521.886 177.578L524.020 176.682L526.154 175.793L528.288 174.910L530.422 174.035L532.556 173.166L534.690 172.303L536.824 171.448L538.958 170.598L541.092 169.755L543.226 168.919L545.360 168.088L547.494 167.264L549.628 166.446L551.762 165.634L553.896 164.828L556.030 164.028L558.164 163.234L560.298 162.446L562.432 161.663L564.566 160.886L566.700 160.115" fill="none" stroke="#168579" stroke-width="2.2" stroke-dasharray=""/><path d="M372.700 253.800L372.700 264.073" fill="none" stroke="#d98026" stroke-width="3.5" stroke-dasharray=""/><circle cx="372.700" cy="253.800" r="3.5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="372.700" cy="264.073" r="3.5" fill="#168579" stroke="none" stroke-width="1.8"/><path d="M547.300 160.200L547.300 167.339" fill="none" stroke="#d98026" stroke-width="3.5" stroke-dasharray=""/><circle cx="547.300" cy="160.200" r="3.5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="547.300" cy="167.339" r="3.5" fill="#168579" stroke="none" stroke-width="1.8"/><text x="578" y="212" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">s</text><text x="466" y="99" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">u</text><text x="460" y="348" font-size="15" fill="#168579" text-anchor="middle" font-weight="400">Both signs near zero</text><text x="756" y="81" font-size="22" fill="#17343f" text-anchor="middle" font-weight="400">a = 5/4</text><path d="M644.450 207.000L867.550 207.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M756.000 311.000L756.000 103.000" fill="none" stroke="#d0dcd0" stroke-width="1" stroke-dasharray=""/><path d="M649.300 264.200L862.700 149.800" fill="none" stroke="#9caea3" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M649.300 298.667L651.434 296.329L653.568 294.018L655.702 291.733L657.836 289.472L659.970 287.237L662.104 285.026L664.238 282.839L666.372 280.675L668.506 278.535L670.640 276.417L672.774 274.323L674.908 272.250L677.042 270.199L679.176 268.169L681.310 266.161L683.444 264.173L685.578 262.206L687.712 260.259L689.846 258.332L691.980 256.424L694.114 254.536L696.248 252.666L698.382 250.815L700.516 248.983L702.650 247.169L704.784 245.372L706.918 243.593L709.052 241.832L711.186 240.087L713.320 238.360L715.454 236.649L717.588 234.954L719.722 233.275L721.856 231.613L723.990 229.966L726.124 228.334L728.258 226.718L730.392 225.117L732.526 223.530L734.660 221.958L736.794 220.401L738.928 218.857L741.062 217.328L743.196 215.813L745.330 214.311L747.464 212.822L749.598 211.347L751.732 209.885L753.866 208.436L756.000 207.000L758.134 205.576L760.268 204.165L762.402 202.766L764.536 201.379L766.670 200.004L768.804 198.641L770.938 197.289L773.072 195.949L775.206 194.620L777.340 193.303L779.474 191.996L781.608 190.701L783.742 189.416L785.876 188.142L788.010 186.878L790.144 185.625L792.278 184.382L794.412 183.149L796.546 181.926L798.680 180.713L800.814 179.510L802.948 178.317L805.082 177.133L807.216 175.958L809.350 174.793L811.484 173.637L813.618 172.490L815.752 171.352L817.886 170.223L820.020 169.102L822.154 167.991L824.288 166.888L826.422 165.793L828.556 164.707L830.690 163.629L832.824 162.559L834.958 161.498L837.092 160.444L839.226 159.398L841.360 158.361L843.494 157.330L845.628 156.308L847.762 155.293L849.896 154.286L852.030 153.285L854.164 152.293L856.298 151.307L858.432 150.329L860.566 149.358L862.700 148.393" fill="none" stroke="#168579" stroke-width="2.2" stroke-dasharray=""/><path d="M668.700 253.800L668.700 278.341" fill="none" stroke="#d98026" stroke-width="3.5" stroke-dasharray=""/><circle cx="668.700" cy="253.800" r="3.5" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="668.700" cy="278.341" r="3.5" fill="#168579" stroke="none" stroke-width="1.8"/><text x="874" y="212" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">s</text><text x="762" y="99" font-size="11" fill="#607b7e" text-anchor="start" font-weight="400">u</text><text x="756" y="348" font-size="15" fill="#168579" text-anchor="middle" font-weight="400">Choose s &lt; 0</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 3. For $u(s)=as/(1+s)$, the gray line is the starting coordinate $s$. An inward gap occurs on one side when $a\ne1$ and on both sides near zero when $a=1$. The critical case still has a strictly positive quadratic gap.</em>
+                    </p>
+
+                    <p>
+                        The global placement of the projection lines, the control of all other contacts, and the strict inequality $0&lt;u(1)&lt;1$ are the geometric content of Karpelevich’s Theorem V <cite-ref key="karpelevich1951"></cite-ref>. We use that theorem for those configuration checks. The calculation above proves how they finish the contradiction. The paper treats two relative placements of the moving block; its strict-ordering step is also where $n&gt;3$ enters. The low-order cases need separate treatment.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>Why the low-order exception is real</summary>
+                        <p>
+                            Let $\zeta=e^{2\pi i/3}$ and take the regular triangle $Q=\operatorname{conv}\{1,\zeta,\zeta^2\}$. The multiplier $\lambda=-1/2-i/2$ lies strictly inside the edge $[\zeta,\zeta^2]$. Rotational symmetry puts every image vertex inside its opposite edge.
+                        </p>
+                        <p>
+                            Thus $n=3$, $k=2$, and $\varphi=3$: the full block has selected remainder $r=k=2$. This multiplier is radially extremal by the three-state trace bound $1+2\operatorname{Re}\lambda\geq0$, and two-state stochastic spectra are real. The conclusion that the selected remainder is one cannot be extended to this order.
+                        </p>
+                    </details>
+
+                    <!-- Interactive Lab 01: Projective Explorer -->
+                    <section class="lab" aria-label="Explore the exact projective inward inequality">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">A local return-map model</div>
+                                <div class="lab-title">Find a displacement with s &gt; u(s)</div>
+                            </div>
+                            <small>Exact fraction readouts</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="rigid-controls">
+                                <button type="button" id="map-below">Derivative 3/4</button>
+                                <button type="button" id="map-critical">Critical derivative 1</button>
+                                <button type="button" id="map-above">Derivative 5/4</button>
+                            </div>
+                            <div class="rigid-slider">
+                                <label for="map-s">Displacement $s =$ <output id="map-s-value">0.100</output></label>
+                                <input id="map-s" type="range" min="-200" max="200" step="1" value="100">
+                            </div>
+                            <div class="rigid-controls">
+                                <button type="button" id="map-negative">s = −1/10</button>
+                                <button type="button" id="map-zero">s = 0</button>
+                                <button type="button" id="map-positive">s = 1/10</button>
+                            </div>
+                            <div class="rigid-layout">
+                                <svg id="map-plot" viewBox="0 0 440 350" role="img" aria-label="A fractional linear return map compared with the identity"></svg>
+                                <div>
+                                    <p class="rigid-values" id="map-derivative"></p>
+                                    <p class="rigid-values" id="map-return"></p>
+                                    <p class="rigid-coefficients" id="map-gap"></p>
+                                    <p class="rigid-status" id="map-status" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p class="rigid-note" id="map-case-note"></p>
+                            <p class="small-note">This models the return-map inequality. The global construction still requires Karpelevich’s geometric ordering and verification of every other contact. Here all three maps have 0 &lt; u(1) &lt; 1.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="put-the-surviving-relations-in-a-usable-form">
+                    <h2>Put the surviving relations in a usable form</h2>
+                    <p>
+                        After $r=1$, let $m$ be the preceding odd Euclidean remainder. The contact block has $\varphi\leq m$. Apply the return arithmetic to the larger marked window $1,\ldots,m$, and write $\ell$ and $\tau$ for that window’s two return times (the $p$ and $q$ of Stop 4). <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> shows that $\tau&lt;\ell$, so $m=\lfloor n/\ell\rfloor$.
+                    </p>
+                    <p>
+                        Some added marks may be vertex contacts. Encode those by $\alpha_j=0$, $\beta_j=1$. The resulting relations are
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned} \lambda^\ell x_i&amp;=\alpha_{i+1}x_i+\beta_{i+1}x_{i+1}, &amp;&amp;0\leq i&lt;m,\\ \lambda^\tau x_m&amp;=x_0, &amp;&amp;n=\ell m+\tau, \end{aligned}$$
+                    </div>
+                    <p>
+                        where $\alpha_j\geq0$, $\beta_j&gt;0$, and $\alpha_j+\beta_j=1$. The full-block case has $\ell=1$, $\tau=0$, $m=n$, with $x_m=x_0$.
+                    </p>
+                    <p>
+                        We have not assumed that the marked window consists entirely of edge contacts. Showing that its weights agree will force every $\alpha_j$ to be positive, because at least one genuine edge contact is present. It will also show $\varphi=m$.
+                    </p>
+                    <p>
+                        The other branch, $\varphi=g$, has $m=g$ equal-length chains from the outset:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\ell x_i=\alpha_i x_{i-1}+\beta_i x_i, \quad1\leq i\leq g,\qquad \lambda^\sigma x_g=x_0,\qquad\ell=n/g.$$
+                    </div>
+                    <p>
+                        Here all contact weights are positive, and $\sigma$ is the closing shift. Notice the different edge: the first branch uses the generator and its successor; the second uses its predecessor and the generator.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="unequal-weights-create-an-interior-image">
+                    <h2>Unequal weights create an interior image</h2>
+                    <p>
+                        Consider neighboring coefficients $a=\alpha_i$ and $b=\alpha_{i+1}$ in the forward branch. For this local calculation write
+                    </p>
+                    <div class="theory-formula">
+                        $$A=x_{i-1},\qquad B=x_i,\qquad C=x_{i+1},\qquad T=\lambda^\ell.$$
+                    </div>
+                    <p>
+                        The two contacts are
+                    </p>
+                    <div class="theory-formula">
+                        $$\xi=TA=aA+(1-a)B,\qquad \eta=TB=bB+(1-b)C.$$
+                    </div>
+                    <p>
+                        Move the middle generator along the preceding edge line:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{B_s=B+s(B-A).}$$
+                    </div>
+                    <p>
+                        Move its whole generated chain with it; keep the other chains fixed. The first contact remains on the same line. Its exact new expression is
+                    </p>
+                    <div class="theory-formula">
+                        $$\xi=\frac{a+s}{1+s}A+\frac{1-a}{1+s}B_s.$$
+                    </div>
+                    <p>
+                        For sufficiently small allowed $s$, both coefficients are nonnegative. So this contact remains inside the new edge.
+                    </p>
+                    <p>
+                        The moving chain’s terminal image is
+                    </p>
+                    <div class="theory-formula">
+                        $$\eta_s=TB_s=\eta+s(\eta-\xi).$$
+                    </div>
+                    <p>
+                        Express it in the triangle with vertices $A,B_s,C$:
+                    </p>
+                    <div class="theory-formula">
+                        $$\eta_s=w_AA+w_BB_s+w_CC,$$
+                    </div>
+                    <p>
+                        where
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\begin{aligned} w_A&amp;=\frac{s\bigl((b-a)-s(1-b)\bigr)}{1+s},\\ w_B&amp;=b-\frac{s(1-a)}{1+s},\\ w_C&amp;=(1+s)(1-b). \end{aligned}}$$
+                    </div>
+                    <p>
+                        The coefficients sum to one. If $a\ne b$, choose a sufficiently small $s$ with the sign of $b-a$. Then all three coefficients are strictly positive. Thus $\eta_s$ lies strictly inside that triangle, and hence strictly inside the new polygon.
+                    </p>
+                    <p>
+                        Only these two contacts need new checks. Every other terminal contact is unchanged; every image within a chain follows the propagated vertices. Smallness preserves the polygon’s convexity. We have therefore retained invariance and created an interior image of a vertex&mdash;a contradiction.
+                    </p>
+                    <p>
+                        It follows that $\alpha_i=\alpha_{i+1}$. Apply this for $i=1,\ldots,m-1$:
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\alpha_1=\cdots=\alpha_m=\alpha, \qquad\beta_1=\cdots=\beta_m=1-\alpha.}$$
+                    </div>
+                    <p>
+                        At equal weights, this attempted slide has $w_A=-(1-a)s^2/(1+s)&lt;0$ for nonzero small $s$. The same motion now points outside the supporting edge.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>The coefficient calculation, including a possible zero weight</summary>
+                        <p>
+                            Substitute
+                        </p>
+                        <div class="theory-formula">
+                            $$B=\frac{B_s+sA}{1+s}$$
+                        </div>
+                        <p>
+                            into
+                        </p>
+                        <div class="theory-formula">
+                            $$\eta_s=(1+s)\bigl(bB+(1-b)C\bigr)-s\bigl(aA+(1-a)B\bigr).$$
+                        </div>
+                        <p>
+                            Collect the coefficients of $A,B_s,C$. This gives the boxed formulas and their sum one.
+                        </p>
+                        <p>
+                            Since $a,b&lt;1$, the coefficient $w_C$ is positive for small $s$. The chosen sign makes $w_A&gt;0$. If $b&gt;0$, then $w_B&gt;0$ by continuity. If $b=0$, then $a&gt;0$ and the chosen $s$ is negative, so $w_B=-s(1-a)/(1+s)&gt;0$ as well.
+                        </p>
+                        <p>
+                            The fixed contact’s coefficient $(a+s)/(1+s)$ also stays positive: use smallness if $a&gt;0$; if $a=0$, then $b&gt;0$ and the chosen sign is positive. Thus the proof includes unequal pairs in which one alpha coefficient is zero.
+                        </p>
+                        <p>
+                            This rules out zero coefficients in the enlarged window once any alpha is positive. Consequently every mark is a genuine edge contact, and $\varphi=m$.
+                        </p>
+                    </details>
+
+                    <!-- Interactive Lab 02: Weight Explorer -->
+                    <section class="lab" aria-label="Explore an exact neighboring-weight slide">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">One generator and two contacts</div>
+                                <div class="lab-title">Test the slide and read its convex coefficients</div>
+                            </div>
+                            <small>Exact local model</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="rigid-controls">
+                                <label for="weight-case">Neighboring weights
+                                    <select id="weight-case">
+                                        <option value="rising">a = 1/4, b = 3/4</option>
+                                        <option value="falling">a = 3/4, b = 1/4</option>
+                                        <option value="equal">a = b = 1/2</option>
+                                        <option value="zero">a = 1/2, b = 0</option>
+                                    </select>
+                                </label>
+                                <button type="button" id="weight-test">Test a small motion</button>
+                                <button type="button" id="weight-reset">Return to s = 0</button>
+                                <button type="button" id="weight-exact">Exact fixture: s = 1/2</button>
+                            </div>
+                            <div class="rigid-slider">
+                                <label for="weight-s">Slide parameter $s =$ <output id="weight-s-value">0.000</output></label>
+                                <input id="weight-s" type="range" min="-400" max="500" step="1" value="0">
+                            </div>
+                            <div class="rigid-layout">
+                                <svg id="weight-plot" viewBox="0 0 440 385" role="img" aria-label="A neighboring-weight slide and its two local contact tests"></svg>
+                                <div>
+                                    <p class="rigid-values" id="weight-parameters"></p>
+                                    <p class="rigid-coefficients" id="weight-fixed"></p>
+                                    <p class="rigid-coefficients" id="weight-coefficients"></p>
+                                    <p class="rigid-status" id="weight-status" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p class="rigid-note" id="weight-note"></p>
+                            <p class="small-note">The exact local model uses A=1, B=(T−a)/(1−a), C=(T−b)B/(1−b), with T=1/4+i/2. It verifies the two local contact identities. In a complete eigenpolygon the motion is propagated along the selected chain and chosen small enough to preserve every other required condition.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="the-gcd-branch-uses-the-opposite-slide">
+                    <h2>The gcd branch uses the opposite slide</h2>
+                    <p>
+                        For $\varphi=g$, put $T=\lambda^\ell$ and take three neighboring generators $A,B,C$. The contact equations now read
+                    </p>
+                    <div class="theory-formula">
+                        $$TB=aA+(1-a)B,\qquad TC=bB+(1-b)C.$$
+                    </div>
+                    <p>
+                        Slide toward the opposite edge line:
+                    </p>
+                    <div class="theory-formula">
+                        $$B_s=B+s(B-C).$$
+                    </div>
+                    <p>
+                        The fixed image $TC$ remains on the new edge $[B_s,C]$, since
+                    </p>
+                    <div class="theory-formula">
+                        $$TC=\frac{b}{1+s}B_s+\frac{1-b+s}{1+s}C.$$
+                    </div>
+                    <p>
+                        The moved image has coefficients
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{\begin{aligned} TB_s&amp;=v_AA+v_BB_s+v_CC,\\ v_A&amp;=(1+s)a,\\ v_B&amp;=(1-a)-\frac{sb}{1+s},\\ v_C&amp;=\frac{s\bigl((b-a)-sa\bigr)}{1+s}. \end{aligned}}$$
+                    </div>
+                    <p>
+                        Again they sum to one. All contact weights in this branch are positive. If $a\ne b$, a sufficiently small $s$ with the sign of $b-a$ makes all three coefficients positive. This gives the same contradiction, with the same chain and convexity checks.
+                    </p>
+                    <p>
+                        Compare consecutive pairs for $i=1,\ldots,g-1$, leaving the last generating chain and its closing relation fixed. All $g$ weights agree. If $g=1$, there is only one weight and nothing to compare.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" role="img" aria-labelledby="04-two-slides-title 04-two-slides-desc"><title id="04-two-slides-title">Exact forward and backward neighboring-weight slides</title><desc id="04-two-slides-desc">The forward local model slides B away from A along the preceding edge; the backward model slides B away from C along the following edge. Their moved images have positive barycentric coordinates.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="38" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">TWO EDGE DIRECTIONS; THE SAME INTERIOR-POINT CONTRADICTION</text><text x="230" y="88" font-size="21" fill="#17343f" text-anchor="middle" font-weight="650">Forward contact</text><polygon points="313.000,275.000 230.000,219.667 119.333,385.667" fill="none" stroke="#b6c8bc" stroke-width="1.9" stroke-dasharray="5 5"/><polygon points="313.000,275.000 188.500,192.000 119.333,385.667" fill="#e5f1e7" stroke="#168579" stroke-width="1.9" stroke-dasharray=""/><path d="M230.000 219.667L188.500 192.000" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="4 3"/><circle cx="313.000" cy="275.000" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="119.333" cy="385.667" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="230.000" cy="219.667" r="4" fill="#fbfaf6" stroke="#9eafa3" stroke-width="1.8"/><circle cx="188.500" cy="192.000" r="6" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="250.750" cy="233.500" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="178.125" cy="275.000" r="7" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="326.0" y="280.0" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">A</text><text x="244.0" y="216.66666666666669" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">B</text><text x="102.33333333333334" y="403.66666666666663" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">C</text><text x="172.5" y="179.0" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">Bₛ</text><text x="170.125" y="261.0" font-size="14" fill="#d98026" text-anchor="end" font-weight="400">TBₛ</text><text x="230" y="464" font-size="23" fill="#168579" text-anchor="middle" font-weight="400">(1/8, 1/2, 3/8)</text><text x="690" y="88" font-size="21" fill="#17343f" text-anchor="middle" font-weight="650">Backward contact</text><polygon points="579.333,164.333 690.000,330.333 773.000,275.000" fill="none" stroke="#b6c8bc" stroke-width="1.9" stroke-dasharray="5 5"/><polygon points="579.333,164.333 648.500,358.000 773.000,275.000" fill="#e5f1e7" stroke="#168579" stroke-width="1.9" stroke-dasharray=""/><path d="M690.000 330.333L648.500 358.000" fill="none" stroke="#d98026" stroke-width="2" stroke-dasharray="4 3"/><circle cx="579.333" cy="164.333" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="773.000" cy="275.000" r="4" fill="#17343f" stroke="none" stroke-width="1.8"/><circle cx="690.000" cy="330.333" r="4" fill="#fbfaf6" stroke="#9eafa3" stroke-width="1.8"/><circle cx="648.500" cy="358.000" r="6" fill="#d98026" stroke="none" stroke-width="1.8"/><circle cx="710.750" cy="316.500" r="5" fill="#168579" stroke="none" stroke-width="1.8"/><circle cx="638.125" cy="275.000" r="7" fill="#d98026" stroke="none" stroke-width="1.8"/><text x="561.3333333333334" y="151.33333333333334" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">A</text><text x="705.0" y="346.3333333333333" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">B</text><text x="786.0" y="280.0" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">C</text><text x="630.5" y="380.0" font-size="16" fill="#17343f" text-anchor="start" font-weight="400">Bₛ</text><text x="630.125" y="261.0" font-size="14" fill="#d98026" text-anchor="end" font-weight="400">TBₛ</text><text x="690" y="464" font-size="23" fill="#168579" text-anchor="middle" font-weight="400">(3/8, 1/2, 1/8)</text><text x="460" y="509" font-size="15" fill="#607b7e" text-anchor="middle" font-weight="400">All three coefficients are positive: the amber image is strictly interior.</text></svg>
+                    </figure>
+                    <p class="essay-caption">
+                        <em>Figure 4. Exact local models with $a=1/4$, $b=3/4$, and $s=1/2$. In the forward picture the moved image has coefficients $(1/8,1/2,3/8)$ at $A,B_s,C$; in the backward picture they are $(3/8,1/2,1/8)$. Both images are interior. For a global extremal polygon, the proof uses a sufficiently small motion so every other required condition persists.</em>
+                    </p>
+                </section>
+
+                <section class="essay-section" id="what-is-rigid-now">
+                    <h2>What is rigid now?</h2>
+                    <p>
+                        The geometric step has supplied two conclusions that arithmetic alone could not give:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Branch</th>
+                                    <th>Surviving structure</th>
+                                    <th>Common weights</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$\varphi&gt;g$</td>
+                                    <td>$g=1$, selected remainder $1$, $\varphi=m$ chains of length $\ell$</td>
+                                    <td>$\alpha_j=\alpha$, $\beta_j=\beta$</td>
+                                </tr>
+                                <tr>
+                                    <td>$\varphi=g$</td>
+                                    <td>$m=g$ chains of length $\ell=n/g$</td>
+                                    <td>$\alpha_j=\alpha$, $\beta_j=\beta$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        In both cases $\alpha,\beta&gt;0$ and $\alpha+\beta=1$. The terminal equations now have one shared parameter. Eliminating the generating coordinates gives
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,\qquad t=\alpha,$$
+                    </div>
+                    <p>
+                        in the forward case, and
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma,\qquad t=\beta,$$
+                    </div>
+                    <p>
+                        in the gcd case. In both branches $t$ is the weight on the chain’s own generator, the <em>local return</em>. That is $\alpha$ in the forward branch and $\beta$ in the gcd branch, because the two branches use opposite edges. This is the convention for $t$ throughout the series.
+                    </p>
+                    <p>
+                        <a href="karpelevich-boundary-equations.html">The boundary-equations post</a> carries out those eliminations. The work here explains why the repeated factors have the same coefficient: every unequal neighboring pair would admit an invariant variation that extremality forbids.
+                    </p>
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Next stop &middot; Boundary equations (Stop 6)</span>
+                        <p>With $r=1$ and one common local-return weight $t$, eliminate the polygon coordinates altogether and construct the realizing stochastic matrices: <a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From &rarr;</a></p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="source-and-scope">
+                    <h2 class="essay-unnumbered">Source and scope</h2>
+                    <p class="essay-sources">
+                        [1] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383, §4, Theorems V–VII, pp. 372–377. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>.
+                    </p>
+                    <p class="essay-sources">
+                        This post explains Theorem V’s projective contradiction, using the theorem for the global ordering and configuration checks. It proves the fractional-linear inequality and spells out the neighboring-weight variations in both branches. The local models are exact illustrations of those calculations; they do not certify complete extremal eigenpolygons. The earlier contact and return theorems remain inputs. No numerical optimization or graphical experiment replaces a proof.
+                    </p>
+                    <cite-grid keys="karpelevich1951, dmitriev1946"></cite-grid>
+                </section>
+                            <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-returns.html" class="book-pager-title">Stop 4: Why the Euclidean Algorithm Appears</a>
+                        <p class="book-pager-desc">Consecutive contact blocks, subtractive Euclidean updates, and first-return chains.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Next Chapter →</span>
+                        <a href="karpelevich-boundary-equations.html" class="book-pager-title">Stop 6: Where Boundary Equations Come From</a>
+                        <p class="book-pager-desc">Multiplying along deterministic chains, tail shifts, and cycle-expansion proofs.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>&larr; Back to Research Blog Index</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>

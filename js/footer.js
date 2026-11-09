@@ -51,6 +51,7 @@
                 <span class="footer-col-title">Navigation</span>
                 <a href="${prefix}index.html">Home</a>
                 <a href="${prefix}blog.html">Blog Posts</a>
+                <a href="${prefix}karpelevich-proof-roadmap.html">Karpelevi&#x010D; Proof Series</a>
                 <a href="${prefix}about.html">About &amp; Contributing</a>
                 <a href="${prefix}problem-background.html">Theory Wiki</a>
                 <a href="${prefix}bibliography.html">Comprehensive Bibliography</a>
@@ -62,6 +63,7 @@
                 <a href="${prefix}karpelevich.html">Karpelevi&#x010D; Viewer</a>
                 <a href="${prefix}spectra-realizer.html">Spectra Realizer</a>
                 <a href="${prefix}trace-polytope.html">Trace Polytopes</a>
+                <a href="${prefix}character-cones.html">Character Cones ($n=5$)</a>
                 <a href="${prefix}personal/publications.html">Research Publications</a>
             </div>
             <div class="footer-links-group">

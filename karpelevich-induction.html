@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closing the Boundary: Old Arcs, New Arcs, and Induction · Inside Karpelevich’s Proof | NIEP Research Blog</title>
+    <meta name="description"
+        content="The final step of Karpelevich's proof: Farey intervals, inherited and new boundary arcs, strict interior-image polygons, and induction, with two interactive explorers. Stop 9 of Inside Karpelevich's Proof.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/karpelevich-induction.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Nonsensically Nonnegative">
+    <meta property="og:title" content="Closing the Boundary: Old Arcs, New Arcs, and Induction · Inside Karpelevich’s Proof | NIEP Research Blog">
+    <meta property="og:description" content="The final step of Karpelevich&#x27;s proof: Farey intervals, inherited and new boundary arcs, strict interior-image polygons, and induction, with two interactive explorers. Stop 9 of Inside Karpelevich&#x27;s Proof.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-induction.html">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/citations.js" defer></script>
+    <script src="js/karpelevich-induction.js" defer></script>
+    <!-- MathJax 3 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="theme-color" content="#faf8f2">
+    <script src="js/karpelevich-book-nav.js" defer></script>
+</head>
+
+<body class="hub-page">
+    <!-- Top Navigation Component -->
+    <hub-nav active="blog"></hub-nav>
+
+    <main class="deepdive-container essay-page" id="main-content">
+        <!-- Breadcrumb Navigation -->
+        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NIEP Hub</a>
+            <span>&rsaquo;</span>
+            <a href="blog.html">Blog Posts</a>
+            <span>&rsaquo;</span>
+            <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof</a>
+            <span>&rsaquo;</span>
+            <span>Closing the Boundary</span>
+        </nav>
+        <karpelevich-book-nav current="stop-9"></karpelevich-book-nav>
+
+        <!-- Editorial Hero -->
+        <header class="essay-hero">
+            <div class="essay-hero-inner">
+                <div>
+                    <div class="essay-eyebrow">Inside the original proof · Stop 9</div>
+                    <h1 class="essay-title">Closing the<br><em>Boundary</em></h1>
+                    <p class="essay-deck">Old arcs, new arcs, and induction.</p>
+                    <div class="essay-tags">
+                        <span>The denominator test</span>
+                        <span>Interior image vertices</span>
+                        <span>Theorem B</span>
+                    </div>
+                </div>
+                <div class="essay-hero-art">
+                    <svg viewBox="0 0 390 340" role="img" aria-label="The same endpoints bound an inherited arc at orders four and five and a farther arc at order six"><path d="M15.000,207.083L18.250,208.935L21.500,210.736L24.750,212.485L28.000,214.183L31.250,215.830L34.500,217.424L37.750,218.964L41.000,220.452L44.250,221.886L47.500,223.265L50.750,224.590L54.000,225.860L57.250,227.075L60.500,228.234L63.750,229.336L67.000,230.383L70.250,231.372L73.500,232.304L76.750,233.179L80.000,233.996L83.250,234.755L86.500,235.457L89.750,236.099L93.000,236.683L96.250,237.208L99.500,237.674L102.750,238.081L106.000,238.429L109.250,238.717L112.500,238.946L115.750,239.115L119.000,239.224L122.250,239.274L125.500,239.264L128.750,239.194L132.000,239.065L135.250,238.876L138.500,238.627L141.750,238.319L145.000,237.952L148.250,237.525L151.500,237.040L154.750,236.495L158.000,235.891L161.250,235.229L164.500,234.509L167.750,233.730L171.000,232.894L174.250,232.000L177.500,231.048L180.750,230.040L184.000,228.975L187.250,227.854L190.500,226.676L193.750,225.443L197.000,224.155L200.250,222.812L203.500,221.414L206.750,219.962L210.000,218.457L213.250,216.898L216.500,215.287L219.750,213.623L223.000,211.908L226.250,210.141L229.500,208.323L232.750,206.455L236.000,204.537L239.250,202.570L242.500,200.554L245.750,198.490L249.000,196.377L252.250,194.218L255.500,192.011L258.750,189.759L262.000,187.461L265.250,185.117L268.500,182.729L271.750,180.297L275.000,177.822L278.250,175.303L281.500,172.742L284.750,170.139L288.000,167.495L291.250,164.810L294.500,162.085L297.750,159.320L301.000,156.516L304.250,153.673L307.500,150.792L310.750,147.873L314.000,144.918L317.250,141.925L320.500,138.897L323.750,135.833L327.000,132.735L330.250,129.602L333.500,126.434L336.750,123.234L340.000,120.000" fill="none" stroke="#8da99b" stroke-width="3"/><path d="M340.000,120.000L336.750,123.202L333.500,126.308L330.250,129.322L327.000,132.245L323.750,135.080L320.500,137.829L317.250,140.495L314.000,143.078L310.750,145.581L307.500,148.007L304.250,150.356L301.000,152.632L297.750,154.835L294.500,156.968L291.250,159.033L288.000,161.030L284.750,162.962L281.500,164.831L278.250,166.638L275.000,168.384L271.750,170.072L268.500,171.702L265.250,173.276L262.000,174.796L258.750,176.263L255.500,177.679L252.250,179.044L249.000,180.360L245.750,181.629L242.500,182.851L239.250,184.028L236.000,185.162L232.750,186.253L229.500,187.302L226.250,188.311L223.000,189.281L219.750,190.213L216.500,191.107L213.250,191.966L210.000,192.790L206.750,193.580L203.500,194.337L200.250,195.062L197.000,195.756L193.750,196.420L190.500,197.054L187.250,197.661L184.000,198.240L180.750,198.792L177.500,199.319L174.250,199.821L171.000,200.298L167.750,200.753L164.500,201.185L161.250,201.595L158.000,201.984L154.750,202.352L151.500,202.701L148.250,203.031L145.000,203.343L141.750,203.637L138.500,203.915L135.250,204.176L132.000,204.421L128.750,204.651L125.500,204.866L122.250,205.068L119.000,205.257L115.750,205.432L112.500,205.595L109.250,205.747L106.000,205.887L102.750,206.017L99.500,206.137L96.250,206.246L93.000,206.347L89.750,206.439L86.500,206.523L83.250,206.598L80.000,206.667L76.750,206.728L73.500,206.783L70.250,206.832L67.000,206.875L63.750,206.912L60.500,206.945L57.250,206.973L54.000,206.997L50.750,207.017L47.500,207.034L44.250,207.048L41.000,207.058L37.750,207.067L34.500,207.073L31.250,207.077L28.000,207.080L24.750,207.082L21.500,207.083L18.250,207.083L15.000,207.083" fill="none" stroke="#9fceb0" stroke-width="3"/><circle cx="177.5" cy="231.048" r="6" fill="#e1ac69"/><circle cx="340" cy="120" r="4" fill="#cce1ce"/><circle cx="15" cy="207.083" r="4" fill="#cce1ce"/><g font-family="system-ui,sans-serif"><text x="354" y="118" fill="#cce1ce" font-size="20">i</text><text x="5" y="236" fill="#cce1ce" font-size="20">ω</text><text x="130" y="269" fill="#9bb7a5" font-size="17">n = 4 and 5</text><text x="223" y="172" fill="#b9ddbf" font-size="18">n = 6</text><text x="195" y="323" text-anchor="middle" fill="#bed8c2" font-size="17">Same endpoints. A farther frontier.</text></g></svg>
+                    <div class="essay-hero-caption">Between $i$ and $\omega$, the boundary arc stays fixed from $n=4$ to $n=5$, then moves outward at $n=6$.</div>
+                </div>
+            </div>
+        </header>
+
+        <noscript>
+            <p class="small-note">The article and four static figures remain readable without JavaScript. The angular-map and hexagon explorers require JavaScript.</p>
+        </noscript>
+
+        <div class="essay-layout">
+            <aside class="essay-side" aria-label="Article contents">
+                <div class="essay-side-title">The final comparison</div>
+                <ol>
+                    <li><a href="#1-nested-regions-do-not-have-nested-boundaries">Nested regions do not have nested boundaries</a></li>
+                    <li><a href="#2-the-final-arithmetic-test">The final arithmetic test</a></li>
+                    <li class="plain"><a href="#ancestry-lab">Interactive: Inherited vs. new arcs</a></li>
+                    <li><a href="#3-strictly-interior-images-exclude-a-boundary-point">Strictly interior images exclude a boundary point</a></li>
+                    <li><a href="#4-an-exact-old-point-that-order-six-buries">An exact old point that order six buries</a></li>
+                    <li class="plain"><a href="#margin-lab">Interactive: Hexagon radial margin</a></li>
+                    <li><a href="#5-how-the-induction-applies-this-exclusion-everywhere-needed">How the induction applies this exclusion everywhere needed</a></li>
+                    <li><a href="#6-the-two-cases-now-exhaust-the-boundary">The two cases now exhaust the boundary</a></li>
+                    <li><a href="#7-what-the-series-has-established">What the series has established</a></li>
+                    <li class="plain"><a href="#source-and-scope">Source and scope</a></li>
+                </ol>
+                <div class="essay-side-note">Locate the new sectors.<br>Bury the old frontier there.<br>Inherit the remaining arcs.</div>
+            </aside>
+
+            <article class="essay" id="article">
+                <p class="essay-lead">
+                    We have reached the last comparison. The contact equations produce algebraic candidates. The angular estimates place them between the right roots of unity. The cyclic polygons describe the whole eigenvalue region. What remains is to decide which pieces form its boundary at each order.
+                </p>
+                <p>
+                    The regions are nested:
+                </p>
+                <div class="theory-formula">
+                    $$\mathcal K_{n-1}\subseteq\mathcal K_n.$$
+                </div>
+                <p>
+                    An old boundary point stays realizable. It may remain on the outside, or the larger order may put new realizable points beyond it. Karpelevich's final induction separates those possibilities.
+                </p>
+                <p>
+                    The answer involves a surprisingly simple arithmetic test. The geometric reason behind it is that <strong>a polygon whose image vertices all lie strictly inside has room to realize nearby multipliers</strong>.
+                </p>
+
+                <section class="essay-section" id="1-nested-regions-do-not-have-nested-boundaries">
+                    <h2>Nested regions do not have nested boundaries</h2>
+                    <p>
+                        Write directions in turns, and let
+                    </p>
+                    <div class="theory-formula">
+                        $$R_n(\theta)=\max\{r\geq0:re^{2\pi i\theta}\in\mathcal K_n\}.$$
+                    </div>
+                    <p>
+                        Compactness makes this maximum exist. The invariant-polygon correspondence gives the radial segment beneath it. Nesting tells us $R_n(\theta)\geq R_{n-1}(\theta)$; it does not decide whether equality holds.
+                    </p>
+                    <p>
+                        Let $\Gamma_n$ denote this radial outer frontier. We will work in open angular sectors between the unit-circle landmarks, treating the landmarks and the real-axis endpoints separately.
+                    </p>
+                    <p>
+                        Our running example is the sector
+                    </p>
+                    <div class="theory-formula">
+                        $$\frac14&lt;\theta&lt;\frac13,$$
+                    </div>
+                    <p>
+                        between $i$ and $\omega=e^{2\pi i/3}$. Its order-four arc survives unchanged at order five. At order six it moves outward, although its two endpoint labels stay the same.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="01-same-endpoints-new-boundary-title 01-same-endpoints-new-boundary-desc"><title id="01-same-endpoints-new-boundary-title">Same endpoints, different outer arcs</title><desc id="01-same-endpoints-new-boundary-desc">The exact radical parameterizations show the common order-four and order-five arc from i to the cubic root of unity, and the order-six arc farther out. Lambda zero is an exact old boundary point; nu is its radial expansion by 33 over 32.</desc><rect width="960" height="520" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">SAME ENDPOINTS · A NEW BOUNDARY WITHOUT A NEW LANDMARK</text><path d="M79.6000,388.0000L583.6000,388.0000" fill="none" stroke="#dbe3d9" stroke-width="1" stroke-dasharray=""/><text x="62.000" y="393.000" fill="#607b7e" font-size="12" text-anchor="end">0.8</text><path d="M79.6000,304.0000L583.6000,304.0000" fill="none" stroke="#dbe3d9" stroke-width="1" stroke-dasharray=""/><text x="62.000" y="309.000" fill="#607b7e" font-size="12" text-anchor="end">0.9</text><path d="M79.6000,220.0000L583.6000,220.0000" fill="none" stroke="#dbe3d9" stroke-width="1" stroke-dasharray=""/><text x="62.000" y="225.000" fill="#607b7e" font-size="12" text-anchor="end">1.0</text><path d="M130.0000,404.8000L130.0000,186.4000" fill="none" stroke="#e4e8df" stroke-width="1" stroke-dasharray=""/><text x="130.000" y="429.000" fill="#607b7e" font-size="12" text-anchor="middle">−0.5</text><path d="M340.0000,404.8000L340.0000,186.4000" fill="none" stroke="#e4e8df" stroke-width="1" stroke-dasharray=""/><text x="340.000" y="429.000" fill="#607b7e" font-size="12" text-anchor="middle">−0.25</text><path d="M550.0000,404.8000L550.0000,186.4000" fill="none" stroke="#e4e8df" stroke-width="1" stroke-dasharray=""/><text x="550.000" y="429.000" fill="#607b7e" font-size="12" text-anchor="middle">0</text><path d="M130.0000,332.5387L131.4000,333.3434L132.8000,334.1408L134.2000,334.9311L135.6000,335.7141L137.0000,336.4898L138.4000,337.2582L139.8000,338.0193L141.2000,338.7730L142.6000,339.5194L144.0000,340.2584L145.4000,340.9899L146.8000,341.7140L148.2000,342.4307L149.6000,343.1398L151.0000,343.8415L152.4000,344.5356L153.8000,345.2222L155.2000,345.9012L156.6000,346.5726L158.0000,347.2364L159.4000,347.8925L160.8000,348.5410L162.2000,349.1818L163.6000,349.8149L165.0000,350.4403L166.4000,351.0579L167.8000,351.6678L169.2000,352.2699L170.6000,352.8642L172.0000,353.4506L173.4000,354.0293L174.8000,354.6000L176.2000,355.1629L177.6000,355.7179L179.0000,356.2650L180.4000,356.8041L181.8000,357.3353L183.2000,357.8585L184.6000,358.3737L186.0000,358.8809L187.4000,359.3801L188.8000,359.8712L190.2000,360.3543L191.6000,360.8293L193.0000,361.2962L194.4000,361.7550L195.8000,362.2057L197.2000,362.6482L198.6000,363.0826L200.0000,363.5088L201.4000,363.9268L202.8000,364.3366L204.2000,364.7382L205.6000,365.1316L207.0000,365.5167L208.4000,365.8936L209.8000,366.2622L211.2000,366.6225L212.6000,366.9745L214.0000,367.3183L215.4000,367.6536L216.8000,367.9807L218.2000,368.2994L219.6000,368.6097L221.0000,368.9117L222.4000,369.2053L223.8000,369.4905L225.2000,369.7673L226.6000,370.0357L228.0000,370.2957L229.4000,370.5473L230.8000,370.7904L232.2000,371.0250L233.6000,371.2512L235.0000,371.4690L236.4000,371.6782L237.8000,371.8790L239.2000,372.0713L240.6000,372.2551L242.0000,372.4304L243.4000,372.5971L244.8000,372.7554L246.2000,372.9052L247.6000,373.0464L249.0000,373.1791L250.4000,373.3032L251.8000,373.4188L253.2000,373.5259L254.6000,373.6244L256.0000,373.7143L257.4000,373.7957L258.8000,373.8686L260.2000,373.9329L261.6000,373.9886L263.0000,374.0357L264.4000,374.0743L265.8000,374.1043L267.2000,374.1257L268.6000,374.1386L270.0000,374.1429L271.4000,374.1386L272.8000,374.1257L274.2000,374.1043L275.6000,374.0743L277.0000,374.0357L278.4000,373.9886L279.8000,373.9329L281.2000,373.8686L282.6000,373.7957L284.0000,373.7143L285.4000,373.6244L286.8000,373.5259L288.2000,373.4188L289.6000,373.3032L291.0000,373.1791L292.4000,373.0464L293.8000,372.9052L295.2000,372.7554L296.6000,372.5971L298.0000,372.4304L299.4000,372.2551L300.8000,372.0713L302.2000,371.8790L303.6000,371.6782L305.0000,371.4690L306.4000,371.2512L307.8000,371.0250L309.2000,370.7904L310.6000,370.5473L312.0000,370.2957L313.4000,370.0357L314.8000,369.7673L316.2000,369.4905L317.6000,369.2053L319.0000,368.9117L320.4000,368.6097L321.8000,368.2994L323.2000,367.9807L324.6000,367.6536L326.0000,367.3183L327.4000,366.9745L328.8000,366.6225L330.2000,366.2622L331.6000,365.8936L333.0000,365.5167L334.4000,365.1316L335.8000,364.7382L337.2000,364.3366L338.6000,363.9268L340.0000,363.5088L341.4000,363.0826L342.8000,362.6482L344.2000,362.2057L345.6000,361.7550L347.0000,361.2962L348.4000,360.8293L349.8000,360.3543L351.2000,359.8712L352.6000,359.3801L354.0000,358.8809L355.4000,358.3737L356.8000,357.8585L358.2000,357.3353L359.6000,356.8041L361.0000,356.2650L362.4000,355.7179L363.8000,355.1629L365.2000,354.6000L366.6000,354.0293L368.0000,353.4506L369.4000,352.8642L370.8000,352.2699L372.2000,351.6678L373.6000,351.0579L375.0000,350.4403L376.4000,349.8149L377.8000,349.1818L379.2000,348.5410L380.6000,347.8925L382.0000,347.2364L383.4000,346.5726L384.8000,345.9012L386.2000,345.2222L387.6000,344.5356L389.0000,343.8415L390.4000,343.1398L391.8000,342.4307L393.2000,341.7140L394.6000,340.9899L396.0000,340.2584L397.4000,339.5194L398.8000,338.7730L400.2000,338.0193L401.6000,337.2582L403.0000,336.4898L404.4000,335.7141L405.8000,334.9311L407.2000,334.1408L408.6000,333.3434L410.0000,332.5387L411.4000,331.7268L412.8000,330.9077L414.2000,330.0816L415.6000,329.2483L417.0000,328.4079L418.4000,327.5605L419.8000,326.7060L421.2000,325.8445L422.6000,324.9760L424.0000,324.1006L425.4000,323.2182L426.8000,322.3289L428.2000,321.4327L429.6000,320.5296L431.0000,319.6197L432.4000,318.7030L433.8000,317.7795L435.2000,316.8492L436.6000,315.9122L438.0000,314.9685L439.4000,314.0180L440.8000,313.0610L442.2000,312.0973L443.6000,311.1269L445.0000,310.1500L446.4000,309.1665L447.8000,308.1765L449.2000,307.1800L450.6000,306.1770L452.0000,305.1676L453.4000,304.1517L454.8000,303.1294L456.2000,302.1007L457.6000,301.0657L459.0000,300.0243L460.4000,298.9767L461.8000,297.9228L463.2000,296.8626L464.6000,295.7962L466.0000,294.7236L467.4000,293.6448L468.8000,292.5599L470.2000,291.4689L471.6000,290.3717L473.0000,289.2685L474.4000,288.1593L475.8000,287.0440L477.2000,285.9228L478.6000,284.7956L480.0000,283.6624L481.4000,282.5234L482.8000,281.3784L484.2000,280.2276L485.6000,279.0710L487.0000,277.9086L488.4000,276.7403L489.8000,275.5664L491.2000,274.3867L492.6000,273.2012L494.0000,272.0102L495.4000,270.8134L496.8000,269.6110L498.2000,268.4031L499.6000,267.1895L501.0000,265.9704L502.4000,264.7458L503.8000,263.5156L505.2000,262.2800L506.6000,261.0390L508.0000,259.7925L509.4000,258.5407L510.8000,257.2834L512.2000,256.0208L513.6000,254.7529L515.0000,253.4797L516.4000,252.2012L517.8000,250.9175L519.2000,249.6285L520.6000,248.3344L522.0000,247.0351L523.4000,245.7306L524.8000,244.4210L526.2000,243.1063L527.6000,241.7865L529.0000,240.4617L530.4000,239.1319L531.8000,237.7970L533.2000,236.4572L534.6000,235.1124L536.0000,233.7627L537.4000,232.4081L538.8000,231.0487L540.2000,229.6843L541.6000,228.3152L543.0000,226.9412L544.4000,225.5624L545.8000,224.1789L547.2000,222.7906L548.6000,221.3977L550.0000,220.0000" fill="none" stroke="#9aaba4" stroke-width="3.2" stroke-dasharray=""/><path d="M550.0000,220.0000L548.6000,221.3930L547.2000,222.7722L545.8000,224.1375L544.4000,225.4892L543.0000,226.8274L541.6000,228.1521L540.2000,229.4636L538.8000,230.7618L537.4000,232.0469L536.0000,233.3190L534.6000,234.5783L533.2000,235.8248L531.8000,237.0586L530.4000,238.2798L529.0000,239.4886L527.6000,240.6850L526.2000,241.8692L524.8000,243.0412L523.4000,244.2011L522.0000,245.3492L520.6000,246.4853L519.2000,247.6097L517.8000,248.7225L516.4000,249.8237L515.0000,250.9134L513.6000,251.9917L512.2000,253.0588L510.8000,254.1147L509.4000,255.1595L508.0000,256.1934L506.6000,257.2163L505.2000,258.2284L503.8000,259.2298L502.4000,260.2206L501.0000,261.2008L499.6000,262.1705L498.2000,263.1299L496.8000,264.0791L495.4000,265.0180L494.0000,265.9468L492.6000,266.8656L491.2000,267.7745L489.8000,268.6735L488.4000,269.5627L487.0000,270.4423L485.6000,271.3122L484.2000,272.1726L482.8000,273.0236L481.4000,273.8652L480.0000,274.6975L478.6000,275.5206L477.2000,276.3346L475.8000,277.1396L474.4000,277.9355L473.0000,278.7226L471.6000,279.5009L470.2000,280.2704L468.8000,281.0312L467.4000,281.7834L466.0000,282.5272L464.6000,283.2624L463.2000,283.9894L461.8000,284.7080L460.4000,285.4183L459.0000,286.1205L457.6000,286.8147L456.2000,287.5008L454.8000,288.1789L453.4000,288.8492L452.0000,289.5117L450.6000,290.1664L449.2000,290.8135L447.8000,291.4530L446.4000,292.0849L445.0000,292.7093L443.6000,293.3263L442.2000,293.9360L440.8000,294.5385L439.4000,295.1337L438.0000,295.7217L436.6000,296.3027L435.2000,296.8767L433.8000,297.4437L432.4000,298.0038L431.0000,298.5571L429.6000,299.1036L428.2000,299.6433L426.8000,300.1765L425.4000,300.7030L424.0000,301.2230L422.6000,301.7366L421.2000,302.2437L419.8000,302.7445L418.4000,303.2390L417.0000,303.7273L415.6000,304.2093L414.2000,304.6853L412.8000,305.1551L411.4000,305.6190L410.0000,306.0769L408.6000,306.5289L407.2000,306.9751L405.8000,307.4155L404.4000,307.8501L403.0000,308.2791L401.6000,308.7024L400.2000,309.1202L398.8000,309.5324L397.4000,309.9392L396.0000,310.3405L394.6000,310.7365L393.2000,311.1271L391.8000,311.5125L390.4000,311.8927L389.0000,312.2677L387.6000,312.6376L386.2000,313.0024L384.8000,313.3623L383.4000,313.7171L382.0000,314.0670L380.6000,314.4121L379.2000,314.7523L377.8000,315.0878L376.4000,315.4185L375.0000,315.7445L373.6000,316.0660L372.2000,316.3828L370.8000,316.6951L369.4000,317.0028L368.0000,317.3062L366.6000,317.6051L365.2000,317.8996L363.8000,318.1899L362.4000,318.4758L361.0000,318.7575L359.6000,319.0351L358.2000,319.3085L356.8000,319.5778L355.4000,319.8430L354.0000,320.1042L352.6000,320.3614L351.2000,320.6147L349.8000,320.8641L348.4000,321.1096L347.0000,321.3514L345.6000,321.5893L344.2000,321.8236L342.8000,322.0541L341.4000,322.2810L340.0000,322.5042L338.6000,322.7239L337.2000,322.9401L335.8000,323.1527L334.4000,323.3619L333.0000,323.5677L331.6000,323.7701L330.2000,323.9691L328.8000,324.1648L327.4000,324.3573L326.0000,324.5465L324.6000,324.7325L323.2000,324.9154L321.8000,325.0951L320.4000,325.2717L319.0000,325.4453L317.6000,325.6158L316.2000,325.7834L314.8000,325.9480L313.4000,326.1097L312.0000,326.2685L310.6000,326.4244L309.2000,326.5775L307.8000,326.7279L306.4000,326.8755L305.0000,327.0203L303.6000,327.1625L302.2000,327.3020L300.8000,327.4389L299.4000,327.5732L298.0000,327.7050L296.6000,327.8342L295.2000,327.9609L293.8000,328.0852L292.4000,328.2070L291.0000,328.3264L289.6000,328.4435L288.2000,328.5582L286.8000,328.6706L285.4000,328.7807L284.0000,328.8885L282.6000,328.9941L281.2000,329.0976L279.8000,329.1988L278.4000,329.2979L277.0000,329.3950L275.6000,329.4899L274.2000,329.5828L272.8000,329.6736L271.4000,329.7625L270.0000,329.8493L268.6000,329.9343L267.2000,330.0173L265.8000,330.0984L264.4000,330.1777L263.0000,330.2551L261.6000,330.3307L260.2000,330.4045L258.8000,330.4766L257.4000,330.5469L256.0000,330.6156L254.6000,330.6825L253.2000,330.7478L251.8000,330.8115L250.4000,330.8735L249.0000,330.9340L247.6000,330.9929L246.2000,331.0503L244.8000,331.1061L243.4000,331.1605L242.0000,331.2134L240.6000,331.2649L239.2000,331.3150L237.8000,331.3637L236.4000,331.4110L235.0000,331.4569L233.6000,331.5016L232.2000,331.5449L230.8000,331.5870L229.4000,331.6278L228.0000,331.6673L226.6000,331.7057L225.2000,331.7429L223.8000,331.7789L222.4000,331.8137L221.0000,331.8475L219.6000,331.8801L218.2000,331.9116L216.8000,331.9421L215.4000,331.9716L214.0000,332.0000L212.6000,332.0274L211.2000,332.0539L209.8000,332.0794L208.4000,332.1039L207.0000,332.1275L205.6000,332.1503L204.2000,332.1721L202.8000,332.1931L201.4000,332.2132L200.0000,332.2326L198.6000,332.2511L197.2000,332.2688L195.8000,332.2858L194.4000,332.3020L193.0000,332.3175L191.6000,332.3323L190.2000,332.3464L188.8000,332.3598L187.4000,332.3726L186.0000,332.3847L184.6000,332.3962L183.2000,332.4071L181.8000,332.4175L180.4000,332.4272L179.0000,332.4364L177.6000,332.4451L176.2000,332.4533L174.8000,332.4609L173.4000,332.4681L172.0000,332.4749L170.6000,332.4811L169.2000,332.4870L167.8000,332.4924L166.4000,332.4974L165.0000,332.5021L163.6000,332.5063L162.2000,332.5103L160.8000,332.5138L159.4000,332.5171L158.0000,332.5201L156.6000,332.5228L155.2000,332.5252L153.8000,332.5273L152.4000,332.5292L151.0000,332.5309L149.6000,332.5324L148.2000,332.5336L146.8000,332.5347L145.4000,332.5356L144.0000,332.5364L142.6000,332.5370L141.2000,332.5375L139.8000,332.5379L138.4000,332.5382L137.0000,332.5384L135.6000,332.5385L134.2000,332.5386L132.8000,332.5386L131.4000,332.5387L130.0000,332.5387" fill="none" stroke="#168579" stroke-width="3.2" stroke-dasharray=""/><circle cx="550.0000" cy="220.0000" r="5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><text x="560.000" y="210.000" fill="#17343f" font-size="20" text-anchor="start">i</text><circle cx="130.0000" cy="332.5387" r="5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><text x="106.000" y="322.539" fill="#17343f" font-size="20" text-anchor="start">ω</text><circle cx="340.0000" cy="363.5088" r="5" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><text x="350.000" y="387.509" fill="#d98026" font-size="20" text-anchor="start">λ₀</text><circle cx="333.4375" cy="341.7434" r="5" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><text x="308.438" y="355.743" fill="#d98026" font-size="20" text-anchor="start">ν</text><path d="M340.0000,363.5088L333.4375,341.7434" fill="none" stroke="#d98026" stroke-width="2.2" stroke-dasharray=""/><text x="244.000" y="400.000" fill="#607b7e" font-size="17" text-anchor="start">n = 4 and 5</text><text x="370.000" y="279.000" fill="#168579" font-size="18" text-anchor="start">n = 6</text><text x="632.000" y="132.000" fill="#17343f" font-size="24" text-anchor="start">1/4 &lt; θ &lt; 1/3</text><text x="632.000" y="196.000" fill="#607b7e" font-size="17" text-anchor="start">Endpoint denominators: 4, 3</text><text x="632.000" y="247.000" fill="#607b7e" font-size="17" text-anchor="start">At n = 5: neither divides.</text><text x="632.000" y="284.000" fill="#168579" font-size="17" text-anchor="start">At n = 6: 3 divides.</text><text x="632.000" y="347.000" fill="#17343f" font-size="23" text-anchor="start">4 + 3 = 7 &gt; 6</text><text x="632.000" y="386.000" fill="#607b7e" font-size="16" text-anchor="start">No landmark enters this gap.</text><text x="35.000" y="486.000" fill="#607b7e" font-size="17" text-anchor="start">The old curve stays realizable at order six; a larger region puts it inside.</text></g></svg></div>
+          </figure>
+          <p class="essay-caption">Figure 1. These curves are drawn from explicit algebraic parameterizations, without numerical root tracking. Gray is the common order-four and order-five arc; teal is the order-six arc. The amber point is $\lambda_0=(-1+i\sqrt{11})/4$ on the old arc.</p>
+
+                    <p>
+                        This cannot be explained by inserting a new unit-circle landmark: the first fraction between $1/4$ and $1/3$ has denominator $4+3=7$.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="2-the-final-arithmetic-test">
+                    <h2>The final arithmetic test</h2>
+                    <p>
+                        Take neighboring reduced fractions $a/b&lt;c/d$ in the Farey sequence $F_n$. From <a href="karpelevich-farey.html">stop 7</a>,
+                    </p>
+                    <div class="theory-formula">
+                        $$bc-ad=1,\qquad b+d&gt;n.$$
+                    </div>
+                    <p>
+                        The final induction gives the following rule for the open arc in that sector, with the order-four case supplied as the base:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Denominators at order $n$</th>
+                                    <th>What happens to the arc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Neither $b$ nor $d$ divides $n$</td>
+                                    <td>It is inherited from order $n-1$.</td>
+                                </tr>
+                                <tr>
+                                    <td>At least one of $b,d$ divides $n$</td>
+                                    <td>Its open outer arc is new at order $n$.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        “New” here means outside $\mathcal K_{n-1}$. It does not require new endpoint landmarks.
+                    </p>
+                    <p>
+                        There are two ways the second row can occur. A denominator equal to $n$ introduces a new primitive $n$th root. A proper divisor of $n$ is an existing endpoint whose neighboring arc can change when the order increases.
+                    </p>
+                    <p>
+                        The elementary identity behind the bookkeeping is
+                    </p>
+                    <div class="theory-formula">
+                        $$\left\lfloor\frac n b\right\rfloor=
+\left\lfloor\frac{n-1}{b}\right\rfloor
+\quad\Longleftrightarrow\quad b\nmid n.$$
+                    </div>
+                    <p>
+                        If neither denominator divides $n$, both already occur in $F_{n-1}$, the pair is still neighboring there, and the relevant division quotients remain unchanged. This preserves the inductive equation data. The geometric argument below is what proves that the old curve remains outermost.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 545" role="img" aria-labelledby="02-order-eight-angular-map-title 02-order-eight-angular-map-desc"><title id="02-order-eight-angular-map-title">Inherited and new arcs at order eight</title><desc id="02-order-eight-angular-map-desc">Farey gaps on an upper semicircle are colored teal if an endpoint denominator divides eight and gray otherwise. There are seven new arcs and four inherited arcs. The radius of the semicircle is only a guide to direction.</desc><rect width="960" height="545" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">ORDER EIGHT · WHICH OPEN ARCS ARE INHERITED?</text><path d="M45.0000,350.0000L505.0000,350.0000" fill="none" stroke="#dbe3d9" stroke-width="1" stroke-dasharray=""/><path d="M480.0000,350.0000L479.9595,345.8769L479.8381,341.7554L479.6358,337.6371L479.3526,333.5236L478.9888,329.4164L478.5444,325.3171L478.0196,321.2274L477.4146,317.1488L476.7296,313.0828L475.9649,309.0310L475.1208,304.9951L474.1977,300.9765L473.1958,296.9768L472.1156,292.9975L470.9575,289.0402L469.7219,285.1064L468.4093,281.1977L467.0202,277.3154L465.5551,273.4612L464.0147,269.6365L462.3995,265.8427L460.7101,262.0815L458.9471,258.3541L457.1114,254.6620L455.2035,251.0067L453.2242,247.3895L451.1742,243.8120L449.0544,240.2753L446.8656,236.7810L444.6086,233.3303L442.2843,229.9245L439.8936,226.5651L437.4373,223.2533L434.9166,219.9903L432.3322,216.7774L429.6853,213.6159L426.9767,210.5070L424.2077,207.4518L421.3793,204.4517L418.4924,201.5076" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M418.4924,201.5076L418.0753,201.0916L417.6571,200.6769L417.2376,200.2633L416.8170,199.8509L416.3953,199.4396L415.9724,199.0296L415.5483,198.6207L415.1232,198.2131L414.6968,197.8066L414.2694,197.4013L413.8407,196.9973L413.4110,196.5944L412.9801,196.1927L412.5482,195.7923L412.1150,195.3930L411.6808,194.9950L411.2455,194.5982L410.8090,194.2026L410.3714,193.8083L409.9328,193.4151L409.4930,193.0233L409.0521,192.6326L408.6102,192.2432L408.1671,191.8550L407.7230,191.4681L407.2778,191.0824L406.8315,190.6979L406.3841,190.3147L405.9356,189.9328L405.4861,189.5522L405.0355,189.1727L404.5839,188.7946L404.1312,188.4177L403.6774,188.0421L403.2226,187.6678L402.7667,187.2948L402.3098,186.9230L401.8519,186.5525L401.3929,186.1833L400.9329,185.8154" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M400.9329,185.8154L400.3179,185.3269L399.7011,184.8406L399.0825,184.3567L398.4621,183.8751L397.8399,183.3958L397.2159,182.9188L396.5901,182.4442L395.9626,181.9720L395.3333,181.5020L394.7022,181.0345L394.0694,180.5693L393.4349,180.1064L392.7986,179.6460L392.1607,179.1879L391.5210,178.7322L390.8796,178.2789L390.2365,177.8280L389.5917,177.3796L388.9453,176.9335L388.2972,176.4899L387.6475,176.0486L386.9961,175.6099L386.3430,175.1735L385.6884,174.7396L385.0321,174.3082L384.3742,173.8792L383.7147,173.4527L383.0536,173.0286L382.3910,172.6070L381.7267,172.1879L381.0609,171.7713L380.3936,171.3572L379.7247,170.9456L379.0543,170.5364L378.3823,170.1298L377.7088,169.7258L377.0339,169.3242L376.3574,168.9251L375.6794,168.5286L375.0000,168.1347" fill="none" stroke="#9aaba4" stroke-width="5" stroke-dasharray=""/><path d="M375.0000,168.1347L374.0463,167.5874L373.0898,167.0451L372.1304,166.5078L371.1683,165.9756L370.2033,165.4484L369.2357,164.9263L368.2653,164.4092L367.2922,163.8972L366.3164,163.3904L365.3380,162.8886L364.3570,162.3920L363.3734,161.9005L362.3872,161.4142L361.3985,160.9331L360.4073,160.4571L359.4137,159.9863L358.4175,159.5208L357.4190,159.0604L356.4180,158.6053L355.4147,158.1555L354.4090,157.7109L353.4011,157.2715L352.3908,156.8375L351.3783,156.4087L350.3635,155.9853L349.3466,155.5672L348.3274,155.1544L347.3062,154.7469L346.2828,154.3448L345.2573,153.9481L344.2297,153.5568L343.2001,153.1708L342.1685,152.7902L341.1350,152.4150L340.0994,152.0453L339.0620,151.6810L338.0227,151.3221L336.9815,150.9686L335.9384,150.6206L334.8936,150.2781" fill="none" stroke="#9aaba4" stroke-width="5" stroke-dasharray=""/><path d="M334.8936,150.2781L333.3230,149.7746L331.7485,149.2835L330.1702,148.8047L328.5881,148.3383L327.0025,147.8844L325.4133,147.4429L323.8208,147.0140L322.2249,146.5975L320.6258,146.1936L319.0235,145.8023L317.4183,145.4236L315.8101,145.0575L314.1991,144.7040L312.5853,144.3632L310.9690,144.0351L309.3501,143.7197L307.7288,143.4170L306.1051,143.1270L304.4792,142.8499L302.8512,142.5854L301.2212,142.3338L299.5893,142.0950L297.9555,141.8691L296.3200,141.6559L294.6829,141.4556L293.0442,141.2682L291.4041,141.0937L289.7627,140.9320L288.1201,140.7832L286.4764,140.6474L284.8317,140.5244L283.1860,140.4144L281.5395,140.3173L279.8924,140.2331L278.2446,140.1619L276.5963,140.1036L274.9476,140.0583L273.2985,140.0259L271.6493,140.0065L270.0000,140.0000" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M270.0000,140.0000L268.8219,140.0033L267.6439,140.0132L266.4659,140.0297L265.2880,140.0529L264.1103,140.0826L262.9328,140.1190L261.7554,140.1619L260.5784,140.2115L259.4016,140.2676L258.2252,140.3304L257.0492,140.3997L255.8735,140.4757L254.6983,140.5582L253.5236,140.6474L252.3494,140.7431L251.1757,140.8454L250.0027,140.9543L248.8303,141.0698L247.6585,141.1918L246.4875,141.3204L245.3171,141.4556L244.1476,141.5974L242.9789,141.7457L241.8110,141.9006L240.6440,142.0620L239.4780,142.2299L238.3129,142.4044L237.1488,142.5854L235.9857,142.7730L234.8237,142.9671L233.6628,143.1677L232.5031,143.3748L231.3445,143.5884L230.1871,143.8085L229.0310,144.0351L227.8762,144.2682L226.7227,144.5077L225.5706,144.7537L224.4199,145.0062L223.2706,145.2651" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M223.2706,145.2651L221.7405,145.6204L220.2131,145.9871L218.6885,146.3652L217.1668,146.7547L215.6480,147.1556L214.1323,147.5678L212.6197,147.9913L211.1102,148.4262L209.6041,148.8723L208.1014,149.3297L206.6021,149.7983L205.1064,150.2781L203.6143,150.7691L202.1260,151.2712L200.6414,151.7845L199.1607,152.3088L197.6840,152.8442L196.2113,153.3907L194.7427,153.9481L193.2784,154.5165L191.8183,155.0959L190.3627,155.6861L188.9114,156.2872L187.4647,156.8992L186.0227,157.5219L184.5853,158.1555L183.1527,158.7997L181.7250,159.4547L180.3022,160.1203L178.8844,160.7965L177.4717,161.4834L176.0642,162.1807L174.6620,162.8886L173.2651,163.6070L171.8736,164.3358L170.4876,165.0749L169.1071,165.8245L167.7323,166.5843L166.3633,167.3544L165.0000,168.1347" fill="none" stroke="#9aaba4" stroke-width="5" stroke-dasharray=""/><path d="M165.0000,168.1347L163.8120,168.8258L162.6285,169.5247L161.4496,170.2313L160.2753,170.9456L159.1058,171.6675L157.9410,172.3972L156.7810,173.1344L155.6258,173.8792L154.4756,174.6315L153.3303,175.3914L152.1899,176.1587L151.0547,176.9335L149.9245,177.7157L148.7995,178.5053L147.6797,179.3022L146.5651,180.1064L145.4558,180.9179L144.3518,181.7367L143.2533,182.5627L142.1601,183.3958L141.0724,184.2361L139.9903,185.0834L138.9137,185.9379L137.8427,186.7993L136.7774,187.6678L135.7178,188.5432L134.6640,189.4255L133.6159,190.3147L132.5737,191.2108L131.5374,192.1136L130.5070,193.0233L129.4826,193.9396L128.4642,194.8626L127.4518,195.7923L126.4456,196.7285L125.4455,197.6714L124.4517,198.6207L123.4640,199.5766L122.4826,200.5389L121.5076,201.5076" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M121.5076,201.5076L120.9256,202.0918L120.3459,202.6784L119.7685,203.2672L119.1935,203.8583L118.6207,204.4517L118.0503,205.0472L117.4823,205.6451L116.9166,206.2451L116.3532,206.8474L115.7923,207.4518L115.2337,208.0585L114.6775,208.6674L114.1237,209.2784L113.5722,209.8916L113.0233,210.5070L112.4767,211.1245L111.9325,211.7442L111.3908,212.3660L110.8516,212.9899L110.3147,213.6159L109.7804,214.2440L109.2485,214.8743L108.7191,215.5066L108.1922,216.1410L107.6678,216.7774L107.1459,217.4159L106.6265,218.0565L106.1096,218.6990L105.5953,219.3436L105.0834,219.9903L104.5742,220.6389L104.0674,221.2895L103.5633,221.9421L103.0617,222.5967L102.5627,223.2533L102.0662,223.9118L101.5724,224.5722L101.0811,225.2346L100.5925,225.8989L100.1064,226.5651" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><path d="M100.1064,226.5651L99.5542,227.3288L99.0053,228.0950L98.4600,228.8637L97.9180,229.6347L97.3796,230.4083L96.8446,231.1842L96.3131,231.9625L95.7851,232.7432L95.2606,233.5262L94.7396,234.3116L94.2222,235.0994L93.7083,235.8894L93.1979,236.6817L92.6911,237.4764L92.1879,238.2733L91.6883,239.0724L91.1922,239.8738L90.6998,240.6774L90.2110,241.4832L89.7258,242.2912L89.2442,243.1013L88.7662,243.9136L88.2919,244.7280L87.8213,245.5446L87.3544,246.3633L86.8911,247.1840L86.4315,248.0069L85.9756,248.8317L85.5234,249.6586L85.0749,250.4876L84.6302,251.3185L84.1892,252.1515L83.7519,252.9864L83.3184,253.8232L82.8886,254.6620L82.4626,255.5027L82.0404,256.3453L81.6220,257.1898L81.2074,258.0362L80.7965,258.8844" fill="none" stroke="#9aaba4" stroke-width="5" stroke-dasharray=""/><path d="M80.7965,258.8844L79.7862,261.0130L78.7997,263.1527L77.8373,265.3034L76.8992,267.4647L75.9853,269.6365L75.0959,271.8183L74.2309,274.0100L73.3907,276.2113L72.5752,278.4218L71.7845,280.6414L71.0188,282.8697L70.2781,285.1064L69.5626,287.3513L68.8723,289.6041L68.2074,291.8645L67.5678,294.1323L66.9537,296.4070L66.3652,298.6885L65.8023,300.9765L65.2651,303.2706L64.7537,305.5706L64.2682,307.8762L63.8085,310.1871L63.3748,312.5031L62.9671,314.8237L62.5854,317.1488L62.2299,319.4780L61.9006,321.8110L61.5974,324.1476L61.3204,326.4875L61.0698,328.8303L60.8454,331.1757L60.6474,333.5236L60.4757,335.8735L60.3304,338.2252L60.2115,340.5784L60.1190,342.9328L60.0529,345.2880L60.0132,347.6439L60.0000,350.0000" fill="none" stroke="#168579" stroke-width="5" stroke-dasharray=""/><circle cx="480.0000" cy="350.0000" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="418.4924" cy="201.5076" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="400.9329" cy="185.8154" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="375.0000" cy="168.1347" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="334.8936" cy="150.2781" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="270.0000" cy="140.0000" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="223.2706" cy="145.2651" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="165.0000" cy="168.1347" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="121.5076" cy="201.5076" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="100.1064" cy="226.5651" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="80.7965" cy="258.8844" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><circle cx="60.0000" cy="350.0000" r="3.5" fill="#17343f" stroke="#17343f" stroke-width="1.6"/><text x="505.000" y="355.000" fill="#17343f" font-size="15" text-anchor="middle">0/1</text><text x="270.000" y="116.000" fill="#17343f" font-size="15" text-anchor="middle">1/4</text><text x="217.271" y="120.265" fill="#17343f" font-size="15" text-anchor="middle">2/7</text><text x="153.000" y="150.135" fill="#17343f" font-size="15" text-anchor="middle">1/3</text><text x="101.508" y="193.508" fill="#17343f" font-size="15" text-anchor="middle">3/8</text><text x="38.000" y="355.000" fill="#17343f" font-size="15" text-anchor="middle">1/2</text><text x="60.000" y="421.000" fill="#168579" font-size="22" text-anchor="start">7 new upper-half arcs</text><text x="60.000" y="462.000" fill="#607b7e" font-size="21" text-anchor="start">4 inherited upper-half arcs</text><text x="570.000" y="126.000" fill="#168579" font-size="13" text-anchor="start">New endpoint</text><text x="570.000" y="158.000" fill="#17343f" font-size="23" text-anchor="start">1/3 ↔ 3/8</text><text x="570.000" y="217.000" fill="#168579" font-size="13" text-anchor="start">Existing endpoints, new arc</text><text x="570.000" y="249.000" fill="#17343f" font-size="23" text-anchor="start">1/4 ↔ 2/7</text><text x="570.000" y="308.000" fill="#607b7e" font-size="13" text-anchor="start">Inherited</text><text x="570.000" y="340.000" fill="#17343f" font-size="23" text-anchor="start">2/5 ↔ 3/7</text><text x="570.000" y="411.000" fill="#607b7e" font-size="16" text-anchor="start">Test: does either denominator divide 8?</text><text x="35.000" y="511.000" fill="#607b7e" font-size="14" text-anchor="start">The semicircle is an angular guide; it does not display the boundary radius.</text></g></svg></div>
+          </figure>
+          <p class="essay-caption">Figure 2. An angular map for order eight: gray gaps are inherited from order seven; teal gaps carry new arcs. The guide semicircle shows directions, not the boundary's radius. Four upper-half arcs are inherited and seven are new. Some new arcs have two existing endpoints.</p>
+
+                    <section class="lab" id="ancestry-lab" aria-label="Explore inherited and new boundary arcs using exact Farey arithmetic">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Old arcs and new arcs</div>
+                                <div class="lab-title">Which arcs change at this order?</div>
+                            </div>
+                            <small>The exact denominator test</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="induction-slider">
+                                <label for="ancestry-n">Matrix order n = <output id="ancestry-n-value">6</output></label>
+                                <input id="ancestry-n" type="range" min="5" max="18" step="1" value="6">
+                            </div>
+                            <div class="induction-controls">
+                                <label for="ancestry-pair">Upper-half Farey interval
+                                    <select id="ancestry-pair"></select>
+                                </label>
+                                <button type="button" id="ancestry-five">Order 5: inherited</button>
+                                <button type="button" id="ancestry-six">Order 6: same endpoints</button>
+                                <button type="button" id="ancestry-eight">Order 8: existing endpoints</button>
+                                <button type="button" id="ancestry-landmark">Order 8: new landmark</button>
+                            </div>
+                            <div class="induction-grid">
+                                <svg id="ancestry-plot" viewBox="0 0 500 360" role="img" aria-label="Farey angular intervals colored as inherited or new"></svg>
+                                <div>
+                                    <p class="induction-exact" id="ancestry-pair-label"></p>
+                                    <p class="induction-status" id="ancestry-type" role="status" aria-live="polite"></p>
+                                    <p class="induction-values" id="ancestry-divisibility"></p>
+                                    <p class="induction-values" id="ancestry-determinant"></p>
+                                    <p class="induction-values" id="ancestry-quotients"></p>
+                                </div>
+                            </div>
+                            <div class="induction-legend">
+                                <span>New arc</span>
+                                <span class="inherited">Inherited arc</span>
+                                <span class="selected">Selected interval</span>
+                            </div>
+                            <p class="induction-values" id="ancestry-history"></p>
+                            <p class="induction-values" id="ancestry-comparison"></p>
+                            <p class="induction-exact" id="ancestry-counts"></p>
+                            <p class="small-note">The colors follow the denominator rule established by the induction. The semicircle is an angular guide and assigns no boundary radius. An inherited interval retains both its endpoints and its old outer arc; a new interval can also have two existing endpoints.</p>
+                        </div>
+                    </section>
+
+                    <p>
+                        For our running sector the test is immediate:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Endpoint denominators</th>
+                                    <th>Outcome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$4$</td>
+                                    <td>$4,3$</td>
+                                    <td>The order-four base arc.</td>
+                                </tr>
+                                <tr>
+                                    <td>$5$</td>
+                                    <td>$4,3$</td>
+                                    <td>Neither divides five: inherited.</td>
+                                </tr>
+                                <tr>
+                                    <td>$6$</td>
+                                    <td>$4,3$</td>
+                                    <td>Three divides six: a new outer arc.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        We now need the reason that “new” really means farther out.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="3-strictly-interior-images-exclude-a-boundary-point">
+                    <h2>Strictly interior images exclude a boundary point</h2>
+                    <p>
+                        Here is the local lemma doing the decisive work.
+                    </p>
+                    <p>
+                        Suppose $Q$ is a genuine two-dimensional convex polygon with vertices $v_1,\ldots,v_k$, where $k\leq n$, and every $\mu v_j$ lies in its interior. Put
+                    </p>
+                    <div class="theory-formula">
+                        $$\delta=\min_j\operatorname{dist}(\mu v_j,\partial Q)&gt;0,
+\qquad M=\max_j|v_j|&gt;0.$$
+                    </div>
+                    <p>
+                        If $|\nu-\mu|&lt;\delta/M$, then
+                    </p>
+                    <div class="theory-formula">
+                        $$|\nu v_j-\mu v_j|\leq|\nu-\mu|M&lt;\delta.$$
+                    </div>
+                    <p>
+                        Every $\nu v_j$ is still inside $Q$. Convexity gives $\nu Q\subseteq Q$, so the polygon correspondence realizes $\nu$ at order at most $n$. Consequently,
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{B(\mu,\delta/M)\subseteq\mathcal K_n.}$$
+                    </div>
+                    <p>
+                        The point $\mu$ is an interior point of the eigenvalue region. In particular, if $\mu\ne0$, a small radial expansion $(1+\varepsilon)\mu$ is realizable. Thus $\mu$ cannot remain on the radial outer frontier.
+                    </p>
+                    <p>
+                        One interior image would not suffice for this lemma: the positive minimum requires <strong>all</strong> image vertices to be strictly interior. This differs from the variation contradictions used earlier for a new extremum, where the contact theorem already required every image vertex to be on the contour.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="4-an-exact-old-point-that-order-six-buries">
+                    <h2>An exact old point that order six buries</h2>
+                    <p>
+                        Return to
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda_0=\frac{-1+i\sqrt{11}}4.$$
+                    </div>
+                    <p>
+                        Its four-state closing relation is
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda_0^4=\frac38+\frac58\lambda_0.$$
+                    </div>
+                    <p>
+                        At order six, use the regular hexagon
+                    </p>
+                    <div class="theory-formula">
+                        $$Q=\operatorname{conv}\{e^{2\pi ij/6}:0\leq j&lt;6\}.$$
+                    </div>
+                    <p>
+                        This hexagon is described by
+                    </p>
+                    <div class="theory-formula">
+                        $$|y|\leq\frac{\sqrt3}{2},\qquad
+|x|+\frac{|y|}{\sqrt3}\leq1.$$
+                    </div>
+                    <p>
+                        For $\lambda_0$, both inequalities are strict: $\sqrt{11}/4&lt;\sqrt3/2$ and $(1+\sqrt{11/3})/4&lt;1$. Rotational symmetry places every $\lambda_0v_j$ strictly inside $Q$. The lemma therefore proves that $\lambda_0$ is interior to $\mathcal K_6$.
+                    </p>
+                    <p>
+                        We can even exhibit an exact outward move:
+                    </p>
+                    <div class="theory-formula">
+                        $$\nu=\frac{33}{32}\lambda_0\in\mathcal K_6.$$
+                    </div>
+                    <p>
+                        For this point, the first hexagon inequality follows from
+                    </p>
+                    <div class="theory-formula">
+                        $$33^2\cdot11=11979&lt;12288=64^2\cdot3.$$
+                    </div>
+                    <p>
+                        For the other inequality, use $\sqrt{11/3}&lt;2$ to obtain $33(1+\sqrt{11/3})/128&lt;99/128&lt;1$. Again all six image vertices are strictly interior.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="03-room-for-an-outward-move-title 03-room-for-an-outward-move-desc"><title id="03-room-for-an-outward-move-title">A strict hexagon witness for an outward move</title><desc id="03-room-for-an-outward-move-desc">The regular hexagon contains all images under lambda zero and under its expansion by 33 over 32. A magnified upper edge shows a positive gap. The exact inequality 12 minus 11 times the square of the expansion factor is positive.</desc><rect width="960" height="540" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">STRICTLY INTERIOR IMAGES LEAVE ROOM FOR NEARBY MULTIPLIERS</text><polygon points="460.0000,280.0000 360.0000,106.7949 160.0000,106.7949 60.0000,280.0000 160.0000,453.2051 360.0000,453.2051" fill="#e3f1e7" stroke="#168579" stroke-width="1.7" stroke-dasharray=""/><polygon points="210.0000,114.1688 91.3859,240.3857 141.3859,406.2169 310.0000,445.8312 428.6141,319.6143 378.6141,153.7831" fill="none" stroke="#9aaba4" stroke-width="1.4" stroke-dasharray="5 4"/><polygon points="208.4375,108.9865 86.1167,239.1477 137.6792,410.1612 311.5625,451.0135 433.8833,320.8523 382.3208,149.8388" fill="#f6e4c8" stroke="#d98026" stroke-width="1.5" stroke-dasharray=""/><circle cx="460.0000" cy="280.0000" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="210.0000" cy="114.1688" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="208.4375" cy="108.9865" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="360.0000" cy="106.7949" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="91.3859" cy="240.3857" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="86.1167" cy="239.1477" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="160.0000" cy="106.7949" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="141.3859" cy="406.2169" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="137.6792" cy="410.1612" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="60.0000" cy="280.0000" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="310.0000" cy="445.8312" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="311.5625" cy="451.0135" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="160.0000" cy="453.2051" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="428.6141" cy="319.6143" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="433.8833" cy="320.8523" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="360.0000" cy="453.2051" r="4" fill="#168579" stroke="#168579" stroke-width="1.6"/><circle cx="378.6141" cy="153.7831" r="3" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><circle cx="382.3208" cy="149.8388" r="4" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><circle cx="260.0000" cy="280.0000" r="2" fill="#607b7e" stroke="#607b7e" stroke-width="1.6"/><text x="470.000" y="284.000" fill="#607b7e" font-size="14" text-anchor="start">1</text><text x="70.000" y="500.000" fill="#168579" font-size="18" text-anchor="start">Q is the regular hexagon.</text><rect x="540" y="88" width="375" height="235" rx="10" fill="#f1f4eb" stroke="#d4dfd1"/><text x="563.000" y="120.000" fill="#607b7e" font-size="16" text-anchor="start">Zoom at the upper edge</text><path d="M563.0000,151.0000L890.0000,151.0000" fill="none" stroke="#168579" stroke-width="2" stroke-dasharray=""/><text x="874.000" y="141.000" fill="#168579" font-size="14" text-anchor="start">∂Q</text><circle cx="686.0000" cy="239.5000" r="5" fill="#9aaba4" stroke="#9aaba4" stroke-width="1.6"/><text x="711.000" y="245.000" fill="#607b7e" font-size="20" text-anchor="start">λ₀</text><circle cx="683.0000" cy="177.3000" r="6" fill="#d98026" stroke="#d98026" stroke-width="1.6"/><text x="711.000" y="184.000" fill="#d98026" font-size="18" text-anchor="start">ν = (33/32)λ₀</text><path d="M683.0000,152.0000L683.0000,172.0000" fill="none" stroke="#d98026" stroke-width="1" stroke-dasharray="3 3"/><text x="550.000" y="379.000" fill="#17343f" font-size="25" text-anchor="start">r = 33/32</text><text x="550.000" y="423.000" fill="#168579" font-size="21" text-anchor="start">12 − 11r² = 309/1024 &gt; 0</text><text x="550.000" y="469.000" fill="#607b7e" font-size="16" text-anchor="start">Every image vertex remains strictly inside.</text></g></svg></div>
+          </figure>
+          <p class="essay-caption">Figure 3. The regular hexagon is the invariant witness. Gray marks the images under $\lambda_0$; amber marks the images under $(33/32)\lambda_0$. Both lie strictly inside. This certifies one exact instance of an old boundary point becoming interior; a fixed regular hexagon is not claimed to handle the entire old arc.</p>
+
+                    <section class="lab" id="margin-lab" aria-label="Test an exact hexagon witness under radial expansion">
+                        <div class="lab-header">
+                            <div>
+                                <div class="lab-kicker">Room beyond the old boundary</div>
+                                <div class="lab-title">Expand the old point and test all six image vertices</div>
+                            </div>
+                            <small>Exact inequality, numerical drawing</small>
+                        </div>
+                        <div class="lab-body">
+                            <div class="induction-slider">
+                                <label for="margin-scale">Expansion factor r = <output id="margin-scale-value">33/32</output></label>
+                                <input id="margin-scale" type="range" min="0" max="128" step="1" value="32">
+                            </div>
+                            <div class="induction-controls">
+                                <button type="button" id="margin-original">Original point</button>
+                                <button type="button" id="margin-example">Exact move: 33/32</button>
+                                <button type="button" id="margin-near">Near the hexagon limit</button>
+                                <button type="button" id="margin-beyond">Beyond this witness</button>
+                            </div>
+                            <div class="induction-grid">
+                                <svg id="margin-plot" viewBox="0 0 540 470" role="img" aria-label="The regular hexagon and its images under an old boundary point and its expansion"></svg>
+                                <div>
+                                    <p class="induction-values" id="margin-multiplier"></p>
+                                    <p class="induction-exact" id="margin-gap"></p>
+                                    <p class="induction-status" id="margin-status" role="status" aria-live="polite"></p>
+                                    <p class="induction-values">The first contact with this hexagon occurs at $r=\sqrt{12/11}$.</p>
+                                </div>
+                            </div>
+                            <p class="small-note">The slider uses r=1+u/1024 for integer u from 0 to 128. In this range, the other hexagon inequalities stay strict, so the sign of 12−11r² decides whether all six image vertices are strictly interior. A failed hexagon test makes no claim about the full eigenvalue region. No boundary curve is inferred from the slider.</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="essay-section" id="5-how-the-induction-applies-this-exclusion-everywhere-needed">
+                    <h2>How the induction applies this exclusion everywhere needed</h2>
+                    <p>
+                        Assume the boundary description is known at every smaller order, starting from the order-four result of Dmitriev and Dynkin. Recall the chosen-orientation sectors from the angular estimates:
+                    </p>
+                    <div class="theory-formula">
+                        $$S_{n,k}=\left(\frac fb,\frac kn\right),$$
+                    </div>
+                    <p>
+                        where the predecessor is specified by
+                    </p>
+                    <div class="theory-formula">
+                        $$\boxed{kb-nf=g,\qquad g=\gcd(k,n),\qquad0&lt;n-b&lt;n/g.}$$
+                    </div>
+                    <p>
+                        Thus $f/b$ is the Farey predecessor of the reduced fraction $k/n$. The opposite contact orientation is handled by conjugation.
+                    </p>
+                    <p>
+                        Karpelevich first identifies the old boundary visible in each such sector with a boundary at a smaller comparison order $n_*&lt;n$:
+                    </p>
+                    <div class="theory-formula">
+                        $$\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}.$$
+                    </div>
+                    <p>
+                        Here intersections with an interval mean intersections with its open angular sector. In a compact version of the original bookkeeping,
+                    </p>
+                    <div class="theory-formula">
+                        $$n_*=
+\begin{cases}
+\ell\left\lfloor(n-1)/\ell\right\rfloor,&amp;g=1,\\
+b,&amp;g&gt;1,
+\end{cases}$$
+                    </div>
+                    <p>
+                        where $\ell$ is the smaller denominator of the two Farey neighbors bracketing $k/n$ when it is reduced, and $b$ is the predecessor denominator when $g&gt;1$.
+                    </p>
+                    <p>
+                        For example, at $n=6,k=2$, the sector is $(1/4,1/3)$ and $n_*=4$: it is precisely the old order-four arc that is visible at order five. At $n=8,k=3$, the bracketing denominators are three and five, giving $n_*=3\lfloor7/3\rfloor=6$.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>Why these comparison orders preserve the inductive data</summary>
+                        <div class="essay-proof-body">
+                            <p>
+                                If $g=1$, the two neighbors bracketing $k/n$ have denominators $b_-,b_+$ with $b_-+b_+=n$. They were neighbors in $F_{n-1}$. Put $\ell=\min(b_-,b_+)$ and $s=\max(b_-,b_+)$. Then $s\leq n_*\leq n-1$, the pair is still neighboring in $F_{n_*}$, and division by either denominator gives the same quotient at $n_*$ as at $n-1$. The special end sectors give $n_*=n-1$.
+                            </p>
+                            <p>
+                                If $g&gt;1$, write $k/n=c/d$ in lowest terms, so $n=gd$. The predecessor denominator satisfies $n-d&lt;b&lt;n$. In particular $b&gt;n/2$ and $\lfloor b/d\rfloor=\lfloor(n-1)/d\rfloor=g-1$. The same Farey interval and quotient data already occur at order $b$.
+                            </p>
+                            <p>
+                                Applying the inductive equation rules gives the displayed old-boundary comparison. These are the divisions checked in §5(c), equations (30)–(34), of the original paper.
+                            </p>
+                        </div>
+                    </details>
+
+                    <p>
+                        The remaining geometric input is crucial: <strong>for every old boundary point in this open sector, an order-$n$ polygon can be constructed with all image vertices strictly interior</strong>. The original paper invokes methods of Dmitriev and Dynkin for this construction on p. 382. We use that general construction as a cited input; the hexagon calculation above supplies one fully explicit instance.
+                    </p>
+                    <p>
+                        Now suppose an order-$n$ outer point in $S_{n,k}$ were already in $\mathcal K_{n-1}$. It would have to lie on $\Gamma_{n-1}$, since a farther old point would contradict its order-$n$ extremality. The comparison puts it on $\Gamma_{n_*}$. The interior-image construction and our lemma then make it interior to $\mathcal K_n$, a contradiction.
+                    </p>
+                    <p>
+                        Therefore the open order-$n$ frontier in $S_{n,k}$ is new. The canonical contact relations apply to it.
+                    </p>
+                </section>
+
+                <section class="essay-section" id="6-the-two-cases-now-exhaust-the-boundary">
+                    <h2>The two cases now exhaust the boundary</h2>
+                    <p>
+                        Take any Farey interval $(a/b,c/d)$ at order $n$.
+                    </p>
+                    <p>
+                        If neither denominator divides $n$, this interval is outside every new sector $S_{n,k}$ and its conjugate. Indeed, an endpoint represented as $k/n$ has reduced denominator dividing $n$. The angular estimates therefore exclude a new extremum here. The outer point is old, hence lies on the inherited boundary. The unchanged quotient data preserve its equation.
+                    </p>
+                    <p>
+                        If an endpoint denominator divides $n$, write that endpoint as $k/n$; use conjugation if it is the left endpoint. This is one of the sectors just treated. Its old boundary lies inside the larger region, and its new frontier has one of the two canonical relations from <a href="karpelevich-boundary-equations.html">stop 6</a>:
+                    </p>
+                    <div class="theory-formula">
+                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,$$
+                    </div>
+                    <p>
+                        or
+                    </p>
+                    <div class="theory-formula">
+                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma.$$
+                    </div>
+                    <p>
+                        For a Farey pair $(a/b,c/d)$ with smaller denominator $\ell=\min(b,d)$, larger denominator $s=\max(b,d)$, and repetition count $m=\lfloor n/\ell\rfloor$, the <a href="karpelevich-farey.html#exponent-dictionary">exponent dictionary</a> of Stop 7 gives $\tau=s-\ell m$ ($n=\ell m+\tau$) in the first family and $\sigma=\ell m-s$ ($n=\ell m$) in the second. Both are cases of <a href="karpelevich-boundary-equations.html#ito-form">Ito’s unified equation</a> $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$. Inherited arcs retain their smaller-order equations, which are given by the exact same formula because $\lfloor n/\ell\rfloor=\lfloor(n-1)/\ell\rfloor$ whenever neither $b$ nor $d$ divides $n$.
+                    </p>
+
+                    <figure class="essay-figure">
+                        <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510" role="img" aria-labelledby="04-the-induction-closes-title 04-the-induction-closes-desc"><title id="04-the-induction-closes-title">The induction has two complementary exclusions</title><desc id="04-the-induction-closes-desc">For a Farey interval, if neither denominator divides the order, angle coverage excludes new extrema and the old arc survives. If an endpoint denominator divides the order, the comparison and strict interior-image construction exclude the old frontier, leaving a new canonical arc.</desc><rect width="960" height="510" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">THE TWO EXCLUSIONS CLOSE THE INDUCTION</text><rect x="260" y="65" width="440" height="77" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="480.000" y="92.000" fill="#168579" font-size="19" text-anchor="middle">Choose a Farey interval at order n</text><text x="480.000" y="118.000" fill="#17343f" font-size="14" text-anchor="middle">a/b &lt; c/d</text><path d="M480.0000,143.0000L480.0000,164.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M252.0000,164.0000L708.0000,164.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M252.0000,164.0000L252.0000,191.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M708.0000,164.0000L708.0000,191.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><rect x="55" y="192" width="395" height="77" rx="10" fill="#eef4e9" stroke="#9aaba4" stroke-width="1.4"/><text x="252.500" y="219.000" fill="#607b7e" font-size="19" text-anchor="middle">Neither denominator divides n</text><text x="252.500" y="245.000" fill="#17343f" font-size="14" text-anchor="middle">b ∤ n and d ∤ n</text><rect x="510" y="192" width="395" height="77" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="707.500" y="219.000" fill="#168579" font-size="19" text-anchor="middle">An endpoint denominator divides n</text><text x="707.500" y="245.000" fill="#17343f" font-size="14" text-anchor="middle">b | n or d | n</text><path d="M252.0000,270.0000L252.0000,313.0000" fill="none" stroke="#9aaba4" stroke-width="1.4" stroke-dasharray=""/><path d="M708.0000,270.0000L708.0000,313.0000" fill="none" stroke="#168579" stroke-width="1.4" stroke-dasharray=""/><rect x="55" y="314" width="395" height="103" rx="10" fill="#eef4e9" stroke="#9aaba4" stroke-width="1.4"/><text x="252.500" y="341.000" fill="#607b7e" font-size="19" text-anchor="middle">Inherited outer arc</text><text x="252.500" y="367.000" fill="#17343f" font-size="14" text-anchor="middle">Angular coverage admits no new extremum.</text><text x="252.500" y="389.000" fill="#17343f" font-size="14" text-anchor="middle">The old equation remains in force.</text><rect x="510" y="314" width="395" height="103" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="707.500" y="341.000" fill="#168579" font-size="19" text-anchor="middle">New outer arc</text><text x="707.500" y="367.000" fill="#17343f" font-size="14" text-anchor="middle">Strict interior images bury the old frontier.</text><text x="707.500" y="389.000" fill="#17343f" font-size="14" text-anchor="middle">New contacts supply a canonical equation.</text><text x="480.000" y="475.000" fill="#17343f" font-size="17" text-anchor="middle">Together with the ordered unit-circle endpoints, these cases give Theorem B.</text></g></svg></div>
+          </figure>
+          <p class="essay-caption">Figure 4. Angular coverage rules out new extrema in the inherited case. In a new sector, the smaller-order comparison and strict-interior construction rule out old outer points. These complementary exclusions complete the selection of the boundary pieces.</p>
+
+                    <p>
+                        For the running example, the equations are
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{array}{ll}
+n=4,5:&amp;\lambda^4=t\lambda+(1-t),\\
+n=6:&amp;(\lambda^3-t)^2=(1-t)^2\lambda^2.
+\end{array}$$
+                    </div>
+                    <p>
+                        In the open sector $(1/4,1/3)$, the second relation selects $\lambda^3+(1-t)\lambda-t=0$: the imaginary part of $\lambda^3$ is negative, so the negative square-root sign is forced. Selecting that cubic factor retains the six-state realization of the full characteristic relation.
+                    </p>
+
+                    <details class="essay-proof">
+                        <summary>An exact way to draw the two worked arcs</summary>
+                        <div class="essay-proof-body">
+                            <p>
+                                The order-four polynomial has a factor $\lambda-1$. Factoring its remaining cubic at its real root $-u$ gives, for $0\leq u\leq1$,
+                            </p>
+                            <div class="theory-formula">
+                                $$\lambda_4(u)=\frac{u-1+i\sqrt{3-2u+3u^2}}2,
+\qquad t_4(u)=(1-u)(1+u^2).$$
+                            </div>
+                            <p>
+                                For the selected order-six cubic, let $u$ be its positive real root. Then
+                            </p>
+                            <div class="theory-formula">
+                                $$t_6(u)=\frac{u(1+u^2)}{1+u},\qquad
+\lambda_6(u)=-\frac u2+
+\frac i2\sqrt{\frac{4+3u^2-u^3}{1+u}}.$$
+                            </div>
+                            <p>
+                                Both formulas are exact substitutions into the displayed equations. Their drawing coordinates are evaluated numerically. The inductive argument, rather than the drawing, establishes their boundary role.
+                            </p>
+                        </div>
+                    </details>
+
+                    <p>
+                        Taking the angular sectors in circular order, adjoining their unit-circle endpoints, and reflecting in the real axis yields the boundary described by Theorem B. Every open sector has been assigned to one of the two cases.
+                    </p>
+                    <div class="math-callout route" id="modern-completion">
+                        <div class="math-callout-header">
+                            <h3 class="math-callout-title">Route change: how the modern literature closes the boundary description</h3>
+                            <span class="math-callout-tag">Modern completion · 1997–2024</span>
+                        </div>
+                        <p>
+                            Karpelevich’s 1951 paper finishes Theorem B by combining his multi-branch contact classification with the general Dmitriev–Dynkin interior-image perturbation on pp. 380–383. Rather than reconstructing that perturbation for arbitrary Farey sectors or the single-contact branch selection noted in <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a>, we close the remaining steps using four modern results:
+                        </p>
+                        <ol class="essay-steps">
+                            <li><strong>Unified sector equation (Ito 1997)</strong> <cite-ref key="ito1997"></cite-ref>. For every adjacent Farey pair $a/b&lt;c/d$ in $F_n$, with $\ell=\min(b,d)$, $s=\max(b,d)$, and $m=\lfloor n/\ell\rfloor$, the boundary of $\mathcal K_n$ in the closed sector $[2\pi a/b,2\pi c/d]$ is governed by the single reduced equation $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$ ($0\leq t\leq1$), unifying the forward branch, the gcd branch, and inherited arcs.</li>
+                            <li><strong>Stochastic matrix realization (Stop 6; Johnson–Paparella 2017)</strong> <cite-ref key="johnson2017"></cite-ref>. Every root of every reduced Ito polynomial for $t\in[0,1]$ is an eigenvalue of an explicit $n\times n$ stochastic companion-chain matrix constructed in <a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a>.</li>
+                            <li><strong>Unique polar boundary branch (Kirkland–Laffey–Šmigoc 2020)</strong> <cite-ref key="kirkland2020"></cite-ref>. In each open Farey sector $(2\pi a/b,2\pi c/d)$, the reduced Ito equation has a unique root of maximum modulus in each direction $\theta$, tracing a $C^1$ boundary arc connecting $e^{2\pi i a/b}$ to $e^{2\pi i c/d}$.</li>
+                            <li><strong>Simple monotone arcs and radial extremality (Munger–Nickerson–Paparella 2024)</strong> <cite-ref key="munger2023"></cite-ref>. The reduced Ito arc in each Farey sector is a simple curve whose argument varies strictly monotonically with $t\in[0,1]$, establishing radial extremality for $n&gt;3$ directly from the reduced polynomials.</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <section class="essay-section" id="7-what-the-series-has-established">
+                    <h2>What the series has established</h2>
+                    <p>
+                        The original proof gives two descriptions of the same region. <a href="karpelevich-cyclic.html"><strong>Theorem A</strong></a> covers it with cyclic polygons. <strong>Theorem B</strong> identifies its outside through ordered unit-circle landmarks and the equations of the intervening arcs.
+                    </p>
+                    <p>
+                        The chip game prepared a polygon whose chains could be read arithmetically. Variations forced the common weights. Elimination produced equations, and angles placed their roots. The last induction decides which equations remain visible at each order.
+                    </p>
+                    <p>
+                        The final selection rests on both sides of the argument: the inherited sectors admit no new extremum, while the new sectors admit no surviving old outer point. That completes the route from stochastic matrix rows to the Karpelevich boundary.
+                    </p>
+
+                    <div class="essay-next">
+                        <span class="essay-eyebrow">Series Complete · Inside Karpelevich’s Proof</span>
+                        <p>You have reached the conclusion of the nine-stop guide through F. I. Karpelevič’s 1951 proof. Return to the <a href="karpelevich-proof-roadmap.html">Series Roadmap</a> to review the dependency map, jump to <a href="karpelevich-polygons.html">Stop 1: From Matrix Rows to Convex Hulls</a>, or explore the <a href="karpelevich-region.html">Interactive Karpelevič Region Explorer</a>.</p>
+                    </div>
+                </section>
+
+                <section class="essay-section" id="source-and-scope">
+                    <h2 class="essay-unnumbered">Source and scope</h2>
+                    <p class="essay-sources">
+                        F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The final induction is §5, pp. 380–383: angular coverage in (a)–(b), smaller-order comparisons and the interior-image construction in (c), then arc selection in (d)–(e).
+                    </p>
+                    <p class="essay-sources">
+                        This post proves the arithmetic checks, the local interior-image lemma, and the exact hexagon example, and explains the assembly of the induction. It uses the earlier contact and angle theorems, the inductive equation rules, and the original paper's general interior-image polygon construction, and records how Ito (1997), Johnson–Paparella (2017), Kirkland–Laffey–Šmigoc (2020), and Munger–Nickerson–Paparella (2024) complete the explicit arc parameterization and radial-extremality verification. The diagrams and explorers illustrate these steps; numerical drawing coordinates do not establish extremality.
+                    </p>
+
+                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997, johnson2017, kirkland2020, munger2023"></cite-grid>
+                </section>
+
+                <nav class="series-book-pager" aria-label="Book chapter navigation">
+                    <div class="book-pager-card prev">
+                        <span class="book-pager-meta">← Previous Chapter</span>
+                        <a href="karpelevich-cyclic.html" class="book-pager-title">Stop 8: Cyclic Polygons and the Whole Region</a>
+                        <p class="book-pager-desc">Theorem A: finite closing relations, multiplicative closure, and covering the region by cyclic polygons.</p>
+                    </div>
+                    <div class="book-pager-card next">
+                        <span class="book-pager-meta">Complete Monograph Overview ↺</span>
+                        <a href="karpelevich-proof-roadmap.html" class="book-pager-title">Roadmap: Inside Karpelevich’s Proof</a>
+                        <p class="book-pager-desc">Review the full nine-stop architecture from invariant polygons to Theorems A and B.</p>
+                    </div>
+                </nav>
+            </article>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="deepdive-footer-nav">
+            <a href="blog.html" class="deep-dive-btn">
+                <span>← Back to Research Blog Index</span>
+            </a>
+            <a href="karpelevich-cyclic.html" class="tool-launch-btn secondary inline">
+                <span>← Previous: Stop 8 (Cyclic Polygons and the Whole Region)</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Hub Footer Component -->
+    <hub-footer></hub-footer>
+</body>
+
+</html>
