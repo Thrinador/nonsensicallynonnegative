@@ -86,7 +86,7 @@
         </header>
 
         <noscript>
-            <p class="small-note">The article and four static figures remain readable without JavaScript. The matrix and orbit explorers require JavaScript.</p>
+            <p class="small-note">The article and static figures remain readable without JavaScript. The matrix and orbit explorers require JavaScript.</p>
         </noscript>
 
         <div class="essay-layout">
@@ -99,7 +99,7 @@
                     <li class="plain"><a href="#multiplication-lab">Interactive: Diamond matrix explorer</a></li>
                     <li><a href="#4-where-the-return-equations-enter">Where the return equations enter</a></li>
                     <li class="plain"><a href="#orbit-lab">Interactive: Certified power orbits</a></li>
-                    <li><a href="#5-the-global-input-cover-the-radial-extrema">The global input: cover the radial extrema</a></li>
+                    <li><a href="#5-the-global-input-cover-the-radial-extrema">Prove the covering of radial extrema</a></li>
                     <li><a href="#6-fill-the-rays-to-obtain-the-whole-region">Fill the rays to obtain the whole region</a></li>
                     <li><a href="#7-what-remains-for-the-final-stop">What remains for the final stop</a></li>
                     <li class="plain"><a href="#source-and-scope">Source and scope</a></li>
@@ -121,7 +121,7 @@
                     $$z,w\in C\quad\Longrightarrow\quad zw\in C.$$
                 </div>
                 <p>
-                    The interesting question is how the contact relations from the earlier posts produce polygons with this property.
+                    This chapter proves how the two common-weight return patterns produce these polygons, keeps their phases explicit, and counts their vertices. That construction completes the union description of the whole region.
                 </p>
 
                 <section class="essay-section" id="1-what-cyclic-means-here">
@@ -347,9 +347,7 @@
           </figure>
           <p class="essay-caption">Figure 3. In this algebraic instance of the eight-state relation, four initial powers do not suffice. Adding their negatives supplies the missing point $-1$ and the edge containing $\lambda^4$. The two convex closing relations certify all subsequent powers.</p>
 
-                    <p>
-                        The rotational factor $h\geq 1$ is an essential part of Karpelevich’s definition: the eight-state calculation above already needed $h=2$ so that $-1$ could supply the missing closing endpoint. Đoković <cite-ref key="djokovic1990"></cite-ref> later studied cyclic polygons systematically, connecting the $h=1$ case to polynomials with decreasing nonnegative coefficients in his streamlined proof of Karpelevich’s theorem.
-                    </p>
+                    <p>The half-turn supplies the missing endpoint in this particular eight-state certificate. That example alone does not exclude a different one-orbit certificate for the same point. The stronger claim that $h=1$ always suffices was disproved by Đoković <cite-ref key="djokovic1990"></cite-ref> with a counterexample at order six. Karpelevich’s definition allows the finite rotational factor used here.</p>
 
                     <section class="lab" id="orbit-lab" aria-label="Explore certified cyclic polygons and their infinite power orbits">
                         <div class="lab-header">
@@ -394,22 +392,197 @@
                     </section>
                 </section>
 
-                <section class="essay-section" id="5-the-global-input-cover-the-radial-extrema">
-                    <h2>The global input: cover the radial extrema</h2>
-                    <p>
-                        The eight-state calculation exhibits the mechanism. In the general construction, $\lambda$ may be a power of a new generator $\mu$. Extracting roots of the common-weight relations introduces roots of unity; these supply the finite rotational copies. Choosing those roots consistently and keeping the generating list within the vertex budget requires the general exponent and angle bookkeeping.
-                    </p>
-                    <p>
-                        <strong>Theorem X</strong> supplies the result: a radial extremum new at order $n_*$, in the nonreal strict-contraction orientation treated by the proof, belongs to a cyclic polygon with at most $n_*$ vertices.
-                    </p>
-                    <p>
-                        That is the global geometric input we use here. The general root-choice argument for both patterns is not reproduced by the worked example. Its angular hypotheses matter; an arbitrary root of one of the candidate equations is not being declared a boundary point.
-                    </p>
-                    <p>
-                        Conjugation handles the opposite orientation. Unit-circle extrema are roots of unity and lie in their regular polygons. The real axis is covered by the cyclic segment $[-1,1]$. The remaining low-order nonreal case is covered by the regular triangle.
-                    </p>
-
-                    <details class="essay-proof">
+                <section class="essay-section" id="5-the-global-input-cover-the-radial-extrema"><h2>Prove the covering of radial extrema</h2><nav class="proof-local-nav" aria-label="Cyclic covering proof"><strong>The construction</strong><a href="#phase-proof-2">Bézout lemma</a><a href="#phase-proof-3">Forward pattern</a><a href="#phase-proof-4">gcd pattern</a><a href="#phase-proof-5">Vertex count</a></nav><div class="proof-addition"><p>We now prove the general construction behind <strong>Theorem X</strong>. The eight-state picture is one instance of it. The essential count will be</p>
+<div class="theory-formula">$$\boxed{\text{number of rotations}\;\times\;\text{number of initial powers}=n_*.}$$</div>
+<p>Here $n_*$ is the least order realizing the radial extremum under consideration. Counting generators gives an upper bound on actual vertices; we will not assume that every generator is exposed.</p>
+<h3 id="phase-proof-1">What we may use from Stops 5 and 7</h3>
+<p>For a nonreal strict-contraction extremum new at order $n_*&gt;3$, <a href="karpelevich-rigidity.html">Stop 5</a> proves the common-weight relations, and <a href="karpelevich-farey.html">Stop 7</a> identifies their exponents, including the single-contact case. After conjugating if necessary, one of the following holds, with $0&lt;t&lt;1$:</p>
+<div class="table-responsive"><table class="data-table">
+<thead>
+<tr>
+<th>Return pattern</th>
+<th>Necessary relation</th>
+<th>Exact order count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward</td>
+<td>$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$</td>
+<td>$n_*=\ell m+\tau$, $0\leq\tau&lt;\ell$</td>
+</tr>
+<tr>
+<td>gcd</td>
+<td>$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$</td>
+<td>$n_*=\ell m$, $0&lt;\sigma&lt;\ell$</td>
+</tr>
+</tbody></table></div>
+<p>In both rows $\ell,m$ are positive integers and $0&lt;|\lambda|&lt;1$. These are inputs from the preceding proofs, not consequences of the final boundary theorem.</p>
+<p>We need only these algebraic relations for the covering construction. The angular information was needed to obtain the correct return description; we do not need to assume that a polynomial root continues to a particular endpoint as $t$ varies.</p>
+<h3 id="phase-proof-2">Keep the phase: a Bézout lemma</h3>
+<p>Suppose $\lambda,w\ne0$ and</p>
+<div class="theory-formula">$$\lambda^s=w^m,\qquad s\geq0,\quad m\geq1.$$</div>
+<p>Put</p>
+<div class="theory-formula">$$\delta=\gcd(s,m),\qquad s'=s/\delta,\qquad m'=m/\delta.$$</div>
+<p>Choose integers $u,v$ with $um'+vs'=1$, and define</p>
+<div class="theory-formula">$$\zeta=\lambda^{s'}w^{-m'},\qquad \mu=\lambda^u w^v.$$</div>
+<p>Negative integer powers are legitimate because both numbers are nonzero. Direct calculation gives</p>
+<div class="theory-formula">$$\boxed{\zeta^\delta=1,\qquad
+\lambda=\mu^{m'}\zeta^v,\qquad
+w=\mu^{s'}\zeta^{-u}.}$$</div>
+<p>Indeed, the first identity is $\lambda^s/w^m=1$. Since $w^{m'}=\lambda^{s'}\zeta^{-1}$, we have</p>
+<div class="theory-formula">$$\mu^{m'}=\lambda^{um'}(w^{m'})^v
+=\lambda^{um'+vs'}\zeta^{-v}
+=\lambda\zeta^{-v}.$$</div>
+<p>Likewise $\lambda^{s'}=w^{m'}\zeta$ gives $\mu^{s'}=w\zeta^u$. This proves all three identities without choosing a multivalued complex logarithm.</p>
+<p>The moduli also behave correctly. From $|w|^m=|\lambda|^s$ and the Bézout identity,</p>
+<div class="theory-formula">$$|\mu|=|\lambda|^{u+vs/m}=|\lambda|^{1/m'}&lt;1.$$</div>
+<p>The point is to <strong>retain the root-of-unity factor on $\lambda$</strong>. We need $\lambda$ to be a rotated power of $\mu$; we do not need it to be an unrotated power. All the phases lie in the group of $\delta$th roots of unity.</p>
+<p>The case $s=0$ is included: $\delta=m$, $s'=0$, $m'=1$, and we can take $u=1,v=0$. No division by $s$ occurs.</p>
+<h3 id="phase-proof-3">The forward return pattern</h3>
+<p>Set</p>
+<div class="theory-formula">$$w=\frac{1-t}{\lambda^\ell-t}.$$</div>
+<p>The denominator is nonzero by the forward equation, and that equation says $\lambda^\tau=w^m$. Apply the lemma with $s=\tau$. Thus</p>
+<div class="theory-formula">$$\delta=\gcd(\tau,m),\quad
+\tau'=\tau/\delta,\quad m'=m/\delta,\quad
+um'+v\tau'=1.$$</div>
+<p>The definition of $w$ gives a two-term convex relation:</p>
+<div class="theory-formula">$$\lambda^\ell w=t w+(1-t).$$</div>
+<p>Substitute $\lambda=\mu^{m'}\zeta^v$ and $w=\mu^{\tau'}\zeta^{-u}$, then divide by $\zeta^{\ell v-u}$. We obtain</p>
+<div class="theory-formula">$$\boxed{\mu^L
+=t\mu^{\tau'}\zeta^{-\ell v}
++(1-t)\zeta^{u-\ell v},\qquad
+L=\ell m'+\tau'=n_*/\delta.}$$</div>
+<p>Both terms on the right are among the $\delta$ rotated copies of the first $L$ powers: $0\leq\tau'&lt;L$, and $\zeta$ is a $\delta$th root of unity. Therefore $\mu^L$ lies in their convex hull. This is exactly the finite closing certificate from section 2.</p>
+<h3 id="phase-proof-4">The gcd return pattern</h3>
+<p>This time set</p>
+<div class="theory-formula">$$w=\frac{\lambda^\ell-t}{1-t}.$$</div>
+<p>The gcd equation says $\lambda^\sigma=w^m$. Apply the same lemma with $s=\sigma$, writing</p>
+<div class="theory-formula">$$\delta=\gcd(\sigma,m),\quad
+\sigma'=\sigma/\delta,\quad m'=m/\delta,\quad
+um'+v\sigma'=1.$$</div>
+<p>Now the convex relation is $\lambda^\ell=t+(1-t)w$. Substitution and division by $\zeta^{\ell v}$ give</p>
+<div class="theory-formula">$$\boxed{\mu^L
+=t\zeta^{-\ell v}
++(1-t)\mu^{\sigma'}\zeta^{-u-\ell v},\qquad
+L=\ell m'=n_*/\delta.}$$</div>
+<p>Here $0&lt;\sigma'&lt;L$, so once again both endpoints are rotated initial powers. The same finite closing certificate applies.</p>
+<h3 id="phase-proof-5">The count is the number of generators</h3>
+<p>In either pattern, let $\varepsilon=e^{2\pi i/\delta}$ and form</p>
+<div class="theory-formula">$$P=\operatorname{conv}\{\mu^j\varepsilon^a:
+0\leq j&lt;L,\ 0\leq a&lt;\delta\}.$$</div>
+<p>Since $\zeta^\delta=1$, every phase in the boxed relations is some power of $\varepsilon$. Hence $\mu^L\in P$, and section 2 proves</p>
+<div class="theory-formula">$$P=C(\mu,\delta),\qquad
+\#\operatorname{vertices}(P)\leq\delta L=n_*.$$</div>
+<p>The lemma also gives $\lambda=\mu^{m'}\zeta^v\in C(\mu,\delta)$. This remains true even if that particular power is beyond the initial list, because the closing certificate already includes the entire infinite orbit. Finally, $|\mu|&lt;1$ implies $0\in P$.</p>
+<p>This proves the general construction, with both the phase and the vertex budget accounted for. A root of either return equation can be covered this way without being a boundary point. Deciding which roots actually trace the boundary remains the task of Stop 9.</p>
+<h3 id="phase-proof-6">A root phase that cannot be dropped</h3>
+<p>Take the forward data $n_*=14$, $\ell=3$, $m=4$, $\tau=2$. The necessary relation is</p>
+<div class="theory-formula">$$\lambda^2(\lambda^3-t)^4=(1-t)^4.$$</div>
+<p>Here $\delta=2$, $m'=2$, $\tau'=1$. Choose $u=0,v=1$, so</p>
+<div class="theory-formula">$$\mu=w=\frac{1-t}{\lambda^3-t},\qquad
+\zeta=\lambda/\mu^2\in\{1,-1\}.$$</div>
+<p>The closing relation becomes</p>
+<div class="theory-formula">$$\boxed{\mu^7=\zeta\bigl(t\mu+(1-t)\bigr),\qquad
+\lambda=\zeta\mu^2.}$$</div>
+<p>Thus two rotations and seven initial powers suffice: at most fourteen vertices. If $\zeta=-1$, the covering polygon contains $\lambda=-\mu^2$ on the rotated chain. Requiring $\lambda=\mu^2$ would discard exactly the phase that makes this construction work.</p>
+<figure class="essay-figure proof-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 770" role="img" aria-labelledby="phase-budget-title phase-budget-desc">
+<title id="phase-budget-title">Keep the phase and count fourteen generators</title>
+<desc id="phase-budget-desc">Two rows show the first seven powers of mu and their negatives. The target lambda is minus mu squared. The closing power mu to the seventh is the midpoint of minus one and minus mu when t equals one half. A plot below shows the resulting cyclic polygon. The picture is an algebraic example, not a claim that this root lies on the Karpelevich boundary.</desc>
+<defs><marker id="phase-budget-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#78998f"/></marker></defs>
+<rect width="1120" height="770" rx="20" fill="#f5f6f0"/>
+<g font-family="system-ui, sans-serif" fill="#17343f">
+<text x="36" y="40" font-size="14" font-weight="700" letter-spacing="1.4">KEEP THE PHASE. COUNT THE GENERATORS.</text>
+<text x="36" y="72" font-size="19">n* = 14 · ℓ = 3 · m = 4 · τ = 2 · δ = 2 · L = 7</text>
+<text x="36" y="111" font-size="15" fill="#59717a">A two-row list of generators; their positions here are schematic.</text>
+<text x="36" y="168" font-size="15">Powers</text>
+<path d="M205 163H285" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="180" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="180" y="169" text-anchor="middle" font-size="17">1</text>
+<path d="M335 163H415" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="310" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="310" y="169" text-anchor="middle" font-size="17">μ</text>
+<path d="M465 163H545" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="440" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="440" y="169" text-anchor="middle" font-size="17">μ²</text>
+<path d="M595 163H675" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="570" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="570" y="169" text-anchor="middle" font-size="17">μ³</text>
+<path d="M725 163H805" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="700" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="700" y="169" text-anchor="middle" font-size="17">μ⁴</text>
+<path d="M855 163H935" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="830" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="830" y="169" text-anchor="middle" font-size="17">μ⁵</text>
+<circle cx="960" cy="163" r="24" fill="#168579" fill-opacity=".12" stroke="#168579" stroke-width="1.5"/>
+<text x="960" y="169" text-anchor="middle" font-size="17">μ⁶</text>
+<text x="36" y="250" font-size="15">Half-turns</text>
+<path d="M205 245H285" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="180" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="180" y="251" text-anchor="middle" font-size="17">−1</text>
+<path d="M335 245H415" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="310" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="310" y="251" text-anchor="middle" font-size="17">−μ</text>
+<path d="M465 245H545" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="440" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="3"/>
+<text x="440" y="251" text-anchor="middle" font-size="17">−μ²</text>
+<text x="440" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#a75a13">λ = −μ²</text>
+<path d="M595 245H675" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="570" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="570" y="251" text-anchor="middle" font-size="17">−μ³</text>
+<path d="M725 245H805" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="700" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="700" y="251" text-anchor="middle" font-size="17">−μ⁴</text>
+<path d="M855 245H935" stroke="#78998f" stroke-width="1.5" marker-end="url(#phase-budget-arrow)"/>
+<circle cx="830" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="830" y="251" text-anchor="middle" font-size="17">−μ⁵</text>
+<circle cx="960" cy="245" r="24" fill="#d98026" fill-opacity=".12" stroke="#d98026" stroke-width="1.5"/>
+<text x="960" y="251" text-anchor="middle" font-size="17">−μ⁶</text>
+<path d="M36 311H1084" stroke="#d3dfd6"/>
+<text x="574" y="363" font-size="25" font-family="Georgia, serif">μ⁷ = −½ − ½μ</text>
+<text x="574" y="401" font-size="16">The next power lands on [−1, −μ].</text>
+<text x="574" y="428" font-size="16">Its negative lands on [1, μ].</text>
+<text x="574" y="479" font-size="25" font-family="Georgia, serif">2 rotations × 7 powers = 14 generators</text>
+<text x="574" y="521" font-size="16">The finite closing certificate includes every later power.</text>
+<text x="574" y="550" font-size="16">The polygon therefore contains λ = −μ² and 0.</text>
+<text x="574" y="602" font-size="14" fill="#59717a">Coordinates are numerical approximations to a root of</text>
+<text x="574" y="627" font-size="17" font-family="Georgia, serif">2μ⁷ + μ + 1 = 0.</text>
+<text x="574" y="670" font-size="14" fill="#59717a">The closing identity and the count are exact.</text>
+<text x="574" y="694" font-size="14" fill="#59717a">This diagram makes no boundary-selection claim.</text>
+<path d="M98 532H474M286 344V720" stroke="#d1dbd4" stroke-width="1"/>
+<polygon points="108.000,532.000 117.833,573.542 155.802,647.446 224.071,695.463 307.211,706.309 386.228,677.151 442.905,614.333 464.000,532.000 454.167,490.458 416.198,416.554 347.929,368.537 264.789,357.691 185.772,386.849 129.095,449.667" fill="#168579" fill-opacity=".07" stroke="#168579" stroke-width="2"/>
+<circle cx="464.000" cy="532.000" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="442.905" cy="614.333" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="386.228" cy="677.151" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="307.211" cy="706.309" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="224.071" cy="695.463" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="155.802" cy="647.446" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="117.833" cy="573.542" r="4.5" fill="#168579" stroke="#168579" stroke-width="1.5"/>
+<circle cx="108.000" cy="532.000" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="129.095" cy="449.667" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="185.772" cy="386.849" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="264.789" cy="357.691" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="347.929" cy="368.537" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="416.198" cy="416.554" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="454.167" cy="490.458" r="4.5" fill="#d98026" stroke="#d98026" stroke-width="1.5"/>
+<circle cx="185.772" cy="386.849" r="8" fill="#f9e3c7" stroke="#a75a13" stroke-width="1.5"/>
+<circle cx="118.547" cy="490.834" r="6" fill="#ffffff" stroke="#bf554b" stroke-width="1.5"/>
+<text x="476.000" y="536.000" font-size="16">1</text>
+<text x="78.000" y="536.000" font-size="16">−1</text>
+<text x="456.905" y="622.333" font-size="16">μ</text>
+<text x="101.095" y="437.667" font-size="16">−μ</text>
+<text x="94.772" y="373.849" font-size="16">λ = −μ²</text>
+<text x="75.547" y="510.834" font-size="16">μ⁷</text>
+<text x="296.000" y="553.000" font-size="16">0</text>
+</g></svg></figure>
+<p class="essay-caption"><em>Figure 4. Seven initial powers and their half-turns give fourteen generators. At $t=1/2$ and $\zeta=-1$, the identity $\mu^7=-\tfrac12\mu-\tfrac12$ closes both chains, while $\lambda=-\mu^2$ lies on the rotated chain. Numerical coordinates illustrate the exact algebraic certificate; they do not establish a boundary claim.</em></p>
+<h3 id="phase-proof-7">Finish the extremal covering</h3>
+<p>For the conjugate orientation, conjugate the constructed polygon. Indeed, $\overline{C(\mu,h)}=C(\overline\mu,h)$, since conjugation permutes the $h$th roots of unity. The vertex count is unchanged.</p>
+<p>For a unit-circle stochastic eigenvalue, the root-of-unity order is at most the matrix order. Here is a short proof that also covers reducible matrices. If $Av=\lambda v$ and $|\lambda|=1$, choose $i$ with $|v_i|=\max_j|v_j|&gt;0$. Equality in</p>
+<div class="theory-formula">$$|\lambda v_i|=\left|\sum_j a_{ij}v_j\right|
+\leq\sum_j a_{ij}|v_j|\leq|v_i|$$</div>
+<p>forces $v_j=\lambda v_i$ whenever $a_{ij}&gt;0$. Every such successor again has maximal modulus. Following positive entries eventually yields a directed cycle of some length $d\leq n_*$. Along it, $v_i=\lambda^d v_i$, so $\lambda^d=1$. The regular $d$-gon $C(1,d)$ contains $\lambda$; if $\lambda=1$, use $[-1,1]$ instead so the chosen set also contains zero.</p>
+<p>Real extrema are covered by the cyclic segment $[-1,1]=C(1,2)$. The low-order nonreal case is covered by the regular triangle, as the calculation below shows. Consequently <strong>every radial extremum is contained, together with zero, in a cyclic polygon whose vertex count is within the allowed order</strong>. For a real or unit extremum of least order one, the segment uses two vertices, which is allowed throughout our union statement $n\geq2$.</p>
+<details class="essay-proof">
                         <summary>Why the order-three case needs only the triangle and the real segment</summary>
                         <div class="essay-proof-body">
                             <p>
@@ -430,8 +603,7 @@
                                 Every point of that triangle is realized by a convex combination of the identity and the two three-cycle permutation matrices. Real points in $[-1,1]$ are realized at order two. Thus the separate base cases are cyclic polygons too.
                             </p>
                         </div>
-                    </details>
-                </section>
+                    </details></div></section>
 
                 <section class="essay-section" id="6-fill-the-rays-to-obtain-the-whole-region">
                     <h2>Fill the rays to obtain the whole region</h2>
@@ -444,9 +616,7 @@
                     <p>
                         Choose the least order $n_*\leq n$ realizing $\lambda$. It is a radial extremum at that order and is new there. The preceding boundary-covering result, including its elementary exceptions, places $\lambda$ in a cyclic polygon $C$ with at most $n$ vertices.
                     </p>
-                    <p>
-                        If the generator has $|\mu|&lt;1$, its powers tend to zero, so $0\in C$. If $|\mu|=1$, a finite polygon requires a finite unit-circle orbit; every nontrivial such orbit also has zero in its convex hull. The exceptional singleton $\{1\}$ can use $[-1,1]$. Convexity now gives
-                    </p>
+                    <p>The construction just proved gives $|\mu|&lt;1$ for every strict-contraction case, so $0\in C$. Each nontrivial regular polygon also contains zero, since the sum of its vertices is zero; the real segment $[-1,1]$ does too. We use this segment for $\lambda=1$, including when its least realizing order is one. It has two vertices, which is allowed because $n\geq2$. Thus the covering polygon can always be chosen to contain both zero and $\lambda$. Convexity gives</p>
                     <div class="theory-formula">
                         $$[0,\lambda]\subseteq C,\qquad z\in C.$$
                     </div>
@@ -454,7 +624,7 @@
                     <figure class="essay-figure">
                         <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="04-fill-the-ray-title 04-fill-the-ray-desc"><title id="04-fill-the-ray-title">Convexity fills the ray below a covered radial extreme</title><desc id="04-fill-the-ray-desc">A cyclic polygon containing the origin and a radial extreme lambda contains every point s lambda for 0 to 1. The figure shows one polygon rather than the whole eigenvalue region.</desc><rect width="960" height="500" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">A POLYGON COVERING THE EXTREME ALSO FILLS ITS RAY</text><path d="M97.5000,274.0000L482.5000,274.0000" fill="none" stroke="#d9e2d8" stroke-width="1" stroke-dasharray=""/><path d="M290.0000,457.7500L290.0000,90.2500" fill="none" stroke="#d9e2d8" stroke-width="1" stroke-dasharray=""/><polygon points="180.6250,346.5512 377.5000,346.5512 465.0000,274.0000 246.2500,128.8977" fill="#e3f1e7" stroke="#168579" stroke-width="1.6"/><path d="M290.0000,274.0000L246.2500,128.8977" fill="none" stroke="#168579" stroke-width="3" stroke-dasharray=""/><circle cx="465.0000" cy="274.0000" r="3" fill="#8fb2a1" stroke="#8fb2a1" stroke-width="1.7"/><circle cx="246.2500" cy="128.8977" r="3" fill="#8fb2a1" stroke="#8fb2a1" stroke-width="1.7"/><circle cx="180.6250" cy="346.5512" r="3" fill="#8fb2a1" stroke="#8fb2a1" stroke-width="1.7"/><circle cx="377.5000" cy="346.5512" r="3" fill="#8fb2a1" stroke="#8fb2a1" stroke-width="1.7"/><circle cx="290.0000" cy="274.0000" r="4" fill="#607b7e" stroke="#607b7e" stroke-width="1.7"/><text x="300.000" y="292.000" fill="#607b7e" font-size="17" text-anchor="start">0</text><circle cx="246.2500" cy="128.8977" r="7" fill="#d98026" stroke="#d98026" stroke-width="1.7"/><text x="221.250" y="115.898" fill="#d98026" font-size="23" text-anchor="start">λ</text><circle cx="263.7500" cy="186.9386" r="6" fill="#168579" stroke="#168579" stroke-width="1.7"/><text x="275.750" y="186.939" fill="#168579" font-size="18" text-anchor="start">z = sλ</text><text x="145.000" y="431.000" fill="#168579" font-size="21" text-anchor="start">One cyclic polygon C</text><text x="510.000" y="130.000" fill="#17343f" font-size="21" text-anchor="start">Theorem X covers the radial extreme λ.</text><text x="510.000" y="204.000" fill="#168579" font-size="25" text-anchor="start">0 ∈ C</text><text x="510.000" y="272.000" fill="#17343f" font-size="22" text-anchor="start">Convexity gives [0, λ] ⊆ C.</text><text x="510.000" y="342.000" fill="#607b7e" font-size="18" text-anchor="start">Every point beneath λ is covered.</text><text x="510.000" y="396.000" fill="#607b7e" font-size="16" text-anchor="start">Different rays may use different polygons.</text></g></svg></div>
           </figure>
-          <p class="essay-caption">Figure 4. Theorem X supplies a polygon containing the radial extreme. Its convexity and the presence of zero fill the ray beneath that point. Different rays may use different cyclic polygons; the picture shows one such polygon.</p>
+          <p class="essay-caption">Figure 5. The proved cyclic construction supplies a polygon containing the radial extreme. Its convexity and the presence of zero fill the ray beneath that point. Different rays may use different cyclic polygons; the picture shows one such polygon.</p>
 
                     <p>
                         Zero itself lies in $[-1,1]$. Combined with the inclusion proved in section 3, this proves the union description:
@@ -474,7 +644,7 @@
                 <section class="essay-section" id="7-what-remains-for-the-final-stop">
                     <h2>What remains for the final stop</h2>
                     <p>
-                        Using Theorem X, we now have a description of the whole region. Assigning every boundary arc its final equation is the remaining task.
+                        With Theorem X proved from the return relations, we now have a description of the whole region. Assigning every boundary arc its final equation is the remaining task.
                     </p>
                     <p>
                         That distinction is useful. Theorem A asks whether a point lies in at least one cyclic polygon with the allowed number of vertices. Theorem B asks which of the candidate curves form the outside of their union, including the pieces inherited from smaller orders.
@@ -495,11 +665,9 @@
                         F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The cyclic definition and Theorem A are on pp. 361–362; Theorem X and the deduction of Theorem A are on p. 379.
                     </p>
                     <p class="essay-sources">
-                        D. Ž. Đoković, <em>Cyclic polygons, roots of polynomials with decreasing nonnegative coefficients, and eigenvalues of stochastic matrices</em> (1990). <a href="https://doi.org/10.1016/0024-3795(90)90266-F" target="_blank" rel="noopener">Publisher record</a>, for the connection between cyclic polygons, polynomials with decreasing nonnegative coefficients, and a streamlined proof of Karpelevich’s theorem.
+                        D. Ž. Đoković, <em>Cyclic polygons, roots of polynomials with decreasing nonnegative coefficients, and eigenvalues of stochastic matrices</em> (1990). <a href="https://doi.org/10.1016/0024-3795(90)90266-F" target="_blank" rel="noopener">Publisher record</a>, for cyclic polygons generated by a single power sequence, the order-six counterexample to the narrower conjecture, and a simplified statement of Karpelevich’s theorem.
                     </p>
-                    <p class="essay-sources">
-                        This post proves the finite closing certificate, multiplication closure, stochastic realization of each polygon, the eight-state root-sign selection, the low-order cases, and the passage from radial coverage to the whole region. Theorem X supplies the general extremal covering statement. Diagrams use numerical drawing coordinates for exact algebraic constructions; the matrix explorer uses exact rational arithmetic. No numerical root tracking establishes a boundary claim.
-                    </p>
+                    <p class="essay-sources">This post proves the finite closing certificate, multiplication closure, stochastic realization, and Theorem X’s covering construction for both return patterns, then deduces Theorem A. The Bézout lemma gives an explicit form of the root-and-phase calculation; the common-weight relations and their exponent counts are proved in Stops 5 and 7. Unit-circle and low-order cases are included. Static diagrams use numerical drawing coordinates for exact algebraic constructions; the matrix explorer uses exact rational arithmetic.</p>
 
                     <cite-grid keys="karpelevich1951, djokovic1990"></cite-grid>
                 </section>

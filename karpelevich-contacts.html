@@ -88,7 +88,7 @@
         </header>
 
         <noscript>
-            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The two interactive explorers require JavaScript.</p>
+            <p class="small-note">The proofs and static figures remain readable without JavaScript. The two interactive explorers require JavaScript.</p>
         </noscript>
 
         <div class="essay-layout">
@@ -99,7 +99,7 @@
                     <li><a href="#if-the-whole-image-is-interior-expand-it">If the whole image is interior, expand it</a></li>
                     <li><a href="#why-even-one-interior-image-is-impossible">Why even one interior image is impossible</a></li>
                     <li><a href="#a-supporting-edge-forces-a-sparse-row">A supporting edge forces a sparse row</a></li>
-                    <li><a href="#the-fixed-cyclic-shift-is-the-deeper-input">The fixed cyclic shift is the deeper input</a></li>
+                    <li><a href="#the-fixed-cyclic-shift-is-the-deeper-input">The fixed cyclic shift: a complete contact argument</a></li>
                     <li><a href="#an-exact-extremal-polygon">An exact extremal polygon</a></li>
                     <li><a href="#why-the-choice-of-orientation-matters">Why the choice of orientation matters</a></li>
                     <li><a href="#the-board-is-finally-defined">The board is finally defined</a></li>
@@ -117,7 +117,7 @@
                         An extremal eigenvalue behaves differently. At its least realizing order, every image vertex must touch the polygon’s boundary. A theorem of Dmitriev and Dynkin <cite-ref key="dmitriev1946"></cite-ref> then organizes those contacts: every vertex looks toward the same pair of cyclic neighbors.
                     </p>
                     <p>
-                        This is the missing step between <a href="karpelevich-polygons.html">the matrix–polygon correspondence</a> and <a href="karpelevich-game.html">Karpelevich’s chip game</a>. We will separate the elementary lack-of-slack argument from the stronger contact theorem, prove the no-interior-contact conclusion, and work through an exact extremal example.
+                        This is the missing step between <a href="karpelevich-polygons.html">the matrix–polygon correspondence</a> and <a href="karpelevich-game.html">Karpelevich’s chip game</a>. We will prove the no-interior-contact conclusion, then establish the global contact ordering and its consistent endpoint convention before working through an exact extremal example.
                     </p>
                 </section>
 
@@ -341,35 +341,79 @@
                     </p>
                 </section>
 
-                <section class="essay-section" id="the-fixed-cyclic-shift-is-the-deeper-input">
-                    <h2>The fixed cyclic shift is the deeper input</h2>
-                    <p>
-                        Number the vertices counterclockwise as $z_0,\ldots,z_{n-1}$, and use indices modulo $n$. The Dmitriev–Dynkin contact theorem <cite-ref key="dmitriev1946"></cite-ref>, recalled in Karpelevich’s §2 <cite-ref key="karpelevich1951"></cite-ref>, provides the global organization.
-                    </p>
-                    <p>
-                        Under the two hypotheses above, there is an integer $k$ corresponding to
-                    </p>
-                    <div class="theory-formula">
-                        $$\frac{2\pi(k-1)}n\leq\arg\lambda\leq\frac{2\pi k}n$$
-                    </div>
-                    <p>
-                        such that every image satisfies
-                    </p>
-                    <div class="theory-formula">
-                        $$\boxed{\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k},\qquad \alpha_i,\beta_i\geq0,\qquad\alpha_i+\beta_i=1.}$$
-                    </div>
-                    <p>
-                        Here $1\leq k\leq n$, with $0&lt;\arg\lambda&lt;2\pi$. At a sector endpoint, take a compatible choice of $k$. The theorem also rules out the simultaneous occurrence of an $\alpha_i=0$ and a $\beta_j=0$. Thus either every $\alpha_i$ is positive or every $\beta_i$ is positive, possibly both <cite-ref key="dmitriev1946"></cite-ref> <cite-ref key="karpelevich1951"></cite-ref>.
-                    </p>
-                    <p>
-                        The formula says much more than “each image lies on some edge.” <strong>The same index shift works at every vertex</strong>, even when the polygon is very irregular. In matrix language, all the nonzero entries occupy two specified cyclic diagonals.
-                    </p>
-                    <p>
-                        The global shift and the prohibition on mixed zero endpoints are the part of the Dmitriev–Dynkin theorem we invoke as a cited input. The supporting-line calculation proves sparsity once the contact edge is known; it does not prove that global organization.
-                    </p>
-                </section>
+                <section class="essay-section" id="the-fixed-cyclic-shift-is-the-deeper-input"><h2>The fixed cyclic shift: a complete contact argument</h2><div class="proof-addition"><nav class="proof-local-nav" aria-label="Steps of the added proof"><a href="#added-proof-stop-2-1">Two elementary tools</a><a href="#added-proof-stop-2-2">Every closed edge has a contact</a><a href="#added-proof-stop-2-3">One half-open convention works around the entire polygon</a><a href="#added-proof-stop-2-4">Counting contacts gives the fixed shift</a></nav><p>The supporting-line calculation identifies the two possible targets in each row. We now prove that the target edges advance one step whenever the source vertex advances one step. This is the global part of the Dmitriev–Dynkin contact theorem.</p>
+<p>Keep the hypotheses already stated: $\lambda$ is a nonreal radial extremum in $\mathcal K_n\setminus\mathcal K_{n-1}$, and $Q$ is an invariant polygon. It has exactly $n$ genuine vertices. The no-interior-image lemma applies to <strong>every</strong> invariant polygon with at most $n$ vertices, including the polygons obtained by the small changes below.</p>
+<p>First suppose $|\lambda|&lt;1$, and put $P=\lambda Q$. Both polygons have $n$ vertices, and every vertex of $P$ lies on $\partial Q$. All contour arcs and edge endpoints below are ordered counterclockwise. A boundary piece of $Q$ is <strong>free</strong> if it does not meet $P$.</p>
+<h3 id="added-proof-stop-2-1">Two elementary tools</h3>
+<p><strong>Contact-count lemma.</strong> Let $a,b\in\partial Q\cap\partial P$. Suppose each endpoint is either a vertex of both polygons or an interior point of an edge of both polygons. The counterclockwise arcs from $a$ to $b$ contain the same number of vertices of the two polygons, with the endpoints counted consistently.</p>
+<p>To prove this, let the two counts be $N_Q,N_P$. Replace the outer arc by the inner one. The resulting convex polygon $Q_-$ satisfies</p>
+<div class="theory-formula">$$P\subseteq Q_-\subseteq Q,\qquad \lambda Q_-\subseteq P\subseteq Q_-.$$</div>
+<p>Its vertex count is $n-N_Q+N_P$. Minimality of the realizing order therefore gives $N_Q\leq N_P$. Conversely, replace the corresponding arc of $P$ by the outer arc, obtaining $P_+$ with</p>
+<div class="theory-formula">$$P\subseteq P_+\subseteq Q.$$</div>
+<p>The polygon $Q_+=\lambda^{-1}P_+$ contains $Q$, and</p>
+<div class="theory-formula">$$\lambda Q_+=P_+\subseteq Q\subseteq Q_+.$$</div>
+<p>Its vertex count is $n-N_P+N_Q$, giving the reverse inequality. The endpoint assumption makes the two splice counts exact: no unmatched corner is introduced at a splice. Convexity follows from nesting and the common supporting edges or common corner cones at the endpoints.</p>
+<p><strong>Corner-cut lemma.</strong> Let $x,y,z$ be consecutive vertices of $Q$. If the half-open edge $[y,z)$ is free, then</p>
+<div class="theory-formula">$$\lambda[x,y]\subseteq\partial Q.$$</div>
+<p>Indeed, move $y$ a sufficiently small distance toward $x$ on $[x,y]$, leaving the other vertices fixed. Call the new vertex $y_\varepsilon$ and the new polygon $Q_\varepsilon$. The removed triangular sliver meets $P$ at most at $z$, so for a small enough move</p>
+<div class="theory-formula">$$P\subseteq Q_\varepsilon\subseteq Q,\qquad
+\lambda Q_\varepsilon\subseteq P\subseteq Q_\varepsilon.$$</div>
+<p>The assertion about the sliver follows by checking the finitely many edges of $P$: those not through $z$ have positive clearance from a sufficiently thin sliver, and an edge through $z$ has a strict angle from the free half-edge.</p>
+<p>Now $\lambda y_\varepsilon$ lies strictly between $\lambda x$ and $\lambda y$. If that segment were not on one supporting edge of $Q$, its open segment would be interior to $Q$. The sliver has not reached it, so $\lambda y_\varepsilon$ would be interior to $Q_\varepsilon$, contradicting the no-interior-image lemma. This proves the assertion. Reflecting the argument gives its companion: if $(y,z]$ is free, the image of the edge following $[y,z]$ lies on $\partial Q$.</p>
+<figure class="essay-figure proof-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 405" role="img" aria-labelledby="proof2-count-title proof2-count-desc"><title id="proof2-count-title">The endpoint convention in the contact-count proof</title><desc id="proof2-count-desc">Three oriented edges define a free closed edge and the two kinds of half-open gap. Amber marks an image contact excluded by that row’s endpoint convention.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="34" y="36" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">COUNT CLOSED EDGES FIRST; THEN CHOOSE ONE ENDPOINT CONVENTION</text><text x="37" y="117" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">[y, z]</text><line x1="150" y1="112" x2="430" y2="112" stroke="#17343f" stroke-width="2" stroke-dasharray=""/><circle cx="150" cy="112" r="5" fill="#17343f" stroke="#17343f" stroke-width="2"/><circle cx="430" cy="112" r="5" fill="#17343f" stroke="#17343f" stroke-width="2"/><text x="150" y="142" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">y</text><text x="430" y="142" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">z</text><text x="490" y="106" font-size="17" fill="#17343f" text-anchor="start" font-weight="400">A free closed edge has no image contact.</text><text x="490" y="135" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">A thin parallel cut preserves containment.</text><text x="37" y="229" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">[y, z)</text><line x1="150" y1="224" x2="430" y2="224" stroke="#17343f" stroke-width="2" stroke-dasharray=""/><circle cx="150" cy="224" r="5" fill="#17343f" stroke="#17343f" stroke-width="2"/><circle cx="430" cy="224" r="5" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="150" y="254" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">y</text><text x="430" y="254" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">z</text><circle cx="430" cy="224" r="8" fill="#d98026" stroke="#d98026" stroke-width="2"/><text x="490" y="218" font-size="17" fill="#17343f" text-anchor="start" font-weight="400">A contact only at z leaves [y, z) free.</text><text x="490" y="247" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">The opposite half-open convention includes it.</text><text x="37" y="341" font-size="21" fill="#17343f" text-anchor="start" font-weight="400">(y, z]</text><line x1="150" y1="336" x2="430" y2="336" stroke="#17343f" stroke-width="2" stroke-dasharray=""/><circle cx="150" cy="336" r="5" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><circle cx="430" cy="336" r="5" fill="#17343f" stroke="#17343f" stroke-width="2"/><text x="150" y="366" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">y</text><text x="430" y="366" font-size="14" fill="#17343f" text-anchor="middle" font-weight="400">z</text><circle cx="150" cy="336" r="8" fill="#d98026" stroke="#d98026" stroke-width="2"/><text x="490" y="330" font-size="17" fill="#17343f" text-anchor="start" font-weight="400">A contact only at y leaves (y, z] free.</text><text x="490" y="359" font-size="14" fill="#607b7e" text-anchor="start" font-weight="400">The proof forbids both types of gap together.</text></svg></figure><p class="essay-caption"><em>Proof figure. Closed edges and the two half-open conventions used in the counting argument. These are definitions of the gap types, rather than a claimed mixed-contact eigenpolygon.</em></p><h3 id="added-proof-stop-2-2">Every closed edge has a contact</h3>
+<p>Let $B(Q)$ be the number of free closed edges. It is an integer between zero and $n$. Among all invariant $n$-gons choose one maximizing $B(Q)$. We will prove its maximum is zero, which proves the claim for every invariant polygon.</p>
+<p>Suppose $[y_0,z_0]$ is free, and write $x_0,y_0,z_0,u_0$ for the adjacent four vertices. By the corner-cut lemma, the segments $\lambda[x_0,y_0]$ and $\lambda[z_0,u_0]$ lie in edges of $Q$. Call these edges $[x_1,y_1]$ and $[z_1,u_1]$.</p>
+<p>Choose a point in the interior of each of those image segments. Each chosen point is interior to an edge of both polygons. The inner arc between them has just the two corners $\lambda y_0,\lambda z_0$. By the contact-count lemma, the outer arc also has just two corners. Thus $y_1,z_1$ are consecutive: the two containing edges are separated by the single edge $[y_1,z_1]$.</p>
+<p>We claim this separating edge is free. Cut a thin strip from $Q$ parallel to the original free edge $[y_0,z_0]$. Because that <strong>closed</strong> edge is disjoint from compact $P$, the strip can be chosen with $P$ still contained in the resulting polygon. Its two new corners lie on $[x_0,y_0]$ and $[z_0,u_0]$.</p>
+<p>In the image polygon the corresponding corners move away from the separating edge along $[x_1,y_1]$ and $[z_1,u_1]$. They were its only possible image contacts: the count above leaves no intervening image vertex. Thus $[y_1,z_1]$ becomes free. Existing free edges remain free for a sufficiently small cut; the shortened edges stay on their old lines, the replacement parallel edge has positive clearance, and the image polygon has shrunk. If $[y_1,z_1]$ had not already been free, this would increase $B(Q)$, contrary to maximality.</p>
+<p>Repeat the construction from the new free edge, in the same fixed polygon. At each step,</p>
+<div class="theory-formula">$$\lambda[x_j,y_j]\subseteq[x_{j+1},y_{j+1}].$$</div>
+<p>There are only finitely many edges, so some edge repeats. For some positive integer $h$ this gives $\lambda^h E\subseteq E$ for an edge $E$ of $Q$. Iterating would put $\lambda^{mh}E$ in $E$ for every $m$. Since $|\lambda|&lt;1$, these segments converge to $0$, so the closed edge would contain $0$. That contradicts $0\in\operatorname{int}Q$.</p>
+<p>Consequently $B(Q)=0$ for every invariant polygon: <strong>every closed edge meets $P$.</strong></p>
+<h3 id="added-proof-stop-2-3">One half-open convention works around the entire polygon</h3>
+<p>Writing $v_i = z_i$ for the indexed vertices of $Q$ (so $x_0, y_0, z_0, u_0, v_0, w_0$ can denote consecutive corners along a local arc), let $B_+(Q)$ count free edges of the form $[v_i,v_{i+1})$, and let $B_-(Q)$ count free edges of the form $(v_i,v_{i+1}]$. We prove</p>
+<div class="theory-formula">$$\boxed{B_+(Q)=0\quad\text{or}\quad B_-(Q)=0.}$$</div>
+<p>Again use a finite integer maximum, now maximizing $B_+(Q)B_-(Q)$ over the invariant polygons. Suppose the maximum is positive. Choose a free pair</p>
+<div class="theory-formula">$$[y_0,z_0),\qquad (u_0,v_0]$$</div>
+<p>for which the counterclockwise arc from $z_0$ to $u_0$ has the fewest edges; call this number $h$. The case $z_0=u_0$ means $h=0$.</p>
+<p>Let $x_0$ precede $y_0$ and $w_0$ follow $v_0$. The corner-cut lemma puts $\lambda[x_0,y_0]$ in an edge $[x_1,y_1]$ and $\lambda[v_0,w_0]$ in an edge $[v_1,w_1]$. Let $z_1$ follow $y_1$, and let $u_1$ precede $v_1$.</p>
+<p>The fact that every closed edge has a contact gives</p>
+<div class="theory-formula">$$\lambda z_0\in(y_1,z_1],\qquad
+\lambda u_0\in[u_1,v_1).$$</div>
+<p>For example, if $\lambda y_0$ is interior to $[x_1,y_1]$, the next closed edge could not have a contact if the next image vertex $\lambda z_0$ lay beyond $z_1$. If $\lambda y_0=y_1$, first make the small corner cut at $y_0$ and pass to the limit. The right-hand assertion follows in reverse order.</p>
+<p>Apply the contact-count lemma between interior points of the two coincident end-edge segments. It shows that the arc $[z_1,u_1]$ also has $h$ edges.</p>
+<p>This arc contains a vertex shared by $P$ and $Q$. Otherwise, for $h&gt;0$, each of its $h$ closed edges would need an image vertex in its interior. But the inner arc $[\lambda z_0,\lambda u_0]$ has only $h+1$ vertices, and both endpoints lie outside the open arc $(z_1,u_1)$. Only $h-1$ vertices are available there, a contradiction. For $h=0$, the two displayed endpoint containments already force the common point.</p>
+<p>Let $f$ and $g$ be the first and last shared vertices in $[z_1,u_1]$. If $e$ precedes $f$, then $[e,f)$ is free. Here is the count when $[z_1,f]$ has $q&gt;0$ edges: the contact-count lemma gives $q+1$ image vertices on $[\lambda z_0,f]$. One is $\lambda z_0$, before $z_1$, and one is $f$. Every one of the first $q-1$ edges needs an interior contact because its endpoints are not shared. These use all the remaining $q-1$ image vertices. None is left for $[e,f)$.</p>
+<p>If $q=0$, then $f=z_1$ and the same endpoint count gives $\lambda z_0=z_1$. The only way $[y_1,z_1)$ could still meet $P$ is the edge coincidence starting at $\lambda y_0=y_1$. A small corner cut at $y_0$ breaks that coincidence and frees $[y_1,z_1)$ while preserving all previously free half-edges. It would increase the positive product $B_+B_-$, which is impossible. Thus the assertion also holds when $q=0$. Applying the reverse argument at the other end gives a free edge $(g,j]$, where $j$ follows $g$.</p>
+<p>Our minimal choice of $h$ now says that $[f,g]$ has at least $h$ edges. It is contained in the $h$-edge arc $[z_1,u_1]$. Hence</p>
+<div class="theory-formula">$$f=z_1,\qquad g=u_1.$$</div>
+<p>The endpoint counts also force</p>
+<div class="theory-formula">$$\lambda z_0=z_1,\qquad\lambda u_0=u_1.$$</div>
+<p>Finally, $[y_1,z_1)$ and $(u_1,v_1]$ themselves must be free. If the first were not, moving $y_0$ slightly toward $x_0$ would free it: the only possible remaining contact is the edge coincidence starting at $\lambda y_0=y_1$. The cut preserves all previously free half-edges and makes this additional one free. Since both counts are positive, their product increases, contradicting maximality. The reverse cut at $v_0$ proves the other assertion.</p>
+<p>We have therefore produced another free pair at the same minimal separation, with $z_1=\lambda z_0$. Repeating inside the same polygon gives vertices</p>
+<div class="theory-formula">$$z_0,\lambda z_0,\lambda^2z_0,\ldots$$</div>
+<p>of $Q$. Some vertex must repeat, which would give $\lambda^m z_0=z_0$ for a positive $m$. This is impossible because $z_0\ne0$ and $|\lambda|&lt;1$. The maximum product is zero, proving the boxed alternative for every invariant polygon.</p>
+<h3 id="added-proof-stop-2-4">Counting contacts gives the fixed shift</h3>
+<p>Suppose first that no edge of the form $(v_j,v_{j+1}]$ is free. These $n$ half-open edges partition the boundary, and each contains an image vertex. There are exactly $n$ image vertices. Consequently each contains exactly one.</p>
+<p>Multiplication by $\lambda$ preserves cyclic order. The unique contact assigned to the next half-open edge must therefore come from the next source vertex. For a single fixed integer $k$,</p>
+<div class="theory-formula">$$\lambda v_i\in(v_{i+k-1},v_{i+k}],$$</div>
+<p>or equivalently</p>
+<div class="theory-formula">$$\boxed{\lambda v_i=\alpha_i v_{i+k-1}+\beta_i v_{i+k},
+\qquad\alpha_i\geq0,\quad\beta_i&gt;0,\quad\alpha_i+\beta_i=1.}$$</div>
+<p>If the other half-open convention is the one with no free edges, we obtain the same formula with every $\alpha_i&gt;0$ and $\beta_i\geq0$. In particular, a configuration cannot contain both a zero alpha coefficient and a zero beta coefficient. Reflection across the real axis exchanges the conventions, giving the orientation used in the chip game.</p>
+<p>The value of the shift also agrees with the angle. Let $\gamma_i$ be the positive exterior turn from edge $[v_i,v_{i+1}]$ to the next edge. The direction of its image edge lies between the directions of the two target edges containing its endpoints. On consistent angular lifts this gives</p>
+<div class="theory-formula">$$\gamma_i+\cdots+\gamma_{i+k-2}
+\leq\arg\lambda
+\leq\gamma_i+\cdots+\gamma_{i+k-1}.$$</div>
+<p>Sum over $i$. Each exterior turn occurs $k-1$ times on the left and $k$ times on the right, and the total exterior turn is $2\pi$. Thus</p>
+<div class="theory-formula">$$\frac{2\pi(k-1)}n\leq\arg\lambda\leq\frac{2\pi k}n.$$</div>
+<p>In the strict-contraction extremal case the inequalities are strict. Equality would put $\lambda$ on the ray of an $n$th root of unity, which is already realizable with modulus one. The smaller modulus could not be radially extremal.</p>
+<p>If $|\lambda|=1$, area and containment give $\lambda Q=Q$. Multiplication permutes the vertices. Its orbit gives a regular polygon with as many vertices as the order of the root of unity; least-order minimality makes that order $n$ and makes $Q$ that regular $n$-gon. The fixed-shift conclusion follows directly. This handles the unit-circle case separately from the contraction arguments above.</p>
+<p>We have now proved the global contact pattern, including the consistent endpoint convention. The two nonzero cyclic diagonals are a consequence of minimal order and extremality, rather than an extra assumption imposed on the matrix.</p>
+<p><em>Source: Dmitriev–Dynkin (1946), §2, especially the contact-count and corner-cut arguments and Theorems II–III; English translation in Swift (1972) <cite-ref key="swift1972"></cite-ref>, Appendix A, pp. A-8–A-17. The no-interior-image lemma proved earlier in this post replaces their separate proof of Theorem I.</em></p>
+</div></section>
 
-                <section class="essay-section" id="an-exact-extremal-polygon">
+<section class="essay-section" id="an-exact-extremal-polygon">
                     <h2>An exact extremal polygon</h2>
                     <p>
                         Set
@@ -571,9 +615,10 @@
                         [2] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383, §2, p. 363. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>.
                     </p>
                     <p class="essay-sources">
-                        Karpelevich takes the Dmitriev–Dynkin theorem as an input. This post does the same for the fixed-shift and endpoint conclusions, while giving proofs of the expansion, no-interior-contact, supporting-face, and example claims. The resolvent argument is presented as an explanatory proof here, rather than as a reconstruction of Dmitriev and Dynkin’s geometric proof. The diagrams and explorer are newly prepared for this exposition.
+                        This post proves the expansion, no-interior-image, supporting-face, fixed-shift, and consistent-endpoint conclusions. The contact-ordering argument reconstructs Dmitriev–Dynkin’s closed-edge and half-open-edge counts; the earlier resolvent argument supplies the no-interior-image lemma used during the cuts. For an English translation of the original contact argument, see Joanne Swift, <em>The location of characteristic roots of stochastic matrices</em> (McGill, 1972), Appendix A, pp. A-8–A-17. The static drawings and explorers illustrate the stated exact claims.
                     </p>
-                    <cite-grid keys="dmitriev1946, karpelevich1951"></cite-grid>
+                    <p class="essay-sources">[3] J. Swift, <em>The location of characteristic roots of stochastic matrices</em>, M.Sc. thesis, McGill University (1972), Appendix A. <a href="https://central.bac-lac.gc.ca/.item?app=Library&amp;id=TC-QMM-45924&amp;oclc_number=895262647&amp;op=pdf">Thesis and English translation</a>.</p>
+<cite-grid keys="dmitriev1946, karpelevich1951, swift1972"></cite-grid>
                 </section>
                             <nav class="series-book-pager" aria-label="Book chapter navigation">
                     <div class="book-pager-card prev">

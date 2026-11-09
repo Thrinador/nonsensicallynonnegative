@@ -166,7 +166,7 @@
                             For every $\mu\in\mathbb C$ and integer $h\geq1$ with $\varepsilon=e^{2\pi i/h}$, let $C(\mu,h)$ denote the closed convex hull of the orbit $\{\mu^m\varepsilon^j:m\geq0,\ 0\leq j&lt;h\}$ whenever that hull is a finite polygon. For every $n\geq2$,
                         </p>
                         <div class="theory-formula">
-                            $$\mathcal K_n=\bigcup_{\substack{C(\mu,h)\text{ cyclic polygon}\\#\operatorname{vertices}(C(\mu,h))\leq n}}C(\mu,h).$$
+                            $$\mathcal K_n=\bigcup_{\substack{C(\mu,h)\text{ cyclic polygon}\\ \#\operatorname{vertices}(C(\mu,h))\leq n}}C(\mu,h).$$
                         </div>
                     </div>
                     <div class="math-callout theorem">
@@ -361,7 +361,7 @@
                         <strong>What this accomplishes:</strong> a general invariant polygon acquires a controlled contact pattern. Each image is either a vertex contact or an interior point of a specified edge.
                     </p>
                     <p>
-                        This is an important input from Dmitriev and Dynkin <cite-ref key="dmitriev1946"></cite-ref>, recalled in §2 of the original paper. <a href="karpelevich-contacts.html">What Extremality Forces</a> explains the reduction and its assumptions. We will use radial extremality in this discussion, with the low-order and real-axis cases treated separately.
+                        This is an important step from Dmitriev and Dynkin <cite-ref key="dmitriev1946"></cite-ref>, recalled in §2 of the original paper. <a href="karpelevich-contacts.html">What Extremality Forces</a> proves the contact reduction in full and explains its assumptions. We will use radial extremality in this discussion, with the low-order and real-axis cases treated separately.
                     </p>
                     <p class="essay-post-tag is-live"><span>Published · Stop 2</span> <a href="karpelevich-contacts.html">What Extremality Forces →</a></p>
                 </section>
@@ -659,7 +659,7 @@
                 <section class="essay-section" id="ledger">
                     <h2 class="essay-unnumbered">Proof ledger and where the modern route enters</h2>
                     <p>
-                        To make the logical status of every step completely transparent, the table below records what is proved in full in the nine stops, what is used as an explicit cited input from Dmitriev–Dynkin (1946) and Karpelevich (1951), and where the series switches to the modern literature (1997–2024) to complete the boundary-arc description cleanly.
+                        To make the logical status of every step completely transparent, the table below records what is proved in full in each of the nine stops, how the chapters depend on one another, and how the original arguments of Dmitriev–Dynkin (1946) and Karpelevich (1951) connect to modern formulations in the literature (1997–2026).
                     </p>
                     <div class="table-responsive">
                         <table class="data-table">
@@ -678,13 +678,13 @@
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-contacts.html"><strong>Stop 2</strong></a></td>
-                                    <td>Elementary radial-expansion lemma (why all image vertices cannot be strictly interior); resolvent proof that no single image vertex is interior; supporting-line sparsity; $n=2,3$ base regions.</td>
-                                    <td>Dmitriev–Dynkin (1946) cyclic-shift ordering $\lambda z_i=\alpha_i z_{i+k-1}+\beta_i z_{i+k}$ (Karpelevich §2, Theorem I).</td>
+                                    <td>Radial expansion; resolvent exclusion of an interior image; supporting-face sparsity; contact-count and corner-cut lemmas; closed-edge and half-open-edge contact arguments; fixed cyclic shift and consistent endpoint convention; angular bound and low-order examples.</td>
+                                    <td>Standard Perron–Frobenius and elementary polygon facts from Stop 1. The Dmitriev–Dynkin contact conclusions are proved in the chapter, with the original paper <cite-ref key="dmitriev1946"></cite-ref> and Swift’s translation <cite-ref key="swift1972"></cite-ref> cited as sources.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-game.html"><strong>Stop 3</strong></a></td>
-                                    <td>Corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$; Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$ ($g=\gcd(n,k)$); single consecutive run of length $\varphi$ via strict modular records.</td>
-                                    <td>Karpelevich §3, Theorem II (elimination of multiple separate runs via the record-gap game).</td>
+                                    <td>Corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$; Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$ ($g=\gcd(n,k)$); single consecutive run of length $\varphi$ via strict modular records; complete multi-run elimination via the record-gap game.</td>
+                                    <td>Contact and fixed-shift lemmas from Stop 2 (Karpelevich §3, Lemmas 1–2 &amp; Theorems I–II <cite-ref key="karpelevich1951"></cite-ref>).</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-returns.html"><strong>Stop 4</strong></a></td>
@@ -693,8 +693,8 @@
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-rigidity.html"><strong>Stop 5</strong></a></td>
-                                    <td>Fractional linear return map $u(s)=as/(1+cs)$ under central projection; inward perturbation lemma ($u'(0)\neq1$ and $u'(0)=1$); barycentric two-weight slide forcing $\alpha_1=\cdots=\alpha_m=t$ in both branches.</td>
-                                    <td>Karpelevich §4, Theorem V ($r=1\implies g=1$ in the forward branch and the full-block reduction $\varphi=n\implies k=1$).</td>
+                                    <td>Face persistence and exposing carrier lines; projective-chain lemma with a positive-coordinate proof of the strict closing comparison; both moving-block placements; verification of every image constraint; Theorem V and the full-block reduction; common-weight variations in both branches, including zero-weight marks.</td>
+                                    <td>Contact and return lemmas proved in Stops 2–4. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited for the geometric method; the required geometric arguments are developed in full here.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-boundary-equations.html"><strong>Stop 6</strong></a></td>
@@ -703,18 +703,18 @@
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-farey.html"><strong>Stop 7</strong></a></td>
-                                    <td>Farey neighbor criterion ($bc-ad=1,\ b+d&gt;n$) and mediant threshold; forward-branch angular lift $f/\ell&lt;\theta&lt;k/n$; <strong>Exponent Dictionary</strong> identifying $(\ell,s,m,\tau,\sigma)$ for all $\varphi&gt;1$ and $g\geq2$.</td>
-                                    <td>Karpelevich §5, Theorems VIII–IX (gcd-branch angle bound); <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref> for the single-contact ($g=1,\varphi=1$) selection when $b&lt;n/2$.</td>
+                                    <td>Farey-neighbor criterion and mediant threshold; lifted vertex-angle identities; forward and gcd-branch angular bounds; inverse-window return partition; single-contact exclusion by the zero-weight slide; complete exponent dictionary for every new nonreal strict-contraction extremum; endpoint-root labels in the worked example.</td>
+                                    <td>Contact, return, and rigidity lemmas proved in Stops 2–5. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited as sources for the angular and return methods; the required arguments are developed in the chapter. No final boundary theorem is used for single-contact case selection. Root-branch existence and final outer selection remain part of Stop 9.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-cyclic.html"><strong>Stop 8</strong></a></td>
-                                    <td>Finite closing certificate $\mu^L\in P\implies P=C(\mu,h)$; multiplicative closure $z,w\in C\implies zw\in C$; stochastic matrix realization of every $z\in C$; $n=3$ trace-inequality proof; deduction of Theorem A from radial coverage.</td>
-                                    <td>Karpelevich §5, Theorem X (root-extraction covering of new radial extrema by cyclic polygons); Đoković (1990) <cite-ref key="djokovic1990"></cite-ref>.</td>
+                                    <td>Finite closing certificate; multiplicative closure and stochastic realization of every point in a cyclic polygon; Bézout phase lemma and explicit closing constructions for both return patterns, with $hL=n_*$; conjugate, unit-circle, real, and low-order cases; full deduction of Theorem A.</td>
+                                    <td>Common-weight return relations and their exponent counts, proved in Stops 5 and 7. Karpelevich §5, Theorem X <cite-ref key="karpelevich1951"></cite-ref> is proved here using an explicit Bézout form of the root-and-phase construction. Đoković (1990) <cite-ref key="djokovic1990"></cite-ref> is cited only for the historical distinction from the narrower single-orbit conjecture.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-induction.html"><strong>Stop 9</strong></a></td>
-                                    <td>Denominator divisibility test ($b\mid n$ or $d\mid n$); comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$; quantitative interior-image lemma $B(\mu,\delta/M)\subseteq\mathcal K_n$; explicit $n=6$ hexagon witness.</td>
-                                    <td>Dmitriev–Dynkin interior-image construction (p. 382); <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref>, <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref>, <strong>Kirkland–Laffey–Šmigoc (2020)</strong> <cite-ref key="kirkland2020"></cite-ref>, and <strong>Munger–Nickerson–Paparella (2024)</strong> <cite-ref key="munger2023"></cite-ref> for unique smooth simple polar arcs and radial extremality.</td>
+                                    <td>Denominator divisibility test ($b\mid n$ or $d\mid n$); scalar branch equation, stochastic attainability, and winding-based necessity; factor-count and mediant outward comparisons; general strict interior-image polygon construction; order-four base case, full induction $R_n=\widehat R_n$, topological-boundary equality for $n\geq4$, and simple monotone parameterization; comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$ and explicit $n=6$ hexagon witness.</td>
+                                    <td>Common-weight return relations, angular lifts, low-order regions, and explicit chain matrices proved in Stops 5–8. Karpelevich (1951) <cite-ref key="karpelevich1951"></cite-ref> and Verbeken–Ginis (2026) <cite-ref key="verbeken2026"></cite-ref> are credited as sources for the boundary-comparison method; <strong>Ito (1997)</strong> <cite-ref key="ito1997"></cite-ref>, <strong>Johnson–Paparella (2017)</strong> <cite-ref key="johnson2017"></cite-ref>, <strong>Kirkland–Laffey–Šmigoc (2020)</strong> <cite-ref key="kirkland2020"></cite-ref>, and <strong>Munger–Nickerson–Paparella (2024)</strong> <cite-ref key="munger2023"></cite-ref> are cited as modern alternative formulations.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -747,7 +747,7 @@
                         F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper and scan</a>. <a href="https://doi.org/10.1090/trans2/140/05" target="_blank" rel="noopener">English translation</a>: American Mathematical Society Translations, Series 2, <strong>140</strong> (1988), 79–100.
                     </p>
                     <p class="essay-sources">
-                        This roadmap outlines the nine-stop argument, standardizes the notation across all chapters, and records where the modern formulations of Ito (1997), Johnson–Paparella (2017), Kirkland–Laffey–Šmigoc (2020), and Munger–Nickerson–Paparella (2024) complete the boundary-arc description.
+                        This roadmap outlines the nine-stop argument, standardizes the notation across all chapters, and records how the full proofs of Theorems A and B across Stops 1–9 connect to the modern formulations of Ito (1997), Johnson–Paparella (2017), Kirkland–Laffey–Šmigoc (2020), Munger–Nickerson–Paparella (2024), and Verbeken–Ginis (2026).
                     </p>
 
                     <div class="essay-next">
@@ -755,7 +755,7 @@
                         <p><a href="karpelevich-polygons.html">From Matrix Rows to Convex Hulls</a>: an eigenvector becomes a geometric witness. Or begin with the game: <a href="karpelevich-game.html">Karpelevich’s Game</a>.</p>
                     </div>
 
-                    <cite-grid keys="karpelevich1951, dmitriev1946, kolmogorov1938, djokovic1990, ito1997, johnson2017, kirkland2020, munger2023"></cite-grid>
+                    <cite-grid keys="karpelevich1951, dmitriev1946, swift1972, kolmogorov1938, djokovic1990, ito1997, johnson2017, kirkland2020, munger2023, verbeken2026"></cite-grid>
                 </section>
                             <nav class="series-book-pager" aria-label="Book chapter navigation">
                     <div class="book-pager-card prev disabled">

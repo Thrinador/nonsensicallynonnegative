@@ -86,7 +86,7 @@
         </header>
 
         <noscript>
-            <p class="small-note">The article and four static figures remain readable without JavaScript. The angular-map and hexagon explorers require JavaScript.</p>
+            <p class="small-note">The article and static figures remain readable without JavaScript. The angular-map and hexagon explorers require JavaScript.</p>
         </noscript>
 
         <div class="essay-layout">
@@ -99,8 +99,8 @@
                     <li><a href="#3-strictly-interior-images-exclude-a-boundary-point">Strictly interior images exclude a boundary point</a></li>
                     <li><a href="#4-an-exact-old-point-that-order-six-buries">An exact old point that order six buries</a></li>
                     <li class="plain"><a href="#margin-lab">Interactive: Hexagon radial margin</a></li>
-                    <li><a href="#5-how-the-induction-applies-this-exclusion-everywhere-needed">How the induction applies this exclusion everywhere needed</a></li>
-                    <li><a href="#6-the-two-cases-now-exhaust-the-boundary">The two cases now exhaust the boundary</a></li>
+                    <li><a href="#5-how-the-induction-applies-this-exclusion-everywhere-needed">Compare old arcs with the new candidates</a></li>
+                    <li><a href="#6-the-two-cases-now-exhaust-the-boundary">Close the induction and identify the boundary</a></li>
                     <li><a href="#7-what-the-series-has-established">What the series has established</a></li>
                     <li class="plain"><a href="#source-and-scope">Source and scope</a></li>
                 </ol>
@@ -204,7 +204,7 @@
 \quad\Longleftrightarrow\quad b\nmid n.$$
                     </div>
                     <p>
-                        If neither denominator divides $n$, both already occur in $F_{n-1}$, the pair is still neighboring there, and the relevant division quotients remain unchanged. This preserves the inductive equation data. The geometric argument below is what proves that the old curve remains outermost.
+                        If neither denominator divides $n$, both already occur in $F_{n-1}$, the pair is still neighboring there, and the relevant division quotients remain unchanged. This preserves the inductive equation data. The winding and comparison arguments below prove that the inherited curve remains outermost.
                     </p>
 
                     <figure class="essay-figure">
@@ -408,11 +408,216 @@
                     </section>
                 </section>
 
-                <section class="essay-section" id="5-how-the-induction-applies-this-exclusion-everywhere-needed">
-                    <h2>How the induction applies this exclusion everywhere needed</h2>
-                    <p>
-                        Assume the boundary description is known at every smaller order, starting from the order-four result of Dmitriev and Dynkin. Recall the chosen-orientation sectors from the angular estimates:
-                    </p>
+                <section class="essay-section" id="5-how-the-induction-applies-this-exclusion-everywhere-needed"><h2>Compare every old arc with the new candidates</h2><nav class="proof-local-nav" aria-label="Order comparison proof"><strong>The comparison and construction</strong><a href="#comparison-proof-1">Scalar root</a><a href="#comparison-proof-3">Winding and necessity</a><a href="#comparison-proof-4">Add a factor</a><a href="#comparison-proof-5">Insert a mediant</a><a href="#comparison-proof-7">General strict witness</a></nav><div class="proof-addition"><p>We will prove the general exclusion used in Karpelevich&#39;s final induction. The construction has three stages: define a realizable candidate on each ray; compare the candidates at successive orders; then use the larger candidate&#39;s polygon to put every old image strictly inside.</p>
+<p>The earlier stops provide three inputs, all proved there: the polygon–matrix correspondence; the common-weight return relations and their angular lifts; and explicit stochastic realizations of the return polynomials. The comparisons below prove which realizable candidates are outermost.</p>
+<h3 id="comparison-proof-1">One scalar equation selects the intended branch</h3>
+<p>Take a Farey interval and, if necessary, conjugate so that its smaller denominator is on the left. Write its oriented endpoints and the direction as</p>
+<div class="theory-formula">$$\frac p\ell&lt;\theta&lt;\frac rs,\qquad
+\ell&lt;s,\qquad r\ell-ps=1,\qquad
+m=\lfloor n/\ell\rfloor.$$</div>
+<p>The reflected direction may lie in the lower half-plane; $\theta$ is still measured in turns. Put</p>
+<div class="theory-formula">$$A=2\pi(\ell\theta-p),\qquad
+B=\frac{2\pi(r-s\theta)}m.$$</div>
+<p>Both angles are positive. As $\theta$ moves across the interval, $A+B$ is affine, with endpoint values $2\pi/(m\ell)$ and $2\pi/s$. For $n\geq4$, both $m\ell$ and $s$ are at least three, so $A+B&lt;\pi$.</p>
+<p>Define the <strong>candidate radius</strong> $\widehat R_n(\theta)$ as the unique $\rho\in(0,1)$ satisfying</p>
+<div class="theory-formula">$$\boxed{\rho^{s/m}\sin A+\rho^\ell\sin B=\sin(A+B).}\tag{R}$$</div>
+<p>The left side is strictly increasing in $\rho$, is zero at zero, and at one exceeds the right side. The latter assertion follows from</p>
+<div class="theory-formula">$$\sin A+\sin B-\sin(A+B)
+=4\sin(A/2)\sin(B/2)\sin((A+B)/2)&gt;0.$$</div>
+<p>Set $\widehat R_n=1$ at the Farey landmarks, and undo any conjugation when returning to the original direction. The hat is deliberate: we have defined a candidate, not assumed it is the boundary.</p>
+<h3 id="comparison-proof-2">Every scalar candidate has a stochastic realization</h3>
+<p>For the root $\rho$ of (R), set $\lambda=\rho e^{2\pi i\theta}$ and</p>
+<div class="theory-formula">$$t=\frac{\rho^\ell\sin B}{\sin(A+B)},\qquad
+1-t=\frac{\rho^{s/m}\sin A}{\sin(A+B)}.$$</div>
+<p>Equation (R) makes these positive numbers sum to one. Comparing real and imaginary parts gives</p>
+<div class="theory-formula">$$\lambda^\ell-t
+=\frac{\rho^\ell\sin A}{\sin(A+B)}e^{i(A+B)}
+=(1-t)\rho^{\ell-s/m}e^{i(A+B)}.$$</div>
+<p>Write $e=s-\ell m$. The real angle identity</p>
+<div class="theory-formula">$$2\pi e\theta+m(A+B)=2\pi(r-mp)$$</div>
+<p>then proves</p>
+<div class="theory-formula">$$\lambda^e(\lambda^\ell-t)^m=(1-t)^m.$$</div>
+<p>The positive-power polynomial after cancelling the common zero factor has degree</p>
+<div class="theory-formula">$$D=\max(s,\ell m)\leq n.$$</div>
+<p>Also $s&gt;n-\ell\geq(m-1)\ell$. Thus the explicit chain matrix proved in <a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a> applies and realizes this nonzero root at order $D$; padding gives order $n$. This establishes attainability of the scalar candidate independently of any boundary conclusion.</p>
+<h3 id="comparison-proof-3">Why a new radial extremum must have this radius</h3>
+<p>Let $N\geq4$ be the least order realizing a nonreal strict-contraction radial extremum. <a href="karpelevich-farey.html#exponent-dictionary">Stops 5 and 7</a> give, in the orientation just chosen,</p>
+<div class="theory-formula">$$ (\lambda^\ell-t)x_{j-1}=(1-t)x_j\quad(1\leq j\leq m),
+\qquad \lambda^e x_m=x_0,\qquad e=s-\ell m.$$</div>
+<p>The consecutive base directions differ by angles in $(0,\pi)$. Since the weights agree, all these angles equal</p>
+<div class="theory-formula">$$u=\operatorname{Arg}(\lambda^\ell-t)\in(0,\pi).$$</div>
+<p>Crucially, the angular lifts give an equality of real numbers, not only an equality modulo a full turn:</p>
+<div class="theory-formula">$$\boxed{2\pi e\theta+mu=2\pi(r-mp).}\tag{W}$$</div>
+<p>Here is the winding check in both patterns. In the forward pattern, $s=N$, $r=k$, and $k\ell-pN=1$. With $e=N-\ell m$, the closing path has index advance</p>
+<div class="theory-formula">$$m+ek=(k-mp)N.$$</div>
+<p>Its lifted angle therefore gives (W). In the gcd pattern before reflection, put $g=\gcd(N,k)=m$, $\ell=N/g$, and let $f/b$ be the predecessor of $k/N$. Write $\sigma=N-b$. In radians, Stop 7&#39;s lifted gap sum is</p>
+<div class="theory-formula">$$\Gamma=2\pi\left(\frac{g+k\sigma}{N}-\sigma\theta_0\right),$$</div>
+<p>where $\theta_0$ is the original direction. After conjugation and reversing the bases, $\theta=1-\theta_0$, $s=b$, $r=b-f$, $p=\ell-k/g$, and $e=-\sigma$. Since $kb-Nf=g$, we obtain</p>
+<div class="theory-formula">$$2\pi e\theta+\Gamma
+=2\pi\left(\frac{g+k\sigma}{N}-\sigma\right)
+=2\pi(k-f-\sigma)=2\pi(r-mp).$$</div>
+<p>The reversed base gaps sum to $mu=\Gamma$, proving (W) here too. The single-contact case is included in the forward pattern by the proof in Stop 7.</p>
+<p>Solving (W) for $u$ gives $u=A+B$. Taking moduli in the product relation gives</p>
+<div class="theory-formula">$$|\lambda^\ell-t|=(1-t)\rho^{\ell-s/m}.$$</div>
+<p>The imaginary part of the common-weight relation yields $1-t=\rho^{s/m}\sin A/\sin(A+B)$; its real part then yields $t=\rho^\ell\sin B/\sin(A+B)$. Adding proves (R). Hence every such new extremum has radius $\widehat R_N$.</p>
+<p>This is the branch-selection statement needed later. A polynomial equation and an angular sector alone would lose the integer winding in (W).</p>
+<h3 id="comparison-proof-4">Keeping the endpoints and adding a factor moves the candidate outward</h3>
+<p>Fix the endpoints and direction, and compare factor counts $m$ and $m+1$. Put $C=2\pi(r-s\theta)&gt;0$, so the two values of $B$ are $C/m$ and $C/(m+1)$. Assume $A+C/m&lt;\pi$, as in every application below.</p>
+<p>Let $\rho$ be the old scalar root. Define</p>
+<div class="theory-formula">$$L=-s\log\rho&gt;0,\qquad
+h(x)=\frac{e^{-Lx}-\cos(Cx)}{\sin(Cx)}.$$</div>
+<p>For $0&lt;Cx&lt;\pi$,</p>
+<div class="theory-formula">$$h'(x)=\frac{C\left[1-e^{-Lx}\left(\cos(Cx)+\frac LC\sin(Cx)\right)\right]}{\sin^2(Cx)}&gt;0.$$</div>
+<p>Indeed, $\cos(Cx)+(L/C)\sin(Cx)\leq1+Lx&lt;e^{Lx}$. Dividing the old scalar equation by $\sin A\sin(C/m)$ gives</p>
+<div class="theory-formula">$$h(1/m)=\frac{\cos A-\rho^\ell}{\sin A}.$$</div>
+<p>At the new count, its left side minus right side, evaluated at the old $\rho$, is</p>
+<div class="theory-formula">$$\sin A\sin\frac C{m+1}\left[h\!\left(\frac1{m+1}\right)-h\!\left(\frac1m\right)\right]&lt;0.$$</div>
+<p>The scalar left side is strictly increasing in the radius, so its new root is strictly larger. Thus increasing the factor count really moves the entire open candidate arc outward.</p>
+<h3 id="comparison-proof-5">Inserting a mediant moves both new candidates outward</h3>
+<p>Let $a/b&lt;c/d$ be neighbors at order $n-1$ with $b+d=n$, so their mediant $\xi=(a+c)/n$ appears at order $n$. Reflect if necessary to arrange $b&lt;d$. For the old interval put</p>
+<div class="theory-formula">$$m=\lfloor(n-1)/b\rfloor,\qquad
+A=2\pi(b\theta-a),\qquad B=\frac{2\pi(c-d\theta)}m.$$</div>
+<p>Let $\rho$ solve its scalar equation. Since $mB-A=2\pi((a+c)-n\theta)$, the left new interval has $A&lt;mB$ and the right one has $A&gt;mB$.</p>
+<div class="table-responsive"><table class="data-table">
+<thead>
+<tr>
+<th>New interval</th>
+<th>Oriented scalar angles</th>
+<th>Factor count used first</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$a/b&lt;\theta&lt;\xi$</td>
+<td>$A$, $B-A/m$</td>
+<td>$m$</td>
+</tr>
+<tr>
+<td>$\xi&lt;\theta&lt;c/d$, reflected</td>
+<td>$mB$, $A-mB$</td>
+<td>$1$</td>
+</tr>
+</tbody></table></div>
+<p>Both angle pairs are positive with sum below $\pi$. Evaluate their right side minus left side at the old $\rho$:</p>
+<div class="theory-formula">$$\begin{aligned}
+D_L&amp;=\sin(A+B-A/m)-\rho^{n/m}\sin A-\rho^b\sin(B-A/m),\\
+D_R&amp;=\sin A-\rho^n\sin(mB)-\rho^d\sin(A-mB).
+\end{aligned}$$</div>
+<p>We can prove both signs by finite geometric sums. Set $\eta=A/m$, $u=\rho^{b/m}$, and $v=\rho^{d/m}$. Using the old equation</p>
+<div class="theory-formula">$$v\sin A+u^m\sin B=\sin(A+B),$$</div>
+<p>first eliminate $v$ from $D_L$. The result factors as</p>
+<div class="theory-formula">$$\begin{aligned}
+D_L&amp;=\sin(B+(m-1)\eta)-u\sin(B+m\eta)\\
+&amp;\quad-u^m\sin(B-\eta)+u^{m+1}\sin B\\
+&amp;=\operatorname{Im}\!\left[e^{iB}(e^{-i\eta}-u)(e^{im\eta}-u^m)\right]\\
+&amp;=|e^{i\eta}-u|^2\sum_{j=0}^{m-1}u^j\sin\bigl(B+(m-1-j)\eta\bigr)&gt;0.
+\end{aligned}$$</div>
+<p>Every sine has argument between $B$ and $B+(m-1)\eta&lt;A+B&lt;\pi$, so every summand is positive.</p>
+<p>For $D_R$, eliminate $u^m$ instead and use</p>
+<div class="theory-formula">$$\sin(A+B)\sin(mB)+\sin B\sin(A-mB)
+=\sin A\sin((m+1)B).$$</div>
+<p>This gives</p>
+<div class="theory-formula">$$\begin{aligned}
+\frac{\sin B}{\sin A}D_R
+&amp;=\sin B-v^m\sin((m+1)B)+v^{m+1}\sin(mB)\\
+&amp;=\operatorname{Im}\!\left[e^{iB}(1-ve^{-iB})(1-v^m e^{imB})\right]\\
+&amp;=|1-ve^{iB}|^2\sum_{j=0}^{m-1}v^j\sin((j+1)B)&gt;0.
+\end{aligned}$$</div>
+<p>On the right new interval, $0&lt;(j+1)B\leq mB&lt;A&lt;\pi$. Again every summand is positive. Both squared factors are nonzero because $0&lt;u,v&lt;1$.</p>
+<p>Thus both new scalar roots exceed the old radius. The right factor count is already correct, since $n=b+d&lt;2d$. On the left, $\lfloor n/b\rfloor$ differs from $m$ only if $b$ divides $n$, hence divides $d$. Coprimality makes this possible only for $b=1$; in that case the factor count increases once, and the preceding comparison increases the radius further. At the inserted landmark itself, the new radius is one and the old radius is less than one.</p>
+<h3 id="comparison-proof-6">These comparisons cover every change of order</h3>
+<p>An old Farey interval either remains intact or splits at its mediant. To check this precisely, if a new fraction $h/n$ lies between $a/b&lt;c/d$, then</p>
+<div class="theory-formula">$$n=(cn-dh)b+(bh-an)d.$$</div>
+<p>Both coefficients are positive integers. Since $b+d\geq n$, equality forces $b+d=n$ and both coefficients to equal one. Thus $h=a+c$; there is exactly one inserted landmark.</p>
+<p>If the interval stays intact, its scalar formula changes only when its smaller denominator $\ell$ divides $n$, because only then does $\lfloor n/\ell\rfloor$ increase. We have therefore proved</p>
+<div class="theory-formula">$$\boxed{\widehat R_{n-1}(\theta)\leq\widehat R_n(\theta),}$$</div>
+<p>with strict inequality inside every split interval and inside every unchanged interval whose factor count increases. Otherwise the two formulas, and their roots, agree. Old landmarks retain radius one.</p>
+<p>This is exactly the divisibility rule from section 2. For unchanged endpoints, a larger denominator $s&lt;n$ cannot divide $n$: if it did, $n\geq2s$, contradicting $n&lt;\ell+s&lt;2s$. For a split interval, a new endpoint has denominator $n$. Hence an open order-$n$ arc is new exactly when an endpoint denominator divides $n$.</p>
+<h3 id="comparison-proof-7">Construct a strict witness for every affected old point</h3>
+<p>Assume the smaller-order boundary is known and fix any nonreal old outer point $\mu$ in one of the sectors where the comparison is strict. Let $\theta$ be its direction. The previous calculation gives a realizable candidate on the same ray,</p>
+<div class="theory-formula">$$\lambda=\widehat R_n(\theta)e^{2\pi i\theta},\qquad
+\mu=c\lambda,\qquad 0&lt;c&lt;1.$$</div>
+<p>Use the explicit chain matrix for $\lambda$, take a nonzero eigenvector, and let $Q$ be the convex hull of its coordinates. It has at most $D\leq n$ vertices and $\lambda Q\subseteq Q$. Since $\lambda$ is nonreal, <a href="karpelevich-polygons.html">Stop 1</a> puts zero in the interior of this two-dimensional polygon.</p>
+<p>Choose $r_Q&gt;0$ with the closed disk $\overline B(0,r_Q)\subseteq Q$. Convexity gives</p>
+<div class="theory-formula">$$cQ+\overline B(0,(1-c)r_Q)\subseteq Q.$$</div>
+<p>Consequently, for <strong>every</strong> vertex $v$ of $Q$,</p>
+<div class="theory-formula">$$\boxed{\mu v=c\lambda v\in cQ,\qquad
+\operatorname{dist}(\mu v,\partial Q)\geq(1-c)r_Q&gt;0.}$$</div>
+<p>This is the required general interior-image construction, with a uniform positive margin at all image vertices. Section 3 now supplies a neighborhood of $\mu$ inside $\mathcal K_n$. In particular, every affected old boundary point becomes interior.</p>
+<p>The construction uses only an explicitly realized candidate and the strict scalar comparison; it does not assume that candidate is already the boundary. It supplies the geometric assertion compressed on p. 382 of Karpelevich&#39;s paper through a fully written comparison argument.</p>
+<figure class="essay-figure proof-figure"><div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 660" role="img" aria-labelledby="general-margin-title general-margin-desc">
+<title id="general-margin-title">A strict witness for every affected old point</title>
+<desc id="general-margin-desc">The left panel shows a polygon Q invariant under a larger candidate lambda. The right panel multiplies its image by c, where zero is less than c and c is less than one. The old multiplier mu equals c lambda. Every image vertex has a disk of the same positive radius contained in Q. The construction is general; the drawing uses an algebraic six-state polygon.</desc>
+<rect width="1120" height="660" rx="20" fill="#f5f6f0"/>
+<g font-family="system-ui, sans-serif" fill="#17343f">
+<text x="34" y="36" font-size="14" letter-spacing="1.4" font-weight="700">A STRICT WITNESS FOR EVERY AFFECTED OLD POINT</text>
+<text x="34" y="78" font-size="21">Realize the larger candidate λ</text>
+<text x="590" y="78" font-size="21">Write the old point as μ = cλ, with 0 &lt; c &lt; 1</text>
+<path d="M560 112V476" stroke="#d3dfd6"/>
+
+<path d="M95 292H461M278 109V475" stroke="#d1dbd4"/>
+<polygon points="159.000,365.750 320.000,439.499 446.000,292.000 397.000,218.250 236.000,144.501 110.000,292.000" fill="#e5efe7" stroke="#168579" stroke-width="2"/>
+<polygon points="372.500,378.041 397.000,218.250 236.000,144.501 183.500,205.959 159.000,365.750 320.000,439.499" fill="#dde7df" stroke="#708780" stroke-width="2" stroke-dasharray="4 4"/>
+<circle cx="372.500" cy="378.041" r="3.5" fill="#708780"/>
+<circle cx="397.000" cy="218.250" r="3.5" fill="#708780"/>
+<circle cx="236.000" cy="144.501" r="3.5" fill="#708780"/>
+<circle cx="183.500" cy="205.959" r="3.5" fill="#708780"/>
+<circle cx="159.000" cy="365.750" r="3.5" fill="#708780"/>
+<circle cx="320.000" cy="439.499" r="3.5" fill="#708780"/>
+<text x="288.000" y="312.000" font-size="17">0</text>
+<text x="456.000" y="297.000" font-size="17">1</text>
+<text x="214.000" y="132.501" font-size="17">λ</text>
+<text x="398" y="149" font-size="24" fill="#168579">Q</text>
+<path d="M655 292H1021M838 109V475" stroke="#d1dbd4"/>
+<polygon points="719.000,365.750 880.000,439.499 1006.000,292.000 957.000,218.250 796.000,144.501 670.000,292.000" fill="#e5efe7" stroke="#168579" stroke-width="2"/>
+<polygon points="725.058,361.995 877.862,431.990 997.448,292.000 950.942,222.005 798.138,152.010 678.552,292.000" fill="none" stroke="#8bb3a4" stroke-width="1.5" stroke-dasharray="5 4"/>
+<polygon points="927.689,373.661 950.942,222.005 798.138,152.010 748.311,210.339 725.058,361.995 877.862,431.990" fill="#f5e4cb" stroke="#d98026" stroke-width="2"/>
+<circle cx="927.689" cy="373.661" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="927.689" cy="373.661" r="3.5" fill="#d98026"/>
+<circle cx="950.942" cy="222.005" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="950.942" cy="222.005" r="3.5" fill="#d98026"/>
+<circle cx="798.138" cy="152.010" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="798.138" cy="152.010" r="3.5" fill="#d98026"/>
+<circle cx="748.311" cy="210.339" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="748.311" cy="210.339" r="3.5" fill="#d98026"/>
+<circle cx="725.058" cy="361.995" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="725.058" cy="361.995" r="3.5" fill="#d98026"/>
+<circle cx="877.862" cy="431.990" r="5.936" fill="#f7e4ca" stroke="#be7828" stroke-width="1"/>
+<circle cx="877.862" cy="431.990" r="3.5" fill="#d98026"/>
+<text x="848.000" y="312.000" font-size="17">0</text>
+<text x="1016.000" y="297.000" font-size="17">1</text>
+<text x="774.000" y="132.501" font-size="17">λ</text>
+<text x="958" y="149" font-size="24" fill="#168579">Q</text>
+<text x="98" y="492" font-size="23" font-family="Georgia, serif">λQ ⊆ Q</text>
+<text x="655" y="492" font-size="23" font-family="Georgia, serif">μQ ⊆ cQ ⊂ int Q</text>
+<path d="M34 518H1086" stroke="#d3dfd6"/>
+<text x="34" y="552" font-size="17">If the origin has an inscribed disk of radius rQ, every amber disk has radius (1 − c)rQ &gt; 0.</text>
+<text x="34" y="588" font-size="21" font-family="Georgia, serif">dist(μv, ∂Q) ≥ (1 − c)rQ for every vertex v of Q.</text>
+<text x="34" y="629" font-size="13" fill="#59717a">Drawing fixture: λ = −1/4 + i√(37/48), Q = conv{±1, ±λ, ±λ²}; the proof applies in every affected Farey sector.</text>
+</g></svg></div></figure>
+<p class="essay-caption">Figure 4. The general construction starts with a realizable larger candidate $\lambda$ on the same ray as the old point $\mu$. Writing $\mu=c\lambda$ puts every $\mu$-image vertex inside $cQ$, with margin at least $(1-c)r_Q$. The drawing uses an algebraic six-generator polygon; the proof applies to every affected old point.</p>
+</div></section>
+
+                <section class="essay-section" id="6-the-two-cases-now-exhaust-the-boundary"><h2>Close the induction and identify the boundary</h2><nav class="proof-local-nav" aria-label="Final induction proof"><strong>Finish the theorem</strong><a href="#boundary-proof-1">Base case</a><a href="#boundary-proof-2">Induction</a><a href="#boundary-proof-3">Topological boundary</a><a href="#boundary-proof-4">Simple monotone arcs</a><a href="#boundary-proof-5">Realizing degree</a></nav><div class="proof-addition"><p>We can now prove $R_n=\widehat R_n$, so the candidates just compared are the actual radial frontier. This also excludes every competing polynomial root from lying farther out.</p>
+<h3 id="boundary-proof-1">Start the induction without leaving an order-four gap</h3>
+<p><a href="karpelevich-cyclic.html">Stop 8</a> proved</p>
+<div class="theory-formula">$$\mathcal K_2=[-1,1],\qquad
+\mathcal K_3=\operatorname{conv}\{1,\omega,\omega^2\}\cup[-1,1],
+\quad\omega=e^{2\pi i/3}.$$</div>
+<p>On the nonreal rays, the order-three frontier also satisfies the scalar formula. In $(0,1/3)$ it is the segment from $1$ to $\omega$, obtained from $\lambda=t+(1-t)\omega$. Here $(\ell,s,m)=(1,3,3)$. In $(1/3,1/2)$ it is the vertical edge $\operatorname{Re}\lambda=-1/2$. Writing $\lambda=-1/2+iy$ gives</p>
+<div class="theory-formula">$$\lambda^3-t\lambda=1-t,\qquad t=3/4-y^2,\qquad 0&lt;y&lt;\sqrt3/2.$$</div>
+<p>After reflection, $(\ell,s,m)=(2,3,1)$ and the reflected direction is $\theta^{\prime}=1-\theta$. Here $A+B=2\pi(1-\theta^{\prime})=2\pi\theta$, while $\overline\lambda^{\,2}-t=\lambda$. Its factor therefore has argument exactly $A+B$, establishing the real winding used in (R). Thus this is precisely its scalar root. In these open intervals $A+B&lt;\pi$, so both comparison lemmas apply even though the order-three real-axis spike has different behavior.</p>
+<p>From $F_3$ to $F_4$, the interval $(0,1/3)$ splits at $1/4$, while the interval $(1/3,1/2)$ keeps its endpoints and its factor count rises from one to two. Hence $\widehat R_4$ dominates the entire nonreal order-three frontier. The real rays have radius one at both orders.</p>
+<p>The candidate $\widehat R_4$ is realizable. An order-four radial maximum either is old, in which case the preceding comparison bounds it, or is new, in which case the contact relations and winding calculation force its radius to be $\widehat R_4$. Therefore $R_4=\widehat R_4$.</p>
+<h3 id="boundary-proof-2">The inductive step has both inclusions</h3>
+<p>Assume $R_{n-1}=\widehat R_{n-1}$ for $n\geq5$, and fix a nonreal direction. Attainability already gives</p>
+<div class="theory-formula">$$R_n\geq\widehat R_n.$$</div>
+<p>Let $\lambda=R_n e^{2\pi i\theta}$ be the radial maximum, which exists by compactness. If $\lambda\in\mathcal K_{n-1}$, nesting and the induction hypothesis give</p>
+<div class="theory-formula">$$R_n\leq R_{n-1}=\widehat R_{n-1}\leq\widehat R_n.$$</div>
+<p>If $\lambda\notin\mathcal K_{n-1}$, it is a new radial extremum at order $n$. For a unit-circle point the radius is one. Otherwise the common-weight relations and (W) prove that its radius is the unique scalar root $\widehat R_n$ in its Farey sector. Thus $R_n\leq\widehat R_n$ here too.</p>
+<p>At a Farey landmark, the corresponding root of unity is realized by a permutation matrix, and every stochastic eigenvalue has modulus at most one. The real endpoints are $1$ and $-1$. This completes the induction:</p>
+<div class="theory-formula">$$\boxed{R_n(\theta)=\widehat R_n(\theta)\quad(n\geq4).}$$</div>
+<p>On unchanged intervals with unchanged factor count, equality of scalar formulas proves inheritance. Where the comparison is strict, the general polygon construction proves that the old frontier is interior, and the new frontier is outside $\mathcal K_{n-1}$. These are precisely the two cases announced in section 2.</p>
+<details class="essay-proof" id="ancestry-comparison-details"><summary>How the ancestry explorer’s comparison order is computed</summary><div class="essay-proof-body"><p>With the induction established, the ancestry explorer’s smaller comparison orders can be recovered from the same Farey data. Recall the chosen-orientation sectors:</p>
                     <div class="theory-formula">
                         $$S_{n,k}=\left(\frac fb,\frac kn\right),$$
                     </div>
@@ -448,9 +653,7 @@ b,&amp;g&gt;1,
                         For example, at $n=6,k=2$, the sector is $(1/4,1/3)$ and $n_*=4$: it is precisely the old order-four arc that is visible at order five. At $n=8,k=3$, the bracketing denominators are three and five, giving $n_*=3\lfloor7/3\rfloor=6$.
                     </p>
 
-                    <details class="essay-proof">
-                        <summary>Why these comparison orders preserve the inductive data</summary>
-                        <div class="essay-proof-body">
+                    
                             <p>
                                 If $g=1$, the two neighbors bracketing $k/n$ have denominators $b_-,b_+$ with $b_-+b_+=n$. They were neighbors in $F_{n-1}$. Put $\ell=\min(b_-,b_+)$ and $s=\max(b_-,b_+)$. Then $s\leq n_*\leq n-1$, the pair is still neighboring in $F_{n_*}$, and division by either denominator gives the same quotient at $n_*$ as at $n-1$. The special end sectors give $n_*=n-1$.
                             </p>
@@ -458,52 +661,58 @@ b,&amp;g&gt;1,
                                 If $g&gt;1$, write $k/n=c/d$ in lowest terms, so $n=gd$. The predecessor denominator satisfies $n-d&lt;b&lt;n$. In particular $b&gt;n/2$ and $\lfloor b/d\rfloor=\lfloor(n-1)/d\rfloor=g-1$. The same Farey interval and quotient data already occur at order $b$.
                             </p>
                             <p>
-                                Applying the inductive equation rules gives the displayed old-boundary comparison. These are the divisions checked in §5(c), equations (30)–(34), of the original paper.
+                                The two endpoint fractions remain adjacent at the stated comparison order, and the smaller-denominator factor count agrees. The scalar formulas are therefore identical. The equality $R_j=\widehat R_j$, now proved for all smaller orders, gives the displayed old-boundary comparison. These are the divisions checked in §5(c), equations (30)–(34), of the original paper.
                             </p>
-                        </div>
-                    </details>
+                        
 
-                    <p>
-                        The remaining geometric input is crucial: <strong>for every old boundary point in this open sector, an order-$n$ polygon can be constructed with all image vertices strictly interior</strong>. The original paper invokes methods of Dmitriev and Dynkin for this construction on p. 382. We use that general construction as a cited input; the hexagon calculation above supplies one fully explicit instance.
-                    </p>
-                    <p>
-                        Now suppose an order-$n$ outer point in $S_{n,k}$ were already in $\mathcal K_{n-1}$. It would have to lie on $\Gamma_{n-1}$, since a farther old point would contradict its order-$n$ extremality. The comparison puts it on $\Gamma_{n_*}$. The interior-image construction and our lemma then make it interior to $\mathcal K_n$, a contradiction.
-                    </p>
-                    <p>
-                        Therefore the open order-$n$ frontier in $S_{n,k}$ is new. The canonical contact relations apply to it.
-                    </p>
-                </section>
-
-                <section class="essay-section" id="6-the-two-cases-now-exhaust-the-boundary">
-                    <h2>The two cases now exhaust the boundary</h2>
-                    <p>
-                        Take any Farey interval $(a/b,c/d)$ at order $n$.
-                    </p>
-                    <p>
-                        If neither denominator divides $n$, this interval is outside every new sector $S_{n,k}$ and its conjugate. Indeed, an endpoint represented as $k/n$ has reduced denominator dividing $n$. The angular estimates therefore exclude a new extremum here. The outer point is old, hence lies on the inherited boundary. The unchanged quotient data preserve its equation.
-                    </p>
-                    <p>
-                        If an endpoint denominator divides $n$, write that endpoint as $k/n$; use conjugation if it is the left endpoint. This is one of the sectors just treated. Its old boundary lies inside the larger region, and its new frontier has one of the two canonical relations from <a href="karpelevich-boundary-equations.html">stop 6</a>:
-                    </p>
-                    <div class="theory-formula">
-                        $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,$$
-                    </div>
-                    <p>
-                        or
-                    </p>
-                    <div class="theory-formula">
-                        $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma.$$
-                    </div>
-                    <p>
-                        For a Farey pair $(a/b,c/d)$ with smaller denominator $\ell=\min(b,d)$, larger denominator $s=\max(b,d)$, and repetition count $m=\lfloor n/\ell\rfloor$, the <a href="karpelevich-farey.html#exponent-dictionary">exponent dictionary</a> of Stop 7 gives $\tau=s-\ell m$ ($n=\ell m+\tau$) in the first family and $\sigma=\ell m-s$ ($n=\ell m$) in the second. Both are cases of <a href="karpelevich-boundary-equations.html#ito-form">Ito’s unified equation</a> $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$. Inherited arcs retain their smaller-order equations, which are given by the exact same formula because $\lfloor n/\ell\rfloor=\lfloor(n-1)/\ell\rfloor$ whenever neither $b$ nor $d$ divides $n$.
-                    </p>
-
-                    <figure class="essay-figure">
+                    </div></details>
+<h3 id="boundary-proof-3">Why this is the topological boundary</h3>
+<p>Inside each open Farey sector, the scalar equation has positive derivative with respect to $\rho$. Its implicit root is therefore continuous and smooth. At the left endpoint, $A\to0$ and $B\to2\pi/(m\ell)\in(0,\pi)$, so (R) forces every limiting radius to satisfy $\rho^\ell=1$. At the right endpoint, $B\to0$ and $A\to2\pi/s\in(0,\pi)$, so the limit satisfies $\rho^{s/m}=1$. Both limits are one.</p>
+<p>Thus $R_n$ is a continuous positive function on the circle for $n\geq4$. Star-shapedness from Stop 1 gives</p>
+<div class="theory-formula">$$\mathcal K_n=\{re^{2\pi i\theta}:0\leq r\leq R_n(\theta)\}.$$</div>
+<p>Every point with $0&lt;r&lt;R_n(\theta)$ is interior: continuity leaves a positive radial gap on nearby directions. The origin is interior too, because the positive continuous function $R_n$ has a positive minimum. Every point with $r=R_n(\theta)$ is on the boundary, since every outward radial move leaves the region. Therefore</p>
+<div class="theory-formula">$$\boxed{\partial\mathcal K_n
+=\{R_n(\theta)e^{2\pi i\theta}:0\leq\theta&lt;1\},\qquad n\geq4.}$$</div>
+<p>This identifies the radial frontier with the topological boundary under the correct order hypothesis. The real-axis spike at order three is why that hypothesis matters.</p>
+<h3 id="boundary-proof-4">The parameter traces exactly one simple arc</h3>
+<p>The scalar root gives a smooth curve $\lambda(\theta)=\rho(\theta)e^{2\pi i\theta}$. Its argument is the chosen direction, so the curve is simple and</p>
+<div class="theory-formula">$$\lambda'(\theta)=e^{2\pi i\theta}\bigl(\rho'(\theta)+2\pi i\rho(\theta)\bigr)\ne0.$$</div>
+<p>The weight $t(\theta)=\rho^\ell\sin B/\sin(A+B)$ tends to one at the left oriented endpoint and zero at the right. It is strictly decreasing. To prove this last assertion, set</p>
+<div class="theory-formula">$$G(\lambda,t)=\lambda^e(\lambda^\ell-t)^m-(1-t)^m,\qquad e=s-\ell m.$$</div>
+<p>At our nonzero roots, even when $e&lt;0$, this function is differentiable and</p>
+<div class="theory-formula">$$G_\lambda=\lambda^{e-1}(\lambda^\ell-t)^{m-1}
+\bigl(s\lambda^\ell-e t\bigr)\ne0.$$</div>
+<p>The last factor has imaginary part $s\rho^\ell\sin A&gt;0$; the other factors are nonzero as well. Differentiating $G(\lambda(\theta),t(\theta))=0$ shows that $t'(\theta)$ cannot vanish, since $G_\lambda\lambda'\ne0$. Its continuous derivative consequently has constant sign; the endpoint limits force that sign to be negative.</p>
+<p>Thus $t$ traverses $(0,1)$ exactly once along the oriented arc. Undoing conjugation reverses the traversal where appropriate. We have proved the existence, selection, and monotone parameterization of the boundary branch. Other roots of the polynomial remain realizable by Stop 6, but the completed upper bound prevents them from lying farther out on any ray.</p>
+<h3 id="boundary-proof-5">The equations retain the correct realizing degree</h3>
+<p>For every order-$n$ Farey interval, let $\ell&lt;s$ be the oriented endpoint denominators and $m=\lfloor n/\ell\rfloor$. Its boundary branch is selected by (R) and (W) from</p>
+<div class="theory-formula">$$\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}.$$</div>
+<p>This is the <strong>unified equation</strong>. Cancelling its common zero factor gives the following reduced polynomials:</p>
+<div class="table-responsive"><table class="data-table">
+<thead>
+<tr>
+<th>Exponent comparison</th>
+<th>Reduced relation</th>
+<th>Realizing degree</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$s\geq\ell m$</td>
+<td>$\lambda^{s-\ell m}(\lambda^\ell-t)^m=(1-t)^m$</td>
+<td>$D=s$</td>
+</tr>
+<tr>
+<td>$s&lt;\ell m$</td>
+<td>$(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m-s}$</td>
+<td>$D=\ell m$</td>
+</tr>
+</tbody></table></div>
+<p>Always $D=\max(s,\ell m)\leq n$. For a new open order-$n$ arc, $D=n$: either a new endpoint has denominator $s=n$, or a retained smaller denominator divides $n$, so $\ell m=n$. An inherited arc can have $D&lt;n$.</p>
+<figure class="essay-figure">
                         <div class="figure-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510" role="img" aria-labelledby="04-the-induction-closes-title 04-the-induction-closes-desc"><title id="04-the-induction-closes-title">The induction has two complementary exclusions</title><desc id="04-the-induction-closes-desc">For a Farey interval, if neither denominator divides the order, angle coverage excludes new extrema and the old arc survives. If an endpoint denominator divides the order, the comparison and strict interior-image construction exclude the old frontier, leaving a new canonical arc.</desc><rect width="960" height="510" rx="18" fill="#fbfaf6"/><g font-family="system-ui,sans-serif"><text x="35.000" y="36.000" fill="#607b7e" font-size="14" text-anchor="start">THE TWO EXCLUSIONS CLOSE THE INDUCTION</text><rect x="260" y="65" width="440" height="77" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="480.000" y="92.000" fill="#168579" font-size="19" text-anchor="middle">Choose a Farey interval at order n</text><text x="480.000" y="118.000" fill="#17343f" font-size="14" text-anchor="middle">a/b &lt; c/d</text><path d="M480.0000,143.0000L480.0000,164.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M252.0000,164.0000L708.0000,164.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M252.0000,164.0000L252.0000,191.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><path d="M708.0000,164.0000L708.0000,191.0000" fill="none" stroke="#607b7e" stroke-width="1.4" stroke-dasharray=""/><rect x="55" y="192" width="395" height="77" rx="10" fill="#eef4e9" stroke="#9aaba4" stroke-width="1.4"/><text x="252.500" y="219.000" fill="#607b7e" font-size="19" text-anchor="middle">Neither denominator divides n</text><text x="252.500" y="245.000" fill="#17343f" font-size="14" text-anchor="middle">b ∤ n and d ∤ n</text><rect x="510" y="192" width="395" height="77" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="707.500" y="219.000" fill="#168579" font-size="19" text-anchor="middle">An endpoint denominator divides n</text><text x="707.500" y="245.000" fill="#17343f" font-size="14" text-anchor="middle">b | n or d | n</text><path d="M252.0000,270.0000L252.0000,313.0000" fill="none" stroke="#9aaba4" stroke-width="1.4" stroke-dasharray=""/><path d="M708.0000,270.0000L708.0000,313.0000" fill="none" stroke="#168579" stroke-width="1.4" stroke-dasharray=""/><rect x="55" y="314" width="395" height="103" rx="10" fill="#eef4e9" stroke="#9aaba4" stroke-width="1.4"/><text x="252.500" y="341.000" fill="#607b7e" font-size="19" text-anchor="middle">Inherited outer arc</text><text x="252.500" y="367.000" fill="#17343f" font-size="14" text-anchor="middle">Angular coverage admits no new extremum.</text><text x="252.500" y="389.000" fill="#17343f" font-size="14" text-anchor="middle">The old equation remains in force.</text><rect x="510" y="314" width="395" height="103" rx="10" fill="#eef4e9" stroke="#168579" stroke-width="1.4"/><text x="707.500" y="341.000" fill="#168579" font-size="19" text-anchor="middle">New outer arc</text><text x="707.500" y="367.000" fill="#17343f" font-size="14" text-anchor="middle">Strict interior images bury the old frontier.</text><text x="707.500" y="389.000" fill="#17343f" font-size="14" text-anchor="middle">New contacts supply a canonical equation.</text><text x="480.000" y="475.000" fill="#17343f" font-size="17" text-anchor="middle">Together with the ordered unit-circle endpoints, these cases give Theorem B.</text></g></svg></div>
           </figure>
-          <p class="essay-caption">Figure 4. Angular coverage rules out new extrema in the inherited case. In a new sector, the smaller-order comparison and strict-interior construction rule out old outer points. These complementary exclusions complete the selection of the boundary pieces.</p>
-
-                    <p>
+          <p class="essay-caption">Figure 5. Angular coverage rules out new extrema in the inherited case. In a new sector, the smaller-order comparison and strict-interior construction rule out old outer points. These complementary exclusions complete the selection of the boundary pieces.</p>
+<p>
                         For the running example, the equations are
                     </p>
                     <div class="theory-formula">
@@ -539,27 +748,17 @@ n=6:&amp;(\lambda^3-t)^2=(1-t)^2\lambda^2.
                             </p>
                         </div>
                     </details>
-
-                    <p>
-                        Taking the angular sectors in circular order, adjoining their unit-circle endpoints, and reflecting in the real axis yields the boundary described by Theorem B. Every open sector has been assigned to one of the two cases.
-                    </p>
-                    <div class="math-callout route" id="modern-completion">
-                        <div class="math-callout-header">
-                            <h3 class="math-callout-title">Route change: how the modern literature closes the boundary description</h3>
-                            <span class="math-callout-tag">Modern completion · 1997–2024</span>
-                        </div>
-                        <p>
-                            Karpelevich’s 1951 paper finishes Theorem B by combining his multi-branch contact classification with the general Dmitriev–Dynkin interior-image perturbation on pp. 380–383. Rather than reconstructing that perturbation for arbitrary Farey sectors or the single-contact branch selection noted in <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a>, we close the remaining steps using four modern results:
-                        </p>
-                        <ol class="essay-steps">
-                            <li><strong>Unified sector equation (Ito 1997)</strong> <cite-ref key="ito1997"></cite-ref>. For every adjacent Farey pair $a/b&lt;c/d$ in $F_n$, with $\ell=\min(b,d)$, $s=\max(b,d)$, and $m=\lfloor n/\ell\rfloor$, the boundary of $\mathcal K_n$ in the closed sector $[2\pi a/b,2\pi c/d]$ is governed by the single reduced equation $\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}$ ($0\leq t\leq1$), unifying the forward branch, the gcd branch, and inherited arcs.</li>
-                            <li><strong>Stochastic matrix realization (Stop 6; Johnson–Paparella 2017)</strong> <cite-ref key="johnson2017"></cite-ref>. Every root of every reduced Ito polynomial for $t\in[0,1]$ is an eigenvalue of an explicit $n\times n$ stochastic companion-chain matrix constructed in <a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a>.</li>
-                            <li><strong>Unique polar boundary branch (Kirkland–Laffey–Šmigoc 2020)</strong> <cite-ref key="kirkland2020"></cite-ref>. In each open Farey sector $(2\pi a/b,2\pi c/d)$, the reduced Ito equation has a unique root of maximum modulus in each direction $\theta$, tracing a $C^1$ boundary arc connecting $e^{2\pi i a/b}$ to $e^{2\pi i c/d}$.</li>
-                            <li><strong>Simple monotone arcs and radial extremality (Munger–Nickerson–Paparella 2024)</strong> <cite-ref key="munger2023"></cite-ref>. The reduced Ito arc in each Farey sector is a simple curve whose argument varies strictly monotonically with $t\in[0,1]$, establishing radial extremality for $n&gt;3$ directly from the reduced polynomials.</li>
-                        </ol>
-                    </div>
-
-                </section>
+<p>Taking the sectors in circular order, adjoining their unit-circle endpoints, and reflecting across the real axis now gives Theorem B, including a proof that these curves are the entire boundary.</p>
+<aside class="proof-epilogue" id="modern-completion" aria-labelledby="modern-epilogue-title">
+<h3 id="modern-epilogue-title">After the proof: modern formulations and computations</h3>
+<p>The necessity, attainability, order comparison, and topological-boundary claims have now been proved from the preceding stops and the calculations above. Modern work gives useful complementary formulations and realizations.</p>
+<ul>
+<li><a href="https://doi.org/10.1016/S0024-3795(97)00037-7" target="_blank" rel="noopener">Ito (1997)</a><cite-ref key="ito1997"></cite-ref> gives the simpler equivalent polynomial formulation. The unified equation above is reduced only after its common zero factor is cancelled.</li>
+<li><a href="https://doi.org/10.1016/j.laa.2017.01.007" target="_blank" rel="noopener">Johnson–Paparella (2017)</a><cite-ref key="johnson2017"></cite-ref> give explicit parameterized stochastic realizations. The constructive graph and determinant argument used here are written out in <a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a>.</li>
+<li><a href="https://doi.org/10.1016/j.laa.2020.02.007" target="_blank" rel="noopener">Kirkland–Laffey–Šmigoc (2020)</a><cite-ref key="kirkland2020"></cite-ref> give a useful polar characterization of the established region.</li>
+<li><a href="https://doi.org/10.1016/j.laa.2024.01.009" target="_blank" rel="noopener">Munger–Nickerson–Paparella (2024)</a><cite-ref key="munger2023"></cite-ref> study continuous arc selection and extremality, clarifying why those questions must be distinguished from stochastic realization alone.</li>
+</ul><p>The scalar-comparison route is also developed in <a href="https://arxiv.org/abs/2609.26058" target="_blank" rel="noopener">Verbeken–Ginis (2026), §§5–6</a><cite-ref key="verbeken2026"></cite-ref>. Here the factor-count comparison is proved by a one-variable derivative and the mediant comparison by explicit positive finite sums. This is an expanded algebraic proof of the final exclusion, followed by an explicit strict polygon witness; it is not a transcription of the brief geometric construction in the 1951 paper.</p></aside>
+</div></section>
 
                 <section class="essay-section" id="7-what-the-series-has-established">
                     <h2>What the series has established</h2>
@@ -584,11 +783,9 @@ n=6:&amp;(\lambda^3-t)^2=(1-t)^2\lambda^2.
                     <p class="essay-sources">
                         F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The final induction is §5, pp. 380–383: angular coverage in (a)–(b), smaller-order comparisons and the interior-image construction in (c), then arc selection in (d)–(e).
                     </p>
-                    <p class="essay-sources">
-                        This post proves the arithmetic checks, the local interior-image lemma, and the exact hexagon example, and explains the assembly of the induction. It uses the earlier contact and angle theorems, the inductive equation rules, and the original paper's general interior-image polygon construction, and records how Ito (1997), Johnson–Paparella (2017), Kirkland–Laffey–Šmigoc (2020), and Munger–Nickerson–Paparella (2024) complete the explicit arc parameterization and radial-extremality verification. The diagrams and explorers illustrate these steps; numerical drawing coordinates do not establish extremality.
-                    </p>
+                    <p class="essay-sources">This chapter proves branch selection from the retained winding, stochastic attainability, the two strict order comparisons, the general interior-image polygon construction, and the full boundary induction. It includes the order-four base case, endpoint limits, monotone parameterization, and the identification of the radial frontier with the topological boundary for orders at least four. Its earlier inputs are the common-weight contact relations, angular lifts, low-order regions, and constructive chain matrices proved in the preceding stops. The scalar-comparison presentation expands the final exclusion algebraically; it is not a literal reconstruction of the brief 1951 geometric motion. Numerical coordinates are used only to draw the exact constructions.</p>
 
-                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997, johnson2017, kirkland2020, munger2023"></cite-grid>
+                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997, johnson2017, kirkland2020, munger2023, verbeken2026"></cite-grid>
                 </section>
 
                 <nav class="series-book-pager" aria-label="Book chapter navigation">

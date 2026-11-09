@@ -204,7 +204,7 @@
                                 <span class="arrow" aria-hidden="true">›</span>
                             </a>
                         ` : `
-                            <span class="book-step-btn next disabled" aria-disabled="true" title="Upcoming stop in preparation">
+                            <span class="book-step-btn next disabled" aria-disabled="true" title="Final chapter of the series">
                                 <span>Next</span>
                                 <span class="arrow" aria-hidden="true">›</span>
                             </span>
@@ -217,7 +217,7 @@
                     <div class="book-drawer-header">
                         <div>
                             <div class="book-drawer-eyebrow">A 9-Part Visual Journey · Karpelevič (1951)</div>
-                            <h2 class="book-drawer-title">Inside Karpelevič’s Proof of the Boundary of $\\mathcal{K}_n$</h2>
+                            <h2 class="book-drawer-title">Inside Karpelevič’s Proof of Theorems A and B</h2>
                         </div>
                         <p class="book-drawer-desc">
                             Select any chapter to explore its geometric witnesses, interactive labs, and exact algebraic proofs:

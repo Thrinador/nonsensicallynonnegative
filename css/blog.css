@@ -3363,6 +3363,90 @@
     text-align: right;
 }
 
+/* --- Integrated Proof Additions (Stops 2, 5, 7, 8 & 9) --- */
+.proof-addition h3 {
+    font-family: var(--essay-serif);
+    font-size: 1.32rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 2.2rem 0 1rem;
+    color: var(--text-primary);
+}
+
+.proof-addition p {
+    line-height: 1.85;
+}
+
+.proof-local-nav {
+    padding: 0.95rem 1.25rem;
+    border-left: 3px solid var(--essay-teal);
+    background: var(--essay-teal-soft);
+    border-radius: 0 8px 8px 0;
+    margin: 1.35rem 0;
+    font-size: 0.88rem;
+    line-height: 1.85;
+}
+
+.proof-local-nav strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.proof-local-nav a {
+    display: block;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.proof-local-nav a:hover {
+    color: var(--essay-teal);
+    text-decoration: underline;
+}
+
+.proof-epilogue {
+    border-left: 3px solid var(--essay-teal);
+    background: var(--essay-teal-soft);
+    padding: 0.35rem 1.4rem 1.2rem;
+    margin: 2.2rem 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+}
+
+.proof-epilogue p:last-child {
+    margin-bottom: 0;
+}
+
+.proof-addition .theory-formula {
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 0.85rem 0.5rem;
+}
+
+.proof-addition .table-responsive {
+    overflow-x: auto;
+}
+
+.proof-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.proof-figure svg text {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (max-width: 680px) {
+    .proof-addition h3 {
+        font-size: 1.18rem;
+    }
+
+    .proof-local-nav {
+        padding: 0.75rem 0.95rem;
+    }
+}
+
 @media print {
     .essay-side,
     .lab,

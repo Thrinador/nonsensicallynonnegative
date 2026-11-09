@@ -88,7 +88,7 @@
         </header>
 
         <noscript>
-            <p class="small-note">The proofs and four static figures remain readable without JavaScript. The Farey and winding explorers require JavaScript.</p>
+            <p class="small-note">The proofs and static figures remain readable without JavaScript. The Farey and winding explorers require JavaScript.</p>
         </noscript>
 
         <div class="essay-layout">
@@ -99,7 +99,8 @@
                     <li><a href="#what-makes-two-fractions-neighbors">What makes two fractions neighbors?</a></li>
                     <li><a href="#a-new-order-inserts-a-mediant">A new order inserts a mediant</a></li>
                     <li><a href="#the-polygons-angle-bounds-produce-these-exact-neighbors">The polygon’s angle bounds produce these exact neighbors</a></li>
-                    <li><a href="#one-angular-estimate-with-the-turn-count-kept-visible">One angular estimate, with the turn count kept visible</a></li>
+                    <li><a href="#one-angular-estimate-with-the-turn-count-kept-visible">The angular bounds, with all turns retained</a></li>
+                    <li><a href="#single-contact-without-the-boundary-theorem">The single-contact case</a></li>
                     <li><a href="#exponent-dictionary">The angular sector fixes the exponents</a></li>
                     <li><a href="#the-labels-distinguish-the-endpoint-roots">The labels distinguish the endpoint roots</a></li>
                     <li class="plain"><a href="#source-and-scope">Source and scope</a></li>
@@ -116,7 +117,7 @@
                         Karpelevich gets that information from angles in the invariant polygon. The integer congruences already controlling the vertex chains become determinant-one identities between rational angles. Those identities identify Farey neighbors.
                     </p>
                     <p>
-                        This post connects the geometric angle estimates to the labels on the arcs. We will prove the Farey arithmetic, work through one angular estimate in full, and use the eight-state equation to see why the labels matter.
+                        This post proves the Farey arithmetic and the angular bounds in both branches, then closes the single-contact configuration gap by an invariant slide. We use the eight-state equation to keep the sector labels and the missing-case exclusion concrete.
                     </p>
                 </section>
 
@@ -275,13 +276,13 @@
                 <section class="essay-section" id="the-polygons-angle-bounds-produce-these-exact-neighbors">
                     <h2>The polygon’s angle bounds produce these exact neighbors</h2>
                     <p>
-                        Return to a nonreal radial extremum new at order $n&gt;3$, with $0&lt;|\lambda|&lt;1$. Choose the contact orientation from the earlier posts, and let $k$ be its cyclic shift. Initially <a href="karpelevich-contacts.html">the contact theorem</a> gives the coarse sector
+                        Return to a nonreal radial extremum new at order $n&gt;3$, with $0&lt;|\lambda|&lt;1$. Choose the contact orientation from the earlier posts, with $1\leq k&lt;n$, and let $k$ be its cyclic shift. Initially <a href="karpelevich-contacts.html">the contact theorem</a> gives the coarse sector
                     </p>
                     <div class="theory-formula">
                         $$\frac{k-1}{n}\leq\theta\leq\frac{k}{n}.$$
                     </div>
                     <p>
-                        Karpelevich’s angular estimates, Theorems VIII–IX, refine this. Put $g=\gcd(k,n)$. Choose the unique integers $f,b$ satisfying
+                        We now prove the refinements corresponding to Karpelevich’s angular estimates, Theorems VIII–IX. Put $g=\gcd(k,n)$. Choose the unique integers $f,b$ satisfying
                     </p>
                     <div class="theory-formula">
                         $$\boxed{kb-nf=g,\qquad0&lt;n-b&lt;n/g.}$$
@@ -293,7 +294,7 @@
                         $$\boxed{\frac fb&lt;\theta&lt;\frac kn.}$$
                     </div>
                     <p>
-                        The general angular refinement is a geometric input from §5 of the original proof. Its Farey meaning follows immediately. Reduce $k/n$ to $c/d$, where $c=k/g$ and $d=n/g$. Dividing the determinant identity by $g$ gives
+                        The next section proves this refinement in both return branches, including the singleton case. Its Farey meaning follows immediately. Reduce $k/n$ to $c/d$, where $c=k/g$ and $d=n/g$. Dividing the determinant identity by $g$ gives
                     </p>
                     <div class="theory-formula">
                         $$cb-df=1,$$
@@ -350,7 +351,19 @@
                 </section>
 
                 <section class="essay-section" id="one-angular-estimate-with-the-turn-count-kept-visible">
-                    <h2>One angular estimate, with the turn count kept visible</h2>
+                    <h2>The angular bounds, with all turns retained</h2><nav class="proof-local-nav" aria-label="Angular proof steps"><a href="#proof7-angle-1">Lift the vertex angles</a><a href="#forward-angle-estimate">Forward branch</a><a href="#proof7-angle-2">Gcd branch and singleton</a></nav><div class="proof-addition"><h3 id="proof7-angle-1">Lift the vertex angles before taking powers</h3>
+<p>Rotate and scale the polygon so that $x_0=1$. Write its vertex directions in turns as real numbers</p>
+<div class="theory-formula">$$\Phi_0=0&lt;\Phi_1&lt;\cdots&lt;\Phi_{n-1}&lt;1,
+\qquad\Phi_{i+n}=\Phi_i+1.$$</div>
+<p>Put $\gamma_i=\Phi_i-\Phi_{i-1}$. Since the origin is interior to a genuine convex polygon,</p>
+<div class="theory-formula">$$0&lt;\gamma_i&lt;\frac12.$$</div>
+<p>The half-open contact ordering proved in Stop 2 gives a consistent lift:</p>
+<div class="theory-formula">$$\Phi_{i+k-1}&lt;\Phi_i+\theta\leq\Phi_{i+k}.$$</div>
+<p>The right equality holds for a vertex contact; both inequalities are strict for an edge contact. To see why the same lift works at every vertex, radial projection identifies the polygon boundary with the circle. Each half-open edge contains exactly one image vertex, in cyclic order. Starting with the edge containing $\lambda x_0$, the next image therefore uses the next edge, with its integer index retained rather than reduced modulo $n$.</p>
+<p>Along a deterministic chain, the equalities add. If its first $h-1$ images are vertices and its $h$th image is an interior edge contact, then</p>
+<div class="theory-formula">$$\boxed{\Phi_{i+hk-1}&lt;\Phi_i+h\theta&lt;\Phi_{i+hk}.}$$</div>
+<p>This is an inequality of real numbers. It retains every complete turn made by the path. We will use it when a power has argument close to a multiple of $2\pi$, where a principal argument alone would lose essential information.</p>
+</div><h3 id="forward-angle-estimate">Forward branch: the power calculation</h3>
                     <p>
                         Here is a complete derivation for the forward branch from <a href="karpelevich-rigidity.html#put-the-surviving-relations-in-a-usable-form">the rigidity post</a>, in the standard notation: $\ell$ is the chain length, $m$ the number of repeated chains, and $\tau$ the tail. Its relations include
                     </p>
@@ -398,7 +411,7 @@
                         <em>Figure 3. At $\theta=17/48$, the original direction is $127.5^\circ$. Multiplication by three gives $3\theta=17/16$ turns. Removing the full turn leaves $1/16$ turn, or $22.5^\circ$. The integer $f=1$ is part of the argument.</em>
                     </p>
                     <p>
-                        The other branch uses the angle-packing estimate in Theorem VIII. We use the resulting general bound from section 4; the full packing argument is not reconstructed here.
+                        The explorer below illustrates this forward-branch lift. The complete gcd-branch argument follows it, using the same retained turn count.
                     </p>
 
                     <section class="lab" aria-label="Explore the integer winding in the forward angular estimate">
@@ -436,74 +449,168 @@
                             <p class="small-note">The slider moves inside the coarse sector. Buttons set exact rational rays; their displayed slider positions may be rounded. This tests the angle condition and assigns no modulus or eigenvalue realization to a ray. The pale wedge is the coarse range; teal is the selected angular sector.</p>
                         </div>
                     </section>
-                </section>
+                <div class="proof-addition"><h3 id="proof7-angle-2">The gcd branch: sum the angular deficits</h3>
+<p>Suppose the reduced contact block has length $\varphi=g=\gcd(n,k)$. This includes the single-contact case $g=1$. Put</p>
+<div class="theory-formula">$$\ell=\frac ng,\qquad a=\frac kg.$$</div>
+<p>There is one contact in each index cycle, so the return from $x_i$ reaches the edge $[x_{i-1},x_i]$ after $\ell$ steps. Its unreduced index advance is $\ell k=an$. The lifted inequality therefore says</p>
+<div class="theory-formula">$$\Phi_{i-1}+a&lt;\Phi_i+\ell\theta&lt;\Phi_i+a,
+\qquad 1\leq i\leq g.$$</div>
+<p>Define the angular deficit $\delta=a-\ell\theta$. The preceding inequalities are exactly</p>
+<div class="theory-formula">$$\boxed{0&lt;\delta&lt;\gamma_i\quad(1\leq i\leq g).}$$</div>
+<p>The return power falls short of $a$ complete turns by less than the angular gap of its target edge.</p>
+<p>Let $\sigma$ be the closing time from Stop 4:</p>
+<div class="theory-formula">$$\lambda^\sigma x_g=x_0,\qquad
+k\sigma\equiv-g\pmod n,\qquad0&lt;\sigma&lt;\ell.$$</div>
+<p>Every step on this closing path is a vertex step. Its full index advance gives</p>
+<div class="theory-formula">$$\Phi_g+\sigma\theta
+=\Phi_0+\frac{g+k\sigma}{n}.$$</div>
+<p>Consequently, if $\Gamma=\gamma_1+\cdots+\gamma_g=\Phi_g-\Phi_0$, then</p>
+<div class="theory-formula">$$\Gamma=\frac{g+k\sigma}{n}-\sigma\theta,
+\qquad g\delta=k-n\theta&lt;\Gamma.$$</div>
+<p>Set</p>
+<div class="theory-formula">$$b=n-\sigma,\qquad f=\frac{kb-g}{n}.$$</div>
+<p>The congruence makes $f$ an integer. Subtracting the last two expressions gives the useful exact identity</p>
+<div class="theory-formula">$$\boxed{\Gamma-g\delta=b\theta-f&gt;0.}$$</div>
+<p>Thus $\theta&gt;f/b$. Positivity of $\delta$ also gives $\theta&lt;a/\ell=k/n$. We have proved the angular estimate in this branch:</p>
+<div class="theory-formula">$$\boxed{\frac fb&lt;\theta&lt;\frac kn,
+\qquad kb-nf=g,\qquad0&lt;n-b&lt;n/g.}$$</div>
+<p>Dividing the determinant identity by $g$ gives</p>
+<div class="theory-formula">$$ab-\ell f=1,\qquad b+\ell&gt;n.$$</div>
+<p>Both endpoint fractions are reduced, and the Farey criterion proved earlier shows that $f/b$ and $a/\ell$ are neighbors in $F_n$. This proves the needed gcd-branch refinement directly. Equal edge angles or a prior identification of the boundary arcs are not required.</p>
+<p>For $n=8$, $k=2$, we have $g=2$, $\ell=4$, $\sigma=3$, $b=5$, and $f=1$. The two inequalities become</p>
+<div class="theory-formula">$$\delta=1-4\theta&gt;0,
+\qquad2\delta&lt;\Gamma=1-3\theta.$$</div>
+<p>They give $\theta&lt;1/4$ and $\theta&gt;1/5$, respectively. The same computation with $g=1$ supplies the angular sector for a singleton contact, before we decide which singleton patterns can be extremal.</p>
+</div><figure class="essay-figure proof-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 477" role="img" aria-labelledby="proof7-deficit-title proof7-deficit-desc"><title id="proof7-deficit-title">Sum the angular deficits in the gcd branch</title><desc id="proof7-deficit-desc">A total angular gap of thirteen fortieths exceeds two deficits of one tenth, leaving one eighth. This is the exact difference five theta minus one at theta nine fortieths.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="34" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">THE RETURN DEFICITS USE LESS ANGLE THAN THE EDGE GAPS</text><text x="34" y="75" font-size="20" fill="#17343f" text-anchor="start" font-weight="400">n = 8, k = 2, g = 2, θ = 9/40</text><text x="70" y="117" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Total edge gap Γ</text><rect x="70" y="135" width="650" height="50" rx="6" fill="#dce9de"/><text x="395" y="168" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">Γ = 13/40 turn</text><text x="70" y="226" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Sum of the two deficits</text><rect x="70" y="244" width="200" height="50" rx="6" fill="#168579"/><rect x="270" y="244" width="200" height="50" rx="6" fill="#168579"/><line x1="270" y1="247" x2="270" y2="291" stroke="#ffffff" stroke-width="2" stroke-dasharray=""/><rect x="470" y="244" width="250" height="50" rx="6" fill="#f1ddba"/><text x="170" y="276" font-size="17" fill="white" text-anchor="middle" font-weight="400">δ = 1/10</text><text x="370" y="276" font-size="17" fill="white" text-anchor="middle" font-weight="400">δ = 1/10</text><text x="595" y="276" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">room = 1/8</text><text x="770" y="151" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">ℓ = 4</text><text x="770" y="193" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">σ = 3</text><text x="770" y="235" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">b = 5</text><text x="770" y="277" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">f = 1</text><text x="70" y="355" font-size="25" fill="#17343f" text-anchor="start" font-weight="400">Γ − gδ = bθ − f &gt; 0</text><text x="70" y="398" font-size="18" fill="#168579" text-anchor="start" font-weight="400">Therefore θ &gt; 1/5; positivity of δ gives θ &lt; 1/4.</text><text x="34" y="445" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Exact angular bookkeeping at the selected direction. The picture assigns no eigenvalue modulus.</text></svg></figure><p class="essay-caption"><em>Proof figure A. Exact angular bookkeeping for n = 8, k = 2 at θ = 9/40: Γ = 13/40 exceeds the two deficits, each 1/10, by 1/8. The identity Γ − gδ = bθ − f supplies the lower Farey bound. No eigenvalue modulus is assigned by this drawing.</em></p></section>
 
-                <section class="essay-section" id="exponent-dictionary">
-                    <h2>The angular sector fixes the exponents</h2>
-                    <p>
-                        The two families of <a href="karpelevich-boundary-equations.html">Stop 6</a> each carry three integers: the chain length $\ell$, the repetition count $m$, and either a tail $\tau$ or a closing shift $\sigma$. Once the angular sector is known, all three are determined by the Farey pair that bounds it. They are exactly the integers in <a href="karpelevich-boundary-equations.html#ito-form">Ito’s equation</a> for that pair.
-                    </p>
-                    <div class="math-callout lemma">
-                        <div class="math-callout-header">
-                            <h3 class="math-callout-title">Exponent dictionary</h3>
-                            <span class="math-callout-tag">Proved here</span>
-                        </div>
-                        <p>
-                            Let $\lambda$ be a nonreal radial extremum, new at order $n&gt;3$, with $0&lt;|\lambda|&lt;1$, in the chosen orientation with shift $k$ and $g=\gcd(n,k)$. Its sector $f/b&lt;\theta&lt;k/n$ is bounded by Farey neighbours. Write $\ell$ and $s$ for the smaller and larger of their denominators, and $m=\lfloor n/\ell\rfloor$.
-                        </p>
-                        <ol class="essay-steps">
-                            <li><strong>Forward branch</strong> ($\varphi&gt;g$, so $g=1$). Here $s=n$, and $\ell=b$ is the inverse of $k$ modulo $n$. The relations of Stop 5 are the first family with tail $\tau=n-\ell m$, where $0\leq\tau&lt;\ell$.</li>
-                            <li><strong>gcd branch with $g\geq2$</strong> ($\varphi=g$). Here $\ell=n/g$ is the reduced denominator of $k/n$, $m=g$, and $s=b$. The relations are the second family with closing shift $\sigma=n-b$.</li>
-                        </ol>
-                        <p>
-                            In both cases the reduced equation is Ito’s equation for the pair.
-                        </p>
-                    </div>
-                    <details class="essay-proof">
-                        <summary>Proof of the exponent dictionary</summary>
-                        <p>
-                            <strong>Forward branch.</strong> The window identity of Stop 5 reads $n=\ell m+\tau$. Here $\ell$ and $\tau$ are the record times $p$ and $q$ of <a href="karpelevich-returns.html#euclid-finds-the-records-and-their-times">Stop 4</a> at the stage $(L,U)=(1,m)$. Since $k\ell\equiv1\pmod n$, $\ell$ is the inverse of $k$ modulo $n$, and the previous section identified $f/\ell$ as the predecessor of $k/n$ in $F_n$. In particular $\ell&lt;n=s$.
-                        </p>
-                        <p>
-                            It remains to show $\tau&lt;\ell$, which gives $m=\lfloor n/\ell\rfloor$. If $k=1$, the stage is the initial one, with $\ell=1$, $\tau=0$ and $m=n$. Otherwise $m=r_{2j-1}$ for some $j\geq2$. When $U$ first takes the value $r_{2j-1}$, the current value of $L$ is $r_{2j-2}&gt;r_{2j-1}$. The algorithm therefore subtracts $U$ from $L$ at least once before $L$ reaches $r_{2j}=1$, and each such step replaces $p$ by $p+q$. Hence $\ell=p&gt;q=\tau$. Finally $s=n\geq\ell m$, so Ito’s reduced form is the first family with $\tau=s-\ell m$.
-                        </p>
-                        <p>
-                            <strong>gcd branch.</strong> The block has one target label in each residue class modulo $g$, so the $m=g$ chains all have length $\ell=n/g$. Label $0$ lies on the chain that starts at label $g$, at the step $\sigma$ with $g+\sigma k\equiv0\pmod n$; this is the closing relation $\lambda^\sigma x_g=x_0$ of Stop 5. The predecessor $f/b$ of $k/n$ satisfies $kb-nf=g$ with $0&lt;n-b&lt;\ell$. Hence $\sigma'=n-b$ satisfies $k\sigma'\equiv-g\pmod n$ and $0&lt;\sigma'&lt;\ell$. The congruence $k\sigma\equiv-g\pmod n$ determines $\sigma$ modulo $n/g=\ell$, so $\sigma=n-b$.
-                        </p>
-                        <p>
-                            Since $b&gt;n-\ell=\ell(g-1)\geq\ell$, the smaller denominator is $\ell$ and $s=b$. Then $\ell m=n&gt;s$, so Ito’s reduced form is the second family with $\sigma=\ell m-s=n-b$.
-                        </p>
-                    </details>
-                    <div class="table-responsive">
-                        <table class="data-table">
-                            <thead>
-                                <tr><th>$n,k$</th><th>Branch</th><th>Sector</th><th>$\ell,\ s,\ m$</th><th>Boundary equation</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>$8,3$</td><td>Forward</td><td>$1/3&lt;\theta&lt;3/8$</td><td>$3,\ 8,\ 2$</td><td>$\lambda^2(\lambda^3-t)^2=(1-t)^2$</td></tr>
-                                <tr><td>$8,2$</td><td>gcd, $g=2$</td><td>$1/5&lt;\theta&lt;1/4$</td><td>$4,\ 5,\ 2$</td><td>$(\lambda^4-t)^2=(1-t)^2\lambda^3$</td></tr>
-                                <tr><td>$6,2$</td><td>gcd, $g=2$</td><td>$1/4&lt;\theta&lt;1/3$</td><td>$3,\ 4,\ 2$</td><td>$(\lambda^3-t)^2=(1-t)^2\lambda^2$</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="math-callout route">
-                        <div class="math-callout-header">
-                            <h3 class="math-callout-title">Route change: one case is settled by the modern statement</h3>
-                            <span class="math-callout-tag">Ito 1997</span>
-                        </div>
-                        <p>
-                            The dictionary leaves one configuration open: $g=1$ with a single edge contact ($\varphi=g=1$). Its relation from Stop 5 has $\ell=n$ and $m=1$, namely $\lambda^n-t=(1-t)\lambda^{n-b}$. Ito’s equation for the same pair, with smaller denominator $b$, is $\lambda^{\tau'}(\lambda^b-t')^{m'}=(1-t')^{m'}$ with $m'=\lfloor n/b\rfloor$.
-                        </p>
-                        <p>
-                            If $b&gt;n/2$, then $m'=1$ and the two equations coincide after $t'=1-t$. For example, $n=7$, $k=3$ gives the sector $2/5&lt;\theta&lt;3/7$ and $\lambda^2(\lambda^5-t)=1-t$. If $b&lt;n/2$, they are different curves with the same endpoints, and only Ito’s is the boundary. Karpelevich’s final assembly decides between such candidates; we do not reconstruct that step.
-                        </p>
-                        <p>
-                            From here on the series uses <strong>Karpelevich’s theorem in Ito’s form</strong> <cite-ref key="ito1997"></cite-ref> for this selection: the arc in each Farey sector is governed by Ito’s equation for that pair. <a href="karpelevich-induction.html#modern-completion">Stop 9</a> marks where the selection is used, and the <a href="karpelevich-proof-roadmap.html#ledger">roadmap ledger</a> lists it as a cited input.
-                        </p>
-                    </div>
-                </section>
+                <section class="essay-section" id="single-contact-without-the-boundary-theorem"><h2>The single-contact case, without assuming the boundary theorem</h2><div class="proof-addition"><p>The remaining configuration has $g=1$ and just one edge contact. Label its target edge $[x_0,x_1]$, so</p>
+<div class="theory-formula">$$\xi_1=a x_0+(1-a)x_1,\qquad0&lt;a&lt;1.$$</div>
+<p>All other target coefficients alpha are zero: those images are vertex contacts. The angular argument above identifies the Farey predecessor $f/b$ of $k/n$, with</p>
+<div class="theory-formula">$$kb-nf=1,\qquad1\leq b&lt;n.$$</div>
+<p>We will prove that a singleton can be extremal only if $b&gt;n/2$. This settles the case previously left to the final theorem.</p>
+<h3 id="proof7-single-1">Enlarge the marked window</h3>
+<p>Put</p>
+<div class="theory-formula">$$m=\left\lfloor\frac nb\right\rfloor,\qquad
+\tau=n-bm,\qquad0\leq\tau&lt;b.$$</div>
+<p>Mark the vertices $x_1,\ldots,x_m$. These extra marks cut the deterministic paths into shorter chains; they do not declare new edge contacts. Only mark $1$ carries the positive coefficient $a$. At the added marks $2,\ldots,m$, the alpha coefficient is zero and the beta coefficient is one.</p>
+<p>Here is a complete check that this is a valid return decomposition. Assign height $b$ to bases $1,\ldots,m-1$, height $b+\tau$ to base $m$, and return each base to its successor, with $m$ returning to $1$. The identities</p>
+<div class="theory-formula">$$bk\equiv1\pmod n,\qquad
+\tau k\equiv-m\pmod n,\qquad bm+\tau=n$$</div>
+<p>make every step in the concatenated chains add $k$ modulo $n$, including each last step into the next base. The concatenation is one cycle of $n$ positions. Since $\gcd(k,n)=1$, adding $k$ has period exactly $n$, so these positions visit all vertex indices once, with no repetition.</p>
+<p>No intermediate chain position can be another marked base: that would duplicate the same index at its base position. Thus the displayed heights really are first-return times to the marked window. Before a return, every image is a vertex because the sole genuine edge-contact target, label $1$, lies inside the window.</p>
+<p>The last chain reaches label $0$ after $\tau$ steps, because $m+\tau k\equiv0\pmod n$. Splitting it there gives the relations</p>
+<div class="theory-formula">$$\begin{aligned}
+\lambda^b x_0&amp;=a x_0+(1-a)x_1,\\
+\lambda^b x_{j-1}&amp;=x_j,&amp;&amp;2\leq j\leq m,\\
+\lambda^\tau x_m&amp;=x_0.
+\end{aligned}$$</div>
+<p>When $\tau=0$, the last identity means $x_m=x_0$; it is the full-window identification rather than an extra vertex.</p>
+<p>The same partition works whenever all genuine contact targets lie in the marked window: before the first return, no such target is encountered. The singleton assumption only specifies which of the window coefficients are zero. We will use this observation again in the exponent dictionary.</p>
+<figure class="essay-figure proof-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 537" role="img" aria-labelledby="proof7-single-title proof7-single-desc"><title id="proof7-single-title">Adding a zero-weight return mark exposes the singleton contradiction</title><desc id="proof7-single-desc">The three-step chain from base one ends at vertex two with alpha two zero. The five-step chain from base two ends at the sole edge contact xi one with alpha one positive. The first two local returns admit an invariant slide.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="34" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">ONE EDGE CONTACT; TWO MARKED RETURN BASES</text><text x="34" y="75" font-size="20" fill="#17343f" text-anchor="start" font-weight="400">n = 8, k = 3, b = 3, m = 2, τ = 2</text><circle cx="105" cy="155" r="25" fill="#fbfaf6" stroke="#168579" stroke-width="2"/><text x="105" y="161" font-size="19" fill="#168579" text-anchor="middle" font-weight="400">x₁</text><line x1="135" y1="155" x2="277" y2="155" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M270 150 L278 155 L270 160" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="310" cy="155" r="25" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="310" y="161" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">x₄</text><line x1="340" y1="155" x2="482" y2="155" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M475 150 L483 155 L475 160" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="515" cy="155" r="25" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="515" y="161" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">x₇</text><line x1="545" y1="155" x2="687" y2="155" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M680 150 L688 155 L680 160" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="720" cy="155" r="25" fill="#eee8f4" stroke="#8061a8" stroke-width="2"/><text x="720" y="161" font-size="19" fill="#8061a8" text-anchor="middle" font-weight="400">x₂</text><circle cx="105" cy="280" r="25" fill="#eee8f4" stroke="#8061a8" stroke-width="2"/><text x="105" y="286" font-size="19" fill="#8061a8" text-anchor="middle" font-weight="400">x₂</text><line x1="135" y1="280" x2="217" y2="280" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M210 275 L218 280 L210 285" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="250" cy="280" r="25" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="250" y="286" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">x₅</text><line x1="280" y1="280" x2="362" y2="280" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M355 275 L363 280 L355 285" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="395" cy="280" r="25" fill="#fbfaf6" stroke="#168579" stroke-width="2"/><text x="395" y="286" font-size="19" fill="#168579" text-anchor="middle" font-weight="400">x₀</text><line x1="425" y1="280" x2="507" y2="280" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M500 275 L508 280 L500 285" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="540" cy="280" r="25" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="540" y="286" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">x₃</text><line x1="570" y1="280" x2="652" y2="280" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M645 275 L653 280 L645 285" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="685" cy="280" r="25" fill="#fbfaf6" stroke="#17343f" stroke-width="2"/><text x="685" y="286" font-size="19" fill="#17343f" text-anchor="middle" font-weight="400">x₆</text><line x1="715" y1="280" x2="797" y2="280" stroke="#607b7e" stroke-width="2" stroke-dasharray=""/><path d="M790 275 L798 280 L790 285" fill="none" stroke="#607b7e" stroke-width="2"/><circle cx="830" cy="280" r="25" fill="#f7ebd7" stroke="#d98026" stroke-width="2"/><text x="830" y="286" font-size="19" fill="#d98026" text-anchor="middle" font-weight="400">ξ₁</text><text x="825" y="146" font-size="18" fill="#8061a8" text-anchor="middle" font-weight="400">α₂ = 0</text><text x="825" y="177" font-size="14" fill="#607b7e" text-anchor="middle" font-weight="400">new mark</text><text x="830" y="329" font-size="17" fill="#d98026" text-anchor="middle" font-weight="400">α₁ = a &gt; 0</text><text x="38" y="383" font-size="20" fill="#17343f" text-anchor="start" font-weight="400">T = λ³; A = x₀; B = x₁; C = x₂</text><text x="38" y="423" font-size="20" fill="#17343f" text-anchor="start" font-weight="400">TA = aA + (1 − a)B; TB = C</text><text x="38" y="468" font-size="16" fill="#168579" text-anchor="start" font-weight="400">Slide B slightly toward A; its propagated terminal image enters the triangle.</text><text x="38" y="505" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">These are exact index relations for the singleton candidate excluded by the proof.</text></svg></figure><p class="essay-caption"><em>Proof figure B. At n = 8, k = 3, adding base 2 splits the singleton chain into return lengths three and five. The new mark has alpha coefficient zero; the contact at ξ₁ has positive alpha. These are the exact index relations used by the exclusion proof.</em></p><h3 id="proof7-single-2">A positive contact beside a zero mark is impossible</h3>
+<p>Suppose $m\geq2$. Write</p>
+<div class="theory-formula">$$A=x_0,\qquad B=x_1,\qquad C=x_2,\qquad T=\lambda^b.$$</div>
+<p>The first two return relations are</p>
+<div class="theory-formula">$$TA=aA+(1-a)B,\qquad TB=C.$$</div>
+<p>This is precisely the zero-weight comparison from Stop 5. For completeness, move</p>
+<div class="theory-formula">$$B_s=B+s(B-A)$$</div>
+<p>and propagate that motion along the entire chain generated by $B$. Keep every other marked chain fixed. Choose $-a&lt;s&lt;0$, with magnitude small enough to preserve the polygon&#39;s strict convexity.</p>
+<p>The fixed image still lies on its new edge:</p>
+<div class="theory-formula">$$TA=\frac{a+s}{1+s}A+\frac{1-a}{1+s}B_s.$$</div>
+<p>Both coefficients are positive. The moved terminal image has the exact expression</p>
+<div class="theory-formula">$$\boxed{TB_s=
+\frac{-s(a+s)}{1+s}A
++\frac{-s(1-a)}{1+s}B_s
++(1+s)C.}$$</div>
+<p>These three coefficients sum to one and are strictly positive. Hence $TB_s$ is interior to the nondegenerate triangle with vertices $A,B_s,C$, and therefore interior to the moved polygon.</p>
+<p>The return decomposition makes the global check explicit. Within the moved chain each image is its next moved vertex. Its last image is $TB_s=\lambda(\lambda^{b-1}B_s)$, the image of its last moved vertex. The fixed last chain still returns to $TA$, now on $[A,B_s]$. Every other terminal image and its target endpoints are fixed. These exhaust the vertex images. Thus the moved polygon remains invariant and has an interior image of a vertex, contrary to Stop 2.</p>
+<p>Therefore $m\geq2$ is impossible. A singleton extremum must satisfy</p>
+<div class="theory-formula">$$\boxed{m=1,\qquad b&gt;n/2.}$$</div>
+<p>With one marked base, elimination now gives</p>
+<div class="theory-formula">$$\boxed{\lambda^{n-b}(\lambda^b-a)=1-a.}$$</div>
+<p>This is Family I with $\ell=b$, $m=1$, and $\tau=n-b&lt;b$. The raw singleton relation</p>
+<div class="theory-formula">$$\lambda^n-t=(1-t)\lambda^{n-b}$$</div>
+<p>is the same equation after $a=1-t$. No selection between two different outer candidates is being assumed.</p>
+<h3 id="proof7-single-3">The eight-state case that exposed the gap</h3>
+<p>For $n=8$, $k=3$, the inverse is $b=3$, so $m=2$ and $\tau=2$. Marking bases $1,2$ gives</p>
+<div class="theory-formula">$$\lambda^3x_0=a x_0+(1-a)x_1,\qquad
+\lambda^3x_1=x_2,\qquad\lambda^2x_2=x_0.$$</div>
+<p>The positive first contact and zero second mark admit the slide just proved. The singleton pattern therefore cannot represent a new radial extremum in the sector $(1/3,3/8)$.</p>
+<p>The surviving repeated-chain pattern instead has the necessary equation</p>
+<div class="theory-formula">$$\lambda^2(\lambda^3-t)^2=(1-t)^2.$$</div>
+<p>For comparison, at $n=7$, $k=3$, the inverse is $b=5$, so $m=1$. A singleton is not excluded by this test, and its necessary equation is</p>
+<div class="theory-formula">$$\lambda^2(\lambda^5-t)=1-t.$$</div>
+<p>We have closed the single-contact configuration gap using return arithmetic and an invariant variation. Existence and final selection of the outer root branches still belong to the later assembly; this argument does not declare every polynomial root a boundary point.</p>
+</div></section>
 
-                <section class="essay-section" id="the-labels-distinguish-the-endpoint-roots">
+<section class="essay-section" id="exponent-dictionary"><h2>The angular sector fixes the exponents</h2><div class="proof-addition"><p>We can now identify the canonical equation for <strong>every</strong> nonreal radial extremum new at order $n&gt;3$, including the single-contact case. Let its chosen shift be $k$, put $g=\gcd(n,k)$, and take the Farey sector just proved:</p>
+<div class="theory-formula">$$\frac fb&lt;\theta&lt;\frac kn,\qquad
+kb-nf=g,\qquad0&lt;n-b&lt;n/g.$$</div>
+<p>Reduce $k/n$ before comparing denominators. Write $\ell,s$ for the smaller and larger Farey denominators and $m=\lfloor n/\ell\rfloor$.</p>
+<h3 id="proof7-dictionary-1">Coprime shift: the forward family includes the singleton</h3>
+<p>If $g=1$, then $k/n$ is already reduced, so $s=n$ and $\ell=b$. The identity $kb-nf=1$ makes $b$ the inverse of $k$ modulo $n$.</p>
+<p>For a singleton, the preceding proof gives $m=1$ and the forward relation directly. For a block with $\varphi&gt;1$, Stop 5 gives $n=b\varphi+\tau_0$ with $\tau_0\geq0$, so $\varphi\leq\lfloor n/b\rfloor=m$. All genuine contact targets therefore lie in the enlarged window $1,\ldots,m$.</p>
+<p>The inverse-window partition proved above applies to that window. Its return relations have chain length $b$ and closing tail $\tau=n-bm$. The neighboring-weight argument from Stop 5 forces every window alpha coefficient to agree, including any zero coefficients at added marks. At least one coefficient is positive, so there can be no added zero marks: $\varphi=m$.</p>
+<p>Consequently, in every coprime-shift case,</p>
+<div class="theory-formula">$$\boxed{\ell=b,\quad s=n,\quad
+m=\lfloor n/\ell\rfloor,\quad\tau=n-\ell m,\quad0\leq\tau&lt;\ell,}$$</div>
+<p>and the common-weight relation is</p>
+<div class="theory-formula">$$\boxed{\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m.}$$</div>
+<p>Here $t$ is the alpha coefficient, the weight on the chain&#39;s own generator in the forward relations. This argument also proves the floor formula without assuming it from the final arc theorem.</p>
+<h3 id="proof7-dictionary-2">Noncoprime shift: the gcd family</h3>
+<p>If $g\geq2$, Stop 5 gives $\varphi=g$ and $g$ chains of length $\ell=n/g$. The closing time in the angular proof is $\sigma=n-b$, with $0&lt;\sigma&lt;\ell$.</p>
+<p>Since $b&gt;n-\ell=\ell(g-1)\geq\ell$, the smaller Farey denominator is $\ell$ and the larger is $s=b$. Hence</p>
+<div class="theory-formula">$$\boxed{m=g=\lfloor n/\ell\rfloor,\qquad
+\ell m=n,\qquad\sigma=\ell m-s=n-b.}$$</div>
+<p>The common-weight relation from Stop 5 is</p>
+<div class="theory-formula">$$\boxed{(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma.}$$</div>
+<p>Here $t$ is the beta coefficient, the weight on the chain&#39;s own generator in the gcd relations. The two branches use opposite edges, which accounts for the different coefficient names.</p>
+<p>Both are reductions of the unified algebraic equation</p>
+<div class="theory-formula">$$\lambda^s(\lambda^\ell-t)^m=(1-t)^m\lambda^{\ell m}.$$</div>
+<p>This identifies the exponents in Ito&#39;s formulation by contact geometry, angular lifts, and return arithmetic. It does not import that formulation&#39;s boundary conclusion. The identities involving $n$ above concern new order-$n$ extrema; inherited arcs are handled at their smaller realizing order in Stop 9.</p>
+<p>For the strict-contraction extrema considered here, $0&lt;t&lt;1$. The values zero and one occur as limiting parameters at the unit-circle landmarks.</p>
+<div class="table-responsive table-wrap"><table class="data-table">
+<thead>
+<tr>
+<th>$n,k$</th>
+<th>Configuration</th>
+<th>Sector</th>
+<th>$\ell,s,m$</th>
+<th>Necessary canonical relation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$8,3$</td>
+<td>Forward; a singleton is excluded</td>
+<td>$1/3&lt;\theta&lt;3/8$</td>
+<td>$3,8,2$</td>
+<td>$\lambda^2(\lambda^3-t)^2=(1-t)^2$</td>
+</tr>
+<tr>
+<td>$7,3$</td>
+<td>Forward; singleton permitted by this test</td>
+<td>$2/5&lt;\theta&lt;3/7$</td>
+<td>$5,7,1$</td>
+<td>$\lambda^2(\lambda^5-t)=1-t$</td>
+</tr>
+<tr>
+<td>$8,2$</td>
+<td>gcd, $g=2$</td>
+<td>$1/5&lt;\theta&lt;1/4$</td>
+<td>$4,5,2$</td>
+<td>$(\lambda^4-t)^2=(1-t)^2\lambda^3$</td>
+</tr>
+<tr>
+<td>$6,2$</td>
+<td>gcd, $g=2$</td>
+<td>$1/4&lt;\theta&lt;1/3$</td>
+<td>$3,4,2$</td>
+<td>$(\lambda^3-t)^2=(1-t)^2\lambda^2$</td>
+</tr>
+</tbody></table></div>
+<p>The dictionary now covers all configurations left by Stop 5. The final induction must still prove which root branches are present and outermost. A necessary equation and the correct angular sector do not make every root of that equation a boundary point.</p>
+</div></section>
+
+<section class="essay-section" id="the-labels-distinguish-the-endpoint-roots">
                     <h2>The labels distinguish the endpoint roots</h2>
                     <p>
                         Our eight-state relations produced
@@ -558,7 +665,7 @@
 
                     <div class="essay-next">
                         <span class="essay-eyebrow">Next stop &middot; Theorem A (Stop 8)</span>
-                        <p>With the algebraic boundary curves placed inside their exact Farey angular sectors, we turn to the other headline conclusion of the 1951 paper — <a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region &rarr;</a></p>
+                        <p>With the necessary algebraic relations assigned to their exact Farey angular sectors, we turn to the other headline conclusion of the 1951 paper — <a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region &rarr;</a></p>
                     </div>
                 </section>
 
@@ -568,9 +675,11 @@
                         [1] F. I. Karpelevich, <em>On the characteristic roots of matrices with nonnegative elements</em>, Izv. Akad. Nauk SSSR Ser. Mat. <strong>15:4</strong> (1951), 361–383. <a href="https://www.mathnet.ru/eng/im3317" target="_blank" rel="noopener">Original paper</a>. The angular estimates are Theorems VIII–IX, pp. 377–379; their conversion to neighboring rational sectors begins the final assembly on p. 380.
                     </p>
                     <p class="essay-sources">
-                        This post uses the general angular refinement as a cited geometric input. It proves the Farey criterion, the mediant threshold, the forward-branch angular lift, the exponent dictionary, and the endpoint-root identification in the worked example. The selection between candidate equations in the single-contact case is taken from Karpelevich’s theorem in Ito’s form (H. Ito, <em>A new statement about the theorem determining the region of eigenvalues of stochastic matrices</em>, Linear Algebra Appl. <strong>267</strong> (1997), 241–246). All figures and explorers use exact rational or integer data, with trigonometric coordinates only for drawing. No numerical root tracking is used to establish a boundary claim.
+                        This post proves the Farey arithmetic, the lifted angular bounds in the forward and gcd branches, the inverse-window return partition, the single-contact exclusion, and the complete exponent dictionary for new extrema. It uses the contact, return, and rigidity lemmas of Stops 2–5. The angular-gap proof is an equivalent form of the estimate in Karpelevich’s Theorem VIII; compare the retained-turn argument in the modern source below. No boundary-arc theorem is assumed to exclude a configuration. Existence and final selection of the outer root branches remain tasks of the later assembly.
                     </p>
-                    <cite-grid keys="karpelevich1951, dmitriev1946, ito1997"></cite-grid>
+                    <p class="essay-sources">[2] B. Verbeken and V. Ginis, <em>A proof of the Karpelevič theorem via invariant polygons</em>, arXiv:2609.26058v3 (1 October 2026), §3.1 and Theorem 4.1. <a href="https://arxiv.org/pdf/2609.26058v3">Preprint</a>. The required return-partition and lifted-angle arguments are developed explicitly above.</p>
+<p class="essay-sources">[3] H. Ito, <em>A new statement about the theorem determining the region of eigenvalues of stochastic matrices</em>, Linear Algebra Appl. <strong>267</strong> (1997), 241–246. <a href="https://doi.org/10.1016/S0024-3795(97)80052-3">Publication</a>. The name “Ito equation” identifies the unified algebraic form; its boundary conclusion is not used as a proof input here.</p>
+<cite-grid keys="karpelevich1951, dmitriev1946, ito1997, verbeken2026"></cite-grid>
                 </section>
 
                 <nav class="series-book-pager" aria-label="Book chapter navigation">
@@ -582,7 +691,7 @@
                     <div class="book-pager-card next">
                         <span class="book-pager-meta">Next Chapter →</span>
                         <a href="karpelevich-cyclic.html" class="book-pager-title">Stop 8: Cyclic Polygons and the Whole Region</a>
-                        <p class="book-pager-desc">Theorem A: every boundary eigenvalue realized by a cyclic polygon and star-shaped interior expansion.</p>
+                        <p class="book-pager-desc">Theorem A: cyclic-polygon coverage of the radial extrema and the intervening radial segments.</p>
                     </div>
                 </nav>
             </article>

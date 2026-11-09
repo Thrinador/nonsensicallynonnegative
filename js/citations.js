@@ -214,19 +214,19 @@
     },
     {
         "key": "verbeken2026",
-        "title": "A structural proof of the Karpelevič theorem",
+        "title": "A proof of the Karpelevič theorem via invariant polygons",
         "authors": "Brecht Verbeken and Vincent Ginis",
         "year": 2026,
-        "venue": "arXiv preprint arXiv:2609.26058v2 [math.PR]",
+        "venue": "arXiv preprint arXiv:2609.26058v3 [math.PR]",
         "category": "karpelevich",
         "categoryName": "Karpelevič Region & Stochastic",
-        "badge": "Structural Proof",
+        "badge": "Invariant Polygons Proof",
         "badgeClass": "breakthrough",
         "doi": "",
         "arxiv": "https://arxiv.org/abs/2609.26058",
         "url": "https://arxiv.org/abs/2609.26058",
-        "note": "Completely self-contained derivation from an arbitrary radial extremum of minimal order N >= 4, introducing branch-minimal normal form and proving 1 - rho_n(theta) ~ n^-3 uniform deficit asymptotics.",
-        "bibtex": "@article{VerbekenGinis2026,\n  author  = {Verbeken, Brecht and Ginis, Vincent},\n  title   = {A structural proof of the {K}arpelevi{\\v{c}} theorem},\n  journal = {arXiv preprint arXiv:2609.26058},\n  year    = {2026},\n  eprint  = {2609.26058},\n  archivePrefix = {arXiv}\n}"
+        "note": "Self-contained geometric derivation of the Karpelevič theorem via invariant polygons from an arbitrary radial extremum of minimal order N >= 4, including exposing-line and positive-coordinate projective chain proofs (Lemmas 3.3–3.4 and Theorem 3.5).",
+        "bibtex": "@article{VerbekenGinis2026,\n  author  = {Verbeken, Brecht and Ginis, Vincent},\n  title   = {A proof of the {K}arpelevi{\\v{c}} theorem via invariant polygons},\n  journal = {arXiv preprint arXiv:2609.26058v3},\n  year    = {2026},\n  eprint  = {2609.26058},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "suleimanova1949",
