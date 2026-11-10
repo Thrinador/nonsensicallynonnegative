@@ -13,8 +13,22 @@
     <meta property="og:title" content="NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem">
     <meta property="og:description" content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Nonsensically Nonnegative · NIEP Research Hub",
+      "url": "https://nonsensicallynonnegative.com/",
+      "description": "An interactive collection of computational research tools, expository monographs, and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.",
+      "author": {
+        "@type": "Person",
+        "name": "Benjamin J. Clark",
+        "url": "https://nonsensicallynonnegative.com/personal/index.html"
+      }
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -22,18 +36,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -50,15 +53,11 @@
 
     <!-- Hub Main Content Container -->
     <main class="hub-container">
-        <!-- Site Development Disclaimer Banner -->
+        <!-- Active Research Platform Note -->
         <div class="dev-disclaimer-banner" role="status">
-            <span class="dev-disclaimer-badge">Under Development</span>
+            <span class="dev-disclaimer-badge">Active Research Hub</span>
             <p class="dev-disclaimer-text">
-                <strong>Site Notice:</strong> This research hub and its interactive spectral visualization tools are
-                actively under development. Features, 3D dataset galleries, and solvers are being continuously expanded
-                and refined.
-                <br>
-                Expect bugs, typos, and features to break or be incomplete.
+                <strong>Open Research Platform:</strong> New interactive solvers, 3D polyhedral datasets, and expository monographs (most recently <em>Inside Karpelevi&#x010D;&rsquo;s Proof</em> and <em>Character Table Cones</em>) are continuously added. Found an issue or want to collaborate? Visit <a href="about.html" class="text-link">About &amp; Contributing</a>.
             </p>
         </div>
 
@@ -260,9 +259,9 @@
                             presentations, student lecture notes, and curriculum vitae.
                         </p>
                         <div class="tool-card-features">
-                            <div class="feature-item">&check; 3 Journal Articles &amp; 3 arXiv Preprints</div>
+                            <div class="feature-item">&check; 2 Journal Articles, 1 Conference Paper &amp; 3 arXiv Preprints</div>
                             <div class="feature-item">&check; WSU Course teaching &amp; downloadable lecture notes</div>
-                            <div class="feature-item">&check; 8 Conference and seminar presentation slides</div>
+                            <div class="feature-item">&check; 8 Conference &amp; seminar talks (7 slide decks)</div>
                             <div class="feature-item">&check; Academic &amp; software engineering CV</div>
                         </div>
                         <div class="tool-card-footer">
@@ -334,25 +333,25 @@
                         <div class="subproblems-grid">
                             <div class="subproblem-item">
                                 <span class="subproblem-tag">SNIEP</span>
-                                <h4 class="subproblem-title">Symmetric NIEP</h4>
+                                <h3 class="subproblem-title">Symmetric NIEP</h3>
                                 <p class="subproblem-desc">Requires $A = A^T$. Restricts all eigenvalues to $\mathbb{R}$
                                     with real orthogonal eigenvectors.</p>
                             </div>
                             <div class="subproblem-item">
                                 <span class="subproblem-tag">RNIEP</span>
-                                <h4 class="subproblem-title">Real NIEP</h4>
+                                <h3 class="subproblem-title">Real NIEP</h3>
                                 <p class="subproblem-desc">Requires $A \ge 0$ with $\sigma \subset \mathbb{R}$ (not
                                     necessarily symmetric; strictly broader than SNIEP for $n \ge 5$).</p>
                             </div>
                             <div class="subproblem-item">
                                 <span class="subproblem-tag">Stochastic</span>
-                                <h4 class="subproblem-title">Stochastic NIEP</h4>
+                                <h3 class="subproblem-title">Stochastic NIEP</h3>
                                 <p class="subproblem-desc">Requires row sums equal to $1$, normalizing spectral radius
                                     $\rho(A) = 1$ and connecting directly to Karpelevi&#x010D; regions.</p>
                             </div>
                             <div class="subproblem-item">
                                 <span class="subproblem-tag">Nonzero Spectrum</span>
-                                <h4 class="subproblem-title">Spectral Padding</h4>
+                                <h3 class="subproblem-title">Spectral Padding</h3>
                                 <p class="subproblem-desc">Realization by an $N \times N$ matrix with $N \ge n$, padding
                                     with $N - n$ auxiliary zero eigenvalues.</p>
                             </div>
@@ -373,7 +372,7 @@
                             <div class="condition-card">
                                 <div class="condition-header">
                                     <span class="condition-num">1</span>
-                                    <h4 class="condition-title">Conjugate Symmetry</h4>
+                                    <h3 class="condition-title">Conjugate Symmetry</h3>
                                 </div>
                                 <div class="condition-formula">
                                     $$\sigma = \bar{\sigma}$$
@@ -384,7 +383,7 @@
                             <div class="condition-card">
                                 <div class="condition-header">
                                     <span class="condition-num">2</span>
-                                    <h4 class="condition-title">Perron Root Dominance</h4>
+                                    <h3 class="condition-title">Perron Root Dominance</h3>
                                 </div>
                                 <div class="condition-formula">
                                     $$\rho = \max_{1 \le i \le n} |\lambda_i| \in \sigma$$
@@ -395,7 +394,7 @@
                             <div class="condition-card">
                                 <div class="condition-header">
                                     <span class="condition-num">3</span>
-                                    <h4 class="condition-title">Power Sum Traces</h4>
+                                    <h3 class="condition-title">Power Sum Traces</h3>
                                 </div>
                                 <div class="condition-formula">
                                     $$s_k = \sum_{i=1}^n \lambda_i^k = \operatorname{tr}(A^k) \ge 0 \quad (\forall k \ge
@@ -407,7 +406,7 @@
                             <div class="condition-card">
                                 <div class="condition-header">
                                     <span class="condition-num">4</span>
-                                    <h4 class="condition-title">Loewy-London Inequalities</h4>
+                                    <h3 class="condition-title">Loewy-London Inequalities</h3>
                                 </div>
                                 <div class="condition-formula">
                                     $$s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)$$

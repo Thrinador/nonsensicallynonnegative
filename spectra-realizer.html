@@ -11,8 +11,20 @@
     <meta property="og:title" content="Spectra Realizer | Nonnegative &amp; Stochastic Inverse Eigenvalue Problem">
     <meta property="og:description" content="Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Stochastic Symmetric matrices with configurable numerical tolerance.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/spectra-realizer.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Spectra Realizer",
+      "url": "https://nonsensicallynonnegative.com/spectra-realizer.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "description": "Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Doubly Stochastic matrices using alternating projections and exact algebraic constructions.",
+      "author": { "@type": "Person", "name": "Benjamin J. Clark" }
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/realizer.css">
@@ -32,7 +44,8 @@
     <hub-nav></hub-nav>
 
     <!-- Main Workspace Container -->
-    <main class="realizer-workspace">
+    <main class="realizer-workspace" id="main-content">
+        <h1 class="sr-only">Numerical Spectra Realizer for Nonnegative and Stochastic Matrices</h1>
         <!-- Sidebar Controls -->
         <aside class="realizer-sidebar" aria-label="Solver Controls">
             <!-- 1. Target Matrix Class Card -->
@@ -42,22 +55,22 @@
                 </div>
                 <div class="class-selector-grid">
                     <label class="class-option-label">
-                        <input type="radio" name="targetClass" value="nonnegative" checked>
+                        <input type="radio" name="targetClass" value="nonnegative" aria-label="Nonnegative matrix class" checked>
                         <span class="class-name">Nonnegative</span>
                         <span class="class-formula">A &ge; 0</span>
                     </label>
                     <label class="class-option-label">
-                        <input type="radio" name="targetClass" value="stochastic">
+                        <input type="radio" name="targetClass" value="stochastic" aria-label="Row-stochastic matrix class">
                         <span class="class-name">Stochastic</span>
-                        <span class="class-formula">A &ge; 0, &sum; A_ij = 1</span>
+                        <span class="class-formula">A &ge; 0, &sum;<sub>j</sub> A<sub>ij</sub> = 1</span>
                     </label>
                     <label class="class-option-label">
-                        <input type="radio" name="targetClass" value="symmetric">
+                        <input type="radio" name="targetClass" value="symmetric" aria-label="Symmetric nonnegative matrix class (SNIEP)">
                         <span class="class-name">Symmetric (SNIEP)</span>
-                        <span class="class-formula">A = Aᵀ &ge; 0</span>
+                        <span class="class-formula">A = A<sup>T</sup> &ge; 0</span>
                     </label>
                     <label class="class-option-label">
-                        <input type="radio" name="targetClass" value="stochastic-symmetric">
+                        <input type="radio" name="targetClass" value="stochastic-symmetric" aria-label="Doubly stochastic symmetric matrix class">
                         <span class="class-name">Stochastic Sym</span>
                         <span class="class-formula">Doubly Stochastic</span>
                     </label>
@@ -210,6 +223,7 @@
                                 <button type="button" class="copy-btn" id="copyNumpyBtn" title="Copy Python NumPy array">NumPy</button>
                                 <button type="button" class="copy-btn" id="copyMatlabBtn" title="Copy MATLAB matrix">MATLAB</button>
                                 <button type="button" class="copy-btn" id="copyJsonBtn" title="Copy JSON array">JSON</button>
+                                <button type="button" class="copy-btn" id="copyLinkBtn" title="Copy shareable URL for this spectrum">Link</button>
                             </div>
                         </div>
                     </div>
@@ -241,11 +255,11 @@
                     </div>
 
                     <div class="canvas-wrapper">
-                        <canvas id="spectralCanvas"></canvas>
+                        <canvas id="spectralCanvas" role="img" aria-label="Target and realized eigenvalues in the complex plane"></canvas>
                         <div class="canvas-toolbar">
-                            <button type="button" class="canvas-tool-btn" id="zoomInBtn" title="Zoom In">+</button>
-                            <button type="button" class="canvas-tool-btn" id="zoomOutBtn" title="Zoom Out">&minus;</button>
-                            <button type="button" class="canvas-tool-btn" id="zoomResetBtn" title="Reset View">&#x21BA;</button>
+                            <button type="button" class="canvas-tool-btn" id="zoomInBtn" title="Zoom In" aria-label="Zoom In">+</button>
+                            <button type="button" class="canvas-tool-btn" id="zoomOutBtn" title="Zoom Out" aria-label="Zoom Out">&minus;</button>
+                            <button type="button" class="canvas-tool-btn" id="zoomResetBtn" title="Reset View" aria-label="Reset View">&#x21BA;</button>
                         </div>
                     </div>
                     <div class="card-helper mt-md">
@@ -282,9 +296,9 @@
                         <thead>
                             <tr>
                                 <th>Index</th>
-                                <th>Target &lambda;_i</th>
-                                <th>Actual &mu;_i</th>
-                                <th>Residual |&lambda; - &mu;|</th>
+                                <th>Target &lambda;<sub>i</sub></th>
+                                <th>Actual &mu;<sub>i</sub></th>
+                                <th>Residual |&lambda;<sub>i</sub> &minus; &mu;<sub>i</sub>|</th>
                             </tr>
                         </thead>
                         <tbody id="eigenTableBody">

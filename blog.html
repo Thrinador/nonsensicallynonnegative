@@ -13,7 +13,7 @@
     <meta property="og:title" content="Research Blog &amp; Explorations | NIEP Research Hub">
     <meta property="og:description" content="In-depth mathematical blog posts, computational experiments, and interactive visual explorations on the Nonnegative Inverse Eigenvalue Problem (NIEP), Perron spectracones, and finite group character tables.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/blog.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -23,18 +23,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -642,6 +631,46 @@
                     <a href="plots/aabc_plotly_subplots_3d.html" target="_blank" rel="noopener" class="tool-launch-btn secondary inline">
                         <span>Launch 2&times;2 3D Group Dashboard &rarr;</span>
                     </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Archive Section: Earlier Expository Notes -->
+        <div class="blog-series-section-banner">
+            <div class="series-section-badge">
+                <span class="series-badge-icon" aria-hidden="true">📄</span>
+                <span>Archive &middot; Expository Notes</span>
+            </div>
+            <h2 class="series-section-title">Earlier Expository Notes (PDF)</h2>
+            <p class="series-section-desc">
+                Standalone expository notes on graph coloring, combinatorial geometry, and spectral recurrences for structured matrices.
+            </p>
+        </div>
+
+        <article class="blog-featured-card">
+            <div class="blog-featured-body">
+                <div class="blog-highlights-grid">
+                    <div class="blog-highlight-item">
+                        <span class="blog-highlight-num">Tridiagonal Spectra</span>
+                        <span class="blog-highlight-desc">Three-term recurrence relations, Chebyshev polynomials, and explicit characteristic polynomials of structured tridiagonal matrices.</span>
+                        <div class="mt-sm">
+                            <a href="files/blog-posts/tridiagonal-matrix/characteristic-polynomial-tridiagonal-matrices.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="blog-highlight-item">
+                        <span class="blog-highlight-num">Heawood Conjecture</span>
+                        <span class="blog-highlight-desc">Euler characteristic bounds, surface genus, and the Ringel&ndash;Youngs map-coloring theorem on higher-genus surfaces.</span>
+                        <div class="mt-sm">
+                            <a href="files/blog-posts/heawood-conjecture.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="blog-highlight-item">
+                        <span class="blog-highlight-num">Points and Boxes</span>
+                        <span class="blog-highlight-desc">Combinatorial geometry and extremal configurations of points inside axis-aligned boxes.</span>
+                        <div class="mt-sm">
+                            <a href="files/blog-posts/points-and-boxes/points-and-boxes.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>

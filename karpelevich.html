@@ -11,8 +11,20 @@
     <meta property="og:title" content="Karpelevič Region Viewer | NIEP">
     <meta property="og:description" content="Interactive Karpelevič Region viewer for visualizing eigenvalues of stochastic matrices, Farey sequence roots of unity, and power dynamics.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Karpelevič Region Viewer",
+      "url": "https://nonsensicallynonnegative.com/karpelevich.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "description": "Interactive Karpelevič Region viewer for visualizing eigenvalues of n × n stochastic matrices, Farey sequence roots of unity, and power orbit dynamics.",
+      "author": { "@type": "Person", "name": "Benjamin J. Clark" }
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/karpelevich.css">
@@ -32,9 +44,10 @@
     <hub-nav></hub-nav>
 
     <!-- Main Workspace Container -->
-    <div class="karpelevich-container">
+    <div class="karpelevich-container" id="main-content">
+        <h1 class="sr-only">Karpelevi&#x010D; Region Viewer</h1>
         <!-- Control Sidebar -->
-        <aside class="control-sidebar glass" id="controlSidebar">
+        <aside class="control-sidebar glass" id="controlSidebar" aria-label="Karpelevič Viewer Controls">
             <!-- 1. Dimension / Order n Control -->
             <div class="control-card">
                 <div class="card-title">
@@ -44,7 +57,7 @@
                 <div class="n-selector-row">
                     <div class="n-number-display" id="nDisplay">4</div>
                     <div class="slider-group">
-                        <input type="range" id="nSlider" min="2" max="16" value="4" step="1">
+                        <input type="range" id="nSlider" min="2" max="16" value="4" step="1" aria-label="Matrix order n">
                         <div class="slider-ticks">
                             <span>2</span>
                             <span>4</span>
@@ -100,7 +113,7 @@
                 <!-- Point Containment Status -->
                 <div id="pointStatusBox" class="point-status status-inside">
                     <span class="status-dot"></span>
-                    <span>Inside K_n</span>
+                    <span>Inside &#x1D4A6;<sub>n</sub></span>
                     <span>|z| = 0.632</span>
                 </div>
 
@@ -127,7 +140,7 @@
                         <span class="power-val">z<sup id="powerDisplay">1</sup></span>
                     </div>
                     <div class="slider-group">
-                        <input type="range" id="powerSlider" min="1" max="25" value="1" step="1">
+                        <input type="range" id="powerSlider" min="1" max="25" value="1" step="1" aria-label="Power exponent k">
                         <div class="slider-ticks">
                             <span>k=1</span>
                             <span>k=5</span>
@@ -186,10 +199,10 @@
                     </p>
                     <p>
                         <strong>Ito Polynomial Arcs:</strong>
-                        Consecutive Farey neighbors <code>p/q &lt; r/s</code> (with <code>q &lt; s</code>) are connected by curvilinear boundary arcs satisfying Ito's polynomial equation:
+                        Adjacent Farey fractions with smaller denominator <code>q</code> and larger denominator <code>s</code> are connected by boundary arcs satisfying Ito&rsquo;s reduced polynomial equation (with <code>k = &lfloor;n/q&rfloor;</code> and <code>&alpha; &isin; [0, 1]</code>):
                     </p>
                     <p>
-                        <code>tˢ·(tᑫ - (1-α))ᵏ = αᵏ·tᑫᵏ</code>, for <code>α ∈ [0, 1]</code>, where <code>k = ⌊n/q⌋</code>.
+                        <code>(t<sup>q</sup> &minus; (1&minus;&alpha;))<sup>k</sup> = &alpha;<sup>k</sup> t<sup>qk&minus;s</sup></code> &nbsp;(or <code>t<sup>s&minus;qk</sup>(t<sup>q</sup> &minus; (1&minus;&alpha;))<sup>k</sup> = &alpha;<sup>k</sup></code> when <code>s &ge; qk</code>).
                     </p>
                     <p>
                         <strong>The Power Property:</strong>
@@ -210,14 +223,15 @@
 
         <!-- Main Visualizer Stage -->
         <main class="viewer-stage">
-            <canvas id="karpelevichCanvas"></canvas>
+            <canvas id="karpelevichCanvas" role="img" aria-label="Interactive Karpelevič region in the complex plane"></canvas>
 
             <!-- Floating Top-Right Toolbar -->
             <div class="floating-toolbar">
-                <button class="tool-icon-btn" id="panToggleBtn" title="Toggle Pan Mode (or Alt / Middle Mouse)">&#x2725;</button>
-                <button class="tool-icon-btn" id="zoomInBtn" title="Zoom In">＋</button>
-                <button class="tool-icon-btn" id="zoomOutBtn" title="Zoom Out">－</button>
-                <button class="tool-icon-btn" id="resetViewBtn" title="Reset Center & Zoom">⊙</button>
+                <button class="tool-icon-btn" id="panToggleBtn" title="Toggle Pan Mode (or Alt / Middle Mouse)" aria-label="Toggle Pan Mode">&#x2725;</button>
+                <button class="tool-icon-btn" id="zoomInBtn" title="Zoom In" aria-label="Zoom In">＋</button>
+                <button class="tool-icon-btn" id="zoomOutBtn" title="Zoom Out" aria-label="Zoom Out">－</button>
+                <button class="tool-icon-btn" id="resetViewBtn" title="Reset Center &amp; Zoom" aria-label="Reset Center and Zoom">⊙</button>
+                <button class="tool-icon-btn" id="shareLinkBtn" title="Copy Shareable URL" aria-label="Copy Shareable URL">&#x1F517;</button>
             </div>
 
             <!-- Stage Bottom HUD -->

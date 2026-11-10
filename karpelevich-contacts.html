@@ -13,7 +13,7 @@
     <meta property="og:title" content="What Extremality Forces · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="What radial extremality forces on invariant eigenvector polygons: boundary contacts, sparse stochastic rows, a common cyclic shift, and the orientation behind Karpelevich&#x27;s chip game.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-contacts.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-contacts.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -240,7 +229,7 @@
                 </section>
 
                 <section class="essay-section" id="why-even-one-interior-image-is-impossible">
-                    <h2>Why even one interior image is impossible</h2>
+                    <h2><span id="lem-2-1" class="lemma-label">Lemma 2.1</span>Why even one interior image is impossible <span class="lemma-source">cf. Dmitriev–Dynkin 1946, Thm. I</span></h2>
                     <p>
                         Here is the stronger conclusion, under both hypotheses from Section 1:
                     </p>
@@ -257,7 +246,7 @@
                     <details class="essay-proof">
                         <summary>A complete proof using one adjustable matrix row</summary>
                         <p>
-                            Suppose $\lambda z_i$ is interior. Choose stochastic realizing rows for the polygon and call the matrix $P$. This matrix must be irreducible. Otherwise a smaller diagonal block containing $\lambda$ has spectral radius $\rho\leq1$. Stochastic normalization, as in <a href="karpelevich-polygons.html#normalization">Stop 1</a>, realizes $\lambda/\rho$ at that smaller order. If $\rho=1$, this contradicts least order; if $\rho&lt;1$, it contradicts radial extremality. Here $\rho&gt;0$ because $\lambda$ is nonreal.
+                            Suppose $\lambda z_i$ is interior. Choose stochastic realizing rows for the polygon and call the matrix $P$. This matrix must be irreducible. Otherwise a smaller diagonal block containing $\lambda$ has spectral radius $\rho\leq1$. Stochastic normalization, as in <a href="karpelevich-polygons.html#lem-1-3">Stop 1 (Lemma 1.3)</a>, realizes $\lambda/\rho$ at that smaller order. If $\rho=1$, this contradicts least order; if $\rho&lt;1$, it contradicts radial extremality. Here $\rho&gt;0$ because $\lambda$ is nonreal.
                         </p>
                         <p>
                             Delete row and column $i$, leaving a nonnegative principal submatrix $B$. Then $\rho(B)&lt;1$. To see this directly, regard $P$ as a finite irreducible Markov chain. From every remaining state there is a positive-probability path to the deleted state. For some common finite number of steps, every row of the corresponding power of $B$ has sum strictly less than one. Hence $\rho(B)&lt;1$.
@@ -344,7 +333,7 @@
                 <section class="essay-section" id="the-fixed-cyclic-shift-is-the-deeper-input"><h2>The fixed cyclic shift: a complete contact argument</h2><div class="proof-addition"><nav class="proof-local-nav" aria-label="Steps of the added proof"><a href="#added-proof-stop-2-1">Two elementary tools</a><a href="#added-proof-stop-2-2">Every closed edge has a contact</a><a href="#added-proof-stop-2-3">One half-open convention works around the entire polygon</a><a href="#added-proof-stop-2-4">Counting contacts gives the fixed shift</a></nav><p>The supporting-line calculation identifies the two possible targets in each row. We now prove that the target edges advance one step whenever the source vertex advances one step. This is the global part of the Dmitriev–Dynkin contact theorem.</p>
 <p>Keep the hypotheses already stated: $\lambda$ is a nonreal radial extremum in $\mathcal K_n\setminus\mathcal K_{n-1}$, and $Q$ is an invariant polygon. It has exactly $n$ genuine vertices. The no-interior-image lemma applies to <strong>every</strong> invariant polygon with at most $n$ vertices, including the polygons obtained by the small changes below.</p>
 <p>First suppose $|\lambda|&lt;1$, and put $P=\lambda Q$. Both polygons have $n$ vertices, and every vertex of $P$ lies on $\partial Q$. All contour arcs and edge endpoints below are ordered counterclockwise. A boundary piece of $Q$ is <strong>free</strong> if it does not meet $P$.</p>
-<h3 id="added-proof-stop-2-1">Two elementary tools</h3>
+<h3 id="added-proof-stop-2-1"><span id="lem-2-2" class="lemma-label">Lemma 2.2</span>Two elementary tools: contact-count and corner-cut lemmas</h3>
 <p><strong>Contact-count lemma.</strong> Let $a,b\in\partial Q\cap\partial P$. Suppose each endpoint is either a vertex of both polygons or an interior point of an edge of both polygons. The counterclockwise arcs from $a$ to $b$ contain the same number of vertices of the two polygons, with the endpoints counted consistently.</p>
 <p>To prove this, let the two counts be $N_Q,N_P$. Replace the outer arc by the inner one. The resulting convex polygon $Q_-$ satisfies</p>
 <div class="theory-formula">$$P\subseteq Q_-\subseteq Q,\qquad \lambda Q_-\subseteq P\subseteq Q_-.$$</div>
@@ -370,7 +359,7 @@
 <div class="theory-formula">$$\lambda[x_j,y_j]\subseteq[x_{j+1},y_{j+1}].$$</div>
 <p>There are only finitely many edges, so some edge repeats. For some positive integer $h$ this gives $\lambda^h E\subseteq E$ for an edge $E$ of $Q$. Iterating would put $\lambda^{mh}E$ in $E$ for every $m$. Since $|\lambda|&lt;1$, these segments converge to $0$, so the closed edge would contain $0$. That contradicts $0\in\operatorname{int}Q$.</p>
 <p>Consequently $B(Q)=0$ for every invariant polygon: <strong>every closed edge meets $P$.</strong></p>
-<h3 id="added-proof-stop-2-3">One half-open convention works around the entire polygon</h3>
+<h3 id="added-proof-stop-2-3"><span id="lem-2-3" class="lemma-label">Lemma 2.3</span>One half-open convention works around the entire polygon <span class="lemma-source">Dmitriev–Dynkin 1946, Thm. II</span></h3>
 <p>Writing $v_i = z_i$ for the indexed vertices of $Q$ (so $x_0, y_0, z_0, u_0, v_0, w_0$ can denote consecutive corners along a local arc), let $B_+(Q)$ count free edges of the form $[v_i,v_{i+1})$, and let $B_-(Q)$ count free edges of the form $(v_i,v_{i+1}]$. We prove</p>
 <div class="theory-formula">$$\boxed{B_+(Q)=0\quad\text{or}\quad B_-(Q)=0.}$$</div>
 <p>Again use a finite integer maximum, now maximizing $B_+(Q)B_-(Q)$ over the invariant polygons. Suppose the maximum is positive. Choose a free pair</p>
@@ -393,7 +382,7 @@
 <p>We have therefore produced another free pair at the same minimal separation, with $z_1=\lambda z_0$. Repeating inside the same polygon gives vertices</p>
 <div class="theory-formula">$$z_0,\lambda z_0,\lambda^2z_0,\ldots$$</div>
 <p>of $Q$. Some vertex must repeat, which would give $\lambda^m z_0=z_0$ for a positive $m$. This is impossible because $z_0\ne0$ and $|\lambda|&lt;1$. The maximum product is zero, proving the boxed alternative for every invariant polygon.</p>
-<h3 id="added-proof-stop-2-4">Counting contacts gives the fixed shift</h3>
+<h3 id="added-proof-stop-2-4"><span id="thm-2-4" class="lemma-label">Theorem 2.4</span>Counting contacts gives the fixed shift <span class="lemma-source">Dmitriev–Dynkin 1946, Thm. III · Karpelevich §2</span></h3>
 <p>Suppose first that no edge of the form $(v_j,v_{j+1}]$ is free. These $n$ half-open edges partition the boundary, and each contains an image vertex. There are exactly $n$ image vertices. Consequently each contains exactly one.</p>
 <p>Multiplication by $\lambda$ preserves cyclic order. The unique contact assigned to the next half-open edge must therefore come from the next source vertex. For a single fixed integer $k$,</p>
 <div class="theory-formula">$$\lambda v_i\in(v_{i+k-1},v_{i+k}],$$</div>

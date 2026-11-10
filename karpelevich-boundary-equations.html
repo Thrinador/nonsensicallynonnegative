@@ -13,7 +13,7 @@
     <meta property="og:title" content="Where the Boundary Equations Come From · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="The powers in Karpelevich&#x27;s boundary equations count contact steps, repeated chains, and a closing shift. Derive both original families visually, then inspect the stochastic matrices whose characteristic polynomials they are.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-boundary-equations.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -26,18 +26,7 @@
     <script src="js/karpelevich-equations-data.js" defer></script>
     <script src="js/karpelevich-equations.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -241,7 +230,7 @@
 
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">First equation family</h3>
+                            <h3 class="math-callout-title"><span id="thm-6-1" class="lemma-label">Theorem 6.1</span>First equation family</h3>
                             <span class="math-callout-tag">Karpelevich §4, Thm. VI</span>
                         </div>
                         $$\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m,\qquad n=\ell m+\tau.$$
@@ -312,7 +301,7 @@
 
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Second equation family</h3>
+                            <h3 class="math-callout-title"><span id="thm-6-2" class="lemma-label">Theorem 6.2</span>Second equation family</h3>
                             <span class="math-callout-tag">Karpelevich §4, Thm. VII</span>
                         </div>
                         $$(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma,\qquad n=\ell m,\quad 0\leq \sigma&lt;\ell.$$
@@ -428,7 +417,7 @@
                 </section>
 
                 <section class="essay-section" id="characteristic-polynomials">
-                    <h2>These are characteristic polynomials</h2>
+                    <h2><span id="prop-6-3" class="lemma-label">Proposition 6.3</span>These are characteristic polynomials</h2>
                     <p>
                         The arrows in Figures 2 and 3 define stochastic matrices: each deterministic row has one entry $1$, and each branching row has the entries $t$ and $1-t$. All omitted entries are zero. The same construction works for general chain lengths; coincident targets have their weights added. In the determinant expansion, those weights can be expanded separately by distributivity.
                     </p>
@@ -608,7 +597,7 @@
                 </section>
 
                 <section class="essay-section" id="ito-form">
-                    <h2>The same equations in Ito’s form</h2>
+                    <h2><span id="thm-6-4" class="lemma-label">Theorem 6.4</span>The same equations in Ito’s form <span class="lemma-source">Ito 1997 · Johnson–Paparella 2017</span></h2>
                     <p>
                         Later work packages both families into one equation <cite-ref key="ito1997"></cite-ref>. Let $a/b&lt;c/d$ be neighbours in the Farey sequence $F_n$, write $\ell=\min(b,d)$ and $s=\max(b,d)$ for the smaller and larger denominators, and put $m=\lfloor n/\ell\rfloor$. Ito’s equation for the arc between $e^{2\pi ia/b}$ and $e^{2\pi ic/d}$ is
                     </p>

@@ -13,8 +13,26 @@
     <meta property="og:title" content="Inside Karpelevich’s Proof · The Roadmap | NIEP Research Blog">
     <meta property="og:description" content="From invariant polygons and the chip game to Euclidean arithmetic, geometric rigidity, boundary equations, and induction: a visual guide to the nine stops of Karpelevich&#x27;s proof, with standardized notation and a complete proof ledger.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-proof-roadmap.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "Inside Karpelevič’s Proof: A Nine-Stop Expository Monograph & Roadmap",
+      "url": "https://nonsensicallynonnegative.com/karpelevich-proof-roadmap.html",
+      "description": "From invariant polygons and the chip game to Euclidean arithmetic, geometric rigidity, boundary equations, and induction: a nine-stop visual monograph reconstructing F. I. Karpelevič's 1951 characterization of eigenvalues of stochastic matrices.",
+      "author": {
+        "@type": "Person",
+        "name": "Benjamin J. Clark",
+        "url": "https://nonsensicallynonnegative.com/personal/index.html"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nonsensically Nonnegative"
+      }
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -25,18 +43,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-roadmap.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -160,7 +167,7 @@
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
                             <h3 class="math-callout-title">Theorem A — Cyclic-Polygon Covering (Karpelevich 1951)</h3>
-                            <span class="math-callout-tag"><a href="karpelevich-cyclic.html">Stop 8</a></span>
+                            <span class="math-callout-tag"><a href="karpelevich-cyclic.html#thm-8-4">Stop 8: Thm. 8.4</a> · <a href="karpelevich-cyclic.html#thm-A">Thm. A</a></span>
                         </div>
                         <p>
                             For every $\mu\in\mathbb C$ and integer $h\geq1$ with $\varepsilon=e^{2\pi i/h}$, let $C(\mu,h)$ denote the closed convex hull of the orbit $\{\mu^m\varepsilon^j:m\geq0,\ 0\leq j&lt;h\}$ whenever that hull is a finite polygon. For every $n\geq2$,
@@ -172,7 +179,7 @@
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
                             <h3 class="math-callout-title">Theorem B — Boundary Arcs in Ito’s Unified Form (Karpelevich 1951; Ito 1997)</h3>
-                            <span class="math-callout-tag"><a href="karpelevich-boundary-equations.html#ito-form">Stop 6</a> · <a href="karpelevich-farey.html#exponent-dictionary">Stop 7</a> · <a href="karpelevich-induction.html#5-how-the-induction-applies-this-exclusion-everywhere-needed">Stop 9: Comparison</a> · <a href="karpelevich-induction.html#6-the-two-cases-now-exhaust-the-boundary">Induction</a></span>
+                            <span class="math-callout-tag"><a href="karpelevich-boundary-equations.html#thm-6-4">Stop 6: Thm. 6.4</a> · <a href="karpelevich-farey.html#thm-7-6">Stop 7: Thm. 7.6</a> · <a href="karpelevich-induction.html#prop-9-3">Stop 9: Prop. 9.3</a> · <a href="karpelevich-induction.html#thm-B">Thm. B</a></span>
                         </div>
                         <p>
                             For every $n\geq2$, the region $\mathcal K_n$ is compact, star-shaped with respect to $0$, and symmetric across the real axis, and its intersection with the unit circle consists of all roots of unity $e^{2\pi i a/b}$ with $a/b\in F_n$. At low orders,
@@ -687,48 +694,48 @@
                             <tbody>
                                 <tr>
                                     <td><a href="karpelevich-polygons.html"><strong>Stop 1</strong></a></td>
-                                    <td>Matrix rows $\leftrightarrow$ invariant polygons $\lambda Q\subseteq Q$; Perron normalization; Frobenius block reduction for reducible matrices; $0\in\operatorname{int}Q$; unit disk, star-shapedness, compactness, and root-of-unity landmarks.</td>
+                                    <td><a href="karpelevich-polygons.html#lem-1-1">Lemma 1.1</a> (matrix rows $\leftrightarrow$ invariant polygons $\lambda Q\subseteq Q$); <a href="karpelevich-polygons.html#lem-1-2">Lemma 1.2</a> ($0\in\operatorname{int}Q$); <a href="karpelevich-polygons.html#lem-1-3">Lemma 1.3</a> (Perron normalization and Frobenius block reduction for reducible matrices); <a href="karpelevich-polygons.html#prop-1-4">Proposition 1.4</a> (unit disk, star-shapedness, and compactness); <a href="karpelevich-polygons.html#prop-1-5">Proposition 1.5</a> (root-of-unity landmarks).</td>
                                     <td>Classical Perron–Frobenius theorem for irreducible nonnegative matrices; Bolzano–Weierstrass compactness.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-contacts.html"><strong>Stop 2</strong></a></td>
-                                    <td>Radial expansion; resolvent exclusion of an interior image; supporting-face sparsity; contact-count and corner-cut lemmas; closed-edge and half-open-edge contact arguments; fixed cyclic shift and consistent endpoint convention; angular bound and low-order examples.</td>
-                                    <td>Standard Perron–Frobenius and elementary polygon facts from Stop 1. The Dmitriev–Dynkin contact conclusions are proved in the chapter, with the original paper <cite-ref key="dmitriev1946">[Dmitriev–Dynkin, 1946]</cite-ref> and Swift’s translation <cite-ref key="swift1972">[Swift, 1972]</cite-ref> cited as sources.</td>
+                                    <td><a href="karpelevich-contacts.html#lem-2-1">Lemma 2.1</a> (radial expansion, resolvent exclusion of an interior image, and supporting-face sparsity); <a href="karpelevich-contacts.html#lem-2-2">Lemma 2.2</a> (contact-count and corner-cut lemmas); <a href="karpelevich-contacts.html#lem-2-3">Lemma 2.3</a> (closed-edge and half-open-edge contact arguments); <a href="karpelevich-contacts.html#thm-2-4">Theorem 2.4</a> (fixed cyclic shift, consistent endpoint convention, and coarse angular bound).</td>
+                                    <td>Uses <a href="karpelevich-polygons.html#lem-1-1">Lemmas 1.1–1.3</a> and <a href="karpelevich-polygons.html#prop-1-4">Proposition 1.4</a> from Stop 1. The Dmitriev–Dynkin contact conclusions are proved in the chapter, with the original paper <cite-ref key="dmitriev1946">[Dmitriev–Dynkin, 1946]</cite-ref> and Swift’s translation <cite-ref key="swift1972">[Swift, 1972]</cite-ref> cited as sources.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-game.html"><strong>Stop 3</strong></a></td>
-                                    <td>Corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$; Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$ ($g=\gcd(n,k)$); single consecutive run of length $\varphi$ via strict modular records; complete multi-run elimination via the record-gap game.</td>
-                                    <td>Contact and fixed-shift lemmas from Stop 2 (Karpelevich §3, Lemmas 1–2 &amp; Theorems I–II <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref>).</td>
+                                    <td><a href="karpelevich-game.html#lem-3-1">Lemma 3.1</a> (corner-cut invariance $\lambda Q'\subseteq\lambda Q\subseteq Q'$); <a href="karpelevich-game.html#lem-3-2">Lemma 3.2</a> (Concentration Lemma onto the window $W=\{0,\ldots,g-1\}$, $g=\gcd(n,k)$); <a href="karpelevich-game.html#thm-3-3">Theorem 3.3</a> (single consecutive run of length $\varphi$ via strict modular records and multi-run elimination via the record-gap game).</td>
+                                    <td>Uses <a href="karpelevich-contacts.html#lem-2-1">Lemmas 2.1–2.3</a> and <a href="karpelevich-contacts.html#thm-2-4">Theorem 2.4</a> from Stop 2 (Karpelevich §3, Lemmas 1–3 &amp; Theorems I–II <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref>).</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-returns.html"><strong>Stop 4</strong></a></td>
-                                    <td>Subtractive Euclidean invariant $pU+qL=n$; two-length first-return theorem ($p$ and $p+q$) in both the forward branch ($\varphi&gt;g$) and gcd branch ($\varphi=g$); vertex-budget identity $n=p\varphi+qr$.</td>
-                                    <td>Self-contained (Karpelevich §3, Lemma 2 &amp; Theorems III–IV).</td>
+                                    <td><a href="karpelevich-returns.html#lem-4-1">Lemma 4.1</a> (subtractive Euclidean invariant $pU+qL=n$ and record gaps); <a href="karpelevich-returns.html#thm-4-2">Theorem 4.2</a> (two-length first-return theorem $p$ and $p+q$ for proper blocks $g&lt;\varphi&lt;n$); <a href="karpelevich-returns.html#prop-4-3">Proposition 4.3</a> (vertex-budget identity $n=p\varphi+qr$); <a href="karpelevich-returns.html#thm-4-4">Theorem 4.4</a> (equal-length chains in the gcd branch $\varphi=g$, plus the full-block case $\varphi=n$).</td>
+                                    <td>Uses <a href="karpelevich-game.html#thm-3-3">Theorem 3.3</a> from Stop 3; otherwise self-contained (Karpelevich §3, Lemma 2 &amp; Theorems III–IV <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref>).</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-rigidity.html"><strong>Stop 5</strong></a></td>
-                                    <td>Face persistence and exposing carrier lines; projective-chain lemma with a positive-coordinate proof of the strict closing comparison; both moving-block placements; verification of every image constraint; Theorem V and the full-block reduction; common-weight variations in both branches, including zero-weight marks.</td>
-                                    <td>Contact and return lemmas proved in Stops 2–4. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited for the geometric method; the required geometric arguments are developed in full here.</td>
+                                    <td><a href="karpelevich-rigidity.html#lem-5-1">Lemma 5.1</a> (face persistence and exposing carrier lines); <a href="karpelevich-rigidity.html#lem-5-2">Lemma 5.2</a> (projective-chain lemma with a positive-coordinate proof of the strict closing comparison); <a href="karpelevich-rigidity.html#thm-5-3">Theorem 5.3</a> (both moving-block placements, verification of every image constraint, $r=1$, and full-block reduction); <a href="karpelevich-rigidity.html#thm-5-4">Theorem 5.4</a> and <a href="karpelevich-rigidity.html#thm-5-5">Theorem 5.5</a> (common-weight variations in the forward and gcd branches, including zero-weight marks).</td>
+                                    <td>Uses <a href="karpelevich-contacts.html#lem-2-1">Lemma 2.1</a> and <a href="karpelevich-contacts.html#thm-2-4">Theorem 2.4</a> (Stop 2), <a href="karpelevich-game.html#thm-3-3">Theorem 3.3</a> (Stop 3), and <a href="karpelevich-returns.html#thm-4-2">Theorems 4.2 &amp; 4.4</a> (Stop 4). <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited for the geometric method; the required geometric arguments are developed in full here.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-boundary-equations.html"><strong>Stop 6</strong></a></td>
-                                    <td>Elimination along chains for Family I ($\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$) and Family II ($(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$); cycle-expansion determinant proof; equivalence with Ito’s unified equation and matrix realization of all reduced Ito roots (of realizing degree $D=\max(s,\ell m)\leq n$).</td>
-                                    <td><cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref> unified equation; <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref> stochastic realization.</td>
+                                    <td><a href="karpelevich-boundary-equations.html#thm-6-1">Theorem 6.1</a> and <a href="karpelevich-boundary-equations.html#thm-6-2">Theorem 6.2</a> (elimination along chains for Family I $\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ and Family II $(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$); <a href="karpelevich-boundary-equations.html#prop-6-3">Proposition 6.3</a> (cycle-expansion determinant proof); <a href="karpelevich-boundary-equations.html#thm-6-4">Theorem 6.4</a> (equivalence with Ito’s unified equation and matrix realization of all reduced Ito roots of realizing degree $D=\max(s,\ell m)\leq n$).</td>
+                                    <td>Uses <a href="karpelevich-rigidity.html#thm-5-3">Theorems 5.3–5.5</a> from Stop 5. <cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref> unified equation; <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref> stochastic realization.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-farey.html"><strong>Stop 7</strong></a></td>
-                                    <td>Farey-neighbor criterion and mediant threshold; lifted vertex-angle identities; forward and gcd-branch angular bounds; inverse-window return partition; single-contact exclusion by the zero-weight slide; complete exponent dictionary for every new nonreal strict-contraction extremum; endpoint-root labels in the worked example.</td>
-                                    <td>Contact, return, and rigidity lemmas proved in Stops 2–5. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the angular and return methods; the required arguments are developed in the chapter. No final boundary theorem is used for single-contact case selection. Root-branch existence and final outer selection remain part of Stop 9.</td>
+                                    <td><a href="karpelevich-farey.html#lem-7-1">Lemma 7.1</a> (Farey-neighbor criterion and mediant threshold); <a href="karpelevich-farey.html#lem-7-2">Lemma 7.2</a> (lifted vertex-angle identities); <a href="karpelevich-farey.html#thm-7-3">Theorem 7.3</a> and <a href="karpelevich-farey.html#thm-7-4">Theorem 7.4</a> (forward and gcd-branch angular bounds); <a href="karpelevich-farey.html#lem-7-5">Lemma 7.5</a> (inverse-window return partition and single-contact exclusion by the zero-weight slide); <a href="karpelevich-farey.html#thm-7-6">Theorem 7.6</a> (complete exponent dictionary for every new nonreal strict-contraction extremum).</td>
+                                    <td>Uses <a href="karpelevich-contacts.html#thm-2-4">Theorem 2.4</a> (Stop 2), <a href="karpelevich-returns.html#thm-4-2">Theorems 4.2 &amp; 4.4</a> (Stop 4), and <a href="karpelevich-rigidity.html#thm-5-3">Theorems 5.3–5.5</a> (Stop 5). <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the angular and return methods; the required arguments are developed in the chapter. No final boundary theorem is used for single-contact case selection. Root-branch existence and final outer selection remain part of Stop 9.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-cyclic.html"><strong>Stop 8</strong></a></td>
-                                    <td>Finite closing certificate; multiplicative closure and stochastic realization of every point in a cyclic polygon; Bézout phase lemma and explicit closing constructions for both return patterns, with $hL=n_*$; conjugate, unit-circle, real, and low-order cases; full deduction of Theorem A.</td>
-                                    <td>Common-weight return relations and their exponent counts, proved in Stops 5 and 7. Karpelevich §5, Theorem X <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref> is proved here using an explicit Bézout form of the root-and-phase construction. <cite-ref key="djokovic1990">Đoković (1990)</cite-ref> is cited only for the historical distinction from the narrower single-orbit conjecture.</td>
+                                    <td><a href="karpelevich-cyclic.html#lem-8-1">Lemma 8.1</a> (finite closing certificate); <a href="karpelevich-cyclic.html#prop-8-2">Proposition 8.2</a> (multiplicative closure and stochastic realization of every point in a cyclic polygon); <a href="karpelevich-cyclic.html#lem-8-3">Lemma 8.3</a> (Bézout phase lemma); <a href="karpelevich-cyclic.html#thm-8-4">Theorem 8.4</a> (explicit closing constructions for both return patterns with $hL=n_*$, plus conjugate, unit-circle, real, and low-order cases); <a href="karpelevich-cyclic.html#thm-A">Theorem A</a> (full cyclic-polygon union theorem).</td>
+                                    <td>Uses <a href="karpelevich-polygons.html#prop-1-4">Proposition 1.4</a> (Stop 1), <a href="karpelevich-boundary-equations.html#thm-6-1">Theorems 6.1–6.2</a> (Stop 6), and <a href="karpelevich-farey.html#thm-7-6">Theorem 7.6</a> (Stop 7). Karpelevich §5, Theorem X <cite-ref key="karpelevich1951">[Karpelevič, 1951]</cite-ref> is proved here using an explicit Bézout form of the root-and-phase construction. <cite-ref key="djokovic1990">Đoković (1990)</cite-ref> is cited only for the historical distinction from the narrower single-orbit conjecture.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="karpelevich-induction.html"><strong>Stop 9</strong></a></td>
-                                    <td>Denominator divisibility test ($b\mid n$ or $d\mid n$); scalar branch equation, stochastic attainability, and winding-based necessity; factor-count and mediant outward comparisons; general strict interior-image polygon construction; order-four base case, full induction $R_n=\widehat R_n$, topological-boundary equality for $n\geq4$, and simple monotone parameterization; comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$ and explicit $n=6$ hexagon witness.</td>
-                                    <td>Common-weight return relations, angular lifts, low-order regions, and explicit chain matrices proved in Stops 5–8. <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the boundary-comparison method; <cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref>, <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref>, <cite-ref key="kirkland2020"><strong>Kirkland–Laffey–Šmigoc (2020)</strong></cite-ref>, and <cite-ref key="munger2023"><strong>Munger–Nickerson–Paparella (2024)</strong></cite-ref> are cited as modern alternative formulations.</td>
+                                    <td><a href="karpelevich-induction.html#prop-9-1">Proposition 9.1</a> (denominator divisibility test $b\mid n$ or $d\mid n$); <a href="karpelevich-induction.html#lem-9-2">Lemma 9.2</a> (strict interior-image exclusion); <a href="karpelevich-induction.html#prop-9-3">Proposition 9.3</a> (scalar branch equation, stochastic attainability, and winding-based necessity); <a href="karpelevich-induction.html#lem-9-4">Lemma 9.4</a> and <a href="karpelevich-induction.html#lem-9-5">Lemma 9.5</a> (factor-count and mediant outward comparisons); <a href="karpelevich-induction.html#lem-9-6">Lemma 9.6</a> (general strict interior-image polygon construction); <a href="karpelevich-induction.html#thm-B">Theorem B</a> (order-four base case, full induction $R_n=\widehat R_n$, topological-boundary equality for $n\geq4$, simple monotone parameterization, and comparison-order identity $\Gamma_{n-1}\cap S_{n,k}=\Gamma_{n_*}\cap S_{n,k}$).</td>
+                                    <td>Uses <a href="karpelevich-polygons.html#lem-1-1">Lemmas 1.1–1.2</a> and <a href="karpelevich-polygons.html#prop-1-4">Propositions 1.4–1.5</a> (Stop 1), <a href="karpelevich-boundary-equations.html#prop-6-3">Proposition 6.3</a> and <a href="karpelevich-boundary-equations.html#thm-6-4">Theorem 6.4</a> (Stop 6), <a href="karpelevich-farey.html#lem-7-2">Lemma 7.2</a> and <a href="karpelevich-farey.html#thm-7-3">Theorems 7.3–7.6</a> (Stop 7), and <a href="karpelevich-cyclic.html#thm-8-4">Theorem 8.4</a> (Stop 8). <cite-ref key="karpelevich1951">Karpelevich (1951)</cite-ref> and <cite-ref key="verbeken2026">Verbeken–Ginis (2026)</cite-ref> are credited as sources for the boundary-comparison method; <cite-ref key="ito1997"><strong>Ito (1997)</strong></cite-ref>, <cite-ref key="johnson2017"><strong>Johnson–Paparella (2017)</strong></cite-ref>, <cite-ref key="kirkland2020"><strong>Kirkland–Laffey–Šmigoc (2020)</strong></cite-ref>, and <cite-ref key="munger2023"><strong>Munger–Nickerson–Paparella (2024)</strong></cite-ref> are cited as modern alternative formulations.</td>
                                 </tr>
                             </tbody>
                         </table>

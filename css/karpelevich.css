@@ -178,7 +178,8 @@
     color: var(--text-primary);
     font-family: monospace;
     font-size: 0.85rem;
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     transition: all 0.2s ease;
 }
 

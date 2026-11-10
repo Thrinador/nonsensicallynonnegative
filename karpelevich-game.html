@@ -13,7 +13,7 @@
     <meta property="og:title" content="Karpelevich’s Game · Inside the Original Proof | NIEP Research Blog">
     <meta property="og:description" content="A chip jumping around a circle can stand for a change to an invariant polygon. Play the game from Karpelevich&#x27;s original proof, see why each move preserves the eigenvalue, and discover how modular records narrow the configurations a boundary proof needs to consider.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-game.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-game.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -501,7 +490,7 @@
 
                 <!-- 4. Why a legal move preserves the eigenvalue -->
                 <section class="essay-section" id="move-preserves-eigenvalue">
-                    <h2>Why a legal move preserves the eigenvalue</h2>
+                    <h2><span id="lem-3-1" class="lemma-label">Lemma 3.1</span>Why a legal move preserves the eigenvalue <span class="lemma-source">Karpelevich §3, Lemma 1</span></h2>
 
                     <p>
                         Suppose there is a chip at $i$ and site $i+1$ is empty. Write $j=i+k$. The two contacts are
@@ -605,7 +594,7 @@
 
                     <div class="math-callout lemma">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Concentration lemma</h3>
+                            <h3 class="math-callout-title"><span id="lem-3-2" class="lemma-label">Lemma 3.2</span>Concentration lemma</h3>
                             <span class="math-callout-tag">Karpelevich §3, Lemma 3 &amp; Thm. I(a)</span>
                         </div>
                         <p>A simplest reachable nonempty board has either <strong>one run</strong>, or <strong>fewer than $g$ chips</strong>.</p>
@@ -741,8 +730,8 @@
                     </p>
                     <div class="math-callout proposition">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Record condition</h3>
-                            <span class="math-callout-tag">Karpelevich §3, Thm. I(b)</span>
+                            <h3 class="math-callout-title"><span id="thm-3-3" class="lemma-label">Theorem 3.3</span>Record condition &amp; single-run reduction</h3>
+                            <span class="math-callout-tag">Karpelevich §3, Thms. I–II</span>
                         </div>
                         <p>If a simplest one-run board has $\varphi\geq g$ chips, then $n-\varphi$ is a record maximum of the modular orbit $a_j = jk \bmod n$.</p>
                     </div>

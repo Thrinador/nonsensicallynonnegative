@@ -13,7 +13,7 @@
     <meta property="og:title" content="Symmetric NIEP (SNIEP) | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical wiki article on the Symmetric Nonnegative Inverse Eigenvalue Problem (SNIEP), orthogonal geometry, Fiedler theorems, Soules bases, and trace polytopes.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/sniep.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,18 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -87,7 +76,7 @@
                 <aside class="wiki-infobox" aria-label="Quick Facts">
                 <div class="wiki-infobox-header">
                     <span class="wiki-infobox-badge">Subproblem</span>
-                    <h3 class="wiki-infobox-title">SNIEP</h3>
+                    <h2 class="wiki-infobox-title">SNIEP</h2>
                     <p class="wiki-infobox-subtitle">Symmetric Nonnegative Inverse Eigenvalue Problem</p>
                 </div>
 
@@ -191,7 +180,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">1</span>
-                                <h4 class="condition-title">Real Spectrum</h4>
+                                <h3 class="condition-title">Real Spectrum</h3>
                             </div>
                             <div class="condition-formula">$$\sigma \subset \mathbb{R}$$</div>
                             <p class="condition-note">All eigenvalues of a real symmetric matrix are guaranteed to be real.</p>
@@ -199,7 +188,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">2</span>
-                                <h4 class="condition-title">Perron Root</h4>
+                                <h3 class="condition-title">Perron Root</h3>
                             </div>
                             <div class="condition-formula">$$\lambda_1 = \max_{i} |\lambda_i| \in \sigma$$</div>
                             <p class="condition-note">The maximal eigenvalue in absolute value is positive and belongs to $\sigma$.</p>
@@ -207,7 +196,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">3</span>
-                                <h4 class="condition-title">Frobenius Trace Norm</h4>
+                                <h3 class="condition-title">Frobenius Trace Norm</h3>
                             </div>
                             <div class="condition-formula">$$s_{2k} = \|A^k\|_F^2 \ge 0$$</div>
                             <p class="condition-note">Even power sum traces equal the squared Frobenius norm of the symmetric power $A^k$.</p>
@@ -215,7 +204,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">4</span>
-                                <h4 class="condition-title">Fiedler Partitioning</h4>
+                                <h3 class="condition-title">Fiedler Partitioning</h3>
                             </div>
                             <div class="condition-formula">$$\lambda_1 + \lambda_n \ge 0$$</div>
                             <p class="condition-note">For irreducible $A$, the sum of extreme eigenvalues satisfies positivity bounds.</p>
@@ -305,16 +294,16 @@
                     </div>
 
                     <p class="deepdive-text">
-                        When candidate spectra are parameterized by power sum coordinates $(s_1, s_2, \dots, s_k)$, the set of realizable symmetric spectra forms a convex polyhedron called the <strong>SNIEP Trace Polytope</strong>.
+                        While the full moment image in power-sum coordinates $(s_1, s_2, \dots, s_k)$ is a curved semialgebraic region, fixing an eigenvector frame (such as a Soules basis or character-table Perron similarity) or slicing along normalized spectral families produces convex polyhedral cross-sections and semialgebraic trace projections.
                     </p>
 
                     <p class="deepdive-text">
-                        Because $\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n)$ for $n \ge 5$, the SNIEP trace polytope sits strictly inside the RNIEP trace polytope, giving researchers an interactive geometric window into the exact boundary where symmetry fails.
+                        Because $\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n)$ for $n \ge 5$, the realizable symmetric region sits strictly inside the RNIEP region, giving researchers an interactive geometric window into the exact boundary where symmetry fails.
                     </p>
 
                     <div class="deepdive-callout mt-base">
                         <div class="deepdive-callout-text">
-                            <h4>Interactive 3D Trace Polytope Gallery</h4>
+                            <h3>Interactive 3D Trace Polytope Gallery</h3>
                             <p>Explore interactive 3D WebGL projections comparing SNIEP vs. RNIEP trace polytopes for dimensions $n = 4, 5, 6$.</p>
                         </div>
                         <a href="trace-polytope.html" class="deep-dive-btn">
@@ -324,27 +313,36 @@
                     </div>
                 </section>
 
-                <!-- Section 6: See Also / Wiki Links -->
+                <!-- Section 6: Primary Literature -->
+                <section class="deepdive-section" id="literature">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Primary Literature &amp; Citations</h2>
+                        <span class="deepdive-section-desc">Foundational papers from the <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a></span>
+                    </div>
+                    <cite-grid keys="fiedler1974, loewy1978, soules1983, johnson1996, elsner1998, loewy2004, gershnik2026"></cite-grid>
+                </section>
+
+                <!-- Section 7: See Also / Wiki Links -->
                 <section class="deepdive-section">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">6. See Also &amp; Related Articles</h2>
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Articles</h2>
                     </div>
 
                                                             <div class="wiki-see-also-grid">
                         <a href="rniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
                             <p class="wiki-see-also-desc">Explore how relaxing symmetry unlocks non-orthogonal eigenvector frames that expand the realizable domain.</p>
                         </a>
                         <a href="suleimanova.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Suleimanova Spectra</h4>
+                            <h3 class="wiki-see-also-title">Suleimanova Spectra</h3>
                             <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and Fiedler's symmetric realization theorem.</p>
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <h3 class="wiki-see-also-title">Karpelevi&#x010D; Region</h3>
                             <p class="wiki-see-also-desc">Kolmogorov's problem, stochastic eigenvalue boundaries, Farey vertices, and algebraic arcs.</p>
                         </a>
                         <a href="problem-background.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">NIEP Overview</h4>
+                            <h3 class="wiki-see-also-title">NIEP Overview</h3>
                             <p class="wiki-see-also-desc">The master theoretical survey covering complex spectra, Perron-Frobenius theory, and semi-algebraic sets.</p>
                         </a>
                     </div>

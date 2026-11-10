@@ -13,7 +13,7 @@
     <meta property="og:title" content="Perron Similarities &amp; Ideal Spectracones | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical theory wiki article on Perron similarities, Johnson-Paparella theory, spectracones, spectratopes, and Gershnik-Lewis-Paparella&#x27;s theorem that character tables are ideal Perron similarities.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/perron-similarities.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,18 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -87,7 +76,7 @@
                 <aside class="wiki-infobox" aria-label="Quick Facts">
                     <div class="wiki-infobox-header">
                         <span class="wiki-infobox-badge">Transformation Theory</span>
-                        <h3 class="wiki-infobox-title">Perron Similarities</h3>
+                        <h2 class="wiki-infobox-title">Perron Similarities</h2>
                         <p class="wiki-infobox-subtitle">Spectracones &amp; Group Character Tables</p>
                     </div>
 
@@ -111,7 +100,7 @@
                             </tr>
                             <tr>
                                 <th>Ideal Similarity</th>
-                                <td>Perron similarity whose spectratope equals the conical hull of its rows</td>
+                                <td>Perron similarity whose spectracone equals the conical hull of its rows</td>
                             </tr>
                             <tr>
                                 <th>Landmark Theorem</th>
@@ -190,7 +179,7 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h4 class="feature-title">The Spectracone $\mathcal{C}(S)$</h4>
+                            <h3 class="feature-title">The Spectracone $\mathcal{C}(S)$</h3>
                             <p class="feature-desc">
                                 The set of all eigenvalue vectors $\lambda = (\lambda_1, \dots, \lambda_n)^T$ whose similarity reconstruction is entrywise nonnegative:
                                 $$\mathcal{C}(S) = \{\lambda \in \mathbb{C}^n : S \operatorname{diag}(\lambda) S^{-1} \ge 0\}$$
@@ -198,7 +187,7 @@
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">The Spectratope $\mathcal{T}(S)$</h4>
+                            <h3 class="feature-title">The Spectratope $\mathcal{T}(S)$</h3>
                             <p class="feature-desc">
                                 The compact, normalized slice of the spectracone with Perron root normalized to unity:
                                 $$\mathcal{T}(S) = \mathcal{C}(S) \cap \{\lambda \in \mathbb{C}^n : \lambda_1 = 1\}$$
@@ -258,7 +247,7 @@
                             <h3 class="math-callout-title">Definition: Ideal Perron Similarity</h3>
                         </div>
                         <p>
-                            A Perron similarity $S$ is called <strong>ideal</strong> if its spectratope $\mathcal{T}(S)$ coincides with the conical hull of its rows:
+                            A Perron similarity $S$ is called <strong>ideal</strong> if its spectracone $\mathcal{C}(S)$ coincides with the conical hull of its rows:
                         </p>
                         $$\mathcal{C}(S) = \operatorname{cone}(S)$$
                         <p>
@@ -299,14 +288,14 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h4 class="feature-title">Group-Theoretic Spectracones</h4>
+                            <h3 class="feature-title">Group-Theoretic Spectracones</h3>
                             <p class="feature-desc">
-                                The spectracone $\mathcal{C}(X)$ is cut out by a finite system of explicit group-theoretic inequalities governed by the character values $\chi_i(g)$ and class sizes $|C_j|$:
-                                $$\sum_{i=1}^k \chi_i(g) \lambda_i \ge 0 \quad \forall g \in G$$
+                                Because $X^{-1} = \frac{1}{|G|} D_c X^*$, the spectracone $\mathcal{C}(X)$ is cut out by $k$ explicit group-theoretic facet inequalities weighted by the conjugacy class sizes $|C_j|$:
+                                $$\sum_{j=1}^k |C_j|\,\chi_i(C_j)\,\lambda_j \ge 0 \quad (i = 1, \dots, k)$$
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Exact Polytope Volume Formula</h4>
+                            <h3 class="feature-title">Exact Polytope Volume Formula</h3>
                             <p class="feature-desc">
                                 For groups whose character table is real (such as the symmetric groups $S_n$), the projected Perron spectratope is a simplex whose normalized volume is given by an exact formula in terms of group order $|G|$ and conjugacy class centralizer orders:
                                 $$\operatorname{Vol}(\mathcal{T}(X)) = \frac{1}{(k-1)!} \frac{\prod_{j=1}^k |C_j|^{1/2}}{|G|^{(k-1)/2}}$$
@@ -322,7 +311,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Consider the symmetric group $S_3$ (order $|G| = 6$, with $k=3$ conjugacy classes: identity, transpositions, and 3-cycles). Its character table is:
+                        Consider the symmetric group $S_3$ (order $|G| = 6$, with $k=3$ conjugacy classes of sizes $|C_1| = 1$ for the identity, $|C_2| = 3$ for transpositions, and $|C_3| = 2$ for 3-cycles). Its character table is:
                     </p>
 
                     <div class="theory-formula">
@@ -330,14 +319,14 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Since $X$ is an ideal Perron similarity, its spectracone consists of all triples $(\lambda_1, \lambda_2, \lambda_3)$ satisfying:
+                        Since $X$ is an ideal Perron similarity, weighting the rows of $X$ by $(|C_1|, |C_2|, |C_3|) = (1, 3, 2)$ shows that its spectracone consists of all triples $(\lambda_1, \lambda_2, \lambda_3)$ satisfying:
                     </p>
 
                     <div class="theory-formula">
                         $$\begin{aligned}
-                        \lambda_1 + \lambda_2 + 2\lambda_3 &\ge 0 \quad \text{(identity element)} \\[4pt]
-                        \lambda_1 - \lambda_2 &\ge 0 \quad \text{(transpositions)} \\[4pt]
-                        \lambda_1 + \lambda_2 - \lambda_3 &\ge 0 \quad \text{(3-cycles)}
+                        \lambda_1 + 3\lambda_2 + 2\lambda_3 &\ge 0 \quad \text{(trivial character } \chi_1\text{)} \\[4pt]
+                        \lambda_1 - 3\lambda_2 + 2\lambda_3 &\ge 0 \quad \text{(sign character } \chi_2\text{)} \\[4pt]
+                        2\lambda_1 - 2\lambda_3 &\ge 0 \quad \text{(standard 2D character } \chi_3\text{)}
                         \end{aligned}$$
                     </div>
 
@@ -385,19 +374,19 @@
 
                     <div class="wiki-see-also-grid">
                         <a href="niep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">The Core NIEP</h4>
+                            <h3 class="wiki-see-also-title">The Core NIEP</h3>
                             <p class="wiki-see-also-desc">Dimensional solvability progress, trace moment obstructions, and semi-algebraic cones.</p>
                         </a>
                         <a href="rniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
                             <p class="wiki-see-also-desc">General real spectra, non-orthogonal eigenvector frames, and the symmetry divide.</p>
                         </a>
                         <a href="sniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h3>
                             <p class="wiki-see-also-desc">Orthogonal eigenspaces, Soules bases, Fiedler theorems, and trace polyhedra.</p>
                         </a>
                         <a href="boyle-handelman.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Boyle-Handelman Theorem</h4>
+                            <h3 class="wiki-see-also-title">Boyle-Handelman Theorem</h3>
                             <p class="wiki-see-also-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.</p>
                         </a>
                     </div>

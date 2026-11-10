@@ -13,7 +13,7 @@
     <meta property="og:title" content="Cyclic Polygons and the Whole Region · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="Karpelevich&#x27;s cyclic polygons describe the whole eigenvalue region: power orbits, convex closing relations, multiplication closure, and exact stochastic matrices, with two interactive explorers. Stop 8 of Inside Karpelevich&#x27;s Proof.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-cyclic.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-cyclic.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -144,7 +133,7 @@
                 </section>
 
                 <section class="essay-section" id="2-one-closing-relation-captures-an-infinite-orbit">
-                    <h2>One closing relation captures an infinite orbit</h2>
+                    <h2><span id="lem-8-1" class="lemma-label">Lemma 8.1</span>One closing relation captures an infinite orbit</h2>
                     <p>
                         Here is a finite certificate. Form
                     </p>
@@ -196,7 +185,7 @@
                 </section>
 
                 <section class="essay-section" id="3-why-every-point-in-a-cyclic-polygon-is-realizable">
-                    <h2>Why every point in a cyclic polygon is realizable</h2>
+                    <h2><span id="prop-8-2" class="lemma-label">Proposition 8.2</span>Why every point in a cyclic polygon is realizable</h2>
                     <p>
                         Products of orbit points are orbit points:
                     </p>
@@ -418,7 +407,7 @@
 </tbody></table></div>
 <p>In both rows $\ell,m$ are positive integers and $0&lt;|\lambda|&lt;1$. These are inputs from the preceding proofs, not consequences of the final boundary theorem.</p>
 <p>We need only these algebraic relations for the covering construction. The angular information was needed to obtain the correct return description; we do not need to assume that a polynomial root continues to a particular endpoint as $t$ varies.</p>
-<h3 id="phase-proof-2">Keep the phase: a Bézout lemma</h3>
+<h3 id="phase-proof-2"><span id="lem-8-3" class="lemma-label">Lemma 8.3</span>Keep the phase: a Bézout lemma</h3>
 <p>Suppose $\lambda,w\ne0$ and</p>
 <div class="theory-formula">$$\lambda^s=w^m,\qquad s\geq0,\quad m\geq1.$$</div>
 <p>Put</p>
@@ -575,7 +564,7 @@ L=\ell m'=n_*/\delta.}$$</div>
 <text x="296.000" y="553.000" font-size="16">0</text>
 </g></svg></figure>
 <p class="essay-caption"><em>Figure 4. Seven initial powers and their half-turns give fourteen generators. At $t=1/2$ and $\zeta=-1$, the identity $\mu^7=-\tfrac12\mu-\tfrac12$ closes both chains, while $\lambda=-\mu^2$ lies on the rotated chain. Numerical coordinates illustrate the exact algebraic certificate; they do not establish a boundary claim.</em></p>
-<h3 id="phase-proof-7">Finish the extremal covering</h3>
+<h3 id="phase-proof-7"><span id="thm-8-4" class="lemma-label">Theorem 8.4</span>Finish the extremal covering <span class="lemma-source">Karpelevich §5, Thm. X</span></h3>
 <p>For the conjugate orientation, conjugate the constructed polygon. Indeed, $\overline{C(\mu,h)}=C(\overline\mu,h)$, since conjugation permutes the $h$th roots of unity. The vertex count is unchanged.</p>
 <p>For a unit-circle stochastic eigenvalue, the root-of-unity order is at most the matrix order. Here is a short proof that also covers reducible matrices. If $Av=\lambda v$ and $|\lambda|=1$, choose $i$ with $|v_i|=\max_j|v_j|&gt;0$. Equality in</p>
 <div class="theory-formula">$$|\lambda v_i|=\left|\sum_j a_{ij}v_j\right|
@@ -606,7 +595,7 @@ L=\ell m'=n_*/\delta.}$$</div>
                     </details></div></section>
 
                 <section class="essay-section" id="6-fill-the-rays-to-obtain-the-whole-region">
-                    <h2>Fill the rays to obtain the whole region</h2>
+                    <h2><span id="thm-A" class="lemma-label">Theorem A</span>Fill the rays to obtain the whole region <span class="lemma-source">Karpelevich 1951, Thm. A</span></h2>
                     <p>
                         Take any nonzero $z\in\mathcal K_n$. Compactness gives a farthest realizable point $\lambda$ on its ray, so
                     </p>

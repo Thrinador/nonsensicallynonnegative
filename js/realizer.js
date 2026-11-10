@@ -1418,7 +1418,53 @@
 
             this.initDOM();
             this.initEvents();
-            this.loadPreset('suleimanova4');
+            if (!this.loadFromUrl()) {
+                this.loadPreset('suleimanova4');
+            }
+        }
+
+        loadFromUrl() {
+            if (typeof window === 'undefined' || !window.location || !window.location.search) return false;
+            const params = new URLSearchParams(window.location.search);
+            const preset = params.get('preset');
+            const spec = params.get('spec');
+            const cls = params.get('class');
+            const tol = params.get('tol');
+
+            if (tol && this.tolSelect) {
+                const validTol = Array.from(this.tolSelect.options).some(o => o.value === tol);
+                if (validTol) this.tolSelect.value = tol;
+            }
+            if (preset && PRESETS.some(x => x.id === preset) && !spec) {
+                if (this.presetSelect) this.presetSelect.value = preset;
+                this.loadPreset(preset);
+                return true;
+            }
+            if (spec && this.spectrumInput) {
+                this.spectrumInput.value = spec;
+                if (cls && ['nonnegative', 'stochastic', 'symmetric', 'stochastic-symmetric'].includes(cls)) {
+                    this.setSelectedClass(cls);
+                }
+                if (this.presetDesc) {
+                    this.presetDesc.textContent = 'Loaded custom spectrum from shared URL.';
+                }
+                this.runSolver();
+                return true;
+            }
+            return false;
+        }
+
+        syncUrlState() {
+            if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return;
+            const rawText = this.spectrumInput ? this.spectrumInput.value.trim() : '';
+            if (!rawText) return;
+            const params = new URLSearchParams();
+            params.set('class', this.getSelectedClass());
+            params.set('spec', rawText);
+            if (this.tolSelect && this.tolSelect.value !== '1e-4') {
+                params.set('tol', this.tolSelect.value);
+            }
+            window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
         }
 
         initDOM() {
@@ -1571,6 +1617,15 @@
             if (copyMatlab) copyMatlab.addEventListener('click', () => this.copyAs('matlab'));
             const copyJson = document.getElementById('copyJsonBtn');
             if (copyJson) copyJson.addEventListener('click', () => this.copyAs('json'));
+            const copyLink = document.getElementById('copyLinkBtn');
+            if (copyLink) copyLink.addEventListener('click', () => {
+                this.syncUrlState();
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    this.showToast('Copied shareable solver link!');
+                }).catch(() => {
+                    this.showToast('Failed to copy link.');
+                });
+            });
 
             // Canvas Zoom & Pan
             if (this.canvas) {
@@ -1783,6 +1838,7 @@
             }
 
             this.currentResult = result;
+            this.syncUrlState();
             this.renderResults(result, targetClass, tol, elapsedMs);
         }
 
@@ -1909,7 +1965,7 @@
                     const errClass = err < 1e-3 ? 'good' : (err < 0.1 ? 'warn' : 'bad');
                     html += `
                         <tr>
-                            <td><strong>λ_${i + 1}</strong></td>
+                            <td><strong>&lambda;<sub>${i + 1}</sub></strong></td>
                             <td>${Complex.format(p.target, 4)}</td>
                             <td>${Complex.format(p.candidate, 4)}</td>
                             <td class="${errClass}">${err.toExponential(3)}</td>
@@ -1949,7 +2005,7 @@
 
                 let html = `
                     <tr>
-                        <td><strong>Nonnegativity (min A_ij)</strong></td>
+                        <td><strong>Nonnegativity (min A<sub>ij</sub>)</strong></td>
                         <td>${minEntry.toFixed(6)}</td>
                         <td>${minEntryPass ? '<span class="tag-pass">PASS (A ≥ 0)</span>' : '<span class="tag-fail">VIOLATED</span>'}</td>
                     </tr>
@@ -1959,7 +2015,7 @@
                         <td>${rowSumPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-warn">NON-UNIT</span>'}</td>
                     </tr>
                     <tr>
-                        <td><strong>Symmetry Deviation ||A - Aᵀ||_max</strong></td>
+                        <td><strong>Symmetry Deviation ||A &minus; A<sup>T</sup>||<sub>max</sub></strong></td>
                         <td>${maxSymDiff.toExponential(3)}</td>
                         <td>${symPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-warn">NON-SYMMETRIC</span>'}</td>
                     </tr>
@@ -2175,6 +2231,12 @@
                 ctx.lineTo(toScreenX(kPts[2].x), toScreenY(kPts[2].y));
                 ctx.closePath();
                 ctx.fill();
+                ctx.stroke();
+
+                // Also draw the real [-1, -1/2] spike of K_3
+                ctx.beginPath();
+                ctx.moveTo(toScreenX(-0.5), toScreenY(0));
+                ctx.lineTo(toScreenX(-1.0), toScreenY(0));
                 ctx.stroke();
             }
 

@@ -13,7 +13,7 @@
     <meta property="og:title" content="Real NIEP (RNIEP) | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical wiki article on the Real Nonnegative Inverse Eigenvalue Problem (RNIEP), non-orthogonal eigenvector frames, symmetry gap, and semi-algebraic geometry.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/rniep.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,18 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -87,7 +76,7 @@
                 <aside class="wiki-infobox" aria-label="Quick Facts">
                 <div class="wiki-infobox-header">
                     <span class="wiki-infobox-badge">Subproblem</span>
-                    <h3 class="wiki-infobox-title">RNIEP</h3>
+                    <h2 class="wiki-infobox-title">RNIEP</h2>
                     <p class="wiki-infobox-subtitle">Real Nonnegative Inverse Eigenvalue Problem</p>
                 </div>
 
@@ -184,7 +173,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">1</span>
-                                <h4 class="condition-title">Real Spectrum</h4>
+                                <h3 class="condition-title">Real Spectrum</h3>
                             </div>
                             <div class="condition-formula">$$\sigma \subset \mathbb{R}$$</div>
                             <p class="condition-note">All candidate eigenvalues are required to be real.</p>
@@ -192,7 +181,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">2</span>
-                                <h4 class="condition-title">Perron Root</h4>
+                                <h3 class="condition-title">Perron Root</h3>
                             </div>
                             <div class="condition-formula">$$\lambda_1 = \max_{i} |\lambda_i| \in \sigma$$</div>
                             <p class="condition-note">Perron-Frobenius theorem guarantees the maximal root is positive.</p>
@@ -200,7 +189,7 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">3</span>
-                                <h4 class="condition-title">Power Sum Traces</h4>
+                                <h3 class="condition-title">Power Sum Traces</h3>
                             </div>
                             <div class="condition-formula">$$s_k = \sum_{i=1}^n \lambda_i^k \ge 0 \quad (\forall k \ge 1)$$</div>
                             <p class="condition-note">Because $A \ge 0$, all powers $A^k \ge 0$, so their traces must be nonnegative.</p>
@@ -208,19 +197,16 @@
                         <div class="condition-card">
                             <div class="condition-header">
                                 <span class="condition-num">4</span>
-                                <h4 class="condition-title">Newton's Inequalities</h4>
+                                <h3 class="condition-title">JLL Inequalities</h3>
                             </div>
-                            <div class="condition-formula">$$d_k^2 \ge d_{k-1} d_{k+1}$$</div>
-                            <p class="condition-note">Elementary symmetric polynomial averages $d_k = e_k / \binom{n}{k}$ are log-concave.</p>
+                            <div class="condition-formula">$$s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)$$</div>
+                            <p class="condition-note">Johnson&ndash;Loewy&ndash;London (1978/1979) H&ouml;lder trace bounds on diagonal moments.</p>
                         </div>
                     </div>
 
                     <p class="deepdive-text mt-lg">
-                        In addition to Newton's inequalities, any realizable spectrum must obey the <strong>Johnson-Loewy-London (JLL) inequalities</strong> (1996):
+                        For real spectra $\sigma \subset \mathbb{R}$, all even power sums $s_{2k} = \sum \lambda_i^{2k} \ge 0$ hold automatically, while odd trace bounds $s_{2k-1} \ge 0$ and the <strong>Johnson&ndash;Loewy&ndash;London (JLL) inequalities</strong> $s_k^m \le n^{m-1} s_{km}$ (such as $s_1^2 \le n s_2$ and $s_1^3 \le n^2 s_3$) impose nontrivial constraints on negative eigenvalues.
                     </p>
-                    <div class="theory-formula">
-                        $$n^{m-1} s_{km} \ge s_k^m + \frac{n^{m-1} - 1}{n - 1} (\rho^k - \lambda_j^k)^m \quad (\forall k, m \ge 1)$$
-                    </div>
                 </section>
 
                 <!-- Section 3: The Advantage of Non-Symmetry -->
@@ -285,9 +271,9 @@
                                 <span class="dim-number">n &le; 4</span>
                                 <span class="dim-status solved">Completely Solved</span>
                             </div>
-                            <h3 class="dim-title">Trace &amp; Coefficient Criteria</h3>
+                            <h3 class="dim-title">Trace &amp; Dominance Criteria</h3>
                             <p class="dim-desc">
-                                Solved by Loewy &amp; London ($n=3$) and Meehan ($n=4$). A real spectrum is realizable if and only if Perron dominance and power sum trace conditions hold.
+                                Solved for real spectra by Loewy &amp; London (1978): a real $n$-tuple ($n \le 4$) is realizable if and only if Perron dominance $\lambda_1 \ge |\lambda_i|$ and $s_1 = \sum \lambda_i \ge 0$ hold (general complex $n=4$ solved by Meehan 1998 and Torre-Mayo et al. 2007).
                             </p>
                         </div>
                         <div class="dim-card">
@@ -338,7 +324,7 @@
 
                     <div class="deepdive-callout mt-lg">
                         <div class="deepdive-callout-text">
-                            <h4>Interactive Trace Polytope Gallery</h4>
+                            <h3>Interactive Trace Polytope Gallery</h3>
                             <p>Compare RNIEP vs. SNIEP trace polytopes in real-time 3D WebGL. See how the RNIEP polytope expands beyond the symmetric boundary for dimensions $n = 4, 5, 6$.</p>
                         </div>
                         <a href="trace-polytope.html" class="deep-dive-btn">
@@ -348,27 +334,36 @@
                     </div>
                 </section>
 
-                <!-- Section 6: See Also / Wiki Links -->
+                <!-- Section 6: Primary Literature -->
+                <section class="deepdive-section" id="literature">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">6. Primary Literature &amp; Citations</h2>
+                        <span class="deepdive-section-desc">Foundational papers from the <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a></span>
+                    </div>
+                    <cite-grid keys="suleimanova1949, loewy1978, borobia1995, johnson1996, laffey1999, soto2003, clark2024"></cite-grid>
+                </section>
+
+                <!-- Section 7: See Also / Wiki Links -->
                 <section class="deepdive-section">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">6. See Also &amp; Related Articles</h2>
+                        <h2 class="deepdive-section-title">7. See Also &amp; Related Articles</h2>
                     </div>
 
                                                             <div class="wiki-see-also-grid">
                         <a href="sniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h3>
                             <p class="wiki-see-also-desc">Orthogonal eigenspaces, Fiedler theorems, Soules bases, and trace polytopes.</p>
                         </a>
                         <a href="suleimanova.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Suleimanova Spectra</h4>
+                            <h3 class="wiki-see-also-title">Suleimanova Spectra</h3>
                             <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and constructive companion/Fiedler realizations.</p>
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <h3 class="wiki-see-also-title">Karpelevi&#x010D; Region</h3>
                             <p class="wiki-see-also-desc">Kolmogorov's problem, stochastic eigenvalue boundaries, Farey vertices, and algebraic arcs.</p>
                         </a>
                         <a href="problem-background.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">NIEP Overview</h4>
+                            <h3 class="wiki-see-also-title">NIEP Overview</h3>
                             <p class="wiki-see-also-desc">The master theoretical survey covering complex spectra, Perron-Frobenius theory, and semi-algebraic sets.</p>
                         </a>
                     </div>

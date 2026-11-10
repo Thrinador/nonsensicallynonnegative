@@ -231,96 +231,160 @@ function getItoPolynomialCoeffs(q, s, k, alpha) {
 }
 
 /**
+ * Solve the exact polar boundary arc connecting consecutive upper-half-plane
+ * Farey fractions f1 < f2 in F_n (for n >= 4), based on the continuous polar
+ * parametrization of the reduced Ito equation (Kirkland–Laffey–Šmigoc, 2020).
+ */
+function solvePolarBoundaryArc(n, f1, f2, samplesPerArc) {
+    let p, q, r, s, reversed;
+    if (f1.q < f2.q) {
+        p = f1.p; q = f1.q; r = f2.p; s = f2.q; reversed = false;
+    } else {
+        p = f2.p; q = f2.q; r = f1.p; s = f1.q; reversed = true;
+    }
+
+    const thQ = (2 * Math.PI * p) / q;
+    const thS = (2 * Math.PI * r) / s;
+
+    // Type 0 (q = 1, s = n): straight line chord between 1 and e^{2*pi*i/n}
+    if (q === 1 && s === n) {
+        const zQ = { x: Math.cos(thQ), y: Math.sin(thQ) };
+        const zS = { x: Math.cos(thS), y: Math.sin(thS) };
+        const arc = [];
+        for (let step = 0; step <= samplesPerArc; step++) {
+            const alpha = step / samplesPerArc;
+            arc.push({
+                x: (1 - alpha) * zQ.x + alpha * zS.x,
+                y: (1 - alpha) * zQ.y + alpha * zS.y
+            });
+        }
+        if (reversed) arc.reverse();
+        return arc;
+    }
+
+    // Exact polar solver along theta in [min(thQ, thS), max(thQ, thS)]:
+    // Taking the continuous k-th root branch determined at alpha = 1 (z = e^{i*thS}):
+    //   z^q - 1 = alpha * (rho^{q - s/k} * e^{i*psi} - 1),
+    // where psi = (q - s/k)*theta + 2*pi*r/k and alpha in (0, 1) is real.
+    // Eliminating alpha yields the monotone scalar equation G(rho) = 0 on (0, 1].
+    const k = Math.floor(n / q);
+    const arc = [];
+
+    for (let step = 0; step <= samplesPerArc; step++) {
+        if (step === 0) {
+            arc.push({ x: Math.cos(thQ), y: Math.sin(thQ) });
+            continue;
+        }
+        if (step === samplesPerArc) {
+            arc.push({ x: Math.cos(thS), y: Math.sin(thS) });
+            continue;
+        }
+
+        const theta = thQ + (thS - thQ) * (step / samplesPerArc);
+        const psi = (q - s / k) * theta + (2 * Math.PI * r) / k;
+        const cA = Math.sin((s * theta - 2 * Math.PI * r) / k);
+        const cB = Math.sin(q * theta);
+        const cC = Math.sin(psi);
+
+        const G = (rho) => Math.pow(rho, q) * cA - Math.pow(rho, s / k) * cB + cC;
+
+        let lo = 0.0;
+        let hi = 1.0;
+        let gLo = G(lo);
+        for (let iter = 0; iter < 56; iter++) {
+            const mid = 0.5 * (lo + hi);
+            const gMid = G(mid);
+            if (gMid === 0) {
+                lo = hi = mid;
+                break;
+            }
+            if (gLo * gMid <= 0) {
+                hi = mid;
+            } else {
+                lo = mid;
+                gLo = gMid;
+            }
+        }
+
+        const rho = 0.5 * (lo + hi);
+        arc.push({
+            x: rho * Math.cos(theta),
+            y: rho * Math.sin(theta)
+        });
+    }
+
+    if (reversed) {
+        arc.reverse();
+    }
+    return arc;
+}
+
+/**
  * Compute the complete Karpelevič boundary for matrix size n
  */
-function computeKarpelevichBoundary(n, samplesPerArc = 36) {
+function computeKarpelevichBoundary(n, samplesPerArc = 40) {
     const fullFarey = getFareySequence(n);
-    const halfFarey = fullFarey.filter(f => f.p / f.q <= 0.5);
-
-    const upperPoints = [];
-    const fareyRoots = [];
-
-    // Store farey roots
-    for (const f of fullFarey) {
+    const fareyRoots = fullFarey.map(f => {
         const angle = (2 * Math.PI * f.p) / f.q;
-        fareyRoots.push({
+        return {
             p: f.p,
             q: f.q,
             x: Math.cos(angle),
             y: Math.sin(angle),
             angle: angle
-        });
+        };
+    });
+
+    // Special exact geometry for n = 2: real interval [-1, 1]
+    if (n === 2) {
+        const upperPoints = [];
+        for (let step = 0; step <= samplesPerArc; step++) {
+            const t = step / samplesPerArc;
+            upperPoints.push({ x: 1 - 2 * t, y: 0 });
+        }
+        const lowerPoints = [];
+        for (let i = upperPoints.length - 2; i >= 1; i--) {
+            lowerPoints.push({ x: upperPoints[i].x, y: 0 });
+        }
+        return {
+            boundary: [...upperPoints, ...lowerPoints],
+            fareyRoots: fareyRoots
+        };
     }
+
+    // Special exact geometry for n = 3: triangle conv(1, e^{2pi*i/3}, e^{-2pi*i/3}) union [-1, -1/2]
+    if (n === 3) {
+        const rt32 = Math.sqrt(3) / 2;
+        const upperPoints = [];
+        for (let step = 0; step <= samplesPerArc; step++) {
+            const t = step / samplesPerArc;
+            upperPoints.push({ x: 1 - 1.5 * t, y: rt32 * t });
+        }
+        for (let step = 1; step <= samplesPerArc; step++) {
+            const t = step / samplesPerArc;
+            upperPoints.push({ x: -0.5, y: rt32 * (1 - t) });
+        }
+        const spikeSteps = Math.max(8, Math.floor(samplesPerArc / 2));
+        for (let step = 1; step <= spikeSteps; step++) {
+            const t = step / spikeSteps;
+            upperPoints.push({ x: -0.5 - 0.5 * t, y: 0 });
+        }
+        const lowerPoints = [];
+        for (let i = upperPoints.length - 2; i >= 1; i--) {
+            lowerPoints.push({ x: upperPoints[i].x, y: -upperPoints[i].y });
+        }
+        return {
+            boundary: [...upperPoints, ...lowerPoints],
+            fareyRoots: fareyRoots
+        };
+    }
+
+    const halfFarey = fullFarey.filter(f => f.p / f.q <= 0.5);
+    const upperPoints = [];
 
     // Trace arcs in the upper half plane from 0/1 to 1/2
     for (let i = 0; i < halfFarey.length - 1; i++) {
-        const f1 = halfFarey[i];
-        const f2 = halfFarey[i + 1];
-
-        let q, s, p, r, reversed;
-        if (f1.q < f2.q) {
-            q = f1.q; s = f2.q; p = f1.p; r = f2.p;
-            reversed = false;
-        } else {
-            q = f2.q; s = f1.q; p = f2.p; r = f1.p;
-            reversed = true;
-        }
-
-        const zQ = {
-            re: Math.cos((2 * Math.PI * p) / q),
-            im: Math.sin((2 * Math.PI * p) / q)
-        };
-        const zS = {
-            re: Math.cos((2 * Math.PI * r) / s),
-            im: Math.sin((2 * Math.PI * r) / s)
-        };
-        const k = Math.floor(n / q);
-
-        let arc = [];
-
-        // Special case: Type 0 (q=1, s=n) => Straight line segment
-        if (q === 1 && s === n) {
-            for (let step = 0; step <= samplesPerArc; step++) {
-                const alpha = step / samplesPerArc;
-                arc.push({
-                    x: (1 - alpha) * zQ.re + alpha * zS.re,
-                    y: (1 - alpha) * zQ.im + alpha * zS.im
-                });
-            }
-        } else {
-            // General Ito polynomial arc
-            arc.push({ x: zQ.re, y: zQ.im });
-            let curr = { re: zQ.re, im: zQ.im };
-
-            for (let step = 1; step <= samplesPerArc; step++) {
-                const alpha = step / samplesPerArc;
-                if (alpha >= 1.0) {
-                    arc.push({ x: zS.re, y: zS.im });
-                    break;
-                }
-                const coeffs = getItoPolynomialCoeffs(q, s, k, alpha);
-                const roots = solvePolynomialAberth(coeffs);
-
-                // Pick root closest to previous
-                let bestRoot = roots[0];
-                let minDist = Infinity;
-                for (const rt of roots) {
-                    const d = Math.hypot(rt.re - curr.re, rt.im - curr.im);
-                    if (d < minDist) {
-                        minDist = d;
-                        bestRoot = rt;
-                    }
-                }
-                curr = bestRoot;
-                arc.push({ x: curr.re, y: curr.im });
-            }
-        }
-
-        if (reversed) {
-            arc.reverse();
-        }
-
-        // Append to upper boundary (avoiding duplicate start point)
+        const arc = solvePolarBoundaryArc(n, halfFarey[i], halfFarey[i + 1], samplesPerArc);
         if (upperPoints.length === 0) {
             upperPoints.push(...arc);
         } else {
@@ -329,8 +393,6 @@ function computeKarpelevichBoundary(n, samplesPerArc = 36) {
     }
 
     // Reflect upper boundary across the real axis to obtain full boundary
-    // Upper points go from x=1, y=0 to x=-1, y=0
-    // Lower points go from x=-1, y=0 to x=1, y=0
     const lowerPoints = [];
     for (let i = upperPoints.length - 2; i >= 1; i--) {
         lowerPoints.push({
@@ -419,13 +481,13 @@ function checkPointStatus(px, py, polygon) {
     }
     const dist = minDistanceToPolygon(px, py, polygon);
     if (dist < 0.012) {
-        return { status: 'boundary', text: 'On Boundary ∂K_n', dist };
+        return { status: 'boundary', text: 'On Boundary ∂𝒦ₙ', html: 'On Boundary &part;&#x1D4A6;<sub>n</sub>', dist };
     }
     const inside = isPointInPolygon(px, py, polygon);
     if (inside) {
-        return { status: 'inside', text: 'Inside K_n (Stochastic Spectrum)', dist };
+        return { status: 'inside', text: 'Inside 𝒦ₙ (Stochastic Spectrum)', html: 'Inside &#x1D4A6;<sub>n</sub> (Stochastic Spectrum)', dist };
     }
-    return { status: 'outside', text: 'Outside K_n (Infeasible for SIEP)', dist };
+    return { status: 'outside', text: 'Outside 𝒦ₙ (Infeasible for SIEP)', html: 'Outside &#x1D4A6;<sub>n</sub> (Infeasible for SIEP)', dist };
 }
 
 /**
@@ -879,7 +941,7 @@ class KarpelevichViewer {
             // Preview tooltip badge
             ctx.font = '600 10px Inter, sans-serif';
             ctx.fillStyle = '#f59e0b';
-            ctx.fillText('Snap to ∂K_n', snapScr.x + 12, snapScr.y - 4);
+            ctx.fillText('Snap to ∂𝒦ₙ', snapScr.x + 12, snapScr.y - 4);
         }
 
         // 3. Target crosshair for base point
@@ -1097,9 +1159,10 @@ class KarpelevichViewer {
                 state.isPanning = false;
                 state.stickToBoundary = false;
                 canvas.style.cursor = state.isPanningMode ? 'grab' : 'crosshair';
-                // Final sync of inputs and table
+                // Final sync of inputs, URL, and table
                 syncPointInputs(true);
                 renderPowersTable();
+                syncUrlState();
                 this.render();
             }
         };
@@ -1216,6 +1279,7 @@ function setPower(power) {
     document.getElementById('powerDisplay').textContent = power;
 
     highlightActivePowerRow();
+    if (!state.isPlaying) syncUrlState();
     if (viewer) viewer.render();
 }
 
@@ -1246,13 +1310,50 @@ function togglePlay() {
     }
 }
 
+function syncUrlState() {
+    if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return;
+    if (state.isDraggingPoint) return;
+    const params = new URLSearchParams();
+    params.set('n', String(state.n));
+    params.set('re', state.z.x.toFixed(4));
+    params.set('im', state.z.y.toFixed(4));
+    if (state.currentPower > 1) {
+        params.set('k', String(state.currentPower));
+    }
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, '', newUrl);
+}
+
+function loadUrlState() {
+    if (typeof window === 'undefined' || !window.location) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('n')) {
+        const parsedN = parseInt(params.get('n'), 10);
+        if (!isNaN(parsedN)) {
+            state.n = Math.max(2, Math.min(16, parsedN));
+        }
+    }
+    if (params.has('re') || params.has('im')) {
+        const parsedRe = parseFloat(params.get('re'));
+        const parsedIm = parseFloat(params.get('im'));
+        if (!isNaN(parsedRe)) state.z.x = parseFloat(parsedRe.toFixed(4));
+        if (!isNaN(parsedIm)) state.z.y = parseFloat(parsedIm.toFixed(4));
+    }
+    if (params.has('k')) {
+        const parsedK = parseInt(params.get('k'), 10);
+        if (!isNaN(parsedK)) {
+            state.currentPower = Math.max(1, Math.min(state.maxPower, parsedK));
+        }
+    }
+}
+
 function refreshStatusBox() {
     if (!state.cachedBoundary) return;
     const statusObj = checkPointStatus(state.z.x, state.z.y, state.cachedBoundary);
     const statusBox = document.getElementById('pointStatusBox');
     if (statusBox) {
         statusBox.className = `point-status status-${statusObj.status}`;
-        statusBox.innerHTML = `<span class="status-dot"></span><span>${statusObj.text}</span>` +
+        statusBox.innerHTML = `<span class="status-dot"></span><span>${statusObj.html || statusObj.text}</span>` +
             `<span>|z| = ${Math.hypot(state.z.x, state.z.y).toFixed(3)}</span>`;
     }
 }
@@ -1273,6 +1374,8 @@ function refreshAll() {
     if (viewer) {
         viewer.render();
     }
+
+    syncUrlState();
 }
 
 function renderPowersTable() {
@@ -1351,6 +1454,9 @@ function applyPresetPoint(type) {
 // --- Initialization ---
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Parse shareable URL parameters (?n=&re=&im=&k=) if present
+    loadUrlState();
+
     // 1. Calculate mathematical boundary first
     const initData = computeKarpelevichBoundary(state.n);
     state.cachedBoundary = initData.boundary;
@@ -1447,6 +1553,21 @@ document.addEventListener('DOMContentLoaded', () => {
         viewer.render();
     });
 
+    const shareBtn = document.getElementById('shareLinkBtn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            syncUrlState();
+            const url = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    const prev = shareBtn.innerHTML;
+                    shareBtn.innerHTML = '✓';
+                    setTimeout(() => { shareBtn.innerHTML = prev; }, 1600);
+                });
+            }
+        });
+    }
+
     // Theory toggle
     const theoryHeader = document.querySelector('.theory-header');
     const theoryContent = document.querySelector('.theory-content');
@@ -1460,7 +1581,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize display
     updateN(state.n);
-    syncPointInputs();
+    setPower(state.currentPower);
+    syncPointInputs(true);
 });
 
 

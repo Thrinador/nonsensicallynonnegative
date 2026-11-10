@@ -3040,7 +3040,8 @@
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
     max-width: 310px;
 }
@@ -3364,6 +3365,39 @@
 }
 
 /* --- Integrated Proof Additions (Stops 2, 5, 7, 8 & 9) --- */
+.lemma-label {
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--essay-teal, #168579);
+    background: var(--essay-teal-soft, rgba(22, 133, 121, 0.1));
+    border: 1px solid rgba(22, 133, 121, 0.28);
+    border-radius: 5px;
+    padding: 0.14rem 0.5rem;
+    margin-right: 0.45rem;
+    vertical-align: middle;
+    line-height: 1.35;
+    scroll-margin-top: 5.5rem;
+}
+
+.lemma-source {
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted, #607b7e);
+    background: rgba(96, 123, 126, 0.08);
+    border: 1px solid rgba(96, 123, 126, 0.22);
+    border-radius: 5px;
+    padding: 0.12rem 0.45rem;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    line-height: 1.35;
+}
+
 .proof-addition h3 {
     font-family: var(--essay-serif);
     font-size: 1.32rem;

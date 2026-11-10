@@ -14,6 +14,19 @@
 
             const filename = (typeof window !== 'undefined' && window.location.pathname.split('/').pop()) || 'index.html';
 
+            const karpelevichBlogPages = [
+                'karpelevich-proof-roadmap.html',
+                'karpelevich-polygons.html',
+                'karpelevich-contacts.html',
+                'karpelevich-game.html',
+                'karpelevich-returns.html',
+                'karpelevich-rigidity.html',
+                'karpelevich-boundary-equations.html',
+                'karpelevich-farey.html',
+                'karpelevich-cyclic.html',
+                'karpelevich-induction.html'
+            ];
+
             // Resolve Title and Subtitle
             let title = this.getAttribute('brand-title');
             let subtitle = this.getAttribute('brand-subtitle');
@@ -30,7 +43,7 @@
                 } else if (filename === 'trace-polytope.html') {
                     title = title || 'Trace Polytope Gallery';
                     subtitle = subtitle || 'Nonnegative Inverse Eigenvalue Problem';
-                } else if (filename === 'blog.html' || filename === 'character-cones.html') {
+                } else if (filename === 'blog.html' || filename === 'character-cones.html' || karpelevichBlogPages.includes(filename)) {
                     title = title || 'NIEP Research Blog';
                     subtitle = subtitle || 'Explorations in Spectral Nonnegativity';
                 } else {
@@ -49,10 +62,10 @@
                 } else if ([
                     'problem-background.html', 'niep.html', 'sniep.html', 'rniep.html',
                     'karpelevich-region.html', 'suleimanova.html', 'boyle-handelman.html',
-                    'perron-similarities.html'
+                    'perron-similarities.html', 'bibliography.html'
                 ].includes(filename)) {
                     active = 'theory';
-                } else if (filename === 'blog.html' || filename === 'character-cones.html') {
+                } else if (filename === 'blog.html' || filename === 'character-cones.html' || karpelevichBlogPages.includes(filename)) {
                     active = 'blog';
                 } else if (filename === 'karpelevich.html') {
                     active = 'karpelevich';
@@ -66,6 +79,7 @@
             }
 
             this.innerHTML = `
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="top-nav">
         <a href="${prefix}index.html" class="nav-brand">
             <span class="nav-logo-badge">NIEP</span>
@@ -119,6 +133,20 @@
             } else {
                 if (darkBtn) darkBtn.classList.add('active');
                 if (lightBtn) lightBtn.classList.remove('active');
+            }
+
+            // Ensure main landmark has id="main-content" for skip-link navigation
+            var assignMainId = function() {
+                if (document.getElementById('main-content')) return;
+                var mainEl = document.querySelector('main') || document.querySelector('.karpelevich-container') || document.querySelector('.workspace');
+                if (mainEl && !mainEl.id) {
+                    mainEl.id = 'main-content';
+                }
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', assignMainId);
+            } else {
+                assignMainId();
             }
 
             // Bind click listeners for instant theme switching

@@ -13,7 +13,7 @@
     <meta property="og:title" content="The Nonnegative Inverse Eigenvalue Problem (NIEP) | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical theory wiki article on the Nonnegative Inverse Eigenvalue Problem (NIEP): problem formulation, dimensional solvability progress, trace inequalities, and semi-algebraic geometry.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/niep.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,18 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -87,7 +76,7 @@
                 <aside class="wiki-infobox" aria-label="Quick Facts">
                     <div class="wiki-infobox-header">
                         <span class="wiki-infobox-badge">Open Problem</span>
-                        <h3 class="wiki-infobox-title">NIEP</h3>
+                        <h2 class="wiki-infobox-title">NIEP</h2>
                         <p class="wiki-infobox-subtitle">Nonnegative Inverse Eigenvalue Problem</p>
                     </div>
 
@@ -254,24 +243,24 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h4 class="feature-title">Perron-Frobenius Dominance</h4>
+                            <h3 class="feature-title">Perron-Frobenius Dominance</h3>
                             <p class="feature-desc">The spectral radius $\rho = \max_{1 \le i \le n} |\lambda_i|$ must itself belong to the spectrum $\sigma$. Furthermore, the multiplicity of any peripheral eigenvalue $\lambda$ with $|\lambda| = \rho$ cannot exceed the multiplicity of $\rho$.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Power Trace Nonnegativity</h4>
+                            <h3 class="feature-title">Power Trace Nonnegativity</h3>
                             <p class="feature-desc">Since $A \ge 0$, every matrix power $A^k \ge 0$ for all integers $k \ge 1$. Consequently, the spectral moments (power sums) must all be nonnegative:
                             $$s_k = \operatorname{Tr}(A^k) = \sum_{i=1}^n \lambda_i^k \ge 0 \quad \forall k \ge 1$$</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Loewy-London Inequalities (1978)</h4>
-                            <p class="feature-desc">Raphael Loewy and David London proved that for all integers $k, m \ge 1$:
+                            <h3 class="feature-title">JLL Inequalities (1978 / 1979)</h3>
+                            <p class="feature-desc">Raphael Loewy &amp; David London (1978) and Charles R. Johnson (1979/1981) proved that for all integers $k, m \ge 1$:
                             $$n^{m-1} s_{km} \ge s_k^m$$
                             In particular, for $k=1, m=2$: $s_1^2 \le n s_2$.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Johnson-Loewy-London (JLL) Inequalities</h4>
-                            <p class="feature-desc">In 1996, Johnson, Laffey, and Loewy established the strengthened bound:
-                            $$n^{m-1} s_{km} \ge s_k^m + \frac{n^{m-1} - 1}{n - 1} (\rho^k - \lambda_j^k)^m$$</p>
+                            <h3 class="feature-title">Holtz's $M$-Matrix Newton Inequalities (2005)</h3>
+                            <p class="feature-desc">Olga Holtz proved that the shifted $M$-matrix $\rho I - A$ satisfies Newton's log-concavity inequalities on $c_k = \binom{n}{k}^{-1} e_k(\rho - \lambda_1, \dots, \rho - \lambda_n)$:
+                            $$c_k^2 \ge c_{k-1} c_{k+1} \ge 0 \quad (1 \le k \le n - 1)$$</p>
                         </div>
                     </div>
                 </section>
@@ -314,19 +303,19 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h4 class="feature-title">Symmetric NIEP (SNIEP)</h4>
+                            <h3 class="feature-title">Symmetric NIEP (SNIEP)</h3>
                             <p class="feature-desc">Restricts $A = A^T \ge 0$. Requires orthogonal eigenspaces and leads to convex trace polyhedra and Soules bases.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Real NIEP (RNIEP)</h4>
+                            <h3 class="feature-title">Real NIEP (RNIEP)</h3>
                             <p class="feature-desc">Considers real spectra $\sigma \subset \mathbb{R}$ realized by general nonnegative matrices. Unlocks non-orthogonal frames that strictly enlarge the realizable set beyond SNIEP for $n \ge 5$.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Karpelevi&#x010D; Region $\mathcal{K}_n$</h4>
+                            <h3 class="feature-title">Karpelevi&#x010D; Region $\mathcal{K}_n$</h3>
                             <p class="feature-desc">Determines all individual complex eigenvalues of stochastic matrices with $\rho(A) = 1$, solved completely by Karpelevi&#x010D; (1951) via Farey boundary arcs.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Sule&#x012d;manova Spectra</h4>
+                            <h3 class="feature-title">Sule&#x012d;manova Spectra</h3>
                             <p class="feature-desc">The celebrated class with a single positive eigenvalue $\lambda_0 > 0 \ge \lambda_1 \ge \dots \ge \lambda_{n-1}$, where trace nonnegativity is completely sufficient for both general and symmetric realizations.</p>
                         </div>
                     </div>
@@ -344,13 +333,13 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h4 class="feature-title">The Boyle-Handelman Theorem (1991)</h4>
+                            <h3 class="feature-title">The Boyle-Handelman Theorem (1991)</h3>
                             <p class="feature-desc">
                                 In symbolic dynamics, Boyle and Handelman proved that if one allows the matrix dimension $N \ge n$ to increase by adjoining auxiliary zero eigenvalues, the NIEP becomes <strong>completely solvable</strong> under strict Perron dominance and positive power traces!
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h4 class="feature-title">Perron Similarities</h4>
+                            <h3 class="feature-title">Perron Similarities</h3>
                             <p class="feature-desc">
                                 Invertible similarity matrices $S$ whose first column forms a positive Perron eigenvector. Perron similarities generalize orthogonal Soules bases and provide the explicit non-orthogonal coordinate frames that realize spectra across RNIEP and NIEP.
                             </p>
@@ -358,39 +347,48 @@
                     </div>
                 </section>
 
-                <!-- Section 7: See Also -->
+                <!-- Section 7: Primary Literature -->
+                <section class="deepdive-section" id="literature">
+                    <div class="deepdive-section-header">
+                        <h2 class="deepdive-section-title">7. Primary Literature &amp; Citations</h2>
+                        <span class="deepdive-section-desc">Foundational papers from the <a class="text-link" href="bibliography.html">NIEP Comprehensive Bibliography</a></span>
+                    </div>
+                    <cite-grid keys="perron1907, frobenius1912, loewy1978, johnson1981, laffey1999, holtz2005, torre2007, clark2024"></cite-grid>
+                </section>
+
+                <!-- Section 8: See Also -->
                 <section class="deepdive-section">
                     <div class="deepdive-section-header">
-                        <h2 class="deepdive-section-title">7. See Also &amp; Related Theory Pages</h2>
+                        <h2 class="deepdive-section-title">8. See Also &amp; Related Theory Pages</h2>
                     </div>
 
                     <div class="wiki-see-also-grid">
                         <a href="problem-background.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Theoretical Overview</h4>
+                            <h3 class="wiki-see-also-title">Theoretical Overview</h3>
                             <p class="wiki-see-also-desc">High-level foundational survey covering Perron-Frobenius theory, historical milestones, and semi-algebraic cones.</p>
                         </a>
                         <a href="sniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h3>
                             <p class="wiki-see-also-desc">Orthogonal eigenspaces, Fiedler matrices, Soules bases, and trace polytope geometry.</p>
                         </a>
                         <a href="rniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
                             <p class="wiki-see-also-desc">The study of real spectra, non-orthogonal frames, and the Laffey-Loewy separation $\{4, 2, 2, -4, -4\}$.</p>
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Karpelevi&#x010D; Region</h4>
+                            <h3 class="wiki-see-also-title">Karpelevi&#x010D; Region</h3>
                             <p class="wiki-see-also-desc">Kolmogorov's problem, stochastic eigenvalue boundaries, Farey vertices, and Ito's algebraic polynomials.</p>
                         </a>
                         <a href="suleimanova.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Sule&#x012d;manova Spectra</h4>
+                            <h3 class="wiki-see-also-title">Sule&#x012d;manova Spectra</h3>
                             <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and Fiedler's symmetric realization theorem.</p>
                         </a>
                         <a href="boyle-handelman.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Boyle-Handelman Theorem</h4>
+                            <h3 class="wiki-see-also-title">Boyle-Handelman Theorem</h3>
                             <p class="wiki-see-also-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization with auxiliary zero eigenvalues.</p>
                         </a>
                         <a href="perron-similarities.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Perron Similarities</h4>
+                            <h3 class="wiki-see-also-title">Perron Similarities</h3>
                             <p class="wiki-see-also-desc">Non-orthogonal similarity transformations preserving nonnegative matrix cones and Perron eigenvectors.</p>
                         </a>
                     </div>

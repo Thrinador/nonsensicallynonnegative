@@ -13,7 +13,7 @@
     <meta property="og:title" content="Karpelevič Region &amp; Theorem | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Academic theory wiki article on Karpelevič&#x27;s Theorem and the stochastic eigenvalue region K_n: Kolmogorov&#x27;s 1938 problem, Dmitriev-Dynkin invariant polygons, Swift&#x27;s 1972 thesis, Karpelevič&#x27;s contact game, Ito polynomials, polar parametrization by Kirkland-Laffey-Šmigoc (2020), Munger-Nickerson-Paparella (2023), and the structural proof &amp; uniform deficit asymptotics by Verbeken-Ginis (2026).">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-region.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,116 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        function showLatexToast(msg) {
-            let toast = document.querySelector('.latex-toast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.className = 'latex-toast';
-                document.body.appendChild(toast);
-            }
-            toast.textContent = msg;
-            toast.classList.add('show');
-            clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => toast.classList.remove('show'), 1600);
-        }
-
-        function copyLatexSource(tex, sourceElem) {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(tex).then(() => {
-                    if (sourceElem && sourceElem.classList.contains('copy-latex-btn')) {
-                        const originalHTML = sourceElem.innerHTML;
-                        sourceElem.classList.add('copied');
-                        sourceElem.innerHTML = '<span>Copied!</span>';
-                        setTimeout(() => {
-                            sourceElem.classList.remove('copied');
-                            sourceElem.innerHTML = originalHTML;
-                        }, 1500);
-                    } else {
-                        showLatexToast('LaTeX copied to clipboard');
-                    }
-                }).catch(() => {
-                    fallbackCopy(tex);
-                });
-            } else {
-                fallbackCopy(tex);
-            }
-        }
-
-        function fallbackCopy(text) {
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-            showLatexToast('LaTeX copied to clipboard');
-        }
-
-        function attachLatexTools() {
-            if (!window.MathJax || !MathJax.startup || !MathJax.startup.document) return;
-            const doc = MathJax.startup.document;
-            if (!doc.math) return;
-
-            doc.math.forEach(item => {
-                const root = item.typesetRoot;
-                if (!root) return;
-                const tex = item.math;
-
-                root.setAttribute('data-tex', tex);
-                root.setAttribute('title', 'Double-click to copy LaTeX formula');
-
-                root.addEventListener('copy', (e) => {
-                    e.clipboardData.setData('text/plain', tex);
-                    e.preventDefault();
-                });
-
-                root.addEventListener('dblclick', (e) => {
-                    e.stopPropagation();
-                    copyLatexSource(tex, root);
-                });
-
-                if (item.display && !root.parentElement.classList.contains('display-math-container')) {
-                    const container = document.createElement('div');
-                    container.className = 'display-math-container';
-                    root.parentNode.insertBefore(container, root);
-                    container.appendChild(root);
-
-                    const btn = document.createElement('button');
-                    btn.className = 'copy-latex-btn';
-                    btn.type = 'button';
-                    btn.setAttribute('aria-label', 'Copy LaTeX formula');
-                    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy TeX</span>';
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        copyLatexSource(tex, btn);
-                    });
-                    container.appendChild(btn);
-                }
-            });
-        }
-
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            },
-            startup: {
-                ready: () => {
-                    MathJax.startup.defaultReady();
-                    MathJax.startup.promise.then(() => {
-                        attachLatexTools();
-                    });
-                }
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -185,7 +76,7 @@
                 <aside class="wiki-infobox" aria-label="Quick Facts">
                     <div class="wiki-infobox-header">
                         <span class="wiki-infobox-badge">Geometric Theorem</span>
-                        <h3 class="wiki-infobox-title">Karpelevi&#x010D; Region</h3>
+                        <h2 class="wiki-infobox-title">Karpelevi&#x010D; Region</h2>
                         <p class="wiki-infobox-subtitle">$\mathcal{K}_n \subset \mathbb{C}$ (Stochastic Eigenvalues)</p>
                     </div>
 
@@ -201,7 +92,7 @@
                             </tr>
                             <tr>
                                 <th>Invariant Polygons</th>
-                                <td>N. Dmitriev &amp; E. Dynkin (1946, $n \le 4$)</td>
+                                <td>N. Dmitriev &amp; E. Dynkin (1945/1946, $n \le 5$)</td>
                             </tr>
                             <tr>
                                 <th>Translations &amp; Exegesis</th>
@@ -221,7 +112,7 @@
                             </tr>
                             <tr>
                                 <th>Arc Simpleness</th>
-                                <td>Munger, Nickerson &amp; Paparella (2023)</td>
+                                <td>Munger, Nickerson &amp; Paparella (2024)</td>
                             </tr>
                             <tr>
                                 <th>Structural Proof</th>
@@ -302,12 +193,13 @@
                     </div>
 
                     <p class="deepdive-text">
-                        Dmitriev and Dynkin completely determined $\mathcal{K}_n$ for $n \le 4$:
+                        Dmitriev and Dynkin (1945, 1946) determined $\mathcal{K}_n$ explicitly for $n \le 5$; the first three nontrivial orders already exhibit the progression from polygons to algebraic curves:
                     </p>
                     <ul class="deepdive-list">
                         <li><strong>$n = 2$:</strong> The real segment $[-1, 1]$.</li>
                         <li><strong>$n = 3$:</strong> The union of the equilateral triangle $\operatorname{conv}\{1, e^{i 2\pi/3}, e^{i 4\pi/3}\}$ (whose vertical edge $\operatorname{Re}(z) = -1/2$ meets the real axis at $-1/2$) and the negative real spike $[-1, -1/2]$.</li>
-                        <li><strong>$n = 4$:</strong> The region bounded by straight chords from $1$ to $\pm i$ and from $\pm i$ to $e^{\pm i 2\pi/3}$, together with the first genuinely curvilinear arcs connecting $e^{\pm i 2\pi/3}$ to $-1$.</li>
+                        <li><strong>$n = 4$:</strong> Straight chords connect $1$ to $\pm i$, while genuinely curvilinear Ito arcs connect $\pm i$ to $e^{\pm i 2\pi/3}$ (Type I, $t^4 - (1-\alpha)t - \alpha = 0$) and $e^{\pm i 2\pi/3}$ to $-1$ (Type II, $(t^2 - (1-\alpha))^2 = \alpha^2 t$).</li>
+                        <li><strong>$n = 5$:</strong> Straight chords connect $1$ to $e^{\pm i 2\pi/5}$, followed by curvilinear boundary arcs across $(1/5, 1/4)$, $(1/4, 1/3)$, $(1/3, 2/5)$, and $(2/5, 1/2)$ (where cyclic single-orbit realizations still suffice).</li>
                     </ul>
 
                     <h3 class="subsection-title">1.3 Joanne Swift's Thesis &amp; Western Dissemination (1972)</h3>
@@ -349,7 +241,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        <strong>Methodological Evolution:</strong> In Karpelevič's original 1951 deduction, analyzing all admissible sequences of branching contacts, tower heights, and transition weights required 70 pages of case-by-case calculations. While foundational, this game-theoretic combinatorial machinery has been largely superseded by modern algebraic and structural approaches:
+                        <strong>Methodological Evolution:</strong> In Karpelevič's original 23-page 1951 paper (22 pages in the 1988 AMS translation), analyzing all admissible sequences of branching contacts, return chains, and Euclidean remainder reductions required dense combinatorial and geometric casework. Subsequent work has clarified, simplified, and extended both the statement and proof:
                     </p>
                     <ul class="deepdive-list">
                         <li><strong>Đoković (1990):</strong> Studied single-orbit cyclic polygons, disproved the Dmitriev–Dynkin conjecture at order six, and simplified the theorem’s statement.</li>
@@ -520,11 +412,11 @@
                         <p>
                             where $\hat{\rho} \in (0, 1]$ is the unique positive root of the trigonometric polynomial:
                         </p>
-                        $$F_{\hat{\theta}, j_0}(\hat{\rho}) \equiv \hat{\rho}^{qd_1} \sin(qd_1 \hat{\theta}) - \hat{\rho}^{s_1} \sin\left(s_1 \hat{\theta} - \frac{2\pi j_0}{\delta d_1}\right) + \sin\left((qd_1 - s_1)\hat{\theta} + \frac{2\pi j_0}{\delta d_1}\right) = 0$$
+                        $$F_{\hat{\theta}, j_0}(\hat{\rho}) \equiv \hat{\rho}^{qd_1} \sin\left(s_1 \hat{\theta} - \frac{2\pi j_0}{\delta d_1}\right) - \hat{\rho}^{s_1} \sin(qd_1 \hat{\theta}) + \sin\left((qd_1 - s_1)\hat{\theta} + \frac{2\pi j_0}{\delta d_1}\right) = 0$$
                         <p>
                             evaluated at $\hat{\theta} = \frac{1}{d_1}(\theta + 2\pi l_0)$. The parameter $\alpha(\theta)$ is uniquely given by:
                         </p>
-                        $$\alpha(\theta) = \frac{\hat{\rho}^{qd_1} \sin(qd_1 \hat{\theta}) - \sin\left(s_1 \hat{\theta} - \frac{2\pi j_0}{\delta d_1}\right)}{\hat{\rho}^{qd_1 - s_1} \sin\left((qd_1 - s_1)\hat{\theta} + \frac{2\pi j_0}{\delta d_1}\right)}$$
+                        $$\alpha(\theta) = \frac{\hat{\rho}^{s_1} \sin(qd_1 \hat{\theta})}{\sin\left((qd_1 - s_1)\hat{\theta} + \frac{2\pi j_0}{\delta d_1}\right)}$$
                     </div>
 
                     <div class="math-callout lemma">
@@ -557,25 +449,25 @@
                     </div>
                 </section>
 
-                <!-- Section 5: Demystifying the Theorem: Arc Simpleness (Munger, Nickerson, Paparella 2023) -->
+                <!-- Section 5: Demystifying the Theorem: Arc Simpleness (Munger, Nickerson, Paparella 2024) -->
                 <section class="deepdive-section" id="paparella-programme">
                     <div class="deepdive-section-header">
                         <h2 class="deepdive-section-title">5. Elementary Foundations and Arc Simpleness</h2>
-                        <span class="deepdive-section-desc">Results from Devon N. Munger, Andrew L. Nickerson, and Pietro Paparella (2023)</span>
+                        <span class="deepdive-section-desc">Results from Devon N. Munger, Andrew L. Nickerson, and Pietro Paparella (2024)</span>
                     </div>
 
                     <p class="deepdive-text">
-                        In <em>"Demystifying the Karpelevi&#x010D; Theorem"</em> (arXiv:2309.03849v5, 2023), Munger, Nickerson, and Paparella developed an elementary programme to establish Karpelevi&#x010D;'s theorem without invoking Karpelevi&#x010D;'s 1951 paper. The programme organizes around three assertions:
+                        In <em>"Demystifying the Karpelevi&#x010D; Theorem"</em> (<em>Linear Algebra and its Applications</em>, 702: 46&ndash;62, 2024), Munger, Nickerson, and Paparella developed an elementary programme toward Karpelevi&#x010D;'s theorem without invoking Karpelevi&#x010D;'s 1951 paper. The programme organizes around three assertions:
                     </p>
                     <ol class="deepdive-list">
                         <li><strong>Realizability:</strong> Every root of an Ito polynomial belongs to $\mathcal{K}_n$ (proven by Johnson &amp; Paparella 2017).</li>
-                        <li><strong>Continuous Path Existence &amp; Simpleness:</strong> A continuous curve of roots connects the Farey endpoints $\omega_q^p$ and $\omega_s^r$ with strictly monotonic argument.</li>
-                        <li><strong>Radial Extremality:</strong> The curve of roots lies on the boundary $\partial\mathcal{K}_n$ (proven for $n > 3$).</li>
+                        <li><strong>Continuous Path Existence &amp; Simpleness:</strong> A continuous simple curve of roots connects the Farey endpoints $\omega_q^p$ and $\omega_s^r$ with strictly monotonic argument (proven for Type I arcs).</li>
+                        <li><strong>Radial Extremality:</strong> Boundary extremality holds for $n > 3$.</li>
                     </ol>
 
                     <div class="math-callout theorem">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Theorem 5.1 (Arc Simpleness and Monotonic Argument; Munger et al. 2023)</h3>
+                            <h3 class="math-callout-title">Theorem 5.1 (Arc Simpleness and Monotonic Argument; Munger et al. 2024)</h3>
                             <span class="math-callout-tag">Theorem</span>
                         </div>
                         <p>
@@ -683,7 +575,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        The research hub provides an interactive visualization engine that computes the exact Karpelevi&#x010D; boundary $\partial\mathcal{K}_n$ for dimensions $n = 2$ through $n = 8$, displaying Farey vertices, curvilinear arcs, and testing candidate eigenvalues $(\operatorname{Re}(\lambda), \operatorname{Im}(\lambda))$:
+                        The research hub provides an interactive visualization engine that computes the exact Karpelevi&#x010D; boundary $\partial\mathcal{K}_n$ for dimensions $n = 2$ through $n = 16$, displaying Farey vertices, curvilinear arcs, and testing candidate eigenvalues $(\operatorname{Re}(\lambda), \operatorname{Im}(\lambda))$:
                     </p>
 
                     <div class="tool-cta-card">
@@ -720,23 +612,23 @@
 
                     <div class="wiki-see-also-grid">
                         <a href="karpelevich-proof-roadmap.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Inside Karpelevič’s Proof (Blog Series)</h4>
+                            <h3 class="wiki-see-also-title">Inside Karpelevič’s Proof (Blog Series)</h3>
                             <p class="wiki-see-also-desc">A nine-stop visual roadmap of the 1951 proof, starting with the chip game that concentrates edge contacts.</p>
                         </a>
                         <a href="problem-background.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">NIEP Theoretical Survey</h4>
+                            <h3 class="wiki-see-also-title">NIEP Theoretical Survey</h3>
                             <p class="wiki-see-also-desc">Master background covering Perron-Frobenius foundations, trace inequalities, and semi-algebraic geometry.</p>
                         </a>
                         <a href="sniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Symmetric NIEP (SNIEP)</h3>
                             <p class="wiki-see-also-desc">Orthogonal eigenspaces, Soules bases, Fiedler matrices, and polyhedral spectra geometry.</p>
                         </a>
                         <a href="rniep.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Real NIEP (RNIEP)</h4>
+                            <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
                             <p class="wiki-see-also-desc">Real spectra realized by non-symmetric nonnegative matrices and the Laffey-Loewy separation spectrum.</p>
                         </a>
                         <a href="suleimanova.html" class="wiki-see-also-card">
-                            <h4 class="wiki-see-also-title">Suleimanova Spectra</h4>
+                            <h3 class="wiki-see-also-title">Suleimanova Spectra</h3>
                             <p class="wiki-see-also-desc">Spectra with a single positive eigenvalue, trace sufficiency, and constructive companion/Fiedler realizations.</p>
                         </a>
                     </div>

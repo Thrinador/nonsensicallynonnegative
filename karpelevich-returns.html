@@ -13,7 +13,7 @@
     <meta property="og:title" content="Why the Euclidean Algorithm Appears in an Eigenvalue Problem · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="Why Euclidean remainders and modular records determine the vertex-chain lengths in Karpelevich&#x27;s proof, with exact first-return formulas and interactive integer explorers. Stop 4 of Inside Karpelevich&#x27;s Proof.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-returns.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-returns.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -209,7 +198,7 @@
                 </section>
 
                 <section class="essay-section" id="euclid-finds-the-records-and-their-times">
-                    <h2>Euclid finds the records and their times</h2>
+                    <h2><span id="lem-4-1" class="lemma-label">Lemma 4.1</span>Euclid finds the records and their times <span class="lemma-source">Karpelevich §3, Lemma 2</span></h2>
                     <p>
                         There is a useful way to find both kinds of records together. Keep four positive integers:
                     </p>
@@ -400,7 +389,7 @@
                 </section>
 
                 <section class="essay-section" id="the-first-return-rule">
-                    <h2>The first-return rule</h2>
+                    <h2><span id="thm-4-2" class="lemma-label">Theorem 4.2</span>The first-return rule <span class="lemma-source">Karpelevich §3, Thm. III</span></h2>
                     <p>
                         Now choose a proper candidate block with $g&lt;\varphi&lt;n$. In the record algorithm, find the stage with
                     </p>
@@ -542,7 +531,7 @@
                 </section>
 
                 <section class="essay-section" id="the-chain-lengths-account-for-every-vertex">
-                    <h2>The chain lengths account for every vertex</h2>
+                    <h2><span id="prop-4-3" class="lemma-label">Proposition 4.3</span>The chain lengths account for every vertex</h2>
                     <p>
                         The index permutation has $g$ cycles. Since $\varphi\geq g$, the consecutive target block meets every residue class modulo $g$. Cutting the weighted steps therefore breaks all cycles into paths, one starting at each of $1,\ldots,\varphi$.
                     </p>
@@ -569,7 +558,7 @@
                 </section>
 
                 <section class="essay-section" id="the-gcd-case-has-equal-length-chains">
-                    <h2>The gcd case has equal-length chains</h2>
+                    <h2><span id="thm-4-4" class="lemma-label">Theorem 4.4</span>The gcd case has equal-length chains <span class="lemma-source">Karpelevich §3, Thm. IV</span></h2>
                     <p>
                         If $\varphi=g$, each residue class modulo $g$ has exactly one target label. The index orbit can return to the target block only by returning to that same label, after $n/g$ steps. Thus
                     </p>

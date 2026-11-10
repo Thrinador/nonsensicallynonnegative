@@ -13,7 +13,7 @@
     <meta property="og:title" content="Core Formulation &amp; Mathematical Background | NIEP Research Hub">
     <meta property="og:description" content="A comprehensive mathematical survey of the Nonnegative Inverse Eigenvalue Problem (NIEP), spectral invariants, Loewy-London conditions, dimension solvability, and real algebraic geometry.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/problem-background.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -22,18 +22,7 @@
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
     <script src="js/citations.js" defer></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -194,7 +183,7 @@
                     <div class="condition-card">
                         <div class="condition-header">
                             <span class="condition-num">1</span>
-                            <h4 class="condition-title">Reality Symmetry</h4>
+                            <h3 class="condition-title">Reality Symmetry</h3>
                         </div>
                         <div class="condition-formula">$$\sigma = \bar{\sigma}$$</div>
                         <p class="condition-note">Non-real eigenvalues must occur in conjugate pairs with equal multiplicities.</p>
@@ -202,7 +191,7 @@
                     <div class="condition-card">
                         <div class="condition-header">
                             <span class="condition-num">2</span>
-                            <h4 class="condition-title">Perron Dominance</h4>
+                            <h3 class="condition-title">Perron Dominance</h3>
                         </div>
                         <div class="condition-formula">$$\rho = \max_{i} |\lambda_i| \in \sigma$$</div>
                         <p class="condition-note">The maximum absolute value in $\sigma$ must be a member of $\sigma$.</p>
@@ -210,7 +199,7 @@
                     <div class="condition-card">
                         <div class="condition-header">
                             <span class="condition-num">3</span>
-                            <h4 class="condition-title">Trace Nonnegativity</h4>
+                            <h3 class="condition-title">Trace Nonnegativity</h3>
                         </div>
                         <div class="condition-formula">$$s_k = \sum_{i=1}^n \lambda_i^k \ge 0 \quad (\forall k \ge 1)$$</div>
                         <p class="condition-note">All power sum traces $s_k = \operatorname{tr}(A^k) = \sum a_{ii}^{(k)} \ge 0$.</p>
@@ -218,7 +207,7 @@
                     <div class="condition-card">
                         <div class="condition-header">
                             <span class="condition-num">4</span>
-                            <h4 class="condition-title">Loewy-London Inequalities</h4>
+                            <h3 class="condition-title">Loewy-London Inequalities</h3>
                         </div>
                         <div class="condition-formula">$$s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)$$</div>
                         <p class="condition-note">Moments derived from applying H&#x00F6;lder's inequality to the matrix diagonals.</p>
@@ -227,16 +216,16 @@
             </div>
 
             <p class="deepdive-text">
-                In 1978/1979, Raphael Loewy and David London established condition (4) using entrywise Cauchy-Schwarz and H&#x00F6;lder inequalities. A notable special case is $k=1, m=2$:
+                Independently established by Raphael Loewy and David London (1978) and Charles R. Johnson (1979/1981), condition (4) is known in the literature as the <strong>Johnson&ndash;Loewy&ndash;London (JLL) inequalities</strong>. A notable special case is $k=1, m=2$:
             </p>
             <div class="theory-formula">
                 $$s_1^2 \le n s_2 \iff \left(\sum_{i=1}^n \lambda_i\right)^2 \le n \sum_{i=1}^n \lambda_i^2$$
             </div>
             <p class="deepdive-text">
-                In 1996, Charles R. Johnson, Thomas J. Laffey, and Raphael Loewy refined these conditions into the <strong>Johnson-Loewy-London (JLL) inequalities</strong>:
+                In 2005, Olga Holtz proved a complementary family of necessary polynomial constraints: for any $n \times n$ nonnegative matrix $A$ with Perron root $\rho$, the shifted $M$-matrix $\rho I - A$ satisfies <strong>Newton&rsquo;s inequalities</strong> on its normalized characteristic coefficients $c_k = \binom{n}{k}^{-1} e_k(\rho - \lambda_1, \dots, \rho - \lambda_n)$:
             </p>
             <div class="theory-formula">
-                $$n^{m-1} s_{km} \ge s_k^m + \frac{n^{m-1} - 1}{n - 1} (\rho^k - \lambda_j^k)^m$$
+                $$c_k^2 \ge c_{k-1} c_{k+1} \ge 0 \quad (1 \le k \le n - 1)$$
             </div>
 
             <div class="math-callout conjecture">
@@ -270,37 +259,37 @@
                                     <div class="subproblems-grid mb-lg">
                 <a href="niep.html" class="subproblem-item">
                     <span class="subproblem-tag">Core NIEP</span>
-                    <h4 class="subproblem-title">The NIEP &rarr;</h4>
+                    <h3 class="subproblem-title">The NIEP &rarr;</h3>
                     <p class="subproblem-desc">Dimensional solvability ($n=1$ to $n \ge 5$), necessary moments, trace non-sufficiency, and semi-algebraic complexity.</p>
                 </a>
                 <a href="sniep.html" class="subproblem-item">
                     <span class="subproblem-tag">SNIEP</span>
-                    <h4 class="subproblem-title">Symmetric NIEP &rarr;</h4>
+                    <h3 class="subproblem-title">Symmetric NIEP &rarr;</h3>
                     <p class="subproblem-desc">Requires $A = A^T$. Since symmetric real matrices are orthogonally diagonalizable, every eigenvalue is guaranteed to be real ($\sigma \subset \mathbb{R}$).</p>
                 </a>
                 <a href="rniep.html" class="subproblem-item">
                     <span class="subproblem-tag">RNIEP</span>
-                    <h4 class="subproblem-title">Real NIEP &rarr;</h4>
+                    <h3 class="subproblem-title">Real NIEP &rarr;</h3>
                     <p class="subproblem-desc">Requires $A \ge 0$ with $\sigma \subset \mathbb{R}$, but does <em>not</em> enforce symmetry. Eigenvectors need not be orthogonal.</p>
                 </a>
                 <a href="karpelevich-region.html" class="subproblem-item">
                     <span class="subproblem-tag">Karpelevi&#x010D;</span>
-                    <h4 class="subproblem-title">Karpelevi&#x010D; Region $\mathcal{K}_n$ &rarr;</h4>
+                    <h3 class="subproblem-title">Karpelevi&#x010D; Region $\mathcal{K}_n$ &rarr;</h3>
                     <p class="subproblem-desc">The exact set of all individual complex numbers $z \in \mathbb{C}$ that can belong to the spectrum of some $n \times n$ stochastic matrix.</p>
                 </a>
                 <a href="suleimanova.html" class="subproblem-item">
                     <span class="subproblem-tag">Suleimanova</span>
-                    <h4 class="subproblem-title">Sule&#x012d;manova Spectra &rarr;</h4>
+                    <h3 class="subproblem-title">Sule&#x012d;manova Spectra &rarr;</h3>
                     <p class="subproblem-desc">Real spectra with exactly one positive eigenvalue $\lambda_0 > 0 \ge \lambda_1 \dots$, where the trace condition $s_1 \ge 0$ is necessary and sufficient.</p>
                 </a>
                 <a href="boyle-handelman.html" class="subproblem-item">
                     <span class="subproblem-tag">Dynamics</span>
-                    <h4 class="subproblem-title">Boyle-Handelman Theorem &rarr;</h4>
+                    <h3 class="subproblem-title">Boyle-Handelman Theorem &rarr;</h3>
                     <p class="subproblem-desc">Symbolic dynamics, shifts of finite type, and nonnegative realization when auxiliary zero eigenvalues are permitted.</p>
                 </a>
                 <a href="perron-similarities.html" class="subproblem-item">
                     <span class="subproblem-tag">Similarities</span>
-                    <h4 class="subproblem-title">Perron Similarities &rarr;</h4>
+                    <h3 class="subproblem-title">Perron Similarities &rarr;</h3>
                     <p class="subproblem-desc">Non-orthogonal similarity transformations that preserve nonnegative cone geometry and resolve the RNIEP vs SNIEP gap.</p>
                 </a>
             </div>
@@ -360,7 +349,7 @@
                     </div>
                     <h3 class="dim-title">Loewy &amp; London Theorem</h3>
                     <p class="dim-desc">
-                        A multiset $\sigma = \{\lambda_1, \lambda_2, \lambda_3\}$ is realizable if and only if $\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, and the first two traces are nonnegative: $s_1 \ge 0$ and $s_2 \ge 0$.
+                        A multiset $\sigma = \{\lambda_1, \lambda_2, \lambda_3\}$ is realizable if and only if $\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, $s_1 \ge 0$, and the Loewy&ndash;London inequality $s_1^2 \le 3s_2$ holds.
                     </p>
                 </div>
 
@@ -368,11 +357,11 @@
                 <div class="dim-card">
                     <div class="dim-card-header">
                         <span class="dim-number">n = 4</span>
-                        <span class="dim-status solved">Solved (2007)</span>
+                        <span class="dim-status solved">Solved (1998 / 2007)</span>
                     </div>
-                    <h3 class="dim-title">Meehan &amp; Torre-Mayo et al.</h3>
+                    <h3 class="dim-title">Loewy&ndash;London, Meehan &amp; Torre-Mayo et al.</h3>
                     <p class="dim-desc">
-                        Real spectra solved by Meehan (1998); general complex spectra completely characterized by Torre-Mayo et al. (2007) through a system of trace and coefficient polynomial inequalities.
+                        Real spectra solved by Loewy &amp; London (1978); general complex $4 \times 4$ spectra solved in Meehan's thesis (1998) and via explicit characteristic-coefficient inequalities by Torre-Mayo et al. (2007).
                     </p>
                 </div>
 

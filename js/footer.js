@@ -16,7 +16,7 @@
             if (isPersonal) {
                 this.innerHTML = `
         <footer class="personal-footer">
-            <p>&copy; 2026 Benjamin J. Clark, Ph.D. &middot; Department of Mathematics &amp; Statistics, WSU</p>
+            <p>&copy; 2026 Benjamin J. Clark, Ph.D. &middot; Google &middot; Ph.D. in Mathematics, Washington State University</p>
             <div class="personal-footer-links">
                 <a href="${prefix}index.html">Hub Home</a>
                 <span>&middot;</span>
@@ -63,7 +63,7 @@
                 <a href="${prefix}karpelevich.html">Karpelevi&#x010D; Viewer</a>
                 <a href="${prefix}spectra-realizer.html">Spectra Realizer</a>
                 <a href="${prefix}trace-polytope.html">Trace Polytopes</a>
-                <a href="${prefix}character-cones.html">Character Cones ($n=5$)</a>
+                <a href="${prefix}character-cones.html">Character Cones (<i>n</i> = 5)</a>
                 <a href="${prefix}personal/publications.html">Research Publications</a>
             </div>
             <div class="footer-links-group">

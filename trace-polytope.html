@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trace Polytope Gallery | NIEP</title>
+    <meta name="description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.">
     <link rel="canonical" href="https://nonsensicallynonnegative.com/trace-polytope.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Trace Polytope Gallery | NIEP">
-    <meta property="og:description" content="Trace Polytope Gallery | NIEP">
+    <meta property="og:description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/trace-polytope.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Trace Polytope 3D & 2D Gallery",
+      "url": "https://nonsensicallynonnegative.com/trace-polytope.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "description": "Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.",
+      "author": {
+        "@type": "Person",
+        "name": "Benjamin J. Clark"
+      }
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/theme.js"></script>
@@ -31,32 +47,32 @@
 
     <div class="app-container">
         <!-- Sidebar -->
-        <aside class="sidebar glass">
+        <aside class="sidebar glass" aria-label="Trace polytope dataset selector">
             <div class="sidebar-header">
-                <h2>Trace Polytope Gallery</h2>
+                <h1>Trace Polytope Gallery</h1>
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search vertices (e.g. a0 a1)...">
+                    <input type="text" id="searchInput" aria-label="Search trace polytope vertices" placeholder="Search vertices (e.g. a0 a1)...">
                 </div>
                 <div class="filters-container">
-                    <select id="filterType">
+                    <select id="filterType" aria-label="Filter by matrix problem type">
                         <option value="All">All Types</option>
                         <option value="SNIEP">SNIEP</option>
                         <option value="RNIEP">RNIEP</option>
                     </select>
-                    <select id="filterSize">
+                    <select id="filterSize" aria-label="Filter by matrix order">
                         <option value="All">All Sizes</option>
                         <option value="4">Size 4</option>
                         <option value="5">Size 5</option>
                         <option value="6">Size 6</option>
                     </select>
-                    <select id="filterDim">
+                    <select id="filterDim" aria-label="Filter by polytope dimension">
                         <option value="All">All Dims</option>
                         <option value="Polygon">2D Polygon</option>
                         <option value="Polyhedron">3D Polyhedron</option>
                     </select>
                 </div>
             </div>
-            <div class="plot-list" id="plotList">
+            <div class="plot-list" id="plotList" role="list" aria-label="Available trace polytopes">
                 <!-- Plot items will be injected here via JS -->
             </div>
         </aside>
@@ -64,10 +80,15 @@
         <!-- Main Stage -->
         <main class="stage">
             <div id="welcomeMessage" class="glass welcome-msg">
-                <h3>Select a plot from the sidebar</h3>
+                <h2>Select a plot from the sidebar</h2>
                 <p>Use the search bar to filter by trace polytope vertices.</p>
             </div>
-            <iframe id="plotFrame" class="plot-frame hidden" src="" frameborder="0"></iframe>
+            <div id="plotLoading" class="plot-loading-overlay hidden" role="status" aria-live="polite">
+                <div class="plot-spinner" aria-hidden="true"></div>
+                <span>Loading polytope geometry&hellip;</span>
+            </div>
+            <button type="button" id="copyPlotLinkBtn" class="plot-share-btn hidden" title="Copy shareable link to this polytope" aria-label="Copy shareable link to this polytope">Copy Link</button>
+            <iframe id="plotFrame" class="plot-frame hidden" src="" title="Interactive Trace Polytope Visualization"></iframe>
         </main>
     </div>
 

@@ -100,7 +100,8 @@
 }
 
 .styled-select:focus, .styled-input:focus, .styled-textarea:focus {
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
 }
@@ -113,6 +114,7 @@
 }
 
 .class-option-label {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 0.65rem 0.75rem;
@@ -129,8 +131,17 @@
     background: var(--bg-surface-secondary);
 }
 
+.class-option-label:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
 .class-option-label input[type="radio"] {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
 }
 
 .class-option-label.active,
@@ -196,7 +207,8 @@
     font-weight: 600;
     font-family: 'Consolas', monospace;
     transition: all 0.2s ease;
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
 }
 
 .styled-input-num:focus {

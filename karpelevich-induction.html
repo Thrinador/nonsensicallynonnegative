@@ -13,7 +13,7 @@
     <meta property="og:title" content="Closing the Boundary: Old Arcs, New Arcs, and Induction · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="The final step of Karpelevich&#x27;s proof: Farey intervals, inherited and new boundary arcs, strict interior-image polygons, and induction, with two interactive explorers. Stop 9 of Inside Karpelevich&#x27;s Proof.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-induction.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-induction.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -159,7 +148,7 @@
                 </section>
 
                 <section class="essay-section" id="2-the-final-arithmetic-test">
-                    <h2>The final arithmetic test</h2>
+                    <h2><span id="prop-9-1" class="lemma-label">Proposition 9.1</span>The final arithmetic test</h2>
                     <p>
                         Take neighboring reduced fractions $a/b&lt;c/d$ in the Farey sequence $F_n$. From <a href="karpelevich-farey.html">stop 7</a>,
                     </p>
@@ -293,7 +282,7 @@
                 </section>
 
                 <section class="essay-section" id="3-strictly-interior-images-exclude-a-boundary-point">
-                    <h2>Strictly interior images exclude a boundary point</h2>
+                    <h2><span id="lem-9-2" class="lemma-label">Lemma 9.2</span>Strictly interior images exclude a boundary point</h2>
                     <p>
                         Here is the local lemma doing the decisive work.
                     </p>
@@ -410,7 +399,7 @@
 
                 <section class="essay-section" id="5-how-the-induction-applies-this-exclusion-everywhere-needed"><h2>Compare every old arc with the new candidates</h2><nav class="proof-local-nav" aria-label="Order comparison proof"><strong>The comparison and construction</strong><a href="#comparison-proof-1">Scalar root</a><a href="#comparison-proof-3">Winding and necessity</a><a href="#comparison-proof-4">Add a factor</a><a href="#comparison-proof-5">Insert a mediant</a><a href="#comparison-proof-7">General strict witness</a></nav><div class="proof-addition"><p>We will prove the general exclusion used in Karpelevich&#39;s final induction. The construction has three stages: define a realizable candidate on each ray; compare the candidates at successive orders; then use the larger candidate&#39;s polygon to put every old image strictly inside.</p>
 <p>The earlier stops provide three inputs, all proved there: the polygon–matrix correspondence; the common-weight return relations and their angular lifts; and explicit stochastic realizations of the return polynomials. The comparisons below prove which realizable candidates are outermost.</p>
-<h3 id="comparison-proof-1">One scalar equation selects the intended branch</h3>
+<h3 id="comparison-proof-1"><span id="prop-9-3" class="lemma-label">Proposition 9.3</span>One scalar equation selects the intended branch</h3>
 <p>Take a Farey interval and, if necessary, conjugate so that its smaller denominator is on the left. Write its oriented endpoints and the direction as</p>
 <div class="theory-formula">$$\frac p\ell&lt;\theta&lt;\frac rs,\qquad
 \ell&lt;s,\qquad r\ell-ps=1,\qquad
@@ -461,7 +450,7 @@ B=\frac{2\pi(r-s\theta)}m.$$</div>
 <div class="theory-formula">$$|\lambda^\ell-t|=(1-t)\rho^{\ell-s/m}.$$</div>
 <p>The imaginary part of the common-weight relation yields $1-t=\rho^{s/m}\sin A/\sin(A+B)$; its real part then yields $t=\rho^\ell\sin B/\sin(A+B)$. Adding proves (R). Hence every such new extremum has radius $\widehat R_N$.</p>
 <p>This is the branch-selection statement needed later. A polynomial equation and an angular sector alone would lose the integer winding in (W).</p>
-<h3 id="comparison-proof-4">Keeping the endpoints and adding a factor moves the candidate outward</h3>
+<h3 id="comparison-proof-4"><span id="lem-9-4" class="lemma-label">Lemma 9.4</span>Keeping the endpoints and adding a factor moves the candidate outward</h3>
 <p>Fix the endpoints and direction, and compare factor counts $m$ and $m+1$. Put $C=2\pi(r-s\theta)&gt;0$, so the two values of $B$ are $C/m$ and $C/(m+1)$. Assume $A+C/m&lt;\pi$, as in every application below.</p>
 <p>Let $\rho$ be the old scalar root. Define</p>
 <div class="theory-formula">$$L=-s\log\rho&gt;0,\qquad
@@ -473,7 +462,7 @@ h(x)=\frac{e^{-Lx}-\cos(Cx)}{\sin(Cx)}.$$</div>
 <p>At the new count, its left side minus right side, evaluated at the old $\rho$, is</p>
 <div class="theory-formula">$$\sin A\sin\frac C{m+1}\left[h\!\left(\frac1{m+1}\right)-h\!\left(\frac1m\right)\right]&lt;0.$$</div>
 <p>The scalar left side is strictly increasing in the radius, so its new root is strictly larger. Thus increasing the factor count really moves the entire open candidate arc outward.</p>
-<h3 id="comparison-proof-5">Inserting a mediant moves both new candidates outward</h3>
+<h3 id="comparison-proof-5"><span id="lem-9-5" class="lemma-label">Lemma 9.5</span>Inserting a mediant moves both new candidates outward</h3>
 <p>Let $a/b&lt;c/d$ be neighbors at order $n-1$ with $b+d=n$, so their mediant $\xi=(a+c)/n$ appears at order $n$. Reflect if necessary to arrange $b&lt;d$. For the old interval put</p>
 <div class="theory-formula">$$m=\lfloor(n-1)/b\rfloor,\qquad
 A=2\pi(b\theta-a),\qquad B=\frac{2\pi(c-d\theta)}m.$$</div>
@@ -532,7 +521,7 @@ D_L&amp;=\sin(B+(m-1)\eta)-u\sin(B+m\eta)\\
 <div class="theory-formula">$$\boxed{\widehat R_{n-1}(\theta)\leq\widehat R_n(\theta),}$$</div>
 <p>with strict inequality inside every split interval and inside every unchanged interval whose factor count increases. Otherwise the two formulas, and their roots, agree. Old landmarks retain radius one.</p>
 <p>This is exactly the divisibility rule from section 2. For unchanged endpoints, a larger denominator $s&lt;n$ cannot divide $n$: if it did, $n\geq2s$, contradicting $n&lt;\ell+s&lt;2s$. For a split interval, a new endpoint has denominator $n$. Hence an open order-$n$ arc is new exactly when an endpoint denominator divides $n$.</p>
-<h3 id="comparison-proof-7">Construct a strict witness for every affected old point</h3>
+<h3 id="comparison-proof-7"><span id="lem-9-6" class="lemma-label">Lemma 9.6</span>Construct a strict witness for every affected old point <span class="lemma-source">Karpelevich §5(c)</span></h3>
 <p>Assume the smaller-order boundary is known and fix any nonreal old outer point $\mu$ in one of the sectors where the comparison is strict. Let $\theta$ be its direction. The previous calculation gives a realizable candidate on the same ray,</p>
 <div class="theory-formula">$$\lambda=\widehat R_n(\theta)e^{2\pi i\theta},\qquad
 \mu=c\lambda,\qquad 0&lt;c&lt;1.$$</div>
@@ -597,7 +586,7 @@ D_L&amp;=\sin(B+(m-1)\eta)-u\sin(B+m\eta)\\
 <p class="essay-caption">Figure 4. The general construction starts with a realizable larger candidate $\lambda$ on the same ray as the old point $\mu$. Writing $\mu=c\lambda$ puts every $\mu$-image vertex inside $cQ$, with margin at least $(1-c)r_Q$. The drawing uses an algebraic six-generator polygon; the proof applies to every affected old point.</p>
 </div></section>
 
-                <section class="essay-section" id="6-the-two-cases-now-exhaust-the-boundary"><h2>Close the induction and identify the boundary</h2><nav class="proof-local-nav" aria-label="Final induction proof"><strong>Finish the theorem</strong><a href="#boundary-proof-1">Base case</a><a href="#boundary-proof-2">Induction</a><a href="#boundary-proof-3">Topological boundary</a><a href="#boundary-proof-4">Simple monotone arcs</a><a href="#boundary-proof-5">Realizing degree</a></nav><div class="proof-addition"><p>We can now prove $R_n=\widehat R_n$, so the candidates just compared are the actual radial frontier. This also excludes every competing polynomial root from lying farther out.</p>
+                <section class="essay-section" id="6-the-two-cases-now-exhaust-the-boundary"><h2><span id="thm-B" class="lemma-label">Theorem B</span>Close the induction and identify the boundary <span class="lemma-source">Karpelevich 1951, Thm. B</span></h2><nav class="proof-local-nav" aria-label="Final induction proof"><strong>Finish the theorem</strong><a href="#boundary-proof-1">Base case</a><a href="#boundary-proof-2">Induction</a><a href="#boundary-proof-3">Topological boundary</a><a href="#boundary-proof-4">Simple monotone arcs</a><a href="#boundary-proof-5">Realizing degree</a></nav><div class="proof-addition"><p>We can now prove $R_n=\widehat R_n$, so the candidates just compared are the actual radial frontier. This also excludes every competing polynomial root from lying farther out.</p>
 <h3 id="boundary-proof-1">Start the induction without leaving an order-four gap</h3>
 <p><a href="karpelevich-cyclic.html">Stop 8</a> proved</p>
 <div class="theory-formula">$$\mathcal K_2=[-1,1],\qquad

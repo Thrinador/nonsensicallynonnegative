@@ -1,13 +1,14 @@
 # NIEP Research Hub · Nonsensically Nonnegative
 
-An open-source computational research workbench, interactive visualization suite, and mathematical theory survey dedicated to the **Nonnegative Inverse Eigenvalue Problem (NIEP)** and its symmetric (SNIEP) and real (RNIEP) variants.
+An open-source computational research workbench, interactive visualization suite, expository monograph series, and mathematical theory wiki dedicated to the **Nonnegative Inverse Eigenvalue Problem (NIEP)** and its symmetric (SNIEP), real (RNIEP), and stochastic variants.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status: Active Research](https://img.shields.io/badge/Status-Active%20Research-success.svg)](#)
 [![arXiv:2407.14472](https://img.shields.io/badge/arXiv-2407.14472-b31b1b.svg)](https://arxiv.org/abs/2407.14472)
 [![arXiv:2402.04508](https://img.shields.io/badge/arXiv-2402.04508-b31b1b.svg)](https://arxiv.org/abs/2402.04508)
+[![arXiv:2401.01471](https://img.shields.io/badge/arXiv-2401.01471-b31b1b.svg)](https://arxiv.org/abs/2401.01471)
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0003--3492--8686-green.svg)](https://orcid.org/0000-0003-3492-8686)
-[![Live Site](https://img.shields.io/badge/Live%20Platform-nonsensicallynonnegative.com-7c3aed.svg)](https://nonsensicallynonnegative.com)
+[![Live Site](https://img.shields.io/badge/Live%20Platform-nonsensicallynonnegative.com-15370d.svg)](https://nonsensicallynonnegative.com)
 
 ---
 
@@ -15,6 +16,7 @@ An open-source computational research workbench, interactive visualization suite
 
 - [Overview](#-overview)
 - [Interactive Visualizers & Tools](#-interactive-visualizers--tools)
+- [Expository Monographs & Research Blog](#-expository-monographs--research-blog)
 - [Mathematical Theory Wiki](#-mathematical-theory-wiki)
 - [Architecture & Technology Stack](#-architecture--technology-stack)
 - [Local Development & Quick Start](#-local-development--quick-start)
@@ -28,82 +30,86 @@ An open-source computational research workbench, interactive visualization suite
 
 ## 🔬 Overview
 
-The **Nonnegative Inverse Eigenvalue Problem (NIEP)** is a classical open problem at the intersection of linear algebra, spectral geometry, dynamical systems, and real algebraic geometry:
+The **Nonnegative Inverse Eigenvalue Problem (NIEP)** is a central open problem at the intersection of linear algebra, spectral geometry, dynamical systems, and real algebraic geometry:
 
 > **The NIEP:** Given a multiset of $n$ complex numbers $\sigma = \{\lambda_1, \lambda_2, \dots, \lambda_n\}$, determine necessary and sufficient conditions for $\sigma$ to be the spectrum of an $n \times n$ entrywise nonnegative matrix $A \ge 0$.
 
-While the problem is completely solved for $n \le 4$, it remains open for $n \ge 5$ in the general case. Recent research has shown that the NIEP, SNIEP, and RNIEP are semi-algebraic sets decidable by finite systems of polynomial inequalities via Tarski-Seidenberg quantifier elimination, but characterizing these algebraic boundaries explicitly remains an active mathematical frontier.
+While completely solved for $n \le 4$ (Loewy & London 1978 for real spectra; Meehan 1998 and Torre-Mayo et al. 2007 in general), the problem remains open for $n \ge 5$. Although the NIEP, SNIEP, and RNIEP are semi-algebraic sets decidable by finite systems of polynomial inequalities via Tarski–Seidenberg quantifier elimination, describing their algebraic boundaries explicitly remains an active frontier.
 
-This hub bridges computational experimentation with theoretical analysis by providing:
-1. **Interactive numerical solvers and visualizers** to synthesize matrices from candidate spectra in real-time.
-2. **Geometric renderers** of spectral boundary regions like the Karpelevi&#x010D; region $\mathcal{K}_n$ and trace polytopes.
-3. **Rigorous surveys and reference articles** covering Perron-Frobenius theory, Soules bases, Boyle-Handelman symbolic dynamics, and spectracone geometry.
+This hub bridges computational experimentation with rigorous exposition:
+1. **Interactive numerical solvers and visualizers** to synthesize matrices from candidate spectra and inspect spectral boundaries in real time.
+2. **Long-form interactive monographs and deep dives**, including a nine-stop geometric reconstruction of Karpelevič's 1951 theorem and 3D character-table spectracone explorations.
+3. **Self-contained Theory Wiki articles** covering Perron–Frobenius theory, JLL and Holtz $M$-matrix Newton inequalities, Soules bases, Boyle–Handelman symbolic dynamics, and Perron similarities.
 
 ---
 
 ## 🚀 Interactive Visualizers & Tools
 
-### 1. [Karpelevi&#x010D; Region Interactive Viewer](karpelevich.html)
-- **Engine**: High-performance HTML5 Canvas renderer with pan/zoom and coordinate hover inspector.
+### 1. [Karpelevič Region Interactive Viewer](karpelevich.html)
+- **Engine**: High-performance HTML5 Canvas renderer with pan/zoom, coordinate hover inspector, and shareable URL state (`?n=&re=&im=&k=`).
 - **Functionality**:
-  - Plots the exact boundary $\partial \mathcal{K}_n$ of eigenvalues of normalized $n \times n$ stochastic matrices for orders $n=2$ through $n=8$.
-  - Computes Farey fractions $p/q \le 1/2$ and renders the corresponding curvilinear boundary arcs.
-  - Interactive test point placement with power orbit ray tracing ($z^k$) and Ito polynomial zero testing.
-  - Mobile-responsive layout with quick-test presets (roots of unity, boundary endpoints, interior/exterior points).
+  - Plots the exact boundary $\partial \mathcal{K}_n$ of eigenvalues of $n \times n$ stochastic matrices for orders $n = 2$ through $n = 16$ using exact polar root bisection on the Ito / Kirkland–Laffey–Šmigoc boundary polynomials.
+  - Renders Farey landmarks $p/q \in \mathcal{F}_n$, power-orbit trajectories ($z^k$), and real-time Ito polynomial zero diagnostics.
+  - Includes quick-test presets (roots of unity, Farey boundary arcs, interior/exterior witnesses) and PNG export.
 
 ### 2. [Numerical Spectra Realizer](spectra-realizer.html)
-- **Engine**: Interactive complex eigenvalue plane with alternating projection solvers (von Neumann / Dykstra algorithms).
+- **Engine**: Interactive complex eigenvalue plane paired with alternating projection solvers (von Neumann / Dykstra) and shareable URL state (`?class=&spec=&tol=`).
 - **Functionality**:
-  - Drag-and-drop eigenvalues on the complex plane with conjugate symmetry constraints.
-  - Alternating projections onto the isospectral manifold and the non-negative matrix cone.
-  - Exact analytical synthesizers: **Sule&#x012d;manova spectra** and **Soules basis constructions**.
-  - One-click matrix exports: **LaTeX**, **NumPy (`np.array`)**, **MATLAB**, and **JSON**.
-  - Touch-drag navigation optimized for tablet and mobile devices.
+  - Drag-and-drop complex conjugate and real eigenvalues on the unit disk / spectral plane.
+  - Alternating projections between the isospectral manifold and the nonnegative, symmetric nonnegative, or stochastic matrix cones.
+  - Exact analytical synthesizers for **Suleĭmanova spectra** (companion & Fiedler symmetric realizations) and **Soules basis constructions**.
+  - One-click matrix exports: **LaTeX (`bmatrix`)**, **NumPy (`np.array`)**, **MATLAB**, and **JSON**.
 
-### 3. [Trace Polytope 3D Visualizer](trace-polytope.html)
-- **Engine**: 3D WebGL dataset browser powered by Plotly.js.
+### 3. [Trace Polytope 2D & 3D Gallery](trace-polytope.html)
+- **Engine**: 125-dataset 2D polygon and 3D WebGL polyhedron browser powered by Plotly.js with live light/dark theme synchronization and shareable `?plot=` URLs.
 - **Functionality**:
-  - Explores the geometry of order-5 trace polytopes for both symmetric (SNIEP) and general real (RNIEP) matrices.
-  - Filterable by dimension (2D polygon projections vs. 3D polyhedra) and vertex identifiers.
-  - Interactive orbit rotation, zoom, vertex inspection, and facet illumination.
+  - Explores trace polytope slices and realizability boundaries for symmetric (SNIEP) and real (RNIEP) matrices across orders $n = 4, 5, 6$.
+  - Filterable by problem variant, matrix order, dimension (2D Polygon vs. 3D Polyhedron), and symbolic vertex identifiers.
+
+---
+
+## 📖 Expository Monographs & Research Blog
+
+Hosted on the **[Research Blog](blog.html)**:
+
+- **[Inside Karpelevič’s Proof (Roadmap + 9-Stop Series)](karpelevich-proof-roadmap.html)**: A complete, self-contained 9-part interactive monograph reconstructing F. I. Karpelevič’s 1951 characterization of $\mathcal{K}_n$—from Dmitriev–Dynkin contracting polygons (Stop 1), minimal edge contacts (Stop 2), and the circular-board chip game (Stop 3) to Euclidean return relations (Stop 4), single-loop log-concavity rigidity (Stop 5), canonical boundary equations (Stop 6), Farey fractions & the two-step law (Stop 7), cyclic polygons (Stop 8), and Farey mediant induction (Stop 9), complete with 43 numbered lemma/theorem anchors.
+- **[Character Table Spectracones & the $n = 5$ SNIEP](character-cones.html)**: Interactive 2D and 3D Plotly investigation of finite-group character spectracones ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$, and $V_4 \oplus [1]$), capturing 99.97% of the Loewy–McDonald $(1,a,a,b,b)$ benchmark and lifting 17 cone orbits to the unsolved 3D $(1,a,a,b,c)$ frontier.
 
 ---
 
 ## 📚 Mathematical Theory Wiki
 
-The platform contains self-contained, research-grade articles typeset with MathJax:
+Self-contained reference articles typeset with MathJax 3 and one-click TeX formula copying:
 
 | Article | Topic & Mathematical Scope |
 | :--- | :--- |
-| **[Foundational Overview](problem-background.html)** | Perron-Frobenius theorem, spectral radius, primitive matrices, and historical survey. |
-| **[NIEP Core Formulation](niep.html)** | Necessary trace conditions ($s_k \ge 0$), Loewy-London inequalities, and dimensional solvability status. |
-| **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's companion constructions, and Soules bases. |
-| **[Real NIEP (RNIEP)](rniep.html)** | Real non-symmetric spectra, non-orthogonal frames, and the Laffey-Loewy separation gap ($n \ge 5$). |
-| **[Karpelevi&#x010D; Region](karpelevich-region.html)** | Kolmogorov's problem, Dmitriev-Dynkin invariant polygons, Swift's thesis, Ito polynomials, Kirkland-Laffey-Šmigoc polar parametrization, and Verbeken-Ginis structural proof. |
-| **[Sule&#x012d;manova Spectra](suleimanova.html)** | Single positive eigenvalue condition, trace sufficiency, and Fiedler's symmetric realization. |
-| **[Boyle-Handelman Theorem](boyle-handelman.html)** | Symbolic dynamics, shifts of finite type, and realization with auxiliary zero eigenvalues. |
-| **[Perron Similarities & Spectracones](perron-similarities.html)** | Johnson-Paparella theory, spectracones, and group character table realizations. |
-| **[Comprehensive Bibliography](bibliography.html)** | Centralized literature database of 30+ papers across the NIEP with interactive search, filtering, and BibTeX export. |
+| **[Foundational Overview](problem-background.html)** | Perron–Frobenius theorem, JLL & Holtz $M$-matrix Newton inequalities, and semi-algebraic decidability. |
+| **[NIEP Core Formulation](niep.html)** | Trace nonnegativity ($s_k \ge 0$), Loewy–London & Johnson inequalities, and $n \le 4$ vs. $n \ge 5$ status. |
+| **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's glued symmetric realizations, Soules bases, and McDonald–Newman cones. |
+| **[Real NIEP (RNIEP)](rniep.html)** | Real non-symmetric spectra, Johnson–Laffey–Loewy separation ($n \ge 5$), and trace polyhedra. |
+| **[Karpelevič Region](karpelevich-region.html)** | Kolmogorov's problem, Dmitriev–Dynkin polygons ($n \le 5$), Ito's theorem, Kirkland–Laffey–Šmigoc polar form, and Munger–Nickerson–Paparella (2024). |
+| **[Suleĭmanova Spectra](suleimanova.html)** | Single positive eigenvalue condition, companion realization, and Friedland's perfection proof. |
+| **[Boyle–Handelman Theorem](boyle-handelman.html)** | Symbolic dynamics, shifts of finite type, zeta functions, and stabilization via auxiliary zeros. |
+| **[Perron Similarities & Spectracones](perron-similarities.html)** | Johnson–Paparella ideal Perron similarities and Gershnik–Lewis–Paparella group character spectracones. |
+| **[Comprehensive Bibliography](bibliography.html)** | Searchable literature archive of 35+ foundational and modern papers with BibTeX export. |
 
 ---
 
 ## 🛠️ Architecture & Technology Stack
 
-The project adheres to a **zero-dependency, static-first architecture** designed for high performance, accessibility, and permanent archival stability:
+The project adheres to a **zero-build, static-first architecture** designed for fast loading, accessibility, and long-term archival durability:
 
-- **Core**: Semantic HTML5, Vanilla ES6+ JavaScript, CSS3 custom properties (variables).
-- **Styling**: Tailored design system with sleek dark mode by default, light mode toggle, glassmorphism cards, and responsive fluid typography (`clamp()`).
-- **Mathematical Typesetting**: [MathJax 3](https://www.mathjax.org/) for TeX/LaTeX rendering.
-- **Scientific Plotting**: [Plotly.js](https://plotly.com/javascript/) for interactive WebGL 3D geometric polyhedra.
-- **Hosting**: Pure static files compatible with GitHub Pages, Cloudflare Pages, Nginx, or any standard HTTP web server.
+- **Core**: Semantic HTML5, Vanilla ES6+ JavaScript, Web Components (`<hub-nav>`, `<hub-footer>`, `<cite-grid>`, `<karpelevich-book-nav>`), and modular external CSS3 custom properties.
+- **Design System & Accessibility**: Warm textbook paper light mode by default (`#faf8f2` / `#15370d`) with persistent dark mode (`#081221` / `#0e1d33`), keyboard skip links, `:focus-visible` rings, `prefers-reduced-motion` support, and WCAG-aligned heading hierarchy.
+- **Mathematical Typesetting**: [MathJax 3](https://www.mathjax.org/) via centralized `js/mathjax-config.js` with one-click TeX source copy.
+- **Scientific Plotting**: Custom HTML5 Canvas 2D engines and [Plotly.js](https://plotly.com/javascript/) WebGL 3D polyhedra.
 
 ---
 
 ## 💻 Local Development & Quick Start
 
-Because the project is built purely with native web standards, **no build steps, bundlers, Ruby gems, or package managers are required**.
+No bundlers, package managers, or build steps are required. Serve the root directory with any static HTTP server:
 
-### Option 1: Python (Built-in)
 ```bash
 # Clone the repository
 git clone https://github.com/Thrinador/nonsensicallynonnegative.git
@@ -112,15 +118,8 @@ cd nonsensicallynonnegative
 # Start a local HTTP server on port 8000
 python3 -m http.server 8000
 ```
-Open your browser to [http://localhost:8000](http://localhost:8000).
 
-### Option 2: Node.js / npx
-```bash
-npx serve .
-```
-
-### Option 3: VS Code / IDE
-Install the **Live Server** extension in Visual Studio Code, right-click `index.html`, and select **Open with Live Server**.
+Then open `http://localhost:8000` in your browser (or run `npx serve .`).
 
 ---
 
@@ -128,74 +127,85 @@ Install the **Live Server** extension in Visual Studio Code, right-click `index.
 
 ```text
 nonsensicallynonnegative/
-├── index.html                  # NIEP Research Hub master dashboard
-├── about.html                  # About the initiative & contribution guide
-├── sitemap.html                # Comprehensive visual site directory
-├── sitemap.xml                 # Search engine sitemap protocol
-├── 404.html                    # Unified error stage with standard hub navigation
-├── karpelevich.html            # Karpelevič Region interactive canvas viewer
-├── spectra-realizer.html       # Numerical Spectra Realizer application
-├── trace-polytope.html         # 3D Trace Polytope dataset visualizer
+├── index.html                           # NIEP Research Hub master dashboard
+├── about.html                           # Project mission & contribution guide
+├── blog.html                            # Research Blog & Monograph hub
+├── bibliography.html                    # Searchable literature & BibTeX catalog
+├── sitemap.html / sitemap.xml           # Visual site directory & XML sitemap
+├── 404.html                             # Error page with hub navigation
 │
-├── problem-background.html     # Theory Wiki: Foundations & Perron-Frobenius
-├── niep.html                   # Theory Wiki: Core NIEP formulation
-├── sniep.html                  # Theory Wiki: Symmetric NIEP
-├── rniep.html                  # Theory Wiki: Real NIEP
-├── karpelevich-region.html     # Theory Wiki: Karpelevič region, Swift thesis, Ito polynomials & modern structural proofs
-├── suleimanova.html            # Theory Wiki: Suleĭmanova spectra
-├── boyle-handelman.html        # Theory Wiki: Boyle-Handelman theorem
-├── perron-similarities.html    # Theory Wiki: Perron similarities & spectracones
+├── karpelevich.html                     # Karpelevič Region interactive viewer (n = 2..16)
+├── spectra-realizer.html                # Numerical Spectra Realizer application
+├── trace-polytope.html                  # 2D & 3D Trace Polytope gallery (n = 4, 5, 6)
+│
+├── problem-background.html              # Theory Wiki: Foundations & Perron–Frobenius
+├── niep.html / sniep.html / rniep.html  # Theory Wiki: NIEP, SNIEP, and RNIEP
+├── karpelevich-region.html              # Theory Wiki: Karpelevič theorem & modern literature
+├── suleimanova.html                     # Theory Wiki: Suleĭmanova spectra
+├── boyle-handelman.html                 # Theory Wiki: Boyle–Handelman theorem
+├── perron-similarities.html             # Theory Wiki: Perron similarities & spectracones
+├── character-cones.html                 # Deep Dive: Character table cones for n = 5 SNIEP
+│
+├── karpelevich-proof-roadmap.html       # Monograph: Inside Karpelevič’s Proof (Roadmap)
+├── karpelevich-polygons.html            # Stop 1: Contracting polygons
+├── karpelevich-contacts.html            # Stop 2: Boundary eigenvalues & edge contacts
+├── karpelevich-game.html                # Stop 3: Circular-board chip game
+├── karpelevich-returns.html             # Stop 4: Return relations & characteristic equation
+├── karpelevich-rigidity.html            # Stop 5: Contact-parameter rigidity
+├── karpelevich-boundary-equations.html  # Stop 6: Canonical boundary equations
+├── karpelevich-farey.html               # Stop 7: Farey fractions & two-step law
+├── karpelevich-cyclic.html              # Stop 8: Cyclic polygons & boundary matrices
+├── karpelevich-induction.html           # Stop 9: Induction on order & final region K_n
 │
 ├── css/
-│   ├── style.css               # Core global design system & responsive navigation
-│   ├── personal.css            # Stylesheet for academic portfolio & profile
-│   ├── karpelevich.css         # Canvas UI & toolbar layout for Karpelevič viewer
-│   └── realizer.css            # Matrix realizer workspace & canvas styles
+│   ├── style.css                        # Core design system, components, & accessibility
+│   ├── blog.css                         # Monograph, interactive proof figures, & blog styles
+│   ├── karpelevich.css                  # Karpelevič canvas viewer & inspector layout
+│   ├── realizer.css                     # Spectra Realizer workspace & controls
+│   └── personal.css                     # Academic profile, publications, & CV styles
 │
 ├── js/
-│   ├── app.js                  # Polytope data visualizer logic
-│   ├── karpelevich.js          # Karpelevič mathematical boundary computation & canvas
-│   ├── realizer.js             # Numerical projection solver & matrix synthesis
-│   └── theme.js                # System-preference & local-storage color theme toggle
+│   ├── nav.js / footer.js / theme.js    # Shared Web Components & light/dark theme manager
+│   ├── mathjax-config.js                # Centralized MathJax 3 config & Copy TeX utility
+│   ├── citations.js                     # Centralized literature database & <cite-grid>
+│   ├── karpelevich.js                   # Exact polar boundary solver & canvas renderer
+│   ├── realizer.js                      # Alternating projection & exact matrix synthesizers
+│   ├── app.js                           # Trace Polytope gallery & live Plotly theme sync
+│   └── karpelevich-*.js                 # Interactive widgets & book nav for Stops 1–9
 │
-├── personal/                   # Author academic profile, CV, papers, and lectures
-│   ├── index.html              # Academic biography & research overview
-│   ├── cv.html                 # Curriculum Vitae (PDF viewer & downloadable asset)
-│   ├── publications.html       # Peer-reviewed journal papers, preprints, and DOIs
-│   ├── talks.html              # Conference slides & invited seminar presentations
-│   └── teaching.html           # Course lecture notes & university instruction archives
-│
-├── plots/                      # Standalone Plotly HTML datasets for trace polytopes
-├── files/                      # Downloadable academic PDF publications and CV
-└── images/                     # Favicons, project branding, and asset graphics
+├── personal/                            # Academic bio, CV, publications, talks, & teaching
+├── plots/                               # Interactive Plotly 2D/3D datasets
+├── files/                               # Downloadable PDF preprints, slides, CV, & notes
+└── images/                              # Favicons, web manifest, & profile assets
 ```
 
 ---
 
 ## 🤝 Contributing & Community
 
-We welcome contributions from researchers, software engineers, and students interested in computational matrix analysis:
+Contributions from researchers, software engineers, and students are welcome:
+- **Mathematicians & Researchers**: Suggest literature additions, sharper bounds, counterexamples, or expository notes.
+- **Scientific Developers**: Contribute numerical solvers, performance improvements, or interactive visualizations.
 
-- **Mathematicians & Theoretical Researchers**: Propose new conjectures, submit counterexamples, refine proofs, or supply literature citations.
-- **Scientific Software Developers**: Implement faster matrix synthesis algorithms (e.g., WebAssembly, GPU shaders), improve numerical stability, or optimize touch UX.
-- **Students & Educators**: Contribute interactive pedagogical examples, problem sets, or documentation enhancements.
-
-For detailed guidelines and contribution workflows, visit the **[About & Contributing Page](about.html)**.
-
-### Submitting Changes
-1. Fork the repository (`https://github.com/Thrinador/nonsensicallynonnegative`).
-2. Create your feature branch (`git checkout -b feature/new-solver`).
-3. Commit your modifications (`git commit -m 'Add alternating projection acceleration'`).
-4. Push to the branch (`git push origin feature/new-solver`).
-5. Open a Pull Request on GitHub.
+See **[About & Contributing](about.html)** for details, or open an issue / pull request on GitHub.
 
 ---
 
 ## 📖 Publications & Citations
 
-If you use this software, datasets, or theoretical surveys in your research, please cite:
+If you use these tools, datasets, or expository surveys in your research, please cite:
 
 ```bibtex
+@article{clark2022polynomials,
+  author  = {Clark, Benjamin J. and Paparella, Pietro},
+  title   = {Polynomials that preserve nonnegative matrices},
+  journal = {Linear Algebra and its Applications},
+  volume  = {637},
+  pages   = {110--118},
+  year    = {2022},
+  doi     = {10.1016/j.laa.2021.12.007}
+}
+
 @article{clark2024niep,
   author  = {Clark, Benjamin J.},
   title   = {The NIEP is solvable by reality and finitely many polynomial inequalities},
@@ -204,19 +214,9 @@ If you use this software, datasets, or theoretical surveys in your research, ple
   url     = {https://arxiv.org/abs/2407.14472}
 }
 
-@article{clark2023polynomials,
-  author  = {Clark, Benjamin J.},
-  title   = {Polynomials that preserve nonnegative matrices},
-  journal = {Linear Algebra and its Applications},
-  volume  = {676},
-  pages   = {267--276},
-  year    = {2023},
-  doi     = {10.1016/j.laa.2023.07.014}
-}
-
 @misc{clark2026niephub,
   author       = {Clark, Benjamin J.},
-  title        = {NIEP Research Hub: Computational Tools and Theoretical Surveys for the Nonnegative Inverse Eigenvalue Problem},
+  title        = {Nonsensically Nonnegative: Computational Tools and Expository Monographs for the Nonnegative Inverse Eigenvalue Problem},
   year         = {2026},
   howpublished = {\url{https://nonsensicallynonnegative.com}},
   note         = {GitHub: \url{https://github.com/Thrinador/nonsensicallynonnegative}}
@@ -228,9 +228,9 @@ If you use this software, datasets, or theoretical surveys in your research, ple
 ## 👨‍💻 Author & Maintainer
 
 **Benjamin J. Clark, Ph.D.**  
-*Department of Mathematics & Statistics, Washington State University*  
+*Google · Ph.D. in Mathematics, Washington State University*  
 - **Website**: [https://nonsensicallynonnegative.com](https://nonsensicallynonnegative.com)
-- **Profile**: [Academic Bio & Profile](personal/index.html)
+- **Academic Profile**: [personal/index.html](personal/index.html)
 - **arXiv**: [arxiv.org/a/clark_b_1.html](https://arxiv.org/a/clark_b_1.html)
 - **ORCID**: [0000-0003-3492-8686](https://orcid.org/0000-0003-3492-8686)
 - **GitHub**: [@Thrinador](https://github.com/Thrinador)
@@ -239,4 +239,4 @@ If you use this software, datasets, or theoretical surveys in your research, ple
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for complete details.
+Licensed under the **MIT License** — see [LICENSE](LICENSE) for details.

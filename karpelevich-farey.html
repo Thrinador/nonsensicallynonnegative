@@ -13,7 +13,7 @@
     <meta property="og:title" content="Why Farey Neighbors Label the Arcs · Inside Karpelevich’s Proof | NIEP Research Blog">
     <meta property="og:description" content="Why Farey neighbors label Karpelevich boundary arcs: exact mediants, Bezout identities, angular winding, and endpoint-root selection, with two interactive explorers. Stop 7 of Inside Karpelevich&#x27;s Proof.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/karpelevich-farey.html">
-    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon.svg">
+    <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
@@ -25,18 +25,7 @@
     <script src="js/citations.js" defer></script>
     <script src="js/karpelevich-farey.js" defer></script>
     <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
+    <script src="js/mathjax-config.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -154,7 +143,7 @@
                 </section>
 
                 <section class="essay-section" id="what-makes-two-fractions-neighbors">
-                    <h2>What makes two fractions neighbors?</h2>
+                    <h2><span id="lem-7-1" class="lemma-label">Lemma 7.1</span>What makes two fractions neighbors?</h2>
                     <p>
                         Two reduced fractions $a/b&lt;c/d$ are consecutive in $F_n$ exactly when
                     </p>
@@ -351,7 +340,7 @@
                 </section>
 
                 <section class="essay-section" id="one-angular-estimate-with-the-turn-count-kept-visible">
-                    <h2>The angular bounds, with all turns retained</h2><nav class="proof-local-nav" aria-label="Angular proof steps"><a href="#proof7-angle-1">Lift the vertex angles</a><a href="#forward-angle-estimate">Forward branch</a><a href="#proof7-angle-2">Gcd branch and singleton</a></nav><div class="proof-addition"><h3 id="proof7-angle-1">Lift the vertex angles before taking powers</h3>
+                    <h2>The angular bounds, with all turns retained</h2><nav class="proof-local-nav" aria-label="Angular proof steps"><a href="#proof7-angle-1">Lift the vertex angles</a><a href="#forward-angle-estimate">Forward branch</a><a href="#proof7-angle-2">Gcd branch and singleton</a></nav><div class="proof-addition"><h3 id="proof7-angle-1"><span id="lem-7-2" class="lemma-label">Lemma 7.2</span>Lift the vertex angles before taking powers</h3>
 <p>Rotate and scale the polygon so that $x_0=1$. Write its vertex directions in turns as real numbers</p>
 <div class="theory-formula">$$\Phi_0=0&lt;\Phi_1&lt;\cdots&lt;\Phi_{n-1}&lt;1,
 \qquad\Phi_{i+n}=\Phi_i+1.$$</div>
@@ -363,7 +352,7 @@
 <p>Along a deterministic chain, the equalities add. If its first $h-1$ images are vertices and its $h$th image is an interior edge contact, then</p>
 <div class="theory-formula">$$\boxed{\Phi_{i+hk-1}&lt;\Phi_i+h\theta&lt;\Phi_{i+hk}.}$$</div>
 <p>This is an inequality of real numbers. It retains every complete turn made by the path. We will use it when a power has argument close to a multiple of $2\pi$, where a principal argument alone would lose essential information.</p>
-</div><h3 id="forward-angle-estimate">Forward branch: the power calculation</h3>
+</div><h3 id="forward-angle-estimate"><span id="thm-7-3" class="lemma-label">Theorem 7.3</span>Forward branch: the power calculation <span class="lemma-source">Karpelevich §5, Thm. VIII</span></h3>
                     <p>
                         Here is a complete derivation for the forward branch from <a href="karpelevich-rigidity.html#put-the-surviving-relations-in-a-usable-form">the rigidity post</a>, in the standard notation: $\ell$ is the chain length, $m$ the number of repeated chains, and $\tau$ the tail. Its relations include
                     </p>
@@ -449,7 +438,7 @@
                             <p class="small-note">The slider moves inside the coarse sector. Buttons set exact rational rays; their displayed slider positions may be rounded. This tests the angle condition and assigns no modulus or eigenvalue realization to a ray. The pale wedge is the coarse range; teal is the selected angular sector.</p>
                         </div>
                     </section>
-                <div class="proof-addition"><h3 id="proof7-angle-2">The gcd branch: sum the angular deficits</h3>
+                <div class="proof-addition"><h3 id="proof7-angle-2"><span id="thm-7-4" class="lemma-label">Theorem 7.4</span>The gcd branch: sum the angular deficits <span class="lemma-source">Karpelevich §5, Thm. IX</span></h3>
 <p>Suppose the reduced contact block has length $\varphi=g=\gcd(n,k)$. This includes the single-contact case $g=1$. Put</p>
 <div class="theory-formula">$$\ell=\frac ng,\qquad a=\frac kg.$$</div>
 <p>There is one contact in each index cycle, so the return from $x_i$ reaches the edge $[x_{i-1},x_i]$ after $\ell$ steps. Its unreduced index advance is $\ell k=an$. The lifted inequality therefore says</p>
@@ -483,7 +472,7 @@ k\sigma\equiv-g\pmod n,\qquad0&lt;\sigma&lt;\ell.$$</div>
 <p>They give $\theta&lt;1/4$ and $\theta&gt;1/5$, respectively. The same computation with $g=1$ supplies the angular sector for a singleton contact, before we decide which singleton patterns can be extremal.</p>
 </div><figure class="essay-figure proof-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 477" role="img" aria-labelledby="proof7-deficit-title proof7-deficit-desc"><title id="proof7-deficit-title">Sum the angular deficits in the gcd branch</title><desc id="proof7-deficit-desc">A total angular gap of thirteen fortieths exceeds two deficits of one tenth, leaving one eighth. This is the exact difference five theta minus one at theta nine fortieths.</desc><rect width="100%" height="100%" rx="18" fill="#fbfaf6"/><text x="34" y="35" font-size="13" fill="#607b7e" text-anchor="start" font-weight="650">THE RETURN DEFICITS USE LESS ANGLE THAN THE EDGE GAPS</text><text x="34" y="75" font-size="20" fill="#17343f" text-anchor="start" font-weight="400">n = 8, k = 2, g = 2, θ = 9/40</text><text x="70" y="117" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Total edge gap Γ</text><rect x="70" y="135" width="650" height="50" rx="6" fill="#dce9de"/><text x="395" y="168" font-size="20" fill="#17343f" text-anchor="middle" font-weight="400">Γ = 13/40 turn</text><text x="70" y="226" font-size="15" fill="#607b7e" text-anchor="start" font-weight="400">Sum of the two deficits</text><rect x="70" y="244" width="200" height="50" rx="6" fill="#168579"/><rect x="270" y="244" width="200" height="50" rx="6" fill="#168579"/><line x1="270" y1="247" x2="270" y2="291" stroke="#ffffff" stroke-width="2" stroke-dasharray=""/><rect x="470" y="244" width="250" height="50" rx="6" fill="#f1ddba"/><text x="170" y="276" font-size="17" fill="white" text-anchor="middle" font-weight="400">δ = 1/10</text><text x="370" y="276" font-size="17" fill="white" text-anchor="middle" font-weight="400">δ = 1/10</text><text x="595" y="276" font-size="17" fill="#17343f" text-anchor="middle" font-weight="400">room = 1/8</text><text x="770" y="151" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">ℓ = 4</text><text x="770" y="193" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">σ = 3</text><text x="770" y="235" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">b = 5</text><text x="770" y="277" font-size="19" fill="#17343f" text-anchor="start" font-weight="400">f = 1</text><text x="70" y="355" font-size="25" fill="#17343f" text-anchor="start" font-weight="400">Γ − gδ = bθ − f &gt; 0</text><text x="70" y="398" font-size="18" fill="#168579" text-anchor="start" font-weight="400">Therefore θ &gt; 1/5; positivity of δ gives θ &lt; 1/4.</text><text x="34" y="445" font-size="13" fill="#607b7e" text-anchor="start" font-weight="400">Exact angular bookkeeping at the selected direction. The picture assigns no eigenvalue modulus.</text></svg></figure><p class="essay-caption"><em>Proof figure A. Exact angular bookkeeping for n = 8, k = 2 at θ = 9/40: Γ = 13/40 exceeds the two deficits, each 1/10, by 1/8. The identity Γ − gδ = bθ − f supplies the lower Farey bound. No eigenvalue modulus is assigned by this drawing.</em></p></section>
 
-                <section class="essay-section" id="single-contact-without-the-boundary-theorem"><h2>The single-contact case, without assuming the boundary theorem</h2><div class="proof-addition"><p>The remaining configuration has $g=1$ and just one edge contact. Label its target edge $[x_0,x_1]$, so</p>
+                <section class="essay-section" id="single-contact-without-the-boundary-theorem"><h2><span id="lem-7-5" class="lemma-label">Lemma 7.5</span>The single-contact case, without assuming the boundary theorem</h2><div class="proof-addition"><p>The remaining configuration has $g=1$ and just one edge contact. Label its target edge $[x_0,x_1]$, so</p>
 <div class="theory-formula">$$\xi_1=a x_0+(1-a)x_1,\qquad0&lt;a&lt;1.$$</div>
 <p>All other target coefficients alpha are zero: those images are vertex contacts. The angular argument above identifies the Farey predecessor $f/b$ of $k/n$, with</p>
 <div class="theory-formula">$$kb-nf=1,\qquad1\leq b&lt;n.$$</div>
@@ -542,7 +531,7 @@ k\sigma\equiv-g\pmod n,\qquad0&lt;\sigma&lt;\ell.$$</div>
 <p>We have closed the single-contact configuration gap using return arithmetic and an invariant variation. Existence and final selection of the outer root branches still belong to the later assembly; this argument does not declare every polynomial root a boundary point.</p>
 </div></section>
 
-<section class="essay-section" id="exponent-dictionary"><h2>The angular sector fixes the exponents</h2><div class="proof-addition"><p>We can now identify the canonical equation for <strong>every</strong> nonreal radial extremum new at order $n&gt;3$, including the single-contact case. Let its chosen shift be $k$, put $g=\gcd(n,k)$, and take the Farey sector just proved:</p>
+<section class="essay-section" id="exponent-dictionary"><h2><span id="thm-7-6" class="lemma-label">Theorem 7.6</span>The angular sector fixes the exponents <span class="lemma-source">Karpelevich §5, pp. 380–381</span></h2><div class="proof-addition"><p>We can now identify the canonical equation for <strong>every</strong> nonreal radial extremum new at order $n&gt;3$, including the single-contact case. Let its chosen shift be $k$, put $g=\gcd(n,k)$, and take the Farey sector just proved:</p>
 <div class="theory-formula">$$\frac fb&lt;\theta&lt;\frac kn,\qquad
 kb-nf=g,\qquad0&lt;n-b&lt;n/g.$$</div>
 <p>Reduce $k/n$ before comparing denominators. Write $\ell,s$ for the smaller and larger Farey denominators and $m=\lfloor n/\ell\rfloor$.</p>
