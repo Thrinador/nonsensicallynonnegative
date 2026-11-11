@@ -138,9 +138,9 @@
     font-weight: 700;
     padding: 0.25rem 0.65rem;
     border-radius: 9999px;
-    background: rgba(37, 99, 235, 0.15);
-    color: var(--accent);
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    background: var(--banner-tag-bg);
+    color: var(--banner-tag-text);
+    border: 1px solid var(--banner-tag-border);
 }
 
 .profile-name {

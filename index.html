@@ -10,8 +10,10 @@
     <link rel="canonical" href="https://nonsensicallynonnegative.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
-    <meta property="og:title" content="NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem">
-    <meta property="og:description" content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.">
+    <meta property="og:title"
+        content="NIEP Research Tools &amp; Visualizations | Nonnegative Inverse Eigenvalue Problem">
+    <meta property="og:description"
+        content="An interactive collection of computational research tools and geometric visualizations for studying the Nonnegative Inverse Eigenvalue Problem (NIEP), Karpelevič regions, and trace polytopes.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
@@ -52,55 +54,46 @@
     <hub-nav></hub-nav>
 
     <!-- Hub Main Content Container -->
-    <main class="hub-container">
-        <!-- Active Research Platform Note -->
-        <div class="dev-disclaimer-banner" role="status">
-            <span class="dev-disclaimer-badge">Active Research Hub</span>
-            <p class="dev-disclaimer-text">
-                <strong>Open Research Platform:</strong> New interactive solvers, 3D polyhedral datasets, and expository monographs (most recently <em>Inside Karpelevi&#x010D;&rsquo;s Proof</em> and <em>Character Table Cones</em>) are continuously added. Found an issue or want to collaborate? Visit <a href="about.html" class="text-link">About &amp; Contributing</a>.
-            </p>
-        </div>
-
+    <main class="hub-container" id="main-content">
         <!-- Hero Section -->
         <section class="hub-hero">
-            <div class="hero-badge">Research &amp; Visual Computing</div>
             <h1 class="hero-title">The Nonnegative Inverse Eigenvalue Problem</h1>
-            <p class="hero-subtitle">
-                An open-source, interactive collection of computational tools and geometric visualizations designed to
-                explore, understand, and advance research on matrix spectra and nonnegativity.
-            </p>
+            <div class="hero-intro">
+                <p>
+                    <strong>Nonsensically Nonnegative</strong> is an open-source research and visualization hub
+                    dedicated to the Nonnegative Inverse Eigenvalue Problem (NIEP) and its structured variants. This
+                    site is a place for short blog-style posts and interactive tools exploring past and current research
+                    on the topic.
+                </p>
+                <p>
+                    Currently maintained by <a href="personal/index.html" class="text-link">Benjamin J. Clark</a>, new
+                    solvers, polyhedral datasets, and articles are added continuously. Please visit <a href="about.html"
+                        class="text-link">About &amp; Contributing</a> if you spot an issue, have a spectrum to test, or
+                    want to collaborate.
+                </p>
+            </div>
         </section>
 
         <!-- Tool Cards Section -->
         <section class="hub-tools-section">
-            <h2 class="section-title">Interactive Visualizations &amp; Solvers</h2>
-            <p class="section-subtitle">Select a tool to begin interactive spectral analysis</p>
+            <h2 class="section-title">Highlighted posts and interactive tools</h2>
 
             <div class="tools-grid">
                 <!-- Card 1: Karpelevic Region Viewer -->
                 <div class="tool-card">
                     <div class="tool-card-banner karpelevich-banner">
-                        <span class="banner-icon">$\mathcal{K}_n$</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">Stochastic Spectra</span>
-                            <span class="mini-tag">Farey Arcs</span>
-                            <span class="mini-tag">Orbit Dynamics</span>
-                        </div>
+                        <h3 class="tool-card-title">Karpelevi&#x010D; Region Viewer</h3>
                     </div>
                     <div class="tool-card-body">
-                        <h3 class="tool-card-title">Karpelevi&#x010D; Region Viewer</h3>
                         <p class="tool-card-desc">
                             Visualize the exact region $\mathcal{K}_n$ of all complex numbers that can arise as
                             eigenvalues of an $n \times n$ stochastic matrix. Features live Farey sequence
                             root calculation, Ito boundary polynomial solver, point containment testing, and dynamic
                             power orbit visualization ($z^1, z^2, \dots, z^k$).
                         </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; Arbitrary order $n$ selection ($n = 2$ to $16$)</div>
-                            <div class="feature-item">&check; Real-time containment test: $z \in \mathcal{K}_n$
-                            </div>
-                            <div class="feature-item">&check; Power-up animation with trajectory trail</div>
-                            <div class="feature-item">&check; High-DPI interactive canvas with pan &amp; zoom</div>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Stochastic Spectra</span>
+                            <span class="mini-tag">Farey Arcs</span>
                         </div>
                         <div class="tool-card-footer">
                             <a href="karpelevich.html" class="tool-launch-btn primary">
@@ -114,23 +107,18 @@
                 <!-- Card: Inside Karpelevič's Proof (9-Stop Monograph Series) -->
                 <div class="tool-card">
                     <div class="tool-card-banner karpelevich-banner">
-                        <span class="banner-icon">$\partial\mathcal{K}_n$</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">9-Stop Monograph</span>
-                            <span class="mini-tag">Invariant Polygons</span>
-                            <span class="mini-tag">Interactive Proofs</span>
-                        </div>
+                        <h3 class="tool-card-title">Inside Karpelevi&#x010D;&rsquo;s Proof</h3>
                     </div>
                     <div class="tool-card-body">
-                        <h3 class="tool-card-title">Inside Karpelevi&#x010D;&rsquo;s Proof (9-Stop Series)</h3>
                         <p class="tool-card-desc">
-                            A complete nine-stop visual monograph reconstructing F. I. Karpelevi&#x010D;&rsquo;s 1951 characterization of the stochastic eigenvalue region $\mathcal{K}_n$, from invariant polygons and the chip game to cyclic polygons, Farey arcs, and boundary induction.
+                            A complete nine-stop visual monograph reconstructing and updating F. I.
+                            Karpelevi&#x010D;&rsquo;s 1951 characterization of the stochastic eigenvalue region
+                            $\mathcal{K}_n$, from invariant polygons and the chip game to cyclic polygons, Farey arcs,
+                            and boundary induction.
                         </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; 9 interactive labs: polygons, chip game, returns &amp; Farey</div>
-                            <div class="feature-item">&check; Explicit cyclic polygons &amp; companion realizations</div>
-                            <div class="feature-item">&check; Unified notation table &amp; Theorem A / Theorem B ledger</div>
-                            <div class="feature-item">&check; Chapter navigator across the Roadmap &amp; Stops 1&ndash;9</div>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Invariant Polygons</span>
+                            <span class="mini-tag">Interactive Proofs</span>
                         </div>
                         <div class="tool-card-footer">
                             <a href="karpelevich-proof-roadmap.html" class="tool-launch-btn primary">
@@ -144,28 +132,20 @@
                 <!-- Card 2: Trace Polytope Gallery -->
                 <div class="tool-card">
                     <div class="tool-card-banner polytope-banner">
-                        <span class="banner-icon">$\Delta_n$</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">SNIEP &amp; RNIEP</span>
-                            <span class="mini-tag">3D WebGL</span>
-                            <span class="mini-tag">Convex Geometry</span>
-                        </div>
+                        <h3 class="tool-card-title">Trace Polytope Gallery</h3>
                     </div>
                     <div class="tool-card-body">
-                        <h3 class="tool-card-title">Trace Polytope Gallery</h3>
                         <p class="tool-card-desc">
                             Explore 125 interactive 2D polygons and 3D polyhedra visualizing order-5 ($n = 5$) trace
                             polytope cross-sections and realizability regions for the Symmetric (SNIEP) and Real (RNIEP)
                             inverse eigenvalue problems. Filter by matrix class, dimension, and vertex signature.
                         </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; 81 SNIEP &amp; 44 RNIEP order-5 datasets</div>
-                            <div class="feature-item">&check; Interactive Plotly 2D &amp; 3D rotatable geometry</div>
-                            <div class="feature-item">&check; Complete vertex listings &amp; facet coordinates</div>
-                            <div class="feature-item">&check; Searchable polytope index with shareable links</div>
+                        <div class="banner-tags">
+                            <span class="mini-tag">SNIEP &amp; RNIEP</span>
+                            <span class="mini-tag">Convex Geometry</span>
                         </div>
                         <div class="tool-card-footer">
-                            <a href="trace-polytope.html" class="tool-launch-btn secondary">
+                            <a href="trace-polytope.html" class="tool-launch-btn primary">
                                 <span>Open Trace Polytope Gallery</span>
                                 <span class="arrow">&rarr;</span>
                             </a>
@@ -176,23 +156,18 @@
                 <!-- Card: Character Table Spectracones (n=5) -->
                 <div class="tool-card">
                     <div class="tool-card-banner polytope-banner">
-                        <span class="banner-icon">$\chi(G)$</span>
+                        <h3 class="tool-card-title">Character Table Cones (Order-5 SNIEP)</h3>
+                    </div>
+                    <div class="tool-card-body">
+                        <p class="tool-card-desc">
+                            Interactive exploration of selected $5 \times 5$ group character tables and reducible
+                            adjoined blocks as ideal Perron similarities, collectively covering <strong>99.97%</strong>
+                            of the constructively realizable 2D $(1,a,a,b,b)$ plane and mapping the
+                            unsolved 3D $(1,a,a,b,c)$ frontier.
+                        </p>
                         <div class="banner-tags">
                             <span class="mini-tag">Perron Cones</span>
                             <span class="mini-tag">Character Tables</span>
-                            <span class="mini-tag">3D Plotly</span>
-                        </div>
-                    </div>
-                    <div class="tool-card-body">
-                        <h3 class="tool-card-title">Character Table Cones ($n=5$ SNIEP)</h3>
-                        <p class="tool-card-desc">
-                            Interactive exploration of selected $5 \times 5$ group character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$) as ideal Perron similarities—covering <strong>99.97%</strong> ($1.34020 / 1.34057$) of the constructively realizable 2D $(1,a,a,b,b)$ Loewy&ndash;McDonald benchmark and mapping the unsolved 3D $(1,a,a,b,c)$ frontier.
-                        </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; 99.97% benchmark coverage &amp; $1 + 4ab = 0$ hyperbola zoom</div>
-                            <div class="feature-item">&check; Interactive 2D &amp; 3D orbit breakdowns ($D_8, S_4, A_5, \mathbb{Z}_5$)</div>
-                            <div class="feature-item">&check; Rotatable 3D $(1,a,a,b,c)$ polyhedral cone explorer</div>
-                            <div class="feature-item">&check; Live $(b,c)$ cross-sectional tomography slider</div>
                         </div>
                         <div class="tool-card-footer">
                             <a href="character-cones.html" class="tool-launch-btn primary">
@@ -206,65 +181,22 @@
                 <!-- Card 4: Spectra Realizer & Solver -->
                 <div class="tool-card">
                     <div class="tool-card-banner realizer-banner">
-                        <span class="banner-icon">$A \ge 0$</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">Numerical NIEP</span>
-                            <span class="mini-tag">SNIEP &amp; Stochastic</span>
-                            <span class="mini-tag">Orsi Projections</span>
-                        </div>
+                        <h3 class="tool-card-title">Numerical Spectra Realizer</h3>
                     </div>
                     <div class="tool-card-body">
-                        <h3 class="tool-card-title">Numerical Spectra Realizer</h3>
                         <p class="tool-card-desc">
                             Given a target spectrum, check necessary spectral conditions and search numerically (or via
                             exact analytical constructors) for a realizing Nonnegative, Stochastic, Symmetric, or
-                            Symmetric Stochastic matrix using Orsi alternating projections with real Schur factorizations.
+                            Symmetric Stochastic matrix using Orsi alternating projections with real Schur
+                            factorizations.
                         </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; 4 target classes: Nonnegative, Stochastic, Symmetric,
-                                Symmetric Stochastic</div>
-                            <div class="feature-item">&check; Configurable tolerance ($\varepsilon = 10^{-2}$ to
-                                $10^{-8}$) &amp; best candidate fallback</div>
-                            <div class="feature-item">&check; Exact Suleimanova, Soules, &amp; circulant direct
-                                realizations</div>
-                            <div class="feature-item">&check; Interactive heatmap, matrix export (LaTeX, NumPy, MATLAB),
-                                &amp; plot</div>
+                        <div class="banner-tags">
+                            <span class="mini-tag">Numerical NIEP</span>
+                            <span class="mini-tag">SNIEP &amp; Stochastic</span>
                         </div>
                         <div class="tool-card-footer">
                             <a href="spectra-realizer.html" class="tool-launch-btn primary">
                                 <span>Open Spectra Realizer</span>
-                                <span class="arrow">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Academic Profile & Research -->
-                <div class="tool-card">
-                    <div class="tool-card-banner profile-banner">
-                        <span class="banner-icon">Ph.D.</span>
-                        <div class="banner-tags">
-                            <span class="mini-tag">Mathematics</span>
-                            <span class="mini-tag">Publications</span>
-                            <span class="mini-tag">Teaching</span>
-                        </div>
-                    </div>
-                    <div class="tool-card-body">
-                        <h3 class="tool-card-title">Academic Profile &amp; Research</h3>
-                        <p class="tool-card-desc">
-                            Curated academic website of Benjamin J. Clark, Ph.D. in Mathematics (WSU) and Software
-                            Engineer at Google. Browse research papers on matrix-preserving polynomials, conference
-                            presentations, student lecture notes, and curriculum vitae.
-                        </p>
-                        <div class="tool-card-features">
-                            <div class="feature-item">&check; 2 Journal Articles, 1 Conference Paper &amp; 3 arXiv Preprints</div>
-                            <div class="feature-item">&check; WSU Course teaching &amp; downloadable lecture notes</div>
-                            <div class="feature-item">&check; 8 Conference &amp; seminar talks (7 slide decks)</div>
-                            <div class="feature-item">&check; Academic &amp; software engineering CV</div>
-                        </div>
-                        <div class="tool-card-footer">
-                            <a href="personal/index.html" class="tool-launch-btn primary">
-                                <span>Explore Personal Site</span>
                                 <span class="arrow">&rarr;</span>
                             </a>
                         </div>
@@ -276,417 +208,466 @@
         <!-- Mathematical Background Section -->
         <section class="hub-theory-section" id="about-niep">
             <div class="theory-section-header">
-                <div class="hero-badge">Theory &amp; Research Foundations</div>
                 <h2 class="section-title">About the Nonnegative Inverse Eigenvalue Problem</h2>
                 <p class="section-subtitle">
-                    A comprehensive overview of spectral nonnegativity, major theoretical breakthroughs, and
-                    foundational literature.
+                    The mathematical framework governing entrywise nonnegative realizations, structured subproblems, and
+                    universal spectral invariants.
                 </p>
             </div>
 
-            <!-- Subsection 1: Problem Formulation & Conditions -->
-            <div class="theory-subsection">
-                <div class="theory-subheading-group">
-                    <h3 class="theory-subheading">Core Formulation &amp; Subproblems</h3>
-                    <p class="theory-sub-desc">The mathematical framework governing entrywise nonnegative realizations
-                        and their subclasses.</p>
+            <div class="theory-cards-container stacked">
+                <!-- 01 The NIEP Formulation -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">01</span>
+                        <h3>The NIEP Formulation</h3>
+                    </div>
+                    <p>
+                        Given a multiset of $n$ complex numbers $\sigma = \{\lambda_1, \lambda_2, \dots,
+                        \lambda_n\}$, does there exist an entrywise nonnegative matrix $A \ge 0$ of order $n$ whose
+                        spectrum equals $\sigma$?
+                    </p>
+                    <div class="theory-formula">
+                        $$\begin{aligned}
+                        A &= (a_{ij}) \in \mathbb{R}^{n \times n}, \quad a_{ij} \ge 0 \\[4pt]
+                        \sigma(A) &= \{\lambda_1, \lambda_2, \dots, \lambda_n\}, \quad \det(\lambda I - A) =
+                        \prod_{i=1}^n (\lambda - \lambda_i)
+                        \end{aligned}$$
+                    </div>
+                    <p>
+                        Despite over a century of study since the roots of Perron&ndash;Frobenius theory, a general
+                        constructive characterization for arbitrary dimension $n \ge 5$ remains one of the premier
+                        unsolved problems in spectral matrix theory.
+                    </p>
                 </div>
 
-                <div class="theory-cards-container stacked">
-                    <!-- 01 The NIEP Formulation -->
-                    <div class="theory-info-card">
-                        <div class="info-card-header">
-                            <span class="info-number">01</span>
-                            <h3>The NIEP Formulation</h3>
-                        </div>
-                        <p>
-                            Given a multiset of $n$ complex numbers $\sigma = \{\lambda_1, \lambda_2, \dots,
-                            \lambda_n\}$, does there exist an entrywise nonnegative matrix $A \ge 0$ of order $n$ whose
-                            spectrum equals $\sigma$?
-                        </p>
-                        <div class="theory-formula">
-                            $$\begin{aligned}
-                            A &= (a_{ij}) \in \mathbb{R}^{n \times n}, \quad a_{ij} \ge 0 \\[4pt]
-                            \sigma(A) &= \{\lambda_1, \lambda_2, \dots, \lambda_n\}, \quad \det(\lambda I - A) =
-                            \prod_{i=1}^n (\lambda - \lambda_i)
-                            \end{aligned}$$
-                        </div>
-                        <p>
-                            Despite over a century of study since the roots of Perron-Frobenius theory, a general
-                            constructive characterization for arbitrary dimension $n \ge 5$ remains one of the premier
-                            unsolved problems in combinatorial matrix theory.
-                        </p>
+                <!-- 02 Subproblems & Variants -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">02</span>
+                        <h3>Subproblems &amp; Variants</h3>
                     </div>
-
-                    <!-- 02 Subproblems & Variants -->
-                    <div class="theory-info-card">
-                        <div class="info-card-header">
-                            <span class="info-number">02</span>
-                            <h3>Subproblems &amp; Variants</h3>
+                    <p>
+                        Several foundational variants isolate specific algebraic, geometric, and topological
+                        structures:
+                    </p>
+                    <div class="subproblems-list">
+                        <div class="subproblem-section">
+                            <h4 class="subproblem-title">Symmetric NIEP (SNIEP)</h4>
+                            <p class="subproblem-desc">Requires $A = A^T$. Restricts all eigenvalues to $\mathbb{R}$
+                                with real orthogonal eigenvectors.</p>
                         </div>
-                        <p>
-                            Several foundational variants isolate specific algebraic, geometric, and topological
-                            structures:
-                        </p>
-                        <div class="subproblems-grid">
-                            <div class="subproblem-item">
-                                <span class="subproblem-tag">SNIEP</span>
-                                <h3 class="subproblem-title">Symmetric NIEP</h3>
-                                <p class="subproblem-desc">Requires $A = A^T$. Restricts all eigenvalues to $\mathbb{R}$
-                                    with real orthogonal eigenvectors.</p>
-                            </div>
-                            <div class="subproblem-item">
-                                <span class="subproblem-tag">RNIEP</span>
-                                <h3 class="subproblem-title">Real NIEP</h3>
-                                <p class="subproblem-desc">Requires $A \ge 0$ with $\sigma \subset \mathbb{R}$ (not
-                                    necessarily symmetric; strictly broader than SNIEP for $n \ge 5$).</p>
-                            </div>
-                            <div class="subproblem-item">
-                                <span class="subproblem-tag">Stochastic</span>
-                                <h3 class="subproblem-title">Stochastic NIEP</h3>
-                                <p class="subproblem-desc">Requires row sums equal to $1$, normalizing spectral radius
-                                    $\rho(A) = 1$ and connecting directly to Karpelevi&#x010D; regions.</p>
-                            </div>
-                            <div class="subproblem-item">
-                                <span class="subproblem-tag">Nonzero Spectrum</span>
-                                <h3 class="subproblem-title">Spectral Padding</h3>
-                                <p class="subproblem-desc">Realization by an $N \times N$ matrix with $N \ge n$, padding
-                                    with $N - n$ auxiliary zero eigenvalues.</p>
-                            </div>
+                        <div class="subproblem-section">
+                            <h4 class="subproblem-title">Real NIEP (RNIEP)</h4>
+                            <p class="subproblem-desc">Requires $A \ge 0$ with $\sigma \subset \mathbb{R}^n$ (not
+                                necessarily symmetric; strictly broader than SNIEP for $n \ge 5$).</p>
                         </div>
-                    </div>
-
-                    <!-- 03 Necessary Conditions -->
-                    <div class="theory-info-card">
-                        <div class="info-card-header">
-                            <span class="info-number">03</span>
-                            <h3>Necessary Conditions</h3>
+                        <div class="subproblem-section">
+                            <h4 class="subproblem-title">Stochastic NIEP (S-NIEP)</h4>
+                            <p class="subproblem-desc">Requires row sums equal to $1$, normalizing spectral radius
+                                $\rho(A) = 1$ and connecting directly to Karpelevi&#x010D; regions.</p>
                         </div>
-                        <p>
-                            Any realizable spectrum $\sigma = \{\lambda_1, \dots, \lambda_n\}$ must satisfy universal
-                            spectral and trace invariants:
-                        </p>
-                        <div class="conditions-grid">
-                            <div class="condition-card">
-                                <div class="condition-header">
-                                    <span class="condition-num">1</span>
-                                    <h3 class="condition-title">Conjugate Symmetry</h3>
-                                </div>
-                                <div class="condition-formula">
-                                    $$\sigma = \bar{\sigma}$$
-                                </div>
-                                <p class="condition-note">Spectrum must be closed under complex conjugation because $A
-                                    \in \mathbb{R}^{n \times n}$.</p>
-                            </div>
-                            <div class="condition-card">
-                                <div class="condition-header">
-                                    <span class="condition-num">2</span>
-                                    <h3 class="condition-title">Perron Root Dominance</h3>
-                                </div>
-                                <div class="condition-formula">
-                                    $$\rho = \max_{1 \le i \le n} |\lambda_i| \in \sigma$$
-                                </div>
-                                <p class="condition-note">The spectral radius must be an eigenvalue of $A$
-                                    (Perron-Frobenius theorem).</p>
-                            </div>
-                            <div class="condition-card">
-                                <div class="condition-header">
-                                    <span class="condition-num">3</span>
-                                    <h3 class="condition-title">Power Sum Traces</h3>
-                                </div>
-                                <div class="condition-formula">
-                                    $$s_k = \sum_{i=1}^n \lambda_i^k = \operatorname{tr}(A^k) \ge 0 \quad (\forall k \ge
-                                    1)$$
-                                </div>
-                                <p class="condition-note">Since $A \ge 0$, all powers $A^k \ge 0$, so their diagonal
-                                    entries and traces must be nonnegative.</p>
-                            </div>
-                            <div class="condition-card">
-                                <div class="condition-header">
-                                    <span class="condition-num">4</span>
-                                    <h3 class="condition-title">Loewy-London Inequalities</h3>
-                                </div>
-                                <div class="condition-formula">
-                                    $$s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)$$
-                                </div>
-                                <p class="condition-note">Higher-order moments derived from entrywise Cauchy-Schwarz and
-                                    H&#x00F6;lder inequalities.</p>
-                            </div>
+                        <div class="subproblem-section">
+                            <h4 class="subproblem-title">Spectral Padding</h4>
+                            <p class="subproblem-desc">Realization by an $N \times N$ matrix with $N \ge n$, padding
+                                with $N - n$ auxiliary zero eigenvalues.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Deep-Dive Callout -->
-                <div class="deep-dive-callout">
-                    <div class="deep-dive-callout-text">
-                        <h4>Comprehensive Problem Background &amp; Mathematical Theory</h4>
-                        <p>Explore the century-long history, complete dimension-by-dimension characterizations ($n=1$ to
-                            $n \ge 5$), Loewy-London polynomial cones, and modern semi-algebraic geometry advances.</p>
+                <!-- 03 Necessary Conditions -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">03</span>
+                        <h3>Necessary Conditions</h3>
                     </div>
-                    <a href="problem-background.html" class="deep-dive-btn">
-                        <span>Read Full Problem Background</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Subsection: Major Open Problems & Active Conjectures -->
-            <div class="theory-subsection" id="niep-open-problems">
-                <div class="theory-subheading-group">
-                    <h3 class="theory-subheading">Open Problems &amp; Active Conjectures</h3>
-                    <p class="theory-sub-desc">Crucial unanswered questions, structural conjectures, and geometric
-                        frontiers shaping modern research in spectral nonnegativity.</p>
-                </div>
-
-                <div class="open-problems-grid">
-                    <!-- Problem 1: General Characterization for n >= 5 -->
-                    <div class="open-problem-card">
-                        <div>
-                            <div class="open-problem-header">
-                                <span class="open-badge frontier">Open Frontier</span>
-                                <span class="info-number">P.01</span>
+                    <p>
+                        Any realizable spectrum $\sigma = \{\lambda_1, \dots, \lambda_n\}$ must satisfy universal
+                        spectral and trace invariants:
+                    </p>
+                    <div class="conditions-list">
+                        <div class="condition-section">
+                            <div class="condition-header">
+                                <span class="condition-num">1</span>
+                                <h4 class="condition-title">Conjugate Symmetry</h4>
                             </div>
-                            <h4 class="open-problem-title">General NIEP Solvability for $n
-                                \ge 5$</h4>
                             <div class="theory-formula">
-                                $$\sigma \in \operatorname{NIEP}(n) \iff (\sigma = \bar{\sigma}) \;\wedge\;
-                                \Phi_n(\sigma) \ge 0 \quad (n \ge 5)$$
+                                $$\sigma = \bar{\sigma}$$
                             </div>
-                            <p class="open-problem-desc">
-                                While completely solved for $n \le 4$, dimensions $n \ge 5$ remain open. Because moment
-                                trace conditions are known to be insufficient, identifying an explicit, minimal system
-                                of polynomial inequalities or geometric criteria that completely characterizes
-                                realizability is one of the premier challenges in combinatorial matrix theory.
-                            </p>
+                            <p class="condition-note">Spectrum must be closed under complex conjugation because $A
+                                \in \mathbb{R}^{n \times n}$.</p>
                         </div>
-                        <div class="open-challenge-box">
-                            <strong>Key Challenge:</strong> Determine the exact semi-algebraic boundary equations
-                            distinguishing realizable spectra from trace-valid but unrealizable multisets.
-                        </div>
-                    </div>
-
-                    <!-- Problem 2: Minimal Spectral Padding -->
-                    <div class="open-problem-card">
-                        <div>
-                            <div class="open-problem-header">
-                                <span class="open-badge conjecture">Conjecture &amp; Bounds</span>
-                                <span class="info-number">P.02</span>
+                        <div class="condition-section">
+                            <div class="condition-header">
+                                <span class="condition-num">2</span>
+                                <h4 class="condition-title">Perron Root Dominance</h4>
                             </div>
-                            <h4 class="open-problem-title">Minimal Nonzero Spectrum Padding
-                            </h4>
                             <div class="theory-formula">
-                                $$N_{\min}(\sigma) = \min \{N \ge n : \sigma \cup \{0\}^{N-n} \in
-                                \operatorname{NIEP}(N)\}$$
+                                $$\rho = \max_{1 \le i \le n} |\lambda_i| \in \sigma$$
                             </div>
-                            <p class="open-problem-desc">
-                                By the Boyle&ndash;Handelman theorem (1991), any conjugation-closed nonzero spectrum with a
-                                strictly dominant positive Perron root ($\lambda_1 > |\lambda_j|$) and $s_m \ge 0$ with
-                                $s_m > 0 \Rightarrow s_{km} > 0$ ($\forall k \ge 1$) is the nonzero spectrum of a primitive
-                                nonnegative matrix of some higher order $N \ge n$. Determining sharp general upper bounds
-                                on the minimal embedding dimension $N_{\min}(\sigma)$ remains open.
-                            </p>
+                            <p class="condition-note">The spectral radius must be an eigenvalue of $A$
+                                (Perron&ndash;Frobenius theorem).</p>
                         </div>
-                        <div class="open-challenge-box">
-                            <strong>Key Challenge:</strong> Establish polynomial or dimensional upper bounds on
-                            $N_{\min}$ as a function of the spectral gap $\rho - \max_{i \ne 1}
-                            \operatorname{Re}(\lambda_i)$.
-                        </div>
-                    </div>
-
-                    <!-- Problem 3: Preserving Polynomial Cones -->
-                    <div class="open-problem-card">
-                        <div>
-                            <div class="open-problem-header">
-                                <span class="open-badge">Polynomial Cones</span>
-                                <span class="info-number">P.03</span>
+                        <div class="condition-section">
+                            <div class="condition-header">
+                                <span class="condition-num">3</span>
+                                <h4 class="condition-title">Power Sum Traces</h4>
                             </div>
-                            <h4 class="open-problem-title">Geometry of Preserving Cones
-                                $\mathcal{P}_n$</h4>
                             <div class="theory-formula">
-                                $$\mathcal{P}_n = \{p \in \mathbb{R}[x] : p(A) \ge 0 \quad \forall A \ge 0\}$$
+                                $$s_k = \sum_{i=1}^n \lambda_i^k = \operatorname{tr}(A^k) \ge 0 \quad (\forall k \ge
+                                1)$$
                             </div>
-                            <p class="open-problem-desc">
-                                The cone $\mathcal{P}_n$ of polynomials preserving nonnegative matrices provides
-                                infinite families of necessary trace invariants. While recently proven to be
-                                non-polyhedral for degree $d \ge 2n$ with arbitrarily negative coefficients,
-                                characterizing its extreme rays, boundary equations, and spherical measure remains
-                                active research.
-                            </p>
+                            <p class="condition-note">Since $A \ge 0$, all powers $A^k \ge 0$, so their diagonal
+                                entries and traces must be nonnegative.</p>
                         </div>
-                        <div class="open-challenge-box">
-                            <strong>Key Challenge:</strong> Find exact boundary algebraic representations for
-                            $\mathcal{P}_n$ when restricted to degrees $d \ge 2n$.
-                        </div>
-                    </div>
-
-                    <!-- Problem 4: Real vs Symmetric Gap -->
-                    <div class="open-problem-card">
-                        <div>
-                            <div class="open-problem-header">
-                                <span class="open-badge geometry">Symmetry Gap</span>
-                                <span class="info-number">P.04</span>
+                        <div class="condition-section">
+                            <div class="condition-header">
+                                <span class="condition-num">4</span>
+                                <h4 class="condition-title">Loewy&ndash;London Inequalities</h4>
                             </div>
-                            <h4 class="open-problem-title">The RNIEP vs. SNIEP Boundary Gap
-                            </h4>
                             <div class="theory-formula">
-                                $$\mathcal{G}_n = \operatorname{RNIEP}(n) \setminus \operatorname{SNIEP}(n) \neq
-                                \emptyset \quad (n \ge 5)$$
+                                $$s_k^m \le n^{m-1} s_{km} \quad (\forall k, m \ge 1)$$
                             </div>
-                            <p class="open-problem-desc">
-                                In 1996, Johnson, Laffey, and Loewy proved that $\operatorname{SNIEP}(n) \subsetneq
-                                \operatorname{RNIEP}(n)$ for all $n \ge 5$. Realizing spectra non-symmetrically unlocks
-                                non-orthogonal eigenvectors that accommodate real spectra where symmetric matrices fail.
-                                Exactly delineating the geometric gap and boundary between these two semi-algebraic sets
-                                remains unresolved.
-                            </p>
-                        </div>
-                        <div class="open-challenge-box">
-                            <strong>Key Challenge:</strong> Identify spectral criteria that definitively dictate when a
-                            real spectrum demands a non-symmetric realization.
+                            <p class="condition-note">Higher-order moments derived from entrywise Cauchy&ndash;Schwarz and
+                                H&#x00F6;lder inequalities.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Subsection 2: Major Theoretical Results & Milestones -->
-            <div class="theory-subsection">
-                <div class="theory-subheading-group">
-                    <h3 class="theory-subheading">Landmark Results &amp; Milestones</h3>
-                    <p class="theory-sub-desc">Chronological developments establishing the boundaries,
-                        characterizations, and solvability of the NIEP.</p>
+            <!-- Deep-Dive Callout -->
+            <div class="deep-dive-callout">
+                <div class="deep-dive-callout-text">
+                    <h3>Comprehensive Problem Background &amp; Mathematical Theory</h3>
+                    <p>Explore the century-long history, complete dimension-by-dimension characterizations ($n=1$ to
+                        $n \ge 5$), Loewy&ndash;London polynomial cones, and modern semi-algebraic geometry advances.</p>
+                </div>
+                <a href="problem-background.html" class="deep-dive-btn">
+                    <span>Read Full Problem Background</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Major Open Problems & Active Conjectures Section -->
+        <section class="hub-theory-section" id="niep-open-problems">
+            <div class="theory-section-header">
+                <h2 class="section-title">Open Problems &amp; Active Conjectures</h2>
+                <p class="section-subtitle">
+                    Crucial unanswered questions, structural conjectures, and geometric frontiers shaping modern
+                    research in spectral nonnegativity.
+                </p>
+            </div>
+
+            <div class="theory-cards-container stacked">
+                <!-- Problem 1: General Characterization for n >= 5 -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">01</span>
+                        <h3>General NIEP Solvability for $n \ge 5$</h3>
+                    </div>
+                    <div class="theory-formula">
+                        $$\sigma \in \operatorname{NIEP}(n) \iff (\sigma = \bar{\sigma}) \;\wedge\;
+                        \Phi_n(\sigma) \ge 0 \quad (n \ge 5)$$
+                    </div>
+                    <p>
+                        While completely solved for $n \le 4$, dimensions $n \ge 5$ remain open. Because moment
+                        trace conditions are known to be insufficient, identifying an explicit, minimal system
+                        of polynomial inequalities or geometric criteria that completely characterizes
+                        realizability is one of the premier challenges in combinatorial matrix theory.
+                    </p>
+                    <div class="open-challenge-box">
+                        <strong>Key Challenge:</strong> Determine the exact semi-algebraic boundary equations
+                        distinguishing realizable spectra from trace-valid but unrealizable multisets.
+                    </div>
                 </div>
 
-                <div class="theory-cards-container">
-                    <!-- Result 1 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge foundation">Foundation</span>
+                <!-- Problem 2: Minimal Spectral Padding -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">02</span>
+                        <h3>Minimal Nonzero Spectrum Padding</h3>
+                    </div>
+                    <div class="theory-formula">
+                        $$N_{\min}(\sigma) = \min \{N \ge n : \sigma \cup \{0\}^{N-n} \in
+                        \operatorname{NIEP}(N)\}$$
+                    </div>
+                    <p>
+                        By the Boyle&ndash;Handelman theorem (1991), any conjugation-closed nonzero spectrum
+                        with a strictly dominant positive Perron root ($\lambda_1 > |\lambda_j|$) and $s_m \ge 0$ with
+                        $s_m > 0 \Rightarrow s_{km} > 0$ ($\forall k \ge 1$) is the nonzero spectrum of a primitive
+                        nonnegative matrix of some higher order $N \ge n$. Determining sharp general upper bounds
+                        on the minimal embedding dimension $N_{\min}(\sigma)$ remains open.
+                    </p>
+                    <div class="open-challenge-box">
+                        <strong>Key Challenge:</strong> Establish polynomial or dimensional upper bounds on
+                        $N_{\min}$ as a function of the spectral gap $\rho - \max_{i \ne 1}
+                        \operatorname{Re}(\lambda_i)$.
+                    </div>
+                </div>
+
+                <!-- Problem 3: Preserving Polynomial Cones -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">03</span>
+                        <h3>Geometry of Preserving Cones $\mathcal{P}_n$</h3>
+                    </div>
+                    <div class="theory-formula">
+                        $$\mathcal{P}_n = \{p \in \mathbb{R}[x] : p(A) \ge 0 \quad \forall A \ge 0\}$$
+                    </div>
+                    <p>
+                        The cone $\mathcal{P}_n$ of polynomials preserving nonnegative matrices provides
+                        infinite families of necessary trace invariants. While recently proven to be
+                        non-polyhedral for degree $d \ge 2n$ with arbitrarily negative coefficients,
+                        characterizing its extreme rays, boundary equations, and spherical measure remains
+                        active research.
+                    </p>
+                    <div class="open-challenge-box">
+                        <strong>Key Challenge:</strong> Find exact boundary algebraic representations for
+                        $\mathcal{P}_n$ when restricted to degrees $d \ge 2n$.
+                    </div>
+                </div>
+
+                <!-- Problem 4: Real vs Symmetric Gap -->
+                <div class="theory-info-card">
+                    <div class="info-card-header">
+                        <span class="info-number">04</span>
+                        <h3>The RNIEP vs. SNIEP Boundary Gap</h3>
+                    </div>
+                    <div class="theory-formula">
+                        $$\mathcal{G}_n = \operatorname{RNIEP}(n) \setminus \operatorname{SNIEP}(n) \neq
+                        \emptyset \quad (n \ge 5)$$
+                    </div>
+                    <p>
+                        In 1996, Johnson, Laffey, and Loewy proved that $\operatorname{SNIEP}(n) \subsetneq
+                        \operatorname{RNIEP}(n)$ for all $n \ge 5$. Realizing spectra non-symmetrically unlocks
+                        non-orthogonal eigenvectors that accommodate real spectra where symmetric matrices fail.
+                        Exactly delineating the geometric gap and boundary between these two semi-algebraic sets
+                        remains unresolved.
+                    </p>
+                    <div class="open-challenge-box">
+                        <strong>Key Challenge:</strong> Identify spectral criteria that definitively dictate when a
+                        real spectrum demands a non-symmetric realization.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Major Theoretical Results & Milestones Section -->
+        <section class="hub-theory-section" id="niep-milestones">
+            <div class="theory-section-header">
+                <h2 class="section-title">Landmark Results &amp; Milestones</h2>
+                <p class="section-subtitle">
+                    Chronological developments establishing the boundaries, characterizations, and solvability of the
+                    NIEP.
+                </p>
+            </div>
+
+            <div class="bib-grid">
+                <!-- Result 1 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1907 &middot; 1912</span>
                         </div>
-                        <h4 class="bib-title">Perron-Frobenius Spectral Theory</h4>
-                        <p class="bib-authors">O. Perron &middot; G. Frobenius</p>
-                        <p>
-                            Established that any nonnegative matrix $A \ge 0$ has a real, maximal eigenvalue $\rho(A)
-                            \ge |\lambda|$ with an associated nonnegative eigenvector. For irreducible matrices,
-                            $\rho(A)$ is algebraically simple, strictly positive, and any peripheral eigenvalues on the
-                            circle $|z| = \rho(A)$ are distributed with exact cyclic root-of-unity symmetry.
-                        </p>
                     </div>
+                    <h3 class="bib-title">Perron&ndash;Frobenius Spectral Theory</h3>
+                    <p class="bib-authors">O. Perron &middot; G. Frobenius</p>
+                    <p class="bib-venue">Mathematische Annalen, 64(2): 248&ndash;263 &middot; Sitzungsber. Preuss. Akad.
+                        Wiss. Berlin: 456&ndash;477</p>
+                    <p class="bib-note">
+                        Established that any nonnegative matrix $A \ge 0$ has a real, maximal eigenvalue $\rho(A)
+                        \ge |\lambda|$ with an associated nonnegative eigenvector. For irreducible matrices,
+                        $\rho(A)$ is algebraically simple, strictly positive, and any peripheral eigenvalues on the
+                        circle $|z| = \rho(A)$ are distributed with exact cyclic root-of-unity symmetry.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.1007/BF01449896" target="_blank" rel="noopener" class="bib-link"
+                            title="Open Perron (1907) via DOI"><span>DOI</span></a>
+                        <a href="problem-background.html" class="bib-link" title="Read Problem Background"><span>Theory
+                                Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('perron1907', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 2 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge milestone">Sufficient Condition</span>
+                <!-- Result 2 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1949</span>
                         </div>
-                        <h4 class="bib-title">Sule&#x012D;manova's Theorem</h4>
-                        <p class="bib-authors">H. Sule&#x012D;manova</p>
-                        <p>
-                            Proved the earliest major sufficiency result for real spectra: if $\sigma$ contains a single
-                            positive eigenvalue $\lambda_0 > 0$ and all other $\lambda_i \le 0$, then $\sigma$ is
-                            realizable by a nonnegative matrix if and only if the trace condition $\sum_i \lambda_i \ge
-                            0$ holds. This became the foundation for companion matrix constructions and perturbed
-                            realizations.
-                        </p>
                     </div>
+                    <h3 class="bib-title">Sule&#x012D;manova's Theorem</h3>
+                    <p class="bib-authors">H. R. Sule&#x012D;manova</p>
+                    <p class="bib-venue">Doklady Akademii Nauk SSSR, 66(3): 343&ndash;345</p>
+                    <p class="bib-note">
+                        Proved the earliest major sufficiency result for real spectra: if $\sigma$ contains a single
+                        positive eigenvalue $\lambda_0 > 0$ and all other $\lambda_i \le 0$, then $\sigma$ is
+                        realizable by a nonnegative matrix if and only if the trace condition $\sum_i \lambda_i \ge
+                        0$ holds. This became the foundation for companion matrix constructions and perturbed
+                        realizations.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="suleimanova.html" class="bib-link"
+                            title="Read Sule&#x012D;manova Spectra Wiki"><span>Sule&#x012D;manova Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('suleimanova1949', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 3 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge geometry">Exact Geometry</span>
+                <!-- Result 3 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1951</span>
                         </div>
-                        <h4 class="bib-title">Karpelevi&#x010D;'s Boundary Characterization</h4>
-                        <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
-                        <p>
-                            Completely determined the compact region $\mathcal{K}_n \subset \mathbb{C}$ of all possible
-                            eigenvalues of $n \times n$ stochastic matrices. The boundary consists of curvilinear arcs
-                            connecting roots of unity corresponding to Farey fractions $p/q \le 1$ with $q \le n$. In
-                            1997, H. Ito reformulated these boundary curves as explicit minimal algebraic polynomial
-                            equations. (<a href="karpelevich-proof-roadmap.html" class="text-link">Explore the 9-stop proof series &rarr;</a>)
-                        </p>
                     </div>
+                    <h3 class="bib-title">Karpelevi&#x010D;'s Boundary Characterization</h3>
+                    <p class="bib-authors">F. I. Karpelevi&#x010D;</p>
+                    <p class="bib-venue">Izvestiya Akademii Nauk SSSR. Seriya Matematicheskaya, 15(4): 361&ndash;383</p>
+                    <p class="bib-note">
+                        Completely determined the compact region $\mathcal{K}_n \subset \mathbb{C}$ of all possible
+                        eigenvalues of $n \times n$ stochastic matrices. The boundary consists of curvilinear arcs
+                        connecting roots of unity corresponding to Farey fractions $p/q \le 1$ with $q \le n$. In
+                        1997, H. Ito reformulated these boundary curves as explicit minimal algebraic polynomial
+                        equations.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.1090/trans2/140/05" target="_blank" rel="noopener" class="bib-link"
+                            title="Open via DOI"><span>DOI</span></a>
+                        <a href="karpelevich-region.html" class="bib-link"
+                            title="Read Karpelevi&#x010D; Region Wiki"><span>Karpelevi&#x010D; Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('karpelevich1951', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 4 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge milestone">Polynomial Cone</span>
+                <!-- Result 4 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1978 &middot; 1979</span>
                         </div>
-                        <h4 class="bib-title">Loewy-London Inequalities &amp; Order 3 Resolution</h4>
-                        <p class="bib-authors">R. Loewy &middot; D. London</p>
-                        <p>
-                            Introduced higher trace inequalities $s_k^m \le n^{m-1} s_{km}$, ruling out infinite
-                            candidate spectra that satisfy ordinary trace positivity. They posed the fundamental problem
-                            of characterizing the cone $\mathcal{P}_n$ of polynomials preserving nonnegative matrices,
-                            completely solving the NIEP for $n = 3$ and trace-zero $n = 4$.
-                        </p>
                     </div>
+                    <h3 class="bib-title">Loewy&ndash;London Inequalities &amp; Order 3 Resolution</h3>
+                    <p class="bib-authors">R. Loewy &middot; D. London</p>
+                    <p class="bib-venue">Linear and Multilinear Algebra, 6(1): 83&ndash;90</p>
+                    <p class="bib-note">
+                        Introduced higher trace inequalities $s_k^m \le n^{m-1} s_{km}$, ruling out infinite
+                        candidate spectra that satisfy ordinary trace positivity. They posed the fundamental problem
+                        of characterizing the cone $\mathcal{P}_n$ of polynomials preserving nonnegative matrices,
+                        completely solving the NIEP for $n = 3$ and trace-zero $n = 4$.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.1080/03081087808817226" target="_blank" rel="noopener"
+                            class="bib-link" title="Open via DOI"><span>DOI</span></a>
+                        <a href="niep.html" class="bib-link" title="Read Core NIEP Wiki"><span>NIEP Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('loewy1978', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 5 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge milestone">Trace Bounds</span>
+                <!-- Result 5 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1979 &middot; 1981</span>
                         </div>
-                        <h4 class="bib-title">General JLL Power-Sum Inequalities</h4>
-                        <p class="bib-authors">C. R. Johnson</p>
-                        <p>
-                            Independently established and generalized the Johnson&ndash;Loewy&ndash;London (JLL) inequalities
-                            $s_k^m \le n^{m-1} s_{km}$ for all nonnegative matrices and integers $k, m \ge 1$, providing
-                            fundamental necessary conditions on higher spectral moments across all matrix orders.
-                        </p>
                     </div>
+                    <h3 class="bib-title">General JLL Power-Sum Inequalities</h3>
+                    <p class="bib-authors">C. R. Johnson</p>
+                    <p class="bib-venue">Linear and Multilinear Algebra, 10(2): 113&ndash;130</p>
+                    <p class="bib-note">
+                        Independently established and generalized the Johnson&ndash;Loewy&ndash;London (JLL)
+                        inequalities
+                        $s_k^m \le n^{m-1} s_{km}$ for all nonnegative matrices and integers $k, m \ge 1$, providing
+                        fundamental necessary conditions on higher spectral moments across all matrix orders.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.1080/03081088108817402" target="_blank" rel="noopener"
+                            class="bib-link" title="Open via DOI"><span>DOI</span></a>
+                        <a href="niep.html" class="bib-link" title="Read Core NIEP Wiki"><span>NIEP Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('johnson1981', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 6 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge foundation">Symbolic Dynamics</span>
+                <!-- Result 6 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1991</span>
                         </div>
-                        <h4 class="bib-title">Boyle&ndash;Handelman Spectral Realization Theorem</h4>
-                        <p class="bib-authors">M. Boyle &middot; D. Handelman</p>
-                        <p>
-                            Resolved the nonzero spectrum problem for primitive real nonnegative matrices via symbolic
-                            dynamics: a conjugation-closed nonzero list $\sigma$ is the nonzero spectrum of a primitive
-                            $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ for some $N \ge |\sigma|$ if and only if it has a
-                            strictly dominant positive Perron eigenvalue $\lambda_1 > |\lambda_j|$ and satisfies $s_m \ge 0$
-                            together with $s_m > 0 \Rightarrow s_{km} > 0$ for all $k \ge 1$.
-                        </p>
                     </div>
+                    <h3 class="bib-title">Boyle&ndash;Handelman Spectral Realization Theorem</h3>
+                    <p class="bib-authors">M. Boyle &middot; D. Handelman</p>
+                    <p class="bib-venue">Annals of Mathematics, 133(2): 249&ndash;316</p>
+                    <p class="bib-note">
+                        Resolved the nonzero spectrum problem for primitive real nonnegative matrices via symbolic
+                        dynamics: a conjugation-closed nonzero list $\sigma$ is the nonzero spectrum of a primitive
+                        $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ for some $N \ge |\sigma|$ if and only if it has a
+                        strictly dominant positive Perron eigenvalue $\lambda_1 > |\lambda_j|$ and satisfies $s_m
+                        \ge 0$
+                        together with $s_m > 0 \Rightarrow s_{km} > 0$ for all $k \ge 1$.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.2307/2944339" target="_blank" rel="noopener" class="bib-link"
+                            title="Open via DOI"><span>DOI</span></a>
+                        <a href="boyle-handelman.html" class="bib-link"
+                            title="Read Boyle&ndash;Handelman Wiki"><span>Boyle&ndash;Handelman</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('boyle1991', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
+                    </div>
+                </div>
 
-                    <!-- Result 7 -->
-                    <div class="theory-info-card">
-                        <div class="bib-header">
-                            <span class="theory-badge milestone">Dimension 4</span>
+                <!-- Result 7 -->
+                <div class="bib-card">
+                    <div class="bib-header">
+                        <div class="bib-header-left">
                             <span class="bib-year">1998 &middot; 2007</span>
                         </div>
-                        <h4 class="bib-title">Full Resolution of Dimension 4</h4>
-                        <p class="bib-authors">M. E. Meehan &middot; J. Torre-Mayo et al.</p>
-                        <p>
-                            Completed the solution of the general complex NIEP for $n = 4$ (following Loewy &amp; London's
-                            1978 solution of the real $n = 4$ and trace-zero $n = 4$ cases), characterizing the exact
-                            nonlinear coefficient inequalities beyond JLL bounds needed when a $4 \times 4$ spectrum contains
-                            a nonreal conjugate pair.
-                        </p>
+                    </div>
+                    <h3 class="bib-title">Full Resolution of Dimension 4</h3>
+                    <p class="bib-authors">M. E. Meehan &middot; J. Torre-Mayo et al.</p>
+                    <p class="bib-venue">Linear Algebra and its Applications, 426(2&ndash;3): 729&ndash;773</p>
+                    <p class="bib-note">
+                        Completed the solution of the general complex NIEP for $n = 4$ (following Loewy &amp;
+                        London's
+                        1978 solution of the real $n = 4$ and trace-zero $n = 4$ cases), characterizing the exact
+                        nonlinear coefficient inequalities beyond JLL bounds needed when a $4 \times 4$ spectrum
+                        contains
+                        a nonreal conjugate pair.
+                    </p>
+                    <div class="bib-actions">
+                        <a href="https://doi.org/10.1016/j.laa.2007.06.014" target="_blank" rel="noopener"
+                            class="bib-link" title="Open via DOI"><span>DOI</span></a>
+                        <a href="niep.html" class="bib-link" title="Read Core NIEP Wiki"><span>NIEP Wiki</span></a>
+                        <button type="button" class="bib-link bib-copy-btn"
+                            onclick="NIEP_CITATIONS_SYS.copyBibtex('torre2007', this)"
+                            title="Copy BibTeX citation to clipboard"><span>Copy BibTeX</span></button>
                     </div>
                 </div>
             </div>
 
-            <!-- Subsection 3: Curated Bibliography & Important Papers -->
-            <div class="theory-subsection">
-                <div class="theory-subheading-group with-action">
-                    <div>
-                        <h3 class="theory-subheading">Key Literature &amp; Citations</h3>
-                        <p class="theory-sub-desc">Foundational and modern research papers shaping the spectral theory of nonnegative matrices.</p>
-                    </div>
-                    <a href="bibliography.html" class="bib-link bib-link-primary">
-                        <span>Explore Comprehensive Bibliography &rarr;</span>
-                    </a>
+            <!-- Bibliography Callout -->
+            <div class="deep-dive-callout">
+                <div class="deep-dive-callout-text">
+                    <h3>Comprehensive NIEP Bibliography &amp; Citation Archive</h3>
+                    <p>Search and filter foundational and modern research papers across Perron&ndash;Frobenius theory,
+                        Karpelevi&#x010D; regions, SNIEP, RNIEP, and preserving polynomial cones, with direct links and
+                        one-click BibTeX export.</p>
                 </div>
-
-                <!-- Global Citations Component -->
-                <cite-grid keys="perron1907, frobenius1912, suleimanova1949, karpelevich1951, loewy1978, boyle1991, ito1997, laffey1999, laffey2006, johnson2016, johnson2025, verbeken2026"></cite-grid>
+                <a href="bibliography.html" class="deep-dive-btn">
+                    <span>Explore Comprehensive Bibliography</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
