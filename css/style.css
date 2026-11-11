@@ -3164,7 +3164,9 @@ a.subproblem-item {
 
 /* Auto-width variant of the tool launch button */
 .tool-launch-btn.inline {
+    display: inline-flex;
     width: auto;
+    gap: 0.6rem;
     padding: 0.75rem 1.4rem;
 }
 

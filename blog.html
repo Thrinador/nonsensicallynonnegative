@@ -11,7 +11,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Research Blog &amp; Explorations | NIEP Research Hub">
-    <meta property="og:description" content="In-depth mathematical blog posts, computational experiments, and interactive visual explorations on the Nonnegative Inverse Eigenvalue Problem (NIEP), Perron spectracones, and finite group character tables.">
+    <meta property="og:description"
+        content="In-depth mathematical blog posts, computational experiments, and interactive visual explorations on the Nonnegative Inverse Eigenvalue Problem (NIEP), Perron spectracones, and finite group character tables.">
     <meta property="og:url" content="https://nonsensicallynonnegative.com/blog">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
@@ -22,9 +23,6 @@
     <script src="js/theme.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js" defer></script>
-    <script src="js/citations.js" defer></script>
-    <script src="js/mathjax-config.js"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -38,639 +36,83 @@
     <!-- Top Navigation Component -->
     <hub-nav active="blog"></hub-nav>
 
-    <main class="deepdive-container">
-        <!-- Breadcrumb Navigation -->
-        <nav class="deepdive-breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">NIEP Hub</a>
-            <span>&rsaquo;</span>
-            <span>Blog Posts &amp; Research Explorations</span>
-        </nav>
-
+    <main class="deepdive-container" id="main-content">
         <!-- Hero Header -->
         <header class="deepdive-hero">
-            <div class="hero-badge">Research Blog &amp; Visual Explorations</div>
-            <h1 class="hero-title">Explorations in Spectral Nonnegativity</h1>
+            <h1 class="hero-title">Research Blog &amp; Explorations</h1>
             <p class="hero-subtitle">
-                Cohesive mathematical deep-dives, computational experiments, and interactive 2D/3D visualizations exploring open frontiers of the Nonnegative Inverse Eigenvalue Problem.
+                Expository articles, visual guides, and computational experiments exploring past milestones and future
+                research directions.
             </p>
         </header>
 
-        <!-- Monograph Series Section Banner -->
-        <div class="blog-series-section-banner">
-            <div class="series-section-badge">
-                <span class="series-badge-icon" aria-hidden="true">📖</span>
-                <span>Featured Monograph Series (9 Stops)</span>
-            </div>
-            <h2 class="series-section-title">Inside Karpelevič’s Proof (1951)</h2>
-            <p class="series-section-desc">
-                A multi-part visual and analytic exploration through the geometric architecture of F. I. Karpelevič's landmark theorem. Browse each stop below as a chapter of the monograph, or jump directly into the interactive roadmap.
-            </p>
-        </div>
-
-        <!-- Featured Post Card: Karpelevich Proof Series Guide -->
+        <!-- Post 1: Karpelevich Proof Series Guide -->
         <article class="blog-featured-card">
             <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Series Guide</span>
-                    <span class="blog-tag emerald">Inside the Original Proof</span>
-                    <span class="blog-tag purple">Nine Steps &middot; Two Conclusions</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; (1951) Roadmap</span>
-                </div>
+                <h2 class="blog-featured-title">
+                    <a href="karpelevich-proof-roadmap.html">Inside Karpelevi&#x010D;&rsquo;s Proof: A Map of the
+                        Argument</a>
+                </h2>
+                <time class="blog-featured-date" datetime="2026-11-08">November 8, 2026</time>
             </div>
 
             <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-proof-roadmap.html">Inside Karpelevich’s Proof: A Map of the Argument</a>
-                </h2>
-
                 <p class="blog-featured-excerpt">
-                    From invariant polygons and the chip game to Euclidean arithmetic, geometric rigidity, boundary equations, and induction: a visual guide to the major pieces of Karpelevi&#269;'s original proof of the shape of $\mathcal{K}_n$, organized into nine stops that branch toward its two conclusions &mdash; the cyclic-polygon description (Theorem A) and the boundary arcs (Theorem B).
+                    A nine-part visual and analytic guide through F. I. Karpelevi&#x010D;&rsquo;s landmark 1951
+                    characterization of the eigenvalues of stochastic matrices. Starting from invariant convex polygons
+                    and a discrete chip-moving game in the complex plane, the series traces how Euclidean arithmetic,
+                    geometric rigidity, boundary polynomial equations, and induction fit together before branching into
+                    the theorem&rsquo;s two main conclusions: the cyclic-polygon description and the explicit Farey
+                    boundary arcs.
                 </p>
 
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">9 Stops</span>
-                        <span class="blog-highlight-desc">Interactive explorer giving each step's input, operation, result, and source in the 1951 paper.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda^4 = t\lambda + (1-t)$</span>
-                        <span class="blog-highlight-desc">A 4&times;4 stochastic family tracing the arc from $i$ to $e^{2\pi i/3}$ with its invariant polygon.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Thm A &amp; B</span>
-                        <span class="blog-highlight-desc">A dependency map showing where the cyclic-polygon and boundary-arc branches separate.</span>
-                    </div>
-                </div>
-
                 <div class="blog-actions-row">
-                    <a href="karpelevich-proof-roadmap.html" class="deep-dive-btn">
-                        <span>Read the Series Roadmap</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-polygons.html" class="tool-launch-btn primary inline">
-                        <span>Start at Stop 1: Invariant Polygons &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 1 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 1</span>
-                    <span class="blog-tag emerald">Invariant Polygons</span>
-                    <span class="blog-tag purple">Interactive Witnesses</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Dmitriev&ndash;Dynkin &middot; Karpelevi&#269; &sect;2</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-polygons.html">From Matrix Rows to Convex Hulls: An Eigenvector Becomes a Geometric Witness</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Every row of $Pv=\lambda v$ is a convex combination, so the eigenvector's convex hull contains its own image: $\lambda Q\subseteq Q$. Prove the correspondence in both directions, see why the origin must be interior, normalize reducible matrices, and derive the unit disk, star-shapedness, compactness, and the roots-of-unity landmarks from the polygon picture alone.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda Q \subseteq Q$</span>
-                        <span class="blog-highlight-desc">Matrix rows &harr; convex coefficients, with an exact four-state running example.</span>
+                    <div class="banner-tags">
+                        <span class="mini-tag">Stochastic Spectra</span>
+                        <span class="mini-tag">Invariant Polygons</span>
+                        <span class="mini-tag">Farey Arcs</span>
+                        <span class="mini-tag">Nine-Part Series</span>
                     </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$0 \in \operatorname{int} Q$</span>
-                        <span class="blog-highlight-desc">Averaging and half-plane arguments for every nonreal multiplier, including $|\lambda|=1$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Change the Witness</span>
-                        <span class="blog-highlight-desc">One eigenvalue fails the square but succeeds with the power polygon $\operatorname{conv}\{1,\lambda,\lambda^2,\lambda^3\}$.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-polygons.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 1</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-contacts.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 2 (What Extremality Forces) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 2 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 2</span>
-                    <span class="blog-tag emerald">Boundary Contacts</span>
-                    <span class="blog-tag purple">Two Cyclic Diagonals</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Dmitriev&ndash;Dynkin Contact Theorem &middot; Karpelevi&#269; &sect;2</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-contacts.html">What Extremality Forces: A Polygon with No Room to Spare</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    At a nonreal radial extremum of least realizing order, no image vertex can remain strictly inside the polygon. Prove the no-interior-contact theorem via an adjustable matrix row, see how supporting lines force sparse rows supported on a single edge, and explore the Dmitriev&ndash;Dynkin fixed cyclic shift $\lambda z_i = \alpha_i z_{i+k-1} + \beta_i z_{i+k}$ that sets up Karpelevi&#269;'s chip board.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda z_i \in \partial Q$</span>
-                        <span class="blog-highlight-desc">Elementary radial expansion vs. the resolvent proof ruling out even a single interior image vertex.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Fixed Shift $k$</span>
-                        <span class="blog-highlight-desc">Every row is supported on two cyclic diagonals $(i+k-1, i+k)$ with no mixed zero endpoints.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Trace Extremum</span>
-                        <span class="blog-highlight-desc">Interactive $3\times 3$ extremal family $\lambda_t = (-1 - i\sqrt{3-4t})/2$ and its conjugate orientation.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-contacts.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 2</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-game.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 3 (Karpelevich&rsquo;s Game) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 3 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 3</span>
-                    <span class="blog-tag emerald">Original Proof</span>
-                    <span class="blog-tag purple">Playable Examples</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Circular Board &amp; Corner-Cut Reduction</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-game.html">Karpelevich’s Game: A Circular Board, a Corner Cut, and a Way to Simplify an Eigenvalue</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    A chip jumping around a circle can stand for a change to an invariant polygon. Play the game from §3 of F. I. Karpelevič's 1951 proof, see why each legal move replaces a corner $z_j$ with $y = \lambda z_i$ so that $\lambda Q' \subseteq \lambda Q \subseteq Q'$ preserves the eigenvalue $\lambda$, and discover how modular records narrow the configurations a boundary proof needs to consider.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda Q \subseteq Q$</span>
-                        <span class="blog-highlight-desc">Interactive pentagon explorer showing how $Av = \lambda v$ turns an eigenvector into a contracting polygon.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$i \mapsto i + k$</span>
-                        <span class="blog-highlight-desc">Playable circular chip board ($5 \le n \le 12$) with legal move rings, captures, and shortest-path solver.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda Q' \subseteq Q'$</span>
-                        <span class="blog-highlight-desc">Geometric corner-replacement lemma (§3, Lemma 1) &amp; the Concentration Lemma for $\gcd(n,k)$ cycles.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$a_j = jk \bmod n$</span>
-                        <span class="blog-highlight-desc">Interactive modular orbit explorer selecting candidate reduced run lengths via strict record maxima.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-game.html" class="deep-dive-btn">
-                        <span>Read &amp; Play Interactive Post</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-returns.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 4 (Return Arithmetic) &rarr;</span>
-                    </a>
-                    <a href="karpelevich-region.html" class="tool-launch-btn primary inline">
-                        <span>Karpelevič Region Theory Wiki &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 4 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 4</span>
-                    <span class="blog-tag emerald">Records &amp; Remainders</span>
-                    <span class="blog-tag purple">Exact First Returns</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;3 &middot; Lemma 2 &amp; Theorems III&ndash;IV</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-returns.html">Why the Euclidean Algorithm Appears in an Eigenvalue Problem</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Once the chip game concentrates edge contacts into a consecutive block of size $\varphi$, every other vertex follows a deterministic chain $\lambda x_i = x_{i+k}$ until it first returns to the contact block. Prove the subtractive Euclidean record-update rule ($pU + qL = n$), derive the two-length first-return formulas ($p$ and $p+q$), and see why the disjoint vertex chains partition all $n = p\varphi + qr$ states.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$pU + qL = n$</span>
-                        <span class="blog-highlight-desc">Subtract spatial gaps and add hitting times: interactive Euclidean record explorer for $a_j = jk \bmod n$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\lambda^p x_i = \xi_{i+r}$</span>
-                        <span class="blog-highlight-desc">Step-by-step circular chain walker showing the $\varphi - r$ short chains ($p$) and $r$ long chains ($p+q$).</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$n = p\varphi + qr$</span>
-                        <span class="blog-highlight-desc">The disjoint return paths partition all $n$ polygon vertices, fixing the exponents of the boundary polynomial.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-returns.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 4</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-rigidity.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 5 (Geometric Rigidity) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 5 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 5</span>
-                    <span class="blog-tag emerald">Projective Return Maps</span>
-                    <span class="blog-tag purple">One Common Weight</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;4 &middot; Theorems V&ndash;VII</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-rigidity.html">Moving Polygons Until the Weights Agree: Geometric Freedom Becomes a Contradiction</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Why do Karpelevi&#269;'s boundary equations use a single shared weight $t$ when an invariant polygon starts with a separate weight $\alpha_j$ at every edge contact? Propagate perturbations along deterministic power chains $\lambda^j x_i'$, use fractional linear central-projection return maps $u(s) = \frac{as}{1+cs}$ to force the Euclidean remainder $r=1$ (Theorem V), and slide neighboring generators along supporting edges to prove $\alpha_1 = \cdots = \alpha_m$ (Theorems VI&ndash;VII).
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$s - u(s) &gt; 0$</span>
-                        <span class="blog-highlight-desc">Interactive fractional linear return-map explorer covering $u'(0) \ne 1$ and the quadratic critical case $u'(0)=1$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$B_s = B + s(B - A)$</span>
-                        <span class="blog-highlight-desc">Exact barycentric slide showing how unequal neighboring weights $a \ne b$ push $TB_s$ strictly inside $\triangle AB_sC$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\alpha_1 = \cdots = \alpha_m$</span>
-                        <span class="blog-highlight-desc">Both forward ($\varphi &gt; g$) and backward ($\varphi = g$) slides collapse all contact weights to one parameter.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-rigidity.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 5</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-boundary-equations.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 6 (Where the Boundary Equations Come From) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 6 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 6</span>
-                    <span class="blog-tag emerald">Exact Derivations</span>
-                    <span class="blog-tag purple">Interactive Spectra</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;4, Theorems VI&ndash;VII</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-boundary-equations.html">Where the Boundary Equations Come From: Multiply Along the Chains, Then Close the Loop</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    The powers in Karpelevi&#269;'s boundary equations count contact steps, repeated chains, and a closing shift. Derive both original families, $\lambda^\tau(\lambda^\ell-t)^m=(1-t)^m$ and $(\lambda^\ell-t)^m=(1-t)^m\lambda^\sigma$, from explicit chain relations, then inspect the stochastic matrices whose characteristic polynomials they are.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$n = \ell m + \tau$</span>
-                        <span class="blog-highlight-desc">A closing tail adds states; a shifted target $z_m = \lambda^\sigma z_0$ reuses them ($n = \ell m$).</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\det(\lambda I - A_t)$</span>
-                        <span class="blog-highlight-desc">Cycle-expansion proof that both equations are exact characteristic polynomials.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">7 &amp; 6 States</span>
-                        <span class="blog-highlight-desc">Step-through elimination and a live spectrum &amp; matrix explorer for $t \in [0,1]$.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-boundary-equations.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore the Derivations</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-farey.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 7 (Why Farey Neighbors Label the Arcs) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 7 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 7</span>
-                    <span class="blog-tag emerald">Farey Sequences</span>
-                    <span class="blog-tag purple">Winding &amp; Angles</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;5, Theorems VIII&ndash;IX</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-farey.html">Why Farey Neighbors Label the Arcs: Unit-Circle Landmarks and the Angle Estimates Behind Karpelevich&rsquo;s Boundary</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Why do adjacent Farey fractions $a/b &lt; c/d$ with $bc - ad = 1$ index the boundary arcs of $\mathcal{K}_n$? Follow the unit-circle roots of unity $e^{2\pi i p/q}$ as order $n$ grows by mediant insertion, prove Karpelevi&#269;'s winding inequalities (Theorems VIII&ndash;IX) that trap the relevant root inside a single sector, and verify the endpoint collisions at $t=0$ and $t=1$.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$bc - ad = 1$</span>
-                        <span class="blog-highlight-desc">Interactive Farey explorer on the unit circle for $n=3\dots 7$ showing mediant insertion and arc-family switching.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\frac{f}{b} &lt; \theta &lt; \frac{k}{n}$</span>
-                        <span class="blog-highlight-desc">Step-by-step proof of Theorem VIII and live 5-step polygon winding visualizer keeping the turn count.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$t=0 \leftrightarrow t=1$</span>
-                        <span class="blog-highlight-desc">Exact root matching showing how the $n=4$ boundary curve connects $i = e^{2\pi i/4}$ and $e^{2\pi i/3}$.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-farey.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 7</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-cyclic.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 8 (Cyclic Polygons and the Whole Region) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 8 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 8</span>
-                    <span class="blog-tag emerald">Power Orbits</span>
-                    <span class="blog-tag purple">Theorem A</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;1 &amp; &sect;5, Theorem X</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-cyclic.html">Cyclic Polygons and the Whole Region: A Polygon That Realizes Every Point It Contains</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    How do Karpelevi&#269;'s contact relations turn a single witness polygon into a union description of the entire region $\mathcal{K}_n$? Prove the finite closing certificate $\mu^L \in P \implies P = C(\mu, h)$, see why multiplicative closure $z, w \in C \implies zw \in C$ makes every point $z \in C$ an eigenvalue with an explicit stochastic matrix, and fill the radial segments $[0, \lambda]$ via Theorem X to complete Theorem A.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$z, w \in C \implies zw \in C$</span>
-                        <span class="blog-highlight-desc">Interactive rational matrix explorer on the cyclic diamond $C(i/2, 2)$ with exact BigInt row-sum and eigenvector checks.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\mu^L \in P \implies \mu P \subseteq P$</span>
-                        <span class="blog-highlight-desc">Interactive power-orbit explorer comparing the 4-state spiral, the 8-generator half-turn polygon, and the cyclic diamond.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\mathcal{K}_n = \bigcup C$</span>
-                        <span class="blog-highlight-desc">From radial extrema (Theorem X) and low-order base cases to the star-shaped union of cyclic polygons with at most $n$ vertices.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-cyclic.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 8</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
-                    <a href="karpelevich-induction.html" class="tool-launch-btn primary inline">
-                        <span>Next: Stop 9 (Closing the Boundary) &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Featured Post Card: Karpelevich Proof Series, Stop 9 -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Inside the Original Proof &middot; Stop 9 (Finale)</span>
-                    <span class="blog-tag emerald">Denominator Test</span>
-                    <span class="blog-tag purple">Theorem B</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>Karpelevi&#269; &sect;5, pp. 380&ndash;383</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="karpelevich-induction.html">Closing the Boundary: Old Arcs, New Arcs, and Induction</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Since $\mathcal{K}_{n-1} \subseteq \mathcal{K}_n$, which candidate curves survive on the outer frontier and which get buried inside? Prove the denominator divisibility rule for Farey neighbors $a/b &lt; c/d$, establish the quantitative interior-image lemma $B(\mu, \delta/M) \subseteq \mathcal{K}_n$, see how the regular hexagon buries the order-four arc point $\lambda_0 = (-1+i\sqrt{11})/4$ at order six, and complete the inductive assembly of Theorem B.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$b \nmid n \;\land\; d \nmid n$</span>
-                        <span class="blog-highlight-desc">Interactive Farey ancestry explorer ($n=5\dots 18$) classifying inherited arcs, existing-endpoint new arcs, and new landmarks.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$B(\mu, \delta/M) \subseteq \mathcal{K}_n$</span>
-                        <span class="blog-highlight-desc">Local interior-image lemma and interactive regular-hexagon witness expanding $\lambda_0$ to $\frac{33}{32}\lambda_0 \in \mathcal{K}_6$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">$\Gamma_{n-1} \cap S_{n,k} = \Gamma_{n_*} \cap S_{n,k}$</span>
-                        <span class="blog-highlight-desc">Comparison order $n_* &lt; n$ and complementary exclusions that exhaust every Farey sector on the boundary.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="karpelevich-induction.html" class="deep-dive-btn">
-                        <span>Read &amp; Explore Stop 9</span>
-                        <span class="arrow">&rarr;</span>
-                    </a>
                     <a href="karpelevich-proof-roadmap.html" class="tool-launch-btn primary inline">
-                        <span>Complete Series Roadmap &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Standalone Deep Dives Section Header -->
-        <div class="blog-series-section-banner">
-            <div class="series-section-badge">
-                <span class="series-badge-icon" aria-hidden="true">🔬</span>
-                <span>Independent Research Deep Dives</span>
-            </div>
-            <h2 class="series-section-title">Polyhedral Cones &amp; Realization Frontiers</h2>
-            <p class="series-section-desc">
-                Computational experiments and interactive 3D visualizations probing polyhedral character spectracones in the Symmetric NIEP.
-            </p>
-        </div>
-
-        <!-- Featured Post Card: Character Cones -->
-        <article class="blog-featured-card">
-            <div class="blog-featured-banner">
-                <div class="blog-meta-row">
-                    <span class="blog-tag">Featured Post</span>
-                    <span class="blog-tag emerald">Perron Spectracones</span>
-                    <span class="blog-tag purple">Interactive 3D Plotly</span>
-                </div>
-                <div class="blog-meta-row">
-                    <span>5&times;5 &amp; 4&oplus;1 Character Tables</span>
-                </div>
-            </div>
-
-            <div class="blog-featured-body">
-                <h2 class="blog-featured-title">
-                    <a href="character-cones.html">Character Table Spectracones &amp; the $n=5$ SNIEP: From $(1,a,a,b,b)$ to the 3D $(1,a,a,b,c)$ Frontier</a>
-                </h2>
-
-                <p class="blog-featured-excerpt">
-                    Recent work by Johnson &amp; Paparella (2025) and Gershnik, Lewis, &amp; Paparella (2026) revealed that the character tables of finite groups act as <strong>ideal Perron similarities</strong>, transforming the nonlinear eigenvalue realization problem into explicit systems of linear halfspaces governed by group character values and conjugacy class sizes. In this interactive exploration, we test how much of the $n=5$ Symmetric NIEP can be carved out by finite group character tables alone.
-                </p>
-                <p class="blog-featured-excerpt mb-0">
-                    Starting with the constructively realizable 2D Loewy&ndash;McDonald (2004) benchmark region for $\sigma = (1, a, a, b, b)$, we plot the polyhedral cones generated by the selected $5 \times 5$ character tables $D_8, Q_8, S_4, A_5$, and $\mathbb{Z}_5$, diagnose why a large wedge near the McDonald&ndash;Neumann boundary $1 + a + 2b = 0$ is missed by that five-group family, and resolve it by adjoining a $1 \times 1$ eigenvalue block to the $4 \times 4$ Klein four-group table ($V_4 \oplus [1]$)—achieving <strong>99.97% coverage</strong> of the Loewy&ndash;McDonald benchmark region. We then lift the entire machinery to the <strong>unsolved 3D frontier $\sigma = (1, a, a, b, c)$</strong> inside the trace polytope $\Delta_3$.
-                </p>
-
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">99.97% Coverage</span>
-                        <span class="blog-highlight-desc">$D_8 \cup \mathbb{Z}_5 \cup (V_4 \oplus [1])$ captures area $1.34020$ of the $1.34057$ Loewy&ndash;McDonald benchmark region.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">0.03% Curved Gap</span>
-                        <span class="blog-highlight-desc">Microscopic zoom into the non-polyhedral Loewy&ndash;McDonald hyperbola $1 + 4ab = 0$ between $K_1$ and $K_2$.</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">4&oplus;1 Adjoined Fix</span>
-                        <span class="blog-highlight-desc">Why $1+a+2b=0$ is really an $n=4$ boundary plus an adjoined $[a] \ge 0$ block ($V_4 \oplus [1]$).</span>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">17 3D Cone Orbits</span>
-                        <span class="blog-highlight-desc">Interactive 3D Plotly explorer &amp; live $(b,c)$ cross-sectional tomography for $\sigma = (1,a,a,b,c)$.</span>
-                    </div>
-                </div>
-
-                <div class="blog-actions-row">
-                    <a href="character-cones.html" class="deep-dive-btn">
-                        <span>Read Full Interactive Post</span>
+                        <span>Read Proof Monograph</span>
                         <span class="arrow">&rarr;</span>
                     </a>
-                    <a href="plots/aabc_interactive_3d.html" target="_blank" rel="noopener" class="tool-launch-btn primary inline">
-                        <span>Launch Full-Screen 3D $(1,a,a,b,c)$ Explorer &rarr;</span>
-                    </a>
-                    <a href="plots/aabc_plotly_subplots_3d.html" target="_blank" rel="noopener" class="tool-launch-btn primary inline">
-                        <span>Launch 2&times;2 3D Group Dashboard &rarr;</span>
-                    </a>
                 </div>
             </div>
         </article>
 
-        <!-- Archive Section: Earlier Expository Notes -->
-        <div class="blog-series-section-banner">
-            <div class="series-section-badge">
-                <span class="series-badge-icon" aria-hidden="true">📄</span>
-                <span>Archive &middot; Expository Notes</span>
-            </div>
-            <h2 class="series-section-title">Earlier Expository Notes (PDF)</h2>
-            <p class="series-section-desc">
-                Standalone expository notes on graph coloring, combinatorial geometry, and spectral recurrences for structured matrices.
-            </p>
-        </div>
-
+        <!-- Post 2: Character Cones -->
         <article class="blog-featured-card">
+            <div class="blog-featured-banner">
+                <h2 class="blog-featured-title">
+                    <a href="character-cones.html">Character Table Spectracones &amp; the Order-5 Symmetric NIEP</a>
+                </h2>
+                <time class="blog-featured-date" datetime="2026-11-01">November 1, 2026</time>
+            </div>
+
             <div class="blog-featured-body">
-                <div class="blog-highlights-grid">
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Tridiagonal Spectra</span>
-                        <span class="blog-highlight-desc">Three-term recurrence relations, Chebyshev polynomials, and explicit characteristic polynomials of structured tridiagonal matrices.</span>
-                        <div class="mt-sm">
-                            <a href="files/blog-posts/tridiagonal-matrix/characteristic-polynomial-tridiagonal-matrices.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
-                        </div>
+                <p class="blog-featured-excerpt">
+                    Recent work by Johnson &amp; Paparella (2025) and Gershnik, Lewis, &amp; Paparella (2026) showed
+                    that the character tables of finite groups act as ideal Perron similarities, turning the nonlinear
+                    symmetric eigenvalue realization problem into explicit systems of linear halfspaces. This
+                    interactive exploration tests how much of the order-five Symmetric NIEP can be carved out by finite
+                    group character tables alone&mdash;capturing nearly the entire two-dimensional Loewy&ndash;McDonald
+                    benchmark slice once reducible adjoined blocks are included, isolating the microscopic curved
+                    hyperbola gap that polyhedral cones cannot reach, and lifting the construction into the unsolved
+                    three-dimensional trace-zero frontier.
+                </p>
+
+                <div class="blog-actions-row">
+                    <div class="banner-tags">
+                        <span class="mini-tag">Symmetric NIEP</span>
+                        <span class="mini-tag">Perron Similarities</span>
+                        <span class="mini-tag">Character Tables</span>
+                        <span class="mini-tag">Interactive 3D</span>
                     </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Heawood Conjecture</span>
-                        <span class="blog-highlight-desc">Euler characteristic bounds, surface genus, and the Ringel&ndash;Youngs map-coloring theorem on higher-genus surfaces.</span>
-                        <div class="mt-sm">
-                            <a href="files/blog-posts/heawood-conjecture.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="blog-highlight-item">
-                        <span class="blog-highlight-num">Points and Boxes</span>
-                        <span class="blog-highlight-desc">Combinatorial geometry and extremal configurations of points inside axis-aligned boxes.</span>
-                        <div class="mt-sm">
-                            <a href="files/blog-posts/points-and-boxes/points-and-boxes.pdf" target="_blank" rel="noopener" class="text-link">Read PDF &rarr;</a>
-                        </div>
-                    </div>
+                    <a href="character-cones.html" class="tool-launch-btn primary inline">
+                        <span>Explore Character Cones</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
                 </div>
             </div>
         </article>
@@ -681,4 +123,3 @@
 </body>
 
 </html>
-
