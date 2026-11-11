@@ -322,7 +322,7 @@ function solvePolarBoundaryArc(n, f1, f2, samplesPerArc) {
 /**
  * Compute the complete Karpelevič boundary for matrix size n
  */
-function computeKarpelevichBoundary(n, samplesPerArc = 40) {
+function computeKarpelevichBoundary(n, samplesPerArc = 96) {
     const fullFarey = getFareySequence(n);
     const fareyRoots = fullFarey.map(f => {
         const angle = (2 * Math.PI * f.p) / f.q;
@@ -473,21 +473,191 @@ function getClosestPointOnBoundary(px, py, polygon) {
 }
 
 /**
- * Check containment status of point z relative to Karpelevič region
+ * Exact polar boundary radius rho_n(theta) for n >= 4 and theta in [0, pi].
  */
-function checkPointStatus(px, py, polygon) {
+function exactPolarBoundaryRadius(n, absTheta) {
+    const clampedTheta = Math.max(0, Math.min(Math.PI, Math.abs(absTheta)));
+    const frac = clampedTheta / (2 * Math.PI); // in [0, 0.5]
+    const halfFarey = getFareySequence(n).filter(f => f.p / f.q <= 0.5);
+
+    for (let i = 0; i < halfFarey.length - 1; i++) {
+        const f1 = halfFarey[i];
+        const f2 = halfFarey[i + 1];
+        const v1 = f1.p / f1.q;
+        const v2 = f2.p / f2.q;
+        if (frac < v1 - 1e-14 || frac > v2 + 1e-14) continue;
+        if (Math.abs(frac - v1) <= 1e-13 || Math.abs(frac - v2) <= 1e-13) {
+            return 1.0;
+        }
+
+        let p, q, r, s;
+        if (f1.q < f2.q) {
+            p = f1.p; q = f1.q; r = f2.p; s = f2.q;
+        } else {
+            p = f2.p; q = f2.q; r = f1.p; s = f1.q;
+        }
+
+        if (q === 1 && s === n) {
+            return Math.cos(Math.PI / n) / Math.cos(clampedTheta - Math.PI / n);
+        }
+
+        const k = Math.floor(n / q);
+        const psi = (q - s / k) * clampedTheta + (2 * Math.PI * r) / k;
+        const cA = Math.sin((s * clampedTheta - 2 * Math.PI * r) / k);
+        const cB = Math.sin(q * clampedTheta);
+        const cC = Math.sin(psi);
+        const G = (rho) => Math.pow(rho, q) * cA - Math.pow(rho, s / k) * cB + cC;
+
+        let lo = 0.0;
+        let hi = 1.0;
+        let gLo = G(lo);
+        for (let iter = 0; iter < 56; iter++) {
+            const mid = 0.5 * (lo + hi);
+            const gMid = G(mid);
+            if (gMid === 0) {
+                lo = hi = mid;
+                break;
+            }
+            if (gLo * gMid <= 0) {
+                hi = mid;
+            } else {
+                lo = mid;
+                gLo = gMid;
+            }
+        }
+        return 0.5 * (lo + hi);
+    }
+    return 1.0;
+}
+
+/**
+ * Check containment status of point z relative to Karpelevič region.
+ * Separates exact mathematical membership / boundary classification from a
+ * secondary visual "Near ∂K_n" proximity note, and immediately rejects |z| > 1.
+ */
+function checkPointStatus(px, py, polygon, nOrder) {
+    const nVal = nOrder || state.n;
+    const r = Math.hypot(px, py);
+    const polyDist = (polygon && polygon.length > 0) ? minDistanceToPolygon(px, py, polygon) : Infinity;
+    const EXACT_TOL = 8e-5;
+    const NEAR_TOL = 0.012;
+
+    // Universal spectral radius bound: every stochastic eigenvalue satisfies |z| <= 1.
+    if (r > 1 + 1e-9) {
+        const dist = Number.isFinite(polyDist) ? polyDist : (r - 1);
+        const near = dist < NEAR_TOL;
+        return {
+            status: 'outside',
+            nearBoundary: near,
+            text: near ? 'Outside 𝒦ₙ (Near ∂𝒦ₙ, |z| > 1)' : 'Outside 𝒦ₙ (Infeasible for SIEP)',
+            html: near ? 'Outside &#x1D4A6;<sub>n</sub> (Near &part;&#x1D4A6;<sub>n</sub>, |z| &gt; 1)' : 'Outside &#x1D4A6;<sub>n</sub> (Infeasible for SIEP)',
+            dist
+        };
+    }
+
+    if (nVal === 2) {
+        const dx = Math.max(0, Math.abs(px) - 1);
+        const exactDist = Math.hypot(dx, py);
+        if (exactDist <= EXACT_TOL) {
+            return {
+                status: 'boundary',
+                nearBoundary: true,
+                text: 'On Boundary ∂𝒦₂ = [−1, 1]',
+                html: 'On Boundary &part;&#x1D4A6;<sub>2</sub> = [&minus;1, 1]',
+                dist: exactDist
+            };
+        }
+        const near = exactDist < NEAR_TOL;
+        return {
+            status: 'outside',
+            nearBoundary: near,
+            text: near ? 'Outside 𝒦₂ (Near ∂𝒦₂)' : 'Outside 𝒦₂ (Infeasible for SIEP)',
+            html: near ? 'Outside &#x1D4A6;<sub>2</sub> (Near &part;&#x1D4A6;<sub>2</sub>)' : 'Outside &#x1D4A6;<sub>2</sub> (Infeasible for SIEP)',
+            dist: exactDist
+        };
+    }
+
+    if (nVal === 3) {
+        const spikeDx = px < -1 ? (-1 - px) : (px > -0.5 ? (px + 0.5) : 0);
+        const spikeDist = Math.hypot(spikeDx, py);
+        const mLeft = px + 0.5;
+        const mSlant = (1 - px - Math.sqrt(3) * Math.abs(py)) / 2;
+        const triMargin = Math.min(mLeft, mSlant);
+        const dist = Number.isFinite(polyDist) ? polyDist : Math.min(spikeDist, Math.abs(triMargin));
+
+        if (spikeDist <= EXACT_TOL || (Math.abs(triMargin) <= EXACT_TOL && mLeft >= -EXACT_TOL && mSlant >= -EXACT_TOL)) {
+            return {
+                status: 'boundary',
+                nearBoundary: true,
+                text: 'On Boundary ∂𝒦₃',
+                html: 'On Boundary &part;&#x1D4A6;<sub>3</sub>',
+                dist
+            };
+        }
+        const near = dist < NEAR_TOL;
+        if (triMargin > EXACT_TOL) {
+            return {
+                status: 'inside',
+                nearBoundary: near,
+                text: near ? 'Inside 𝒦₃ (Near ∂𝒦₃)' : 'Inside 𝒦₃ (Stochastic Spectrum)',
+                html: near ? 'Inside &#x1D4A6;<sub>3</sub> (Near &part;&#x1D4A6;<sub>3</sub>)' : 'Inside &#x1D4A6;<sub>3</sub> (Stochastic Spectrum)',
+                dist
+            };
+        }
+        return {
+            status: 'outside',
+            nearBoundary: near,
+            text: near ? 'Outside 𝒦₃ (Near ∂𝒦₃)' : 'Outside 𝒦₃ (Infeasible for SIEP)',
+            html: near ? 'Outside &#x1D4A6;<sub>3</sub> (Near &part;&#x1D4A6;<sub>3</sub>)' : 'Outside &#x1D4A6;<sub>3</sub> (Infeasible for SIEP)',
+            dist
+        };
+    }
+
     if (!polygon || polygon.length === 0) {
         return { status: 'outside', text: 'Computing...', dist: Infinity };
     }
-    const dist = minDistanceToPolygon(px, py, polygon);
-    if (dist < 0.012) {
-        return { status: 'boundary', text: 'On Boundary ∂𝒦ₙ', html: 'On Boundary &part;&#x1D4A6;<sub>n</sub>', dist };
+
+    if (r < 1e-12) {
+        return {
+            status: 'inside',
+            nearBoundary: false,
+            text: 'Inside 𝒦ₙ (Stochastic Spectrum)',
+            html: 'Inside &#x1D4A6;<sub>n</sub> (Stochastic Spectrum)',
+            dist: polyDist
+        };
     }
-    const inside = isPointInPolygon(px, py, polygon);
-    if (inside) {
-        return { status: 'inside', text: 'Inside 𝒦ₙ (Stochastic Spectrum)', html: 'Inside &#x1D4A6;<sub>n</sub> (Stochastic Spectrum)', dist };
+
+    const absTheta = Math.abs(Math.atan2(py, px));
+    const rhoExact = exactPolarBoundaryRadius(nVal, absTheta);
+    const radialDiff = r - rhoExact;
+
+    if (Math.abs(radialDiff) <= EXACT_TOL || (polyDist <= 5e-5 && Math.abs(radialDiff) <= 1.5e-4)) {
+        return {
+            status: 'boundary',
+            nearBoundary: true,
+            text: 'On Boundary ∂𝒦ₙ',
+            html: 'On Boundary &part;&#x1D4A6;<sub>n</sub>',
+            dist: polyDist
+        };
     }
-    return { status: 'outside', text: 'Outside 𝒦ₙ (Infeasible for SIEP)', html: 'Outside &#x1D4A6;<sub>n</sub> (Infeasible for SIEP)', dist };
+
+    const near = polyDist < NEAR_TOL;
+    if (radialDiff < 0) {
+        return {
+            status: 'inside',
+            nearBoundary: near,
+            text: near ? 'Inside 𝒦ₙ (Near ∂𝒦ₙ)' : 'Inside 𝒦ₙ (Stochastic Spectrum)',
+            html: near ? 'Inside &#x1D4A6;<sub>n</sub> (Near &part;&#x1D4A6;<sub>n</sub>)' : 'Inside &#x1D4A6;<sub>n</sub> (Stochastic Spectrum)',
+            dist: polyDist
+        };
+    }
+    return {
+        status: 'outside',
+        nearBoundary: near,
+        text: near ? 'Outside 𝒦ₙ (Near ∂𝒦ₙ)' : 'Outside 𝒦ₙ (Infeasible for SIEP)',
+        html: near ? 'Outside &#x1D4A6;<sub>n</sub> (Near &part;&#x1D4A6;<sub>n</sub>)' : 'Outside &#x1D4A6;<sub>n</sub> (Infeasible for SIEP)',
+        dist: polyDist
+    };
 }
 
 /**
@@ -1453,6 +1623,7 @@ function applyPresetPoint(type) {
 
 // --- Initialization ---
 
+if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Parse shareable URL parameters (?n=&re=&im=&k=) if present
     loadUrlState();
@@ -1584,6 +1755,18 @@ document.addEventListener('DOMContentLoaded', () => {
     setPower(state.currentPower);
     syncPointInputs(true);
 });
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        getFareySequence,
+        solvePolarBoundaryArc,
+        computeKarpelevichBoundary,
+        exactPolarBoundaryRadius,
+        checkPointStatus,
+        computePowers
+    };
+}
 
 
 // --- Interactive Horizontal Sidebar Resizer ---

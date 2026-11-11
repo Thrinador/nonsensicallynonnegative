@@ -7,12 +7,12 @@
     <title>Symmetric NIEP (SNIEP) | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
         content="Comprehensive mathematical wiki article on the Symmetric Nonnegative Inverse Eigenvalue Problem (SNIEP), orthogonal geometry, Fiedler theorems, Soules bases, and trace polytopes.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/sniep.html">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/sniep">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Symmetric NIEP (SNIEP) | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical wiki article on the Symmetric Nonnegative Inverse Eigenvalue Problem (SNIEP), orthogonal geometry, Fiedler theorems, Soules bases, and trace polytopes.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/sniep.html">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/sniep">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
@@ -260,28 +260,28 @@
                     </div>
 
                     <p class="deepdive-text">
-                        For $n \le 4$, the Symmetric and Real NIEP are identical: any real spectrum realizable non-symmetrically is also realizable symmetrically. However, in 1996, <strong>Charles Johnson, Thomas Laffey, and Raphael Loewy</strong> proved that for all $n \ge 5$, the SNIEP is strictly smaller than the RNIEP.
+                        For $n \le 4$, the Symmetric and Real NIEP coincide ($\operatorname{SNIEP}(n) = \operatorname{RNIEP}(n)$). In 1996, <strong>Charles R. Johnson, Thomas J. Laffey, and Raphael Loewy</strong> proved that the two problems diverge (first demonstrated at $n = 6$), and subsequent results by Meehan (1998), Laffey &amp; Meehan (1999), and Hartwig &amp; Loewy established $\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n)$ for every $n \ge 5$.
                     </p>
 
                     <div class="math-callout milestone">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">The Johnson-Laffey-Loewy Spectrum</h3>
-                            <span class="math-callout-tag">Separation Landmark (1996)</span>
+                            <h3 class="math-callout-title">Order-5 Separating Spectrum</h3>
+                            <span class="math-callout-tag">Hartwig&ndash;Loewy &middot; Laffey&ndash;Meehan (1999)</span>
                         </div>
                         <p class="deepdive-text">
-                            Consider the multiset of order 5:
+                            In the trace-zero benchmark family $\sigma(t) = \{3+t, 3-t, -2, -2, -2\}$, taking $t = \tfrac{1}{2}$ and scaling by $2$ yields:
                         </p>
                         <div class="theory-formula">
-                            $$\sigma = \{4, 2, 2, -4, -4\}$$
+                            $$\sigma = \{7, 5, -4, -4, -4\}$$
                         </div>
                         <p class="deepdive-text">
-                            Notice that $\sum \lambda_i = 4 + 2 + 2 - 4 - 4 = 0$ and all power sum traces are positive. It can be realized by an asymmetric nonnegative matrix $A \ge 0$ (hence $\sigma \in \operatorname{RNIEP}(5)$). However, Johnson, Laffey, and Loewy proved that no symmetric $5 \times 5$ nonnegative matrix can have spectrum $\sigma$:
+                            Its power sums satisfy $s_1 = 0$, $s_2 = 122$, $s_3 = 276$, $s_4 = 3794$, $s_5 = 16860 > 0$, and $4s_4 - s_2^2 = 292 > 0$, and $\sigma$ is realized by an explicit $5 \times 5$ nonnegative integer matrix (see <a href="rniep.html" class="text-link">RNIEP</a>). Yet no symmetric $5 \times 5$ nonnegative matrix can realize $\sigma$:
                         </p>
                         <div class="theory-formula">
-                            $$\{4, 2, 2, -4, -4\} \in \operatorname{RNIEP}(5) \setminus \operatorname{SNIEP}(5)$$
+                            $$\{7, 5, -4, -4, -4\} \in \operatorname{RNIEP}(5) \setminus \operatorname{SNIEP}(5)$$
                         </div>
                         <p class="deepdive-text mb-0">
-                            <strong>Mechanism:</strong> If $A = A^T \ge 0$ realized $\sigma$, the trace of $A$ is zero, forcing all diagonal entries to be zero: $a_{ii} = 0$. Since $A$ is symmetric, this forces specific zero sub-block patterns that constrain the 2-dimensional eigenspace corresponding to $-4$, leading to an algebraic contradiction.
+                            <strong>Mechanism:</strong> Any symmetric $A = A^T \ge 0$ of order $5$ with $\operatorname{tr}(A) = 0$ has zero diagonal ($a_{ii} = 0$), which forces its ordered eigenvalues $\lambda_1 \ge \dots \ge \lambda_5$ to obey $\lambda_2 + \lambda_5 \le 0$ (McDonald &amp; Neumann 2000; Spector 2009; hence $\sigma(t) \in \operatorname{SNIEP}(5) \iff t \ge 1$). For $\{7, 5, -4, -4, -4\}$, $\lambda_2 + \lambda_5 = 5 + (-4) = 1 > 0$, ruling out any symmetric nonnegative realization.
                         </p>
                     </div>
                 </section>
@@ -304,7 +304,7 @@
                     <div class="deepdive-callout mt-base">
                         <div class="deepdive-callout-text">
                             <h3>Interactive 3D Trace Polytope Gallery</h3>
-                            <p>Explore interactive 3D WebGL projections comparing SNIEP vs. RNIEP trace polytopes for dimensions $n = 4, 5, 6$.</p>
+                            <p>Explore interactive 2D and 3D WebGL projections comparing order-5 SNIEP vs. RNIEP trace polytopes and realizability regions.</p>
                         </div>
                         <a href="trace-polytope.html" class="deep-dive-btn">
                             <span>Open Polytope Gallery</span>

@@ -495,8 +495,12 @@ hub-nav {
     transition: opacity 0.2s ease;
 }
 
+#welcomeMessage.hidden,
+.welcome-msg.hidden,
 .plot-loading-overlay.hidden,
-.plot-share-btn.hidden {
+.plot-share-btn.hidden,
+.plot-info-btn.hidden,
+.plot-provenance-card.hidden {
     display: none;
 }
 
@@ -551,6 +555,131 @@ hub-nav {
 
 .welcome-msg p {
     color: var(--text-secondary);
+}
+
+.sidebar-dataset-note {
+    margin-top: 0.65rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+.provenance-inline-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.provenance-inline-btn:hover {
+    color: var(--accent-hover);
+}
+
+.plot-info-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 12;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.plot-info-btn:hover,
+.plot-info-btn[aria-expanded="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-text);
+}
+
+.plot-provenance-card {
+    position: absolute;
+    z-index: 22;
+    width: calc(100% - 2.5rem);
+    max-width: 680px;
+    max-height: calc(100% - 4.5rem);
+    overflow-y: auto;
+    padding: 1.35rem 1.5rem;
+    border-radius: 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.plot-provenance-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.plot-provenance-header h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.plot-provenance-close {
+    background: var(--btn-inactive-bg);
+    border: 1px solid var(--btn-inactive-border);
+    color: var(--text-primary);
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.plot-provenance-close:hover {
+    border-color: var(--accent);
+}
+
+.plot-provenance-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.plot-provenance-body strong {
+    color: var(--text-primary);
+}
+
+.plot-provenance-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.79rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    background: var(--bg-surface-secondary);
+    color: var(--text-primary);
+}
+
+.plot-provenance-list {
+    padding-left: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
 

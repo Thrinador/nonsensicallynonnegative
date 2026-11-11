@@ -25,7 +25,7 @@
       "author": {
         "@type": "Person",
         "name": "Benjamin J. Clark",
-        "url": "https://nonsensicallynonnegative.com/personal/index.html"
+        "url": "https://nonsensicallynonnegative.com/personal/"
       }
     }
     </script>
@@ -154,15 +154,15 @@
                     <div class="tool-card-body">
                         <h3 class="tool-card-title">Trace Polytope Gallery</h3>
                         <p class="tool-card-desc">
-                            Explore interactive 2D polygons and 3D polyhedra capturing necessary and sufficient trace
-                            polytope conditions for the Symmetric (SNIEP) and Real (RNIEP) inverse eigenvalue problems
-                            for dimensions $n = 4, 5$, and $6$. Filter by matrix class, dimension, and vertex signature.
+                            Explore 125 interactive 2D polygons and 3D polyhedra visualizing order-5 ($n = 5$) trace
+                            polytope cross-sections and realizability regions for the Symmetric (SNIEP) and Real (RNIEP)
+                            inverse eigenvalue problems. Filter by matrix class, dimension, and vertex signature.
                         </p>
                         <div class="tool-card-features">
-                            <div class="feature-item">&check; Filter by SNIEP, RNIEP, and matrix dimension</div>
-                            <div class="feature-item">&check; Interactive Plotly 3D rotatable geometry</div>
+                            <div class="feature-item">&check; 81 SNIEP &amp; 44 RNIEP order-5 datasets</div>
+                            <div class="feature-item">&check; Interactive Plotly 2D &amp; 3D rotatable geometry</div>
                             <div class="feature-item">&check; Complete vertex listings &amp; facet coordinates</div>
-                            <div class="feature-item">&check; Searchable polytope index</div>
+                            <div class="feature-item">&check; Searchable polytope index with shareable links</div>
                         </div>
                         <div class="tool-card-footer">
                             <a href="trace-polytope.html" class="tool-launch-btn secondary">
@@ -186,10 +186,10 @@
                     <div class="tool-card-body">
                         <h3 class="tool-card-title">Character Table Cones ($n=5$ SNIEP)</h3>
                         <p class="tool-card-desc">
-                            Interactive exploration of finite group character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$) as ideal Perron similarities—covering <strong>99.97%</strong> of the 2D $(1,a,a,b,b)$ SNIEP and mapping the unsolved 3D $(1,a,a,b,c)$ frontier.
+                            Interactive exploration of selected $5 \times 5$ group character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$) as ideal Perron similarities—covering <strong>99.97%</strong> ($1.34020 / 1.34057$) of the constructively realizable 2D $(1,a,a,b,b)$ Loewy&ndash;McDonald benchmark and mapping the unsolved 3D $(1,a,a,b,c)$ frontier.
                         </p>
                         <div class="tool-card-features">
-                            <div class="feature-item">&check; 99.97% coverage &amp; 0.03% Loewy&ndash;McDonald hyperbola zoom</div>
+                            <div class="feature-item">&check; 99.97% benchmark coverage &amp; $1 + 4ab = 0$ hyperbola zoom</div>
                             <div class="feature-item">&check; Interactive 2D &amp; 3D orbit breakdowns ($D_8, S_4, A_5, \mathbb{Z}_5$)</div>
                             <div class="feature-item">&check; Rotatable 3D $(1,a,a,b,c)$ polyhedral cone explorer</div>
                             <div class="feature-item">&check; Live $(b,c)$ cross-sectional tomography slider</div>
@@ -216,15 +216,13 @@
                     <div class="tool-card-body">
                         <h3 class="tool-card-title">Numerical Spectra Realizer</h3>
                         <p class="tool-card-desc">
-                            Given a target spectrum, determine whether it can be realized by a Nonnegative, Stochastic,
-                            Symmetric, or Stochastic Symmetric matrix. Configure numerical tolerances, run Orsi
-                            alternating
-                            projection solvers with real Schur factorizations, and inspect the realizing or
-                            best-approximation matrix.
+                            Given a target spectrum, check necessary spectral conditions and search numerically (or via
+                            exact analytical constructors) for a realizing Nonnegative, Stochastic, Symmetric, or
+                            Symmetric Stochastic matrix using Orsi alternating projections with real Schur factorizations.
                         </p>
                         <div class="tool-card-features">
                             <div class="feature-item">&check; 4 target classes: Nonnegative, Stochastic, Symmetric,
-                                Doubly Stochastic</div>
+                                Symmetric Stochastic</div>
                             <div class="feature-item">&check; Configurable tolerance ($\varepsilon = 10^{-2}$ to
                                 $10^{-8}$) &amp; best candidate fallback</div>
                             <div class="feature-item">&check; Exact Suleimanova, Soules, &amp; circulant direct
@@ -481,10 +479,11 @@
                                 \operatorname{NIEP}(N)\}$$
                             </div>
                             <p class="open-problem-desc">
-                                By the Boyle-Handelman theorem (1991), any spectrum with positive Perron root and
-                                positive traces can be realized by a nonnegative matrix of some higher order $N \ge n$.
-                                However, determining a constructive, sharp upper bound on the required embedding
-                                dimension $N_{\min}(\sigma)$ remains an elusive open problem.
+                                By the Boyle&ndash;Handelman theorem (1991), any conjugation-closed nonzero spectrum with a
+                                strictly dominant positive Perron root ($\lambda_1 > |\lambda_j|$) and $s_m \ge 0$ with
+                                $s_m > 0 \Rightarrow s_{km} > 0$ ($\forall k \ge 1$) is the nonzero spectrum of a primitive
+                                nonnegative matrix of some higher order $N \ge n$. Determining sharp general upper bounds
+                                on the minimal embedding dimension $N_{\min}(\sigma)$ remains open.
                             </p>
                         </div>
                         <div class="open-challenge-box">
@@ -627,16 +626,15 @@
                     <!-- Result 5 -->
                     <div class="theory-info-card">
                         <div class="bib-header">
-                            <span class="theory-badge milestone">General Solution</span>
-                            <span class="bib-year">1981</span>
+                            <span class="theory-badge milestone">Trace Bounds</span>
+                            <span class="bib-year">1979 &middot; 1981</span>
                         </div>
-                        <h4 class="bib-title">Complete Solution for Dimension 3</h4>
+                        <h4 class="bib-title">General JLL Power-Sum Inequalities</h4>
                         <p class="bib-authors">C. R. Johnson</p>
                         <p>
-                            Provided a constructive proof completely solving the general NIEP for $n = 3$ with arbitrary
-                            trace. Proved that for $n = 3$, a spectrum is realizable if and only if it satisfies
-                            reality, the Perron-Frobenius condition, nonnegativity of trace, and the second-order
-                            Loewy-London trace inequality.
+                            Independently established and generalized the Johnson&ndash;Loewy&ndash;London (JLL) inequalities
+                            $s_k^m \le n^{m-1} s_{km}$ for all nonnegative matrices and integers $k, m \ge 1$, providing
+                            fundamental necessary conditions on higher spectral moments across all matrix orders.
                         </p>
                     </div>
 
@@ -646,13 +644,14 @@
                             <span class="theory-badge foundation">Symbolic Dynamics</span>
                             <span class="bib-year">1991</span>
                         </div>
-                        <h4 class="bib-title">Boyle-Handelman Spectral Realization Theorem</h4>
+                        <h4 class="bib-title">Boyle&ndash;Handelman Spectral Realization Theorem</h4>
                         <p class="bib-authors">M. Boyle &middot; D. Handelman</p>
                         <p>
-                            Resolved the nonzero spectrum problem via shift equivalence in topological Markov chains.
-                            Proved that a candidate nonzero spectrum is the nonzero spectrum of some nonnegative matrix
-                            of possibly larger size $N \ge n$ if and only if it satisfies the Perron condition and
-                            $\operatorname{tr}(A^k) \ge 0$ with strict positivity for some power.
+                            Resolved the nonzero spectrum problem for primitive real nonnegative matrices via symbolic
+                            dynamics: a conjugation-closed nonzero list $\sigma$ is the nonzero spectrum of a primitive
+                            $A \in \mathcal{M}_N(\mathbb{R}_{\ge 0})$ for some $N \ge |\sigma|$ if and only if it has a
+                            strictly dominant positive Perron eigenvalue $\lambda_1 > |\lambda_j|$ and satisfies $s_m \ge 0$
+                            together with $s_m > 0 \Rightarrow s_{km} > 0$ for all $k \ge 1$.
                         </p>
                     </div>
 
@@ -660,15 +659,15 @@
                     <div class="theory-info-card">
                         <div class="bib-header">
                             <span class="theory-badge milestone">Dimension 4</span>
-                            <span class="bib-year">1998 &middot; 1999</span>
+                            <span class="bib-year">1998 &middot; 2007</span>
                         </div>
                         <h4 class="bib-title">Full Resolution of Dimension 4</h4>
-                        <p class="bib-authors">M. E. Meehan &middot; T. J. Laffey</p>
+                        <p class="bib-authors">M. E. Meehan &middot; J. Torre-Mayo et al.</p>
                         <p>
-                            Conclusively resolved the general NIEP for $n = 4$ including positive trace cases.
-                            Demonstrated that for order 4, the known Loewy-London inequalities, trace nonnegativity, and
-                            Perron conditions constitute necessary and sufficient conditions, constructing companion
-                            matrix factorizations for all boundary cases.
+                            Completed the solution of the general complex NIEP for $n = 4$ (following Loewy &amp; London's
+                            1978 solution of the real $n = 4$ and trace-zero $n = 4$ cases), characterizing the exact
+                            nonlinear coefficient inequalities beyond JLL bounds needed when a $4 \times 4$ spectrum contains
+                            a nonreal conjugate pair.
                         </p>
                     </div>
                 </div>
@@ -687,7 +686,7 @@
                 </div>
 
                 <!-- Global Citations Component -->
-                <cite-grid keys="perron1907, frobenius1912, suleimanova1949, karpelevich1951, loewy1978, boyle1991, ito1997, laffey1999, laffey2007, johnson2016, johnson2025, verbeken2026"></cite-grid>
+                <cite-grid keys="perron1907, frobenius1912, suleimanova1949, karpelevich1951, loewy1978, boyle1991, ito1997, laffey1999, laffey2006, johnson2016, johnson2025, verbeken2026"></cite-grid>
             </div>
         </section>
     </main>

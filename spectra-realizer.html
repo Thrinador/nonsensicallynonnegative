@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectra Realizer | Nonnegative &amp; Stochastic Inverse Eigenvalue Problem</title>
-    <meta name="description" content="Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Stochastic Symmetric matrices with configurable numerical tolerance.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/spectra-realizer.html">
+    <meta name="description" content="Search for realizing Nonnegative, Stochastic, Symmetric (SNIEP), and Symmetric Stochastic matrices and check necessary spectral conditions.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/spectra-realizer">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Spectra Realizer | Nonnegative &amp; Stochastic Inverse Eigenvalue Problem">
-    <meta property="og:description" content="Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Stochastic Symmetric matrices with configurable numerical tolerance.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/spectra-realizer.html">
+    <meta property="og:description" content="Search for realizing Nonnegative, Stochastic, Symmetric (SNIEP), and Symmetric Stochastic matrices and check necessary spectral conditions.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/spectra-realizer">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <script type="application/ld+json">
@@ -18,10 +18,10 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Spectra Realizer",
-      "url": "https://nonsensicallynonnegative.com/spectra-realizer.html",
+      "url": "https://nonsensicallynonnegative.com/spectra-realizer",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "All",
-      "description": "Numerically realize spectra by Nonnegative, Stochastic, Symmetric (SNIEP), and Doubly Stochastic matrices using alternating projections and exact algebraic constructions.",
+      "description": "Search for realizing Nonnegative, Stochastic, Symmetric (SNIEP), and Symmetric Stochastic matrices using exact algebraic constructions, alternating projections, and necessary-condition diagnostics.",
       "author": { "@type": "Person", "name": "Benjamin J. Clark" }
     }
     </script>
@@ -70,9 +70,9 @@
                         <span class="class-formula">A = A<sup>T</sup> &ge; 0</span>
                     </label>
                     <label class="class-option-label">
-                        <input type="radio" name="targetClass" value="stochastic-symmetric" aria-label="Doubly stochastic symmetric matrix class">
-                        <span class="class-name">Stochastic Sym</span>
-                        <span class="class-formula">Doubly Stochastic</span>
+                        <input type="radio" name="targetClass" value="stochastic-symmetric" aria-label="Symmetric stochastic matrix class">
+                        <span class="class-name">Symmetric Stochastic</span>
+                        <span class="class-formula">A = A<sup>T</sup> &ge; 0, &sum;<sub>j</sub> A<sub>ij</sub> = 1</span>
                     </label>
                 </div>
                 <div class="card-helper">
@@ -290,15 +290,16 @@
                     </div>
                     
                     <h3 class="realizer-subheading mt-md">
-                        Target vs. Candidate Eigenvalues
+                        Target vs. Numerical Eigensolver Estimates
                     </h3>
+                    <p class="eigen-cond-note hidden" id="eigenCondNote"></p>
                     <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Index</th>
                                 <th>Target &lambda;<sub>i</sub></th>
-                                <th>Actual &mu;<sub>i</sub></th>
-                                <th>Residual |&lambda;<sub>i</sub> &minus; &mu;<sub>i</sub>|</th>
+                                <th>Numerical &mu;<sub>i</sub></th>
+                                <th>Numerical |&lambda;<sub>i</sub> &minus; &mu;<sub>i</sub>|</th>
                             </tr>
                         </thead>
                         <tbody id="eigenTableBody">

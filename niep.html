@@ -7,12 +7,12 @@
     <title>The Nonnegative Inverse Eigenvalue Problem (NIEP) | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
         content="Comprehensive mathematical theory wiki article on the Nonnegative Inverse Eigenvalue Problem (NIEP): problem formulation, dimensional solvability progress, trace inequalities, and semi-algebraic geometry.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/niep.html">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/niep">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="The Nonnegative Inverse Eigenvalue Problem (NIEP) | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical theory wiki article on the Nonnegative Inverse Eigenvalue Problem (NIEP): problem formulation, dimensional solvability progress, trace inequalities, and semi-algebraic geometry.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/niep.html">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/niep">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
@@ -206,7 +206,7 @@
                                     <td><strong>$n = 3$</strong></td>
                                     <td><span class="status-solved">Solved</span></td>
                                     <td>Loewy &amp; London (1978)</td>
-                                    <td>$\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, and the first two traces are nonnegative: $s_1 \ge 0$, $s_2 \ge 0$.</td>
+                                    <td>$\sigma = \bar{\sigma}$, $\rho = \max |\lambda_i| \in \sigma$, $s_1 \ge 0$, and the Loewy&ndash;London inequality $s_1^2 \le 3s_2$ (which implies $s_2 \ge 0$).</td>
                                 </tr>
                                 <tr>
                                     <td><strong>$n = 4$</strong></td>
@@ -272,21 +272,21 @@
                     </div>
 
                     <p class="deepdive-text">
-                        For low dimensions $n \le 3$, trace nonnegativity ($s_1 \ge 0, s_2 \ge 0$) together with the Loewy-London condition is completely necessary and sufficient. It was once hoped that a finite family of trace and moment inequalities might suffice for all $n$.
+                        For low dimensions $n \le 3$, conjugate symmetry, Perron dominance, $s_1 \ge 0$, and the Loewy&ndash;London inequality $s_1^2 \le 3s_2$ are necessary and sufficient. It was once hoped that trace and JLL moment inequalities might suffice in higher dimensions as well.
                     </p>
 
                     <div class="math-callout conjecture">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">The Laffey-Meehan Counterexample (1999)</h3>
+                            <h3 class="math-callout-title">The Laffey&ndash;Meehan Counterexample (1999)</h3>
                         </div>
                         <p class="deepdive-text mb-0">
-                            Thomas J. Laffey and Eleanor Meehan discovered that for $n = 5$, there exist spectra that satisfy <strong>all</strong> trace inequalities, Loewy-London conditions, and Johnson-Loewy-London inequalities, yet <strong>cannot</strong> be realized by any $5 \times 5$ nonnegative matrix! A celebrated family is:
+                            Thomas J. Laffey and Eleanor Meehan demonstrated that at $n = 5$, a list can satisfy <strong>all</strong> power-sum nonnegativity conditions $s_k \ge 0$ and all JLL inequalities $s_k^m \le 5^{m-1} s_{km}$, yet <strong>fail</strong> to be realizable by any $5 \times 5$ nonnegative matrix:
                         </p>
                         <div class="theory-formula">
-                            $$\sigma = \{3+t, 3-t, -2, -2, -2\} \quad \text{for } t \in (0, 1)$$
+                            $$\sigma(t) = \{3+t, 3-t, -2, -2, -2\} \quad \text{for } 0 \le t &lt; \sqrt{16\sqrt{6} - 39} \approx 0.438$$
                         </div>
                         <p class="deepdive-text m-0">
-                            This foundational counterexample proved that the boundary of the realizable domain $\mathcal{E}_n$ is not cut out purely by trace polynomials, but involves subtle semi-algebraic geometric constraints on the eigenvector configurations.
+                            In this range (including $t = 0$), $4s_4 &lt; s_2^2$, violating Laffey &amp; Meehan's trace-zero $5 \times 5$ inequality $4s_4 \ge s_2^2$ (whereas for $\sqrt{16\sqrt{6}-39} \le t &lt; 1$, $\sigma(t)$ enters $\operatorname{RNIEP}(5) \setminus \operatorname{SNIEP}(5)$, and only reaches $\operatorname{SNIEP}(5)$ at $t \ge 1$).
                         </p>
                     </div>
                 </section>
@@ -335,7 +335,7 @@
                         <div class="feature-card">
                             <h3 class="feature-title">The Boyle-Handelman Theorem (1991)</h3>
                             <p class="feature-desc">
-                                In symbolic dynamics, Boyle and Handelman proved that if one allows the matrix dimension $N \ge n$ to increase by adjoining auxiliary zero eigenvalues, the NIEP becomes <strong>completely solvable</strong> under strict Perron dominance and positive power traces!
+                                In symbolic dynamics, Boyle and Handelman proved that if one allows the matrix dimension $N \ge n$ to increase by adjoining auxiliary zero eigenvalues, primitive nonnegative realizability is <strong>completely characterized</strong> by conjugation closure, strict Perron dominance, and $s_m \ge 0$ with $s_m > 0 \Rightarrow s_{km} > 0$ ($\forall k \ge 1$).
                             </p>
                         </div>
                         <div class="feature-card">
@@ -373,7 +373,7 @@
                         </a>
                         <a href="rniep.html" class="wiki-see-also-card">
                             <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
-                            <p class="wiki-see-also-desc">The study of real spectra, non-orthogonal frames, and the Laffey-Loewy separation $\{4, 2, 2, -4, -4\}$.</p>
+                            <p class="wiki-see-also-desc">The study of real spectra, Jordan blocks, and order-5 separation from SNIEP such as $\{7, 5, -4, -4, -4\}$.</p>
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
                             <h3 class="wiki-see-also-title">Karpelevi&#x010D; Region</h3>

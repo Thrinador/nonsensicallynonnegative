@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trace Polytope Gallery | NIEP</title>
-    <meta name="description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/trace-polytope.html">
+    <meta name="description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of 125 order-5 SNIEP and RNIEP trace-polytope slices and empirical realizability boundaries.">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/trace-polytope">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Trace Polytope Gallery | NIEP">
-    <meta property="og:description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/trace-polytope.html">
+    <meta property="og:description" content="Interactive 2D polygon and 3D WebGL polyhedron gallery of 125 order-5 SNIEP and RNIEP trace-polytope slices and empirical realizability boundaries.">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/trace-polytope">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <script type="application/ld+json">
@@ -18,10 +18,10 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Trace Polytope 3D & 2D Gallery",
-      "url": "https://nonsensicallynonnegative.com/trace-polytope.html",
+      "url": "https://nonsensicallynonnegative.com/trace-polytope",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
-      "description": "Interactive 2D polygon and 3D WebGL polyhedron gallery of SNIEP and RNIEP trace polytopes and realizability boundaries for matrix orders n = 4, 5, and 6.",
+      "description": "Interactive 2D polygon and 3D WebGL polyhedron gallery of 125 order-5 SNIEP and RNIEP trace-polytope slices and empirical realizability boundaries.",
       "author": {
         "@type": "Person",
         "name": "Benjamin J. Clark"
@@ -60,10 +60,8 @@
                         <option value="RNIEP">RNIEP</option>
                     </select>
                     <select id="filterSize" aria-label="Filter by matrix order">
-                        <option value="All">All Sizes</option>
-                        <option value="4">Size 4</option>
-                        <option value="5">Size 5</option>
-                        <option value="6">Size 6</option>
+                        <option value="All">All Orders (n = 5)</option>
+                        <option value="5">Order n = 5</option>
                     </select>
                     <select id="filterDim" aria-label="Filter by polytope dimension">
                         <option value="All">All Dims</option>
@@ -71,6 +69,10 @@
                         <option value="Polyhedron">3D Polyhedron</option>
                     </select>
                 </div>
+                <p class="sidebar-dataset-note">
+                    125 order-5 slices (81 SNIEP, 44 RNIEP) with numerical boundary estimates.
+                    <button type="button" id="openProvenanceSidebarBtn" class="provenance-inline-btn">Provenance &amp; coordinates</button>
+                </p>
             </div>
             <div class="plot-list" id="plotList" role="list" aria-label="Available trace polytopes">
                 <!-- Plot items will be injected here via JS -->
@@ -80,14 +82,44 @@
         <!-- Main Stage -->
         <main class="stage">
             <div id="welcomeMessage" class="glass welcome-msg">
-                <h2>Select a plot from the sidebar</h2>
-                <p>Use the search bar to filter by trace polytope vertices.</p>
+                <h2 id="welcomeHeading">Select a plot from the sidebar</h2>
+                <p id="welcomeSubtext">Browse 125 2D and 3D affine slices of the normalized order-5 trace polytope, or filter by vertex labels.</p>
             </div>
             <div id="plotLoading" class="plot-loading-overlay hidden" role="status" aria-live="polite">
                 <div class="plot-spinner" aria-hidden="true"></div>
                 <span>Loading polytope geometry&hellip;</span>
             </div>
+            <button type="button" id="toggleProvenanceBtn" class="plot-info-btn" aria-expanded="false" aria-controls="plotProvenanceCard">Provenance &amp; Guide</button>
             <button type="button" id="copyPlotLinkBtn" class="plot-share-btn hidden" title="Copy shareable link to this polytope" aria-label="Copy shareable link to this polytope">Copy Link</button>
+            <section id="plotProvenanceCard" class="plot-provenance-card hidden" aria-labelledby="provenanceTitle">
+                <div class="plot-provenance-header">
+                    <h2 id="provenanceTitle">Dataset Provenance, Coordinates &amp; Classification Guide</h2>
+                    <button type="button" id="closeProvenanceBtn" class="plot-provenance-close" aria-label="Close provenance guide">Close &times;</button>
+                </div>
+                <div class="plot-provenance-body">
+                    <p>
+                        <strong>Ambient Polytope &amp; Local Coordinates:</strong> All 125 visualizations (81 SNIEP and 44 RNIEP) examine matrix order <code>n = 5</code> inside the normalized McDonald&ndash;Neumann trace polytope
+                        <code>1 &ge; &lambda;₂ &ge; &lambda;₃ &ge; &lambda;₄ &ge; &lambda;₅ &ge; -1</code> with nonnegative trace <code>1 + &lambda;₂ + &lambda;₃ + &lambda;₄ + &lambda;₅ &ge; 0</code>.
+                        Each 2D <em>Polygon</em> or 3D <em>Polyhedron</em> projects the affine hull of the listed extreme vertices onto an orthonormal basis (<code>Local X</code>, <code>Local Y</code>, and <code>Local Z</code>).
+                    </p>
+                    <ul class="plot-provenance-list">
+                        <li>
+                            <strong>7 Realizable Vertices (exact in SNIEP &amp; RNIEP):</strong>
+                            <code>a0=(1,1,1,1,1)</code>, <code>a1=(1,1,1,1,-1)</code>, <code>a2=(1,1,1,-1,-1)</code>, <code>b1=(1,0,0,0,-1)</code>, <code>b2=(1,1,0,-1,-1)</code>, <code>c_10=(1,-1/4,-1/4,-1/4,-1/4)</code>, and <code>c_21=(1,1,-1/2,-1/2,-1)</code>.
+                        </li>
+                        <li>
+                            <strong>2 Unrealizable Vertices (excluded from NIEP(5)):</strong>
+                            <code>d_20=(1,1,-2/3,-2/3,-2/3)</code> (violates the Laffey&ndash;Meehan trace-zero condition <code>s₂&sup2; &le; 4s₄</code>) and <code>e_12=(1,1/2,1/2,-1,-1)</code> (negative third power sum <code>s₃ = -3/4 &lt; 0</code>).
+                        </li>
+                        <li>
+                            <strong>What &ldquo;Realizable Region&rdquo; Means:</strong> Shaded <em>Realizable Region</em> meshes and <em>Boundary Points</em> are <strong>empirical numerical optimization estimates</strong> computed by alternating-projection / nonlinear matrix searches over <code>5 &times; 5</code> symmetric nonnegative (SNIEP) or general nonnegative (RNIEP) matrices&mdash;<em>not</em> formal necessity/sufficiency proofs. Hovering over boundary points displays the candidate matrix and its <code>L₂</code> spectral residual.
+                        </li>
+                        <li>
+                            <strong>Exact Reference Curves:</strong> Wireframe outlines mark the exact linear trace-polytope slice, and curves such as <code>s₁&sup3; - s₃ = 0</code> plot exact algebraic power-sum loci for comparison against the numerical boundary.
+                        </li>
+                    </ul>
+                </div>
+            </section>
             <iframe id="plotFrame" class="plot-frame hidden" src="" title="Interactive Trace Polytope Visualization"></iframe>
         </main>
     </div>

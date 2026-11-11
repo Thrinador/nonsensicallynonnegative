@@ -7,12 +7,12 @@
     <title>Perron Similarities &amp; Ideal Spectracones | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
         content="Comprehensive mathematical theory wiki article on Perron similarities, Johnson-Paparella theory, spectracones, spectratopes, and Gershnik-Lewis-Paparella's theorem that character tables are ideal Perron similarities.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/perron-similarities.html">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/perron-similarities">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Perron Similarities &amp; Ideal Spectracones | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Comprehensive mathematical theory wiki article on Perron similarities, Johnson-Paparella theory, spectracones, spectratopes, and Gershnik-Lewis-Paparella&#x27;s theorem that character tables are ideal Perron similarities.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/perron-similarities.html">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/perron-similarities">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
@@ -217,13 +217,13 @@
 
                     <div class="math-callout highlight">
                         <div class="math-callout-header">
-                            <h3 class="math-callout-title">Resolving the Laffey-Loewy $\{4, 2, 2, -4, -4\}$ Separation</h3>
+                            <h3 class="math-callout-title">Diagonalizable Separation Between RNIEP and SNIEP ($n = 5$)</h3>
                         </div>
                         <p>
-                            The celebrated spectrum $\sigma = \{4, 2, 2, -4, -4\}$ cannot be realized by any symmetric matrix (SNIEP fails) because orthogonal eigenvectors force off-diagonal negativity.
+                            Consider the distinct-integer trace-zero list $\sigma = \{12, 9, -6, -7, -8\}$. Every $5 \times 5$ symmetric nonnegative matrix of trace zero satisfies $\lambda_2 + \lambda_5 \le 0$ (McDonald &amp; Neumann 2000; Spector 2009), whereas here $9 + (-8) = 1 > 0$, so $\sigma \notin \operatorname{SNIEP}(5)$.
                         </p>
                         <p>
-                            Under a non-orthogonal Perron similarity $S$, the eigenspaces for $-4, -4$ can be tilted relative to the positive octant, completely eliminating off-diagonal negativity and yielding a valid $A \ge 0$.
+                            Yet $\sigma$ is realized by the primitive nonnegative integer matrix with rows $(0,1,0,0,0)$, $(99,0,1,0,0)$, $(462,0,0,1,0)$, $(0,0,9,0,1)$, and $(210,0,0,79,0)$. Because its five real eigenvalues are distinct and its Perron root $12$ has a strictly positive eigenvector, its eigenbasis $S \in \mathrm{GL}_5(\mathbb{R})$ is a genuine non-orthogonal <strong>Perron similarity</strong> satisfying $A = S \operatorname{diag}(12, 9, -6, -7, -8) S^{-1} \ge 0$.
                         </p>
                     </div>
                 </section>
@@ -342,7 +342,7 @@
                             How much of the $n=5$ Symmetric NIEP can be solved using $5 \times 5$ character tables ($D_8, Q_8, S_4, A_5, \mathbb{Z}_5$) and reducible adjoined blocks ($V_4 \oplus [1]$)?
                         </p>
                         <p>
-                            In our companion interactive deep-dive, we show that combining $D_8$, $\mathbb{Z}_5$, and $V_4 \oplus [1]$ covers <strong>99.97%</strong> of the known 2D $(1, a, a, b, b)$ Loewy–McDonald region (leaving only a $0.03\%$ curved sliver along the Loewy–McDonald hyperbola $1 + 4ab = 0$), and we map all 17 polyhedral character cone orbits inside the unsolved 3D $(1, a, a, b, c)$ trace polytope $\Delta_3$.
+                            In our companion interactive deep-dive, we show that combining $D_8$, $\mathbb{Z}_5$, and $V_4 \oplus [1]$ covers <strong>99.97%</strong> (area $1.34020$ of $1.34057$) of the constructively realizable 2D $(1, a, a, b, b)$ Loewy&ndash;McDonald benchmark region (leaving only a $0.03\%$ curved sliver along $1 + 4ab = 0$), and we map all 17 polyhedral character cone orbits inside the unsolved 3D $(1, a, a, b, c)$ trace polytope $\Delta_3$.
                         </p>
                         <p class="mt-md">
                             <a href="character-cones.html" class="deep-dive-btn">
@@ -363,7 +363,7 @@
                     </p>
 
                     <!-- Global Citation Grid Component -->
-                    <cite-grid keys="johnson1981, johnson2016, johnson2025, gershnik2026, laffey2007"></cite-grid>
+                    <cite-grid keys="johnson1981, johnson2016, johnson2025, gershnik2026, laffey2006"></cite-grid>
                 </section>
 
                 <!-- Section 7: See Also -->

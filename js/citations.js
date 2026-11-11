@@ -80,7 +80,7 @@
         "title": "On characteristic roots of stochastic matrices",
         "authors": "Nikolai A. Dmitriev and Eugene B. Dynkin",
         "year": 1946,
-        "venue": "Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya, 10(2): 167–184",
+        "venue": "Izvestiya Akademii Nauk SSSR. Seriya Matematicheskaya, 10(2): 167–184",
         "category": "karpelevich",
         "categoryName": "Karpelevič Region & Stochastic",
         "badge": "Invariant Polygons",
@@ -152,18 +152,19 @@
     },
     {
         "key": "johnson2016",
-        "title": "Perron spectroids and the boundary of the Karpelevič region",
+        "title": "Perron spectratopes and the real nonnegative inverse eigenvalue problem",
         "authors": "Charles R. Johnson and Pietro Paparella",
         "year": 2016,
-        "venue": "Linear and Multilinear Algebra, 64(4): 737–745",
-        "category": "karpelevich",
-        "categoryName": "Karpelevič Region & Stochastic",
-        "badge": "Perron Spectroids",
+        "venue": "Linear Algebra and its Applications, 493: 281–300",
+        "category": "perron-sim",
+        "categoryName": "Perron Similarities & Cones",
+        "badge": "Perron Spectratopes",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1080/03081087.2015.1054366",
-        "url": "https://doi.org/10.1080/03081087.2015.1054366",
-        "note": "Investigates the boundary structure through continuous perturbations of companion matrices and connects boundary geometry to spectroid cones.",
-        "bibtex": "@article{JohnsonPaparella2016,\n  author  = {Johnson, Charles R. and Paparella, Pietro},\n  title   = {Perron spectroids and the boundary of the {K}arpelevi{\\v{c}} region},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {64},\n  number  = {4},\n  pages   = {737--745},\n  year    = {2016},\n  doi     = {10.1080/03081087.2015.1054366}\n}"
+        "doi": "https://doi.org/10.1016/j.laa.2015.11.033",
+        "arxiv": "https://arxiv.org/abs/1508.07400",
+        "url": "https://doi.org/10.1016/j.laa.2015.11.033",
+        "note": "Introduces real Perron similarities, Perron spectracones, and Perron spectratopes to study polyhedral sufficient regions in the real nonnegative inverse eigenvalue problem.",
+        "bibtex": "@article{JohnsonPaparella2016,\n  author  = {Johnson, Charles R. and Paparella, Pietro},\n  title   = {Perron spectratopes and the real nonnegative inverse eigenvalue problem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {493},\n  pages   = {281--300},\n  year    = {2016},\n  doi     = {10.1016/j.laa.2015.11.033},\n  eprint  = {1508.07400},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "johnson2017",
@@ -240,53 +241,53 @@
         "badgeClass": "foundation",
         "doi": "",
         "url": "",
-        "note": "Proves that if a real spectrum lambda_1 > 0 >= lambda_2 >= ... >= lambda_n satisfies lambda_1 + sum_{i=2}^n lambda_i >= 0, it is realizable by an n x n stochastic matrix.",
+        "note": "States that any real list lambda_1 > 0 >= lambda_2 >= ... >= lambda_n with lambda_1 + sum_{i=2}^n lambda_i >= 0 is realizable by an n x n nonnegative matrix (and, after normalizing lambda_1 = 1, by a row-stochastic matrix).",
         "bibtex": "@article{Suleimanova1949,\n  author  = {Sule{\\u{\\i}}manova, H. R.},\n  title   = {Stochastic matrices with real characteristic values},\n  journal = {Dokl. Akad. Nauk SSSR},\n  volume  = {66},\n  number  = {3},\n  pages   = {343--345},\n  year    = {1949}\n}"
     },
     {
         "key": "perfect1953",
-        "title": "On matrices with positive elements",
+        "title": "Methods of constructing certain stochastic matrices",
         "authors": "Hazel Perfect",
         "year": 1953,
-        "venue": "The Quarterly Journal of Mathematics, Oxford Series (2), 4(1): 289–299 (see also Mathematika, 2(1): 39–45, 1955)",
+        "venue": "Duke Mathematical Journal, 20(3): 395–404",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Block Partitions",
+        "badge": "Constructive Proof",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1093/qmath/4.1.289",
-        "url": "https://doi.org/10.1093/qmath/4.1.289",
-        "note": "Provides the first complete, rigorous proof of Suleĭmanova's criterion using similarity transformations on companion matrices and develops block partition techniques for positive matrices.",
-        "bibtex": "@article{Perfect1953,\n  author  = {Perfect, Hazel},\n  title   = {On matrices with positive elements},\n  journal = {The Quarterly Journal of Mathematics},\n  volume  = {4},\n  number  = {1},\n  pages   = {289--299},\n  year    = {1953},\n  doi     = {10.1093/qmath/4.1.289}\n}"
+        "doi": "https://doi.org/10.1215/S0012-7094-53-02040-7",
+        "url": "https://doi.org/10.1215/S0012-7094-53-02040-7",
+        "note": "Develops explicit similarity transformations to construct stochastic and nonnegative matrices with prescribed real eigenvalues, giving a rigorous constructive proof of Suleĭmanova's criterion.",
+        "bibtex": "@article{Perfect1953,\n  author  = {Perfect, Hazel},\n  title   = {Methods of constructing certain stochastic matrices},\n  journal = {Duke Mathematical Journal},\n  volume  = {20},\n  number  = {3},\n  pages   = {395--404},\n  year    = {1953},\n  doi     = {10.1215/S0012-7094-53-02040-7}\n}"
     },
     {
         "key": "perfect1955",
-        "title": "Methods of constructing strictly positive matrices with specified characteristic roots",
+        "title": "Methods of constructing certain stochastic matrices. II",
         "authors": "Hazel Perfect",
         "year": 1955,
         "venue": "Duke Mathematical Journal, 22(2): 305–311",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Positive Realization",
+        "badge": "Rank-One Perturbations",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1215/S0012-7094-55-02231-1",
-        "url": "https://doi.org/10.1215/S0012-7094-55-02231-1",
-        "note": "Extends constructive perturbation algorithms to show that any realizable spectrum in the interior can be realized by an entrywise strictly positive matrix.",
-        "bibtex": "@article{Perfect1955b,\n  author  = {Perfect, Hazel},\n  title   = {Methods of constructing strictly positive matrices with specified characteristic roots},\n  journal = {Duke Math. J.},\n  volume  = {22},\n  number  = {2},\n  pages   = {305--311},\n  year    = {1955},\n  doi     = {10.1215/S0012-7094-55-02231-1}\n}"
+        "doi": "https://doi.org/10.1215/S0012-7094-55-02232-8",
+        "url": "https://doi.org/10.1215/S0012-7094-55-02232-8",
+        "note": "Extends constructive similarity and rank-one perturbation methods for building stochastic and positive matrices with prescribed characteristic roots.",
+        "bibtex": "@article{Perfect1955,\n  author  = {Perfect, Hazel},\n  title   = {Methods of constructing certain stochastic matrices. {II}},\n  journal = {Duke Mathematical Journal},\n  volume  = {22},\n  number  = {2},\n  pages   = {305--311},\n  year    = {1955},\n  doi     = {10.1215/S0012-7094-55-02232-8}\n}"
     },
     {
         "key": "fiedler1974",
         "title": "Eigenvalues of nonnegative symmetric matrices",
         "authors": "Miroslav Fiedler",
         "year": 1974,
-        "venue": "Linear Algebra and its Applications, 9(2): 119–142",
+        "venue": "Linear Algebra and its Applications, 9(1): 119–142",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
         "badge": "Symmetric Realization",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.1016/0024-3795(74)90040-3",
-        "url": "https://doi.org/10.1016/0024-3795(74)90040-3",
-        "note": "Seminal paper proving that every Suleĭmanova spectrum is realizable by an entrywise nonnegative SYMMETRIC matrix, initiating the modern SNIEP.",
-        "bibtex": "@article{Fiedler1974,\n  author  = {Fiedler, Miroslav},\n  title   = {Eigenvalues of nonnegative symmetric matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {9},\n  number  = {2},\n  pages   = {119--142},\n  year    = {1974},\n  doi     = {10.1016/0024-3795(74)90040-3}\n}"
+        "doi": "https://doi.org/10.1016/0024-3795(74)90031-7",
+        "url": "https://doi.org/10.1016/0024-3795(74)90031-7",
+        "note": "Seminal paper proving via recursive rank-one symmetric gluing that every Suleĭmanova spectrum is realizable by an entrywise nonnegative symmetric matrix, initiating the modern SNIEP.",
+        "bibtex": "@article{Fiedler1974,\n  author  = {Fiedler, Miroslav},\n  title   = {Eigenvalues of nonnegative symmetric matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {9},\n  number  = {1},\n  pages   = {119--142},\n  year    = {1974},\n  doi     = {10.1016/0024-3795(74)90031-7}\n}"
     },
     {
         "key": "soules1983",
@@ -298,10 +299,10 @@
         "categoryName": "Real & Symmetric NIEP",
         "badge": "Soules Bases",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.1080/03081088308817528",
-        "url": "https://doi.org/10.1080/03081088308817528",
-        "note": "Introduces the concept of Soules matrices and bases, providing a universal orthogonal coordinate frame that maps every Suleĭmanova spectrum to an entrywise nonnegative symmetric matrix.",
-        "bibtex": "@article{Soules1983,\n  author  = {Soules, George W.},\n  title   = {Constructing symmetric nonnegative matrices},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {13},\n  number  = {3},\n  pages   = {241--251},\n  year    = {1983},\n  doi     = {10.1080/03081088308817528}\n}"
+        "doi": "https://doi.org/10.1080/03081088308817523",
+        "url": "https://doi.org/10.1080/03081088308817523",
+        "note": "Introduces Soules matrices and orthogonal bases, providing an orthogonal coordinate frame that maps every Suleĭmanova spectrum (and certain spectra with multiple positive eigenvalues) to a symmetric nonnegative matrix.",
+        "bibtex": "@article{Soules1983,\n  author  = {Soules, George W.},\n  title   = {Constructing symmetric nonnegative matrices},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {13},\n  number  = {3},\n  pages   = {241--251},\n  year    = {1983},\n  doi     = {10.1080/03081088308817523}\n}"
     },
     {
         "key": "elsner1998",
@@ -313,29 +314,29 @@
         "categoryName": "Real & Symmetric NIEP",
         "badge": "Binary Tree Bases",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/S0024-3795(97)00276-5",
-        "url": "https://doi.org/10.1016/S0024-3795(97)00276-5",
-        "note": "Provides the definitive classification and algorithmic construction of all Soules bases via binary tree sign structures, proving the simplicial cone property of Suleĭmanova spectra.",
-        "bibtex": "@article{ElsnerNabbenNeumann1998,\n  author  = {Elsner, Ludwig and Nabben, Reinhard and Neumann, Michael},\n  title   = {Orthogonal bases that lead to symmetric nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {271},\n  number  = {1--3},\n  pages   = {323--343},\n  year    = {1998},\n  doi     = {10.1016/S0024-3795(97)00276-5}\n}"
+        "doi": "https://doi.org/10.1016/S0024-3795(97)00302-9",
+        "url": "https://doi.org/10.1016/S0024-3795(97)00302-9",
+        "note": "Classifies and constructs Soules bases via binary partition trees, analyzing the simplicial cones of symmetric nonnegative matrices they generate.",
+        "bibtex": "@article{ElsnerNabbenNeumann1998,\n  author  = {Elsner, Ludwig and Nabben, Reinhard and Neumann, Michael},\n  title   = {Orthogonal bases that lead to symmetric nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {271},\n  number  = {1--3},\n  pages   = {323--343},\n  year    = {1998},\n  doi     = {10.1016/S0024-3795(97)00302-9}\n}"
     },
     {
-        "key": "monov2005",
-        "title": "On the spectrum of nonnegative matrices with negative trace",
-        "authors": "Vladimir Monov",
-        "year": 2005,
-        "venue": "Linear Algebra and its Applications, 400: 139–149",
+        "key": "smigoc2004",
+        "title": "The inverse eigenvalue problem for nonnegative matrices",
+        "authors": "Helena Šmigoc",
+        "year": 2004,
+        "venue": "Linear Algebra and its Applications, 393: 365–374",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Complex Extensions",
+        "badge": "Diagonal Block Gluing",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/j.laa.2004.11.011",
-        "url": "https://doi.org/10.1016/j.laa.2004.11.011",
-        "note": "Extends the Suleĭmanova framework to complex spectra whose non-Perron eigenvalues have nonpositive real parts under trace inequalities.",
-        "bibtex": "@article{Monov2005,\n  author  = {Monov, Vladimir},\n  title   = {On the spectrum of nonnegative matrices with negative trace},\n  journal = {Linear Algebra and its Applications},\n  volume  = {400},\n  pages   = {139--149},\n  year    = {2005},\n  doi     = {10.1016/j.laa.2004.11.011}\n}"
+        "doi": "https://doi.org/10.1016/j.laa.2004.03.036",
+        "url": "https://doi.org/10.1016/j.laa.2004.03.036",
+        "note": "Constructs a nonnegative matrix realizing (lambda_1, ..., lambda_m, mu_2, ..., mu_n) whenever a diagonal entry of a realization of (lambda_1, ..., lambda_m) dominates the Perron root mu_1, unifying real and complex gluing constructions.",
+        "bibtex": "@article{Smigoc2004,\n  author  = {{\\v{S}}migoc, Helena},\n  title   = {The inverse eigenvalue problem for nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {393},\n  pages   = {365--374},\n  year    = {2004},\n  doi     = {10.1016/j.laa.2004.03.036}\n}"
     },
     {
         "key": "loewy1978",
-        "title": "A note on the nonnegative inverse eigenvalue problem",
+        "title": "A note on an inverse problem for nonnegative matrices",
         "authors": "Raphael Loewy and David London",
         "year": 1978,
         "venue": "Linear and Multilinear Algebra, 6(1): 83–90",
@@ -343,70 +344,70 @@
         "categoryName": "General & Real NIEP",
         "badge": "Trace Inequalities",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1080/03081087808817224",
-        "url": "https://doi.org/10.1080/03081087808817224",
-        "note": "Derives the necessary Loewy-London trace inequalities s_k^m <= n^(m-1) s_{km}, establishes n=3/4 results, and poses key conjectures on SNIEP vs RNIEP.",
-        "bibtex": "@article{LoewyLondon1978,\n  author  = {Loewy, Raphael and London, David},\n  title   = {A note on the nonnegative inverse eigenvalue problem},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {6},\n  number  = {1},\n  pages   = {83--90},\n  year    = {1978},\n  doi     = {10.1080/03081087808817224}\n}"
+        "doi": "https://doi.org/10.1080/03081087808817226",
+        "url": "https://doi.org/10.1080/03081087808817226",
+        "note": "Derives the necessary Loewy–London trace inequalities s_k^m <= n^(m-1) s_{km}, solves the n = 3 NIEP and real/trace-zero n = 4 cases, and poses the RNIEP vs. SNIEP question.",
+        "bibtex": "@article{LoewyLondon1978,\n  author  = {Loewy, Raphael and London, David},\n  title   = {A note on an inverse problem for nonnegative matrices},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {6},\n  number  = {1},\n  pages   = {83--90},\n  year    = {1978},\n  doi     = {10.1080/03081087808817226}\n}"
     },
     {
         "key": "borobia1995",
         "title": "On the nonnegative eigenvalue problem",
         "authors": "Alberto Borobia",
         "year": 1995,
-        "venue": "Linear Algebra and its Applications, 223: 131–140",
+        "venue": "Linear Algebra and its Applications, 223–224: 131–140",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Borobia Sums",
+        "badge": "Partitioning Realizations",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/0024-3795(95)00078-4",
-        "url": "https://doi.org/10.1016/0024-3795(95)00078-4",
-        "note": "Establishes concatenation theorems showing that unions of realizable spectra with compensated Perron values remain nonnegative realizable.",
-        "bibtex": "@article{Borobia1995,\n  author  = {Borobia, Alberto},\n  title   = {On the nonnegative eigenvalue problem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {223},\n  pages   = {131--140},\n  year    = {1995},\n  doi     = {10.1016/0024-3795(95)00078-4}\n}"
+        "doi": "https://doi.org/10.1016/0024-3795(94)00343-C",
+        "url": "https://doi.org/10.1016/0024-3795(94)00343-C",
+        "note": "Extends Suleĭmanova's criterion by showing that real lists partitionable into Suleĭmanova sublists after splitting positive eigenvalues are realizable by nonnegative matrices.",
+        "bibtex": "@article{Borobia1995,\n  author  = {Borobia, Alberto},\n  title   = {On the nonnegative eigenvalue problem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {223--224},\n  pages   = {131--140},\n  year    = {1995},\n  doi     = {10.1016/0024-3795(94)00343-C}\n}"
     },
     {
         "key": "johnson1996",
-        "title": "The real dimension of the nonnegative inverse eigenvalue problem",
+        "title": "The real and the symmetric nonnegative inverse eigenvalue problems are different",
         "authors": "Charles R. Johnson, Thomas J. Laffey, and Raphael Loewy",
         "year": 1996,
-        "venue": "Linear Algebra and its Applications, 241–243: 603–635",
+        "venue": "Proceedings of the American Mathematical Society, 124(12): 3647–3651",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Topological Interior",
-        "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/0024-3795(95)00609-5",
-        "url": "https://doi.org/10.1016/0024-3795(95)00609-5",
-        "note": "Investigates the interior and topological manifold structure of realizable spectra, proving full real dimensionality under generic conditions.",
-        "bibtex": "@article{JohnsonLaffeyLoewy1996,\n  author  = {Johnson, Charles R. and Laffey, Thomas J. and Loewy, Raphael},\n  title   = {The real dimension of the nonnegative inverse eigenvalue problem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {241--243},\n  pages   = {603--635},\n  year    = {1996},\n  doi     = {10.1016/0024-3795(95)00609-5}\n}"
+        "badge": "RNIEP ≠ SNIEP",
+        "badgeClass": "breakthrough",
+        "doi": "https://doi.org/10.1090/S0002-9939-96-03587-3",
+        "url": "https://doi.org/10.1090/S0002-9939-96-03587-3",
+        "note": "Proves that the real nonnegative inverse eigenvalue problem (RNIEP) and the symmetric nonnegative inverse eigenvalue problem (SNIEP) are distinct, refuting the Loewy–London equivalence conjecture.",
+        "bibtex": "@article{JohnsonLaffeyLoewy1996,\n  author  = {Johnson, Charles R. and Laffey, Thomas J. and Loewy, Raphael},\n  title   = {The real and the symmetric nonnegative inverse eigenvalue problems are different},\n  journal = {Proceedings of the American Mathematical Society},\n  volume  = {124},\n  number  = {12},\n  pages   = {3647--3651},\n  year    = {1996},\n  doi     = {10.1090/S0002-9939-96-03587-3}\n}"
     },
     {
         "key": "radwan1996",
-        "title": "An algebraic solution for the spectra of certain nonnegative matrices",
+        "title": "An inverse eigenvalue problem for symmetric and normal matrices",
         "authors": "Nizar Radwan",
         "year": 1996,
-        "venue": "Linear Algebra and its Applications, 248: 257–260",
+        "venue": "Linear Algebra and its Applications, 248: 101–109",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Algebraic Construction",
+        "badge": "Symmetric & Normal NIEP",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/0024-3795(95)00155-8",
-        "url": "https://doi.org/10.1016/0024-3795(95)00155-8",
-        "note": "Gives direct, explicit algebraic companion-type matrices realizing spectra that satisfy Suleĭmanova-type nonpositivity conditions.",
-        "bibtex": "@article{Radwan1996,\n  author  = {Radwan, Nizar},\n  title   = {An algebraic solution for the spectra of certain nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {248},\n  pages   = {257--260},\n  year    = {1996},\n  doi     = {10.1016/0024-3795(95)00155-8}\n}"
+        "doi": "https://doi.org/10.1016/0024-3795(95)00162-X",
+        "url": "https://doi.org/10.1016/0024-3795(95)00162-X",
+        "note": "Establishes sufficient conditions for real spectra to be realized by symmetric nonnegative matrices and for complex spectra to be realized by normal nonnegative matrices.",
+        "bibtex": "@article{Radwan1996,\n  author  = {Radwan, Nizar},\n  title   = {An inverse eigenvalue problem for symmetric and normal matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {248},\n  pages   = {101--109},\n  year    = {1996},\n  doi     = {10.1016/0024-3795(95)00162-X}\n}"
     },
     {
         "key": "laffey1999",
-        "title": "Some results on the nonnegative inverse eigenvalue problem",
+        "title": "A characterization of trace zero nonnegative 5×5 matrices",
         "authors": "Thomas J. Laffey and Eleanor Meehan",
         "year": 1999,
-        "venue": "Linear Algebra and its Applications, 302–303: 119–139",
+        "venue": "Linear Algebra and its Applications, 302–303: 295–302",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
-        "badge": "Trace Insufficiency n=5",
+        "badge": "Trace-Zero n=5",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.1016/S0024-3795(99)00086-5",
-        "url": "https://doi.org/10.1016/S0024-3795(99)00086-5",
-        "note": "Derives strengthened necessary conditions for trace-zero spectra of order n = 5, proving that spectra such as (3+t, 3-t, -2, -2, -2) can satisfy all Loewy–London and JLL trace inequalities yet fail to be realizable.",
-        "bibtex": "@article{LaffeyMeehan1999,\n  author  = {Laffey, Thomas J. and Meehan, Eleanor},\n  title   = {Some results on the nonnegative inverse eigenvalue problem},\n  journal = {Linear Algebra and its Applications},\n  volume  = {302--303},\n  pages   = {119--139},\n  year    = {1999},\n  doi     = {10.1016/S0024-3795(99)00086-5}\n}"
+        "doi": "https://doi.org/10.1016/S0024-3795(99)00099-3",
+        "url": "https://doi.org/10.1016/S0024-3795(99)00099-3",
+        "note": "Characterizes trace-zero 5×5 nonnegative spectra via s_2^2 <= 4 s_4 (with s_3, s_5 >= 0), proving that spectra such as (3+t, 3-t, -2, -2, -2) for small t >= 0 satisfy all JLL inequalities yet are unrealizable in order 5.",
+        "bibtex": "@article{LaffeyMeehan1999,\n  author  = {Laffey, Thomas J. and Meehan, Eleanor},\n  title   = {A characterization of trace zero nonnegative $5 \\times 5$ matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {302--303},\n  pages   = {295--302},\n  year    = {1999},\n  doi     = {10.1016/S0024-3795(99)00099-3}\n}"
     },
     {
         "key": "soto2003",
@@ -418,25 +419,25 @@
         "categoryName": "Real & Symmetric NIEP",
         "badge": "Constructive Algorithms",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/S0024-3795(02)00713-3",
-        "url": "https://doi.org/10.1016/S0024-3795(02)00713-3",
-        "note": "Introduces block partition algorithms for constructing nonnegative matrices with given real spectra, extending Suleĭmanova's and Brauer's conditions.",
-        "bibtex": "@article{Soto2003,\n  author  = {Soto, Ricardo L.},\n  title   = {Existence and construction of nonnegative matrices with prescribed spectrum},\n  journal = {Linear Algebra and its Applications},\n  volume  = {369},\n  pages   = {169--184},\n  year    = {2003},\n  doi     = {10.1016/S0024-3795(02)00713-3}\n}"
+        "doi": "https://doi.org/10.1016/S0024-3795(02)00731-0",
+        "url": "https://doi.org/10.1016/S0024-3795(02)00731-0",
+        "note": "Develops constructive sufficiency criteria and Brauer rank-one perturbation algorithms for building nonnegative matrices with prescribed real spectra.",
+        "bibtex": "@article{Soto2003,\n  author  = {Soto, Ricardo L.},\n  title   = {Existence and construction of nonnegative matrices with prescribed spectrum},\n  journal = {Linear Algebra and its Applications},\n  volume  = {369},\n  pages   = {169--184},\n  year    = {2003},\n  doi     = {10.1016/S0024-3795(02)00731-0}\n}"
     },
     {
-        "key": "laffey2007",
+        "key": "laffey2006",
         "title": "Nonnegative realization of spectra having negative real parts",
         "authors": "Thomas J. Laffey and Helena Šmigoc",
-        "year": 2007,
-        "venue": "Linear Algebra and its Applications, 420(2–3): 480–490",
+        "year": 2006,
+        "venue": "Linear Algebra and its Applications, 416(1): 148–159",
         "category": "sniep",
         "categoryName": "Real & Symmetric NIEP",
         "badge": "Negative Real Parts",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/j.laa.2006.07.019",
-        "url": "https://doi.org/10.1016/j.laa.2006.07.019",
-        "note": "Proves that complex spectra whose non-Perron eigenvalues all have nonpositive real parts can be realized under trace-like nonnegativity bounds.",
-        "bibtex": "@article{LaffeySmigoc2007,\n  author  = {Laffey, Thomas J. and {\\v{S}}migoc, Helena},\n  title   = {Nonnegative realization of spectra having negative real parts},\n  journal = {Linear Algebra and its Applications},\n  volume  = {420},\n  number  = {2--3},\n  pages   = {480--490},\n  year    = {2007},\n  doi     = {10.1016/j.laa.2006.07.019}\n}"
+        "doi": "https://doi.org/10.1016/j.laa.2005.12.008",
+        "url": "https://doi.org/10.1016/j.laa.2005.12.008",
+        "note": "Characterizes when a conjugate-closed spectrum consisting of one positive eigenvalue and remaining eigenvalues with nonpositive real parts is realizable by a nonnegative matrix (requiring s_1 >= 0 and s_1^2 <= n s_2).",
+        "bibtex": "@article{LaffeySmigoc2006,\n  author  = {Laffey, Thomas J. and {\\v{S}}migoc, Helena},\n  title   = {Nonnegative realization of spectra having negative real parts},\n  journal = {Linear Algebra and its Applications},\n  volume  = {416},\n  number  = {1},\n  pages   = {148--159},\n  year    = {2006},\n  doi     = {10.1016/j.laa.2005.12.008}\n}"
     },
     {
         "key": "boyle1991",
@@ -448,10 +449,10 @@
         "categoryName": "Symbolic Dynamics & Shifts",
         "badge": "Boyle-Handelman",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.2307/2944341",
-        "url": "https://doi.org/10.2307/2944341",
-        "note": "Landmark paper characterizing all nonzero spectra of nonnegative matrices allowing auxiliary zero eigenvalues (the NIEP with zeroes), via shift equivalence of Markov subshifts.",
-        "bibtex": "@article{BoyleHandelman1991,\n  author  = {Boyle, Mike and Handelman, David},\n  title   = {The spectra of nonnegative matrices via symbolic dynamics},\n  journal = {Annals of Mathematics},\n  volume  = {133},\n  number  = {2},\n  pages   = {249--316},\n  year    = {1991},\n  doi     = {10.2307/2944341}\n}"
+        "doi": "https://doi.org/10.2307/2944339",
+        "url": "https://doi.org/10.2307/2944339",
+        "note": "Landmark paper characterizing all nonzero spectra of primitive real nonnegative matrices allowing auxiliary zero eigenvalues, via symbolic dynamics and shift equivalence.",
+        "bibtex": "@article{BoyleHandelman1991,\n  author  = {Boyle, Mike and Handelman, David},\n  title   = {The spectra of nonnegative matrices via symbolic dynamics},\n  journal = {Annals of Mathematics},\n  volume  = {133},\n  number  = {2},\n  pages   = {249--316},\n  year    = {1991},\n  doi     = {10.2307/2944339}\n}"
     },
     {
         "key": "williams1973",
@@ -469,23 +470,23 @@
         "bibtex": "@article{Williams1973,\n  author  = {Williams, R. F.},\n  title   = {Classification of subshifts of finite type},\n  journal = {Annals of Mathematics},\n  volume  = {98},\n  number  = {1},\n  pages   = {120--153},\n  year    = {1973},\n  doi     = {10.2307/1970908}\n}"
     },
     {
-        "key": "handelman1992",
-        "title": "Realizing nonzero spectra of nonnegative matrices",
-        "authors": "David Handelman",
-        "year": 1992,
-        "venue": "Linear Algebra and its Applications, 167: 191–207",
+        "key": "boyle1993",
+        "title": "Algebraic shift equivalence and primitive matrices",
+        "authors": "Mike Boyle and David Handelman",
+        "year": 1993,
+        "venue": "Transactions of the American Mathematical Society, 336(1): 121–149",
         "category": "symbolic",
         "categoryName": "Symbolic Dynamics & Shifts",
-        "badge": "Positive Polynomials",
+        "badge": "Algebraic Shift Equivalence",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/0024-3795(92)90443-V",
-        "url": "https://doi.org/10.1016/0024-3795(92)90443-V",
-        "note": "Details the ordered ring and positive polynomial techniques that underpin the construction of primitive matrices with prescribed nonzero spectra.",
-        "bibtex": "@article{Handelman1992,\n  author  = {Handelman, David},\n  title   = {Realizing nonzero spectra of nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {167},\n  pages   = {191--207},\n  year    = {1992},\n  doi     = {10.1016/0024-3795(92)90443-V}\n}"
+        "doi": "https://doi.org/10.1090/S0002-9947-1993-1102219-4",
+        "url": "https://doi.org/10.1090/S0002-9947-1993-1102219-4",
+        "note": "Investigates when matrices over unital subrings of R are algebraically shift equivalent to primitive matrices, formulating the Spectral Conjecture over subrings and establishing dimension lower bounds over Z.",
+        "bibtex": "@article{BoyleHandelman1993,\n  author  = {Boyle, Mike and Handelman, David},\n  title   = {Algebraic shift equivalence and primitive matrices},\n  journal = {Transactions of the American Mathematical Society},\n  volume  = {336},\n  number  = {1},\n  pages   = {121--149},\n  year    = {1993},\n  doi     = {10.1090/S0002-9947-1993-1102219-4}\n}"
     },
     {
         "key": "kim-roush1999",
-        "title": "The Williams conjecture is false for primitive shifts",
+        "title": "The Williams conjecture is false for irreducible subshifts",
         "authors": "Ki Hang Kim and Fred W. Roush",
         "year": 1999,
         "venue": "Annals of Mathematics, 149(2): 545–558",
@@ -493,40 +494,41 @@
         "categoryName": "Symbolic Dynamics & Shifts",
         "badge": "Williams Conjecture",
         "badgeClass": "breakthrough",
-        "doi": "https://doi.org/10.2307/120974",
-        "url": "https://doi.org/10.2307/120974",
-        "note": "Proves that shift equivalence does not imply strong shift equivalence for primitive shifts of finite type, resolving Williams' famous conjecture in the negative.",
-        "bibtex": "@article{KimRoush1999,\n  author  = {Kim, Ki Hang and Roush, Fred W.},\n  title   = {The {W}illiams conjecture is false for primitive shifts},\n  journal = {Annals of Mathematics},\n  volume  = {149},\n  number  = {2},\n  pages   = {545--558},\n  year    = {1999},\n  doi     = {10.2307/120974}\n}"
+        "doi": "https://doi.org/10.2307/120975",
+        "arxiv": "https://arxiv.org/abs/math/9907095",
+        "url": "https://doi.org/10.2307/120975",
+        "note": "Proves that shift equivalence over Z+ does not imply strong shift equivalence for primitive/irreducible shifts of finite type, resolving Williams' conjecture in the negative.",
+        "bibtex": "@article{KimRoush1999,\n  author  = {Kim, Ki Hang and Roush, Fred W.},\n  title   = {The {W}illiams conjecture is false for irreducible subshifts},\n  journal = {Annals of Mathematics},\n  volume  = {149},\n  number  = {2},\n  pages   = {545--558},\n  year    = {1999},\n  doi     = {10.2307/120975},\n  eprint  = {math/9907095},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "kim2000",
         "title": "The spectra of nonnegative integer matrices via formal power series",
-        "authors": "K. H. Kim, N. Ormes, and F. W. Roush",
+        "authors": "K. H. Kim, N. S. Ormes, and F. W. Roush",
         "year": 2000,
         "venue": "Journal of the American Mathematical Society, 13(4): 773–806",
         "category": "symbolic",
         "categoryName": "Symbolic Dynamics & Shifts",
-        "badge": "Dimension Bounds",
-        "badgeClass": "theory",
-        "doi": "https://doi.org/10.1090/S0894-0347-00-00344-7",
-        "url": "https://doi.org/10.1090/S0894-0347-00-00344-7",
-        "note": "Provides explicit, constructive bounds on the augmented dimension N in the Boyle-Handelman theorem and develops state-splitting algorithms for shift realizations.",
-        "bibtex": "@article{KimOrmesRoush2000,\n  author  = {Kim, K. H. and Ormes, N. and Roush, F. W.},\n  title   = {The spectra of nonnegative integer matrices via formal power series},\n  journal = {Journal of the American Mathematical Society},\n  volume  = {13},\n  number  = {4},\n  pages   = {773--806},\n  year    = {2000},\n  doi     = {10.1090/S0894-0347-00-00344-7}\n}"
+        "badge": "Integer Realization",
+        "badgeClass": "breakthrough",
+        "doi": "https://doi.org/10.1090/S0894-0347-00-00342-8",
+        "url": "https://doi.org/10.1090/S0894-0347-00-00342-8",
+        "note": "Characterizes the nonzero spectra of primitive nonnegative integer matrices via formal power series and state splitting, proving the necessity and sufficiency of the Boyle–Handelman conditions together with integer coefficients and nonnegative net traces.",
+        "bibtex": "@article{KimOrmesRoush2000,\n  author  = {Kim, K. H. and Ormes, N. S. and Roush, F. W.},\n  title   = {The spectra of nonnegative integer matrices via formal power series},\n  journal = {Journal of the American Mathematical Society},\n  volume  = {13},\n  number  = {4},\n  pages   = {773--806},\n  year    = {2000},\n  doi     = {10.1090/S0894-0347-00-00342-8}\n}"
     },
     {
-        "key": "kirkland2001",
-        "title": "On the Boyle-Handelman conjecture for spectra of nonnegative matrices",
-        "authors": "Stephen Kirkland",
-        "year": 2001,
-        "venue": "Linear Algebra and its Applications, 323(1–3): 101–117",
+        "key": "laffey2012",
+        "title": "A constructive version of the Boyle–Handelman theorem on the spectra of nonnegative matrices",
+        "authors": "Thomas J. Laffey",
+        "year": 2012,
+        "venue": "Linear Algebra and its Applications, 436(6): 1701–1709",
         "category": "symbolic",
         "categoryName": "Symbolic Dynamics & Shifts",
-        "badge": "Spectral Conjectures",
+        "badge": "Constructive Boyle–Handelman",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1016/S0024-3795(00)00244-X",
-        "url": "https://doi.org/10.1016/S0024-3795(00)00244-X",
-        "note": "Investigates dimension bounds and companion matrix constructions under the Boyle-Handelman hypotheses for real and complex spectra.",
-        "bibtex": "@article{Kirkland2001,\n  author  = {Kirkland, Stephen},\n  title   = {On the {B}oyle-{H}andelman conjecture for spectra of nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {323},\n  number  = {1--3},\n  pages   = {101--117},\n  year    = {2001},\n  doi     = {10.1016/S0024-3795(00)00244-X}\n}"
+        "doi": "https://doi.org/10.1016/j.laa.2011.09.023",
+        "url": "https://doi.org/10.1016/j.laa.2011.09.023",
+        "note": "Provides an explicit matrix-theoretic proof and dimension-bounding construction for the real Boyle–Handelman theorem under positive power sums.",
+        "bibtex": "@article{Laffey2012,\n  author  = {Laffey, Thomas J.},\n  title   = {A constructive version of the {B}oyle--{H}andelman theorem on the spectra of nonnegative matrices},\n  journal = {Linear Algebra and its Applications},\n  volume  = {436},\n  number  = {6},\n  pages   = {1701--1709},\n  year    = {2012},\n  doi     = {10.1016/j.laa.2011.09.023}\n}"
     },
     {
         "key": "johnson1981",
@@ -538,10 +540,10 @@
         "categoryName": "Perron Similarities & Cones",
         "badge": "Doubly Stochastic",
         "badgeClass": "theory",
-        "doi": "https://doi.org/10.1080/03081088108817399",
-        "url": "https://doi.org/10.1080/03081088108817399",
-        "note": "Examines similarity invariants for stochastic and doubly stochastic matrices, foreshadowing coordinate transformations with Perron eigenvector constraints.",
-        "bibtex": "@article{Johnson1981,\n  author  = {Johnson, Charles R.},\n  title   = {Row stochastic matrices similar to doubly stochastic matrices},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {10},\n  number  = {2},\n  pages   = {113--130},\n  year    = {1981},\n  doi     = {10.1080/03081088108817399}\n}"
+        "doi": "https://doi.org/10.1080/03081088108817402",
+        "url": "https://doi.org/10.1080/03081088108817402",
+        "note": "Examines similarity between row-stochastic and doubly stochastic matrices, showing that not every row-stochastic matrix is similar to a doubly stochastic matrix.",
+        "bibtex": "@article{Johnson1981,\n  author  = {Johnson, Charles R.},\n  title   = {Row stochastic matrices similar to doubly stochastic matrices},\n  journal = {Linear and Multilinear Algebra},\n  volume  = {10},\n  number  = {2},\n  pages   = {113--130},\n  year    = {1981},\n  doi     = {10.1080/03081088108817402}\n}"
     },
     {
         "key": "holtz2005",
@@ -554,10 +556,10 @@
         "badge": "M-Matrix Newton Bounds",
         "badgeClass": "breakthrough",
         "doi": "https://doi.org/10.1090/S0002-9939-04-07576-8",
-        "arxiv": "https://arxiv.org/abs/math/0312142",
+        "arxiv": "https://arxiv.org/abs/math/0512610",
         "url": "https://doi.org/10.1090/S0002-9939-04-07576-8",
         "note": "Proves that the normalized characteristic polynomial coefficients of every M-matrix (hence rho*I - A for every nonnegative matrix A) satisfy Newton's log-concavity inequalities.",
-        "bibtex": "@article{Holtz2005,\n  author  = {Holtz, Olga},\n  title   = {{M}-matrices satisfy {N}ewton's inequalities},\n  journal = {Proceedings of the American Mathematical Society},\n  volume  = {133},\n  number  = {3},\n  pages   = {711--717},\n  year    = {2005},\n  doi     = {10.1090/S0002-9939-04-07576-8}\n}"
+        "bibtex": "@article{Holtz2005,\n  author  = {Holtz, Olga},\n  title   = {{M}-matrices satisfy {N}ewton's inequalities},\n  journal = {Proceedings of the American Mathematical Society},\n  volume  = {133},\n  number  = {3},\n  pages   = {711--717},\n  year    = {2005},\n  doi     = {10.1090/S0002-9939-04-07576-8},\n  eprint  = {math/0512610},\n  archivePrefix = {arXiv}\n}"
     },
     {
         "key": "torre2007",
@@ -678,6 +680,18 @@
     });
     if (CITATIONS_MAP['munger2023']) {
         CITATIONS_MAP['munger2024'] = CITATIONS_MAP['munger2023'];
+    }
+    if (CITATIONS_MAP['laffey2006']) {
+        CITATIONS_MAP['laffey2007'] = CITATIONS_MAP['laffey2006'];
+    }
+    if (CITATIONS_MAP['smigoc2004']) {
+        CITATIONS_MAP['monov2005'] = CITATIONS_MAP['smigoc2004'];
+    }
+    if (CITATIONS_MAP['boyle1993']) {
+        CITATIONS_MAP['handelman1992'] = CITATIONS_MAP['boyle1993'];
+    }
+    if (CITATIONS_MAP['laffey2012']) {
+        CITATIONS_MAP['kirkland2001'] = CITATIONS_MAP['laffey2012'];
     }
 
     // Determine base URL path prefix based on location
@@ -861,7 +875,8 @@
                 if (entry) {
                     const firstAuthor = entry.authors.split(' and ')[0].split(',')[0].trim().replace(/^.*\s+/, '');
                     const text = this.textContent.trim() || `[${firstAuthor}, ${entry.year}]`;
-                    this.innerHTML = `<a href="${href}" class="cite-inline-ref" title="${entry.title} (${entry.authors}, ${entry.year})">${text}</a>`;
+                    const targetHref = `${base}bibliography.html#cite-${entry.key}`;
+                    this.innerHTML = `<a href="${targetHref}" class="cite-inline-ref" title="${entry.title} (${entry.authors}, ${entry.year})">${text}</a>`;
                 } else {
                     this.innerHTML = `<span>[${key}]</span>`;
                 }

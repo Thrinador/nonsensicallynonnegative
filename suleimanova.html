@@ -7,12 +7,12 @@
     <title>Suleĭmanova Spectra &amp; Realization Theorems | Theory Wiki | NIEP Research Hub</title>
     <meta name="description"
         content="Academic theory wiki article on Suleĭmanova spectra, the single positive eigenvalue condition, Hazel Perfect's companion proof, Fiedler's symmetric realization theorem, and Soules bases.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/suleimanova.html">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/suleimanova">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Suleĭmanova Spectra &amp; Realization Theorems | Theory Wiki | NIEP Research Hub">
     <meta property="og:description" content="Academic theory wiki article on Suleĭmanova spectra, the single positive eigenvalue condition, Hazel Perfect&#x27;s companion proof, Fiedler&#x27;s symmetric realization theorem, and Soules bases.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/suleimanova.html">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/suleimanova">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
@@ -69,7 +69,7 @@
                     <div class="hero-badge">Theory Wiki &middot; Solvable Spectral Classes</div>
                     <h1 class="hero-title">Suleĭmanova Spectra &amp; Realization Theorems</h1>
                     <p class="hero-subtitle">
-                        The definitive solvable class of spectra with a single positive eigenvalue: trace nonnegativity, Hazel Perfect's companion matrix proof, Fiedler's symmetric tridiagonal realization, and Soules bases.
+                        The definitive solvable class of spectra with a single positive eigenvalue: trace nonnegativity, Hazel Perfect's companion matrix proof, Fiedler's symmetric rank-one gluing realization, and Soules bases.
                     </p>
                 </header>
 
@@ -112,11 +112,11 @@
                             </tr>
                             <tr>
                                 <th>Realization Bases</th>
-                                <td>Perturbed companion, Fiedler tridiagonal, Soules matrices</td>
+                                <td>Perturbed companion, Fiedler symmetric gluing, Soules matrices</td>
                             </tr>
                             <tr>
                                 <th>Modern Extensions</th>
-                                <td>Soto (2003), Monov (2005), Laffey-Šmigoc (2007)</td>
+                                <td>Soto (2003), Monov (2005), Laffey&ndash;Šmigoc (2006)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -176,7 +176,7 @@
                     </div>
 
                     <p class="deepdive-text">
-                        In 1949, the Soviet mathematician <cite-ref key="suleimanova1949">H. R. Suleĭmanova (1949)</cite-ref> published an announcement in <em>Doklady Akademii Nauk SSSR</em> asserting that the trace condition $s_1 \ge 0$ is sufficient to realize any such spectrum by an entrywise stochastic matrix. However, her original paper contained only a brief sketch of an induction argument without complete proofs.
+                        In 1949, the Soviet mathematician <cite-ref key="suleimanova1949">H. R. Suleĭmanova (1949)</cite-ref> published an announcement in <em>Doklady Akademii Nauk SSSR</em> asserting that for normalized lists with $\lambda_0 = 1$, the trace condition $s_1 \ge 0$ suffices for row-stochastic realization (equivalently, by positive scaling, nonnegative realization for any $\lambda_0 > 0$). However, her original paper contained only a brief sketch without complete proofs.
                     </p>
 
                     <p class="deepdive-text">
@@ -228,18 +228,18 @@
                             <span class="math-callout-tag">Theorem</span>
                         </div>
                         <p>
-                            Let $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ with $\lambda_0 > 0 \ge \lambda_1 \ge \dots \ge \lambda_{n-1}$. If $\sum_{i=0}^{n-1} \lambda_i \ge 0$, then there exists a <strong>symmetric, tridiagonal nonnegative matrix</strong> $A = A^T \ge 0$ having spectrum $\sigma$.
+                            Let $\sigma = \{\lambda_0, \lambda_1, \dots, \lambda_{n-1}\}$ with $\lambda_0 > 0 \ge \lambda_1 \ge \dots \ge \lambda_{n-1}$. If $\sum_{i=0}^{n-1} \lambda_i \ge 0$, then there exists a <strong>symmetric nonnegative matrix</strong> $A = A^T \ge 0$ having spectrum $\sigma$.
                         </p>
                     </div>
 
                     <p class="deepdive-text">
-                        Fiedler's inductive proof constructs a sequence of symmetric matrices $A_1, A_2, \dots, A_n = A$ where at step $k$:
+                        Fiedler's inductive proof relies on a symmetric rank-one gluing lemma (Theorem 2.4 of Fiedler 1974): given symmetric nonnegative matrices $A_1, A_2$ with Perron eigenpairs $(\mu_1, \mathbf{u}_1)$ and $(\mu_2, \mathbf{u}_2)$, a bordered coupling
                     </p>
 
-                    $$A_k = \begin{pmatrix} A_{k-1} & \mathbf{v}_k \\ \mathbf{v}_k^T & \alpha_k \end{pmatrix}$$
+                    $$A = \begin{pmatrix} A_1 &amp; \varepsilon \mathbf{u}_1 \mathbf{u}_2^T \\ \varepsilon \mathbf{u}_2 \mathbf{u}_1^T &amp; A_2 \end{pmatrix} \ge 0$$
 
                     <p class="deepdive-text">
-                        By selecting the coupling vector $\mathbf{v}_k \ge 0$ and the diagonal scalar $\alpha_k \ge 0$, the eigenvalues of $A_k$ interlace precisely with those of $A_{k-1}$, adjoining $\lambda_k \le 0$ without shifting the previous spectrum. Fiedler's theorem established that <strong>there is no symmetry gap for Suleĭmanova spectra</strong>:
+                        preserves all remaining eigenvalues of $A_1$ and $A_2$ while replacing $\{\mu_1, \mu_2\}$ with the eigenvalues of a $2 \times 2$ nonnegative matrix. (Note that $A$ is generally <em>not</em> tridiagonal: for instance, $\sigma = \{2, -1, -1\}$ has zero trace and no zero eigenvalue, whereas every $3 \times 3$ zero-diagonal symmetric tridiagonal matrix is bipartite with spectrum $\{\mu, 0, -\mu\}$; its symmetric realization is $J_3 - I_3$.) Fiedler's theorem established that <strong>there is no symmetry gap for Suleĭmanova spectra</strong>:
                     </p>
 
                     $$\sigma \text{ is Sule\u012dmanova} \implies \sigma \in \operatorname{SNIEP} \iff \sigma \in \operatorname{RNIEP} \iff \sum_{i=0}^{n-1} \lambda_i \ge 0$$
@@ -308,15 +308,15 @@
 
                     <div class="feature-card-grid">
                         <div class="feature-card">
-                            <h3 class="feature-title">Complex Spectra (<cite-ref key="monov2005">Monov 2005</cite-ref>)</h3>
+                            <h3 class="feature-title">Diagonal Gluing (<cite-ref key="smigoc2004">Šmigoc 2004</cite-ref>)</h3>
                             <p class="feature-desc">
-                                Extended the Suleĭmanova framework to complex conjugate pairs whose non-Perron eigenvalues have nonpositive real parts: $\lambda_0 > 0$ and $\operatorname{Re}(\lambda_j) \le 0$, under modulus and trace bounds.
+                                Unifies real and complex Suleĭmanova-type constructions by gluing a realizing matrix for $(\mu_1, \dots, \mu_n)$ onto a diagonal entry $\ge \mu_1$ of a realizing matrix for $(\lambda_1, \dots, \lambda_m)$.
                             </p>
                         </div>
                         <div class="feature-card">
-                            <h3 class="feature-title">Negative Real Parts (<cite-ref key="laffey2007">Laffey &amp; Šmigoc 2007</cite-ref>)</h3>
+                            <h3 class="feature-title">Negative Real Parts (<cite-ref key="laffey2006">Laffey &amp; Šmigoc 2006</cite-ref>)</h3>
                             <p class="feature-desc">
-                                Established constructive realization theorems for spectra whose non-Perron eigenvalues have strictly negative real parts, exploiting companion matrix pencils and similarity reductions.
+                                Characterized when a list consisting of one positive Perron eigenvalue and remaining complex eigenvalues with nonpositive real parts is realizable by a nonnegative matrix.
                             </p>
                         </div>
                         <div class="feature-card">
@@ -353,7 +353,7 @@
                 <section class="deepdive-section" id="references">
                     <div class="deepdive-section-header">
                         <h2 class="deepdive-section-title">7. Key Literature &amp; Academic Citations</h2>
-                        <span class="deepdive-section-desc">Pioneering and foundational publications on Suleĭmanova spectra, Fiedler tridiagonal matrices, and Soules bases</span>
+                        <span class="deepdive-section-desc">Pioneering and foundational publications on Suleĭmanova spectra, Fiedler's symmetric construction, and Soules bases</span>
                     </div>
 
                     <p class="deepdive-text mb-lg">
@@ -361,7 +361,7 @@
                     </p>
 
                     <!-- Global Citation Grid Component -->
-                    <cite-grid keys="suleimanova1949, perfect1953, perfect1955, fiedler1974, soules1983, radwan1996, elsner1998, soto2003, monov2005, laffey2007"></cite-grid>
+                    <cite-grid keys="suleimanova1949, perfect1953, perfect1955, fiedler1974, soules1983, radwan1996, elsner1998, soto2003, smigoc2004, laffey2006"></cite-grid>
                 </section>
 
                 <!-- Section 8: See Also -->
@@ -377,7 +377,7 @@
                         </a>
                         <a href="rniep.html" class="wiki-see-also-card">
                             <h3 class="wiki-see-also-title">Real NIEP (RNIEP)</h3>
-                            <p class="wiki-see-also-desc">Investigating general real spectra and the Laffey-Loewy separation spectrum $\{4, 2, 2, -4, -4\}$.</p>
+                            <p class="wiki-see-also-desc">Investigating general real spectra, Jordan blocks, and order-5 separation from SNIEP such as $\{7, 5, -4, -4, -4\}$.</p>
                         </a>
                         <a href="karpelevich-region.html" class="wiki-see-also-card">
                             <h3 class="wiki-see-also-title">Karpelevi&#x010D; Region</h3>

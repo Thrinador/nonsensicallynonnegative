@@ -57,7 +57,7 @@
         const doc = MathJax.startup.document;
         if (!doc.math) return;
 
-        doc.math.forEach(item => {
+        Array.from(doc.math).forEach(item => {
             const root = item.typesetRoot;
             if (!root || root.hasAttribute('data-tex-bound')) return;
             const tex = item.math;
@@ -112,6 +112,15 @@
         startup: {
             ready: () => {
                 MathJax.startup.defaultReady();
+                if (typeof MathJax.typesetPromise === 'function') {
+                    const origTypesetPromise = MathJax.typesetPromise.bind(MathJax);
+                    MathJax.typesetPromise = function (...args) {
+                        return origTypesetPromise(...args).then((res) => {
+                            attachLatexTools();
+                            return res;
+                        });
+                    };
+                }
                 MathJax.startup.promise.then(() => {
                     attachLatexTools();
                 });

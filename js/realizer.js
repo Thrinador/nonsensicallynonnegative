@@ -247,37 +247,56 @@
         return { H, Q };
     }
 
-    function realSchur(A_in, maxIter = 100) {
+    function realSchur(A_in, maxIter = 450) {
         const n = A_in.length;
+        if (n === 1) {
+            return {
+                H: Matrix.copy(A_in),
+                Q: Matrix.eye(1),
+                eigenvalues: [{ re: A_in[0][0], im: 0, blockIndex: 0, blockSize: 1 }]
+            };
+        }
         const { H, Q } = hessenberg(A_in);
         let p = n - 1;
         let iter = 0;
+        let subIter = 0;
         const totalMax = maxIter * n;
 
         while (p > 0 && iter < totalMax) {
             iter++;
+            subIter++;
             const q = p - 1;
 
             const scale1 = Math.abs(H[q][q]) + Math.abs(H[p][p]) + 1e-15;
-            if (Math.abs(H[p][q]) < 1e-13 * scale1) {
+            if (Math.abs(H[p][q]) < 1e-14 * scale1) {
                 H[p][q] = 0;
                 p = q;
+                subIter = 0;
                 continue;
             }
 
             if (q > 0) {
                 const scale2 = Math.abs(H[q - 1][q - 1]) + Math.abs(H[q][q]) + 1e-15;
-                if (Math.abs(H[q][q - 1]) < 1e-13 * scale2) {
+                if (Math.abs(H[q][q - 1]) < 1e-14 * scale2) {
                     H[q][q - 1] = 0;
                     p = q - 1;
+                    subIter = 0;
                     continue;
                 }
             } else {
                 break;
             }
 
-            const s = H[q][q] + H[p][p];
-            const t = H[q][q] * H[p][p] - H[q][p] * H[p][q];
+            let s, t;
+            if (subIter > 0 && subIter % 16 === 0) {
+                // Exceptional shift to break stagnation / accelerate defective blocks
+                const mag = Math.abs(H[p][q]) + (q > 0 ? Math.abs(H[q][q - 1]) : 0);
+                s = 1.5 * mag + H[p][p];
+                t = (0.75 * mag + H[p][p]) ** 2;
+            } else {
+                s = H[q][q] + H[p][p];
+                t = H[q][q] * H[p][p] - H[q][p] * H[p][q];
+            }
 
             let x = H[0][0] * H[0][0] + H[0][1] * H[1][0] - s * H[0][0] + t;
             let y = H[1][0] * (H[0][0] + H[1][1] - s);
@@ -328,7 +347,7 @@
         const eigenvalues = [];
         let i = 0;
         while (i < n) {
-            if (i === n - 1 || Math.abs(H[i + 1][i]) < 1e-8 * (Math.abs(H[i][i]) + Math.abs(H[i + 1][i + 1]) + 1e-12)) {
+            if (i === n - 1 || Math.abs(H[i + 1][i]) < 1e-11 * (Math.abs(H[i][i]) + Math.abs(H[i + 1][i + 1]) + 1e-14)) {
                 eigenvalues.push({ re: H[i][i], im: 0, blockIndex: i, blockSize: 1 });
                 i++;
             } else {
@@ -377,6 +396,102 @@
             });
         }
         return { dist: Math.sqrt(totalDistSq / n), pairs };
+    }
+
+    /**
+     * Compute monic characteristic polynomial det(xI - M) via Faddeev–LeVerrier
+     * and compare coefficients against prod_{i=1}^n (x - target_i).
+     */
+    function computeCharPolyCertificate(M, targets) {
+        const n = M.length;
+        // 1. Expand target polynomial over C: prod (x - lambda_i)
+        let tPoly = [{ re: 1, im: 0 }];
+        for (let i = 0; i < targets.length; i++) {
+            const lam = targets[i];
+            const next = Array.from({ length: tPoly.length + 1 }, () => ({ re: 0, im: 0 }));
+            for (let j = 0; j < tPoly.length; j++) {
+                next[j].re += tPoly[j].re;
+                next[j].im += tPoly[j].im;
+                const prod = Complex.mul(tPoly[j], lam);
+                next[j + 1].re -= prod.re;
+                next[j + 1].im -= prod.im;
+            }
+            tPoly = next;
+        }
+        const targetCoeffs = tPoly.map(c => c.re);
+
+        // 2. Faddeev–LeVerrier for det(xI - M) = x^n + c_1 x^{n-1} + ... + c_n
+        const matrixCoeffs = new Float64Array(n + 1);
+        matrixCoeffs[0] = 1;
+        let B = Matrix.zeros(n);
+        for (let k = 1; k <= n; k++) {
+            if (k === 1) {
+                B = Matrix.eye(n);
+            } else {
+                const MB = Matrix.mul(M, B);
+                const prevC = matrixCoeffs[k - 1];
+                B = MB;
+                for (let i = 0; i < n; i++) B[i][i] += prevC;
+            }
+            // tr(M * B)
+            let trMB = 0;
+            for (let i = 0; i < n; i++) {
+                let rowDot = 0;
+                for (let j = 0; j < n; j++) rowDot += M[i][j] * B[j][i];
+                trMB += rowDot;
+            }
+            matrixCoeffs[k] = -trMB / k;
+        }
+
+        let maxDiff = 0;
+        for (let k = 1; k <= n; k++) {
+            const diff = Math.abs(matrixCoeffs[k] - (targetCoeffs[k] || 0));
+            if (diff > maxDiff) maxDiff = diff;
+        }
+
+        const terms = [`x^${n}`];
+        for (let k = 1; k <= n; k++) {
+            const c = matrixCoeffs[k];
+            if (Math.abs(c) < 1e-11) continue;
+            const pwr = n - k;
+            const sign = c >= 0 ? ' + ' : ' − ';
+            const absC = Math.abs(c);
+            const cStr = Math.abs(absC - Math.round(absC)) < 1e-9
+                ? String(Math.round(absC))
+                : absC.toFixed(4);
+            if (pwr === 0) {
+                terms.push(`${sign}${cStr}`);
+            } else if (pwr === 1) {
+                terms.push(`${sign}${cStr === '1' ? '' : cStr}x`);
+            } else {
+                terms.push(`${sign}${cStr === '1' ? '' : cStr}x^${pwr}`);
+            }
+        }
+
+        return {
+            targetCoeffs,
+            matrixCoeffs: Array.from(matrixCoeffs),
+            coeffResidual: maxDiff,
+            polyFormatted: terms.join('')
+        };
+    }
+
+    function buildExactConstructionResult(matrix, targetSpectrum, eigenvalues, method, theoretical) {
+        const { dist: numDist } = calcSpectralDistance(targetSpectrum, eigenvalues);
+        const cert = computeCharPolyCertificate(matrix, targetSpectrum);
+        return {
+            success: true,
+            isExactConstruction: true,
+            coeffResidual: cert.coeffResidual,
+            charPolyFormatted: cert.polyFormatted,
+            matrix,
+            dist: numDist,
+            eigenvalues,
+            iterations: 1,
+            restarts: 1,
+            method,
+            theoretical
+        };
     }
 
     function structureTargetSpectrum(targets) {
@@ -788,46 +903,20 @@
             const circulant = tryCirculantConstruction(targetSpectrum, targetClass);
             if (circulant) {
                 const { eigenvalues } = realSchur(circulant);
-                return {
-                    success: true,
-                    matrix: circulant,
-                    dist: 0,
-                    eigenvalues,
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Circulant Realization',
-                    theoretical
-                };
+                return buildExactConstructionResult(circulant, targetSpectrum, eigenvalues, 'Exact Circulant Realization', theoretical);
             }
 
             const suleimanova = trySuleimanovaConstruction(targetSpectrum, targetClass);
             if (suleimanova) {
                 const { eigenvalues } = realSchur(suleimanova);
-                return {
-                    success: true,
-                    matrix: suleimanova,
-                    dist: 0,
-                    eigenvalues,
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Suleimanova Realization',
-                    theoretical
-                };
+                return buildExactConstructionResult(suleimanova, targetSpectrum, eigenvalues, 'Exact Suleĭmanova Companion Realization', theoretical);
             }
 
             const soules = trySoulesConstruction(targetSpectrum, targetClass);
             if (soules) {
                 const { eigenvalues } = jacobiEigen(soules);
-                return {
-                    success: true,
-                    matrix: soules,
-                    dist: 0,
-                    eigenvalues: Array.from(eigenvalues).map(v => ({ re: v, im: 0 })),
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Soules Orthogonal Realization',
-                    theoretical
-                };
+                const eigObjs = Array.from(eigenvalues).map(v => ({ re: v, im: 0 }));
+                return buildExactConstructionResult(soules, targetSpectrum, eigObjs, 'Exact Soules Orthogonal Realization', theoretical);
             }
         }
 
@@ -1015,46 +1104,20 @@
             const circulant = tryCirculantConstruction(targetSpectrum, targetClass);
             if (circulant) {
                 const { eigenvalues } = realSchur(circulant);
-                return {
-                    success: true,
-                    matrix: circulant,
-                    dist: 0,
-                    eigenvalues,
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Circulant Realization',
-                    theoretical
-                };
+                return buildExactConstructionResult(circulant, targetSpectrum, eigenvalues, 'Exact Circulant Realization', theoretical);
             }
 
             const suleimanova = trySuleimanovaConstruction(targetSpectrum, targetClass);
             if (suleimanova) {
                 const { eigenvalues } = realSchur(suleimanova);
-                return {
-                    success: true,
-                    matrix: suleimanova,
-                    dist: 0,
-                    eigenvalues,
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Suleimanova Realization',
-                    theoretical
-                };
+                return buildExactConstructionResult(suleimanova, targetSpectrum, eigenvalues, 'Exact Suleĭmanova Companion Realization', theoretical);
             }
 
             const soules = trySoulesConstruction(targetSpectrum, targetClass);
             if (soules) {
                 const { eigenvalues } = jacobiEigen(soules);
-                return {
-                    success: true,
-                    matrix: soules,
-                    dist: 0,
-                    eigenvalues: Array.from(eigenvalues).map(v => ({ re: v, im: 0 })),
-                    iterations: 1,
-                    restarts: 1,
-                    method: 'Exact Soules Orthogonal Realization',
-                    theoretical
-                };
+                const eigObjs = Array.from(eigenvalues).map(v => ({ re: v, im: 0 }));
+                return buildExactConstructionResult(soules, targetSpectrum, eigObjs, 'Exact Soules Orthogonal Realization', theoretical);
             }
         }
 
@@ -1340,10 +1403,10 @@
         },
         {
             id: 'doubly_stoch4',
-            name: 'Doubly Stochastic Symmetric (n = 4)',
+            name: 'Symmetric Stochastic (n = 4)',
             targetClass: 'stochastic-symmetric',
             spectrum: '1, 0.6, -0.3, -0.3',
-            desc: 'Real symmetric spectrum with Perron root 1 and row sum 1.'
+            desc: 'Real symmetric stochastic spectrum with Perron root 1 and unit row/column sums.'
         },
         {
             id: 'soules4',
@@ -1368,10 +1431,10 @@
         },
         {
             id: 'impossible_trace',
-            name: 'Provably Infeasible: Negative Trace (n = 3)',
+            name: 'Provably Infeasible: Zero Trace, s₃ < 0 (n = 3)',
             targetClass: 'nonnegative',
             spectrum: '1, 1, -2',
-            desc: 'Satisfies tr(A) = 0, but power trace s₃ = 1³ + 1³ + (-2)³ = -6 < 0. No nonnegative matrix exists!'
+            desc: 'Satisfies tr(A) = s₁ = 0, but third power sum s₃ = 1³ + 1³ + (-2)³ = -6 < 0. No nonnegative matrix exists!'
         },
         {
             id: 'impossible_stoch',
@@ -1389,6 +1452,7 @@
         jacobiEigen,
         realSchur,
         calcSpectralDistance,
+        computeCharPolyCertificate,
         analyzeTheoreticalConditions,
         solveNIEP,
         solveNIEPAsync,
@@ -1503,6 +1567,7 @@
             this.resizeCanvas();
 
             this.diagList = document.getElementById('diagList');
+            this.eigenCondNote = document.getElementById('eigenCondNote');
             this.eigenTableBody = document.getElementById('eigenTableBody');
             this.matrixPropsBody = document.getElementById('matrixPropsBody');
 
@@ -1553,6 +1618,7 @@
                         if (this.depthInput && chip.dataset.depth) {
                             this.depthInput.value = chip.dataset.depth;
                         }
+                        this.markResultsStale();
                     });
                 });
             }
@@ -1561,7 +1627,20 @@
                 if (this.chipBtns) {
                     this.chipBtns.forEach(c => c.classList.remove('active'));
                 }
+                this.markResultsStale();
             };
+
+            if (this.spectrumInput) {
+                this.spectrumInput.addEventListener('input', () => {
+                    this.markResultsStale();
+                });
+            }
+
+            if (this.tolSelect) {
+                this.tolSelect.addEventListener('change', () => {
+                    this.markResultsStale();
+                });
+            }
 
             if (this.retriesInput) {
                 this.retriesInput.addEventListener('input', onCustomParamInput);
@@ -1842,6 +1921,20 @@
             this.renderResults(result, targetClass, tol, elapsedMs);
         }
 
+        markResultsStale() {
+            if (!this.currentResult || !this.statusBanner) return;
+            this.statusBanner.className = 'status-banner stale';
+            if (this.statusIcon) this.statusIcon.innerHTML = '&#x21BB;';
+            if (this.statusTitle) this.statusTitle.textContent = 'Inputs Changed — Previous Result Shown';
+            if (this.statusBadge) {
+                this.statusBadge.className = 'badge stale';
+                this.statusBadge.textContent = 'Out of date · Press Realize Spectrum';
+            }
+            if (this.statusDesc) {
+                this.statusDesc.textContent = 'Spectrum or solver parameters have changed since the matrix below was computed. Press "Realize Spectrum" to recompute.';
+            }
+        }
+
         renderResults(result, targetClass, tol, elapsedMs) {
             const M = result.matrix || result.bestMatrix;
             const isFound = result.success;
@@ -1850,33 +1943,47 @@
             this.statusBanner.className = 'status-banner ' + (isFound ? 'success' : (result.cancelled ? 'warning' : (result.theoretical.allPassed ? 'warning' : 'danger')));
             if (isFound) {
                 this.statusIcon.innerHTML = '&#x2713;';
-                this.statusTitle.textContent = 'Realization Found';
-                this.statusBadge.className = 'badge success';
-                this.statusBadge.textContent = `Error: ${result.dist.toExponential(2)} ≤ ${tol.toExponential(0)}`;
-                this.statusDesc.textContent = `A valid ${this.getClassName(targetClass)} was successfully constructed in ${result.iterations.toLocaleString()} iterations across ${result.restarts} attempt(s) (${elapsedMs} ms) using ${result.method}.`;
+                if (result.isExactConstruction) {
+                    this.statusTitle.textContent = 'Exact Analytical Realization Constructed';
+                    this.statusBadge.className = 'badge success';
+                    this.statusBadge.textContent = `Char. Poly. Residual: ${result.coeffResidual.toExponential(2)} · Numerical QR: ${result.dist.toExponential(2)}`;
+                    const jordanNote = result.dist > tol
+                        ? ` Note: det(xI − A) = ${result.charPolyFormatted} matches the target polynomial to machine precision, while the separate numerical QR eigensolver shows O(ε^(1/m)) sensitivity (${result.dist.toExponential(2)}) at a repeated Jordan-block eigenvalue.`
+                        : ` Characteristic polynomial: det(xI − A) = ${result.charPolyFormatted}.`;
+                    this.statusDesc.textContent = `Constructed an exact ${this.getClassName(targetClass)} in ${elapsedMs} ms via ${result.method}.${jordanNote}`;
+                } else {
+                    this.statusTitle.textContent = 'Realization Found';
+                    this.statusBadge.className = 'badge success';
+                    this.statusBadge.textContent = `Numerical Residual: ${result.dist.toExponential(2)} ≤ ${tol.toExponential(0)}`;
+                    this.statusDesc.textContent = `A candidate ${this.getClassName(targetClass)} was found in ${result.iterations.toLocaleString()} iterations across ${result.restarts} attempt(s) (${elapsedMs} ms) using ${result.method}.`;
+                }
             } else if (result.cancelled) {
                 this.statusIcon.innerHTML = '&#x25A0;';
                 this.statusTitle.textContent = 'Search Stopped (Best Found Candidate)';
                 this.statusBadge.className = 'badge warning';
-                this.statusBadge.textContent = `Error: ${result.dist.toExponential(3)}`;
+                this.statusBadge.textContent = `Numerical Residual: ${result.dist.toExponential(3)}`;
                 this.statusDesc.textContent = `Search was halted early after ${result.restarts} attempt(s) (${result.iterations.toLocaleString()} iterations, ${elapsedMs} ms). Displaying the best candidate approximation found so far.`;
             } else {
                 this.statusIcon.innerHTML = result.theoretical.allPassed ? '!' : '&times;';
-                this.statusTitle.textContent = result.theoretical.allPassed ? 'Best Found Candidate' : 'Infeasible / Best Approximation';
-                this.statusBadge.className = 'badge warning';
-                this.statusBadge.textContent = `Best Residual: ${result.dist.toExponential(3)} > tol`;
+                this.statusTitle.textContent = result.theoretical.allPassed ? 'Best Found Candidate (Not Converged)' : 'Infeasible / Necessary Condition Violated';
+                this.statusBadge.className = 'badge ' + (result.theoretical.allPassed ? 'warning' : 'danger');
+                this.statusBadge.textContent = `Best Numerical Residual: ${result.dist.toExponential(3)} > ${tol.toExponential(0)}`;
                 
                 if (!result.theoretical.allPassed) {
-                    this.statusDesc.textContent = `The spectrum violates necessary mathematical conditions for this matrix class (see Diagnostics below). Showing the closest candidate found by numerical projection.`;
+                    this.statusDesc.textContent = `The spectrum violates necessary mathematical conditions for this matrix class (see Diagnostics below). Showing the closest projection candidate.`;
                 } else {
-                    this.statusDesc.textContent = `No realizing matrix was found within tolerance (${tol.toExponential(0)}) after ${result.iterations.toLocaleString()} iterations across ${result.restarts} attempts. Displaying the best found candidate with minimal spectral discrepancy.`;
+                    this.statusDesc.textContent = `No realizing matrix was found within tolerance (${tol.toExponential(0)}) after ${result.iterations.toLocaleString()} iterations across ${result.restarts} attempts. A failed numerical search does not prove non-realizability; displaying the closest candidate found.`;
                 }
             }
 
             // 2. Matrix Display
             if (M) {
                 this.renderMatrix(M);
-                this.matrixMeta.textContent = `${M.length}×${M.length} ${this.getClassName(targetClass)} · Spectral error: ${result.dist.toExponential(3)}`;
+                if (result.isExactConstruction) {
+                    this.matrixMeta.textContent = `${M.length}×${M.length} ${this.getClassName(targetClass)} · Exact char. poly. residual: ${result.coeffResidual.toExponential(2)} · Numerical QR residual: ${result.dist.toExponential(3)}`;
+                } else {
+                    this.matrixMeta.textContent = `${M.length}×${M.length} ${this.getClassName(targetClass)} · Numerical spectral residual: ${result.dist.toExponential(3)}`;
+                }
             } else {
                 this.matrixContainer.innerHTML = '<div class="no-matrix">No valid candidate matrix available.</div>';
             }
@@ -1888,7 +1995,7 @@
             this.renderDiagnostics(result.theoretical);
 
             // 5. Verification Tables
-            this.renderVerification(result, targetClass, M);
+            this.renderVerification(result, targetClass, M, tol);
         }
 
         getClassName(cls) {
@@ -1896,7 +2003,7 @@
                 case 'nonnegative': return 'Nonnegative Matrix (A ≥ 0)';
                 case 'stochastic': return 'Stochastic Matrix (A ≥ 0, row sum = 1)';
                 case 'symmetric': return 'Symmetric Nonnegative Matrix (A = Aᵀ ≥ 0)';
-                case 'stochastic-symmetric': return 'Stochastic Symmetric Matrix (Doubly Stochastic)';
+                case 'stochastic-symmetric': return 'Symmetric Stochastic Matrix (A = Aᵀ ≥ 0, row sum = 1)';
                 default: return 'Nonnegative Matrix';
             }
         }
@@ -1954,7 +2061,17 @@
             this.diagList.innerHTML = html;
         }
 
-        renderVerification(result, targetClass, M) {
+        renderVerification(result, targetClass, M, tol = 1e-4) {
+            if (this.eigenCondNote) {
+                if (result.isExactConstruction && result.dist > tol) {
+                    this.eigenCondNote.classList.remove('hidden');
+                    this.eigenCondNote.textContent = `Exact certificate: det(xI − A) = ${result.charPolyFormatted} (coefficient residual ${result.coeffResidual.toExponential(2)}). Because A is non-normal with a repeated Jordan-block eigenvalue, floating-point QR estimates μᵢ below carry O(ε^(1/m)) numerical conditioning spread.`;
+                } else {
+                    this.eigenCondNote.classList.add('hidden');
+                    this.eigenCondNote.textContent = '';
+                }
+            }
+
             // Eigenvalue comparison table
             if (this.eigenTableBody && result.eigenvalues) {
                 const { pairs } = calcSpectralDistance(this.currentTargetSpectrum, result.eigenvalues);
@@ -1962,7 +2079,16 @@
                 for (let i = 0; i < pairs.length; i++) {
                     const p = pairs[i];
                     const err = p.dist;
-                    const errClass = err < 1e-3 ? 'good' : (err < 0.1 ? 'warn' : 'bad');
+                    let errClass;
+                    if (err <= tol) {
+                        errClass = 'good';
+                    } else if (result.isExactConstruction && result.coeffResidual <= 1e-10) {
+                        errClass = 'warn';
+                    } else if (err <= Math.max(10 * tol, 1e-3)) {
+                        errClass = 'warn';
+                    } else {
+                        errClass = 'bad';
+                    }
                     html += `
                         <tr>
                             <td><strong>&lambda;<sub>${i + 1}</sub></strong></td>
@@ -1995,15 +2121,28 @@
                     if (rSum < minRowSum) minRowSum = rSum;
                 }
 
+                const cert = computeCharPolyCertificate(M, this.currentTargetSpectrum);
+                const certPass = cert.coeffResidual <= Math.max(tol * 10, 1e-6);
+
                 const minEntryPass = minEntry >= -1e-6;
-                const rowSumPass = (targetClass === 'stochastic' || targetClass === 'stochastic-symmetric')
-                    ? (Math.abs(maxRowSum - 1) < 1e-3 && Math.abs(minRowSum - 1) < 1e-3)
-                    : true;
-                const symPass = (targetClass === 'symmetric' || targetClass === 'stochastic-symmetric')
-                    ? maxSymDiff < 1e-4
-                    : true;
+                const requiresStochastic = (targetClass === 'stochastic' || targetClass === 'stochastic-symmetric');
+                const requiresSymmetric = (targetClass === 'symmetric' || targetClass === 'stochastic-symmetric');
+                const rowSumPass = Math.abs(maxRowSum - 1) < 1e-3 && Math.abs(minRowSum - 1) < 1e-3;
+                const symPass = maxSymDiff < 1e-4;
+
+                const rowSumBadge = requiresStochastic
+                    ? (rowSumPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-fail">NON-UNIT</span>')
+                    : '<span class="tag-neutral">Not required</span>';
+                const symBadge = requiresSymmetric
+                    ? (symPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-fail">NON-SYMMETRIC</span>')
+                    : '<span class="tag-neutral">Not required</span>';
 
                 let html = `
+                    <tr>
+                        <td><strong>Char. Poly. Residual ||c(A) &minus; c(&sigma;)||<sub>&infin;</sub></strong></td>
+                        <td>${cert.coeffResidual.toExponential(3)}</td>
+                        <td>${result.isExactConstruction && cert.coeffResidual <= 1e-10 ? '<span class="tag-pass">EXACT CERTIFICATE</span>' : (certPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-warn">APPROXIMATE</span>')}</td>
+                    </tr>
                     <tr>
                         <td><strong>Nonnegativity (min A<sub>ij</sub>)</strong></td>
                         <td>${minEntry.toFixed(6)}</td>
@@ -2012,12 +2151,12 @@
                     <tr>
                         <td><strong>Row Sum Range [min, max]</strong></td>
                         <td>[${minRowSum.toFixed(4)}, ${maxRowSum.toFixed(4)}]</td>
-                        <td>${rowSumPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-warn">NON-UNIT</span>'}</td>
+                        <td>${rowSumBadge}</td>
                     </tr>
                     <tr>
                         <td><strong>Symmetry Deviation ||A &minus; A<sup>T</sup>||<sub>max</sub></strong></td>
                         <td>${maxSymDiff.toExponential(3)}</td>
-                        <td>${symPass ? '<span class="tag-pass">PASS</span>' : '<span class="tag-warn">NON-SYMMETRIC</span>'}</td>
+                        <td>${symBadge}</td>
                     </tr>
                     <tr>
                         <td><strong>Matrix Order (Dimension n)</strong></td>

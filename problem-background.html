@@ -7,12 +7,12 @@
     <title>Core Formulation &amp; Mathematical Background | NIEP Research Hub</title>
     <meta name="description"
         content="A comprehensive mathematical survey of the Nonnegative Inverse Eigenvalue Problem (NIEP), spectral invariants, Loewy-London conditions, dimension solvability, and real algebraic geometry.">
-    <link rel="canonical" href="https://nonsensicallynonnegative.com/problem-background.html">
+    <link rel="canonical" href="https://nonsensicallynonnegative.com/problem-background">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nonsensically Nonnegative">
     <meta property="og:title" content="Core Formulation &amp; Mathematical Background | NIEP Research Hub">
     <meta property="og:description" content="A comprehensive mathematical survey of the Nonnegative Inverse Eigenvalue Problem (NIEP), spectral invariants, Loewy-London conditions, dimension solvability, and real algebraic geometry.">
-    <meta property="og:url" content="https://nonsensicallynonnegative.com/problem-background.html">
+    <meta property="og:url" content="https://nonsensicallynonnegative.com/problem-background">
     <meta property="og:image" content="https://nonsensicallynonnegative.com/images/favicon-512x512.png">
     <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
@@ -306,13 +306,13 @@
                     $$\operatorname{RNIEP}(n) = \operatorname{SNIEP}(n) \quad \text{for } n \le 4$$
                 </div>
                 <p class="deepdive-text">
-                    However, in 1996, Charles Johnson, Thomas Laffey, and Raphael Loewy proved the surprising result that this equivalence breaks down at order 5:
+                    However, in 1996, Charles R. Johnson, Thomas J. Laffey, and Raphael Loewy proved that the two problems diverge (first constructed at $n = 6$), and subsequent results by Meehan (1998), Laffey &amp; Meehan (1999), and Hartwig &amp; Loewy established strict containment for every order $n \ge 5$:
                 </p>
                 <div class="theory-formula">
                     $$\operatorname{SNIEP}(n) \subsetneq \operatorname{RNIEP}(n) \quad \text{for all } n \ge 5$$
                 </div>
                 <p class="deepdive-text mb-0">
-                    Specifically, the spectrum $\sigma = \{4, 2, 2, -4, -4\}$ is realizable by a $5 \times 5$ nonnegative matrix, but cannot be realized by any symmetric $5 \times 5$ nonnegative matrix! Non-symmetric realizations possess extra degrees of freedom via non-orthogonal eigenvector geometries that can accommodate spectra where symmetric matrices fail.
+                    For instance, in the trace-zero family $\sigma(t) = \{3+t, 3-t, -2, -2, -2\}$, taking $t = \tfrac{1}{2}$ and scaling by $2$ gives $\sigma = \{7, 5, -4, -4, -4\}$, which is realized by an explicit $5 \times 5$ nonnegative integer matrix yet cannot be realized by any symmetric $5 \times 5$ nonnegative matrix (since trace-zero symmetric realizations require $\lambda_2 + \lambda_5 \le 0$, whereas $5 + (-4) = 1 > 0$). Non-symmetric realizations possess extra degrees of freedom via non-orthogonal eigenspaces and Jordan blocks that accommodate spectra where symmetric matrices fail.
                 </p>
             </div>
         </section>
@@ -459,7 +459,7 @@
                     <div>
                         <h3 class="deepdive-tool-title">Trace Polytope Gallery</h3>
                         <p class="deepdive-tool-desc">
-                            Explore interactive 2D and 3D WebGL projections of trace polytopes for SNIEP and RNIEP across dimensions $n = 4, 5, 6$. Filter by matrix class, dimension, and polytope vertex signatures.
+                            Explore interactive 2D and 3D WebGL projections of order-5 trace polytopes and realizability boundaries for SNIEP and RNIEP. Filter by matrix class, dimension, and polytope vertex signatures.
                         </p>
                     </div>
                     <a href="trace-polytope.html" class="tool-launch-btn primary">

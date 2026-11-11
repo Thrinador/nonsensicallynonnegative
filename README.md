@@ -63,7 +63,7 @@ This hub bridges computational experimentation with rigorous exposition:
 ### 3. [Trace Polytope 2D & 3D Gallery](trace-polytope.html)
 - **Engine**: 125-dataset 2D polygon and 3D WebGL polyhedron browser powered by Plotly.js with live light/dark theme synchronization and shareable `?plot=` URLs.
 - **Functionality**:
-  - Explores trace polytope slices and realizability boundaries for symmetric (SNIEP) and real (RNIEP) matrices across orders $n = 4, 5, 6$.
+  - Explores trace polytope slices and realizability boundaries for symmetric (SNIEP, 81 datasets) and real (RNIEP, 44 datasets) matrices at order $n = 5$.
   - Filterable by problem variant, matrix order, dimension (2D Polygon vs. 3D Polyhedron), and symbolic vertex identifiers.
 
 ---
@@ -85,7 +85,7 @@ Self-contained reference articles typeset with MathJax 3 and one-click TeX formu
 | :--- | :--- |
 | **[Foundational Overview](problem-background.html)** | Perron–Frobenius theorem, JLL & Holtz $M$-matrix Newton inequalities, and semi-algebraic decidability. |
 | **[NIEP Core Formulation](niep.html)** | Trace nonnegativity ($s_k \ge 0$), Loewy–London & Johnson inequalities, and $n \le 4$ vs. $n \ge 5$ status. |
-| **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's glued symmetric realizations, Soules bases, and McDonald–Newman cones. |
+| **[Symmetric NIEP (SNIEP)](sniep.html)** | Orthogonal eigenspaces, Fiedler's glued symmetric realizations, Soules bases, and McDonald–Neumann cones. |
 | **[Real NIEP (RNIEP)](rniep.html)** | Real non-symmetric spectra, Johnson–Laffey–Loewy separation ($n \ge 5$), and trace polyhedra. |
 | **[Karpelevič Region](karpelevich-region.html)** | Kolmogorov's problem, Dmitriev–Dynkin polygons ($n \le 5$), Ito's theorem, Kirkland–Laffey–Šmigoc polar form, and Munger–Nickerson–Paparella (2024). |
 | **[Suleĭmanova Spectra](suleimanova.html)** | Single positive eigenvalue condition, companion realization, and Friedland's perfection proof. |
@@ -136,7 +136,7 @@ nonsensicallynonnegative/
 │
 ├── karpelevich.html                     # Karpelevič Region interactive viewer (n = 2..16)
 ├── spectra-realizer.html                # Numerical Spectra Realizer application
-├── trace-polytope.html                  # 2D & 3D Trace Polytope gallery (n = 4, 5, 6)
+├── trace-polytope.html                  # 2D & 3D Trace Polytope gallery (order n = 5, 125 slices)
 │
 ├── problem-background.html              # Theory Wiki: Foundations & Perron–Frobenius
 ├── niep.html / sniep.html / rniep.html  # Theory Wiki: NIEP, SNIEP, and RNIEP
