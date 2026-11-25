@@ -5,12 +5,12 @@
             // Check if personal mode is requested via attribute or pathname
             const isPersonal = this.getAttribute('type') === 'personal' ||
                                this.hasAttribute('personal') ||
-                               (typeof window !== 'undefined' && window.location.pathname.includes('/personal/'));
+                               (typeof window !== 'undefined' && window.location.pathname.includes('/personal_old/'));
 
             // Resolve relative base path prefix (e.g., '../' for subdirectories)
             let prefix = this.getAttribute('base-path');
             if (prefix === null) {
-                prefix = isPersonal || (typeof window !== 'undefined' && window.location.pathname.includes('/personal/')) ? '../' : '';
+                prefix = isPersonal || (typeof window !== 'undefined' && window.location.pathname.includes('/personal_old/')) ? '../' : '';
             }
 
             if (isPersonal) {
@@ -56,7 +56,6 @@
                 <a href="${prefix}problem-background.html">Theory Wiki</a>
                 <a href="${prefix}bibliography.html">Comprehensive Bibliography</a>
                 <a href="${prefix}sitemap.html">Site Directory</a>
-                <a href="${prefix}personal/index.html">Author Profile</a>
             </div>
             <div class="footer-links-group">
                 <span class="footer-col-title">Interactive Tools</span>
@@ -64,7 +63,6 @@
                 <a href="${prefix}spectra-realizer.html">Spectra Realizer</a>
                 <a href="${prefix}trace-polytope.html">Trace Polytopes</a>
                 <a href="${prefix}character-cones.html">Character Cones (<i>n</i> = 5)</a>
-                <a href="${prefix}personal/publications.html">Research Publications</a>
             </div>
             <div class="footer-links-group">
                 <span class="footer-col-title">Theory Wiki</span>

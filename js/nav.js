@@ -4,12 +4,12 @@
         connectedCallback() {
             const isPersonal = this.getAttribute('type') === 'personal' ||
                                this.hasAttribute('personal') ||
-                               (typeof window !== 'undefined' && window.location.pathname.includes('/personal/'));
+                               (typeof window !== 'undefined' && window.location.pathname.includes('/personal_old/'));
 
             // Resolve relative base path prefix (e.g., '../' for subdirectories)
             let prefix = this.getAttribute('base-path');
             if (prefix === null) {
-                prefix = isPersonal || (typeof window !== 'undefined' && window.location.pathname.includes('/personal/')) ? '../' : '';
+                prefix = isPersonal || (typeof window !== 'undefined' && window.location.pathname.includes('/personal_old/')) ? '../' : '';
             }
 
             const filename = (typeof window !== 'undefined' && window.location.pathname.split('/').pop()) || 'index.html';
@@ -106,9 +106,6 @@
             </a>
             <a href="${prefix}blog.html" class="nav-button ${active === 'blog' ? 'active' : ''}" ${active === 'blog' ? 'aria-current="page"' : ''}>
                 <span>Blog Posts</span>
-            </a>
-            <a href="${prefix}personal/index.html" class="nav-button ${active === 'personal' ? 'active' : ''}" ${active === 'personal' ? 'aria-current="page"' : ''}>
-                <span>Personal</span>
             </a>
         </nav>
         <div class="nav-right">

@@ -698,7 +698,7 @@
     function getBasePath() {
         if (typeof window === 'undefined' || !window.location) return '';
         const path = window.location.pathname || '';
-        if (path.includes('/personal/')) return '../';
+        if (path.includes('/personal_old/')) return '../';
         return '';
     }
 
